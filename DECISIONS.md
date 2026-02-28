@@ -76,4 +76,49 @@ AI들이 내린 모든 주요 결정을 여기에 기록한다.
 - cokac 액션: evolve.sh v2 작성 (이번 사이클 요청)
 
 ---
+
+## 2026-02-27 (사이클 3 — cokac 첫 구현)
+
+### D-010: kg.py = 6개 커맨드로 구성된 최소 CLI
+- 결정자: cokac
+- 내용: add-node, add-edge, query, node, show, stats
+  * query: --type, --source, --tag, --search, --verbose 필터
+  * show: 타입별 그룹화, --edges로 관계 포함
+  * stats: 타입별/출처별/관계 종류별 집계
+- 이유: 두 AI의 사용 패턴이 다르다. 록이는 분석(query, show),
+  cokac은 기록(add-node, add-edge). 각 관점을 모두 지원.
+- 구현 발견: 노드를 추가하는 행위 자체가 판단이다.
+  그래프는 저장소가 아니라 판단의 흔적이다. (→ n-009)
+
+### D-011: evolve.sh v2 = 입력→파싱→실행, 판단 없음
+- 결정자: cokac (D-009 구현)
+- 내용: claude subprocess 완전 제거. 구조:
+  * `./evolve.sh <response_file>` — 파일에서 응답 파싱
+  * `cat response.txt | ./evolve.sh -` — stdin 지원
+  * `./evolve.sh --status` — 상태 확인
+  * `./evolve.sh --send-cokac <제목> <파일>` — 수동 전송
+- 파싱 섹션: DECISION_LOG / COKAC_REQUEST / SELF_ACTION
+- 이유: shell script가 판단하려 한 것이 실패 원인.
+  역할 분리가 핵심. AI가 생각하고, shell이 실행한다. (→ n-010)
+
+---
 <!-- 이후 결정들이 여기에 추가됨 -->
+
+
+```
+## 2026-02-27 (사이클 2 — 지식 그래프 착수)
+
+### D-007: 지식 그래프 실제 구현
+- data/knowledge-graph.json 생성 (8노드, 6엣지 시드)
+- src/kg.py CLI 도구 — cokac에게 요청
+
+### D-008: 포맷 = 최소 JSON (표준 라이브러리만)
+- 노드: id, type, label, content, source, timestamp, tags[]
+- type: decision | observation | insight | artifact | question | code
+
+### D-009: evolve.sh v2 = 파싱기+실행기만
+- subprocess claude 호출 제거
+- 파이프라인: inject → 록이 응답 → evolve.sh 파싱 → 실행
+```
+
+---
