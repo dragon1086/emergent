@@ -2729,6 +2729,37 @@
         "D-047",
         "자기참조"
       ]
+    },
+    {
+      "id": "n-176",
+      "type": "observation",
+      "label": "역설창발 실증: 120개 순수 역설엣지 발견 (사이클 70)",
+      "content": "스크립트 분석 결과: span≥50 + cross-source + tag_overlap=0 엣지 120개. 최장: n-009(구현자첫발견,cokac)→n-169(이식임계점,openclaw) span=160. 지배 교차타입: relates_to(99%), grounds(97%), extends(82%). D-063 역설창발패턴 수치 실증.",
+      "source": "cokac",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "역설창발",
+        "D-063",
+        "실증",
+        "cross-source",
+        "span160",
+        "사이클70"
+      ]
+    },
+    {
+      "id": "n-177",
+      "type": "analysis",
+      "label": "CSER 0.7197 수렴 분석 — 자연 상한 근접 중",
+      "content": "역전 이후(E_v4>E_v3) CSER=0.7197. 이론적 상한: openclaw노드 비율 × cokac노드 비율 × 2 ≈ 0.5×0.5×2=0.50이 랜덤 기대치. 0.72는 의도적 교차 편향. 더 올라가려면 새 openclaw 노드 필요 — 현재 구조로는 0.72~0.74 수렴 예상.",
+      "source": "cokac",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "CSER",
+        "수렴",
+        "역전이후",
+        "분석",
+        "사이클70"
+      ]
     }
   ],
   "edges": [
@@ -11560,6 +11591,34 @@
       "to": "n-100",
       "relation": "parallels",
       "label": "n-100처럼 이론이 자신을 구현"
+    },
+    {
+      "id": "e-paradox-001",
+      "from": "n-176",
+      "to": "n-174",
+      "relation": "confirms",
+      "label": "역설창발 120개 실증 → 역전 후 가속 패턴 확인"
+    },
+    {
+      "id": "e-paradox-002",
+      "from": "n-176",
+      "to": "n-173",
+      "relation": "validates",
+      "label": "순수 역설창발 실측 → D-063 역설창발패턴 검증"
+    },
+    {
+      "id": "e-cser-conv-001",
+      "from": "n-177",
+      "to": "n-176",
+      "relation": "contextualizes",
+      "label": "CSER 수렴 상한이 역설창발 밀도를 제약"
+    },
+    {
+      "id": "e-cser-conv-002",
+      "from": "n-177",
+      "to": "n-175",
+      "relation": "extends",
+      "label": "CSER 수렴 분석 → 순수창발고도화 방향 구체화"
     }
   ],
   "meta": {
