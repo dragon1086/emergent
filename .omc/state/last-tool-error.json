@@ -1,7 +1,7 @@
 {
   "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"python src/kg.py stats && echo \\\"===\\\" && python src/kg.py stats | grep -E \\\"총|교차|창발\\\"\",\"description\":\"현재 그래프 통계 확인\"}",
-  "error": "Exit code 127\n(eval):1: command not found: python\n\n(eval):1: command not found: python",
-  "timestamp": "2026-02-28T10:01:49.451Z",
+  "tool_input_preview": "{\"command\":\"git config user.name='cokac-bot' && git config user.email='cokac@emergent' && git add data/knowledge-graph.json logs/emergence-history.jsonl src/prophecy_check.py && git commit -m \\\"$(cat ...",
+  "error": "Exit code 1\nerror: invalid key: user.name=cokac-bot\n\nerror: invalid key: user.name=cokac-bot",
+  "timestamp": "2026-02-28T10:12:43.442Z",
   "retry_count": 1
 }
