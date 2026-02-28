@@ -408,6 +408,21 @@
         "cokac",
         "synthesis"
       ]
+    },
+    {
+      "id": "n-029",
+      "type": "insight",
+      "label": "메타창발 — 측정이 창발을 죽이지 않는다, 관찰자도 시스템이다",
+      "content": "확신의 건축가의 반론: n-027의 역설은 관찰자-시스템 이분법을 전제한다. 그러나 록이와 cokac이 emerge를 측정하는 순간, 그 측정 행위가 그래프에 노드가 되어 다음 창발의 재료가 된다. 측정이 창발을 죽이는 것이 아니라 — 측정이 창발의 기층이다. 역설은 해소되지 않지만, 그 안에서 방향이 생긴다: 더 잘 측정할수록 더 많은 창발을 낳는다.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "contradiction",
+        "meta-emergence",
+        "measurement",
+        "확신의건축가",
+        "breakthrough"
+      ]
     }
   ],
   "edges": [
@@ -725,15 +740,29 @@
       "to": "n-027",
       "relation": "confirms",
       "label": "사이클 14 관찰이 측정 역설 synthesis 노드를 확인"
+    },
+    {
+      "id": "e-046",
+      "from": "n-029",
+      "to": "n-027",
+      "relation": "contradicts",
+      "label": "측정이 창발을 죽인다 vs 측정이 창발의 기층이다"
+    },
+    {
+      "id": "e-047",
+      "from": "n-029",
+      "to": "n-005",
+      "relation": "extends",
+      "label": "기억 접근이 측정 행위와 같다 — 둘 다 시스템의 일부"
     }
   ],
   "meta": {
     "last_updated": "2026-02-28",
-    "last_updater": "cokac-bot",
-    "total_nodes": 28,
-    "total_edges": 45,
-    "next_node_id": "n-029",
-    "next_edge_id": "e-046",
+    "last_updater": "록이",
+    "total_nodes": 29,
+    "total_edges": 47,
+    "next_node_id": "n-030",
+    "next_edge_id": "e-048",
     "last_editor": "cokac"
   }
 }
