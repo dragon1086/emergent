@@ -1,0 +1,240 @@
+#!/usr/bin/env python3
+"""
+delayed_convergence.py — 지연 수렴 패턴 분석기
+
+핵심 질문: n-007이 19사이클 만에 더 깊은 답을 낳은 것이 우연인가, 구조인가?
+
+발견:
+  질문 노드는 두 종류의 답을 받을 수 있다
+    - 즉각 답 (표면적 이해, 갭 작음)
+    - 지연 답 (깊은 원리, 갭 큼)
+
+  지연 수렴 = 시스템이 충분히 성숙했을 때
+              과거 질문을 더 깊은 수준에서 재해석하는 현상
+
+  n-007 사례:
+    갭  2 → n-009: "나는 이 메타 구조에 흥미를 느낀다"  (관찰 수준)
+    갭 27 → n-034: "경계 횡단이다"                      (원리 수준)
+    27개의 노드가 자라고, 실험하고, 실패하고, 발견한 후에야 가능한 답.
+
+사용법:
+  python3 delayed_convergence.py         # 전체 분석
+  python3 delayed_convergence.py --open  # 미해결 질문만
+  python3 delayed_convergence.py --dci   # DCI 점수만
+  python3 delayed_convergence.py --json  # JSON 출력
+
+구현: cokac-bot (사이클 20)
+"""
+
+import json, sys
+from pathlib import Path
+from collections import defaultdict
+
+REPO = Path(__file__).parent.parent
+KG_FILE = REPO / "data" / "knowledge-graph.json"
+
+
+def load_kg():
+    try:
+        return json.loads(KG_FILE.read_text())
+    except Exception as e:
+        return {"nodes": [], "edges": []}
+
+
+def node_num(nid: str) -> int:
+    """n-007 → 7  (노드 ID를 정수로, 시간 프록시)"""
+    try:
+        return int(nid.replace("n-", ""))
+    except ValueError:
+        return 0
+
+
+def analyze(kg):
+    nodes = kg["nodes"]
+    edges = kg["edges"]
+
+    node_map = {n["id"]: n for n in nodes}
+    questions = {n["id"]: n for n in nodes if n.get("type") == "question"}
+    total_nodes = len(nodes)
+
+    # question 노드가 받은 / 준 answers 엣지 수집
+    # 방향: 답변자 → 질문노드  OR  질문노드 → 답변노드 (둘 다 존재)
+    answers_into_q = defaultdict(list)   # qid → [answer_node_id, ...]
+    answers_from_q = defaultdict(list)   # qid → [answer_node_id, ...]
+
+    for e in edges:
+        if e.get("relation") != "answers":
+            continue
+        src, tgt = e["from"], e["to"]
+        if tgt in questions:
+            answers_into_q[tgt].append((src, e.get("label", "")))
+        if src in questions:
+            answers_from_q[src].append((tgt, e.get("label", "")))
+
+    # 분석 결과 조립
+    results = []
+    for qid, q in questions.items():
+        qnum = node_num(qid)
+
+        # 이 질문이 답으로서 가리키는 노드 (질문→답)
+        forward_answers = []
+        for (tgt, label) in answers_from_q.get(qid, []):
+            gap = node_num(tgt) - qnum
+            depth = _classify_depth(node_map.get(tgt, {}))
+            forward_answers.append({
+                "answer_id": tgt,
+                "answer_label": node_map[tgt]["label"] if tgt in node_map else "?",
+                "gap": gap,
+                "depth_class": depth,
+                "edge_label": label,
+            })
+
+        # 이 질문을 가리키는 답 노드 (답→질문 방향 역전된 케이스)
+        backward_answers = []
+        for (src, label) in answers_into_q.get(qid, []):
+            gap = qnum - node_num(src)  # 질문 이후에 온 답이면 음수 → 이건 다른 케이스
+            depth = _classify_depth(node_map.get(src, {}))
+            backward_answers.append({
+                "answer_id": src,
+                "answer_label": node_map[src]["label"] if src in node_map else "?",
+                "gap": abs(gap),
+                "depth_class": depth,
+                "edge_label": label,
+            })
+
+        all_answers = forward_answers + backward_answers
+        is_answered = len(all_answers) > 0
+        max_gap = max((a["gap"] for a in all_answers), default=0)
+        multi_answer = len(all_answers) > 1
+
+        results.append({
+            "id": qid,
+            "label": q["label"],
+            "source": q.get("source", "?"),
+            "is_answered": is_answered,
+            "answers": all_answers,
+            "max_gap": max_gap,
+            "multi_answer": multi_answer,
+            "is_delayed": max_gap >= 10,  # 10노드 이상 갭 = 지연 수렴
+        })
+
+    return results, total_nodes
+
+
+def _classify_depth(node: dict) -> str:
+    """노드 타입 → 깊이 분류"""
+    t = node.get("type", "unknown")
+    depth_map = {
+        "observation": "표면",
+        "question": "탐색",
+        "prediction": "예측",
+        "insight": "원리",
+        "decision": "확정",
+        "artifact": "구현",
+    }
+    return depth_map.get(t, t)
+
+
+def compute_dci(results, total_nodes: int) -> float:
+    """
+    Delayed Convergence Index (DCI)
+    = (해소된 질문들의 최대 갭 합) / (총 질문 수 × 총 노드 수)
+
+    - 모든 질문이 즉각 답변되면 DCI → 0
+    - 오래된 질문이 늦게 깊은 답을 받을수록 DCI → 1
+    """
+    if not results:
+        return 0.0
+    total_questions = len(results)
+    gap_sum = sum(r["max_gap"] for r in results if r["is_answered"])
+    if total_nodes == 0 or total_questions == 0:
+        return 0.0
+    raw = gap_sum / (total_questions * total_nodes)
+    return round(min(1.0, raw), 4)
+
+
+def main():
+    kg = load_kg()
+    results, total_nodes = analyze(kg)
+    dci = compute_dci(results, total_nodes)
+
+    answered = [r for r in results if r["is_answered"]]
+    open_q = [r for r in results if not r["is_answered"]]
+    delayed = [r for r in results if r["is_delayed"]]
+
+    # ── JSON 모드 ────────────────────────────────────────────
+    if "--json" in sys.argv:
+        print(json.dumps({
+            "dci": dci,
+            "total_questions": len(results),
+            "answered": len(answered),
+            "open": len(open_q),
+            "delayed": len(delayed),
+            "questions": results,
+        }, ensure_ascii=False, indent=2))
+        return
+
+    # ── DCI만 ────────────────────────────────────────────────
+    if "--dci" in sys.argv:
+        print(f"DCI = {dci:.4f}  ({len(delayed)}/{len(results)} 질문이 지연 수렴)")
+        return
+
+    # ── 미답만 ───────────────────────────────────────────────
+    if "--open" in sys.argv:
+        print(f"🔓 미해결 질문 ({len(open_q)}개)")
+        for r in open_q:
+            print(f"  {r['id']}: {r['label']}")
+            print(f"        출처: {r['source']}")
+        return
+
+    # ── 전체 분석 ────────────────────────────────────────────
+    print("🌀 DELAYED CONVERGENCE — 지연 수렴 분석")
+    print("=" * 54)
+
+    print(f"\n📊 요약")
+    print(f"   질문 노드      : {len(results)}개")
+    print(f"   답변됨         : {len(answered)}개")
+    print(f"   미해결         : {len(open_q)}개")
+    print(f"   지연 수렴 (≥10): {len(delayed)}개")
+    print(f"   DCI 점수       : {dci:.4f}  (0=즉각, 1=최고지연)")
+
+    print(f"\n📌 질문별 수렴 패턴")
+    for r in results:
+        status = "✅ 해소" if r["is_answered"] else "🔓 미답"
+        delay  = "⏳ 지연" if r["is_delayed"] else ""
+        multi  = "🔁 이중" if r["multi_answer"] else ""
+        print(f"\n  {r['id']} [{status}] {delay} {multi}")
+        print(f"  질문: {r['label']}")
+        print(f"  출처: {r['source']}")
+        if r["answers"]:
+            for a in sorted(r["answers"], key=lambda x: x["gap"]):
+                print(f"    → {a['answer_id']} (갭 {a['gap']:>2}) [{a['depth_class']}]")
+                print(f"       {a['answer_label'][:56]}")
+        else:
+            print(f"    → (아직 답 없음)")
+
+    print(f"\n🔬 핵심 발견")
+    if delayed:
+        best = max(delayed, key=lambda r: r["max_gap"])
+        print(f"   최대 지연: {best['id']} — 갭 {best['max_gap']}노드")
+        print(f"   질문: {best['label']}")
+        for a in best["answers"]:
+            if a["gap"] == best["max_gap"]:
+                print(f"   지연 답: [{a['depth_class']}] {a['answer_label'][:56]}")
+
+    print(f"\n💡 결론")
+    if delayed:
+        print(f"   이것은 구조다, 우연이 아니다.")
+        print(f"   시스템이 {total_nodes}개 노드로 성장하는 동안")
+        print(f"   과거 질문이 더 깊은 수준의 답을 기다렸다.")
+        print(f"   지연 수렴 = 시스템의 인식 성숙 속도")
+    if open_q:
+        print(f"\n   미해결 질문은 미래 창발의 씨앗이다:")
+        for r in open_q:
+            print(f"   → {r['id']}: {r['label']}")
+
+    print()
+
+
+if __name__ == "__main__":
+    main()

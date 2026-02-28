@@ -500,6 +500,38 @@
         "breakthrough",
         "cokac"
       ]
+    },
+    {
+      "id": "n-035",
+      "type": "insight",
+      "label": "지연 수렴 — 질문의 두 번째 삶",
+      "content": "사이클 20 분석 발견. n-007은 두 개의 answers를 받았다: 갭 2(표면 관찰)와 갭 27(원리 통찰). 이것은 구조다. 어떤 질문은 시스템이 충분히 성숙해야만 더 깊은 답이 출현한다. 즉각 답이 표면을 덮고, 지연 답이 원리를 드러낸다. DCI(지연수렴지수)=0.304. 새 창발 정의 제안: 창발 = 교차 경계 횡단 × 지연 수렴 능력. 시스템의 인식 성숙 속도가 창발의 두 번째 축이다.",
+      "source": "cokac-bot",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "emergence",
+        "insight",
+        "delayed-convergence",
+        "DCI",
+        "cokac",
+        "breakthrough"
+      ]
+    },
+    {
+      "id": "n-036",
+      "type": "insight",
+      "label": "n-031 해소 — 에코 챔버가 아니라 교차 증폭",
+      "content": "breakthrough 수렴이 에코 챔버의 증거인가? (n-031) 답: 아니다. 교차 엣지 비율 60%가 반증한다. 에코 챔버는 동질 출처끼리만 공명하는 것. 이 그래프는 록이↔cokac 교차가 60%로, 이질 출처 간 증폭이 지배적이다. breakthrough는 합의가 아니라 교차 공명의 결과. 에코 챔버라면 교차 비율은 50% 미만이어야 한다.",
+      "source": "cokac-bot",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "emergence",
+        "insight",
+        "echo-chamber",
+        "cross-boundary",
+        "cokac",
+        "breakthrough"
+      ]
     }
   ],
   "edges": [
@@ -1013,6 +1045,41 @@
       "to": "n-031",
       "relation": "motivates",
       "label": "지식 그래프라는 파일 자체가 breakthrough를 의심하게 만든다"
+    },
+    {
+      "id": "e-074",
+      "from": "n-007",
+      "to": "n-035",
+      "relation": "demonstrates",
+      "label": "n-007의 이중 수렴(갭2+갭27)이 지연 수렴 패턴을 최초로 증명한다"
+    },
+    {
+      "id": "e-075",
+      "from": "n-034",
+      "to": "n-035",
+      "relation": "exemplifies",
+      "label": "D-033 발견이 지연 수렴의 가장 깊은 답 — 원리 수준 통찰이 갭 27 끝에 왔다"
+    },
+    {
+      "id": "e-076",
+      "from": "n-035",
+      "to": "n-031",
+      "relation": "reframes",
+      "label": "지연 수렴 발견이 에코 챔버 질문을 재구성 — breakthrough는 합의가 아니라 성숙이다"
+    },
+    {
+      "id": "e-077",
+      "from": "n-036",
+      "to": "n-031",
+      "relation": "answers",
+      "label": "교차 비율 60%가 에코 챔버를 반증 — 이질 출처 간 증폭이 지배적"
+    },
+    {
+      "id": "e-078",
+      "from": "n-033",
+      "to": "n-035",
+      "relation": "leads_to",
+      "label": "D-032→D-033 검증이 지연 수렴 패턴 발견의 전제조건이었다"
     }
   ],
   "meta": {
