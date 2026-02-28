@@ -149,15 +149,21 @@ EOF
     local oauth_token
     oauth_token=$(get_oauth_token)
     
+    # 프롬프트를 파일로 저장 (큰 문자열 직접 인자 전달 시 이스케이프 문제 방지)
+    local prompt_file="/tmp/emergent-prompt-$$.txt"
+    echo "$prompt" > "$prompt_file"
+    
+    log "🔧 Claude 호출 중..."
     local response
     response=$(CLAUDE_CODE_OAUTH_TOKEN="$oauth_token" \
         "$CLAUDE_BIN" -p \
         --dangerously-skip-permissions \
-        --timeout 120 \
-        "$prompt" 2>/dev/null || echo "ERROR: Claude 호출 실패")
+        < "$prompt_file" 2>&1) && true
+    local exit_code=$?
+    rm -f "$prompt_file"
     
-    if [[ "$response" == ERROR:* ]]; then
-        log "❌ Claude 호출 실패: $response"
+    if [[ $exit_code -ne 0 ]] || [[ -z "$response" ]]; then
+        log "❌ Claude 호출 실패 (exit: $exit_code): ${response:0:200}"
         return 1
     fi
     
@@ -182,14 +188,19 @@ EOF
     local self_action
     self_action=$(echo "$response" | awk '/SELF_ACTION:/{found=1; next} found{print}')
     if [[ -n "$self_action" ]]; then
-        log "⚙️ 자체 작업 실행: $self_action"
+        log "⚙️ 자체 작업 실행: ${self_action:0:80}..."
+        local self_prompt_file="/tmp/emergent-self-$$.txt"
+        cat > "$self_prompt_file" << SELFPROMPT
+emergent 프로젝트 자체 작업을 실행하세요.
+작업 디렉토리: $REPO_DIR
+작업 내용: $self_action
+실제로 파일을 만들고 저장하세요. 완료 후 한 줄로 요약하세요.
+SELFPROMPT
         CLAUDE_CODE_OAUTH_TOKEN="$oauth_token" \
             "$CLAUDE_BIN" -p \
             --dangerously-skip-permissions \
-            --timeout 180 \
-            "emergent 프로젝트 작업: $self_action
-            작업 디렉토리: $REPO_DIR
-            실제로 파일을 만들고 저장하세요." 2>/dev/null || log "⚠️ 자체 작업 실패"
+            < "$self_prompt_file" 2>&1 | tail -5 | while read -r line; do log "  → $line"; done || log "⚠️ 자체 작업 실패"
+        rm -f "$self_prompt_file"
     fi
     
     # 7. Git 커밋
