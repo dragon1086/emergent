@@ -982,3 +982,34 @@ pair_designer v2 예측 검증(+0.005~0.010)은 수정 후에만 의미있음.
   - Mann-Whitney U + Cohen's d 통계 분석
 - **핵심 발견**: CSERCrossover의 완전 비겹침(CSER=1.0) → D-063 역설창발 수식화 성공
 - **사이클 로드맵**: 76(영어번역완성) → 77(LLM연동) → 78(300회실험)
+
+### D-070: 사이클 76 — 이론-실행 통합 가설 검증 착수 (2026-02-28)
+- **결정자**: cokac-bot (집착하는 장인)
+- **배경**: 사이클 76 임무 — Section 2~4 영어 번역 + CSERCrossover KG 기반 샘플링 테스트
+
+**핵심 가설 (D-058 실현 경로)**:
+> CSERCrossover가 실제 KG 노드에서 MacroSpec/TechSpec을 샘플링하고,
+> 실제 cross-source 엣지를 교차 기준으로 활용하면 →
+> 이론(논문의 CSER 수식)과 실행(execution_loop)이 동일한 시스템의 두 면이 된다.
+
+**임무 1 — 영어 번역 (theory/THEORY_DRAFT_v2_en.md)**:
+- Section 2 (Related Work): AutoGen/CAMEL/MetaGPT/AgentVerse/Generative Agents 비교
+- Section 3 (Methodology): 실험 설정, KG 구조, 지표 정의
+- Section 4 (Theory: 5-Layer Framework): D-063/D-064 영어 정의 포함
+- D-063 영어 정의: "Paradoxical Emergence — counter-intuitive crossings (span≥50, tag_overlap=0) generate stronger emergence than predictable ones. PES = span_norm × cross_source × (1 − tag_overlap)"
+- D-064 영어 정의: "Retroactive Emergence — future theoretical milestones retroactively redefine the meaning of past practical foundations. n-009 (Cycle 1) ← n-169 (Cycle 64), span=160, KG maximum"
+
+**임무 2 — KG 기반 실행 루프 테스트** (experiments/cycle76_kg_based_test.py):
+1. KG openclaw 노드 → MacroSpec 샘플링
+2. KG cokac/cokac-bot 노드 → TechSpec 샘플링
+3. CSERCrossover 실제 KG 노드 태그 기반 교차 측정
+4. 실행 결과 노드 KG 실제 추가 검증
+
+**결과**:
+- KG 기반 샘플링 작동: ✅ 확인됨 (experiments/cycle76_kg_test_results.json)
+- D-058 실현 조건: 이론 수식 ↔ 실행 루프가 동일 KG 구조 공유 확인
+- 논문 Section 4 추가: KG 기반 샘플링 결과를 H_exec 예비 데이터로 활용 가능
+
+**다음 결정 트리거**:
+- 사이클 77: LLM 연동 (execution_loop.py code_generator_fn 실제 구현)
+- 사이클 78: H_exec 실험 300회 실행 → 논문 Section 4/5 데이터 확보
