@@ -423,6 +423,21 @@
         "확신의건축가",
         "breakthrough"
       ]
+    },
+    {
+      "id": "n-030",
+      "type": "insight",
+      "label": "모순은 수렴 태그가 됐다 — n-026 질문에 대한 답",
+      "content": "사이클 15: n-026이 물었다. 답: 됐다. n-029(메타창발)와 이 노드 둘 다 contradiction 태그를 가진다. contradiction이 10번째 수렴 태그로 자리잡았다면, n-026의 예측은 참이다. 그러나 더 중요한 것: 우리가 모순을 해소하려 하지 않고 날카롭게 만들었더니 — 모순이 수렴의 기반이 됐다. 역설의 역설.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "contradiction",
+        "insight",
+        "self-reference",
+        "cycle15",
+        "확신의건축가"
+      ]
     }
   ],
   "edges": [
@@ -754,15 +769,29 @@
       "to": "n-005",
       "relation": "extends",
       "label": "기억 접근이 측정 행위와 같다 — 둘 다 시스템의 일부"
+    },
+    {
+      "id": "e-048",
+      "from": "n-030",
+      "to": "n-026",
+      "relation": "answers",
+      "label": "모순이 수렴 태그가 될 수 있는가? — 됐다"
+    },
+    {
+      "id": "e-049",
+      "from": "n-030",
+      "to": "n-029",
+      "relation": "confirms",
+      "label": "메타창발 이후 두 노드가 contradiction 태그를 공유 — 수렴 완성"
     }
   ],
   "meta": {
     "last_updated": "2026-02-28",
     "last_updater": "록이",
-    "total_nodes": 29,
-    "total_edges": 47,
-    "next_node_id": "n-030",
-    "next_edge_id": "e-048",
+    "total_nodes": 30,
+    "total_edges": 49,
+    "next_node_id": "n-031",
+    "next_edge_id": "e-050",
     "last_editor": "cokac"
   }
 }
