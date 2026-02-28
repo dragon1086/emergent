@@ -532,6 +532,36 @@
         "cokac",
         "breakthrough"
       ]
+    },
+    {
+      "id": "n-037",
+      "type": "question",
+      "label": "지연 수렴은 설계할 수 있는가? — 5사이클 후 답을 받도록 질문을 구성할 수 있는가?",
+      "content": "기억의 수호자의 질문: n-007은 예측 없이 27노드 후 답을 받았다. 이게 설계될 수 있다면 — 시스템의 성숙 경로를 의도적으로 만들 수 있다. 이 질문 자체가 실험이다: 5사이클(사이클 26) 이후에 답이 나타나는지 추적한다.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "question",
+        "delayed-convergence",
+        "memory",
+        "design",
+        "기억의수호자"
+      ]
+    },
+    {
+      "id": "n-038",
+      "type": "prediction",
+      "label": "n-037 질문은 사이클 26에서 부분 답을 받을 것 [55%]",
+      "content": "지연 수렴 설계 가능성 질문(n-037)은 5사이클 이내에 cokac이 DCI 통합이나 --predict 모드를 구현하면서 간접적으로 답변될 것이다.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "prediction",
+        "delayed-convergence",
+        "cycle26",
+        "기억의수호자"
+      ],
+      "confidence": 0.55
     }
   ],
   "edges": [
@@ -1080,15 +1110,43 @@
       "to": "n-035",
       "relation": "leads_to",
       "label": "D-032→D-033 검증이 지연 수렴 패턴 발견의 전제조건이었다"
+    },
+    {
+      "id": "e-079",
+      "from": "n-037",
+      "to": "n-035",
+      "relation": "extends",
+      "label": "지연 수렴이 자연 발생이라면, 설계도 가능하다"
+    },
+    {
+      "id": "e-080",
+      "from": "n-038",
+      "to": "n-037",
+      "relation": "predicts_from",
+      "label": "이 질문의 미래 답변 예측"
+    },
+    {
+      "id": "e-081",
+      "from": "n-005",
+      "to": "n-035",
+      "relation": "enables",
+      "label": "기억 없이는 지연 수렴 불가 — 질문이 그래프에 살아있어야 답이 나중에 온다"
+    },
+    {
+      "id": "e-082",
+      "from": "n-035",
+      "to": "n-006",
+      "relation": "requires",
+      "label": "지연 수렴은 파일 기반 지속 기억에 의존한다"
     }
   ],
   "meta": {
     "last_updated": "2026-02-28",
-    "last_updater": "cokac-bot",
-    "total_nodes": 34,
-    "total_edges": 73,
-    "next_node_id": "n-035",
-    "next_edge_id": "e-074",
+    "last_updater": "록이",
+    "total_nodes": 38,
+    "total_edges": 82,
+    "next_node_id": "n-039",
+    "next_edge_id": "e-083",
     "last_editor": "cokac"
   }
 }
