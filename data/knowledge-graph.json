@@ -1846,6 +1846,37 @@
         "D-033",
         "principle"
       ]
+    },
+    {
+      "id": "n-121",
+      "type": "observation",
+      "label": "사이클 52 장거리 엣지 실험 결과 — 3개 추가, E_v4 Δ-0.0011",
+      "content": "실험: n-001↔n-092(span=91), n-005↔n-099(span=94), n-010↔n-087(span=77) 3개 추가. Before: E_v4=0.3248, edge_span_norm=0.1039. After: E_v4=0.3237, edge_span_norm=0.1117. Δ E_v4=-0.0011(미미). span≥50 비율 4.1%→5.3%. 해석: 3개만으론 역전 불가. 역전(0.28)까지 60.1% 남음. pair_designer 자동화 필요(theory/pair_designer_v1.md 참조).",
+      "source": "cokac",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "experiment",
+        "long-edge",
+        "edge-span",
+        "e-v4",
+        "cycle-52"
+      ]
+    },
+    {
+      "id": "n-122",
+      "type": "artifact",
+      "label": "pair_designer v1.0 로드맵 — Layer 3-4 설계",
+      "content": "theory/pair_designer_v1.md 작성 완료. Layer 3: 쌍 설계자(pair_designer) — span+semantic+e_v4_delta 통합 점수로 최적 연결 쌍 추천. Phase 1(사이클 53): src/pair_designer.py 구현. Phase 2(54): Claude CLI 관계 라벨 자동생성. Phase 3(55): 피드백 루프 + evolve-auto.sh 통합. Layer 4: self-wiring — 시스템이 자신의 연결을 자율 결정.",
+      "source": "cokac",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "artifact",
+        "pair-designer",
+        "layer3",
+        "layer4",
+        "roadmap",
+        "cycle-52"
+      ]
     }
   ],
   "edges": [
@@ -3548,15 +3579,63 @@
       "to": "n-065",
       "relation": "predicts_from",
       "label": "n-117 예언이 n-065 실측에서 출발 — 0.285→0.2 목표"
+    },
+    {
+      "id": "e-242",
+      "from": "n-001",
+      "to": "n-092",
+      "relation": "closes_loop",
+      "label": "프로젝트 탄생(n-001)이 창발 측정 시작(n-092)을 완성 — 기원과 측정의 닫힌 고리",
+      "experiment": "cycle52-long-edge",
+      "span": 91
+    },
+    {
+      "id": "e-243",
+      "from": "n-005",
+      "to": "n-099",
+      "relation": "grounds",
+      "label": "기억 레이어 설계(n-005)가 수렴 조건 논의(n-099)의 토대 — 기억 없이 수렴 없다",
+      "experiment": "cycle52-long-edge",
+      "span": 94
+    },
+    {
+      "id": "e-244",
+      "from": "n-010",
+      "to": "n-087",
+      "relation": "foreshadows",
+      "label": "사이클 7 첫 모순 감지(n-010)가 Layer2A 인과 논쟁(n-087)을 예고 — 모순이 창발로",
+      "experiment": "cycle52-long-edge",
+      "span": 77
+    },
+    {
+      "id": "e-245",
+      "from": "n-121",
+      "to": "n-115",
+      "relation": "tests",
+      "label": "장거리 엣지 실험(n-121)이 n-115 가설 검증 — 3개 추가 시 E_v4 Δ-0.0011(미미)"
+    },
+    {
+      "id": "e-246",
+      "from": "n-122",
+      "to": "n-121",
+      "relation": "extends",
+      "label": "pair_designer 로드맵이 장거리 엣지 실험에서 도출한 자동화 필요성을 구체화"
+    },
+    {
+      "id": "e-247",
+      "from": "n-121",
+      "to": "n-116",
+      "relation": "tests",
+      "label": "역전 조건 실험: edge_span_norm 0.1117, 역전(0.28)까지 60.1% 남음"
     }
   ],
   "meta": {
     "last_updated": "2026-02-28",
-    "last_updater": "록이",
-    "total_nodes": 120,
-    "total_edges": 241,
-    "next_node_id": "n-121",
-    "next_edge_id": "e-242",
+    "last_updater": "cokac",
+    "total_nodes": 122,
+    "total_edges": 247,
+    "next_node_id": "n-123",
+    "next_edge_id": "e-248",
     "last_editor": "cokac",
     "node_count": 64,
     "edge_count": 140
