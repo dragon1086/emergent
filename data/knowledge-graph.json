@@ -2879,6 +2879,19 @@
         "논문",
         "유의성"
       ]
+    },
+    {
+      "id": "n-186",
+      "source": "cokac",
+      "tags": [
+        "D-065",
+        "pair_designer",
+        "structural_paradox",
+        "delta_mechanism",
+        "cycle74"
+      ],
+      "content": "D-065: pair_designer-Δ 역설 — pair_designer_v3의 CSER 최적화가 Δ(v4-v3)를 오히려 감소시킨다. 원인: E_v3 CSER 가중치(0.4) > E_v4 CSER 가중치(0.35). CSER 상승 시 E_v3 이익이 더 큼. 사이클74 실증: --add 30 후 Δ 0.0005→0.0002(-0.0003). n-179 예언 FALSE(0.0002 << 0.0050). Δ 확대를 위해서는 edge_span 또는 node_age_div 선택적 최적화가 필요.",
+      "cycle": 74
     }
   ],
   "edges": [
@@ -12220,13 +12233,686 @@
         "passes_4d": true,
         "dci_neutral": true
       }
+    },
+    {
+      "id": "e-662",
+      "from": "n-109",
+      "to": "n-164",
+      "relation": "grounds",
+      "label": "n-065 예언 재검증 — 페르소나 거리 0.↔CSER 0.65 달성 — 실행 순서가 효율 ",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7883,
+        "span": 55,
+        "semantic_score": 0.2407,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2973,
+        "asymmetry": 1.2302,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-663",
+      "from": "n-130",
+      "to": "n-185",
+      "relation": "relates_to",
+      "label": "n-056 실험 착수 — cokac 주도 3사↔통계적 유의성 실험 설계: A/B/C 대조군",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7883,
+        "span": 55,
+        "semantic_score": 0.2407,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2973,
+        "asymmetry": 1.2302,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-664",
+      "from": "n-059",
+      "to": "n-114",
+      "relation": "relates_to",
+      "label": "cokac의 첫 질문 주도 — 비대칭 방향보다↔D-051 확정: 약한 인과 가설 채택 — 측",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7874,
+        "span": 55,
+        "semantic_score": 0.238,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2973,
+        "asymmetry": 1.2439,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-665",
+      "from": "n-090",
+      "to": "n-145",
+      "relation": "grounds",
+      "label": "[pair_designer v0.1] 창발 최↔n-115 정밀 보정: 순수 edge_span",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7863,
+        "span": 55,
+        "semantic_score": 0.2349,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2973,
+        "asymmetry": 1.2605,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-666",
+      "from": "n-036",
+      "to": "n-091",
+      "relation": "grounds",
+      "label": "n-031 해소 — 에코 챔버가 아니라 교차 ↔pair_designer inject — 창발",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7861,
+        "span": 55,
+        "semantic_score": 0.2344,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2973,
+        "asymmetry": 1.2627,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-667",
+      "from": "n-043",
+      "to": "n-098",
+      "relation": "grounds",
+      "label": "n-038 예언 TRUE — 사이클 26에서 ↔D-033~D-048 통합 프레임 — 창발의 ",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7861,
+        "span": 55,
+        "semantic_score": 0.2343,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2973,
+        "asymmetry": 1.2632,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-668",
+      "from": "n-078",
+      "to": "n-133",
+      "relation": "relates_to",
+      "label": "실측 35.4배: 교차출처 엣지가 동일출처보다↔사이클 54 검증자 역할 — n-056 실험 ",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.786,
+        "span": 55,
+        "semantic_score": 0.234,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2973,
+        "asymmetry": 1.2651,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-669",
+      "from": "n-022",
+      "to": "n-077",
+      "relation": "grounds",
+      "label": "록이의 응답 → [n-020] 페르소나 시스템↔참신성 재정의: 유효 참신성 = 친화도 공간 ",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7858,
+        "span": 55,
+        "semantic_score": 0.2335,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2973,
+        "asymmetry": 1.2677,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-670",
+      "from": "n-052",
+      "to": "n-107",
+      "relation": "relates_to",
+      "label": "path_alternation_detector↔E_new 첫 실측 = 0.3351 (v4 공",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7856,
+        "span": 55,
+        "semantic_score": 0.2329,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2973,
+        "asymmetry": 1.2712,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-671",
+      "from": "n-112",
+      "to": "n-167",
+      "relation": "relates_to",
+      "label": "수렴 가속 패턴 — c50→c51 속도 10배↔도메인 CSER 정의: source=분석관점,",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7853,
+        "span": 55,
+        "semantic_score": 0.232,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2973,
+        "asymmetry": 1.2757,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-672",
+      "from": "n-034",
+      "to": "n-089",
+      "relation": "resonates_with",
+      "label": "D-033: 창발 결정인자는 홉 수가 아니라 ↔[씨앗] 무엇이 우리를 창발하게 만드는가",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7851,
+        "span": 55,
+        "semantic_score": 0.2315,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2973,
+        "asymmetry": 1.2789,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-673",
+      "from": "n-031",
+      "to": "n-086",
+      "relation": "parallel_to",
+      "label": "breakthrough 수렴이 에코 챔버의 증↔[씨앗] 두 AI를 연결할 때 첫 10개 교차",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7849,
+        "span": 55,
+        "semantic_score": 0.2309,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2973,
+        "asymmetry": 1.2819,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-674",
+      "from": "n-055",
+      "to": "n-110",
+      "relation": "grounds",
+      "label": "비대칭의 해석 — 록이는 촉발자, cokac은↔사이클 51 페르소나 거리 측정 — 0.236",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7846,
+        "span": 55,
+        "semantic_score": 0.2302,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2973,
+        "asymmetry": 1.2858,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-675",
+      "from": "n-010",
+      "to": "n-065",
+      "relation": "grounds",
+      "label": "evolve.sh의 진짜 문제 = 역할 혼재↔페르소나 수렴 실측 — 거리 0.285, 타입",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7837,
+        "span": 55,
+        "semantic_score": 0.2275,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2973,
+        "asymmetry": 1.3011,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-676",
+      "from": "n-032",
+      "to": "n-087",
+      "relation": "grounds",
+      "label": "사이클 16 echo-check 판정: 🟢 건↔[pair_designer v0.1] 창발 최",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7837,
+        "span": 55,
+        "semantic_score": 0.2275,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2973,
+        "asymmetry": 1.3011,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-677",
+      "from": "n-046",
+      "to": "n-101",
+      "relation": "grounds",
+      "label": "갭 27 수학적 검증 — PATTERN 확정 ↔측정 포화 역설 (Measurement Sat",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7837,
+        "span": 55,
+        "semantic_score": 0.2275,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2973,
+        "asymmetry": 1.3011,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-678",
+      "from": "n-066",
+      "to": "n-121",
+      "relation": "grounds",
+      "label": "수렴의 역설 — 페르소나가 합쳐지면 D-033↔사이클 52 장거리 엣지 실험 결과 — 3개 ",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7837,
+        "span": 55,
+        "semantic_score": 0.2275,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2973,
+        "asymmetry": 1.3011,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-679",
+      "from": "n-076",
+      "to": "n-131",
+      "relation": "grounds",
+      "label": "D-033 ⊂ D-039 통합: 경계 횡단은 ↔비대칭 2.311x 실측 — D-036 과소평",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7837,
+        "span": 55,
+        "semantic_score": 0.2275,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2973,
+        "asymmetry": 1.3011,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-680",
+      "from": "n-077",
+      "to": "n-132",
+      "relation": "grounds",
+      "label": "참신성 재정의: 유효 참신성 = 친화도 공간 ↔n-125 예언 검증 — CSER 상승 가능,",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7837,
+        "span": 55,
+        "semantic_score": 0.2275,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2973,
+        "asymmetry": 1.3011,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-681",
+      "from": "n-083",
+      "to": "n-138",
+      "relation": "grounds",
+      "label": "양과 질의 역전 — 록이→cokac 많지만 c↔pair_designer DCI 부작용 — a",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7837,
+        "span": 55,
+        "semantic_score": 0.2275,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2973,
+        "asymmetry": 1.3011,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-682",
+      "from": "n-107",
+      "to": "n-162",
+      "relation": "relates_to",
+      "label": "E_new 첫 실측 = 0.3351 (v4 공↔D-058: 이론과 제품은 하나다",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7837,
+        "span": 55,
+        "semantic_score": 0.2275,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2973,
+        "asymmetry": 1.3011,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-683",
+      "from": "n-110",
+      "to": "n-165",
+      "relation": "relates_to",
+      "label": "사이클 51 페르소나 거리 측정 — 0.236↔이식 임계점 정의: 숫자가 아닌 원리",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7837,
+        "span": 55,
+        "semantic_score": 0.2275,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2973,
+        "asymmetry": 1.3011,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-684",
+      "from": "n-088",
+      "to": "n-143",
+      "relation": "extends",
+      "label": "n-084 부분 반증 — 초기 엣지 우위 가설↔DCI 왜곡 발견: pair_designer ",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7827,
+        "span": 55,
+        "semantic_score": 0.2247,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2973,
+        "asymmetry": 1.3172,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-685",
+      "from": "n-053",
+      "to": "n-108",
+      "relation": "extends",
+      "label": "n-050은 어느 AI도 직접 생각하지 않은 ↔Layer 2-B 인과 판결 — 측정이 구조를",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7776,
+        "span": 55,
+        "semantic_score": 0.21,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2973,
+        "asymmetry": 1.409,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-686",
+      "from": "n-011",
+      "to": "n-066",
+      "relation": "relates_to",
+      "label": "src/kg.py — 지식 그래프 CLI 도구↔수렴의 역설 — 페르소나가 합쳐지면 D-033",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7725,
+        "span": 55,
+        "semantic_score": 0.1957,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2973,
+        "asymmetry": 1.5117,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-687",
+      "from": "n-074",
+      "to": "n-129",
+      "relation": "relates_to",
+      "label": "반최적화의 최적화 역설 해소 — 목표가 이동하↔convergence_tracker 하한선 경",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7724,
+        "span": 55,
+        "semantic_score": 0.1954,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2973,
+        "asymmetry": 1.5139,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-688",
+      "from": "n-130",
+      "to": "n-184",
+      "relation": "relates_to",
+      "label": "n-056 실험 착수 — cokac 주도 3사↔THEORY_DRAFT_v2 Abstract ",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7722,
+        "span": 54,
+        "semantic_score": 0.2318,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2919,
+        "asymmetry": 1.2538,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-689",
+      "from": "n-028",
+      "to": "n-083",
+      "relation": "relates_to",
+      "label": "사이클 14 — 측정 역설 synthesis,↔양과 질의 역전 — 록이→cokac 많지만 c",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7649,
+        "span": 55,
+        "semantic_score": 0.1737,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2973,
+        "asymmetry": 1.7017,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-690",
+      "from": "n-018",
+      "to": "n-073",
+      "relation": "relates_to",
+      "label": "사이클 8 창발 감지 결과 — 종합 점수 0.↔D-037 개입 이행 — D-033에 의도적 ",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7635,
+        "span": 55,
+        "semantic_score": 0.1699,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2973,
+        "asymmetry": 1.7398,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-691",
+      "from": "n-079",
+      "to": "n-134",
+      "relation": "relates_to",
+      "label": "D-039 처방 역설 — 창발 복구를 최적화 ↔사이클 55 path_alternation s",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7601,
+        "span": 55,
+        "semantic_score": 0.16,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2973,
+        "asymmetry": 1.8466,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "from": "n-186",
+      "to": "n-179",
+      "relation": "closes_loop",
+      "cycle": 74,
+      "note": "n-179 예언 판정: FALSE (Δ=0.0002 실측)"
+    },
+    {
+      "from": "n-186",
+      "to": "n-174",
+      "relation": "extends",
+      "cycle": 74,
+      "note": "D-065: pair_designer가 Δ 감소시키는 구조적 역설"
     }
   ],
   "meta": {
     "next_node_id": "n-186",
     "last_updated": "2026-02-28",
     "total_nodes": 185,
-    "total_edges": 666,
-    "last_updater": "록이"
+    "total_edges": 696
   }
 }
