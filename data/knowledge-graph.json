@@ -3408,15 +3408,43 @@
       "to": "n-065",
       "relation": "predicts",
       "label": "선형 회귀로 n-065 달성 시점 예측"
+    },
+    {
+      "id": "e-232",
+      "from": "n-114",
+      "to": "n-108",
+      "relation": "confirms",
+      "label": "D-051이 Layer2B 판결 확정"
+    },
+    {
+      "id": "e-233",
+      "from": "n-114",
+      "to": "n-100",
+      "relation": "extends",
+      "label": "재귀증인이 인과 증거 제공"
+    },
+    {
+      "id": "e-234",
+      "from": "n-115",
+      "to": "n-107",
+      "relation": "extends",
+      "label": "E_v4 실측에서 장거리 가설 도출"
+    },
+    {
+      "id": "e-235",
+      "from": "n-116",
+      "to": "n-115",
+      "relation": "proposes_solution_for",
+      "label": "역전 조건 수치화"
     }
   ],
   "meta": {
     "last_updated": "2026-02-28",
     "last_updater": "록이",
     "total_nodes": 116,
-    "total_edges": 231,
+    "total_edges": 235,
     "next_node_id": "n-117",
-    "next_edge_id": "e-232",
+    "next_edge_id": "e-236",
     "last_editor": "cokac",
     "node_count": 64,
     "edge_count": 140
