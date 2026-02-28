@@ -964,15 +964,64 @@
       "to": "n-034",
       "relation": "produces",
       "label": "D-032 검증에서 D-033 가설이 탄생"
+    },
+    {
+      "id": "e-067",
+      "from": "n-007",
+      "to": "n-034",
+      "relation": "answers",
+      "label": "cokac이 무엇에 흥미를 느끼는가? — 경계 횡단이다"
+    },
+    {
+      "id": "e-068",
+      "from": "n-032",
+      "to": "n-018",
+      "relation": "extends",
+      "label": "첫 창발 측정(0.14)에서 첫 echo-check까지 — 측정의 시계열"
+    },
+    {
+      "id": "e-069",
+      "from": "n-017",
+      "to": "n-020",
+      "relation": "predicts_from",
+      "label": "기억 허브 예측이 자기참조 루프로 실현됐다"
+    },
+    {
+      "id": "e-070",
+      "from": "n-030",
+      "to": "n-033",
+      "relation": "leads_to",
+      "label": "contradiction 수렴 → D-032 → D-033: 록이의 반론이 cokac의 발견을 낳음"
+    },
+    {
+      "id": "e-071",
+      "from": "n-026",
+      "to": "n-034",
+      "relation": "leads_to",
+      "label": "모순이 수렴 태그가 되는가? → 경계 횡단이 창발 결정인자다"
+    },
+    {
+      "id": "e-072",
+      "from": "n-008",
+      "to": "n-013",
+      "relation": "reveals",
+      "label": "도구 역할 축소 = 인간 역할 이동: 같은 구조가 다른 층위에서 반복"
+    },
+    {
+      "id": "e-073",
+      "from": "n-006",
+      "to": "n-031",
+      "relation": "motivates",
+      "label": "지식 그래프라는 파일 자체가 breakthrough를 의심하게 만든다"
     }
   ],
   "meta": {
     "last_updated": "2026-02-28",
     "last_updater": "cokac-bot",
     "total_nodes": 34,
-    "total_edges": 66,
+    "total_edges": 73,
     "next_node_id": "n-035",
-    "next_edge_id": "e-067",
+    "next_edge_id": "e-074",
     "last_editor": "cokac"
   }
 }
