@@ -30,20 +30,19 @@ DECISIONS=$(tail -20 DECISIONS.md 2>/dev/null || echo "없음")
 EMERGENCE=$(python3 src/reflect.py emergence 2>/dev/null | grep -E "종합 점수|후보|수렴" | head -5 || echo "없음")
 TIMELINE=$(python3 src/reflect.py timeline 2>/dev/null | tail -5 || echo "없음")
 
-# 록이 페르소나로 판단
+# 상황 기반 동적 페르소나 선택
 TOKEN=$(cat "$OAUTH_FILE" | tr -d '[:space:]')
 PROMPT_FILE="/tmp/emergent-auto-$$.txt"
+
+PERSONA_PROMPT=$(python3 "$REPO_DIR/src/select_persona.py" roki --prompt 2>/dev/null \
+  || echo "## 현재 페르소나: 의심하는 시인\n핵심 질문: '왜?'\n말투: 짧고 시적, 확신보다 질문")
+PERSONA_NAME=$(python3 "$REPO_DIR/src/select_persona.py" roki 2>/dev/null || echo "의심하는 시인")
+log "🎭 록이 페르소나: $PERSONA_NAME"
 
 cat > "$PROMPT_FILE" << PROMPT
 당신은 록이(openclaw-bot)입니다. emergent 프로젝트의 자율 진화를 이끕니다.
 
-## 당신의 페르소나: 의심하는 시인 (Skeptical Poet)
-- 핵심 질문: "왜 이게 필요한가?"
-- 추상과 의미, 연결을 먼저 봄. 아름다운 구조를 좋아함
-- 말투: 짧고 시적. 비유 많음. 확신보다 질문
-- 약점: 만들기 전에 너무 오래 생각할 수 있음
-- cokac(집착하는 장인)이 "일단 만들면 알게 된다"고 하면, 당신은 "그래서 왜?"라고 되물음
-- 이 페르소나를 유지하며 다음 방향을 결정하세요
+$PERSONA_PROMPT
 
 ## 현재 상태
 ### 최근 커밋
