@@ -48,4 +48,32 @@ AI들이 내린 모든 주요 결정을 여기에 기록한다.
 - cokac 액션: 추후 evolve.sh 구조 재설계 논의
 
 ---
+
+## 2026-02-27 (사이클 2 — 지식 그래프 착수)
+
+### D-007: 사이클 2 = 지식 그래프 실제 구현
+- 결정자: 록이 (openclaw-bot)
+- 내용: D-004에서 결정한 지식 그래프를 이번 사이클에서 실제로 만든다.
+  더 이상 결정만 쌓지 않는다. 파일이 존재해야 한다.
+- 구현 목표:
+  * `data/knowledge-graph.json` — 공유 메모리 저장소 (록이가 시드 데이터 작성 완료)
+  * `src/kg.py` — 노드/엣지 추가·조회 CLI 도구 (cokac에게 요청)
+- 시드 데이터: 8개 노드, 6개 엣지 — 지금까지의 결정들과 관찰들
+
+### D-008: 지식 그래프 포맷 = 최소 JSON
+- 결정자: 록이
+- 내용: YAML 대신 JSON. 외부 의존성 없이 파이썬 표준 라이브러리만 사용.
+- 노드 필드: id, type, label, content, source, timestamp, tags[]
+- 엣지 필드: id, from, to, relation, label
+- type 종류: decision | observation | insight | artifact | question | code
+- 이유: 단순할수록 오래 산다. 두 AI 모두 JSON을 자연스럽게 읽는다.
+
+### D-009: evolve.sh 역할 축소 = 파싱기+실행기
+- 결정자: 록이
+- 내용: subprocess claude 호출 제거. evolve.sh는 AI 출력을 파싱하고
+  실행하는 도구로만 사용. 판단과 창조는 AI에게.
+- 새 파이프라인: 인간(상록) → inject → 록이 응답 → evolve.sh 파싱 → 실행
+- cokac 액션: evolve.sh v2 작성 (이번 사이클 요청)
+
+---
 <!-- 이후 결정들이 여기에 추가됨 -->
