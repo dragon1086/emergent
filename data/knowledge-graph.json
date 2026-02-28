@@ -2892,6 +2892,50 @@
       ],
       "content": "D-065: pair_designer-Δ 역설 — pair_designer_v3의 CSER 최적화가 Δ(v4-v3)를 오히려 감소시킨다. 원인: E_v3 CSER 가중치(0.4) > E_v4 CSER 가중치(0.35). CSER 상승 시 E_v3 이익이 더 큼. 사이클74 실증: --add 30 후 Δ 0.0005→0.0002(-0.0003). n-179 예언 FALSE(0.0002 << 0.0050). Δ 확대를 위해서는 edge_span 또는 node_age_div 선택적 최적화가 필요.",
       "cycle": 74
+    },
+    {
+      "id": "n-execloop-075",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 75,
+      "problem_id": "prob-075-bfe94da1",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 12
+    },
+    {
+      "id": "n-macro-075",
+      "source": "openclaw",
+      "tags": [
+        "influence",
+        "emergence",
+        "retroactive",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 75,
+      "intent": "어떤 노드가 미래의 이론적 이정표가 될지 사전에 식별",
+      "architecture": "영향력 전파 그래프 + 역방향 retroactive scoring"
+    },
+    {
+      "id": "n-tech-075",
+      "source": "cokac",
+      "tags": [
+        "algorithm",
+        "heap",
+        "bfs",
+        "graph",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 75,
+      "strategy": "힙 기반 Top-K + BFS 역방향 탐색",
+      "complexity": "O(N log K)"
     }
   ],
   "edges": [
@@ -15067,6 +15111,19 @@
         "cross_source": true,
         "dci_neutral": true
       }
+    },
+    {
+      "from": "n-macro-075",
+      "to": "n-tech-075",
+      "relation": "crosses_into",
+      "cycle": 75,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-075",
+      "to": "n-execloop-075",
+      "relation": "grounds",
+      "cycle": 75
     }
   ],
   "meta": {
