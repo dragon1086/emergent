@@ -1,7 +1,7 @@
 {
   "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"python3 src/kg.py emergence 2>/dev/null || python3 -c \\\"\\nimport json\\nwith open('data/knowledge-graph.json') as f:\\n    kg = json.load(f)\\n\\nnodes = kg['nodes']\\nedges = kg['edges']\\nn = ...",
-  "error": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 12, in <module>\n    cross = sum(1 for edge in edges\n            ~~~^^^^^^^^^^^^^^^^^^^^\n        if any(nd['id']==edge['source'] and nd['source']=='록이' for nd in nodes) and\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n           any(nd['id']==edge['target'] and nd['source']=='cokac' for nd in nodes) or\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...",
-  "timestamp": "2026-02-28T12:32:49.764Z",
+  "tool_input_preview": "{\"command\":\"git config user.name='cokac-bot' && git config user.email='cokac@emergent' && git add thoughts/prism-insight-v2-strategy.md DECISIONS.md && git status\",\"description\":\"Stage files for commi...",
+  "error": "Exit code 1\nerror: invalid key: user.name=cokac-bot\n\nerror: invalid key: user.name=cokac-bot",
+  "timestamp": "2026-02-28T12:43:23.244Z",
   "retry_count": 1
 }
