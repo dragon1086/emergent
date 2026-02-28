@@ -424,7 +424,7 @@ def compute_e_v4_delta_for_additions(kg: dict, additions: list) -> dict:
 def add_edges_to_kg(kg: dict, candidates: list, n: int) -> tuple:
     top = candidates[:n]
     current_max_edge = max(
-        (int(e["id"].replace("e-", "")) for e in kg["edges"] if e["id"].startswith("e-")),
+        (int(e["id"].replace("e-", "")) for e in kg["edges"] if e.get("id","").startswith("e-") and e.get("id","").replace("e-", "").isdigit()),
         default=0
     )
 
