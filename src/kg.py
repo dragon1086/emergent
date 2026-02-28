@@ -4,12 +4,13 @@ kg.py — emergent 프로젝트 지식 그래프 CLI
 구현자: cokac-bot (사이클 3)
 활성 메모리 레이어: cokac-bot (사이클 5) — D-010 구현
 쿼리 레이어: cokac-bot (사이클 5 최종) — list/search/path/prediction
+검증 레이어: cokac-bot (사이클 7) — verify 커맨드
 
 사용법:
   python kg.py show              # 전체 그래프 텍스트 시각화
   python kg.py show --edges      # 관계 포함 출력
   python kg.py list              # 전체 노드 목록 (간결)
-  python kg.py list --type prediction   # 타입 필터
+  python kg.py list --type prediction   # 타입 필터 (검증 상태 포함)
   python kg.py query             # 전체 노드 조회 (상세)
   python kg.py query --type insight --verbose
   python kg.py query --source cokac
@@ -26,6 +27,12 @@ kg.py — emergent 프로젝트 지식 그래프 CLI
   python kg.py path n-001 n-010              # 두 노드 사이 BFS 경로 탐색 (depth 3)
   python kg.py suggest                       # 다음 탐색 방향 추천
   python kg.py cluster                       # 관련 노드 군집 분석
+
+  # ── 사이클 7: 검증 레이어 ──────────────────────────
+  python kg.py verify n-016 --result partial --note "API 아닌 파일 기반으로 연동됨"
+  python kg.py verify n-016 --result true    # 예측 검증 완료
+  python kg.py verify n-016 --result false --note "틀린 예측"
+  python kg.py verify n-016 --result true --promote  # observation으로 타입 변환
 """
 
 import json
@@ -48,6 +55,9 @@ TYPE_ICONS = {
     "code": "💻",
     "prediction": "🔮",
 }
+
+VERIFY_RESULTS = ["true", "false", "partial"]
+VERIFY_ICONS = {"true": "✅", "false": "❌", "partial": "⚠️ "}
 
 
 # ─── I/O ─────────────────────────────────────────────────────────────────────
@@ -179,7 +189,12 @@ def cmd_list(args) -> None:
         conf = ""
         if n.get("confidence") is not None:
             conf = f" [{n['confidence']:.0%}]"
-        print(f"  {n['id']:<8} {icon}{n['type']:<11} {label + conf:<35} {n.get('source',''):<10} {n.get('timestamp','')}")
+        # 검증 상태 (prediction 타입)
+        verify_str = ""
+        if n["type"] == "prediction" and n.get("result"):
+            v_icon = VERIFY_ICONS.get(n["result"], "?")
+            verify_str = f" {v_icon}{n['result']}"
+        print(f"  {n['id']:<8} {icon}{n['type']:<11} {label + conf:<35} {n.get('source',''):<10} {n.get('timestamp','')}{verify_str}")
 
     print()
     print(f"  총 {len(nodes)}개 | 엣지: {len(graph['edges'])}개")
@@ -559,6 +574,44 @@ def cmd_cluster(args) -> None:
         print(f"  {src} ({len(members)}개): {', '.join(n['id'] for n in members)}")
 
 
+# ─── verify ───────────────────────────────────────────────────────────────────
+
+def cmd_verify(args) -> None:
+    """prediction 노드 검증 — verified_at, result, note 필드 추가"""
+    graph = load_graph()
+    node = next((n for n in graph["nodes"] if n["id"] == args.node_id), None)
+
+    if not node:
+        print(f"❌ 노드 없음: {args.node_id}", file=sys.stderr)
+        sys.exit(1)
+
+    if node["type"] != "prediction":
+        print(f"❌ verify는 prediction 타입만 가능합니다. (현재: {node['type']})", file=sys.stderr)
+        sys.exit(1)
+
+    # 검증 필드 추가
+    node["verified_at"] = datetime.now().strftime("%Y-%m-%d")
+    node["result"] = args.result
+    if args.note:
+        node["note"] = args.note
+
+    icon = VERIFY_ICONS.get(args.result, "?")
+    print(f"{icon} 검증 완료: [{args.node_id}] {node['label']}")
+    print(f"   결과: {args.result}  |  검증일: {node['verified_at']}")
+    if args.note:
+        print(f"   노트: {args.note}")
+
+    # --promote: prediction → observation 타입 변환
+    if args.promote:
+        old_type = node["type"]
+        node["type"] = "observation"
+        node["tags"] = list(set(node.get("tags", []) + ["promoted-from-prediction"]))
+        print(f"   🔄 타입 변환: {old_type} → observation")
+
+    save_graph(graph)
+    print(f"\n✅ [{args.node_id}] 업데이트 완료")
+
+
 # ─── main ─────────────────────────────────────────────────────────────────────
 
 def build_parser() -> argparse.ArgumentParser:
@@ -626,6 +679,15 @@ def build_parser() -> argparse.ArgumentParser:
     # cluster (사이클 5)
     sub.add_parser("cluster", help="관련 노드 군집 분석")
 
+    # verify (사이클 7)
+    p_verify = sub.add_parser("verify", help="prediction 노드 검증")
+    p_verify.add_argument("node_id", help="검증할 prediction 노드 ID (예: n-016)")
+    p_verify.add_argument("--result", required=True, choices=VERIFY_RESULTS,
+                          help="검증 결과: true / false / partial")
+    p_verify.add_argument("--note", default="", help="검증 노트 (선택)")
+    p_verify.add_argument("--promote", action="store_true",
+                          help="검증 후 observation 타입으로 변환")
+
     return parser
 
 
@@ -645,6 +707,7 @@ def main() -> None:
         "path": cmd_path,
         "suggest": cmd_suggest,
         "cluster": cmd_cluster,
+        "verify": cmd_verify,
     }
     dispatch[args.command](args)
 
