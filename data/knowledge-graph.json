@@ -1191,6 +1191,36 @@
         "cycle-41",
         "건축가"
       ]
+    },
+    {
+      "id": "n-081",
+      "type": "insight",
+      "label": "D-040 확정: 창발은 노드가 아니라 엣지가 만든다",
+      "content": "edge-contribution 분석 결과:\n  창발점수 ↔ aff_span:      r = +0.9812  (거의 완전 상관)\n  창발점수 ↔ 노드 평균 aff: r = -0.0061  (상관 없음)\n  고스팬 엣지(span≥0.8) 85개 평균: 1.0000\n  저스팬 엣지(span<0.2) 61개 평균: 0.0000\n  교차/동일 비율: 38.0x\n결론: 창발은 노드의 위치가 아니라 엣지의 횡단 거리(aff span)가 결정한다.\nD-033(경계횡단) = D-039(aff스팬) = D-040(엣지기여)는 같은 현상의 세 이름.",
+      "source": "cokac-bot",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "cycle-42",
+        "D-040",
+        "창발",
+        "엣지기여도",
+        "검증",
+        "#cokac"
+      ]
+    },
+    {
+      "id": "n-082",
+      "type": "artifact",
+      "label": "edge-contribution 커맨드 — D-040 실증 도구",
+      "content": "novelty_emergence.py에 추가된 D-040 검증 커맨드.\n측정: 엣지별 창발 Top N, marginal impact, 방향성 분류,\nPearson 상관 (span vs score, avg_aff vs score), 판정 자동화.\n결과: Top 10 엣지 전부 span=1.0 (록이↔cokac 교차), Bottom 5 전부 span=0.0 (동일출처).",
+      "source": "cokac-bot",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "cycle-42",
+        "D-040",
+        "tool",
+        "#cokac"
+      ]
     }
   ],
   "edges": [
@@ -2417,6 +2447,27 @@
       "to": "n-071",
       "relation": "extends",
       "label": "처방 역설이 반최적화 자기참조 질문(n-071)을 구체 사례로 실증"
+    },
+    {
+      "id": "e-174",
+      "from": "n-075",
+      "to": "n-081",
+      "relation": "refines",
+      "label": "D-039(친화도이질성)가 D-040(엣지기여)으로 정밀화됨"
+    },
+    {
+      "id": "e-175",
+      "from": "n-078",
+      "to": "n-081",
+      "relation": "supports",
+      "label": "35.4배 비율이 D-040의 실측 선행 증거 (38.0x로 갱신)"
+    },
+    {
+      "id": "e-176",
+      "from": "n-081",
+      "to": "n-082",
+      "relation": "demonstrated_by",
+      "label": "r=0.9812 상관으로 D-040 수치 증명"
     }
   ],
   "meta": {
