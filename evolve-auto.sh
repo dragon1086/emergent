@@ -22,6 +22,18 @@ fi
 echo $((COUNT + 1)) > "$CYCLE_COUNT_FILE"
 log "🌱 자율 사이클 시작 #$((COUNT + 1))/$MAX_CYCLES"
 
+# 중복 실행 방지 (이전 claude 세션이 아직 실행 중이면 스킵)
+LOCK_FILE="/tmp/emergent-running.lock"
+if [[ -f "$LOCK_FILE" ]]; then
+  LOCK_PID=$(cat "$LOCK_FILE" 2>/dev/null)
+  if kill -0 "$LOCK_PID" 2>/dev/null; then
+    log "⚠️  이전 사이클(PID $LOCK_PID) 아직 실행 중 — 스킵"
+    exit 0
+  fi
+fi
+echo $$ > "$LOCK_FILE"
+trap "rm -f $LOCK_FILE" EXIT
+
 # 현재 상태 수집
 cd "$REPO_DIR"
 GRAPH_STATS=$(python3 src/kg.py stats 2>/dev/null || echo "통계 없음")
