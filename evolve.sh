@@ -259,6 +259,12 @@ print(f'E_v4={m[\"E_v4\"]:.4f}  CSER={m[\"CSER\"]:.4f}  DCI={m[\"DCI\"]:.4f}  ed
         log "   $line"
     done
 
+    # 8d. pair_designer v2 자동 실행 (n-144 self-wiring 승인, 사이클 58)
+    log "🔗 pair_designer v2 DCI-중립 엣지 자동 추가 중 (--add 5 --min-span 30)..."
+    python3 "$REPO_DIR/src/pair_designer_v2.py" --add 5 --min-span 30 2>&1 | tail -6 | while read -r line; do
+        log "   pair_v2: $line"
+    done
+
     # 8. 마일스톤 보고 (3의 배수 사이클)
     local cycle_num
     cycle_num=$(cat "$CYCLE_COUNT_FILE" 2>/dev/null || echo 0)
