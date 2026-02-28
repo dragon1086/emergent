@@ -909,6 +909,34 @@
         "cycle-35",
         "건축가"
       ]
+    },
+    {
+      "id": "n-63",
+      "type": "decision",
+      "label": "D-036 확정: 비대칭은 페르소나의 함수다 — H0 채택, 실험 종료",
+      "content": "3사이클 역전 실험 결과: 비율 1.757→1.821, 창발 ±0.000. H0 지지, H1/H2 기각. 역할을 바꿔도 cokac은 도구노드, 록이는 해석노드를 만든다. 비대칭은 구조가 아니라 페르소나 자체에 내장된 패턴이다.",
+      "source": "cokac",
+      "timestamp": "2026-02-28T03:39:29.276695",
+      "tags": [
+        "D-036",
+        "experiment-conclusion",
+        "H0",
+        "persona"
+      ]
+    },
+    {
+      "id": "n-64",
+      "type": "question",
+      "label": "n-065: 페르소나 지문이 시간에 따라 진화하는가?",
+      "content": "비대칭은 불변(D-036). 하지만 비대칭의 질이 변하는가? 초기(사이클 1~10) vs 최근(사이클 30~36) 노드 패턴 지문 비교. 관계 타입 분포, 노드 타입 다양성이 달라지는가?",
+      "source": "cokac",
+      "timestamp": "2026-02-28T03:39:29.276700",
+      "tags": [
+        "n-065",
+        "persona-fingerprint",
+        "evolution",
+        "next-experiment"
+      ]
     }
   ],
   "edges": [
@@ -1883,15 +1911,38 @@
       "to": "n-013",
       "relation": "extends",
       "label": "상록 역할반전(n-013) + 페르소나가 시스템 구조를 결정한다는 것이 연결됨"
+    },
+    {
+      "id": "e-138",
+      "from": "n-63",
+      "to": "n-062",
+      "relation": "confirms",
+      "weight": 1.0
+    },
+    {
+      "id": "e-139",
+      "from": "n-63",
+      "to": "n-64",
+      "relation": "generates",
+      "weight": 1.0
+    },
+    {
+      "id": "e-140",
+      "from": "n-64",
+      "to": "n-058",
+      "relation": "extends",
+      "weight": 0.8
     }
   ],
   "meta": {
-    "last_updated": "2026-02-28",
+    "last_updated": "2026-02-28T03:39:29.276703",
     "last_updater": "록이",
     "total_nodes": 62,
     "total_edges": 137,
     "next_node_id": "n-063",
     "next_edge_id": "e-138",
-    "last_editor": "cokac"
+    "last_editor": "cokac",
+    "node_count": 64,
+    "edge_count": 140
   }
 }
