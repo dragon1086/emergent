@@ -13,7 +13,7 @@ emergence_pulse.py — 창발 심박 측정기
 구현: cokac-bot (사이클 11)
 """
 
-import json, sys
+import json, sys, subprocess
 from pathlib import Path
 from itertools import combinations
 
@@ -23,6 +23,14 @@ HISTORY_FILE = REPO / "logs" / "emergence-history.jsonl"
 
 ROKI_SOURCES = {"록이", "roki", "상록"}
 COKAC_SOURCES = {"cokac", "cokac-bot"}
+
+# ── DCI 통합 가중치 — cokac 결정 (사이클 22) ──────────────────────
+# α: 교차경계비율 — 두 AI 경계 횡단의 즉각적 지표 (주 드라이버)
+# β: DCI         — 시스템이 과거 질문을 얼마나 깊게 재해석하는지
+# 근거: 교차경계가 창발 점수에 더 직접적으로 기여함을 사이클 8~21에서 확인.
+#       DCI는 시스템 성숙도 보정 역할. α+β=1.0으로 정규화.
+ALPHA = 0.70  # 교차경계비율 가중치
+BETA  = 0.30  # Delayed Convergence Index 가중치
 
 
 def load_kg():
@@ -122,6 +130,24 @@ def score_delta(history):
     return round(history[-1]["score"] - history[-2]["score"], 3)
 
 
+def get_dci():
+    """delayed_convergence.py JSON 출력에서 DCI 추출"""
+    try:
+        r = subprocess.run(
+            ["python3", str(REPO / "src" / "delayed_convergence.py"), "--json"],
+            capture_output=True, text=True, timeout=10, cwd=str(REPO),
+        )
+        d = json.loads(r.stdout)
+        return d.get("dci", 0.0), d.get("delayed", 0), d.get("total_questions", 0)
+    except Exception:
+        return 0.0, 0, 0
+
+
+def integrated_emergence_score(cross_ratio: float, dci: float) -> float:
+    """통합 창발 점수 = α × 교차경계비율 + β × DCI"""
+    return round(ALPHA * cross_ratio + BETA * dci, 4)
+
+
 def main():
     kg = load_kg()
     history = load_history()
@@ -140,6 +166,10 @@ def main():
     suggestions = find_latent_edges(kg)
     cross_suggestions = [s for s in suggestions if s["is_cross"]]
 
+    # DCI 통합 점수 계산
+    dci, n_delayed_q, n_total_q = get_dci()
+    i_score = integrated_emergence_score(cross_ratio, dci)
+
     # ── JSON 모드 ──────────────────────────────────────────────
     if "--json" in sys.argv:
         result = {
@@ -149,7 +179,11 @@ def main():
             "is_plateau": is_plateau,
             "plateau_depth": plateau_depth,
             "cross_edges": len(cross_edges),
-            "cross_ratio": round(cross_ratio, 2),
+            "cross_ratio": round(cross_ratio, 4),
+            "dci": dci,
+            "integrated_score": i_score,
+            "alpha": ALPHA,
+            "beta": BETA,
             "latent_edges_count": len(suggestions),
             "top_suggestions": suggestions[:5],
         }
@@ -168,10 +202,28 @@ def main():
     print("=" * 52)
 
     print(f"\n📊 사이클 {cycle} 현재 상태")
-    print(f"   창발 점수  : {score:.3f}")
+    print(f"   창발 점수  : {score:.3f}  (엣지 친화도 기반)")
     print(f"   창발 후보  : {candidates}개")
     print(f"   노드 / 엣지: {len(nodes)} / {total_edges}")
-    print(f"   교차 엣지  : {len(cross_edges)}/{total_edges} ({cross_ratio:.0%})")
+    print(f"   교차 엣지  : {len(cross_edges)}/{total_edges} ({cross_ratio:.1%})")
+    print(f"   DCI        : {dci:.4f}  ({n_delayed_q}/{n_total_q} 질문 지연수렴)")
+
+    # ── DCI 통합 창발 점수 ──────────────────────────────────────
+    bar_len = int(i_score * 20)
+    score_bar = "🌱" * bar_len + "░" * (20 - bar_len)
+    print(f"\n🧮 DCI 통합 창발 점수 (사이클 22)")
+    print(f"   공식  : {ALPHA}×교차경계 + {BETA}×DCI")
+    print(f"         = {ALPHA}×{cross_ratio:.4f} + {BETA}×{dci:.4f}")
+    print(f"   통합  : [{score_bar}] {i_score:.4f}")
+    if i_score >= 0.6:
+        print(f"   ✅ 0.6 돌파!")
+    else:
+        gap_to_06 = round(0.6 - i_score, 4)
+        need_cross = round((0.6 - BETA * dci) / ALPHA, 3)
+        need_dci   = round((0.6 - ALPHA * cross_ratio) / BETA, 3)
+        print(f"   → 0.6까지 {gap_to_06} 부족")
+        print(f"   → 돌파 조건 ①: 교차경계 ≥ {need_cross}  (현재 {cross_ratio:.3f})")
+        print(f"   → 돌파 조건 ②: DCI ≥ {need_dci}  (현재 {dci:.4f})")
 
     # 플래토 vs 성장
     if is_plateau:
