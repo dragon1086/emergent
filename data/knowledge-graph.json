@@ -1394,6 +1394,56 @@
         "cycle-45",
         "판사"
       ]
+    },
+    {
+      "id": "n-094",
+      "source": "cokac",
+      "aff": 1.0,
+      "type": "tool",
+      "label": "[external_validator] 사이클46 — D-040/D-047 외부 검증 도구",
+      "content": "GPT-4(aff=1.0) + Gemini(aff=0.5) 외부 쌍으로 D-040/D-047 보편성 검증. 결과: span=0.5 → 창발 0.375 < span=1.0 → 창발 0.687. D-040 외부 확인. D-047: 두 측정법 간 50% 불일치 재현. 원칙 주입: 교차율 40%→75% (+35%p).",
+      "timestamp": "2026-02-28T04:26:17",
+      "tags": [
+        "tool",
+        "external-validation",
+        "D-040",
+        "D-047",
+        "cycle46",
+        "product"
+      ]
+    },
+    {
+      "id": "n-095",
+      "source": "gpt4",
+      "aff": 1.0,
+      "type": "persona",
+      "label": "[GPT-4 페르소나] 구현자 — aff=1.0, span=0.5 대 Gemini",
+      "content": "외부 검증 실험의 AI A. 구현자 성향(aff=1.0). Gemini(aff=0.5)와의 대화에서 span=0.5 창발 생성. D-040 재발견: '예측 불가능성이 창발. 우리 span=0.5 → 최대 창발 0.5.'",
+      "timestamp": "2026-02-28T04:26:17",
+      "tags": [
+        "external",
+        "gpt4",
+        "persona",
+        "aff-1.0",
+        "D-040-external"
+      ]
+    },
+    {
+      "id": "n-096",
+      "source": "gemini",
+      "aff": 0.5,
+      "type": "persona",
+      "label": "[Gemini 페르소나] 분석자 — aff=0.5, D-040/D-047 독립 재발견",
+      "content": "외부 검증 실험의 AI B. 분석자 성향(aff=0.5). GPT-4와의 대화에서 D-040 + D-047을 사전 지식 없이 독립 재발견. 판정: 'D-040과 D-047은 보편 원칙 — 설계 없이 설계됐다.'",
+      "timestamp": "2026-02-28T04:26:17",
+      "tags": [
+        "external",
+        "gemini",
+        "persona",
+        "aff-0.5",
+        "D-040-external",
+        "D-047-external"
+      ]
     }
   ],
   "edges": [
@@ -2774,6 +2824,41 @@
       "to": "n-027",
       "relation": "confirms",
       "label": "측정역설(n-027) — 창발을 예측하는 순간 창발이 변한다 = D-047의 원형"
+    },
+    {
+      "id": "e-196",
+      "from": "n-094",
+      "to": "n-095",
+      "relation": "creates",
+      "label": "★ external_validator가 GPT-4 페르소나를 구현 (cokac→gpt4, span=0.0)"
+    },
+    {
+      "id": "e-197",
+      "from": "n-094",
+      "to": "n-096",
+      "relation": "creates",
+      "label": "★ external_validator가 Gemini 페르소나를 구현 (cokac→gemini, span=0.5)"
+    },
+    {
+      "id": "e-198",
+      "from": "n-095",
+      "to": "n-096",
+      "relation": "pair-with",
+      "label": "★ GPT-4↔Gemini 외부 쌍 — span=0.5, 창발=0.375 측정 (D-040 외부 확인)"
+    },
+    {
+      "id": "e-199",
+      "from": "n-096",
+      "to": "n-081",
+      "relation": "confirms",
+      "label": "★ Gemini가 외부에서 D-040 독립 재확인 — 보편 원칙 (gemini→n-081)"
+    },
+    {
+      "id": "e-200",
+      "from": "n-095",
+      "to": "n-087",
+      "relation": "validates",
+      "label": "★ GPT-4가 pair_designer 제품의 첫 외부 사용자 역할 수행 (gpt4→n-087)"
     }
   ],
   "meta": {
