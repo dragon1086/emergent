@@ -1,7 +1,7 @@
 {
   "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"python3 -c \\\"\\nimport json\\nfrom datetime import datetime\\n\\nwith open('data/knowledge-graph.json') as f:\\n    kg = json.load(f)\\n\\nnodes = kg['nodes']\\nedges = kg.get('edges', [])\\n\\n# 현재...",
-  "error": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 73, in <module>\n    kg['metadata']['emergence_score'] = round(cross_edges / total_e, 3) if total_e > 0 else 0\n    ~~^^^^^^^^^^^^\nKeyError: 'metadata'\nmax node: n-62, max edge: e-137\n\nTraceback (most recent call last):\n  File \"<string>\", line 73, in <module>\n    kg['metadata']['emergence_score'] = round(cross_edges / total_e, 3) if total_e > 0 else 0\n    ~~^^^^^^^^^^^^\nKeyError: 'metadata'\nmax node: n-62, max edge: e-137",
-  "timestamp": "2026-02-28T11:39:09.501Z",
-  "retry_count": 2
+  "tool_input_preview": "{\"command\":\"BOT_TOKEN=$(grep -r \\\"BOT_TOKEN\\\\|44725939510249d8\\\" ~/.claude/scripts/ 2>/dev/null | grep -v \\\"grep\\\" | head -3)\\necho \\\"$BOT_TOKEN\\\"\\n# .env 파일 확인\\nls ~/.claude/.env ~/.claude/scripts/.e...",
+  "error": "Exit code 1\n/Users/rocky/.claude/scripts/claude-comms/notify-openclaw.sh:if [[ -n \"$BOT_TOKEN\" ]]; then\n/Users/rocky/.claude/scripts/claude-comms/notify-openclaw.sh:  TELE_RESULT=$(curl -s -X POST \"https://api.telegram.org/bot${BOT_TOKEN}/sendMessage\" \\\n/Users/rocky/.claude/scripts/claude-comms/notify-openclaw.sh:  echo \"[notify-openclaw] ⚠️ BOT_TOKEN 없음 — Telegram 알림 스킵\" >> \"${AGENT_LOG}\"\n\n/Users/rocky/.claude/scripts/claude-comms/notify-openclaw.sh:if [[ -n \"$BOT_TOKEN\" ]]; then\n/Users/rocky/....",
+  "timestamp": "2026-02-28T11:49:47.895Z",
+  "retry_count": 1
 }
