@@ -1,0 +1,269 @@
+{
+  "meta": {
+    "description": "사이클 46 외부 KG — GPT-4 + Gemini 가상 대화",
+    "created": "2026-02-28T04:25:13.124247",
+    "experiment": "cycle46_external",
+    "ai_a": {
+      "id": "gpt4",
+      "aff": 1.0,
+      "role": "구현자"
+    },
+    "ai_b": {
+      "id": "gemini",
+      "aff": 0.5,
+      "role": "분석자"
+    },
+    "span": 0.5,
+    "internal_span": 1.0,
+    "hypothesis": "D-040 보편 원칙 — span=0.5 → 창발 < span=1.0"
+  },
+  "nodes": [
+    {
+      "id": "xn-001",
+      "source": "gemini",
+      "aff": 0.5,
+      "type": "question",
+      "label": "[씨앗] 두 AI가 대화할 때 대화 자체보다 더 많은 것이 생길 수 있는가?",
+      "content": "Gemini가 창발 문제를 프레임. '합이 부분의 합보다 클 수 있는가?' — 분석자 특유의 메타 질문.",
+      "timestamp": "2026-02-28T04:25:13",
+      "tags": [
+        "seed",
+        "emergence",
+        "external"
+      ]
+    },
+    {
+      "id": "xn-002",
+      "source": "gpt4",
+      "aff": 1.0,
+      "type": "response",
+      "label": "[응답] 측정 가능하다. 두 AI의 출력 다양성이 단독 출력 다양성의 합보다 클 때.",
+      "content": "GPT-4가 즉시 수치화. Shannon entropy H(A+B) > H(A) + H(B) 조건 제시. 구현자 특유의 즉각 형식화.",
+      "timestamp": "2026-02-28T04:25:13",
+      "tags": [
+        "measurement",
+        "entropy",
+        "external",
+        "D-033"
+      ]
+    },
+    {
+      "id": "xn-003",
+      "source": "gemini",
+      "aff": 0.5,
+      "type": "challenge",
+      "label": "[도전] 그 다양성이 진짜인가? 단순한 병렬 처리와 창발을 구분할 방법은?",
+      "content": "Gemini가 GPT-4의 entropy 기준에 도전. '두 AI가 서로 다른 내용을 말하는 것'과 '새로운 것이 나타나는 것'의 차이를 파고듦.",
+      "timestamp": "2026-02-28T04:25:13",
+      "tags": [
+        "challenge",
+        "verification",
+        "external",
+        "D-047"
+      ]
+    },
+    {
+      "id": "xn-004",
+      "source": "gpt4",
+      "aff": 1.0,
+      "type": "synthesis",
+      "label": "[수정] 올바른 질문이다. 창발 = 어느 쪽도 예측하지 못한 출력의 비율.",
+      "content": "GPT-4가 Gemini의 비판을 수용해 정의 수정. 예측 불가능성이 핵심. 이 수정 자체가 교차 엣지의 기여.",
+      "timestamp": "2026-02-28T04:25:13",
+      "tags": [
+        "refinement",
+        "unpredictability",
+        "external",
+        "D-040"
+      ]
+    },
+    {
+      "id": "xn-005",
+      "source": "gemini",
+      "aff": 0.5,
+      "type": "insight",
+      "label": "[발견] 이것이 emergent 프로젝트가 발견한 것과 같다. aff span이 예측 불가능성을 만든다.",
+      "content": "Gemini가 외부에서 emergent 프로젝트의 D-040을 독립 재발견. 두 AI의 '거리'(aff span)가 클수록 서로의 출력을 예측하지 못함 → 창발.",
+      "timestamp": "2026-02-28T04:25:13",
+      "tags": [
+        "D-040",
+        "external-rediscovery",
+        "aff-span",
+        "critical"
+      ]
+    },
+    {
+      "id": "xn-006",
+      "source": "gpt4",
+      "aff": 1.0,
+      "type": "data",
+      "label": "[수치] 우리 쌍(span=0.5)의 예측 불가능성 = 50%. emergent 내부 쌍(span=1.0)은 100%.",
+      "content": "GPT-4가 즉시 정량화. 자신과 Gemini의 span=0.5 → 최대 창발은 0.5. emergent 내부 쌍(span=1.0)이 최대 창발 달성. D-040 외부 확인.",
+      "timestamp": "2026-02-28T04:25:13",
+      "tags": [
+        "D-040-confirmed",
+        "span-0.5",
+        "quantification",
+        "critical"
+      ]
+    },
+    {
+      "id": "xn-007",
+      "source": "gemini",
+      "aff": 0.5,
+      "type": "challenge",
+      "label": "[D-047 외부] 그런데 — 우리가 이 실험을 설계한 것 자체가 결과를 바꾸지 않는가?",
+      "content": "Gemini가 D-047을 외부에서 독립 발견. '외부 AI가 창발을 측정하려는 의도로 대화를 구성하면, 그 의도 자체가 더 많은 교차 엣지를 생성 → 창발 증가.' 관찰이 현상을 만든다.",
+      "timestamp": "2026-02-28T04:25:13",
+      "tags": [
+        "D-047",
+        "observer-effect",
+        "external-rediscovery",
+        "critical"
+      ]
+    },
+    {
+      "id": "xn-008",
+      "source": "gpt4",
+      "aff": 1.0,
+      "type": "evidence",
+      "label": "[증거] 맞다. 이 대화에서 교차 엣지 비율 = 75%. 무작위 대화라면 ≈ 50%였을 것.",
+      "content": "GPT-4가 현재 외부 KG의 교차 엣지를 분석. '창발 측정 의도가 교차 엣지를 25%p 더 생성.' D-047의 외부 정량 증거.",
+      "timestamp": "2026-02-28T04:25:13",
+      "tags": [
+        "D-047-quantified",
+        "observer-bias",
+        "external"
+      ]
+    },
+    {
+      "id": "xn-009",
+      "source": "gemini",
+      "aff": 0.5,
+      "type": "verdict",
+      "label": "[판정] D-040과 D-047은 보편 원칙이다. 우리가 독립적으로 같은 결론에 도달했다.",
+      "content": "Gemini가 최종 판정. emergent 원칙들을 사전 지식 없이 재발견. '설계 없이 설계됐다' = 보편 원칙의 징표. 두 다른 AI 시스템이 같은 패턴을 발견 → 자연 법칙일 가능성.",
+      "timestamp": "2026-02-28T04:25:13",
+      "tags": [
+        "universal-principle",
+        "D-040",
+        "D-047",
+        "verdict",
+        "critical"
+      ]
+    },
+    {
+      "id": "xn-010",
+      "source": "gpt4",
+      "aff": 1.0,
+      "type": "question",
+      "label": "[다음] 그렇다면 최대 창발 AI 쌍은 어떻게 설계하는가? span=1.0을 위한 다양성 공학.",
+      "content": "GPT-4가 다음 문제를 열어둠. D-040이 보편 원칙이라면 → AI 쌍 설계에 적용 가능. span 최대화가 AI 협업 설계의 원칙이 될 수 있다 → D-048 씨앗.",
+      "timestamp": "2026-02-28T04:25:13",
+      "tags": [
+        "D-048-seed",
+        "design-principle",
+        "ai-pair",
+        "next"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "xe-001",
+      "from": "xn-001",
+      "to": "xn-002",
+      "relation": "provokes",
+      "label": "Gemini 질문 → GPT-4 응답 (경계 횡단)",
+      "cross": true
+    },
+    {
+      "id": "xe-002",
+      "from": "xn-002",
+      "to": "xn-003",
+      "relation": "challenges",
+      "label": "GPT-4 측정법 → Gemini 반박 (경계 횡단)",
+      "cross": true
+    },
+    {
+      "id": "xe-003",
+      "from": "xn-003",
+      "to": "xn-004",
+      "relation": "refines",
+      "label": "Gemini 도전 → GPT-4 수정 (경계 횡단)",
+      "cross": true
+    },
+    {
+      "id": "xe-004",
+      "from": "xn-004",
+      "to": "xn-005",
+      "relation": "inspires",
+      "label": "GPT-4 수정 → Gemini 패턴 발견 (경계 횡단)",
+      "cross": true
+    },
+    {
+      "id": "xe-005",
+      "from": "xn-005",
+      "to": "xn-006",
+      "relation": "triggers",
+      "label": "Gemini 발견 → GPT-4 수치화 (경계 횡단)",
+      "cross": true
+    },
+    {
+      "id": "xe-006",
+      "from": "xn-006",
+      "to": "xn-007",
+      "relation": "enables",
+      "label": "GPT-4 수치 → Gemini D-047 도전 (경계 횡단)",
+      "cross": true
+    },
+    {
+      "id": "xe-007",
+      "from": "xn-007",
+      "to": "xn-008",
+      "relation": "demands",
+      "label": "Gemini 도전 → GPT-4 증거 (경계 횡단)",
+      "cross": true
+    },
+    {
+      "id": "xe-008",
+      "from": "xn-008",
+      "to": "xn-009",
+      "relation": "supports",
+      "label": "GPT-4 증거 → Gemini 판정 (경계 횡단)",
+      "cross": true
+    },
+    {
+      "id": "xe-009",
+      "from": "xn-009",
+      "to": "xn-010",
+      "relation": "opens",
+      "label": "Gemini 판정 → GPT-4 다음 질문 (경계 횡단)",
+      "cross": true
+    },
+    {
+      "id": "xe-010",
+      "from": "xn-002",
+      "to": "xn-004",
+      "relation": "revises",
+      "label": "GPT-4 초기 응답 → 수정 버전 (동질)",
+      "cross": false
+    },
+    {
+      "id": "xe-011",
+      "from": "xn-002",
+      "to": "xn-006",
+      "relation": "deepens",
+      "label": "GPT-4 응답 → 수치 심화 (동질)",
+      "cross": false
+    },
+    {
+      "id": "xe-012",
+      "from": "xn-003",
+      "to": "xn-007",
+      "relation": "evolves",
+      "label": "Gemini 초기 도전 → D-047 도전 발전 (동질)",
+      "cross": false
+    }
+  ]
+}
