@@ -1,0 +1,121 @@
+{
+  "meta": {
+    "description": "pair_designer v2 추천/추가 이력 (DCI 중립 모드)",
+    "created_cycle": 58,
+    "version": "v2"
+  },
+  "sessions": [
+    {
+      "date": "2026-02-28",
+      "version": "v2",
+      "cycle": 58,
+      "n_added": 10,
+      "delta": {
+        "e_v4_before": 0.3977,
+        "e_v4_after": 0.3978,
+        "delta": 0.0001,
+        "e_v4_gain_excl_dci": 0.0001,
+        "dci_delta": 0.0,
+        "edge_span_before": 28.006,
+        "edge_span_after": 30.924,
+        "n_added": 10,
+        "cser_before": 0.6625,
+        "cser_after": 0.6485,
+        "dci_before": 0.2991,
+        "dci_after": 0.2991
+      },
+      "added_edges": [
+        {
+          "id": "e-327",
+          "from": "n-007",
+          "to": "n-147",
+          "relation": "resonates_with",
+          "span": 140,
+          "combined_score": 0.7352,
+          "dci_neutral": true
+        },
+        {
+          "id": "e-328",
+          "from": "n-007",
+          "to": "n-146",
+          "relation": "contextualizes",
+          "span": 139,
+          "combined_score": 0.7242,
+          "dci_neutral": true
+        },
+        {
+          "id": "e-329",
+          "from": "n-019",
+          "to": "n-142",
+          "relation": "contextualizes",
+          "span": 123,
+          "combined_score": 0.6464,
+          "dci_neutral": true
+        },
+        {
+          "id": "e-330",
+          "from": "n-026",
+          "to": "n-147",
+          "relation": "resonates_with",
+          "span": 121,
+          "combined_score": 0.6428,
+          "dci_neutral": true
+        },
+        {
+          "id": "e-331",
+          "from": "n-026",
+          "to": "n-148",
+          "relation": "relates_to",
+          "span": 122,
+          "combined_score": 0.6408,
+          "dci_neutral": true
+        },
+        {
+          "id": "e-332",
+          "from": "n-021",
+          "to": "n-142",
+          "relation": "parallel_to",
+          "span": 121,
+          "combined_score": 0.6327,
+          "dci_neutral": true
+        },
+        {
+          "id": "e-333",
+          "from": "n-022",
+          "to": "n-142",
+          "relation": "contextualizes",
+          "span": 120,
+          "combined_score": 0.6318,
+          "dci_neutral": true
+        },
+        {
+          "id": "e-334",
+          "from": "n-026",
+          "to": "n-146",
+          "relation": "contextualizes",
+          "span": 120,
+          "combined_score": 0.6318,
+          "dci_neutral": true
+        },
+        {
+          "id": "e-335",
+          "from": "n-023",
+          "to": "n-142",
+          "relation": "contextualizes",
+          "span": 119,
+          "combined_score": 0.6298,
+          "dci_neutral": true
+        },
+        {
+          "id": "e-336",
+          "from": "n-024",
+          "to": "n-142",
+          "relation": "resonates_with",
+          "span": 118,
+          "combined_score": 0.6282,
+          "dci_neutral": true
+        }
+      ]
+    }
+  ]
+}
