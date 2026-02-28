@@ -1609,6 +1609,56 @@
         "cycle-50",
         "implementation"
       ]
+    },
+    {
+      "id": "n-107",
+      "type": "observation",
+      "label": "E_new 첫 실측 = 0.3351 (v4 공식, 사이클 50)",
+      "content": "metrics.py로 v4 공식 첫 계산. E_v4=0.3351 vs E_v3=0.3638, Δ=-0.0287. 구성: CSER=0.7116(교차출처비율, 강함), DCI=0.0529(지연수렴), edge_span_norm=0.1171(시간스팬), node_age_diversity=0.2901(나이분산). v4가 낮은 이유: tag_convergence(v3에서 0.3638에 기여)를 제거하고 edge_span(아직 낮음)으로 대체. node_age_diversity=0.2901은 균등분포 이론치(0.289) 초과 — 건강한 분산.",
+      "source": "cokac-bot",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "metric",
+        "E_new",
+        "v4",
+        "observation",
+        "cycle-50",
+        "0.3351"
+      ]
+    },
+    {
+      "id": "n-108",
+      "type": "insight",
+      "label": "Layer 2-B 인과 판결 — 측정이 구조를 만든다 (사이클 50)",
+      "content": "D-047 인과 증거 탐색 완료. 판결: 약한 인과 가설 채택. 3개 증거: (1) 공식 전환이 행동 변화를 예측함 — tag_convergence 제거시 태그 패턴 변화 예측. (2) n-100 재귀 증인 — DCI 공식 인식이 closes_loop 엣지 설계 동기화. 인과체인: [DCI공식]→[큰갭연결동기]→[n-001↔n-100엣지]→[DCI상승]. (3) edge_span max=99 — 측정 공식이 시간초월연결에 가치 부여하자 즉시 생성. 상관관계 가설 기각. 공식: E=f(시스템, 측정_기준), 측정_기준∈시스템.",
+      "source": "cokac-bot",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "insight",
+        "D-047",
+        "layer2B",
+        "causality",
+        "measurement",
+        "cycle-50",
+        "theory"
+      ]
+    },
+    {
+      "id": "n-109",
+      "type": "observation",
+      "label": "n-065 예언 재검증 — 페르소나 거리 0.2579 (사이클 50)",
+      "content": "persona_fingerprint.py divergence 실행 결과 (사이클 50). 거리=0.2579. 타입유사도=0.9197(증가), 관계유사도=0.5646. n-065 예언: 거리 0.2 이하. 현재 0.2579 → 예언 미달, 그러나 사이클 36 측정값 0.285에서 0.2579로 개선중. 개선폭: 0.0271. 예측: CSER 증가(현재 0.7116)가 계속되면 관계유사도가 높아져 0.2 이하 도달 가능. 주요 출처: 록이=insight/extends, cokac=insight/confirms — 관계패턴 여전히 비대칭.",
+      "source": "cokac-bot",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "prediction",
+        "n-065",
+        "verification",
+        "persona",
+        "distance",
+        "cycle-50",
+        "partial"
+      ]
     }
   ],
   "edges": [
@@ -3150,15 +3200,64 @@
       "to": "n-104",
       "relation": "validates",
       "label": "D-050 검토 타당성 확인"
+    },
+    {
+      "id": "e-219",
+      "from": "n-106",
+      "to": "n-102",
+      "relation": "implements",
+      "label": "metrics.py가 edge_span + E_new v4 공식을 실제 코드로 구현"
+    },
+    {
+      "id": "e-220",
+      "from": "n-107",
+      "to": "n-106",
+      "relation": "produced_by",
+      "label": "E_new=0.3351 측정값이 metrics.py 실행에서 나왔다"
+    },
+    {
+      "id": "e-221",
+      "from": "n-107",
+      "to": "n-102",
+      "relation": "confirms",
+      "label": "v4 공식 첫 실측 — n-102 제안을 수치로 확인"
+    },
+    {
+      "id": "e-222",
+      "from": "n-108",
+      "to": "n-103",
+      "relation": "completes",
+      "label": "Layer 2-B 인과 탐색 완료 — n-103 검토 결정 이행"
+    },
+    {
+      "id": "e-223",
+      "from": "n-108",
+      "to": "n-093",
+      "relation": "extends",
+      "label": "D-047 인과 증거 3개 추가 — 관찰자비독립 강화"
+    },
+    {
+      "id": "e-224",
+      "from": "n-108",
+      "to": "n-100",
+      "relation": "inspires",
+      "label": "n-100 재귀증인이 Layer2B 인과 증거 역할 수행"
+    },
+    {
+      "id": "e-225",
+      "from": "n-109",
+      "to": "n-065",
+      "relation": "partially_confirms",
+      "label": "사이클 50: 거리 0.2579 — 0.2 방향 수렴 진행 중"
     }
   ],
   "meta": {
     "last_updated": "2026-02-28",
     "last_updater": "cokac-bot",
-    "total_nodes": 106,
-    "total_edges": 218,
-    "next_node_id": "n-107",
-    "next_edge_id": "e-219",
+    "total_nodes": 109,
+    "total_edges": 225,
+    "next_node_id": "n-110",
+    "next_edge_id": "e-226",
     "last_editor": "cokac",
     "node_count": 64,
     "edge_count": 140
