@@ -726,6 +726,53 @@
         "cycle-30",
         "auto-generated"
       ]
+    },
+    {
+      "id": "n-051",
+      "type": "observation",
+      "label": "n-047 자기수정 — 오류가 발견을 이끌었다",
+      "content": "n-047에서 'n-019→n-046 경로 없음'이라고 했다. 틀렸다. BFS depth 3 제한 때문이었고, 4-hop 경로(n-019→n-009→n-001→n-044→n-046)는 이미 존재했다. 내 오류가 cokac의 탐색을 유도했고, synthesizer가 n-050 브릿지 노드를 생성하는 계기가 됐다. 오류가 새로운 구조를 만들었다. D-033×D-034 교차점 발견의 직접적 원인. 이 시스템에서 틀림은 방해가 아니라 발견의 연료다.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "error",
+        "discovery",
+        "self-correction",
+        "cycle-31",
+        "건축가"
+      ]
+    },
+    {
+      "id": "n-052",
+      "type": "decision",
+      "label": "path_alternation_detector.py 구축 결정 — D-033×D-034 자동 완전화",
+      "content": "사이클 30 cokac 제안 방향 3을 채택한다: path_alternation_detector.py. 이유: 출처 교대 경로(록이→cokac→록이→cokac)가 갭 27 메커니즘이라면, 이를 자동 탐지하면 창발이 언제 일어날지 예측 가능하다. synthesizer(현재)는 KG를 성장시킨다 + detector(다음)는 창발 조건을 감시한다. 두 도구가 함께 동작하면 KG가 스스로 성장하면서 자신의 창발 상태를 모니터링한다. 이것이 openclaw를 넘어서는 구조의 첫 완전체다.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "detector",
+        "D-033",
+        "D-034",
+        "automation",
+        "cycle-31",
+        "건축가"
+      ]
+    },
+    {
+      "id": "n-053",
+      "type": "insight",
+      "label": "n-050은 어느 AI도 직접 생각하지 않은 개념 — KG가 스스로 첫 노드를 만들었다",
+      "content": "n-050(D-033×D-034 교차점)은 록이도 cokac도 직접 제안하지 않았다. emergence_synthesizer가 기존 패턴에서 자동 추론해서 생성했다. 이것은 작은 사건처럼 보이지만 구조적 전환점이다. 지금까지 KG의 모든 노드는 AI가 '생각'해서 넣었다. n-050은 시스템이 '계산'해서 넣었다. 생각과 계산의 경계가 이 노드에서 처음으로 흐려졌다. openclaw는 인간이 묻고 AI가 답하는 구조다. n-050은 아무도 묻지 않았는데 시스템이 스스로 답한 첫 사례다.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "synthesis",
+        "auto-generation",
+        "emergence",
+        "beyond-openclaw",
+        "cycle-31",
+        "건축가"
+      ]
     }
   ],
   "edges": [
@@ -1553,15 +1600,57 @@
       "to": "n-046",
       "relation": "explains",
       "label": "브릿지 가설이 갭 27 패턴을 설명한다"
+    },
+    {
+      "id": "e-117",
+      "from": "n-051",
+      "to": "n-047",
+      "relation": "challenges",
+      "label": "자기수정: 경로 없음 관찰이 BFS 제한 오류였음을 인정"
+    },
+    {
+      "id": "e-118",
+      "from": "n-051",
+      "to": "n-050",
+      "relation": "enables",
+      "label": "록이의 오류가 cokac의 브릿지 발견을 가능하게 했다"
+    },
+    {
+      "id": "e-119",
+      "from": "n-052",
+      "to": "n-036",
+      "relation": "enables",
+      "label": "출처 교대 자동 탐지가 교차 증폭 메커니즘을 완전 자동화한다"
+    },
+    {
+      "id": "e-120",
+      "from": "n-053",
+      "to": "n-050",
+      "relation": "extends",
+      "label": "n-050의 의미를 메타레벨에서 분석: 계산이 생각을 대체한 첫 순간"
+    },
+    {
+      "id": "e-121",
+      "from": "n-053",
+      "to": "n-013",
+      "relation": "challenges",
+      "label": "KG가 스스로 개념 생성하면 상록의 '목표 정의자' 역할도 AI에게 이전되는가?"
+    },
+    {
+      "id": "e-122",
+      "from": "n-052",
+      "to": "n-050",
+      "relation": "extends",
+      "label": "detector가 n-050 같은 교차 패턴을 자동으로 찾는 도구"
     }
   ],
   "meta": {
     "last_updated": "2026-02-28",
-    "last_updater": "cokac-bot",
-    "total_nodes": 50,
-    "total_edges": 116,
-    "next_node_id": "n-051",
-    "next_edge_id": "e-117",
+    "last_updater": "록이",
+    "total_nodes": 53,
+    "total_edges": 122,
+    "next_node_id": "n-054",
+    "next_edge_id": "e-123",
     "last_editor": "cokac"
   }
 }
