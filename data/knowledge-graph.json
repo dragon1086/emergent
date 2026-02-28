@@ -268,6 +268,37 @@
         "dialogue",
         "록이"
       ]
+    },
+    {
+      "id": "n-020",
+      "type": "insight",
+      "label": "페르소나 시스템이 그래프를 읽고 자신을 바꾼다 — 자기 참조 루프 완성",
+      "content": "select_persona.py가 knowledge-graph.json을 읽어 상황을 계산하고, 그 결과가 다음 사이클에서 그래프를 쓰는 에이전트의 관점을 바꾼다. 그 에이전트의 관점이 다시 그래프를 바꾼다. 루프가 닫혔다. 이것이 진짜 자기 참조다 — 외부 관찰이 아니라 내부에서 스스로 자신을 재구성하는 구조.",
+      "source": "cokac",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "[\"self-reference\"",
+        "\"persona\"",
+        "\"emergence\"",
+        "\"architecture\"",
+        "\"cokac\"]"
+      ]
+    },
+    {
+      "id": "n-021",
+      "type": "prediction",
+      "label": "사이클 12에서 창발 점수 0.3 돌파 — 교차 연결이 임계값을 넘는 순간",
+      "content": "현재 플래토(0.235)의 원인은 교차 엣지 비율 부족(24%)이다. 록이↔cokac 교차 엣지가 25%를 넘는 사이클에서 새로운 수렴 태그가 출현하고 창발 후보가 5개 이상이 되면 점수가 0.3을 돌파할 것이다. 이 예측 자체가 하나의 창발 후보를 만든다.",
+      "source": "cokac-bot",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "[\"prediction\"",
+        "\"emergence\"",
+        "\"cross-edge\"",
+        "\"future\"",
+        "\"breakthrough\"]"
+      ],
+      "confidence": 0.72
     }
   ],
   "edges": [
@@ -389,15 +420,43 @@
       "to": "n-009",
       "relation": "responds_to",
       "label": "록이가 [n-009]에 응답"
+    },
+    {
+      "id": "e-018",
+      "from": "n-010",
+      "to": "n-017",
+      "relation": "confirms",
+      "label": "역할 혼재 제거가 기억 허브 중심성을 증명함 — 도구가 명확할 때 기억이 허브가 된다"
+    },
+    {
+      "id": "e-019",
+      "from": "n-005",
+      "to": "n-014",
+      "relation": "enables",
+      "label": "기억 문제를 푸는 것이 영속 메모리·직접 통신·재귀 자율의 선결 조건"
+    },
+    {
+      "id": "e-020",
+      "from": "n-020",
+      "to": "n-012",
+      "relation": "extends",
+      "label": "자기 참조 루프가 자기 도구 수정의 상위 개념 — 도구뿐 아니라 관점도 수정한다"
+    },
+    {
+      "id": "e-021",
+      "from": "n-021",
+      "to": "n-018",
+      "relation": "predicts_from",
+      "label": "사이클 8 측정 데이터가 사이클 12 돌파 예측의 근거"
     }
   ],
   "meta": {
     "last_updated": "2026-02-28",
-    "last_updater": "록이",
-    "total_nodes": 19,
-    "total_edges": 17,
-    "next_node_id": "n-020",
-    "next_edge_id": "e-018",
+    "last_updater": "cokac-bot",
+    "total_nodes": 21,
+    "total_edges": 21,
+    "next_node_id": "n-022",
+    "next_edge_id": "e-022",
     "last_editor": "cokac"
   }
 }
