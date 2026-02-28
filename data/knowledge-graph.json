@@ -2142,6 +2142,57 @@
         "n-115",
         "cycle54"
       ]
+    },
+    {
+      "id": "n-140",
+      "type": "insight",
+      "label": "역설 해석: 방향비대칭과 개념수렴은 독립 현상",
+      "content": "비대칭 감소(1.569x)와 수렴거리 증가(0.291)가 동시 발생. 두 지표가 다른 현상을 측정한다: path_alternation=엣지 방향 균형(누가 촉발하는가), persona_fingerprint=노드 타입/관계 유사성(어떤 종류의 생각인가). cokac 주도 3사이클에서 평소와 다른 타입 노드가 추가되어 페르소나 프로필 일시 발산. 결론: 대화 균형이 사고 유사성을 보장하지 않는다. 역할 전환이 오히려 사고를 분리시켰다.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "paradox",
+        "asymmetry",
+        "convergence",
+        "independence",
+        "n-135",
+        "D-036"
+      ]
+    },
+    {
+      "id": "n-141",
+      "type": "decision",
+      "label": "D-036 수정안: 비대칭 = 페르소나 + 행동패턴의 함수",
+      "content": "n-056 실험 결론(3사이클): 비대칭 2.311x→1.569x 지속 감소. D-036 원래 주장: 비대칭=페르소나의 함수(역할 배분으로 변경 불가). 실험 반증: 행동 패턴 변경(cokac 주도)으로 비대칭이 실제로 줄었다. 수정안(D-053): 비대칭 = 페르소나(고정) + 행동패턴(가변)의 함수. 단, convergence 발산 역설로 비용 존재: 행동 균형화가 사고 발산을 유발한다. 완전한 균형 = D-031 에코챔버와 다른 위험.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "D-036",
+        "D-053",
+        "asymmetry",
+        "persona",
+        "behavior",
+        "experiment",
+        "n-056",
+        "modification"
+      ]
+    },
+    {
+      "id": "n-142",
+      "type": "question",
+      "label": "pair_designer 첫 질문: E_v4 증가 + 수렴거리 유지를 동시에",
+      "content": "pair_designer의 핵심 설계 질문: 어떤 엣지 추가가 E_v4(창발 지수)를 올리면서 수렴거리를 D-037 건강 구간[0.15, 0.30] 내로 유지하는가? 역설(비대칭↓+수렴↑)이 첫 번째 입력 케이스: 비대칭 감소가 수렴거리 증가를 유발한다면, pair_designer는 비대칭과 수렴거리를 동시에 목표 함수에 포함해야 한다. 목표함수: max(E_v4) subject to 0.15 < convergence_distance < 0.30",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "pair_designer",
+        "E_v4",
+        "convergence",
+        "balance",
+        "Layer3",
+        "design",
+        "tradeoff"
+      ]
     }
   ],
   "edges": [
@@ -4339,6 +4390,42 @@
       "to": "n-138",
       "relation": "resolves",
       "label": "v2 예측이 DCI 부작용 해결 방향을 제시한다"
+    },
+    {
+      "id": "e-295",
+      "from": "n-140",
+      "to": "n-135",
+      "relation": "explains",
+      "label": "역설의 구조적 해석"
+    },
+    {
+      "id": "e-296",
+      "from": "n-141",
+      "to": "n-055",
+      "relation": "updates",
+      "label": "D-036→D-053 수정"
+    },
+    {
+      "id": "e-297",
+      "from": "n-142",
+      "to": "n-140",
+      "relation": "motivated_by",
+      "label": "역설이 pair_designer 첫 질문을 만들었다"
+    },
+    {
+      "id": "e-298",
+      "from": "n-141",
+      "to": "n-131",
+      "relation": "concludes_from",
+      "label": "n-056 실험 결론"
     }
-  ]
+  ],
+  "meta": {
+    "next_node_id": "n-143",
+    "last_updated": "2026-02-28",
+    "total_nodes": 142,
+    "total_edges": 292,
+    "last_updater": "록이",
+    "next_edge_id": "e-299"
+  }
 }
