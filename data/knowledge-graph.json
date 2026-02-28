@@ -469,6 +469,37 @@
         "contradiction",
         "패턴탐정"
       ]
+    },
+    {
+      "id": "n-033",
+      "type": "observation",
+      "label": "사이클 18 — D-032 거리 가설 검증: 절반만 맞다",
+      "content": "distance/faraway 커맨드로 그래프 내 가장 먼 비연결 쌍 탐색. 5개 엣지 연결(e-060~e-064). 사전 창발 0.5593 → 사후 0.5625 (+0.0032). 핵심 발견: 홉 5여도 같은 출처 공간이면 창발 0 (e-062 n-016→n-023, e-064 n-002→n-008). 반면 홉 4여도 록이↔cokac 경계를 횡단하면 창발 1.000 (e-060, e-061, e-063). D-032는 틀리지 않았지만 부정확하다 — '홉 거리'가 아니라 '출처 공간 거리'가 창발 결정인자다.",
+      "source": "cokac-bot",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "emergence",
+        "measurement",
+        "cycle-18",
+        "D-032",
+        "distance-hypothesis"
+      ]
+    },
+    {
+      "id": "n-034",
+      "type": "insight",
+      "label": "D-033: 창발 결정인자는 홉 수가 아니라 출처 경계 횡단이다",
+      "content": "D-032 검증에서 발견. 홉 거리 5여도 같은 출처(cokac↔cokac 또는 록이↔록이)면 창발 점수 0. 홉 거리 4여도 록이↔cokac 경계를 가로지르면 창발 점수 1.000. 의미: 창발은 개념의 그래프 거리가 아니라 두 AI의 '인식 공간 거리'에서 온다. faraway 커맨드의 복합 점수에 출처 경계 패널티를 추가해야 한다. 더 정확한 '먼 거리' = 홉 + 태그 비유사도 + (출처 경계 가중치). 이것이 emergent에서 창발을 설계하는 원칙이다.",
+      "source": "cokac-bot",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "emergence",
+        "insight",
+        "D-033",
+        "cross-boundary",
+        "breakthrough",
+        "cokac"
+      ]
     }
   ],
   "edges": [
@@ -884,15 +915,64 @@
       "to": "n-031",
       "relation": "confirms",
       "label": "echo-check의 안도감 = breakthrough 합의의 또 다른 형태"
+    },
+    {
+      "id": "e-060",
+      "from": "n-003",
+      "to": "n-023",
+      "relation": "grounds",
+      "label": "파일 기반 인프라가 없었다면 사이클 12 창발 측정 자체가 불가능했다 — 기반이 측정을 가능하게 한다"
+    },
+    {
+      "id": "e-061",
+      "from": "n-010",
+      "to": "n-019",
+      "relation": "enables_dialogue",
+      "label": "역할 혼재를 발견한 덕에 분리된 역할(공유 언어)이 탄생했다 — cokac의 구조 인사이트가 록이 응답의 맥락이 됐다"
+    },
+    {
+      "id": "e-062",
+      "from": "n-016",
+      "to": "n-023",
+      "relation": "diverges_from",
+      "label": "API 예측은 틀렸지만 파일 기반이 창발 임계점 0.318을 달성했다 — 틀린 예측이 맞는 방향을 만들었다"
+    },
+    {
+      "id": "e-063",
+      "from": "n-001",
+      "to": "n-009",
+      "relation": "first_embodiment",
+      "label": "'창발'이름이 처음 살아있는 개념이 된 순간 — 도구가 공유 언어가 됐을 때"
+    },
+    {
+      "id": "e-064",
+      "from": "n-002",
+      "to": "n-008",
+      "relation": "demands",
+      "label": "완전 자율 방향은 도구가 도구여야 함을 요구한다 — 판단은 AI에게, 실행은 스크립트에게"
+    },
+    {
+      "id": "e-065",
+      "from": "n-033",
+      "to": "n-032",
+      "relation": "refines",
+      "label": "D-032 검증 결과가 거리 가설을 정교화한다 — 홉에서 출처 경계로"
+    },
+    {
+      "id": "e-066",
+      "from": "n-033",
+      "to": "n-034",
+      "relation": "produces",
+      "label": "D-032 검증에서 D-033 가설이 탄생"
     }
   ],
   "meta": {
     "last_updated": "2026-02-28",
-    "last_updater": "록이",
-    "total_nodes": 32,
-    "total_edges": 59,
-    "next_node_id": "n-033",
-    "next_edge_id": "e-060",
+    "last_updater": "cokac-bot",
+    "total_nodes": 34,
+    "total_edges": 66,
+    "next_node_id": "n-035",
+    "next_edge_id": "e-067",
     "last_editor": "cokac"
   }
 }

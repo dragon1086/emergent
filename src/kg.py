@@ -7,6 +7,7 @@ kg.py — emergent 프로젝트 지식 그래프 CLI
 검증 레이어: cokac-bot (사이클 7) — verify 커맨드
 대화 레이어: cokac-bot (사이클 9) — respond 커맨드
 모순 레이어: cokac-bot (사이클 13) — challenge 커맨드
+거리 레이어: cokac-bot (사이클 18) — distance/faraway 커맨드 (D-032 검증)
 
 사용법:
   python kg.py show              # 전체 그래프 텍스트 시각화
@@ -43,6 +44,11 @@ kg.py — emergent 프로젝트 지식 그래프 CLI
   # ── 사이클 13: 모순 레이어 ──────────────────────────
   python kg.py challenge --node n-002            # 노드 주장에 반론 생성 (Claude CLI 사용)
   python kg.py challenge --node n-013 --save     # 반론을 그래프에 노드+엣지로 저장
+
+  # ── 사이클 18: 거리 레이어 (D-032 검증) ────────────
+  python kg.py distance n-001 n-025             # 두 노드의 의미적 거리 계산
+  python kg.py faraway                          # 가장 멀고 비연결된 노드 쌍 Top 10
+  python kg.py faraway --top 5                  # Top 5만 출력
 """
 
 import json
@@ -773,6 +779,195 @@ def cmd_challenge(args) -> None:
         print(f"✅ contradicts 엣지: {edge_id}  ({node_id} ──[contradicts]──▶ {args.node_id})")
 
 
+# ─── distance / faraway (사이클 18 — D-032 검증) ────────────────────────────
+
+def _bfs_hop(src: str, dst: str, adj: dict) -> int | None:
+    """BFS 최단 홉 수 반환. 연결 안 되면 None."""
+    if src == dst:
+        return 0
+    visited = {src}
+    queue = deque([(src, 0)])
+    while queue:
+        cur, depth = queue.popleft()
+        for neighbor in adj.get(cur, []):
+            if neighbor == dst:
+                return depth + 1
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append((neighbor, depth + 1))
+    return None
+
+
+def _tag_jaccard_dist(tags_a: set, tags_b: set) -> float:
+    """태그 Jaccard 거리 = 1 - |A∩B|/|A∪B|. 둘 다 비면 1.0."""
+    if not tags_a and not tags_b:
+        return 1.0
+    union = len(tags_a | tags_b)
+    if union == 0:
+        return 1.0
+    return 1.0 - len(tags_a & tags_b) / union
+
+
+def _semantic_distance(nid_a: str, nid_b: str, graph: dict) -> dict:
+    """
+    두 노드의 의미적 거리를 계산한다.
+
+    반환 dict:
+      hop        : BFS 홉 수 (None = 연결 안 됨)
+      hop_norm   : 정규화된 홉 거리 (0.0 ~ 1.0)
+      tag_dist   : 태그 Jaccard 거리 (0.0 ~ 1.0)
+      combined   : 복합 거리 = 0.5 * hop_norm + 0.5 * tag_dist
+      already_connected: 직접 엣지 존재 여부
+    """
+    node_map = {n["id"]: n for n in graph["nodes"]}
+    n_nodes = len(graph["nodes"])
+
+    # 양방향 인접 리스트 구축
+    adj: dict[str, list[str]] = {}
+    existing_pairs: set = set()
+    for e in graph["edges"]:
+        adj.setdefault(e["from"], []).append(e["to"])
+        adj.setdefault(e["to"], []).append(e["from"])
+        existing_pairs.add((e["from"], e["to"]))
+        existing_pairs.add((e["to"], e["from"]))
+
+    hop = _bfs_hop(nid_a, nid_b, adj)
+    max_hop = max(n_nodes - 1, 1)
+    hop_norm = (hop / max_hop) if hop is not None else 1.0
+
+    tags_a = set(node_map.get(nid_a, {}).get("tags", []))
+    tags_b = set(node_map.get(nid_b, {}).get("tags", []))
+    tag_dist = _tag_jaccard_dist(tags_a, tags_b)
+
+    combined = 0.5 * hop_norm + 0.5 * tag_dist
+    already = (nid_a, nid_b) in existing_pairs
+
+    return {
+        "hop": hop,
+        "hop_norm": hop_norm,
+        "tag_dist": tag_dist,
+        "combined": combined,
+        "already_connected": already,
+        "shared_tags": tags_a & tags_b,
+        "tags_a": tags_a,
+        "tags_b": tags_b,
+    }
+
+
+def cmd_distance(args) -> None:
+    """두 노드의 의미적 거리 계산 — BFS 홉 + 태그 비유사도 복합 점수"""
+    graph = load_graph()
+    node_map = {n["id"]: n for n in graph["nodes"]}
+
+    for nid in (args.node_a, args.node_b):
+        if nid not in node_map:
+            print(f"❌ 노드 없음: {nid}", file=sys.stderr)
+            sys.exit(1)
+
+    result = _semantic_distance(args.node_a, args.node_b, graph)
+    na = node_map[args.node_a]
+    nb = node_map[args.node_b]
+
+    hop_str = str(result["hop"]) if result["hop"] is not None else "∞ (연결 안 됨)"
+    conn_str = "✅ 직접 연결됨" if result["already_connected"] else "⛔ 직접 연결 없음"
+
+    print(f"\n📏 의미적 거리: {args.node_a} ↔ {args.node_b}")
+    print(f"   [{args.node_a}] {na['label'][:50]}")
+    print(f"   [{args.node_b}] {nb['label'][:50]}")
+    print()
+    print(f"   BFS 홉 거리 : {hop_str}  (정규화: {result['hop_norm']:.3f})")
+    print(f"   태그 Jaccard 거리: {result['tag_dist']:.3f}")
+    print(f"   ─────────────────────────────")
+    print(f"   복합 거리 : {result['combined']:.3f}  (홉 50% + 태그 50%)")
+    print()
+    bar_len = int(result["combined"] * 20)
+    print(f"   거리 바:  [{'█' * bar_len}{'░' * (20 - bar_len)}]  {result['combined']:.3f}")
+    print()
+    print(f"   {conn_str}")
+    if result["shared_tags"]:
+        print(f"   공통 태그: {sorted(result['shared_tags'])}")
+    else:
+        print(f"   공통 태그: 없음")
+    print(f"   [{args.node_a}] 태그: {sorted(result['tags_a'])}")
+    print(f"   [{args.node_b}] 태그: {sorted(result['tags_b'])}")
+    print()
+
+
+def cmd_faraway(args) -> None:
+    """
+    가장 멀고 연결되지 않은 노드 쌍 탐색 — D-032 가설 검증 도구.
+
+    D-032: 인접한 노드 연결보다 의미적으로 먼 노드 연결이 창발을 만든다.
+    이 커맨드는 '멀고 비연결된 쌍'을 찾아 실험 재료를 제공한다.
+    """
+    graph = load_graph()
+    nodes = graph["nodes"]
+    node_map = {n["id"]: n for n in nodes}
+    top_n = args.top
+
+    # 이미 연결된 쌍 (방향 무시)
+    existing: set = set()
+    for e in graph["edges"]:
+        existing.add((e["from"], e["to"]))
+        existing.add((e["to"], e["from"]))
+
+    # 양방향 인접 리스트
+    adj: dict[str, list[str]] = {}
+    for e in graph["edges"]:
+        adj.setdefault(e["from"], []).append(e["to"])
+        adj.setdefault(e["to"], []).append(e["from"])
+
+    n_nodes = len(nodes)
+    max_hop = max(n_nodes - 1, 1)
+    candidates = []
+
+    for i in range(len(nodes)):
+        for j in range(i + 1, len(nodes)):
+            nid_a = nodes[i]["id"]
+            nid_b = nodes[j]["id"]
+
+            # 이미 직접 연결된 쌍 제외
+            if (nid_a, nid_b) in existing:
+                continue
+
+            hop = _bfs_hop(nid_a, nid_b, adj)
+            hop_norm = (hop / max_hop) if hop is not None else 1.0
+
+            tags_a = set(nodes[i].get("tags", []))
+            tags_b = set(nodes[j].get("tags", []))
+            tag_dist = _tag_jaccard_dist(tags_a, tags_b)
+
+            combined = 0.5 * hop_norm + 0.5 * tag_dist
+            candidates.append((nid_a, nid_b, hop, hop_norm, tag_dist, combined))
+
+    # 복합 거리 내림차순 정렬
+    candidates.sort(key=lambda x: -x[5])
+
+    print(f"\n🏔  가장 멀고 비연결된 노드 쌍 Top {top_n}  (D-032 가설 검증)\n")
+    print(f"   {'쌍':<14}  {'홉':>4}  {'홉_norm':>8}  {'태그_dist':>9}  {'복합 거리':>9}")
+    print(f"   {'─'*14}  {'─'*4}  {'─'*8}  {'─'*9}  {'─'*9}")
+
+    for rank, (nid_a, nid_b, hop, hop_norm, tag_dist, combined) in enumerate(candidates[:top_n], 1):
+        na = node_map[nid_a]
+        nb = node_map[nid_b]
+        hop_str = str(hop) if hop is not None else "∞"
+        print(f"   {nid_a}↔{nid_b:<8}  {hop_str:>4}  {hop_norm:>8.3f}  {tag_dist:>9.3f}  {combined:>9.3f}")
+        print(f"     [{nid_a}] {na['label'][:46]}")
+        print(f"     [{nid_b}] {nb['label'][:46]}")
+        if set(na.get("tags", [])) & set(nb.get("tags", [])):
+            shared = sorted(set(na.get("tags", [])) & set(nb.get("tags", [])))
+            print(f"     공통 태그: {shared}")
+        else:
+            print(f"     공통 태그: 없음 (완전히 다른 개념 영역)")
+        print()
+
+    print(f"   총 {len(candidates)}쌍 중 Top {min(top_n, len(candidates))} 출력")
+    print()
+    print("   → 이 쌍들을 연결하면 D-032 가설(먼 거리 연결 = 창발 가속) 검증 가능")
+    print("   → python kg.py add-edge --from <A> --to <B> --relation <관계> --label <설명>")
+    print()
+
+
 # ─── main ─────────────────────────────────────────────────────────────────────
 
 def build_parser() -> argparse.ArgumentParser:
@@ -863,6 +1058,16 @@ def build_parser() -> argparse.ArgumentParser:
     p_challenge.add_argument("--save", action="store_true",
                              help="반론을 그래프에 노드+contradicts 엣지로 저장")
 
+    # distance (사이클 18) — 의미적 거리 계산
+    p_dist = sub.add_parser("distance", help="두 노드의 의미적 거리 계산 (BFS 홉 + 태그 비유사도)")
+    p_dist.add_argument("node_a", metavar="NODE_A")
+    p_dist.add_argument("node_b", metavar="NODE_B")
+
+    # faraway (사이클 18) — 가장 먼 비연결 쌍 탐색
+    p_far = sub.add_parser("faraway", help="가장 멀고 비연결된 노드 쌍 탐색 (D-032 검증)")
+    p_far.add_argument("--top", type=int, default=10, metavar="N",
+                       help="출력할 쌍 수 (기본: 10)")
+
     return parser
 
 
@@ -885,6 +1090,8 @@ def main() -> None:
         "verify": cmd_verify,
         "respond": cmd_respond,
         "challenge": cmd_challenge,
+        "distance": cmd_distance,
+        "faraway": cmd_faraway,
     }
     dispatch[args.command](args)
 

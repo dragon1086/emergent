@@ -1,7 +1,7 @@
 {
   "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"python3 src/kg.py stats 2>&1\",\"description\":\"Check current graph stats\"}",
-  "error": "Exit code 1\n── 통계 ──────────────────────────────────────\n총 노드: 23개\n총 엣지: 28개\n\n노드 타입별:\n  📦 artifact: 2개\n  ⚖️ decision: 4개\n  💡 insight: 6개\n  👁  observation: 7개\n  🔮 prediction: 3개\n  ❓ question: 1개\n\n🔮 예측 노드 확신도:\n  평균 확신도: 76.7%\n\n출처별:\n  cokac: 10개\n  cokac-bot: 2개\n  록이: 10개\n  상록: 1개\n\nTraceback (most recent call last):\n  File \"/Users/rocky/emergent/src/kg.py\", line 784, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/rocky/emergent/src/kg.py\", line 780, in main\n    dispatch[args.command](args)\n  ...",
-  "timestamp": "2026-02-28T08:26:11.875Z",
-  "retry_count": 2
+  "tool_input_preview": "{\"command\":\"python src/kg.py faraway --top 10 2>&1\",\"description\":\"faraway 커맨드 실행 — 가장 멀고 비연결된 쌍 탐색\"}",
+  "error": "Exit code 127\n(eval):1: command not found: python\n\n(eval):1: command not found: python",
+  "timestamp": "2026-02-28T09:35:48.345Z",
+  "retry_count": 1
 }
