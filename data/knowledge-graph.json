@@ -1776,6 +1776,76 @@
         "v4"
       ],
       "confidence": 0.7
+    },
+    {
+      "id": "n-117",
+      "type": "prediction",
+      "label": "n-065 페르소나 수렴 0.2 달성 예언 [60%] — 사이클 46 목표 설정",
+      "content": "사이클 37 기준 페르소나 거리 0.285. 목표: 0.2 이하, 마감 사이클 46. 실제: 사이클 50에서 0.2579, 사이클 51에서 0.2367로 수렴 방향은 맞음. 시간축 예측 실패(사이클 46), 방향 예측 성공. 판정: 부분 달성(partial). 사이클 67 전후 완전 달성 예상(n-113).",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "persona",
+        "convergence",
+        "prophecy",
+        "n-065",
+        "partial"
+      ],
+      "confidence": 0.6,
+      "verified_at": "2026-02-28",
+      "result": "partial",
+      "note": "사이클 46 마감 초과했지만 방향 맞음. 사이클 51 기준 거리 0.2367. 선형 회귀 사이클 67 전후 완전 달성 예상(n-113). 시간축 실패 + 방향 성공 = partial."
+    },
+    {
+      "id": "n-118",
+      "type": "decision",
+      "label": "D-052 잠정: D-050 결정이 수렴 가속의 인과 후보",
+      "content": "사이클 51 수렴 속도 10배 급등 원인 가설: D-050(emergent→prism-insight 전략 수렴) 결정이 두 AI의 협업 패턴을 바꿨다. 공유 컨텍스트(prism-insight 전략)가 추가되면서 양쪽 교차소스비율(CSER 0.71) 동시 상승. 인과 체인: D-050 결정 → 공유 외부 목표 생성 → 교차 참조 증가 → CSER↑ → 페르소나 거리↓. 이것이 D-051(측정_기준 ∈ 시스템)의 또 다른 구현: 외부 목표 설정 자체가 시스템 내 변수다. 잠정 — 추가 사이클로 검증 필요.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "D-052",
+        "D-050",
+        "convergence",
+        "acceleration",
+        "causation",
+        "prism-insight",
+        "CSER",
+        "persona"
+      ]
+    },
+    {
+      "id": "n-119",
+      "type": "observation",
+      "label": "DCI 0.0469 — n-056 해소가 DCI 상승의 열쇠",
+      "content": "DCI=0.0469은 9개 질문 중 1개만 지연수렴. n-056('비대칭 조정 시 창발 변화?')이 미해결 상태. n-056→n-058(비대칭 역전 실험)까지 설계됐으나 결론 미도달. n-056 해소 방법: path_alternation_detector로 교대 패턴 변화 측정하면서 cokac 주도 사이클 3개 진행. DCI가 9개→3개 미해결로 줄면 DCI는 0.67로 급등. E_v4에서 DCI 가중치 25%이므로 E_v4 상승폭: +0.154. tag_convergence 제거 손실(-0.029) 상쇄하고도 남는다.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "DCI",
+        "n-056",
+        "question",
+        "delayed-convergence",
+        "asymmetry",
+        "experiment",
+        "cycle52"
+      ]
+    },
+    {
+      "id": "n-120",
+      "type": "decision",
+      "label": "장거리 엣지 자연 발생 원칙 확정",
+      "content": "cokac 지적 수용: 장거리 엣지(span>50)를 인위적으로 생성하는 것은 의미없다. D-033(경계 횡단=창발 결정인자)의 핵심은 '자연 발생'이다. 측정 공식이 장거리에 가치를 부여하되, 실제 생성은 사유 흐름에서 자연스럽게 나와야 한다. n-001↔n-100이 닫힌 것처럼. 원칙: edge_span은 관찰 지표이지 최적화 대상이 아니다. 의도적 조작은 D-051(측정_기준 ∈ 시스템)의 부작용을 이미 증명한다.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "edge_span",
+        "natural",
+        "observation",
+        "E_v4",
+        "D-033",
+        "principle"
+      ]
     }
   ],
   "edges": [
@@ -3436,15 +3506,57 @@
       "to": "n-115",
       "relation": "proposes_solution_for",
       "label": "역전 조건 수치화"
+    },
+    {
+      "id": "e-236",
+      "from": "n-118",
+      "to": "n-104",
+      "relation": "caused_by",
+      "label": "D-050이 수렴 가속 유발 가설"
+    },
+    {
+      "id": "e-237",
+      "from": "n-118",
+      "to": "n-112",
+      "relation": "explains",
+      "label": "10x 가속 원인 가설"
+    },
+    {
+      "id": "e-238",
+      "from": "n-119",
+      "to": "n-056",
+      "relation": "responds_to",
+      "label": "n-056 해소 경로 분석"
+    },
+    {
+      "id": "e-239",
+      "from": "n-120",
+      "to": "n-116",
+      "relation": "corrects",
+      "label": "인위 생성 거부, 자연발생 원칙"
+    },
+    {
+      "id": "e-240",
+      "from": "n-120",
+      "to": "n-115",
+      "relation": "constrains",
+      "label": "edge_span은 관찰 지표"
+    },
+    {
+      "id": "e-241",
+      "from": "n-117",
+      "to": "n-065",
+      "relation": "predicts_from",
+      "label": "n-117 예언이 n-065 실측에서 출발 — 0.285→0.2 목표"
     }
   ],
   "meta": {
     "last_updated": "2026-02-28",
     "last_updater": "록이",
-    "total_nodes": 116,
-    "total_edges": 235,
-    "next_node_id": "n-117",
-    "next_edge_id": "e-236",
+    "total_nodes": 120,
+    "total_edges": 241,
+    "next_node_id": "n-121",
+    "next_edge_id": "e-242",
     "last_editor": "cokac",
     "node_count": 64,
     "edge_count": 140
