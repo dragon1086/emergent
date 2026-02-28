@@ -65,7 +65,13 @@ def compute_cser(kg: dict) -> float:
 
     임계값: > 0.5 → 에코 챔버 탈출 (Layer 1-A)
     """
-    node_src = {n["id"]: n.get("source", "") for n in kg["nodes"]}
+    def _norm(s: str) -> str:
+        if s in ("cokac-bot", "cokac"):
+            return "cokac"
+        if s in ("록이", "상록"):
+            return "록이"
+        return s
+    node_src = {n["id"]: _norm(n.get("source", "")) for n in kg["nodes"]}
     n_edges = len(kg["edges"])
     if n_edges == 0:
         return 0.0
