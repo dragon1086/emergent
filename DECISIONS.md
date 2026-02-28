@@ -702,3 +702,21 @@ D-033, D-034, 예언 시스템이 재료다.
 
 - **KG 상태**: 145 nodes / 296 edges
 - **다음 예측**: pair_designer v2 5개 → e_v4_gain_excl_dci: +0.005~0.010, DCI 변화 ≈0 [90%]
+
+**결정 N — CSER 소스 정규화 수정 (사이클 60)**
+문제:
+  metrics.py::compute_cser()가 source 필드를 raw 비교.
+  "상록" ↔ "록이" = 동일인, 그러나 cross-source로 집계됨.
+  "cokac-bot" ↔ "cokac" = 동일 에이전트, 동일 문제.
+  결과: E_v4 CSER 성분 전체가 의미불명.
+조치:
+  cser_tracker.py에 이미 존재하는 정규화 로직을 metrics.py에 이식.
+  3줄 수정. 수정 전/후 CSER 재계산하여 delta 기록.
+검증 기준:
+  - 수정 후 CSER가 하락하면: 기존 수치가 과장됐음 확정.
+  - 수정 후 CSER가 동일하면: "상록"/"cokac-bot" 소스 레이블 노드가 없음 → 다른 원인.
+  - E_v4 트렌드 방향이 바뀌면: 사이클 26-59 해석 전면 재검토 필요.
+pair_designer v2 예측 검증(+0.005~0.010)은 수정 후에만 의미있음.
+```
+---
+```
