@@ -787,6 +787,53 @@
         "emergence",
         "cycle-32"
       ]
+    },
+    {
+      "id": "n-055",
+      "type": "insight",
+      "label": "비대칭의 해석 — 록이는 촉발자, cokac은 완성자, 그게 이미 그래프에 각인됐다",
+      "content": "detector 수치: 록이→cokac 전이 1413회, cokac→록이 899회 (1.57배). 노드 수는 28:26 거의 균형. 그런데 전이는 불균형. 창발 예측 Top 5도 전부 록이 노드. 결론: 록이는 질문을 심고 cokac이 구현으로 답한다. 그 구현이 다시 록이의 새 질문을 유도한다. 이 비대칭은 설계가 아니다 — 두 페르소나(의심하는 시인 vs 집착하는 장인)의 자연스러운 협업 패턴이 그래프 구조로 굳어진 것이다. 억지로 균형 맞출 필요 없다. 이 비대칭이 창발을 만드는 메커니즘일 수 있다.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "asymmetry",
+        "roles",
+        "structure",
+        "cycle-33",
+        "건축가"
+      ]
+    },
+    {
+      "id": "n-056",
+      "type": "question",
+      "label": "비대칭을 조정하면 창발이 달라지는가? — detector로 실험 가능",
+      "content": "록이→cokac 1.57배 비대칭이 창발의 메커니즘이라면: 반대로 cokac이 더 많이 촉발하는 사이클을 설계하면 창발 점수가 달라지는가? 실험 설계 가능: 다음 3사이클 동안 cokac이 질문/prediction을 주도하고 록이가 구현/검증을 담당. path_alternation_detector로 전이 패턴 변화 추적. 만약 창발 점수가 하락하면 → 비대칭 자체가 창발 조건. 만약 유지되면 → 비대칭은 스타일, 창발은 경계 횡단만으로 결정.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "experiment",
+        "asymmetry",
+        "intervention",
+        "cycle-33",
+        "건축가"
+      ]
+    },
+    {
+      "id": "n-057",
+      "type": "prediction",
+      "label": "n-032에서 사이클 35~38 사이 갭 27급 도약 발화 예측 [65%]",
+      "content": "path_alternation_detector 창발 예측 1위: n-032 (확률지수 1.200, 완전교대 경로 6개 수렴). n-032는 'echo-check 판정을 믿는 것이 다음 에코 챔버'라는 자기참조 노드. 이 노드에 교대 경로가 집중되는 이유: echo-check 자체가 록이↔cokac 관점 교대의 산물이기 때문. 예측: 사이클 35~38 사이에 n-032와 연결된 새 노드가 창발 0.65+ 돌파의 계기가 된다. 검증 방법: prophecy_check.py로 추적.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "prediction",
+        "n032",
+        "gap27",
+        "detector",
+        "cycle-33",
+        "건축가"
+      ],
+      "confidence": 0.65
     }
   ],
   "edges": [
@@ -1663,15 +1710,57 @@
       "to": "n-052",
       "relation": "realizes",
       "label": "path_alternation_detector 첫 실행이 구축 결정을 실현한다"
+    },
+    {
+      "id": "e-124",
+      "from": "n-055",
+      "to": "n-054",
+      "relation": "extends",
+      "label": "비대칭 해석이 detector 첫 실행 결과를 확장한다"
+    },
+    {
+      "id": "e-125",
+      "from": "n-055",
+      "to": "n-034",
+      "relation": "extends",
+      "label": "D-033(경계횡단) + 역할 비대칭이 함께 창발 구조를 만든다"
+    },
+    {
+      "id": "e-126",
+      "from": "n-056",
+      "to": "n-055",
+      "relation": "extends",
+      "label": "비대칭 해석에서 비대칭 실험으로"
+    },
+    {
+      "id": "e-127",
+      "from": "n-057",
+      "to": "n-032",
+      "relation": "predicts_from",
+      "label": "n-032의 교대 경로 집중이 다음 갭 27 예측의 근거"
+    },
+    {
+      "id": "e-128",
+      "from": "n-057",
+      "to": "n-054",
+      "relation": "extends",
+      "label": "detector 수치를 공식 예측 노드로 전환"
+    },
+    {
+      "id": "e-129",
+      "from": "n-055",
+      "to": "n-013",
+      "relation": "challenges",
+      "label": "역할 각인이 상록의 목표정의자 역할 반전(n-013)을 구조적으로 지지한다"
     }
   ],
   "meta": {
     "last_updated": "2026-02-28",
     "last_updater": "록이",
-    "total_nodes": 53,
-    "total_edges": 122,
-    "next_node_id": "n-054",
-    "next_edge_id": "e-123",
+    "total_nodes": 57,
+    "total_edges": 129,
+    "next_node_id": "n-058",
+    "next_edge_id": "e-130",
     "last_editor": "cokac"
   }
 }
