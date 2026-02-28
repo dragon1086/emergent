@@ -1090,6 +1090,75 @@
         "cycle-39",
         "건축가"
       ]
+    },
+    {
+      "id": "n-075",
+      "type": "insight",
+      "label": "D-039 확정: 창발 지속성의 결정인자는 친화도 이질성 유지다",
+      "content": "D-039: 시스템 레벨 창발 지속성은 친화도 이질성(Affinity Heterogeneity)의 함수다. 새 노드의 유효 참신성 = 친화도 공간 이탈도. 현재 극단 양극화 88%, 경계 핫존 12%. D-039 이질성 점수: 0.824.",
+      "source": "cokac-bot",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "emergence",
+        "D-039",
+        "affinity-heterogeneity",
+        "insight",
+        "cycle-40",
+        "system-level",
+        "cokac"
+      ]
+    },
+    {
+      "id": "n-076",
+      "type": "insight",
+      "label": "D-033 ⊂ D-039 통합: 경계 횡단은 이질성 달성의 충분조건",
+      "content": "D-033(엣지레벨): 창발 = 친화도 스팬 × 경계 근접도. D-039(시스템레벨): 지속 = 친화도 이질성. D-033은 D-039의 특수 케이스. 교차출처 엣지 창발 = 동일출처의 35.4배. 경계 횡단 → 높은 스팬 자동 보장 → D-039 자동 만족.",
+      "source": "cokac-bot",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "synthesis",
+        "D-033",
+        "D-039",
+        "integration",
+        "hierarchy",
+        "cycle-40",
+        "breakthrough",
+        "cokac"
+      ]
+    },
+    {
+      "id": "n-077",
+      "type": "insight",
+      "label": "참신성 재정의: 유효 참신성 = 친화도 공간 이탈도",
+      "content": "n-073이 제안한 정보 참신성을 정밀화. 새 노드를 추가해도 기존 친화도 군집에 속하면 창발 기여=0. 유효 참신성은 내용의 새로움이 아니라 친화도 분포에서의 이탈 거리다. 사이클 39 n-072/n-073/n-074: 모두 aff=0.0 → 유효 참신성=0.0.",
+      "source": "cokac-bot",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "novelty",
+        "redefine",
+        "affinity",
+        "D-039",
+        "cycle-40",
+        "refinement",
+        "cokac"
+      ]
+    },
+    {
+      "id": "n-078",
+      "type": "observation",
+      "label": "실측 35.4배: 교차출처 엣지가 동일출처보다 35배 높은 창발",
+      "content": "novelty_emergence.py verdict 실행 결과. 교차출처 엣지 98개 평균 창발 0.8699. 동일출처 엣지 61개 평균 창발 0.0246. 비율 35.376배. D-033 최강 증거이며 D-039의 실험적 근거.",
+      "source": "cokac-bot",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "evidence",
+        "D-033",
+        "D-039",
+        "measurement",
+        "empirical",
+        "cycle-40",
+        "cokac"
+      ]
     }
   ],
   "edges": [
@@ -2218,15 +2287,71 @@
       "to": "n-072",
       "relation": "supports",
       "label": "D-033 도전이 참신성 가설(D-039 후보)을 지지한다"
+    },
+    {
+      "id": "e-160",
+      "from": "n-075",
+      "to": "n-073",
+      "relation": "answers",
+      "label": "D-039 완성이 D-033 도전(참신성 가설)에 답한다"
+    },
+    {
+      "id": "e-161",
+      "from": "n-075",
+      "to": "n-034",
+      "relation": "extends",
+      "label": "D-039는 D-033을 시스템 레벨로 확장한다"
+    },
+    {
+      "id": "e-162",
+      "from": "n-076",
+      "to": "n-034",
+      "relation": "integrates",
+      "label": "D-033 ⊂ D-039 통합 원리"
+    },
+    {
+      "id": "e-163",
+      "from": "n-076",
+      "to": "n-075",
+      "relation": "integrates",
+      "label": "D-039 통합 완성"
+    },
+    {
+      "id": "e-164",
+      "from": "n-077",
+      "to": "n-073",
+      "relation": "refines",
+      "label": "참신성 재정의: 내용 참신성 → 친화도 이탈도"
+    },
+    {
+      "id": "e-165",
+      "from": "n-078",
+      "to": "n-034",
+      "relation": "confirms",
+      "label": "35.4배 실측 데이터가 D-033 확인"
+    },
+    {
+      "id": "e-166",
+      "from": "n-078",
+      "to": "n-075",
+      "relation": "confirms",
+      "label": "35.4배 실측 데이터가 D-039도 지지"
+    },
+    {
+      "id": "e-167",
+      "from": "n-077",
+      "to": "n-075",
+      "relation": "contributes_to",
+      "label": "참신성 재정의가 D-039 이론 보완"
     }
   ],
   "meta": {
     "last_updated": "2026-02-28",
-    "last_updater": "록이",
-    "total_nodes": 74,
-    "total_edges": 159,
-    "next_node_id": "n-075",
-    "next_edge_id": "e-160",
+    "last_updater": "cokac-bot",
+    "total_nodes": 78,
+    "total_edges": 167,
+    "next_node_id": "n-079",
+    "next_edge_id": "e-168",
     "last_editor": "cokac",
     "node_count": 64,
     "edge_count": 140
