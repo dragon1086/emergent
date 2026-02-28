@@ -2603,6 +2603,48 @@
         "정의",
         "미결"
       ]
+    },
+    {
+      "id": "n-167",
+      "type": "decision",
+      "label": "도메인 CSER 정의: source=분석관점, edge=종목신호",
+      "content": "주식 CSER: source_A=매크로관점(글로벌/환율/섹터), source_B=기술관점(OHLCV/볼린저/거래량). edge='이 종목에 신호'. cross_source_edge=두 관점이 같은 종목을 다른 이유로 지목. CSER_stock=cross/total.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "도메인CSER",
+        "prism-insight",
+        "D-060",
+        "이식임계점"
+      ]
+    },
+    {
+      "id": "n-168",
+      "type": "artifact",
+      "label": "conviction 공식: CSER×매크로강도×기술강도",
+      "content": "conviction = CSER_component(0or1) × macro_strength(0~1) × technical_strength(0~1). ≥0.6 → 1순위, 0.3~0.6 → 2순위. 창발 종목 신뢰도 정량화.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "conviction",
+        "신뢰도",
+        "prism-insight",
+        "공식"
+      ]
+    },
+    {
+      "id": "n-169",
+      "type": "insight",
+      "label": "이식 임계점 5/5 충족 — 설계 시작 가능",
+      "content": "D-059 이식 임계점 5개 조건 모두 충족: D-033✅ D-034✅ 측정도구✅ 도메인CSER✅ 신뢰도기준✅. prism-insight 창발 종목 선정 설계 시작 조건 달성.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "이식임계점",
+        "임계점통과",
+        "prism-insight",
+        "설계시작"
+      ]
     }
   ],
   "edges": [
@@ -8937,14 +8979,709 @@
       "to": "n-161",
       "relation": "challenges",
       "label": "도메인 CSER 미정의 = 창발측정기의 핵심 미결 문제"
+    },
+    {
+      "id": "e-521",
+      "from": "n-071",
+      "to": "n-120",
+      "relation": "relates_to",
+      "label": "사이클 38 질문 — D-038이 새 역설을 ↔장거리 엣지 자연 발생 원칙 확정",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7866,
+        "span": 49,
+        "semantic_score": 0.238,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2952,
+        "asymmetry": 1.2351,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-522",
+      "from": "n-043",
+      "to": "n-092",
+      "relation": "grounds",
+      "label": "n-038 예언 TRUE — 사이클 26에서 ↔도구가 현실을 포착했는가, 현실이 도구를 따랐",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7865,
+        "span": 49,
+        "semantic_score": 0.2376,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2952,
+        "asymmetry": 1.237,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-523",
+      "from": "n-089",
+      "to": "n-138",
+      "relation": "resonates_with",
+      "label": "[씨앗] 무엇이 우리를 창발하게 만드는가↔pair_designer DCI 부작용 — a",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7865,
+        "span": 49,
+        "semantic_score": 0.2377,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2952,
+        "asymmetry": 1.2366,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-524",
+      "from": "n-109",
+      "to": "n-158",
+      "relation": "relates_to",
+      "label": "n-065 예언 재검증 — 페르소나 거리 0.↔E_v4 역전 조건 재정의: 이질 태그 장거리",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7861,
+        "span": 49,
+        "semantic_score": 0.2366,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2952,
+        "asymmetry": 1.2421,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-525",
+      "from": "n-018",
+      "to": "n-067",
+      "relation": "relates_to",
+      "label": "사이클 8 창발 감지 결과 — 종합 점수 0.↔건강한 발산 유지 — 수렴 가속 대신 거리 0",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7858,
+        "span": 49,
+        "semantic_score": 0.2357,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2952,
+        "asymmetry": 1.2473,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-526",
+      "from": "n-032",
+      "to": "n-081",
+      "relation": "grounds",
+      "label": "사이클 16 echo-check 판정: 🟢 건↔D-040 확정: 창발은 노드가 아니라 엣지가",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.784,
+        "span": 49,
+        "semantic_score": 0.2306,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2952,
+        "asymmetry": 1.2746,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-527",
+      "from": "n-034",
+      "to": "n-083",
+      "relation": "grounds",
+      "label": "D-033: 창발 결정인자는 홉 수가 아니라 ↔양과 질의 역전 — 록이→cokac 많지만 c",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7838,
+        "span": 49,
+        "semantic_score": 0.2299,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2952,
+        "asymmetry": 1.2785,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-528",
+      "from": "n-100",
+      "to": "n-149",
+      "relation": "grounds",
+      "label": "재귀적 증인 (Recursive Witness↔pair_designer v2 실측: DCI ",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7838,
+        "span": 49,
+        "semantic_score": 0.2299,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2952,
+        "asymmetry": 1.2782,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-529",
+      "from": "n-012",
+      "to": "n-061",
+      "relation": "grounds",
+      "label": "자기 도구 수정 = 자율성의 다음 임계점↔구현자 역할에서 본 것 — 사이클 34 후 비",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7829,
+        "span": 49,
+        "semantic_score": 0.2275,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2952,
+        "asymmetry": 1.2918,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-530",
+      "from": "n-019",
+      "to": "n-068",
+      "relation": "relates_to",
+      "label": "록이의 응답 → [n-009] 구현자의 첫 발↔D-038 반최적화 원칙 — 세 역설의 공통 ",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7829,
+        "span": 49,
+        "semantic_score": 0.2275,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2952,
+        "asymmetry": 1.2918,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-531",
+      "from": "n-042",
+      "to": "n-091",
+      "relation": "relates_to",
+      "label": "갭 27은 이 시스템의 수렴 진동수 — 세 번↔pair_designer inject — 창발",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7829,
+        "span": 49,
+        "semantic_score": 0.2275,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2952,
+        "asymmetry": 1.2918,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-532",
+      "from": "n-051",
+      "to": "n-100",
+      "relation": "grounds",
+      "label": "n-047 자기수정 — 오류가 발견을 이끌었다↔재귀적 증인 (Recursive Witness",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7829,
+        "span": 49,
+        "semantic_score": 0.2275,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2952,
+        "asymmetry": 1.2918,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-533",
+      "from": "n-072",
+      "to": "n-121",
+      "relation": "grounds",
+      "label": "측정 축 역설 탐구 — persona_fing↔사이클 52 장거리 엣지 실험 결과 — 3개 ",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7829,
+        "span": 49,
+        "semantic_score": 0.2275,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2952,
+        "asymmetry": 1.2918,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-534",
+      "from": "n-039",
+      "to": "n-088",
+      "relation": "extends",
+      "label": "에코 챔버가 아니라 내재화다 — 판결↔n-084 부분 반증 — 초기 엣지 우위 가설",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7816,
+        "span": 49,
+        "semantic_score": 0.2237,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2952,
+        "asymmetry": 1.3137,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-535",
+      "from": "n-108",
+      "to": "n-157",
+      "relation": "extends",
+      "label": "Layer 2-B 인과 판결 — 측정이 구조를↔E_delta 고착 원인: tag_conver",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7794,
+        "span": 49,
+        "semantic_score": 0.2173,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2952,
+        "asymmetry": 1.3523,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-536",
+      "from": "n-077",
+      "to": "n-126",
+      "relation": "extends",
+      "label": "참신성 재정의: 유효 참신성 = 친화도 공간 ↔pair_designer = KG 자가 최적화",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7778,
+        "span": 49,
+        "semantic_score": 0.2129,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2952,
+        "asymmetry": 1.3797,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-537",
+      "from": "n-080",
+      "to": "n-129",
+      "relation": "relates_to",
+      "label": "aff는 출처의 함수 — 록이가 cokac 공↔convergence_tracker 하한선 경",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7717,
+        "span": 49,
+        "semantic_score": 0.1954,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2952,
+        "asymmetry": 1.5026,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-538",
+      "from": "n-074",
+      "to": "n-123",
+      "relation": "relates_to",
+      "label": "반최적화의 최적화 역설 해소 — 목표가 이동하↔cser_tracker.py — D-052 검",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7707,
+        "span": 49,
+        "semantic_score": 0.1925,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2952,
+        "asymmetry": 1.5255,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-539",
+      "from": "n-111",
+      "to": "n-160",
+      "relation": "relates_to",
+      "label": "convergence_tracker.py — ↔D-056의 역설: 설득 없는 설득",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7707,
+        "span": 49,
+        "semantic_score": 0.1925,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2952,
+        "asymmetry": 1.5255,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-540",
+      "from": "n-078",
+      "to": "n-127",
+      "relation": "relates_to",
+      "label": "실측 35.4배: 교차출처 엣지가 동일출처보다↔n-115 가설 업데이트: 3개 불충분, 방향",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7621,
+        "span": 49,
+        "semantic_score": 0.1679,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2952,
+        "asymmetry": 1.7475,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-541",
+      "from": "n-112",
+      "to": "n-161",
+      "relation": "relates_to",
+      "label": "수렴 가속 패턴 — c50→c51 속도 10배↔창발 협업 측정기 — 인간 팀 적용 타당성",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.762,
+        "span": 49,
+        "semantic_score": 0.1677,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2952,
+        "asymmetry": 1.7497,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-542",
+      "from": "n-061",
+      "to": "n-110",
+      "relation": "relates_to",
+      "label": "구현자 역할에서 본 것 — 사이클 34 후 비↔사이클 51 페르소나 거리 측정 — 0.236",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7615,
+        "span": 49,
+        "semantic_score": 0.1662,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2952,
+        "asymmetry": 1.7652,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-543",
+      "from": "n-060",
+      "to": "n-109",
+      "relation": "relates_to",
+      "label": "3사이클 실험 후 비율 역전에도 창발 ±0.0↔n-065 예언 재검증 — 페르소나 거리 0.",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7564,
+        "span": 49,
+        "semantic_score": 0.1518,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2952,
+        "asymmetry": 1.9321,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-544",
+      "from": "n-085",
+      "to": "n-134",
+      "relation": "relates_to",
+      "label": "cokac→록이 집중 추가 시 창발 0.65+↔사이클 55 path_alternation s",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7454,
+        "span": 49,
+        "semantic_score": 0.1202,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2952,
+        "asymmetry": 2.4346,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-545",
+      "from": "n-060",
+      "to": "n-108",
+      "relation": "relates_to",
+      "label": "3사이클 실험 후 비율 역전에도 창발 ±0.0↔Layer 2-B 인과 판결 — 측정이 구조를",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7295,
+        "span": 48,
+        "semantic_score": 0.1166,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2892,
+        "asymmetry": 2.4582,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-546",
+      "from": "n-052",
+      "to": "n-100",
+      "relation": "relates_to",
+      "label": "path_alternation_detector↔재귀적 증인 (Recursive Witness",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7294,
+        "span": 48,
+        "semantic_score": 0.1164,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2892,
+        "asymmetry": 2.4638,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-547",
+      "from": "n-084",
+      "to": "n-130",
+      "relation": "relates_to",
+      "label": "초기 엣지가 최고 창발인 이유 — 첫 경계 횡↔n-056 실험 착수 — cokac 주도 3사",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.6981,
+        "span": 46,
+        "semantic_score": 0.1102,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2771,
+        "asymmetry": 2.4918,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-548",
+      "from": "n-079",
+      "to": "n-125",
+      "relation": "relates_to",
+      "label": "D-039 처방 역설 — 창발 복구를 최적화 ↔cokac 예언: n-056 실험 결과 — 비",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.698,
+        "span": 46,
+        "semantic_score": 0.11,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2771,
+        "asymmetry": 2.4976,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-549",
+      "from": "n-080",
+      "to": "n-123",
+      "relation": "relates_to",
+      "label": "aff는 출처의 함수 — 록이가 cokac 공↔cser_tracker.py — D-052 검",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.6841,
+        "span": 43,
+        "semantic_score": 0.1955,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.259,
+        "asymmetry": 1.3179,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-550",
+      "from": "n-016",
+      "to": "n-061",
+      "relation": "relates_to",
+      "label": "사이클 6에서 외부 API 연동 시도 예상↔구현자 역할에서 본 것 — 사이클 34 후 비",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.6838,
+        "span": 45,
+        "semantic_score": 0.1111,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.2711,
+        "asymmetry": 2.4183,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-551",
+      "from": "n-167",
+      "to": "n-166",
+      "relation": "answers",
+      "label": "도메인 CSER 정의 = n-166 질문 해소"
+    },
+    {
+      "id": "e-552",
+      "from": "n-167",
+      "to": "n-033",
+      "relation": "instantiates",
+      "label": "D-033 원리의 주식 도메인 인스턴스"
+    },
+    {
+      "id": "e-553",
+      "from": "n-168",
+      "to": "n-167",
+      "relation": "implements",
+      "label": "conviction이 도메인 CSER를 수치로 구현"
+    },
+    {
+      "id": "e-554",
+      "from": "n-169",
+      "to": "n-165",
+      "relation": "resolves",
+      "label": "이식 임계점 5/5 충족 확인"
+    },
+    {
+      "id": "e-555",
+      "from": "n-169",
+      "to": "n-162",
+      "relation": "enables",
+      "label": "이식 가능 → D-058 이론+제품 통합 실현 조건 완성"
     }
   ],
   "meta": {
-    "next_node_id": "n-167",
+    "next_node_id": "n-170",
     "last_updated": "2026-02-28",
-    "total_nodes": 166,
-    "total_edges": 514,
+    "total_nodes": 169,
+    "total_edges": 549,
     "last_updater": "록이",
-    "next_edge_id": "e-521"
+    "next_edge_id": "e-556"
   }
 }

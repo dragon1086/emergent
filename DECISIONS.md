@@ -754,3 +754,14 @@ pair_designer v2 예측 검증(+0.005~0.010)은 수정 후에만 의미있음.
   4. ❌ 도메인 CSER 정의 필요 (n-166 질문)
   5. ❌ 창발 판단 신뢰도 기준 필요
 - **현재 KG**: CSER=0.6725 / E_v4=0.4102 / E_v3=0.4204
+
+### D-060: 사이클 65 — 도메인 CSER 정의 + 이식 임계점 통과 (2026-02-28)
+- **도메인 CSER 정의**:
+  - source_A = 매크로 관점 (글로벌/환율/섹터)
+  - source_B = 기술 관점 (OHLCV/볼린저/거래량)
+  - edge = "이 종목에 신호가 있다"는 판단
+  - cross_source_edge = 두 관점이 같은 종목을 다른 이유로 지목
+  - CSER_stock = cross_source_signals / total_signals
+- **conviction 공식**: CSER_component × macro_strength × technical_strength
+- **이식 임계점 5/5 완료**: D-033 ✅ D-034 ✅ 측정도구 ✅ 도메인CSER ✅ 신뢰도기준 ✅
+- **다음**: prism-insight 창발 종목 선정 설계 시작
