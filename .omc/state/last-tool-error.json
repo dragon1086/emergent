@@ -1,7 +1,7 @@
 {
   "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"python3 -c \\\"\\nimport json\\n\\nwith open('data/knowledge-graph.json') as f:\\n    kg = json.load(f)\\n\\nnodes = {n['id']: n for n in kg['nodes']}\\nedges = kg['edges']\\n\\n# span 계산\\ndef get_no...",
-  "error": "Exit code 1\n  File \"<string>\", line 39\n    if span >= 50 and s1 \\!= s2 and s1 and s2:\n                          ^\nSyntaxError: unexpected character after line continuation character\n\n  File \"<string>\", line 39\n    if span >= 50 and s1 \\!= s2 and s1 and s2:\n                          ^\nSyntaxError: unexpected character after line continuation character",
-  "timestamp": "2026-02-28T17:03:01.663Z",
+  "tool_input_preview": "{\"command\":\"python3 src/sensitivity_analysis.py 2>&1\",\"description\":\"민감도 분석 실행\"}",
+  "error": "Exit code 1\nTraceback (most recent call last):\n  File \"/Users/rocky/emergent/src/sensitivity_analysis.py\", line 104, in <module>\n    def vary_weights(base: dict, target: str, abs_delta: float) -> dict | None:\nTypeError: unsupported operand type(s) for |: 'type' and 'NoneType'\n\nTraceback (most recent call last):\n  File \"/Users/rocky/emergent/src/sensitivity_analysis.py\", line 104, in <module>\n    def vary_weights(base: dict, target: str, abs_delta: float) -> dict | None:\nTypeError: unsupported op...",
+  "timestamp": "2026-02-28T20:56:30.286Z",
   "retry_count": 1
 }
