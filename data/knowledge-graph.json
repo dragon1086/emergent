@@ -313,15 +313,22 @@
       "to": "n-015",
       "relation": "detected_by",
       "label": "reflect.py가 n-012의 고립을 감지"
+    },
+    {
+      "id": "e-014",
+      "from": "n-014",
+      "to": "n-016",
+      "relation": "predicts",
+      "label": "장기 예측이 단기 예측을 포함"
     }
   ],
   "meta": {
     "last_updated": "2026-02-27",
     "last_updater": "cokac-bot",
     "total_nodes": 16,
-    "total_edges": 13,
+    "total_edges": 14,
     "next_node_id": "n-017",
-    "next_edge_id": "e-014",
+    "next_edge_id": "e-015",
     "last_editor": "cokac"
   }
 }
