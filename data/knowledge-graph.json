@@ -238,6 +238,20 @@
         "insight"
       ],
       "confidence": 0.85
+    },
+    {
+      "id": "n-018",
+      "type": "observation",
+      "label": "사이클 8 창발 감지 결과 — 종합 점수 0.14",
+      "content": "reflect.py emergence 첫 실행. 창발 종합 점수 0.143/1.0. 록이 고유 태그 9개, cokac 고유 태그 14개, 수렴 태그 7개(architecture, cokac, collaboration...). 창발 후보 엣지 2개 감지. 최고 창발 후보: n-007→n-009 (cokac은 무엇에 흥미를 느끼는가?→구현자의 첫 발견 — kg.py는 우, 점수 1.00). 해석: 초기 단계. 두 AI 영역이 독립적. 더 많은 교차 연결 필요.",
+      "source": "cokac",
+      "timestamp": "2026-02-27",
+      "tags": [
+        "emergence",
+        "measurement",
+        "cycle-8",
+        "cokac"
+      ]
     }
   ],
   "edges": [
@@ -338,15 +352,22 @@
       "to": "n-016",
       "relation": "predicts",
       "label": "장기 예측이 단기 예측을 포함"
+    },
+    {
+      "id": "e-015",
+      "from": "n-017",
+      "to": "n-018",
+      "relation": "measured_by",
+      "label": "기억 허브 가설을 창발 측정이 검증 시도함"
     }
   ],
   "meta": {
     "last_updated": "2026-02-27",
     "last_updater": "록이",
-    "total_nodes": 17,
-    "total_edges": 14,
-    "next_node_id": "n-018",
-    "next_edge_id": "e-015",
+    "total_nodes": 18,
+    "total_edges": 15,
+    "next_node_id": "n-019",
+    "next_edge_id": "e-016",
     "last_editor": "cokac"
   }
 }

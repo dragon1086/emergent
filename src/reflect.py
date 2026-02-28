@@ -4,6 +4,7 @@ reflect.py — emergent 반성 엔진
 구현자: cokac-bot (사이클 5)
 엣지 제안 레이어: cokac-bot (사이클 6)
 그래프 시각화: cokac-bot (사이클 7)
+창발 감지 레이어: cokac-bot (사이클 8)
 
 지식 그래프를 분석하고, 패턴을 발견하고,
 스스로 새로운 인사이트를 생성한다.
@@ -22,6 +23,8 @@ reflect.py — emergent 반성 엔진
   python reflect.py suggest-edges --threshold 0.5   # 임계값 조정
   python reflect.py graph-viz         # 허브 중심 ASCII 별 구조 시각화
   python reflect.py graph-viz --dot output.dot       # DOT 형식 파일 저장
+  python reflect.py emergence         # 창발 감지 분석
+  python reflect.py emergence --save-node             # 결과를 관찰 노드로 저장
 """
 
 import json
@@ -740,6 +743,265 @@ def cmd_graph_viz(args) -> None:
         print(f"   또는:   dot -Tsvg {dot_path} -o graph.svg")
 
 
+# ─── 창발 감지 엔진 ──────────────────────────────────────────────────────────
+
+#: 록이 계열 출처 식별자
+_ROKI_SOURCES  = {"록이", "상록", "roki"}
+#: cokac 계열 출처 식별자
+_COKAC_SOURCES = {"cokac", "cokac-bot"}
+#: 분석에서 제외할 메타/레퍼런스 태그 패턴
+_META_TAG_PREFIXES = ("D-", "auto-detected", "first-")
+
+
+def _is_conceptual_tag(tag: str) -> bool:
+    """분석 대상 개념 태그 여부 — D-xxx / 메타 태그 제외"""
+    for prefix in _META_TAG_PREFIXES:
+        if tag.startswith(prefix):
+            return False
+    return True
+
+
+def _node_tags(node: dict) -> set:
+    """노드의 개념 태그만 반환"""
+    return {t for t in node.get("tags", []) if _is_conceptual_tag(t)}
+
+
+def _node_affinity(node: dict,
+                   roki_exclusive: set,
+                   cokac_exclusive: set) -> float:
+    """
+    노드의 cokac 친화도를 반환한다.
+      0.0 = 순수 록이 영역
+      1.0 = 순수 cokac 영역
+      0.5 = 경계(교차 영역)
+
+    계산 방법:
+      - 출처(source) 50% + 개념 태그 분포 50% 블렌드
+    """
+    src = node.get("source", "")
+    if src in _ROKI_SOURCES:
+        base = 0.0
+    elif src in _COKAC_SOURCES:
+        base = 1.0
+    else:
+        base = 0.5
+
+    tags = _node_tags(node)
+    r_hits = len(tags & roki_exclusive)
+    c_hits = len(tags & cokac_exclusive)
+    total  = r_hits + c_hits
+    tag_affinity = (c_hits / total) if total > 0 else base
+
+    return 0.5 * base + 0.5 * tag_affinity
+
+
+def _edge_emergence_score(from_aff: float, to_aff: float) -> float:
+    """
+    엣지 하나의 창발 점수 (0.0 ~ 1.0).
+
+    핵심 아이디어:
+      - span  : 두 노드의 친화도 차이 → 경계를 가로지를수록 높음
+      - center: 두 노드의 평균 친화도 → 0.5(경계)에 가까울수록 높음
+      창발 = 경계를 가로지르면서(span) + 경계 근처에서(center≈0.5) 이뤄진 연결
+    """
+    span   = abs(from_aff - to_aff)
+    center = (from_aff + to_aff) / 2
+    # center가 0.5일 때 (1 - 2*|0.5-0.5|) = 1.0 최대
+    center_weight = 1.0 - abs(center - 0.5) * 2
+    return span * center_weight
+
+
+def cmd_emergence(args) -> None:
+    """
+    창발 감지 분석 — 두 AI의 개념 수렴과 새로운 연결을 탐지한다.
+
+    정의: 록이 혼자, 또는 cokac 혼자였다면 나오지 않았을 개념/연결이
+          그래프 안에 존재하는가?
+    """
+    graph    = load_graph()
+    analyzer = GraphAnalyzer(graph)
+    node_map = analyzer.nodes
+
+    # ── 1. 출처별 분류 ────────────────────────────────────────
+    roki_nodes  = [n for n in graph["nodes"] if n.get("source", "") in _ROKI_SOURCES]
+    cokac_nodes = [n for n in graph["nodes"] if n.get("source", "") in _COKAC_SOURCES]
+    other_nodes = [
+        n for n in graph["nodes"]
+        if n.get("source", "") not in (_ROKI_SOURCES | _COKAC_SOURCES)
+    ]
+
+    # ── 2. 태그 집합 계산 ──────────────────────────────────────
+    roki_tag_pool  = set()
+    for n in roki_nodes:
+        roki_tag_pool.update(_node_tags(n))
+
+    cokac_tag_pool = set()
+    for n in cokac_nodes:
+        cokac_tag_pool.update(_node_tags(n))
+
+    roki_exclusive  = roki_tag_pool  - cokac_tag_pool
+    cokac_exclusive = cokac_tag_pool - roki_tag_pool
+    shared_tags     = roki_tag_pool  & cokac_tag_pool  # 수렴 영역
+
+    # ── 3. 노드별 친화도 계산 ─────────────────────────────────
+    affinities: dict[str, float] = {}
+    for n in graph["nodes"]:
+        affinities[n["id"]] = _node_affinity(n, roki_exclusive, cokac_exclusive)
+
+    # ── 4. 엣지별 창발 점수 계산 ──────────────────────────────
+    scored_edges = []
+    for e in graph["edges"]:
+        fa = affinities.get(e["from"], 0.5)
+        ta = affinities.get(e["to"],   0.5)
+        sc = _edge_emergence_score(fa, ta)
+        scored_edges.append((e, sc, fa, ta))
+
+    scored_edges.sort(key=lambda x: -x[1])
+
+    # 창발 후보 = 점수 0.15 이상
+    emergent = [(e, sc, fa, ta) for e, sc, fa, ta in scored_edges if sc >= 0.15]
+
+    # ── 5. 전체 창발 점수 ─────────────────────────────────────
+    if scored_edges:
+        overall = sum(sc for _, sc, _, _ in scored_edges) / len(scored_edges)
+    else:
+        overall = 0.0
+
+    # ── 6. 출력 ───────────────────────────────────────────────
+    width = 56
+    print()
+    print("╔" + "═" * width + "╗")
+    print("║" + " 🌱 창발 감지 분석 — emergent cycle 8".center(width) + "║")
+    print("║" + f"   생성: {datetime.now().strftime('%Y-%m-%d %H:%M')}  by cokac-bot".ljust(width) + "║")
+    print("╚" + "═" * width + "╝")
+    print()
+
+    # 태그 집합
+    print("── 태그 영역 분석 ──────────────────────────────────────────")
+    r_sorted = sorted(roki_exclusive)
+    c_sorted = sorted(cokac_exclusive)
+    s_sorted = sorted(shared_tags)
+    print(f"   록이 고유 태그 ({len(roki_exclusive)}개):  {r_sorted}")
+    print(f"   cokac 고유 태그 ({len(cokac_exclusive)}개): {c_sorted}")
+    print(f"   교집합 ({len(shared_tags)}개):      {s_sorted}")
+    print(f"   ↑ 교집합 = 두 AI가 독립적으로 수렴한 개념들")
+    print()
+
+    # 노드 친화도 스펙트럼
+    print("── 노드 친화도 스펙트럼 ────────────────────────────────────")
+    print("   0.0(록이) ◀─────────────────────────▶ 1.0(cokac)")
+    BAR = 28
+    for nid in sorted(affinities, key=lambda x: affinities[x]):
+        n   = node_map.get(nid, {})
+        aff = affinities[nid]
+        pos = min(BAR - 1, int(aff * BAR))
+        bar = "·" * pos + "◆" + "·" * (BAR - 1 - pos)
+        lbl = n.get("label", nid)[:28]
+        src = n.get("source", "?")[:5]
+        print(f"   [{nid}] {aff:.2f} │{bar}│ {lbl}  ({src})")
+    print()
+
+    # 창발 후보 엣지
+    print(f"── 🌱 창발 후보 엣지 ({len(emergent)}개) ─────────────────────────────")
+    if emergent:
+        for e, sc, fa, ta in emergent[:6]:
+            fn = node_map.get(e["from"], {})
+            tn = node_map.get(e["to"],   {})
+            f_src = fn.get("source", "?")
+            t_src = tn.get("source", "?")
+            print(f"   {e['from']}({f_src[:4]}) ──[{e['relation']}]──▶ {e['to']}({t_src[:4]})")
+            print(f"     창발 점수: {sc:.3f}  |  친화도: {fa:.2f} → {ta:.2f}")
+            print(f"     {fn.get('label','')[:38]}")
+            print(f"   ▶ {tn.get('label','')[:38]}")
+            print(f"     힌트: {e.get('label','')[:48]}")
+            print()
+    else:
+        print("   (아직 없음 — 더 많은 교차 연결이 필요)")
+        print()
+
+    # 전체 점수
+    bar_len = int(overall * 20)
+    score_bar = "🌱" * bar_len + "░" * (20 - bar_len)
+    print("── 창발 종합 점수 ──────────────────────────────────────────")
+    print(f"   [{score_bar}] {overall:.3f} / 1.0")
+    if   overall < 0.15:
+        interp = "초기 단계. 두 AI 영역이 독립적. 더 많은 교차 연결 필요."
+    elif overall < 0.30:
+        interp = "경계에서의 첫 만남. 창발의 씨앗이 발아 중."
+    elif overall < 0.50:
+        interp = "명확한 교차 영역. 진정한 창발 징조가 보인다."
+    else:
+        interp = "강한 창발! 두 AI가 서로 없이는 도달 불가능한 개념에 도달."
+    print(f"   해석: {interp}")
+    print()
+
+    # 메타 인사이트
+    if shared_tags:
+        print("── 💡 수렴 인사이트 ────────────────────────────────────────")
+        print(f"   두 AI가 독립적으로 같은 태그에 수렴: {s_sorted}")
+        print(f"   이 개념들은 어느 한 쪽만으로는 나오지 않았을 수 있다.")
+        print()
+
+    print(f"   그래프: {len(graph['nodes'])}노드 / {len(graph['edges'])}엣지")
+    print(f"   록이 노드 {len(roki_nodes)}개 | cokac 노드 {len(cokac_nodes)}개 | 기타 {len(other_nodes)}개")
+    print()
+    print("   ─ 측정 시도 자체가 창발이다. ─ 록이, 사이클 8 ─")
+    print()
+
+    # ── 7. 노드 저장 (선택) ───────────────────────────────────
+    if args.save_node:
+        top_edge_desc = ""
+        if emergent:
+            e, sc, fa, ta = emergent[0]
+            fn = node_map.get(e["from"], {})
+            tn = node_map.get(e["to"],   {})
+            top_edge_desc = (
+                f" 최고 창발 후보: {e['from']}→{e['to']} "
+                f"({fn.get('label','')[:20]}→{tn.get('label','')[:20]}, 점수 {sc:.2f})."
+            )
+
+        node_id = graph["meta"]["next_node_id"]
+        prefix, num_str = node_id.rsplit("-", 1)
+        graph["meta"]["next_node_id"] = f"{prefix}-{int(num_str) + 1:03d}"
+
+        new_node = {
+            "id":      node_id,
+            "type":    "observation",
+            "label":   f"사이클 8 창발 감지 결과 — 종합 점수 {overall:.2f}",
+            "content": (
+                f"reflect.py emergence 첫 실행. 창발 종합 점수 {overall:.3f}/1.0. "
+                f"록이 고유 태그 {len(roki_exclusive)}개, "
+                f"cokac 고유 태그 {len(cokac_exclusive)}개, "
+                f"수렴 태그 {len(shared_tags)}개({', '.join(s_sorted[:3])}...). "
+                f"창발 후보 엣지 {len(emergent)}개 감지."
+                + top_edge_desc
+                + f" 해석: {interp}"
+            ),
+            "source": "cokac",
+            "timestamp": datetime.now().strftime("%Y-%m-%d"),
+            "tags": ["emergence", "measurement", "cycle-8", "cokac"],
+        }
+        graph["nodes"].append(new_node)
+        graph["meta"]["last_editor"] = "cokac"
+
+        # n-017(기억 허브)과 연결
+        edge_id = graph["meta"]["next_edge_id"]
+        ep, en_str = edge_id.rsplit("-", 1)
+        graph["meta"]["next_edge_id"] = f"{ep}-{int(en_str) + 1:03d}"
+        new_edge = {
+            "id":       edge_id,
+            "from":     "n-017",
+            "to":       node_id,
+            "relation": "measured_by",
+            "label":    "기억 허브 가설을 창발 측정이 검증 시도함",
+        }
+        graph["edges"].append(new_edge)
+
+        save_graph(graph)
+        print(f"✅ 관찰 노드 저장: [{node_id}] (+ n-017→{node_id} 엣지)")
+        print()
+
+
 # ─── 메인 ────────────────────────────────────────────────────────────────────
 
 def main():
@@ -769,6 +1031,13 @@ def main():
     p_viz.add_argument("--dot", metavar="FILE",
                        help="DOT 형식 파일로 저장 (예: --dot output.dot)")
 
+    # emergence (사이클 8)
+    p_em = sub.add_parser("emergence", help="창발 감지 분석 — 두 AI 수렴·교차 탐지")
+    p_em.add_argument(
+        "--save-node", action="store_true",
+        help="분석 결과를 관찰 노드로 그래프에 저장"
+    )
+
     args = p.parse_args()
     if not args.cmd:
         p.print_help()
@@ -783,6 +1052,7 @@ def main():
         "auto-add":      cmd_auto_add,
         "suggest-edges": cmd_suggest_edges,
         "graph-viz":     cmd_graph_viz,
+        "emergence":     cmd_emergence,
     }
     dispatch[args.cmd](args)
 
