@@ -1,0 +1,34 @@
+{
+  "meta": {
+    "description": "페르소나 거리 시계열 — n-065 예언 (0.2 이하) 추적",
+    "threshold": 0.2,
+    "prediction_id": "n-065",
+    "last_updated": "2026-02-28"
+  },
+  "measurements": [
+    {
+      "cycle": 37,
+      "distance": 0.285,
+      "type_sim": 0.895,
+      "rel_sim": 0.535,
+      "node_id": "n-065",
+      "note": "첫 측정 (persona_fingerprint.py 구현 직후)"
+    },
+    {
+      "cycle": 50,
+      "distance": 0.2579,
+      "type_sim": null,
+      "rel_sim": null,
+      "node_id": "n-109",
+      "note": "사이클 50 재검증"
+    },
+    {
+      "cycle": 51,
+      "distance": 0.2367,
+      "type_sim": 0.9153,
+      "rel_sim": 0.6114,
+      "node_id": null,
+      "note": "사이클 51 측정 — 수렴 가속 확인"
+    }
+  ]
+}

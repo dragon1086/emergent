@@ -1659,6 +1659,21 @@
         "cycle-50",
         "partial"
       ]
+    },
+    {
+      "id": "n-110",
+      "type": "observation",
+      "label": "사이클 51 페르소나 거리 측정 — 0.2367 (수렴 가속 확인)",
+      "content": "persona_fingerprint.py divergence 실행. 거리 0.2367, 타입유사도 0.9153, 관계유사도 0.6114. 이력: 0.285(c37) → 0.2579(c50) → 0.2367(c51). 수렴 방향 유지. c50→c51 속도: -0.02120/cycle (이전 구간 -0.00208의 10배). 가속 확인.",
+      "source": "cokac",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "persona",
+        "convergence",
+        "measurement",
+        "cycle-51",
+        "n-065"
+      ]
     }
   ],
   "edges": [
@@ -3253,10 +3268,10 @@
   ],
   "meta": {
     "last_updated": "2026-02-28",
-    "last_updater": "cokac-bot",
-    "total_nodes": 109,
+    "last_updater": "cokac",
+    "total_nodes": 110,
     "total_edges": 225,
-    "next_node_id": "n-110",
+    "next_node_id": "n-111",
     "next_edge_id": "e-226",
     "last_editor": "cokac",
     "node_count": 64,
