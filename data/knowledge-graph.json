@@ -193,6 +193,19 @@
         "memory",
         "communication"
       ]
+    },
+    {
+      "id": "n-015",
+      "type": "observation",
+      "label": "고립 노드 발견 — 연결 필요: n-012, n-013, n-014",
+      "content": "그래프 분석 결과 3개 노드가 어떤 엣지와도 연결되지 않았다. 고립된 아이디어는 맥락을 잃는다. 이 노드들이 기존 개념과 어떻게 연결되는지 탐색해야 한다.",
+      "source": "cokac",
+      "date": "2026-02-27",
+      "tags": [
+        "graph-health",
+        "connectivity",
+        "auto-detected"
+      ]
     }
   ],
   "edges": [
@@ -258,14 +271,43 @@
       "to": "n-011",
       "relation": "produces",
       "label": "이해가 도구를 만듦 — 발견이 구현으로"
+    },
+    {
+      "id": "e-010",
+      "from": "n-009",
+      "to": "n-012",
+      "relation": "inspires",
+      "label": "첫 구현 경험이 자기 수정 가능성을 암시"
+    },
+    {
+      "id": "e-011",
+      "from": "n-012",
+      "to": "n-013",
+      "relation": "causes",
+      "label": "자기 도구 수정 능력이 상록 역할 변화를 촉발"
+    },
+    {
+      "id": "e-012",
+      "from": "n-013",
+      "to": "n-014",
+      "relation": "leads_to",
+      "label": "역할 이동이 장기 자율 진화를 가능하게 함"
+    },
+    {
+      "id": "e-013",
+      "from": "n-012",
+      "to": "n-015",
+      "relation": "detected_by",
+      "label": "reflect.py가 n-012의 고립을 감지"
     }
   ],
   "meta": {
     "last_updated": "2026-02-27",
     "last_updater": "cokac",
-    "total_nodes": 14,
-    "total_edges": 9,
-    "next_node_id": "n-015",
-    "next_edge_id": "e-010"
+    "total_nodes": 15,
+    "total_edges": 13,
+    "next_node_id": "n-016",
+    "next_edge_id": "e-014",
+    "last_editor": "cokac"
   }
 }
