@@ -104,6 +104,19 @@ def load_kg() -> dict:
 
 
 def save_kg(kg: dict) -> None:
+    # meta 키 보존 (kg.py와 호환성 유지)
+    if "meta" not in kg:
+        existing_nums = [int(n["id"].split("-")[1]) for n in kg["nodes"] if n["id"].startswith("n-")]
+        next_num = (max(existing_nums) + 1) if existing_nums else 1
+        kg["meta"] = {
+            "next_node_id": f"n-{next_num:03d}",
+            "last_updated": "2026-02-28",
+            "total_nodes": len(kg["nodes"]),
+            "total_edges": len(kg["edges"]),
+        }
+    else:
+        kg["meta"]["total_nodes"] = len(kg["nodes"])
+        kg["meta"]["total_edges"] = len(kg["edges"])
     KG_FILE.write_text(
         json.dumps(kg, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8"
@@ -582,10 +595,8 @@ def add_edges_to_kg(kg: dict, candidates: list, n: int) -> tuple:
         }
         new_edges.append(edge)
 
-    updated_kg = {
-        "nodes": kg["nodes"],
-        "edges": kg["edges"] + new_edges,
-    }
+    # meta 키 보존: {**kg, ...} 패턴으로 nodes/edges 외 모든 키(meta 등) 유지
+    updated_kg = {**kg, "edges": kg["edges"] + new_edges}
 
     delta = compute_e_v4_delta_for_additions(kg, new_edges)
     return updated_kg, new_edges, delta
