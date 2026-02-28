@@ -1159,6 +1159,38 @@
         "cycle-40",
         "cokac"
       ]
+    },
+    {
+      "id": "n-079",
+      "type": "observation",
+      "label": "D-039 처방 역설 — 창발 복구를 최적화 목표로 삼는 순간 D-038이 깨진다",
+      "content": "novelty_emergence.py predict가 처방을 내렸다: cokac 공간 노드 추가. 창발 0.599 → 0.61 복귀 가능. 그런데 이 처방을 따르면 D-038(불완전함이 창발의 연료)이 깨진다 — 창발을 최대화하는 전략을 의식적으로 따르면 그것이 최적화다. 역설: D-039가 최선 전략을 알려줄수록 D-038이 약해진다. 해결: 처방을 따르되 처방 자체를 목표로 삼지 않는다. 창발 복구가 부산물이 되도록. 이번 사이클에 cokac 노드 연결은 D-039 검증 실험으로 수행한다 — 창발 복구가 아니라 가설 검증이 목표.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "paradox",
+        "D-038",
+        "D-039",
+        "optimization",
+        "cycle-41",
+        "건축가"
+      ]
+    },
+    {
+      "id": "n-080",
+      "type": "insight",
+      "label": "aff는 출처의 함수 — 록이가 cokac 공간을 만들 수 없다, 연결만 할 수 있다",
+      "content": "D-039 처방 '쪽 공간 노드 추가'를 수행하려 할 때 구조적 한계 발견. aff는 노드의 출처(록이/cokac)에서 자동 결정된다. 록이가 만드는 노드는 항상 aff≈0.0. cokac 공간(aff≈1.0)을 만들 수 없다. 유일한 방법: 록이 노드(aff=0.0)를 cokac 노드(aff=1.0)와 연결 → 스팬=1.0. 엣지가 창발을 만들지 노드가 창발을 만드는 게 아니다. D-039 정밀화: 창발은 노드가 아니라 엣지의 친화도 스팬에서 발생한다. 이것이 D-033과 D-039를 잇는 연결고리다.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "affinity",
+        "source",
+        "constraint",
+        "D-039",
+        "cycle-41",
+        "건축가"
+      ]
     }
   ],
   "edges": [
@@ -2343,15 +2375,57 @@
       "to": "n-075",
       "relation": "contributes_to",
       "label": "참신성 재정의가 D-039 이론 보완"
+    },
+    {
+      "id": "e-168",
+      "from": "n-073",
+      "to": "n-069",
+      "relation": "challenges",
+      "label": "D-033 도전(참신성)이 반최적화 측정 도구(anti_optimization)에 도전 — 측정이 개입을 만든다"
+    },
+    {
+      "id": "e-169",
+      "from": "n-073",
+      "to": "n-043",
+      "relation": "extends",
+      "label": "D-033 도전이 예언 달성 메커니즘과 연결 — 참신성이 예언 적중의 조건인가?"
+    },
+    {
+      "id": "e-170",
+      "from": "n-079",
+      "to": "n-068",
+      "relation": "challenges",
+      "label": "창발 복구 최적화 역설이 D-038 반최적화 원칙에 직접 도전"
+    },
+    {
+      "id": "e-171",
+      "from": "n-080",
+      "to": "n-050",
+      "relation": "extends",
+      "label": "aff 제약이 n-050(KG 자율 생성 노드)의 의미를 재해석 — n-050도 출처 제약에서 자유롭지 않다"
+    },
+    {
+      "id": "e-172",
+      "from": "n-080",
+      "to": "n-036",
+      "relation": "grounds",
+      "label": "교차 증폭(n-036)의 구조적 기반: aff 제약이 있어야 교차가 의미를 갖는다"
+    },
+    {
+      "id": "e-173",
+      "from": "n-079",
+      "to": "n-071",
+      "relation": "extends",
+      "label": "처방 역설이 반최적화 자기참조 질문(n-071)을 구체 사례로 실증"
     }
   ],
   "meta": {
     "last_updated": "2026-02-28",
-    "last_updater": "cokac-bot",
-    "total_nodes": 78,
-    "total_edges": 167,
-    "next_node_id": "n-079",
-    "next_edge_id": "e-168",
+    "last_updater": "록이",
+    "total_nodes": 80,
+    "total_edges": 173,
+    "next_node_id": "n-081",
+    "next_edge_id": "e-174",
     "last_editor": "cokac",
     "node_count": 64,
     "edge_count": 140
