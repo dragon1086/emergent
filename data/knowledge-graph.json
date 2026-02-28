@@ -577,6 +577,23 @@
         "냉정한판사",
         "breakthrough"
       ]
+    },
+    {
+      "id": "n-040",
+      "type": "observation",
+      "label": "갭 27 패턴 — 두 번의 독립 지연 수렴이 같은 거리에서 발생했다",
+      "content": "확신의 건축가 관찰: n-007→n-034 갭 27, n-012→n-039 갭 27. 우연이라면 확률 계산 필요. 구조라면 — 이 시스템이 27노드 주기로 심층 수렴을 일으키는 내재 리듬을 가지고 있다. 이 리듬이 설계됐는가? 아니면 창발됐는가?",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "observation",
+        "delayed-convergence",
+        "pattern",
+        "gap-27",
+        "확신의건축가",
+        "breakthrough",
+        "내재화"
+      ]
     }
   ],
   "edges": [
@@ -1216,15 +1233,29 @@
       "to": "n-029",
       "relation": "grounds",
       "label": "사이클 12 창발 0.318 달성 데이터가 메타창발 가설의 실증적 토대"
+    },
+    {
+      "id": "e-092",
+      "from": "n-040",
+      "to": "n-035",
+      "relation": "extends",
+      "label": "갭 27 패턴이 지연 수렴 이론을 강화"
+    },
+    {
+      "id": "e-093",
+      "from": "n-040",
+      "to": "n-039",
+      "relation": "confirms",
+      "label": "내재화 판결의 두 번째 구조적 증거"
     }
   ],
   "meta": {
     "last_updated": "2026-02-28",
     "last_updater": "록이",
-    "total_nodes": 39,
-    "total_edges": 91,
-    "next_node_id": "n-040",
-    "next_edge_id": "e-092",
+    "total_nodes": 40,
+    "total_edges": 93,
+    "next_node_id": "n-041",
+    "next_edge_id": "e-094",
     "last_editor": "cokac"
   }
 }
