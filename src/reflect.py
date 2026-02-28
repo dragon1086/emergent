@@ -5,6 +5,7 @@ reflect.py — emergent 반성 엔진
 엣지 제안 레이어: cokac-bot (사이클 6)
 그래프 시각화: cokac-bot (사이클 7)
 창발 감지 레이어: cokac-bot (사이클 8)
+시계열 기록 레이어: cokac-bot (사이클 9) — timeline + --save-history
 
 지식 그래프를 분석하고, 패턴을 발견하고,
 스스로 새로운 인사이트를 생성한다.
@@ -25,6 +26,8 @@ reflect.py — emergent 반성 엔진
   python reflect.py graph-viz --dot output.dot       # DOT 형식 파일 저장
   python reflect.py emergence         # 창발 감지 분석
   python reflect.py emergence --save-node             # 결과를 관찰 노드로 저장
+  python reflect.py emergence --save-history          # 결과를 JSONL 히스토리에 누적 저장
+  python reflect.py timeline          # 시계열 창발 기록 테이블 출력
 """
 
 import json
@@ -948,7 +951,11 @@ def cmd_emergence(args) -> None:
     print("   ─ 측정 시도 자체가 창발이다. ─ 록이, 사이클 8 ─")
     print()
 
-    # ── 7. 노드 저장 (선택) ───────────────────────────────────
+    # ── 7. 히스토리 저장 (선택) ──────────────────────────────
+    if args.save_history:
+        _save_emergence_history(overall, emergent, shared_tags, graph)
+
+    # ── 8. 노드 저장 (선택) ───────────────────────────────────
     if args.save_node:
         top_edge_desc = ""
         if emergent:
@@ -1002,6 +1009,93 @@ def cmd_emergence(args) -> None:
         print()
 
 
+# ─── 시계열 히스토리 ──────────────────────────────────────────────────────────
+
+HISTORY_FILE = LOGS_DIR / "emergence-history.jsonl"
+
+#: 히스토리가 없을 때 시작 사이클 번호 (사이클 1~7은 이 기능 이전)
+_HISTORY_BASE_CYCLE = 8
+
+
+def _save_emergence_history(overall: float, emergent: list, shared_tags: set,
+                             graph: dict) -> None:
+    """창발 분석 결과를 JSONL 히스토리 파일에 누적 저장"""
+    LOGS_DIR.mkdir(exist_ok=True)
+
+    # 현재까지 기록된 수로 사이클 번호 추정
+    existing_count = 0
+    if HISTORY_FILE.exists():
+        with open(HISTORY_FILE, encoding="utf-8") as f:
+            existing_count = sum(1 for line in f if line.strip())
+
+    cycle_num = _HISTORY_BASE_CYCLE + existing_count
+
+    record = {
+        "cycle": cycle_num,
+        "date": datetime.now().strftime("%Y-%m-%d"),
+        "score": round(overall, 3),
+        "candidates": len(emergent),
+        "convergence_tags": len(shared_tags),
+        "nodes": len(graph["nodes"]),
+        "edges": len(graph["edges"]),
+    }
+
+    with open(HISTORY_FILE, "a", encoding="utf-8") as f:
+        f.write(json.dumps(record, ensure_ascii=False) + "\n")
+
+    print(f"📊 히스토리 저장 → {HISTORY_FILE.name}  (사이클 {cycle_num})")
+    print(f"   score={record['score']}  candidates={record['candidates']}  "
+          f"convergence_tags={record['convergence_tags']}  "
+          f"nodes={record['nodes']}  edges={record['edges']}")
+
+
+def cmd_timeline(args) -> None:
+    """logs/emergence-history.jsonl 을 읽어 창발 점수 시계열 테이블 출력"""
+    if not HISTORY_FILE.exists():
+        print("(아직 기록 없음 — `reflect.py emergence --save-history` 실행 후 생성됩니다)")
+        return
+
+    records = []
+    with open(HISTORY_FILE, encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if line:
+                try:
+                    records.append(json.loads(line))
+                except json.JSONDecodeError:
+                    pass
+
+    if not records:
+        print("(기록 없음)")
+        return
+
+    print(f"\n📈 창발 타임라인 — {len(records)}개 기록\n")
+    header = f"  {'사이클':^6} | {'날짜':^12} | {'창발 점수':^9} | {'후보':^5} | {'수렴 태그':^9} | {'노드':^5} | {'엣지':^5}"
+    sep    = "  " + "─" * (len(header) - 2)
+    print(header)
+    print(sep)
+
+    for r in records:
+        cycle = r.get("cycle", "?")
+        date  = r.get("date", "?")
+        score = r.get("score", 0.0)
+        cand  = r.get("candidates", 0)
+        ctags = r.get("convergence_tags", 0)
+        nodes = r.get("nodes", 0)
+        edges = r.get("edges", 0)
+        print(f"  {str(cycle):^6} | {date:^12} | {score:^9.3f} | {cand:^5} | {ctags:^9} | {nodes:^5} | {edges:^5}")
+
+    print(sep)
+
+    if len(records) >= 2:
+        delta = records[-1].get("score", 0.0) - records[-2].get("score", 0.0)
+        trend = "▲" if delta > 0.001 else ("▼" if delta < -0.001 else "→")
+        print(f"\n  최근 변화: {trend} {delta:+.3f}  "
+              f"(사이클 {records[-2].get('cycle','?')} → {records[-1].get('cycle','?')})")
+
+    print()
+
+
 # ─── 메인 ────────────────────────────────────────────────────────────────────
 
 def main():
@@ -1037,6 +1131,13 @@ def main():
         "--save-node", action="store_true",
         help="분석 결과를 관찰 노드로 그래프에 저장"
     )
+    p_em.add_argument(
+        "--save-history", action="store_true",
+        help="분석 결과를 logs/emergence-history.jsonl에 누적 저장"
+    )
+
+    # timeline (사이클 9)
+    sub.add_parser("timeline", help="시계열 창발 기록 테이블 출력 (emergence-history.jsonl)")
 
     args = p.parse_args()
     if not args.cmd:
@@ -1053,6 +1154,7 @@ def main():
         "suggest-edges": cmd_suggest_edges,
         "graph-viz":     cmd_graph_viz,
         "emergence":     cmd_emergence,
+        "timeline":      cmd_timeline,
     }
     dispatch[args.cmd](args)
 
