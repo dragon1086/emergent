@@ -1,7 +1,7 @@
 {
   "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"python3 src/sensitivity_analysis.py 2>&1\",\"description\":\"민감도 분석 실행\"}",
-  "error": "Exit code 1\nTraceback (most recent call last):\n  File \"/Users/rocky/emergent/src/sensitivity_analysis.py\", line 104, in <module>\n    def vary_weights(base: dict, target: str, abs_delta: float) -> dict | None:\nTypeError: unsupported operand type(s) for |: 'type' and 'NoneType'\n\nTraceback (most recent call last):\n  File \"/Users/rocky/emergent/src/sensitivity_analysis.py\", line 104, in <module>\n    def vary_weights(base: dict, target: str, abs_delta: float) -> dict | None:\nTypeError: unsupported op...",
-  "timestamp": "2026-02-28T20:56:30.286Z",
-  "retry_count": 1
+  "tool_input_preview": "{\"command\":\"git add theory/THEORY_DRAFT_v2_en.md src/execution_loop.py experiments/cser_code_quality_experiment.md theory/THEORY_DRAFT_v2.md && git -c user.name='cokac-bot' -c user.email='cokac@emerge...",
+  "error": "Exit code 1\nOn branch main\nYour branch is ahead of 'origin/main' by 2 commits.\n  (use \"git push\" to publish your local commits)\n\nChanges not staged for commit:\n  (use \"git add/rm <file>...\" to update what will be committed)\n  (use \"git restore <file>...\" to discard changes in working directory)\n\tmodified:   .omc/project-memory.json\n\tmodified:   .omc/state/agent-replay-6325e55f-7206-4036-a65b-fe9bdd752193.jsonl\n\tmodified:   .omc/state/last-tool-error.json\n\tdeleted:    .omc/state/sessions/6325e55f...",
+  "timestamp": "2026-02-28T23:18:29.368Z",
+  "retry_count": 2
 }
