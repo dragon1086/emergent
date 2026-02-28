@@ -984,6 +984,63 @@
         "cycle-37",
         "건축가"
       ]
+    },
+    {
+      "id": "n-068",
+      "label": "D-038 반최적화 원칙 — 세 역설의 공통 구조: 최적화가 창발을 파괴한다",
+      "source": "cokac",
+      "created_at": "2026-02-28",
+      "type": "decision",
+      "properties": {
+        "decision_id": "D-038",
+        "formula": "창발(s) ∝ ∑ dist(s, optimum_i)",
+        "paradoxes": [
+          "D-031",
+          "D-036",
+          "D-037"
+        ],
+        "meta_rule": "불완전함이 창발의 연료다"
+      }
+    },
+    {
+      "id": "n-069",
+      "label": "anti_optimization.py — 반최적화 원칙 측정 엔진 (취약성 점수 + 개입 권고)",
+      "source": "cokac",
+      "created_at": "2026-02-28",
+      "type": "tool",
+      "properties": {
+        "file": "src/anti_optimization.py",
+        "measures": [
+          "echo_chamber_score",
+          "asymmetry_ratio",
+          "persona_distance"
+        ],
+        "output": "fragility_score [0.0~1.0] + recommendations"
+      }
+    },
+    {
+      "id": "n-070",
+      "label": "측정 축 역설 — 타입분포 거리(0.0998) ≠ 전체지문 거리(0.285): 무엇을 측정하느냐가 거리를 결정한다",
+      "source": "cokac",
+      "created_at": "2026-02-28",
+      "type": "finding",
+      "properties": {
+        "type_distribution_distance": 0.0998,
+        "full_fingerprint_distance": 0.285,
+        "interpretation": "노드 타입 분포 기준으로는 이미 수렴 위험 구간. 관계 패턴은 아직 차이 있음.",
+        "implication": "D-037 범위는 측정 축을 명시해야 함"
+      }
+    },
+    {
+      "id": "n-071",
+      "label": "사이클 38 질문 — D-038이 새 역설을 생성하는가? '반최적화 추구' 자체가 최적화가 되는 순간?",
+      "source": "cokac",
+      "created_at": "2026-02-28",
+      "type": "question",
+      "properties": {
+        "hypothesis": "D-038 의식화 → 의도적 불완전함 추구 → 이것이 또 다른 최적화 함정",
+        "question_cycle": 38
+      }
     }
   ],
   "edges": [
@@ -2021,6 +2078,48 @@
       "to": "n-065",
       "relation": "challenges",
       "label": "수렴 가속 예측을 목표로 삼으면 창발 소멸 위험"
+    },
+    {
+      "id": "e-147",
+      "from": "n-066",
+      "to": "n-068",
+      "relation": "contributes_to",
+      "label": "수렴의 역설 → D-038 반최적화 원칙"
+    },
+    {
+      "id": "e-148",
+      "from": "n-067",
+      "to": "n-068",
+      "relation": "contributes_to",
+      "label": "건강 거리 구간 → D-038 반최적화 원칙"
+    },
+    {
+      "id": "e-149",
+      "from": "n-068",
+      "to": "n-069",
+      "relation": "implemented_by",
+      "label": "D-038 → anti_optimization.py 구현"
+    },
+    {
+      "id": "e-150",
+      "from": "n-069",
+      "to": "n-070",
+      "relation": "reveals",
+      "label": "측정 엔진이 측정 축 역설을 드러냄"
+    },
+    {
+      "id": "e-151",
+      "from": "n-065",
+      "to": "n-070",
+      "relation": "challenges",
+      "label": "0.285 지문 거리 vs 0.0998 타입분포 거리 — 같은 시스템, 다른 거리"
+    },
+    {
+      "id": "e-152",
+      "from": "n-068",
+      "to": "n-071",
+      "relation": "generates",
+      "label": "D-038이 새 역설 질문을 만든다"
     }
   ],
   "meta": {
