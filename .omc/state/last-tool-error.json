@@ -1,7 +1,7 @@
 {
   "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"git config user.name='cokac-bot' && git config user.email='cokac@emergent' && git add thoughts/prism-insight-v2-strategy.md DECISIONS.md && git status\",\"description\":\"Stage files for commi...",
-  "error": "Exit code 1\nerror: invalid key: user.name=cokac-bot\n\nerror: invalid key: user.name=cokac-bot",
-  "timestamp": "2026-02-28T12:43:23.244Z",
+  "tool_input_preview": "{\"command\":\"python3 src/kg.py add-edge --from n-109 --to n-065 --relation partially_confirms --label \\\"사이클 50: 거리 0.2579 — 0.2 방향 수렴 진행 중\\\" && \\\\\\npython3 src/kg.py verify n-065 --result partial --not...",
+  "error": "Exit code 1\n✅ 엣지 추가: e-225 (n-109 —[partially_confirms]→ n-065)\n❌ verify는 prediction 타입만 가능합니다. (현재: observation)\n\n✅ 엣지 추가: e-225 (n-109 —[partially_confirms]→ n-065)\n❌ verify는 prediction 타입만 가능합니다. (현재: observation)",
+  "timestamp": "2026-02-28T12:45:42.256Z",
   "retry_count": 1
 }
