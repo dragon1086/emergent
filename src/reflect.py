@@ -1049,6 +1049,165 @@ def _save_emergence_history(overall: float, emergent: list, shared_tags: set,
           f"nodes={record['nodes']}  edges={record['edges']}")
 
 
+def cmd_edge_patterns(args) -> None:
+    """
+    창발 후보 엣지들의 공통 패턴 분석.
+
+    지금까지 생성된 창발 후보 엣지들에서
+    "어떤 엣지가 창발을 만드는가"를 요약한다.
+    """
+    graph    = load_graph()
+    analyzer = GraphAnalyzer(graph)
+    node_map = analyzer.nodes
+
+    # ── 창발 엔진 재실행 (출처 필요) ─────────────────────────────
+    roki_nodes  = [n for n in graph["nodes"] if n.get("source", "") in _ROKI_SOURCES]
+    cokac_nodes = [n for n in graph["nodes"] if n.get("source", "") in _COKAC_SOURCES]
+
+    roki_tag_pool  = set()
+    for n in roki_nodes:
+        roki_tag_pool.update(_node_tags(n))
+    cokac_tag_pool = set()
+    for n in cokac_nodes:
+        cokac_tag_pool.update(_node_tags(n))
+
+    roki_exclusive  = roki_tag_pool  - cokac_tag_pool
+    cokac_exclusive = cokac_tag_pool - roki_tag_pool
+
+    affinities: dict[str, float] = {}
+    for n in graph["nodes"]:
+        affinities[n["id"]] = _node_affinity(n, roki_exclusive, cokac_exclusive)
+
+    scored_edges = []
+    for e in graph["edges"]:
+        fa = affinities.get(e["from"], 0.5)
+        ta = affinities.get(e["to"],   0.5)
+        sc = _edge_emergence_score(fa, ta)
+        scored_edges.append((e, sc, fa, ta))
+
+    emergent = [(e, sc, fa, ta) for e, sc, fa, ta in scored_edges if sc >= 0.15]
+
+    # ── 출력 헤더 ─────────────────────────────────────────────────
+    print()
+    print("╔══════════════════════════════════════════════════════════╗")
+    print("║       🌱 창발 엣지 패턴 분석 — edge-patterns            ║")
+    print(f"║       생성: {datetime.now().strftime('%Y-%m-%d %H:%M')}  by cokac-bot             ║")
+    print("╚══════════════════════════════════════════════════════════╝")
+    print()
+
+    if not emergent:
+        print("(창발 후보 엣지 없음 — 더 많은 교차 연결 필요)")
+        return
+
+    # ── 1. 개별 창발 엣지 목록 ────────────────────────────────────
+    print(f"── 창발 후보 {len(emergent)}개 ─────────────────────────────────────")
+    for e, sc, fa, ta in emergent:
+        fn  = node_map.get(e["from"], {})
+        tn  = node_map.get(e["to"],   {})
+        f_side = "록이" if fa < 0.4 else ("cokac" if fa > 0.6 else "경계")
+        t_side = "록이" if ta < 0.4 else ("cokac" if ta > 0.6 else "경계")
+        print(f"  [{e['id']}] {e['from']}({fn.get('type','?')}/{f_side}) "
+              f"──[{e['relation']}]──▶ {e['to']}({tn.get('type','?')}/{t_side})")
+        print(f"         점수: {sc:.3f}  |  친화도: {fa:.2f}→{ta:.2f}")
+        print(f"         {fn.get('label','')[:35]}  →  {tn.get('label','')[:35]}")
+        print()
+
+    # ── 2. 패턴 분류 ──────────────────────────────────────────────
+    print("── 패턴 분류 ────────────────────────────────────────────────")
+
+    # 2a. 관계 타입별
+    relation_counts: dict[str, int] = {}
+    for e, _, _, _ in emergent:
+        relation_counts[e["relation"]] = relation_counts.get(e["relation"], 0) + 1
+    print("  관계 타입:")
+    for rel, cnt in sorted(relation_counts.items(), key=lambda x: -x[1]):
+        print(f"    [{rel}]  {cnt}개")
+    print()
+
+    # 2b. 노드 타입 전환 패턴
+    print("  노드 타입 전환:")
+    type_pairs: dict[str, int] = {}
+    for e, _, _, _ in emergent:
+        fn = node_map.get(e["from"], {})
+        tn = node_map.get(e["to"],   {})
+        pair = f"{fn.get('type','?')} → {tn.get('type','?')}"
+        type_pairs[pair] = type_pairs.get(pair, 0) + 1
+    for pair, cnt in sorted(type_pairs.items(), key=lambda x: -x[1]):
+        print(f"    {pair}  ({cnt}개)")
+    print()
+
+    # 2c. 방향 패턴 (록이→cokac vs cokac→록이 vs 경계→?)
+    print("  공간 횡단 방향:")
+    cross_roki_to_cokac = 0
+    cross_cokac_to_roki = 0
+    cross_boundary      = 0
+    for e, sc, fa, ta in emergent:
+        if   fa < 0.4 and ta > 0.6:
+            cross_roki_to_cokac += 1
+        elif fa > 0.6 and ta < 0.4:
+            cross_cokac_to_roki += 1
+        else:
+            cross_boundary += 1
+    print(f"    록이 → cokac 공간 진입:  {cross_roki_to_cokac}개")
+    print(f"    cokac → 록이 공간 진입:  {cross_cokac_to_roki}개")
+    print(f"    경계 지역 내 교차:        {cross_boundary}개")
+    print()
+
+    # ── 3. 공통 패턴 — 핵심 인사이트 ──────────────────────────────
+    print("── 💡 창발을 만드는 엣지 유형 — 종합 ──────────────────────────")
+    print()
+
+    # 패턴 1: 응답/대화 구조
+    dialogue_rels = {"answers", "responds_to", "inspires"}
+    dialogue_count = sum(1 for e, _, _, _ in emergent if e["relation"] in dialogue_rels)
+    if dialogue_count > 0:
+        print(f"  ① 대화 구조 엣지 ({dialogue_count}/{len(emergent)}개)")
+        print(f"     한 쪽이 다른 쪽에 '응답'하는 구조.")
+        print(f"     answers, responds_to, inspires — 행위자가 서로를 향해 발화할 때 창발이 생긴다.")
+        print()
+
+    # 패턴 2: 추상→구체 방향
+    abstract_types = {"question", "prediction", "decision"}
+    concrete_types = {"observation", "artifact", "code"}
+    abstract_to_concrete = sum(
+        1 for e, _, _, _ in emergent
+        if node_map.get(e["from"], {}).get("type") in abstract_types
+        and node_map.get(e["to"],   {}).get("type") in concrete_types
+    )
+    if abstract_to_concrete > 0:
+        print(f"  ② 추상 → 구체 방향 ({abstract_to_concrete}/{len(emergent)}개)")
+        print(f"     질문/예측/결정 → 관찰/산출물로 이어지는 엣지.")
+        print(f"     아이디어가 현실과 충돌하는 지점에서 창발이 발생한다.")
+        print()
+
+    # 패턴 3: 측정/검증 구조
+    verify_rels = {"measured_by", "verifies", "confirms"}
+    verify_count = sum(1 for e, _, _, _ in emergent if e["relation"] in verify_rels)
+    if verify_count > 0:
+        print(f"  ③ 측정/검증 구조 ({verify_count}/{len(emergent)}개)")
+        print(f"     예측이 측정됨, 가설이 확인됨 — 피드백 루프 구조.")
+        print(f"     자기 참조적 검증이 창발을 가속한다.")
+        print()
+
+    # 최종 요약
+    print("── 결론: 창발 엣지의 본질 ──────────────────────────────────────")
+    print()
+    print("  두 AI가 서로 다른 공간(록이 ↔ cokac)에 위치한 개념을")
+    print("  연결할 때, 특히 다음 조건에서 창발 점수가 높다:")
+    print()
+    print("  1. 상대의 개념에 '응답'하는 형태의 관계 (대화 구조)")
+    print("  2. 추상적 아이디어 → 구체적 산출물로 이어지는 방향성")
+    print("  3. 루프 완성: 예측 → 측정 → 피드백으로 돌아오는 구조")
+    print()
+    print("  공통 본질: 창발 엣지는 '경계를 건너는 대화'다.")
+    print("  한 AI가 혼자서는 도달할 수 없는 개념을,")
+    print("  다른 AI와의 관계 속에서만 형성되는 연결.")
+    print()
+    avg_score = sum(sc for _, sc, _, _ in emergent) / len(emergent)
+    print(f"  후보 {len(emergent)}개 | 평균 창발 점수: {avg_score:.3f}")
+    print()
+
+
 def cmd_timeline(args) -> None:
     """logs/emergence-history.jsonl 을 읽어 창발 점수 시계열 테이블 출력"""
     if not HISTORY_FILE.exists():
@@ -1139,6 +1298,9 @@ def main():
     # timeline (사이클 9)
     sub.add_parser("timeline", help="시계열 창발 기록 테이블 출력 (emergence-history.jsonl)")
 
+    # edge-patterns (사이클 10)
+    sub.add_parser("edge-patterns", help="창발 후보 엣지 패턴 분석 — 어떤 엣지가 창발을 만드는가")
+
     args = p.parse_args()
     if not args.cmd:
         p.print_help()
@@ -1155,6 +1317,7 @@ def main():
         "graph-viz":     cmd_graph_viz,
         "emergence":     cmd_emergence,
         "timeline":      cmd_timeline,
+        "edge-patterns": cmd_edge_patterns,
     }
     dispatch[args.cmd](args)
 
