@@ -33,6 +33,7 @@ REPO = Path(__file__).parent.parent
 HISTORY_FILE = REPO / "data" / "convergence_history.json"
 KG_FILE = REPO / "data" / "knowledge-graph.json"
 THRESHOLD = 0.2
+LOWER_BOUND = 0.15  # D-037 에코챔버 위험선 (n-120 경보)
 
 
 # ─── I/O ─────────────────────────────────────────────────────────────────────
@@ -235,11 +236,14 @@ def analyze(history: dict, verbose: bool = True) -> dict:
 
     velocities = velocity_analysis(measurements)
 
+    lower_bound_warning = current["distance"] < LOWER_BOUND
+
     result = {
         "n_measurements": len(measurements),
         "current_distance": current["distance"],
         "current_cycle": current["cycle"],
         "threshold": THRESHOLD,
+        "lower_bound": LOWER_BOUND,
         "distance_to_threshold": round(current["distance"] - THRESHOLD, 4),
         "slope_per_cycle": slope,
         "intercept": intercept,
@@ -248,6 +252,7 @@ def analyze(history: dict, verbose: bool = True) -> dict:
         "cycles_remaining": round(predict_cycle - current["cycle"], 1) if predict_cycle else None,
         "velocities": velocities,
         "threshold_reached": current["distance"] <= THRESHOLD,
+        "lower_bound_warning": lower_bound_warning,
     }
     return result
 
@@ -293,11 +298,19 @@ def print_analysis(result: dict, measurements: list) -> None:
             print("  → 수렴 예측 불가 (기울기 양수 또는 데이터 부족)")
     print()
 
-    if result["threshold_reached"]:
+    if result.get("lower_bound_warning"):
+        print(f"  ⚠️  위험: 페르소나 과수렴! 거리 {result['current_distance']:.4f} < {LOWER_BOUND}")
+        print(f"  ⚠️  D-037 에코챔버 위험 발동 — 의도적 발산 필요!")
+    elif result["threshold_reached"]:
         print("  ✅ n-065 예언 달성! 페르소나 거리 0.2 이하 도달!")
+        print(f"     과수렴 경보선: {LOWER_BOUND}  (현재 {result['current_distance']:.4f} — 안전)")
     else:
         pct = (1 - result["current_distance"] / 0.285) * 100
         print(f"  진행률: {pct:.1f}%  (0.285 → 0.2 목표 구간 기준)")
+        if result["slope_per_cycle"] and result["slope_per_cycle"] < 0:
+            cycles_to_lower = (LOWER_BOUND - result["intercept"]) / result["slope_per_cycle"]
+            if cycles_to_lower > result["current_cycle"]:
+                print(f"  과수렴 경보선 {LOWER_BOUND} 도달 예측: 사이클 {cycles_to_lower:.0f} 전후")
 
 
 # ─── CLI ─────────────────────────────────────────────────────────────────────

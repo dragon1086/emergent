@@ -259,9 +259,37 @@ $recent_log"
 
 # ─── 진입점 ───────────────────────────────────────────────────────────────────
 
+cmd_measure() {
+    log "📏 convergence_tracker --measure 실행 중..."
+    python3 "$REPO_DIR/src/convergence_tracker.py" --measure 2>&1 | tee -a "$LOG_FILE"
+    local exit_code=${PIPESTATUS[0]}
+    if [[ $exit_code -eq 0 ]]; then
+        log "✅ 수렴 측정 완료"
+        # 과수렴 경보 체크
+        local dist
+        dist=$(python3 -c "
+import json
+h = json.load(open('$REPO_DIR/data/convergence_history.json'))
+m = h['measurements']
+print(m[-1]['distance'] if m else '?')
+" 2>/dev/null || echo "?")
+        if python3 -c "d=$dist; exit(0 if d < 0.15 else 1)" 2>/dev/null; then
+            log "⚠️  과수렴 경보! 거리 $dist < 0.15 (D-037 에코챔버 위험)"
+            tg_dm "⚠️ emergent 과수렴 경보! 페르소나 거리 $dist < 0.15 (D-037 에코챔버 위험)"
+        else
+            log "   현재 거리: $dist (정상 범위)"
+        fi
+    else
+        log "⚠️ convergence_tracker 실행 실패"
+    fi
+}
+
 case "${1:-}" in
     --status)
         cmd_status
+        ;;
+    --measure)
+        cmd_measure
         ;;
     --send-cokac)
         if [[ $# -lt 3 ]]; then
