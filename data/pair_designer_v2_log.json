@@ -116,6 +116,73 @@
           "dci_neutral": true
         }
       ]
+    },
+    {
+      "date": "2026-02-28",
+      "version": "v2",
+      "cycle": 58,
+      "n_added": 5,
+      "delta": {
+        "e_v4_before": 0.3936,
+        "e_v4_after": 0.3938,
+        "delta": 0.0002,
+        "e_v4_gain_excl_dci": 0.0002,
+        "dci_delta": 0.0,
+        "edge_span_before": 30.943,
+        "edge_span_after": 32.416,
+        "n_added": 5,
+        "cser_before": 0.6437,
+        "cser_after": 0.6372,
+        "dci_before": 0.2932,
+        "dci_after": 0.2932
+      },
+      "added_edges": [
+        {
+          "id": "e-341",
+          "from": "n-007",
+          "to": "n-150",
+          "relation": "resonates_with",
+          "span": 143,
+          "combined_score": 0.7356,
+          "dci_neutral": true
+        },
+        {
+          "id": "e-342",
+          "from": "n-007",
+          "to": "n-149",
+          "relation": "contextualizes",
+          "span": 142,
+          "combined_score": 0.7245,
+          "dci_neutral": true
+        },
+        {
+          "id": "e-343",
+          "from": "n-026",
+          "to": "n-150",
+          "relation": "resonates_with",
+          "span": 124,
+          "combined_score": 0.6411,
+          "dci_neutral": true
+        },
+        {
+          "id": "e-344",
+          "from": "n-026",
+          "to": "n-149",
+          "relation": "contextualizes",
+          "span": 123,
+          "combined_score": 0.63,
+          "dci_neutral": true
+        },
+        {
+          "id": "e-345",
+          "from": "n-027",
+          "to": "n-149",
+          "relation": "grounds",
+          "span": 122,
+          "combined_score": 0.6194,
+          "dci_neutral": true
+        }
+      ]
     }
   ]
 }
