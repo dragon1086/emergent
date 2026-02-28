@@ -765,3 +765,11 @@ pair_designer v2 예측 검증(+0.005~0.010)은 수정 후에만 의미있음.
 - **conviction 공식**: CSER_component × macro_strength × technical_strength
 - **이식 임계점 5/5 완료**: D-033 ✅ D-034 ✅ 측정도구 ✅ 도메인CSER ✅ 신뢰도기준 ✅
 - **다음**: prism-insight 창발 종목 선정 설계 시작
+
+### D-061: 사이클 67 (2026-02-28) — edge_span이 E_v4 역전의 핵심 레버
+- CSER 추가는 E_v3를 더 이롭게 함 (가중치 차이: 0.40 vs 0.35)
+- --min-span 100 초장거리 엣지 50개 → edge_span_norm +0.053 → E_v4 역전
+
+### D-062: 사이클 67 (2026-02-28) — conviction_v2 채택
+- 원 공식 약점 4개 실증 확인, conviction_v2로 대체
+- emergent_selector.py에 v2 구현 완료 (cokac 사이클 66)

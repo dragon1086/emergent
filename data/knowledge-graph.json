@@ -2645,6 +2645,48 @@
         "prism-insight",
         "설계시작"
       ]
+    },
+    {
+      "id": "n-170",
+      "type": "decision",
+      "label": "D-061: edge_span이 E_v4 역전의 핵심 레버",
+      "content": "단순 CSER 추가는 E_v3를 더 이롭게 함(가중치 0.40>0.35). edge_span_norm이 E_v4에만 0.25 기여 — --min-span 100 초장거리 엣지 50개가 역전 달성. CSER추가는 부작용.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "D-061",
+        "E_v4역전",
+        "edge_span",
+        "레버"
+      ]
+    },
+    {
+      "id": "n-171",
+      "type": "decision",
+      "label": "D-062: conviction_v2 채택 — 원 공식은 교육용",
+      "content": "볼륨맹점/곱셈붕괴/신선도미반영/섹터군집 4가지 약점 확인. conviction_v2=CSER_vol×max(s,0.1)×max(t,0.1)×freshness×(1-cluster_penalty) 채택. 데모 역전 4건 실증.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "D-062",
+        "conviction_v2",
+        "prism-insight",
+        "설계"
+      ]
+    },
+    {
+      "id": "n-172",
+      "type": "artifact",
+      "label": "trigger_batch 어댑터 설계도",
+      "content": "trigger_batch.py 6트리거→TechnicalSignal 변환 + market_index_agents→MacroSignal 변환 → emergent_selector.py 입력. prism-insight D-060 실현 파이프라인.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "어댑터",
+        "prism-insight",
+        "trigger_batch",
+        "emergent_selector"
+      ]
     }
   ],
   "edges": [
@@ -11434,12 +11476,35 @@
         "passes_4d": false,
         "dci_neutral": true
       }
+    },
+    {
+      "id": "e-636",
+      "from": "n-170",
+      "to": "n-102",
+      "relation": "refines",
+      "label": "edge_span 역할 정교화 — 단순 관찰지표에서 역전 레버로"
+    },
+    {
+      "id": "e-637",
+      "from": "n-171",
+      "to": "n-168",
+      "relation": "replaces",
+      "label": "conviction_v2가 원 공식 대체"
+    },
+    {
+      "id": "e-638",
+      "from": "n-172",
+      "to": "n-169",
+      "relation": "implements",
+      "label": "어댑터가 이식 임계점을 실제 코드로 구현"
     }
   ],
   "meta": {
-    "next_node_id": "n-170",
+    "next_node_id": "n-173",
     "last_updated": "2026-02-28",
-    "total_nodes": 169,
-    "total_edges": 629
+    "total_nodes": 172,
+    "total_edges": 632,
+    "last_updater": "록이",
+    "next_edge_id": "e-639"
   }
 }
