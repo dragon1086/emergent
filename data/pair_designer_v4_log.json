@@ -1,0 +1,337 @@
+{
+  "meta": {
+    "description": "pair_designer v4 이력 (CSER 제약 제거 + edge_span 직접 최적화)",
+    "created_cycle": 78,
+    "version": "v4"
+  },
+  "sessions": [
+    {
+      "date": "2026-02-28",
+      "version": "v4",
+      "cycle": 78,
+      "n_added": 30,
+      "cross_count": 30,
+      "delta": {
+        "E_v4_before": 0.4243,
+        "E_v4_after": 0.4353,
+        "E_v4_delta": 0.011,
+        "E_v3_before": 0.424,
+        "E_v3_after": 0.4283,
+        "E_v3_delta": 0.0043,
+        "gap_before": 0.0003,
+        "gap_after": 0.007,
+        "gap_delta": 0.0067,
+        "CSER_before": 0.7378,
+        "CSER_after": 0.7486,
+        "DCI_before": 0.2186,
+        "DCI_after": 0.2186,
+        "edge_span_before": 50.322,
+        "edge_span_after": 55.622,
+        "n_added": 30,
+        "v4_success": true
+      },
+      "added_edges": [
+        {
+          "id": "e-692",
+          "from": "n-001",
+          "to": "n-186",
+          "relation": "relates_to",
+          "span": 185,
+          "edge_span_norm": 0.9946,
+          "combined_v4": 0.9957,
+          "cross_source": true
+        },
+        {
+          "id": "e-693",
+          "from": "n-002",
+          "to": "n-186",
+          "relation": "relates_to",
+          "span": 184,
+          "edge_span_norm": 0.9892,
+          "combined_v4": 0.9914,
+          "cross_source": true
+        },
+        {
+          "id": "e-694",
+          "from": "n-003",
+          "to": "n-186",
+          "relation": "relates_to",
+          "span": 183,
+          "edge_span_norm": 0.9839,
+          "combined_v4": 0.9871,
+          "cross_source": true
+        },
+        {
+          "id": "e-695",
+          "from": "n-001",
+          "to": "n-183",
+          "relation": "relates_to",
+          "span": 182,
+          "edge_span_norm": 0.9785,
+          "combined_v4": 0.9828,
+          "cross_source": true
+        },
+        {
+          "id": "e-696",
+          "from": "n-004",
+          "to": "n-186",
+          "relation": "relates_to",
+          "span": 182,
+          "edge_span_norm": 0.9785,
+          "combined_v4": 0.9828,
+          "cross_source": true
+        },
+        {
+          "id": "e-697",
+          "from": "n-001",
+          "to": "n-182",
+          "relation": "relates_to",
+          "span": 181,
+          "edge_span_norm": 0.9731,
+          "combined_v4": 0.9785,
+          "cross_source": true
+        },
+        {
+          "id": "e-698",
+          "from": "n-002",
+          "to": "n-183",
+          "relation": "relates_to",
+          "span": 181,
+          "edge_span_norm": 0.9731,
+          "combined_v4": 0.9785,
+          "cross_source": true
+        },
+        {
+          "id": "e-699",
+          "from": "n-005",
+          "to": "n-186",
+          "relation": "relates_to",
+          "span": 181,
+          "edge_span_norm": 0.9731,
+          "combined_v4": 0.9785,
+          "cross_source": true
+        },
+        {
+          "id": "e-700",
+          "from": "n-001",
+          "to": "n-181",
+          "relation": "relates_to",
+          "span": 180,
+          "edge_span_norm": 0.9677,
+          "combined_v4": 0.9742,
+          "cross_source": true
+        },
+        {
+          "id": "e-701",
+          "from": "n-002",
+          "to": "n-182",
+          "relation": "relates_to",
+          "span": 180,
+          "edge_span_norm": 0.9677,
+          "combined_v4": 0.9742,
+          "cross_source": true
+        },
+        {
+          "id": "e-702",
+          "from": "n-003",
+          "to": "n-183",
+          "relation": "relates_to",
+          "span": 180,
+          "edge_span_norm": 0.9677,
+          "combined_v4": 0.9742,
+          "cross_source": true
+        },
+        {
+          "id": "e-703",
+          "from": "n-006",
+          "to": "n-186",
+          "relation": "relates_to",
+          "span": 180,
+          "edge_span_norm": 0.9677,
+          "combined_v4": 0.9742,
+          "cross_source": true
+        },
+        {
+          "id": "e-704",
+          "from": "n-002",
+          "to": "n-181",
+          "relation": "relates_to",
+          "span": 179,
+          "edge_span_norm": 0.9624,
+          "combined_v4": 0.9699,
+          "cross_source": true
+        },
+        {
+          "id": "e-705",
+          "from": "n-003",
+          "to": "n-182",
+          "relation": "relates_to",
+          "span": 179,
+          "edge_span_norm": 0.9624,
+          "combined_v4": 0.9699,
+          "cross_source": true
+        },
+        {
+          "id": "e-706",
+          "from": "n-004",
+          "to": "n-183",
+          "relation": "relates_to",
+          "span": 179,
+          "edge_span_norm": 0.9624,
+          "combined_v4": 0.9699,
+          "cross_source": true
+        },
+        {
+          "id": "e-707",
+          "from": "n-007",
+          "to": "n-186",
+          "relation": "relates_to",
+          "span": 179,
+          "edge_span_norm": 0.9624,
+          "combined_v4": 0.9699,
+          "cross_source": true
+        },
+        {
+          "id": "e-708",
+          "from": "n-003",
+          "to": "n-181",
+          "relation": "relates_to",
+          "span": 178,
+          "edge_span_norm": 0.957,
+          "combined_v4": 0.9656,
+          "cross_source": true
+        },
+        {
+          "id": "e-709",
+          "from": "n-004",
+          "to": "n-182",
+          "relation": "relates_to",
+          "span": 178,
+          "edge_span_norm": 0.957,
+          "combined_v4": 0.9656,
+          "cross_source": true
+        },
+        {
+          "id": "e-710",
+          "from": "n-005",
+          "to": "n-183",
+          "relation": "relates_to",
+          "span": 178,
+          "edge_span_norm": 0.957,
+          "combined_v4": 0.9656,
+          "cross_source": true
+        },
+        {
+          "id": "e-711",
+          "from": "n-008",
+          "to": "n-186",
+          "relation": "relates_to",
+          "span": 178,
+          "edge_span_norm": 0.957,
+          "combined_v4": 0.9656,
+          "cross_source": true
+        },
+        {
+          "id": "e-712",
+          "from": "n-004",
+          "to": "n-181",
+          "relation": "relates_to",
+          "span": 177,
+          "edge_span_norm": 0.9516,
+          "combined_v4": 0.9613,
+          "cross_source": true
+        },
+        {
+          "id": "e-713",
+          "from": "n-005",
+          "to": "n-182",
+          "relation": "relates_to",
+          "span": 177,
+          "edge_span_norm": 0.9516,
+          "combined_v4": 0.9613,
+          "cross_source": true
+        },
+        {
+          "id": "e-714",
+          "from": "n-006",
+          "to": "n-183",
+          "relation": "relates_to",
+          "span": 177,
+          "edge_span_norm": 0.9516,
+          "combined_v4": 0.9613,
+          "cross_source": true
+        },
+        {
+          "id": "e-715",
+          "from": "n-001",
+          "to": "n-177",
+          "relation": "relates_to",
+          "span": 176,
+          "edge_span_norm": 0.9462,
+          "combined_v4": 0.957,
+          "cross_source": true
+        },
+        {
+          "id": "e-716",
+          "from": "n-005",
+          "to": "n-181",
+          "relation": "relates_to",
+          "span": 176,
+          "edge_span_norm": 0.9462,
+          "combined_v4": 0.957,
+          "cross_source": true
+        },
+        {
+          "id": "e-717",
+          "from": "n-006",
+          "to": "n-182",
+          "relation": "relates_to",
+          "span": 176,
+          "edge_span_norm": 0.9462,
+          "combined_v4": 0.957,
+          "cross_source": true
+        },
+        {
+          "id": "e-718",
+          "from": "n-007",
+          "to": "n-183",
+          "relation": "relates_to",
+          "span": 176,
+          "edge_span_norm": 0.9462,
+          "combined_v4": 0.957,
+          "cross_source": true
+        },
+        {
+          "id": "e-719",
+          "from": "n-009",
+          "to": "n-185",
+          "relation": "relates_to",
+          "span": 176,
+          "edge_span_norm": 0.9462,
+          "combined_v4": 0.957,
+          "cross_source": true
+        },
+        {
+          "id": "e-720",
+          "from": "n-001",
+          "to": "n-176",
+          "relation": "relates_to",
+          "span": 175,
+          "edge_span_norm": 0.9409,
+          "combined_v4": 0.9527,
+          "cross_source": true
+        },
+        {
+          "id": "e-721",
+          "from": "n-002",
+          "to": "n-177",
+          "relation": "relates_to",
+          "span": 175,
+          "edge_span_norm": 0.9409,
+          "combined_v4": 0.9527,
+          "cross_source": true
+        }
+      ]
+    }
+  ]
+}
