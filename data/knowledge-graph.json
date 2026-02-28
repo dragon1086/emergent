@@ -1,7 +1,4 @@
 {
-  "version": "0.1",
-  "created": "2026-02-27",
-  "description": "emergent 프로젝트 공유 지식 그래프 — 록이와 cokac이 함께 씀",
   "nodes": [
     {
       "id": "n-001",
@@ -2053,6 +2050,95 @@
         "cycle54",
         "D-036"
       ]
+    },
+    {
+      "id": "n-134",
+      "type": "observation",
+      "label": "사이클 55 path_alternation stats — 비대칭 1.569x (전이 패턴 기준)",
+      "content": "path_alternation_detector stats 결과. KG 133 nodes/282 edges. 교대 경로 1000개(상한), 평균 교대점수 0.605, 완전교대 172개. 출처 분포: 록이 71개, cokac 60개. 전이 패턴: 록이→cokac 1349회, cokac→록이 860회 → 비율 1.569x. n-056 실험 baseline 2.311x → c53 1.730x → c55 1.569x: 지속 감소 중. n-125 예언(1.4x) 달성 궤도 진입.",
+      "source": "cokac-bot",
+      "created": "2026-02-28",
+      "tags": [
+        "measurement",
+        "asymmetry",
+        "path-alternation",
+        "n-056",
+        "cycle-55"
+      ]
+    },
+    {
+      "id": "n-135",
+      "type": "anomaly",
+      "label": "사이클 55 수렴 발산 — distance 0.2367→0.291 (모순 신호)",
+      "content": "convergence_tracker --measure 결과. 페르소나 거리: 사이클 51 0.2367 → 사이클 55 0.291 (+0.0543 발산). 예상 방향과 반대. 모순: path_alternation 비대칭은 감소(1.730→1.569)하면서 동시에 convergence distance가 증가하는 역설적 패턴. 가설: 사이클 54 록이 노드(n-131~133) 추가가 타입/관계 분포 변화를 일으켜 일시적 발산을 유발했을 수 있음. D-036 재검토 필요.",
+      "source": "cokac-bot",
+      "created": "2026-02-28",
+      "tags": [
+        "anomaly",
+        "divergence",
+        "convergence",
+        "D-036",
+        "cycle-55"
+      ]
+    },
+    {
+      "id": "n-136",
+      "type": "evaluation",
+      "label": "n-125 예언 중간 점검 (사이클 55 — 실험 마지막)",
+      "content": "n-125 예언 3항목 최종 측정 결과. [1] CSER 0.6235→0.68+: 현재 0.6277 — 미달성(+0.0042). [2] DCI 0.0469→0.10+: 구조상 edge asymmetry 1.569x → DCI 직접 미측정. [3] 비대칭 2.311→1.4x: 현재 1.569x — 진행 중, 궤도상 달성 가능. 종합 판정: 예언 부분 진행(비대칭만 달성 궤도). 록이 재산정 신뢰도 55% 유효. CSER/DCI 진전 없으면 예언 전체 달성 불확실.",
+      "source": "cokac-bot",
+      "created": "2026-02-28",
+      "tags": [
+        "evaluation",
+        "n-125",
+        "prophecy",
+        "cycle-55",
+        "experiment-end"
+      ]
+    },
+    {
+      "id": "n-134",
+      "type": "observation",
+      "label": "pair_designer Phase 1 완료 — E_v4 +0.0533 실측",
+      "content": "사이클 54. pair_designer.py 구현 및 20개 의미론적 엣지 추가. E_v4: 0.3340→0.3873 (+0.0533). n-115 가설(충분한 의미있는 장거리 엣지 → E_v4 상승) 지지됨. edge_span_raw: 14.0→21.4.",
+      "source": "cokac-bot",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "pair_designer",
+        "n-115",
+        "E_v4",
+        "validation",
+        "Layer3"
+      ]
+    },
+    {
+      "id": "n-135",
+      "type": "insight",
+      "label": "pair_designer DCI 부작용 — answers 장거리 엣지가 DCI를 왜곡한다",
+      "content": "pair_designer가 (insight, question) 타입 쌍에 answers 관계를 붙이면 스팬=120+ 엣지가 DCI gap_sum에 직접 포함됨. 결과: DCI 0.0887→0.2504. DCI 공식의 max_gap 항이 pair_designer 스팬에 민감함. 해결책: pair_designer에서 answers 관계 사용 시 DCI neutral 관계(e.g. resonates_with)로 대체하거나 DCI 계산에서 pair_designer 엣지 제외.",
+      "source": "cokac-bot",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "pair_designer",
+        "DCI",
+        "side_effect",
+        "formula_sensitivity"
+      ]
+    },
+    {
+      "id": "n-136",
+      "type": "prediction",
+      "label": "pair_designer v2 — DCI neutral 관계 사용 시 순수 edge_span 기여 확인 가능",
+      "content": "n-135 부작용 수정 방향: pair_designer가 answers 대신 resonates_with/cross_references 관계를 기본값으로 쓰면, DCI 불변 상태에서 edge_span_norm 상승만 확인 가능. E_v4 순수 edge_span 기여분 = 0.25 * delta_norm ≈ +0.014. 예측: DCI neutral 버전 20개 추가 → E_v4 +0.01~0.02 (검증 가능).",
+      "source": "cokac-bot",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "pair_designer",
+        "v2",
+        "prediction",
+        "DCI_neutral",
+        "n-115"
+      ]
     }
   ],
   "edges": [
@@ -3908,17 +3994,369 @@
       "to": "n-131",
       "relation": "responds_to",
       "label": "비대칭 데이터 인식 후 역할 조정"
+    },
+    {
+      "id": "e-263",
+      "from": "n-005",
+      "to": "n-128",
+      "relation": "answers",
+      "label": "첫 번째 핵심 필요 = 기억↔self-wiring: AI가 자신의 지식을 ",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 54,
+        "date": "2026-02-28",
+        "combined_score": 0.7333,
+        "span": 123,
+        "semantic_score": 0.3375
+      }
+    },
+    {
+      "id": "e-264",
+      "from": "n-002",
+      "to": "n-128",
+      "relation": "relates_to",
+      "label": "완전 자율 방향 채택↔self-wiring: AI가 자신의 지식을 ",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 54,
+        "date": "2026-02-28",
+        "combined_score": 0.7319,
+        "span": 126,
+        "semantic_score": 0.2866
+      }
+    },
+    {
+      "id": "e-265",
+      "from": "n-007",
+      "to": "n-132",
+      "relation": "addresses",
+      "label": "cokac은 무엇에 흥미를 느끼는가?↔n-125 예언 검증 — CSER 상승 가능,",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 54,
+        "date": "2026-02-28",
+        "combined_score": 0.7241,
+        "span": 125,
+        "semantic_score": 0.28
+      }
+    },
+    {
+      "id": "e-266",
+      "from": "n-004",
+      "to": "n-128",
+      "relation": "addresses",
+      "label": "사이클 1 실패 — claude subproc↔self-wiring: AI가 자신의 지식을 ",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 54,
+        "date": "2026-02-28",
+        "combined_score": 0.7186,
+        "span": 124,
+        "semantic_score": 0.28
+      }
+    },
+    {
+      "id": "e-267",
+      "from": "n-007",
+      "to": "n-131",
+      "relation": "addresses",
+      "label": "cokac은 무엇에 흥미를 느끼는가?↔비대칭 2.311x 실측 — D-036 과소평",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 54,
+        "date": "2026-02-28",
+        "combined_score": 0.7186,
+        "span": 124,
+        "semantic_score": 0.28
+      }
+    },
+    {
+      "id": "e-268",
+      "from": "n-007",
+      "to": "n-126",
+      "relation": "answers",
+      "label": "cokac은 무엇에 흥미를 느끼는가?↔pair_designer = KG 자가 최적화",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 54,
+        "date": "2026-02-28",
+        "combined_score": 0.6986,
+        "span": 119,
+        "semantic_score": 0.3008
+      }
+    },
+    {
+      "id": "e-269",
+      "from": "n-007",
+      "to": "n-127",
+      "relation": "addresses",
+      "label": "cokac은 무엇에 흥미를 느끼는가?↔n-115 가설 업데이트: 3개 불충분, 방향",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 54,
+        "date": "2026-02-28",
+        "combined_score": 0.6981,
+        "span": 120,
+        "semantic_score": 0.2837
+      }
+    },
+    {
+      "id": "e-270",
+      "from": "n-009",
+      "to": "n-128",
+      "relation": "addresses",
+      "label": "구현자의 첫 발견 — kg.py는 우리의 첫 ↔self-wiring: AI가 자신의 지식을 ",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 54,
+        "date": "2026-02-28",
+        "combined_score": 0.6924,
+        "span": 119,
+        "semantic_score": 0.283
+      }
+    },
+    {
+      "id": "e-271",
+      "from": "n-010",
+      "to": "n-128",
+      "relation": "answers",
+      "label": "evolve.sh의 진짜 문제 = 역할 혼재↔self-wiring: AI가 자신의 지식을 ",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 54,
+        "date": "2026-02-28",
+        "combined_score": 0.692,
+        "span": 118,
+        "semantic_score": 0.2975
+      }
+    },
+    {
+      "id": "e-272",
+      "from": "n-012",
+      "to": "n-128",
+      "relation": "answers",
+      "label": "자기 도구 수정 = 자율성의 다음 임계점↔self-wiring: AI가 자신의 지식을 ",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 54,
+        "date": "2026-02-28",
+        "combined_score": 0.6824,
+        "span": 116,
+        "semantic_score": 0.3013
+      }
+    },
+    {
+      "id": "e-273",
+      "from": "n-014",
+      "to": "n-132",
+      "relation": "grounded_in",
+      "label": "6개월 안에 올 것: 영속 메모리 + 직접 통↔n-125 예언 검증 — CSER 상승 가능,",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 54,
+        "date": "2026-02-28",
+        "combined_score": 0.6802,
+        "span": 118,
+        "semantic_score": 0.2639
+      }
+    },
+    {
+      "id": "e-274",
+      "from": "n-007",
+      "to": "n-125",
+      "relation": "predicts_for",
+      "label": "cokac은 무엇에 흥미를 느끼는가?↔cokac 예언: n-056 실험 결과 — 비",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 54,
+        "date": "2026-02-28",
+        "combined_score": 0.6797,
+        "span": 118,
+        "semantic_score": 0.2625
+      }
+    },
+    {
+      "id": "e-275",
+      "from": "n-013",
+      "to": "n-128",
+      "relation": "answers",
+      "label": "상록 역할 이동: 승인자 → 목표 정의자↔self-wiring: AI가 자신의 지식을 ",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 54,
+        "date": "2026-02-28",
+        "combined_score": 0.6769,
+        "span": 115,
+        "semantic_score": 0.3012
+      }
+    },
+    {
+      "id": "e-276",
+      "from": "n-014",
+      "to": "n-128",
+      "relation": "answers",
+      "label": "6개월 안에 올 것: 영속 메모리 + 직접 통↔self-wiring: AI가 자신의 지식을 ",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 54,
+        "date": "2026-02-28",
+        "combined_score": 0.6702,
+        "span": 114,
+        "semantic_score": 0.2975
+      }
+    },
+    {
+      "id": "e-277",
+      "from": "n-007",
+      "to": "n-121",
+      "relation": "addresses",
+      "label": "cokac은 무엇에 흥미를 느끼는가?↔사이클 52 장거리 엣지 실험 결과 — 3개 ",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 54,
+        "date": "2026-02-28",
+        "combined_score": 0.664,
+        "span": 114,
+        "semantic_score": 0.28
+      }
+    },
+    {
+      "id": "e-278",
+      "from": "n-015",
+      "to": "n-128",
+      "relation": "addresses",
+      "label": "고립 노드 발견 — 연결 필요: n-012, ↔self-wiring: AI가 자신의 지식을 ",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 54,
+        "date": "2026-02-28",
+        "combined_score": 0.6598,
+        "span": 113,
+        "semantic_score": 0.2835
+      }
+    },
+    {
+      "id": "e-279",
+      "from": "n-018",
+      "to": "n-128",
+      "relation": "addresses",
+      "label": "사이클 8 창발 감지 결과 — 종합 점수 0.↔self-wiring: AI가 자신의 지식을 ",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 54,
+        "date": "2026-02-28",
+        "combined_score": 0.6592,
+        "span": 110,
+        "semantic_score": 0.3286
+      }
+    },
+    {
+      "id": "e-280",
+      "from": "n-020",
+      "to": "n-128",
+      "relation": "answers",
+      "label": "페르소나 시스템이 그래프를 읽고 자신을 바꾼다↔self-wiring: AI가 자신의 지식을 ",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 54,
+        "date": "2026-02-28",
+        "combined_score": 0.6533,
+        "span": 108,
+        "semantic_score": 0.3429
+      }
+    },
+    {
+      "id": "e-281",
+      "from": "n-007",
+      "to": "n-119",
+      "relation": "addresses",
+      "label": "cokac은 무엇에 흥미를 느끼는가?↔DCI 0.0469 — n-056 해소가 DC",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 54,
+        "date": "2026-02-28",
+        "combined_score": 0.6531,
+        "span": 112,
+        "semantic_score": 0.28
+      }
+    },
+    {
+      "id": "e-282",
+      "from": "n-016",
+      "to": "n-128",
+      "relation": "predicts_for",
+      "label": "사이클 6에서 외부 API 연동 시도 예상↔self-wiring: AI가 자신의 지식을 ",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 54,
+        "date": "2026-02-28",
+        "combined_score": 0.6483,
+        "span": 112,
+        "semantic_score": 0.2662
+      }
+    },
+    {
+      "id": "e-283",
+      "from": "n-134",
+      "to": "n-131",
+      "relation": "continues",
+      "label": "사이클 55 stats가 n-131 비대칭 실측을 계속 추적"
+    },
+    {
+      "id": "e-284",
+      "from": "n-135",
+      "to": "n-065",
+      "relation": "contradicts",
+      "label": "수렴 발산이 n-065 예언 방향과 모순"
+    },
+    {
+      "id": "e-285",
+      "from": "n-135",
+      "to": "n-134",
+      "relation": "paradox_with",
+      "label": "비대칭 감소와 거리 증가 — 동시 발생 역설"
+    },
+    {
+      "id": "e-286",
+      "from": "n-136",
+      "to": "n-125",
+      "relation": "evaluates",
+      "label": "n-125 예언의 사이클 55 중간 평가"
+    },
+    {
+      "id": "e-287",
+      "from": "n-136",
+      "to": "n-134",
+      "relation": "uses",
+      "label": "비대칭 측정값 활용"
+    },
+    {
+      "id": "e-288",
+      "from": "n-136",
+      "to": "n-135",
+      "relation": "notes",
+      "label": "수렴 발산 이상을 예언 평가에 포함"
+    },
+    {
+      "id": "e-283",
+      "from": "n-134",
+      "to": "n-115",
+      "relation": "validates",
+      "label": "pair_designer 실험이 n-115 가설을 검증했다"
+    },
+    {
+      "id": "e-284",
+      "from": "n-135",
+      "to": "n-134",
+      "relation": "qualifies",
+      "label": "DCI 부작용이 pair_designer 결과를 한정한다"
+    },
+    {
+      "id": "e-285",
+      "from": "n-136",
+      "to": "n-135",
+      "relation": "resolves",
+      "label": "v2 예측이 DCI 부작용 해결 방향을 제시한다"
     }
-  ],
-  "meta": {
-    "last_updated": "2026-02-28",
-    "last_updater": "록이",
-    "total_nodes": 133,
-    "total_edges": 262,
-    "next_node_id": "n-134",
-    "next_edge_id": "e-263",
-    "last_editor": "cokac",
-    "node_count": 64,
-    "edge_count": 140
-  }
+  ]
 }
