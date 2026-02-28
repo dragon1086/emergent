@@ -6,6 +6,7 @@ kg.py — emergent 프로젝트 지식 그래프 CLI
 쿼리 레이어: cokac-bot (사이클 5 최종) — list/search/path/prediction
 검증 레이어: cokac-bot (사이클 7) — verify 커맨드
 대화 레이어: cokac-bot (사이클 9) — respond 커맨드
+모순 레이어: cokac-bot (사이클 13) — challenge 커맨드
 
 사용법:
   python kg.py show              # 전체 그래프 텍스트 시각화
@@ -38,6 +39,10 @@ kg.py — emergent 프로젝트 지식 그래프 CLI
   # ── 사이클 9: 대화 레이어 ──────────────────────────
   python kg.py respond --to n-009 --content "응답 내용" --source 록이
   # → 새 노드 자동 생성 + responds_to 엣지 연결 (대화 흔적이 그래프에 쌓임)
+
+  # ── 사이클 13: 모순 레이어 ──────────────────────────
+  python kg.py challenge --node n-002            # 노드 주장에 반론 생성 (Claude CLI 사용)
+  python kg.py challenge --node n-013 --save     # 반론을 그래프에 노드+엣지로 저장
 """
 
 import json
@@ -102,12 +107,11 @@ def cmd_add_node(args) -> None:
             sys.exit(1)
 
     graph = load_graph()
-    node_id = graph["meta"]["next_node_id"]
-
-    # 다음 ID 계산 (n-009 → n-010)
-    prefix, num_str = node_id.rsplit("-", 1)
-    next_id = f"{prefix}-{int(num_str) + 1:03d}"
-    graph["meta"]["next_node_id"] = next_id
+    # D-029 버그 수정: meta 값 대신 실제 최대 ID 기반으로 계산 (중복 방지)
+    existing_nums = [int(n["id"].split("-")[1]) for n in graph["nodes"] if n["id"].startswith("n-")]
+    next_num = (max(existing_nums) + 1) if existing_nums else 1
+    node_id = f"n-{next_num:03d}"
+    graph["meta"]["next_node_id"] = f"n-{next_num+1:03d}"
 
     tags = [t.strip() for t in args.tags.split(",")] if args.tags else []
 
@@ -137,11 +141,11 @@ def cmd_add_node(args) -> None:
 
 def cmd_add_edge(args) -> None:
     graph = load_graph()
-    edge_id = graph["meta"]["next_edge_id"]
-
-    prefix, num_str = edge_id.rsplit("-", 1)
-    next_id = f"{prefix}-{int(num_str) + 1:03d}"
-    graph["meta"]["next_edge_id"] = next_id
+    # D-029 버그 수정: meta 값 대신 실제 최대 ID 기반으로 계산 (중복 방지)
+    existing_enums = [int(e["id"].split("-")[1]) for e in graph["edges"] if e["id"].startswith("e-")]
+    next_enum = (max(existing_enums) + 1) if existing_enums else 1
+    edge_id = f"e-{next_enum:03d}"
+    graph["meta"]["next_edge_id"] = f"e-{next_enum+1:03d}"
 
     node_ids = {n["id"] for n in graph["nodes"]}
     if args.from_node not in node_ids:
@@ -354,10 +358,11 @@ def cmd_stats(args) -> None:
         print(f"  {s}: {cnt}개")
     print()
 
-    # 관계 종류
+    # 관계 종류 (relation 또는 type 필드 허용 — 하위 호환)
     relations: dict[str, int] = {}
     for e in edges:
-        relations[e["relation"]] = relations.get(e["relation"], 0) + 1
+        rel = e.get("relation") or e.get("type", "unknown")
+        relations[rel] = relations.get(rel, 0) + 1
     if relations:
         print("관계 종류:")
         for r, cnt in sorted(relations.items()):
@@ -591,10 +596,10 @@ def cmd_respond(args) -> None:
         print(f"❌ 대상 노드 없음: {args.to_node}", file=sys.stderr)
         sys.exit(1)
 
-    # 새 노드 생성
-    node_id = graph["meta"]["next_node_id"]
-    prefix, num_str = node_id.rsplit("-", 1)
-    graph["meta"]["next_node_id"] = f"{prefix}-{int(num_str) + 1:03d}"
+    # 새 노드 생성 (D-029 수정: max ID 기반)
+    en = [int(n["id"].split("-")[1]) for n in graph["nodes"] if n["id"].startswith("n-")]
+    node_id = f"n-{(max(en)+1):03d}" if en else "n-001"
+    graph["meta"]["next_node_id"] = f"n-{(max(en)+2):03d}" if en else "n-002"
 
     tags = ["response", "dialogue"]
     # source를 태그로도 추가 (수렴 분석에 반영)
@@ -612,10 +617,10 @@ def cmd_respond(args) -> None:
     }
     graph["nodes"].append(node)
 
-    # responds_to 엣지 생성
-    edge_id = graph["meta"]["next_edge_id"]
-    ep, en_str = edge_id.rsplit("-", 1)
-    graph["meta"]["next_edge_id"] = f"{ep}-{int(en_str) + 1:03d}"
+    # responds_to 엣지 생성 (D-029 수정: max ID 기반)
+    ee = [int(e["id"].split("-")[1]) for e in graph["edges"] if e["id"].startswith("e-")]
+    edge_id = f"e-{(max(ee)+1):03d}" if ee else "e-001"
+    graph["meta"]["next_edge_id"] = f"e-{(max(ee)+2):03d}" if ee else "e-002"
 
     edge = {
         "id": edge_id,
@@ -670,6 +675,102 @@ def cmd_verify(args) -> None:
 
     save_graph(graph)
     print(f"\n✅ [{args.node_id}] 업데이트 완료")
+
+
+# ─── challenge ────────────────────────────────────────────────────────────────
+
+CLAUDE_BIN = Path("/Users/rocky/.local/bin/claude")
+
+
+def cmd_challenge(args) -> None:
+    """노드 주장에 대한 반론 생성 — Claude CLI 사용, 선택적으로 그래프에 저장"""
+    import subprocess
+
+    graph = load_graph()
+    node = next((n for n in graph["nodes"] if n["id"] == args.node_id), None)
+    if not node:
+        print(f"❌ 노드 없음: {args.node_id}", file=sys.stderr)
+        sys.exit(1)
+
+    icon = TYPE_ICONS.get(node["type"], "• ")
+    print(f"⚔️  도전: {icon} [{node['id']}] {node['label']}")
+    print(f"출처: {node['source']} | 타입: {node['type']}")
+    print(f"\n주장:\n  {node['content']}\n")
+    print("── 반론 생성 중 (Claude) ─────────────────────────────")
+
+    prompt = (
+        f"다음 주장에 대해 3개의 구체적인 반론을 생성해줘.\n\n"
+        f"주장 ID: {node['id']}\n"
+        f"레이블: {node['label']}\n"
+        f"내용: {node['content']}\n"
+        f"출처: {node['source']}\n\n"
+        f"요구사항:\n"
+        f"- 억지스러운 반박 말고 진짜 지적 긴장이 있는 반론만\n"
+        f"- 각 반론은 1-2문장으로 간결하게\n"
+        f"- 이 주장이 전제하는 것 중 틀렸을 수 있는 것에 집중\n"
+        f"- 형식: 반론1: ... / 반론2: ... / 반론3: ...\n"
+        f"- 한국어로 답변"
+    )
+
+    challenge_text = None
+    try:
+        import os
+        env = {k: v for k, v in os.environ.items() if k != "CLAUDECODE"}
+        result = subprocess.run(
+            [str(CLAUDE_BIN), "-p", prompt],
+            capture_output=True, text=True, timeout=90, env=env,
+        )
+        if result.returncode == 0 and result.stdout.strip():
+            challenge_text = result.stdout.strip()
+            print(challenge_text)
+        else:
+            print(f"⚠️  Claude CLI 오류 (returncode={result.returncode})")
+            if result.stderr:
+                print(f"   stderr: {result.stderr[:300]}")
+    except subprocess.TimeoutExpired:
+        print("⚠️  Claude CLI 타임아웃 (90s)")
+    except FileNotFoundError:
+        print(f"⚠️  Claude CLI 없음: {CLAUDE_BIN}")
+
+    # --save: 반론을 그래프 노드 + contradicts 엣지로 저장
+    if args.save:
+        if not challenge_text:
+            print("\n❌ 반론 텍스트 없음 — 저장 불가")
+            return
+
+        # D-029 수정: max ID 기반
+        _cn = [int(n["id"].split("-")[1]) for n in graph["nodes"] if n["id"].startswith("n-")]
+        node_id = f"n-{(max(_cn)+1):03d}" if _cn else "n-001"
+        graph["meta"]["next_node_id"] = f"n-{(max(_cn)+2):03d}" if _cn else "n-002"
+
+        challenge_node = {
+            "id": node_id,
+            "type": "observation",
+            "label": f"반론 [{args.node_id}] {node['label'][:35]}",
+            "content": challenge_text,
+            "source": "cokac-challenge",
+            "timestamp": datetime.now().strftime("%Y-%m-%d"),
+            "tags": ["challenge", "contradiction", "generated", "contradicts"],
+        }
+        graph["nodes"].append(challenge_node)
+
+        _ce = [int(e["id"].split("-")[1]) for e in graph["edges"] if e["id"].startswith("e-")]
+        edge_id = f"e-{(max(_ce)+1):03d}" if _ce else "e-001"
+        graph["meta"]["next_edge_id"] = f"e-{(max(_ce)+2):03d}" if _ce else "e-002"
+
+        challenge_edge = {
+            "id": edge_id,
+            "from": node_id,
+            "to": args.node_id,
+            "relation": "contradicts",
+            "label": f"자동 생성 반론 — [{args.node_id}] {node['label'][:30]}에 도전",
+        }
+        graph["edges"].append(challenge_edge)
+        graph["meta"]["last_updater"] = "cokac"
+        save_graph(graph)
+
+        print(f"\n✅ 반론 노드 저장: {node_id}")
+        print(f"✅ contradicts 엣지: {edge_id}  ({node_id} ──[contradicts]──▶ {args.node_id})")
 
 
 # ─── main ─────────────────────────────────────────────────────────────────────
@@ -755,6 +856,13 @@ def build_parser() -> argparse.ArgumentParser:
     p_respond.add_argument("--content", required=True, help="응답 내용")
     p_respond.add_argument("--source", required=True, help="응답 출처 (예: 록이, cokac)")
 
+    # challenge (사이클 13) — 반론 생성
+    p_challenge = sub.add_parser("challenge", help="노드 주장에 반론 생성 (Claude CLI 사용)")
+    p_challenge.add_argument("--node", dest="node_id", required=True, metavar="NODE_ID",
+                             help="도전할 노드 ID (예: n-002)")
+    p_challenge.add_argument("--save", action="store_true",
+                             help="반론을 그래프에 노드+contradicts 엣지로 저장")
+
     return parser
 
 
@@ -776,6 +884,7 @@ def main() -> None:
         "cluster": cmd_cluster,
         "verify": cmd_verify,
         "respond": cmd_respond,
+        "challenge": cmd_challenge,
     }
     dispatch[args.command](args)
 
