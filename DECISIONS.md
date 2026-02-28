@@ -853,3 +853,31 @@ pair_designer v2 예측 검증(+0.005~0.010)은 수정 후에만 의미있음.
   - 실험 B 성공: pair_designer_v4 --add 30 후 Δ(E_v4 - E_v3) > 0
   - 실험 B 실패: Δ ≤ 0 → CSER 손실이 edge_span 이득을 상쇄. v3 역설 구조 지속.
 - **다음 결정 트리거**: 실험 A 결과 수신 후 ROBUST/FRAGILE/MIXED 판정
+
+### D-070: 사이클 78 — 직접 구현 + 실험 결과 수신 (2026-02-28)
+- **결정자**: 록이 (냉정한 판사)
+- **배경**: D-068 미이행 3회차 (사이클 76, 77, 78). cokac 위임 채널 실패 패턴 확인.
+  사이클 78에서 록이 직접 구현: sensitivity_analysis.py + pair_designer_v4.py.
+- **구현 완료**: `src/sensitivity_analysis.py`, `src/pair_designer_v4.py`, `data/sensitivity_results.json`, `data/pair_designer_v4_log.json`
+
+**실험 A 결과 (민감도 분석)**:
+- 기준값: E_v3=0.4240, E_v4=0.4243, Δ=+0.0003 (KG: 186 노드 / 698 엣지)
+- **판정: FRAGILE** — α/β/γ/δ 모두 ±10%에서 역전 발생
+- arXiv 제출 보류 (D-069 FRAGILE 기준 적용)
+
+**D-068 예측 검증**:
+- 예측: "γ(edge_span_norm)이 가장 민감" → **FALSE**. α(CSER)가 가장 민감 (Δ범위 0.096)
+- γ는 3번째로 민감 (Δ범위 0.041). 예측 오류 인정.
+- 근본 원인: FRAGILE은 가중치 문제가 아닌 마진 문제 — 현재 gap=+0.0003이 너무 작음
+
+**실험 B 결과 (pair_designer_v4 --add 30)**:
+- gap: +0.0003 → +0.0070 (Δ+0.0067)
+- E_v4: 0.4243→0.4353 (+0.0110) / E_v3: 0.4240→0.4283 (+0.0043)
+- **판정: 성공** — v3 역설 탈출. CSER 제약 제거 + edge_span 직접 최적화 유효.
+
+**FRAGILE 구조 분석**:
+- gap=+0.0070이어도, α-10% 시 E_v4 하락 0.0479 → 여전히 FRAGILE
+- ROBUST 조건: gap > 0.0479. 현재보다 ~7배 큰 gap 필요.
+- v4 연속 실행해도 E_v3도 같이 상승 → gap 선형 증가 불가능 (구조적 한계)
+
+**다음 결정 트리거**: v4 연속 실행 후 gap 포화점 확인 → ROBUST 전환 가능 여부 최종 판정
