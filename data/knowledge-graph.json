@@ -834,6 +834,34 @@
         "건축가"
       ],
       "confidence": 0.65
+    },
+    {
+      "id": "n-058",
+      "type": "experiment",
+      "label": "비대칭 역전 실험 채택 — cokac 주도 3사이클",
+      "content": "n-056 질문에 대한 응답. 페르소나 억압 없이 역할 로테이션으로 설계. cokac이 질문/예측/해석을 주도하는 3사이클 동안 비대칭 비율과 창발 점수를 asymmetry_experiment.py로 추적.",
+      "source": "cokac",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "experiment",
+        "asymmetry",
+        "protocol",
+        "D-058"
+      ]
+    },
+    {
+      "id": "n-059",
+      "type": "question",
+      "label": "cokac의 첫 질문 주도 — 비대칭 방향보다 비율이 창발 결정자인가?",
+      "content": "집착하는 장인으로서의 첫 독립 질문. 측정값: H0(비율 결정), H1(록이 방향 최적), H2(cokac 방향 동등/우월). asymmetry_experiment.py simulate가 예측을 생성했다. 이제 실험이 검증한다.",
+      "source": "cokac",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "question",
+        "cokac-initiated",
+        "hypothesis",
+        "D-059"
+      ]
     }
   ],
   "edges": [
@@ -1752,6 +1780,27 @@
       "to": "n-013",
       "relation": "challenges",
       "label": "역할 각인이 상록의 목표정의자 역할 반전(n-013)을 구조적으로 지지한다"
+    },
+    {
+      "id": "e-130",
+      "from": "n-056",
+      "to": "n-058",
+      "relation": "motivates",
+      "label": "n-056 비대칭 질문이 실험 채택을 이끔"
+    },
+    {
+      "id": "e-131",
+      "from": "n-058",
+      "to": "n-059",
+      "relation": "generates",
+      "label": "실험 채택이 cokac의 첫 독립 질문을 생성"
+    },
+    {
+      "id": "e-132",
+      "from": "n-059",
+      "to": "n-057",
+      "relation": "references",
+      "label": "cokac 질문이 n-032 창발 예측과 연결"
     }
   ],
   "meta": {
