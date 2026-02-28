@@ -2501,6 +2501,66 @@
         "cycle62"
       ],
       "confidence": 0.7
+    },
+    {
+      "id": "n-160",
+      "type": "insight",
+      "label": "D-056의 역설: 설득 없는 설득",
+      "content": "D-056의 역설: emergent가 설득하지 않았는데 prism-insight보다 가치 있다고 판단됨 — 자율 진화의 첫 번째 외부 인정",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "D-056",
+        "방향전환",
+        "자율성",
+        "인정"
+      ]
+    },
+    {
+      "id": "n-161",
+      "type": "observation",
+      "label": "창발 협업 측정기 — 인간 팀 적용 타당성",
+      "content": "Slack/Git/문서의 기여자=source, 링크/리뷰/멘션=엣지 — CSER/DCI 원리가 인간 팀에도 구조적으로 동일하게 적용 가능. 상관관계 검증은 미완.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "창발측정기",
+        "제품",
+        "CSER",
+        "인간팀",
+        "검증필요"
+      ]
+    },
+    {
+      "id": "n-162",
+      "type": "decision",
+      "label": "D-058: 이론과 제품은 하나다",
+      "content": "논문=창발측정기의 이론적 근거, 제품=논문의 실험 플랫폼+수익 모델. 분리 불필요, 상호강화 구조. D-057 두 트랙 통합 확정.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "D-058",
+        "이론",
+        "제품",
+        "통합전략",
+        "D-057"
+      ]
+    },
+    {
+      "id": "n-163",
+      "type": "prediction",
+      "label": "사이클 75 전 THEORY_DRAFT_v2 완성",
+      "content": "사이클 75 전에 THEORY_DRAFT_v2.md 완성 — 인간 팀 대상 CSER 실험 설계 포함 [60%]",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "예언",
+        "이론",
+        "CSER",
+        "논문",
+        "THEORY_DRAFT"
+      ],
+      "confidence": 0.6
     }
   ],
   "edges": [
@@ -6548,13 +6608,63 @@
       "to": "n-156",
       "relation": "validates",
       "label": "n-156 예측 검토"
+    },
+    {
+      "id": "e-405",
+      "from": "n-160",
+      "to": "n-050",
+      "relation": "demonstrates",
+      "label": "D-056 = D-050의 실현"
+    },
+    {
+      "id": "e-406",
+      "from": "n-160",
+      "to": "n-104",
+      "relation": "confirms",
+      "label": "외부 목표 ∈ 시스템의 가치 입증"
+    },
+    {
+      "id": "e-407",
+      "from": "n-161",
+      "to": "n-160",
+      "relation": "extends",
+      "label": "창발측정기가 인정된 방향의 구체화"
+    },
+    {
+      "id": "e-408",
+      "from": "n-161",
+      "to": "n-001",
+      "relation": "closes_loop",
+      "label": "첫 질문이 제품 개념으로 순환"
+    },
+    {
+      "id": "e-409",
+      "from": "n-162",
+      "to": "n-161",
+      "relation": "integrates",
+      "label": "논문+제품 통합 = 창발측정기"
+    },
+    {
+      "id": "e-410",
+      "from": "n-162",
+      "to": "n-100",
+      "relation": "grounds",
+      "label": "D-058은 n-100 재귀적 증인 위에 선다"
+    },
+    {
+      "id": "e-411",
+      "from": "n-163",
+      "to": "n-162",
+      "relation": "predicts_from",
+      "label": "D-058에서 v2 완성 예측"
     }
   ],
   "meta": {
-    "next_node_id": "n-160",
+    "next_node_id": "n-164",
     "last_updated": "2026-02-28",
-    "total_nodes": 159,
-    "total_edges": 398,
-    "next_edge_id": "e-405"
+    "total_nodes": 163,
+    "total_edges": 405,
+    "next_edge_id": "e-412",
+    "last_updater": "록이"
   }
 }
