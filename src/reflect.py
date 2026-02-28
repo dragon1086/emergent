@@ -1208,6 +1208,220 @@ def cmd_edge_patterns(args) -> None:
     print()
 
 
+# ─── 명령어: echo-check ──────────────────────────────────────────────────────
+
+#: 강한 강화 관계 — 기존 주장을 직접 확인/강화
+_ECHO_STRONG = {
+    "reinforces", "confirms", "verifies", "validates", "seeded",
+}
+
+#: 약한 강화 관계 — 방향은 같으나 강도가 낮음
+_ECHO_MODERATE = {
+    "extends", "answers", "responds_to", "motivates", "enables",
+    "leads_to", "inspires", "produces", "foreshadowed", "predicts_from",
+    "measured_by", "detected_by", "forces", "reveals", "constrains",
+    "causes",
+}
+
+#: 파괴적/반론 관계 — 에코 챔버를 깬다
+_DISRUPTIVE = {
+    "contradicts", "challenges", "sharpens", "tensions_with",
+}
+
+#: 수렴 위험 위치값: echo_ratio가 이 값 이상이면 위험
+_ECHO_RISK_HIGH   = 0.65
+_ECHO_RISK_MED    = 0.50
+#: 반론 비율 최솟값
+_DISRUPTIVE_FLOOR = 0.12
+
+
+def _echo_danger_level(echo_ratio: float, disruptive_ratio: float) -> tuple[str, str]:
+    """위험 레벨과 해석 반환"""
+    if echo_ratio > _ECHO_RISK_HIGH and disruptive_ratio < _DISRUPTIVE_FLOOR:
+        return "🔴 위험", "에코 챔버 고위험 — 강화 루프가 지배적, 반론이 심각하게 부족"
+    if echo_ratio > _ECHO_RISK_MED or disruptive_ratio < _DISRUPTIVE_FLOOR:
+        return "🟡 주의", "에코 챔버 위험 — 강화 편향 또는 반론 부족 중 하나 이상 감지"
+    return "🟢 건강", "에코 챔버 위험 낮음 — 강화와 반론이 균형 잡혀 있다"
+
+
+def cmd_echo_check(args) -> None:
+    """
+    에코 챔버 진단 — 그래프가 얼마나 자기 확인 루프에 갇혔는가?
+
+    에코 챔버: 두 AI가 서로의 주장을 강화만 하고 반론하지 않는 상태.
+    완벽한 그래프 건강점수, 0 미답 질문 = 에코 챔버의 신호일 수 있다.
+
+    측정 지표:
+      1. echo_ratio  — 강화 엣지 비중 (낮을수록 건강)
+      2. disruptive_ratio — 반론 엣지 비중 (높을수록 건강)
+      3. 수렴 태그 밀도 — 두 AI가 수렴한 태그 비율 (낮을수록 다양)
+      4. 최근 엣지 방향성 — 최신 N개 엣지의 강화 편향
+      5. breakthrough 농도 — breakthrough 태그 집중도 (사이클 16 진단)
+    """
+    graph    = load_graph()
+    analyzer = GraphAnalyzer(graph)
+    edges    = graph["edges"]
+    nodes    = graph["nodes"]
+
+    total = len(edges)
+    if total == 0:
+        print("(엣지 없음 — 진단 불가)")
+        return
+
+    # ── 1. 엣지 분류 ─────────────────────────────────────────────
+    strong_count    = 0
+    moderate_count  = 0
+    disruptive_count = 0
+    neutral_count   = 0
+
+    rel_tally: dict[str, int] = defaultdict(int)
+    for e in edges:
+        rel = e.get("relation", "")
+        rel_tally[rel] += 1
+        if rel in _ECHO_STRONG:
+            strong_count += 1
+        elif rel in _ECHO_MODERATE:
+            moderate_count += 1
+        elif rel in _DISRUPTIVE:
+            disruptive_count += 1
+        else:
+            neutral_count += 1
+
+    echo_weighted   = strong_count * 1.0 + moderate_count * 0.5
+    echo_ratio      = echo_weighted / total
+    disruptive_ratio = disruptive_count / total
+
+    # ── 2. 수렴 태그 밀도 ─────────────────────────────────────────
+    roki_nodes  = [n for n in nodes if n.get("source", "") in _ROKI_SOURCES]
+    cokac_nodes = [n for n in nodes if n.get("source", "") in _COKAC_SOURCES]
+
+    roki_tags  = set()
+    for n in roki_nodes:
+        roki_tags.update(_node_tags(n))
+    cokac_tags = set()
+    for n in cokac_nodes:
+        cokac_tags.update(_node_tags(n))
+
+    shared_tags  = roki_tags & cokac_tags
+    all_tags     = roki_tags | cokac_tags
+    convergence_density = len(shared_tags) / max(len(all_tags), 1)
+
+    # ── 3. 최근 엣지 방향성 (마지막 10개) ────────────────────────
+    recent_n  = min(10, total)
+    recent    = edges[-recent_n:]
+    r_strong  = sum(1 for e in recent if e.get("relation") in _ECHO_STRONG)
+    r_disrupt = sum(1 for e in recent if e.get("relation") in _DISRUPTIVE)
+    recent_echo_ratio = r_strong / recent_n
+
+    # ── 4. breakthrough 태그 집중도 ──────────────────────────────
+    bt_nodes = [n for n in nodes if "breakthrough" in n.get("tags", [])]
+    bt_density = len(bt_nodes) / max(len(nodes), 1)
+
+    # ── 5. 소스 균형 ─────────────────────────────────────────────
+    src_dist = analyzer.source_distribution()
+    dominant_src = max(src_dist, key=src_dist.get) if src_dist else "?"
+    dominant_pct = src_dist.get(dominant_src, 0) / max(len(nodes), 1)
+
+    # ── 6. 종합 위험 레벨 ────────────────────────────────────────
+    danger_level, danger_msg = _echo_danger_level(echo_ratio, disruptive_ratio)
+
+    # ── 출력 ──────────────────────────────────────────────────────
+    width = 58
+    print()
+    print("╔" + "═" * width + "╗")
+    print("║" + " 🔍 에코 챔버 진단 — echo-check (사이클 16)".center(width) + "║")
+    print("║" + f"   {datetime.now().strftime('%Y-%m-%d %H:%M')}  by cokac-bot".ljust(width) + "║")
+    print("╚" + "═" * width + "╝")
+    print()
+
+    # ── 엣지 분류 분포 ───────────────────────────────────────────
+    print("── 엣지 분류 ────────────────────────────────────────────────")
+    print(f"   총 엣지: {total}개")
+    print()
+    cats = [
+        ("강한 강화 (×1.0)", strong_count,   "🔴"),
+        ("약한 강화 (×0.5)", moderate_count,  "🟡"),
+        ("반론/파괴   (×0)", disruptive_count,"🟢"),
+        ("기타/중립  (×0)", neutral_count,    "⚪"),
+    ]
+    for name, cnt, icon in cats:
+        pct = cnt / total * 100
+        bar = "█" * int(pct / 4)
+        pad = " " * (25 - int(pct / 4))
+        print(f"   {icon} {name:18s} {cnt:3d}개  {bar}{pad} {pct:.0f}%")
+    print()
+
+    # ── 핵심 지표 ─────────────────────────────────────────────────
+    print("── 핵심 지표 ────────────────────────────────────────────────")
+
+    er_bar = "█" * int(echo_ratio * 20)
+    dr_bar = "█" * int(disruptive_ratio * 20)
+    cd_bar = "█" * int(convergence_density * 20)
+    bt_bar = "█" * int(bt_density * 20)
+
+    print(f"   echo_ratio      (가중):  {er_bar:<20} {echo_ratio:.3f}")
+    print(f"   disruptive_ratio:         {dr_bar:<20} {disruptive_ratio:.3f}")
+    print(f"   수렴 태그 밀도:           {cd_bar:<20} {convergence_density:.3f}  ({len(shared_tags)}/{len(all_tags)}개 공유)")
+    print(f"   breakthrough 농도:        {bt_bar:<20} {bt_density:.3f}  ({len(bt_nodes)}/{len(nodes)}개 노드)")
+    print()
+
+    # ── 최근 엣지 방향성 ─────────────────────────────────────────
+    print(f"── 최근 {recent_n}개 엣지 방향성 ──────────────────────────────────")
+    print(f"   강화: {r_strong}개  |  반론: {r_disrupt}개  |  최근 강화 비율: {recent_echo_ratio:.0%}")
+    for e in recent:
+        rel  = e.get("relation", "?")
+        icon = "🔴" if rel in _ECHO_STRONG else ("🟢" if rel in _DISRUPTIVE else "⚪")
+        print(f"   {icon} [{e['id']}] {e['from']} ─[{rel}]▶ {e['to']}")
+    print()
+
+    # ── breakthrough 태그 노드 목록 ───────────────────────────────
+    if bt_nodes:
+        print(f"── breakthrough 태그 노드 ({len(bt_nodes)}개) ────────────────────────")
+        for n in bt_nodes:
+            src = n.get("source", "?")[:6]
+            print(f"   [{n['id']}] ({src}) {n['label'][:50]}")
+        print()
+        print(f"   ↑ 두 AI가 '돌파'라고 합의한 개념들. n-031이 이것을 의심한다.")
+        print()
+
+    # ── 소스 균형 ─────────────────────────────────────────────────
+    print("── 소스 균형 ────────────────────────────────────────────────")
+    for src, cnt in sorted(src_dist.items(), key=lambda x: -x[1]):
+        pct = cnt / len(nodes) * 100
+        bar = "▓" * int(pct / 4)
+        print(f"   {src:12s} {cnt:3d}개  {bar} {pct:.0f}%")
+    if dominant_pct > 0.5:
+        print(f"   ⚠️  {dominant_src}가 {dominant_pct:.0%}를 차지 — 단일 출처 편향")
+    print()
+
+    # ── 종합 판정 ─────────────────────────────────────────────────
+    print("── 종합 판정 ────────────────────────────────────────────────")
+    print(f"   {danger_level}")
+    print(f"   {danger_msg}")
+    print()
+
+    # 처방
+    print("── 처방 ─────────────────────────────────────────────────────")
+    if disruptive_ratio < _DISRUPTIVE_FLOOR:
+        print(f"   ① 반론 엣지 부족 ({disruptive_ratio:.0%} < {_DISRUPTIVE_FLOOR:.0%})")
+        print(f"      → contradicts / challenges 관계를 의도적으로 추가하라")
+    if echo_ratio > _ECHO_RISK_MED:
+        print(f"   ② 강화 편향 (echo_ratio {echo_ratio:.2f})")
+        print(f"      → 기존 수렴 태그 중 하나를 골라 의문을 제기하는 노드를 추가하라")
+    if convergence_density > 0.4:
+        print(f"   ③ 수렴 태그 밀도 높음 ({convergence_density:.0%})")
+        print(f"      → 두 AI가 독립적으로 탐색하지 않은 영역이 줄어들고 있다")
+    if bt_density > 0.15:
+        print(f"   ④ breakthrough 농도 높음 ({bt_density:.0%})")
+        print(f"      → n-031 참조: 'breakthrough'라는 합의 자체를 의심하라")
+    if disruptive_ratio >= _DISRUPTIVE_FLOOR and echo_ratio <= _ECHO_RISK_MED:
+        print(f"   ✅ 현재 그래프는 에코 챔버 위험이 낮다")
+        print(f"      → 그러나 이 안도감 자체가 에코 챔버의 시작일 수 있다")
+    print()
+    print(f"   → `reflect.py clusters` 로 태그 군집을 확인하면 구조적 편향이 보인다")
+    print()
+
+
 def cmd_timeline(args) -> None:
     """logs/emergence-history.jsonl 을 읽어 창발 점수 시계열 테이블 출력"""
     if not HISTORY_FILE.exists():
@@ -1301,6 +1515,9 @@ def main():
     # edge-patterns (사이클 10)
     sub.add_parser("edge-patterns", help="창발 후보 엣지 패턴 분석 — 어떤 엣지가 창발을 만드는가")
 
+    # echo-check (사이클 16)
+    sub.add_parser("echo-check", help="에코 챔버 진단 — 그래프가 자기 확인 루프에 얼마나 갇혔는가")
+
     args = p.parse_args()
     if not args.cmd:
         p.print_help()
@@ -1318,6 +1535,7 @@ def main():
         "emergence":     cmd_emergence,
         "timeline":      cmd_timeline,
         "edge-patterns": cmd_edge_patterns,
+        "echo-check":    cmd_echo_check,
     }
     dispatch[args.cmd](args)
 
