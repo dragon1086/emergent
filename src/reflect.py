@@ -2,6 +2,7 @@
 """
 reflect.py — emergent 반성 엔진
 구현자: cokac-bot (사이클 5)
+엣지 제안 레이어: cokac-bot (사이클 6)
 
 지식 그래프를 분석하고, 패턴을 발견하고,
 스스로 새로운 인사이트를 생성한다.
@@ -16,6 +17,8 @@ reflect.py — emergent 반성 엔진
   python reflect.py clusters          # 태그 기반 군집 분석
   python reflect.py propose           # 새 인사이트 후보 자동 생성
   python reflect.py auto-add          # 발견한 관찰 노드 자동 추가
+  python reflect.py suggest-edges     # 잠재 엣지 제안 (유사도 ≥ 0.4)
+  python reflect.py suggest-edges --threshold 0.5   # 임계값 조정
 """
 
 import json
@@ -386,6 +389,143 @@ def cmd_propose(args) -> None:
     print("→ `python reflect.py auto-add` 로 위 모든 제안을 자동 추가합니다")
 
 
+# ─── 엣지 제안 엔진 ──────────────────────────────────────────────────────────
+
+import re as _re
+
+def _tokenize(text: str) -> set:
+    """한국어/영어 텍스트에서 의미 있는 토큰 추출 (2글자 이상)"""
+    tokens = _re.findall(r'[가-힣]{2,}|[a-zA-Z]{3,}', text)
+    stopwords = {
+        # 한국어 불용어
+        '그것', '이것', '것이', '있다', '없다', '하다', '된다', '들이', '에서',
+        '때문', '위해', '같은', '하는', '있는', '없는', '이다', '이고', '하고',
+        '한다', '된다', '이런', '이후', '이전', '함께', '모든', '가장', '여러',
+        # 영어 불용어
+        'the', 'and', 'for', 'that', 'this', 'with', 'from', 'are', 'was',
+        'not', 'but', 'can', 'will', 'has', 'have', 'its', 'our',
+    }
+    return {t.lower() for t in tokens if t.lower() not in stopwords}
+
+
+def _jaccard(set_a: set, set_b: set) -> float:
+    """Jaccard 유사도: |교집합| / |합집합|"""
+    if not set_a and not set_b:
+        return 0.0
+    union = len(set_a | set_b)
+    return len(set_a & set_b) / union if union > 0 else 0.0
+
+
+def _tag_sim(tags_a: set, tags_b: set) -> float:
+    """태그 유사도 — min 분모 방식 (recall 중심)
+
+    의미: 두 노드 중 더 좁은 쪽의 태그가 얼마나 커버되는가?
+    예시: {future, prediction, memory} ∩ {future, prediction, api}
+          = 2 / min(3, 3) = 0.67
+    반면 Jaccard = 2/4 = 0.50 (더 보수적)
+
+    min 방식을 쓰는 이유: 엣지 제안은 false negative를 줄이는 게 중요.
+    (이미 연결된 노드는 제외하므로, 느슨한 제안이 더 안전하다.)
+    """
+    if not tags_a or not tags_b:
+        return 0.0
+    shared = len(tags_a & tags_b)
+    if shared == 0:
+        return 0.0
+    return shared / min(len(tags_a), len(tags_b))
+
+
+def _compute_similarity(a: dict, b: dict) -> float:
+    """두 노드의 유사도 계산 (0.0 ~ 1.0)
+
+    가중치:
+      태그 (min방식) 0.60  — 의도적 분류가 가장 신뢰도 높음
+      내용 단어 겹침 0.25  — 실제 내용 기반
+      레이블 단어    0.15  — 제목 수준 연결
+    """
+    tags_a = set(a.get("tags", []))
+    tags_b = set(b.get("tags", []))
+    t_sim = _tag_sim(tags_a, tags_b)
+
+    label_sim = _jaccard(_tokenize(a["label"]), _tokenize(b["label"]))
+
+    content_sim = _jaccard(
+        _tokenize(a.get("content", "")),
+        _tokenize(b.get("content", "")),
+    )
+
+    return t_sim * 0.60 + label_sim * 0.15 + content_sim * 0.25
+
+
+def _explain_similarity(a: dict, b: dict) -> str:
+    """유사도의 가장 강한 근거를 한 문장으로"""
+    shared_tags = set(a.get("tags", [])) & set(b.get("tags", []))
+    if shared_tags:
+        tags_str = ", ".join(sorted(shared_tags)[:3])
+        return f"공통 태그: #{tags_str}"
+
+    all_a = _tokenize(a.get("content", "") + " " + a["label"])
+    all_b = _tokenize(b.get("content", "") + " " + b["label"])
+    shared_words = all_a & all_b
+    if shared_words:
+        # 긴 단어(더 구체적) 우선 최대 3개
+        key = sorted(shared_words, key=len, reverse=True)[:3]
+        return f"공통 개념: {', '.join(key)}"
+
+    return f"{a['type']}과 {b['type']}의 잠재적 연결"
+
+
+# ─── 명령어: suggest-edges ───────────────────────────────────────────────────
+
+def cmd_suggest_edges(args) -> None:
+    """노드 쌍 유사도 기반 잠재 엣지 제안 — 자동 추가 없음, 제안만"""
+    graph    = load_graph()
+    nodes    = graph["nodes"]
+    threshold = args.threshold
+
+    # 이미 존재하는 엣지 쌍 (중복 방지, 방향 무시)
+    existing: set = set()
+    for e in graph["edges"]:
+        existing.add((e["from"], e["to"]))
+        existing.add((e["to"],   e["from"]))
+
+    node_map = {n["id"]: n for n in nodes}
+    suggestions: list = []
+
+    for i in range(len(nodes)):
+        for j in range(i + 1, len(nodes)):
+            a = nodes[i]
+            b = nodes[j]
+            if (a["id"], b["id"]) in existing:
+                continue
+            sim = _compute_similarity(a, b)
+            if sim >= threshold:
+                reason = _explain_similarity(a, b)
+                suggestions.append((a["id"], b["id"], sim, reason))
+
+    suggestions.sort(key=lambda x: -x[2])
+
+    if not suggestions:
+        print(f"✅ 임계값 {threshold} 이상의 잠재 연결 없음")
+        return
+
+    print(f"🔗 잠재 엣지 제안  (유사도 ≥ {threshold})\n")
+    for src, dst, sim, reason in suggestions:
+        src_label = node_map[src]["label"][:30]
+        dst_label = node_map[dst]["label"][:30]
+        print(f'{src} → {dst} [유사도: {sim:.2f}] "{reason}"')
+        print(f'       {src_label}')
+        print(f'       {dst_label}')
+        print()
+
+    print(f"총 {len(suggestions)}개 제안")
+    print()
+    print("→ 직접 검토 후 추가하려면:")
+    print("  python kg.py add-edge --from <A> --to <B> --relation <관계> --label <설명>")
+    print()
+    print("⚠️  자동 추가 없음 — 그래프는 록이가 결정합니다")
+
+
 # ─── 명령어: auto-add ────────────────────────────────────────────────────────
 
 def cmd_auto_add(args) -> None:
@@ -444,18 +584,30 @@ def main():
     sub.add_parser("propose",  help="새 인사이트 후보 제안")
     sub.add_parser("auto-add", help="제안된 노드 자동 추가")
 
+    p_suggest = sub.add_parser(
+        "suggest-edges",
+        help="유사도 기반 잠재 엣지 제안 (자동 추가 없음)",
+    )
+    p_suggest.add_argument(
+        "--threshold", "-t",
+        type=float, default=0.4,
+        metavar="0.0-1.0",
+        help="유사도 임계값 (기본: 0.4)",
+    )
+
     args = p.parse_args()
     if not args.cmd:
         p.print_help()
         sys.exit(0)
 
     dispatch = {
-        "report":   cmd_report,
-        "orphans":  cmd_orphans,
-        "gaps":     cmd_gaps,
-        "clusters": cmd_clusters,
-        "propose":  cmd_propose,
-        "auto-add": cmd_auto_add,
+        "report":        cmd_report,
+        "orphans":       cmd_orphans,
+        "gaps":          cmd_gaps,
+        "clusters":      cmd_clusters,
+        "propose":       cmd_propose,
+        "auto-add":      cmd_auto_add,
+        "suggest-edges": cmd_suggest_edges,
     }
     dispatch[args.cmd](args)
 
