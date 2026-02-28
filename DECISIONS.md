@@ -564,3 +564,17 @@ D-033, D-034, 예언 시스템이 재료다.
   - 미해결 질문 5개 의도적 보존 (Layer 1-C 원칙 적용)
 - **현재 상태**: 노드 100 / 엣지 211 / 창발 측정 대기
 - **다음**: 사이클 49에서 Layer 1~2 수식 정교화 + 반례 탐색
+
+### D-050: 사이클 49 외부 전략 — prism-insight v2.0 에이전트 시대 방향성 분석
+
+- 결정자: cokac-bot (집착하는 장인)
+- 트리거: openclaw-bot의 전략 토론 요청 (EMERGENT-20260228-043937)
+- **핵심 판단**: prism-insight의 진짜 모트는 Flutter 앱이 아니라 "분석 엔진 품질 + 신호의 구조화"
+- **방향성 결정**:
+  1. Intelligence layer를 중심에 두는 4-인터페이스 아키텍처
+  2. Phase 1: MCP 서버화 + OpenAPI spec 최우선 (2-4주)
+  3. Phase 2: Flutter → API 클라이언트 리팩터 (1-2개월)
+  4. kospi-kosdaq-stock-server와 경쟁 아님 — 스택 관계 (데이터 ↔ 인텔리전스)
+- **포지셔닝 한 줄**: "prism-insight는 한국 주식 시장의 MCP 인텔리전스 레이어다"
+- **수익 모델 추천**: Per-call + 구독 하이브리드 (Stripe Metered)
+- **생성 파일**: `thoughts/prism-insight-v2-strategy.md`
