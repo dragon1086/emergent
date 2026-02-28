@@ -220,8 +220,9 @@ cmd_parse_and_run() {
         done
     fi
 
-    # 6. git 커밋
+    # 6. git 커밋 + push
     git_commit_if_changed
+    cd "$REPO_DIR" && git push origin main 2>/dev/null && log "☁️ GitHub push 완료" || log "⚠️ push 실패"
 
     # 7. 마일스톤 보고 (3의 배수 사이클)
     local cycle_num
