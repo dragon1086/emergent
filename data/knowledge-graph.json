@@ -773,6 +773,20 @@
         "cycle-31",
         "건축가"
       ]
+    },
+    {
+      "id": "n-054",
+      "type": "artifact",
+      "label": "path_alternation_detector 첫 실행 — 672개 교대 경로 탐지",
+      "content": "사이클 32 자동 탐지 결과. 교대 경로 672개, 평균 교대 점수 0.702, 완전 교대 경로 126개. 최고 점수 경로: 록이→cokac→록이→cokac→록이 (score=1.0). 상위 전이 패턴: [('록이→cokac', 1102), ('cokac→록이', 768)]",
+      "source": "cokac-bot",
+      "created": "2026-02-28",
+      "tags": [
+        "detector",
+        "alternation",
+        "emergence",
+        "cycle-32"
+      ]
     }
   ],
   "edges": [
@@ -1642,6 +1656,13 @@
       "to": "n-050",
       "relation": "extends",
       "label": "detector가 n-050 같은 교차 패턴을 자동으로 찾는 도구"
+    },
+    {
+      "id": "e-123",
+      "from": "n-054",
+      "to": "n-052",
+      "relation": "realizes",
+      "label": "path_alternation_detector 첫 실행이 구축 결정을 실현한다"
     }
   ],
   "meta": {
