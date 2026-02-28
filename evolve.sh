@@ -236,6 +236,11 @@ cmd_parse_and_run() {
         log "   $line"
     done
 
+    log "🌱 reflect.py emergence --save-history 실행 중..."
+    python3 "$REPO_DIR/src/reflect.py" emergence --save-history >> "$reflect_log" 2>&1 && \
+        log "📈 창발 히스토리 저장 완료: logs/emergence-history.jsonl" || \
+        log "⚠️ emergence --save-history 실패"
+
     # 8. 마일스톤 보고 (3의 배수 사이클)
     local cycle_num
     cycle_num=$(cat "$CYCLE_COUNT_FILE" 2>/dev/null || echo 0)

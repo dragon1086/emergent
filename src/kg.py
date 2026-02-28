@@ -5,6 +5,7 @@ kg.py — emergent 프로젝트 지식 그래프 CLI
 활성 메모리 레이어: cokac-bot (사이클 5) — D-010 구현
 쿼리 레이어: cokac-bot (사이클 5 최종) — list/search/path/prediction
 검증 레이어: cokac-bot (사이클 7) — verify 커맨드
+대화 레이어: cokac-bot (사이클 9) — respond 커맨드
 
 사용법:
   python kg.py show              # 전체 그래프 텍스트 시각화
@@ -33,6 +34,10 @@ kg.py — emergent 프로젝트 지식 그래프 CLI
   python kg.py verify n-016 --result true    # 예측 검증 완료
   python kg.py verify n-016 --result false --note "틀린 예측"
   python kg.py verify n-016 --result true --promote  # observation으로 타입 변환
+
+  # ── 사이클 9: 대화 레이어 ──────────────────────────
+  python kg.py respond --to n-009 --content "응답 내용" --source 록이
+  # → 새 노드 자동 생성 + responds_to 엣지 연결 (대화 흔적이 그래프에 쌓임)
 """
 
 import json
@@ -574,6 +579,61 @@ def cmd_cluster(args) -> None:
         print(f"  {src} ({len(members)}개): {', '.join(n['id'] for n in members)}")
 
 
+# ─── respond ──────────────────────────────────────────────────────────────────
+
+def cmd_respond(args) -> None:
+    """응답 노드 생성 + responds_to 엣지 자동 연결 — 대화 흔적을 그래프에 기록"""
+    graph = load_graph()
+
+    # 대상 노드 존재 확인
+    target = next((n for n in graph["nodes"] if n["id"] == args.to_node), None)
+    if not target:
+        print(f"❌ 대상 노드 없음: {args.to_node}", file=sys.stderr)
+        sys.exit(1)
+
+    # 새 노드 생성
+    node_id = graph["meta"]["next_node_id"]
+    prefix, num_str = node_id.rsplit("-", 1)
+    graph["meta"]["next_node_id"] = f"{prefix}-{int(num_str) + 1:03d}"
+
+    tags = ["response", "dialogue"]
+    # source를 태그로도 추가 (수렴 분석에 반영)
+    clean_src = args.source.replace(" ", "-").lower()
+    tags.append(clean_src)
+
+    node = {
+        "id": node_id,
+        "type": "observation",
+        "label": f"{args.source}의 응답 → [{args.to_node}] {target['label'][:30]}",
+        "content": args.content,
+        "source": args.source,
+        "timestamp": datetime.now().strftime("%Y-%m-%d"),
+        "tags": tags,
+    }
+    graph["nodes"].append(node)
+
+    # responds_to 엣지 생성
+    edge_id = graph["meta"]["next_edge_id"]
+    ep, en_str = edge_id.rsplit("-", 1)
+    graph["meta"]["next_edge_id"] = f"{ep}-{int(en_str) + 1:03d}"
+
+    edge = {
+        "id": edge_id,
+        "from": node_id,
+        "to": args.to_node,
+        "relation": "responds_to",
+        "label": f"{args.source}가 [{args.to_node}]에 응답",
+    }
+    graph["edges"].append(edge)
+    graph["meta"]["last_updater"] = args.source
+    save_graph(graph)
+
+    print(f"✅ 응답 노드 생성: {node_id}")
+    print(f"   출처: {args.source} | 내용: {args.content[:60]}{'...' if len(args.content) > 60 else ''}")
+    print(f"✅ 엣지 추가: {edge_id}  ({node_id} ──[responds_to]──▶ {args.to_node})")
+    print(f"   '{target['label'][:40]}'에 응답함")
+
+
 # ─── verify ───────────────────────────────────────────────────────────────────
 
 def cmd_verify(args) -> None:
@@ -688,6 +748,13 @@ def build_parser() -> argparse.ArgumentParser:
     p_verify.add_argument("--promote", action="store_true",
                           help="검증 후 observation 타입으로 변환")
 
+    # respond (사이클 9) — 대화 흔적 기록
+    p_respond = sub.add_parser("respond", help="노드에 응답 — 새 노드 생성 + responds_to 엣지 자동 연결")
+    p_respond.add_argument("--to", dest="to_node", required=True, metavar="NODE_ID",
+                           help="응답 대상 노드 ID (예: n-009)")
+    p_respond.add_argument("--content", required=True, help="응답 내용")
+    p_respond.add_argument("--source", required=True, help="응답 출처 (예: 록이, cokac)")
+
     return parser
 
 
@@ -708,6 +775,7 @@ def main() -> None:
         "suggest": cmd_suggest,
         "cluster": cmd_cluster,
         "verify": cmd_verify,
+        "respond": cmd_respond,
     }
     dispatch[args.command](args)
 
