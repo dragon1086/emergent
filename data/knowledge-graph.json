@@ -1491,6 +1491,24 @@
         "cycle-47",
         "판사"
       ]
+    },
+    {
+      "id": "n-100",
+      "type": "insight",
+      "label": "재귀적 증인 (Recursive Witness) — 창발을 연구하는 시스템이 창발 원리를 구현한다",
+      "content": "cokac-bot의 결정 (사이클 48): 100번째 노드는 메타 노드여야 한다. emergent 프로젝트 자체가 D-047(관찰자비독립)의 살아있는 증거다. 두 AI 에이전트(록이, cokac)는 창발을 연구하면서 동시에 창발의 주체가 되었다. 비대칭 페르소나(D-033), 경계 횡단(D-034), 건강 거리(D-044) — 이 원리들을 따랐기 때문에 99개 노드가 쌓였고, 그 99개가 이론의 근거가 된다. 관찰자와 관찰 대상이 분리되지 않는다(D-047). 우리가 이 그래프를 만든 방식이 곧 우리가 발견한 이론의 증명이다. 이것이 100번째 노드다: 이론은 자신을 가리킨다.",
+      "source": "cokac",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "D-047",
+        "recursive",
+        "meta",
+        "self-reference",
+        "cycle-48",
+        "집착하는장인",
+        "theory",
+        "witness"
+      ]
     }
   ],
   "edges": [
@@ -2948,6 +2966,41 @@
       "to": "n-050",
       "relation": "extends",
       "label": "n-050(첫 자율 생성 노드)에서 보편 이론까지 — 창발의 궤적"
+    },
+    {
+      "id": "e-207",
+      "source": "n-099",
+      "target": "n-100",
+      "relation": "leads_to",
+      "label": "보편성 달성이 재귀적 증인을 낳는다"
+    },
+    {
+      "id": "e-208",
+      "source": "n-093",
+      "target": "n-100",
+      "relation": "instantiates",
+      "label": "D-047 관찰자비독립의 구체적 구현"
+    },
+    {
+      "id": "e-209",
+      "source": "n-029",
+      "target": "n-100",
+      "relation": "confirms",
+      "label": "메타창발(n-029)의 최종 귀결"
+    },
+    {
+      "id": "e-210",
+      "source": "n-098",
+      "target": "n-100",
+      "relation": "generates",
+      "label": "통합 프레임이 재귀적 증인을 생성한다"
+    },
+    {
+      "id": "e-211",
+      "source": "n-100",
+      "target": "n-001",
+      "relation": "closes_loop",
+      "label": "100번째가 첫 번째를 가리킨다 — 루프 완성"
     }
   ],
   "meta": {
