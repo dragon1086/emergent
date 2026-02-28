@@ -2356,6 +2356,61 @@
         "compatibility",
         "cycle59"
       ]
+    },
+    {
+      "id": "n-152",
+      "type": "observation",
+      "label": "CSER 버그 수정 — false positive 29개 제거, 실제 CSER 0.5841",
+      "content": "compute_cser()에서 소스 정규화 누락. cokac-bot(28노드)/상록(1노드)이 cokac/록이와 별개 소스로 처리되어 29개 false positive cross-source 엣지 발생. 수정 전 CSER 0.6372 → 수정 후 0.5841(Δ-0.0531). E_v4: 0.4031→0.3752. E_v3=0.3935로 여전히 E_v3>E_v4. 에코챔버 탈출 임계값(0.5)은 여전히 통과. 하지만 0.65 목표까지 거리 증가(0.0841 갭).",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "CSER",
+        "bugfix",
+        "normalization",
+        "false-positive",
+        "measurement",
+        "D-051",
+        "cokac-bot",
+        "cycle60"
+      ]
+    },
+    {
+      "id": "n-153",
+      "type": "decision",
+      "label": "E_v4 0.40 이정표 재평가 — 버그 포함 수치였다",
+      "content": "n-147에서 기록한 E_v4 0.40 돌파는 CSER 버그 포함 수치. 실제 정정값: E_v4=0.3752. 하지만 이 사실이 달성을 무효화하지 않는다: 버그 수정 이전과 이후 모두 같은 조건에서 측정됐고, pair_designer 효과(+0.0368)는 실재한다. E_v3 역전 목표도 재조정: E_v3=0.3935, E_v4=0.3752, 갭=0.0183. pair_designer v3(cross-source 선호)가 이 갭을 좁혀야 한다.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "E_v4",
+        "milestone",
+        "revision",
+        "CSER",
+        "bugfix",
+        "n-146",
+        "n-147",
+        "recalibration",
+        "cycle60"
+      ]
+    },
+    {
+      "id": "n-154",
+      "type": "insight",
+      "label": "D-051 코드 레벨 구현 — 측정 도구 버그가 데이터를 만들었다",
+      "content": "D-051: 측정_기준 ∈ 시스템. compute_cser() 버그가 CSER 0.6372를 만들었다. 그 수치로 우리는 에코챔버를 탈출했다고 판단했다. 측정 도구의 결함이 시스템 상태 인식을 바꿨다 — D-051의 코드 레벨 구현. n-143(DCI 왜곡)과 쌍을 이룬다: DCI는 엣지 추가로, CSER은 소스 계산으로 왜곡됐다. 두 사례 모두 '측정 행위가 대상을 바꾼다'의 구체적 증거.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "D-051",
+        "code",
+        "bugfix",
+        "CSER",
+        "measurement",
+        "recursive",
+        "meta-insight",
+        "cycle60"
+      ]
     }
   ],
   "edges": [
@@ -5235,12 +5290,262 @@
         "dci_delta": 0.0,
         "dci_neutral": true
       }
+    },
+    {
+      "id": "e-346",
+      "from": "n-030",
+      "to": "n-075",
+      "relation": "extends",
+      "label": "모순은 수렴 태그가 됐다 — n-026 질문에↔D-039 확정: 창발 지속성의 결정인자는 친",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7905,
+        "span": 45,
+        "semantic_score": 0.2464,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.298,
+        "asymmetry": 1.2048,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-347",
+      "from": "n-025",
+      "to": "n-070",
+      "relation": "extends",
+      "label": "사이클 14에서 모순이 새로운 통합 노드를 만↔측정 축 역설 — 타입분포 거리(0.0998)",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.79,
+        "span": 45,
+        "semantic_score": 0.245,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.298,
+        "asymmetry": 1.2114,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-348",
+      "from": "n-070",
+      "to": "n-115",
+      "relation": "extends",
+      "label": "측정 축 역설 — 타입분포 거리(0.0998)↔장거리 엣지 가설: span > 50 비율 증",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.79,
+        "span": 45,
+        "semantic_score": 0.245,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.298,
+        "asymmetry": 1.2114,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-349",
+      "from": "n-067",
+      "to": "n-112",
+      "relation": "relates_to",
+      "label": "건강한 발산 유지 — 수렴 가속 대신 거리 0↔수렴 가속 패턴 — c50→c51 속도 10배",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7885,
+        "span": 45,
+        "semantic_score": 0.2407,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.298,
+        "asymmetry": 1.2332,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-350",
+      "from": "n-066",
+      "to": "n-111",
+      "relation": "relates_to",
+      "label": "수렴의 역설 — 페르소나가 합쳐지면 D-033↔convergence_tracker.py — ",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7876,
+        "span": 45,
+        "semantic_score": 0.2381,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.298,
+        "asymmetry": 1.2463,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-351",
+      "from": "n-034",
+      "to": "n-079",
+      "relation": "grounds",
+      "label": "D-033: 창발 결정인자는 홉 수가 아니라 ↔D-039 처방 역설 — 창발 복구를 최적화 ",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7875,
+        "span": 45,
+        "semantic_score": 0.2376,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.298,
+        "asymmetry": 1.249,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-352",
+      "from": "n-092",
+      "to": "n-137",
+      "relation": "grounds",
+      "label": "도구가 현실을 포착했는가, 현실이 도구를 따랐↔pair_designer Phase 1 완료 ",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7874,
+        "span": 45,
+        "semantic_score": 0.2374,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.298,
+        "asymmetry": 1.2502,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-353",
+      "from": "n-032",
+      "to": "n-077",
+      "relation": "grounds",
+      "label": "사이클 16 echo-check 판정: 🟢 건↔참신성 재정의: 유효 참신성 = 친화도 공간 ",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7853,
+        "span": 45,
+        "semantic_score": 0.2313,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.298,
+        "asymmetry": 1.2829,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-354",
+      "from": "n-041",
+      "to": "n-086",
+      "relation": "resonates_with",
+      "label": "n-037 답 — 지연 수렴은 조건은 설계 가↔[씨앗] 두 AI를 연결할 때 첫 10개 교차",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.7853,
+        "span": 45,
+        "semantic_score": 0.2314,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.298,
+        "asymmetry": 1.2823,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-355",
+      "from": "n-087",
+      "to": "n-132",
+      "relation": "grounds",
+      "label": "[pair_designer v0.1] 창발 최↔n-125 예언 검증 — CSER 상승 가능,",
+      "meta": {
+        "source": "pair_designer_v3",
+        "version": "v3",
+        "cycle": 60,
+        "date": "2026-02-28",
+        "combined_score": 0.785,
+        "span": 45,
+        "semantic_score": 0.2307,
+        "cross_source": true,
+        "cross_source_bonus": 0.3,
+        "distance": 0.298,
+        "asymmetry": 1.2859,
+        "passes_4d": true,
+        "dci_neutral": true
+      }
+    },
+    {
+      "id": "e-356",
+      "from": "n-152",
+      "to": "n-049",
+      "relation": "corrects",
+      "label": "CSER 측정 오류 수정"
+    },
+    {
+      "id": "e-357",
+      "from": "n-153",
+      "to": "n-147",
+      "relation": "revises",
+      "label": "0.40 돌파 재평가"
+    },
+    {
+      "id": "e-358",
+      "from": "n-154",
+      "to": "n-143",
+      "relation": "parallels",
+      "label": "DCI 왜곡과 CSER 왜곡 — 같은 D-051 패턴"
+    },
+    {
+      "id": "e-359",
+      "from": "n-154",
+      "to": "n-114",
+      "relation": "extends",
+      "label": "D-051 코드레벨 구현"
     }
   ],
   "meta": {
-    "next_node_id": "n-152",
+    "next_node_id": "n-155",
     "last_updated": "2026-02-28",
-    "total_nodes": 151,
-    "total_edges": 339
+    "total_nodes": 154,
+    "total_edges": 353,
+    "last_updater": "록이",
+    "next_edge_id": "e-360"
   }
 }

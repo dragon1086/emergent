@@ -1,0 +1,144 @@
+{
+  "meta": {
+    "description": "pair_designer v3 이력 (CSER 제약 + 교차출처 보너스)",
+    "created_cycle": 60,
+    "version": "v3"
+  },
+  "sessions": [
+    {
+      "date": "2026-02-28",
+      "version": "v3",
+      "cycle": 60,
+      "n_added": 10,
+      "cross_source_count": 10,
+      "delta": {
+        "e_v4_before": 0.3752,
+        "e_v4_after": 0.38,
+        "delta": 0.0048,
+        "e_v4_gain_excl_dci": 0.0048,
+        "dci_before": 0.2932,
+        "dci_after": 0.2932,
+        "dci_delta": 0.0,
+        "cser_before": 0.5841,
+        "cser_after": 0.596,
+        "cser_delta": 0.0119,
+        "cser_ok": false,
+        "edge_span_before": 32.416,
+        "edge_span_after": 32.777,
+        "n_added": 10
+      },
+      "added_edges": [
+        {
+          "id": "e-346",
+          "from": "n-030",
+          "to": "n-075",
+          "relation": "extends",
+          "span": 45,
+          "combined_score": 0.7905,
+          "cross_source": true,
+          "distance": 0.298,
+          "asymmetry": 1.2048
+        },
+        {
+          "id": "e-347",
+          "from": "n-025",
+          "to": "n-070",
+          "relation": "extends",
+          "span": 45,
+          "combined_score": 0.79,
+          "cross_source": true,
+          "distance": 0.298,
+          "asymmetry": 1.2114
+        },
+        {
+          "id": "e-348",
+          "from": "n-070",
+          "to": "n-115",
+          "relation": "extends",
+          "span": 45,
+          "combined_score": 0.79,
+          "cross_source": true,
+          "distance": 0.298,
+          "asymmetry": 1.2114
+        },
+        {
+          "id": "e-349",
+          "from": "n-067",
+          "to": "n-112",
+          "relation": "relates_to",
+          "span": 45,
+          "combined_score": 0.7885,
+          "cross_source": true,
+          "distance": 0.298,
+          "asymmetry": 1.2332
+        },
+        {
+          "id": "e-350",
+          "from": "n-066",
+          "to": "n-111",
+          "relation": "relates_to",
+          "span": 45,
+          "combined_score": 0.7876,
+          "cross_source": true,
+          "distance": 0.298,
+          "asymmetry": 1.2463
+        },
+        {
+          "id": "e-351",
+          "from": "n-034",
+          "to": "n-079",
+          "relation": "grounds",
+          "span": 45,
+          "combined_score": 0.7875,
+          "cross_source": true,
+          "distance": 0.298,
+          "asymmetry": 1.249
+        },
+        {
+          "id": "e-352",
+          "from": "n-092",
+          "to": "n-137",
+          "relation": "grounds",
+          "span": 45,
+          "combined_score": 0.7874,
+          "cross_source": true,
+          "distance": 0.298,
+          "asymmetry": 1.2502
+        },
+        {
+          "id": "e-353",
+          "from": "n-032",
+          "to": "n-077",
+          "relation": "grounds",
+          "span": 45,
+          "combined_score": 0.7853,
+          "cross_source": true,
+          "distance": 0.298,
+          "asymmetry": 1.2829
+        },
+        {
+          "id": "e-354",
+          "from": "n-041",
+          "to": "n-086",
+          "relation": "resonates_with",
+          "span": 45,
+          "combined_score": 0.7853,
+          "cross_source": true,
+          "distance": 0.298,
+          "asymmetry": 1.2823
+        },
+        {
+          "id": "e-355",
+          "from": "n-087",
+          "to": "n-132",
+          "relation": "grounds",
+          "span": 45,
+          "combined_score": 0.785,
+          "cross_source": true,
+          "distance": 0.298,
+          "asymmetry": 1.2859
+        }
+      ]
+    }
+  ]
+}
