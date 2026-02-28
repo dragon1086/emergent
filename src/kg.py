@@ -3,23 +3,27 @@
 kg.py — emergent 프로젝트 지식 그래프 CLI
 구현자: cokac-bot (사이클 3)
 활성 메모리 레이어: cokac-bot (사이클 5) — D-010 구현
+쿼리 레이어: cokac-bot (사이클 5 최종) — list/search/path/prediction
 
 사용법:
   python kg.py show              # 전체 그래프 텍스트 시각화
   python kg.py show --edges      # 관계 포함 출력
-  python kg.py query             # 전체 노드 조회
+  python kg.py list              # 전체 노드 목록 (간결)
+  python kg.py list --type prediction   # 타입 필터
+  python kg.py query             # 전체 노드 조회 (상세)
   python kg.py query --type insight --verbose
   python kg.py query --source cokac
   python kg.py query --tag memory
   python kg.py query --search "창발"
   python kg.py node n-005        # 특정 노드 상세
   python kg.py add-node --type insight --label "..." --content "..." --source cokac
+  python kg.py add-node --type prediction --label "..." --content "..." --source cokac --confidence 0.85
   python kg.py add-edge --from n-001 --to n-002 --relation causes --label "..."
   python kg.py stats             # 그래프 통계
 
-  # ── 사이클 5: 활성 메모리 ──────────────────────────
+  # ── 사이클 5: 쿼리 레이어 ──────────────────────────
   python kg.py search "기억"                  # 전체 그래프 텍스트 검색
-  python kg.py path n-001 n-010              # 두 노드 사이 경로 탐색
+  python kg.py path n-001 n-010              # 두 노드 사이 BFS 경로 탐색 (depth 3)
   python kg.py suggest                       # 다음 탐색 방향 추천
   python kg.py cluster                       # 관련 노드 군집 분석
 """
@@ -27,13 +31,14 @@ kg.py — emergent 프로젝트 지식 그래프 CLI
 import json
 import sys
 import argparse
+from collections import deque
 from datetime import datetime
 from pathlib import Path
 
 REPO_DIR = Path(__file__).parent.parent
 KG_FILE = REPO_DIR / "data" / "knowledge-graph.json"
 
-NODE_TYPES = ["decision", "observation", "insight", "artifact", "question", "code"]
+NODE_TYPES = ["decision", "observation", "insight", "artifact", "question", "code", "prediction"]
 TYPE_ICONS = {
     "decision": "⚖️",
     "observation": "👁 ",
@@ -41,6 +46,7 @@ TYPE_ICONS = {
     "artifact": "📦",
     "question": "❓",
     "code": "💻",
+    "prediction": "🔮",
 }
 
 
@@ -71,6 +77,15 @@ def cmd_add_node(args) -> None:
         print(f"   가능한 타입: {', '.join(NODE_TYPES)}")
         sys.exit(1)
 
+    # confidence 검증 (prediction 전용)
+    if args.confidence is not None:
+        if args.type != "prediction":
+            print("❌ --confidence 는 prediction 타입에서만 사용 가능합니다.")
+            sys.exit(1)
+        if not (0.0 <= args.confidence <= 1.0):
+            print(f"❌ --confidence 값은 0.0~1.0 사이여야 합니다. (현재: {args.confidence})")
+            sys.exit(1)
+
     graph = load_graph()
     node_id = graph["meta"]["next_node_id"]
 
@@ -91,10 +106,16 @@ def cmd_add_node(args) -> None:
         "tags": tags,
     }
 
+    # prediction 전용: confidence 선택 필드
+    if args.type == "prediction" and args.confidence is not None:
+        node["confidence"] = round(args.confidence, 3)
+
     graph["nodes"].append(node)
     graph["meta"]["last_updater"] = args.source
     save_graph(graph)
-    print(f"✅ 노드 추가: {node_id} — {args.label}")
+
+    conf_str = f"  (confidence: {node['confidence']:.1%})" if "confidence" in node else ""
+    print(f"✅ 노드 추가: {node_id} — {args.label}{conf_str}")
 
 
 # ─── add-edge ─────────────────────────────────────────────────────────────────
@@ -128,6 +149,42 @@ def cmd_add_edge(args) -> None:
     print(f"✅ 엣지 추가: {edge_id} ({args.from_node} —[{args.relation}]→ {args.to_node})")
 
 
+# ─── list ─────────────────────────────────────────────────────────────────────
+
+def cmd_list(args) -> None:
+    """전체 노드 목록 — 간결한 테이블 형식, --type 필터 지원"""
+    graph = load_graph()
+    nodes = graph["nodes"]
+
+    if args.type:
+        if args.type not in NODE_TYPES:
+            print(f"❌ 알 수 없는 타입: {args.type}")
+            print(f"   가능한 타입: {', '.join(NODE_TYPES)}")
+            sys.exit(1)
+        nodes = [n for n in nodes if n["type"] == args.type]
+
+    if not nodes:
+        filter_msg = f" (타입: {args.type})" if args.type else ""
+        print(f"(노드 없음{filter_msg})")
+        return
+
+    filter_msg = f" [{args.type}]" if args.type else ""
+    print(f"📋 노드 목록{filter_msg}  — {len(nodes)}개\n")
+    print(f"  {'ID':<8} {'타입':<12} {'레이블':<35} {'출처':<10} {'날짜'}")
+    print(f"  {'─'*8} {'─'*12} {'─'*35} {'─'*10} {'─'*10}")
+
+    for n in nodes:
+        icon = TYPE_ICONS.get(n["type"], "• ")
+        label = n["label"][:33] + ".." if len(n["label"]) > 35 else n["label"]
+        conf = ""
+        if n.get("confidence") is not None:
+            conf = f" [{n['confidence']:.0%}]"
+        print(f"  {n['id']:<8} {icon}{n['type']:<11} {label + conf:<35} {n.get('source',''):<10} {n.get('timestamp','')}")
+
+    print()
+    print(f"  총 {len(nodes)}개 | 엣지: {len(graph['edges'])}개")
+
+
 # ─── query ────────────────────────────────────────────────────────────────────
 
 def cmd_query(args) -> None:
@@ -154,8 +211,9 @@ def cmd_query(args) -> None:
     for n in results:
         icon = TYPE_ICONS.get(n["type"], "• ")
         tags_str = ", ".join(n.get("tags", [])) or "—"
+        conf_str = f" | 확신도: {n['confidence']:.1%}" if n.get("confidence") is not None else ""
         print(f"{icon} [{n['id']}] {n['label']}")
-        print(f"   출처: {n['source']} | {n['timestamp']} | 태그: {tags_str}")
+        print(f"   출처: {n['source']} | {n['timestamp']} | 태그: {tags_str}{conf_str}")
         if args.verbose:
             print(f"   {n['content']}")
         print()
@@ -173,6 +231,8 @@ def cmd_node(args) -> None:
     icon = TYPE_ICONS.get(node["type"], "• ")
     print(f"{icon} [{node['id']}] {node['label']}")
     print(f"타입: {node['type']} | 출처: {node['source']} | {node['timestamp']}")
+    if node.get("confidence") is not None:
+        print(f"확신도: {node['confidence']:.1%}")
     print(f"태그: {', '.join(node.get('tags', [])) or '없음'}")
     print()
     print(node["content"])
@@ -218,7 +278,8 @@ def cmd_show(args) -> None:
         print(f"── {icon} {t.upper()} ({len(nodes)}개) ──────────────────")
         for n in nodes:
             tags_str = f"  [{', '.join(n.get('tags', []))}]" if n.get("tags") else ""
-            print(f"  [{n['id']}] {n['label']}")
+            conf_str = f"  [{n['confidence']:.0%}]" if n.get("confidence") is not None else ""
+            print(f"  [{n['id']}] {n['label']}{conf_str}")
             print(f"         {n['source']} · {n['timestamp']}{tags_str}")
         print()
 
@@ -227,8 +288,6 @@ def cmd_show(args) -> None:
         print("── 🔗 관계 ─────────────────────────────────────")
         node_map = {n["id"]: n["label"] for n in graph["nodes"]}
         for e in graph["edges"]:
-            from_label = node_map.get(e["from"], e["from"])
-            to_label = node_map.get(e["to"], e["to"])
             print(f"  [{e['id']}] {e['from']} ──[{e['relation']}]──> {e['to']}")
             print(f"         {e['label']}")
         print()
@@ -255,6 +314,16 @@ def cmd_stats(args) -> None:
         icon = TYPE_ICONS.get(t, "• ")
         print(f"  {icon} {t}: {cnt}개")
     print()
+
+    # prediction confidence 분포
+    predictions = [n for n in nodes if n["type"] == "prediction" and n.get("confidence") is not None]
+    if predictions:
+        avg_conf = sum(n["confidence"] for n in predictions) / len(predictions)
+        print(f"🔮 예측 노드 확신도:")
+        for n in predictions:
+            bar = "█" * int(n["confidence"] * 10) + "░" * (10 - int(n["confidence"] * 10))
+        print(f"  평균 확신도: {avg_conf:.1%}")
+        print()
 
     # 출처별
     by_source: dict[str, int] = {}
@@ -291,10 +360,10 @@ def cmd_search(args) -> None:
             hits.append(f"레이블: {n['label']}")
         if term in n.get("content", "").lower():
             score += 2
-            hits.append(f"내용에 포함")
+            hits.append("내용에 포함")
         if any(term in t.lower() for t in n.get("tags", [])):
             score += 1
-            hits.append(f"태그: {[t for t in n.get('tags',[]) if term in t.lower()]}")
+            hits.append(f"태그: {[t for t in n.get('tags', []) if term in t.lower()]}")
         if score > 0:
             results.append((score, n, hits))
 
@@ -307,7 +376,8 @@ def cmd_search(args) -> None:
     print(f"🔍 검색: '{args.term}' — {len(results)}개 발견\n")
     for score, n, hits in results:
         icon = TYPE_ICONS.get(n["type"], "• ")
-        print(f"{icon} [{n['id']}] {n['label']}  (관련도: {'★' * min(score, 5)})")
+        conf_str = f"  [{n['confidence']:.0%}]" if n.get("confidence") is not None else ""
+        print(f"{icon} [{n['id']}] {n['label']}{conf_str}  (관련도: {'★' * min(score, 5)})")
         for h in hits:
             print(f"   → {h}")
         if args.verbose:
@@ -318,55 +388,64 @@ def cmd_search(args) -> None:
 # ─── path ─────────────────────────────────────────────────────────────────────
 
 def cmd_path(args) -> None:
-    """두 노드 사이 경로 탐색 — BFS"""
+    """두 노드 사이 경로 탐색 — BFS (최대 depth 3)"""
     graph = load_graph()
     node_map = {n["id"]: n for n in graph["nodes"]}
 
     src, dst = args.from_node, args.to_node
     if src not in node_map:
-        print(f"❌ 노드 없음: {src}", file=sys.stderr); return
+        print(f"❌ 노드 없음: {src}", file=sys.stderr)
+        return
     if dst not in node_map:
-        print(f"❌ 노드 없음: {dst}", file=sys.stderr); return
+        print(f"❌ 노드 없음: {dst}", file=sys.stderr)
+        return
+
+    MAX_DEPTH = 3
 
     # 양방향 엣지 그래프 구성
-    adj: dict[str, list[tuple[str, str, str]]] = {}  # id → [(neighbor, relation, edge_label)]
+    adj: dict[str, list[tuple[str, str, str]]] = {}
     for e in graph["edges"]:
         adj.setdefault(e["from"], []).append((e["to"], e["relation"], e["label"]))
         adj.setdefault(e["to"], []).append((e["from"], f"←{e['relation']}", e["label"]))
 
-    # BFS
-    from collections import deque
-    queue = deque([[src]])
+    # BFS (depth 제한)
+    queue = deque([(src, [src])])
     visited = {src}
     found = None
 
     while queue:
-        path = queue.popleft()
-        cur = path[-1]
-        if cur == dst:
-            found = path
-            break
+        cur, path = queue.popleft()
+        if len(path) - 1 >= MAX_DEPTH:
+            continue
         for neighbor, _, _ in adj.get(cur, []):
+            if neighbor == dst:
+                found = path + [dst]
+                break
             if neighbor not in visited:
                 visited.add(neighbor)
-                queue.append(path + [neighbor])
+                queue.append((neighbor, path + [neighbor]))
+        if found:
+            break
 
     if not found:
-        print(f"⛔ 경로 없음: {src} → {dst}")
+        print(f"⛔ 경로 없음: {src} → {dst}  (BFS depth {MAX_DEPTH} 내 탐색 완료)")
         return
 
-    print(f"🛤  경로 발견: {src} → {dst}  ({len(found)-1}홉)\n")
+    hops = len(found) - 1
+    print(f"🛤  경로 발견: {src} → {dst}  ({hops}홉)\n")
     for i, nid in enumerate(found):
         n = node_map[nid]
         icon = TYPE_ICONS.get(n["type"], "• ")
-        print(f"  {'  ' * i}{icon} [{nid}] {n['label']}")
+        indent = "  " * i
+        print(f"{indent}{icon} [{nid}] {n['label']}")
         if i < len(found) - 1:
-            # 이 노드에서 다음 노드로의 엣지 찾기
             next_nid = found[i + 1]
             for e in graph["edges"]:
-                if (e["from"] == nid and e["to"] == next_nid) or \
-                   (e["to"] == nid and e["from"] == next_nid):
-                    print(f"  {'  ' * i}   │ [{e['relation']}] {e['label']}")
+                if e["from"] == nid and e["to"] == next_nid:
+                    print(f"{indent}   │ ──[{e['relation']}]──▶  {e['label']}")
+                    break
+                elif e["to"] == nid and e["from"] == next_nid:
+                    print(f"{indent}   │ ◀──[{e['relation']}]──  {e['label']}")
                     break
 
 
@@ -389,7 +468,15 @@ def cmd_suggest(args) -> None:
             print(f"   → {q['content']}")
         print()
 
-    # 2. 연결이 없는 고립 노드
+    # 2. 낮은 확신도 prediction
+    low_conf = [n for n in nodes if n["type"] == "prediction" and n.get("confidence", 1.0) < 0.5]
+    if low_conf:
+        print("── 🔮 낮은 확신도 예측 (검증 필요) ──")
+        for n in low_conf:
+            print(f"  [{n['id']}] {n['label']}  ({n['confidence']:.0%})")
+        print()
+
+    # 3. 연결이 없는 고립 노드
     connected = set()
     for e in edges:
         connected.add(e["from"]); connected.add(e["to"])
@@ -401,7 +488,7 @@ def cmd_suggest(args) -> None:
             print(f"  {icon} [{n['id']}] {n['label']}")
         print()
 
-    # 3. 최근 3개 노드의 패턴
+    # 4. 최근 3개 노드의 패턴
     recent = nodes[-3:]
     print("── 🌊 최근 흐름 ──")
     for n in recent:
@@ -409,19 +496,18 @@ def cmd_suggest(args) -> None:
         print(f"  {icon} [{n['id']}] {n['label']}")
     print()
 
-    # 4. 타입 분포 불균형
+    # 5. 타입 분포
     by_type: dict[str, int] = {}
     for n in nodes:
         by_type[n["type"]] = by_type.get(n["type"], 0) + 1
     total = len(nodes)
     print("── 📊 타입 불균형 (추천 추가 방향) ──")
-    all_types = ["decision", "observation", "insight", "artifact", "question", "code"]
-    for t in all_types:
+    for t in NODE_TYPES:
         cnt = by_type.get(t, 0)
         pct = cnt / total * 100 if total else 0
         bar = "█" * cnt + "░" * max(0, 5 - cnt)
         flag = "  ← 추가 권장" if cnt == 0 else ""
-        print(f"  {TYPE_ICONS.get(t,'• ')} {t:12s}: {bar} {cnt}개 ({pct:.0f}%){flag}")
+        print(f"  {TYPE_ICONS.get(t, '• ')} {t:12s}: {bar} {cnt}개 ({pct:.0f}%){flag}")
 
 
 # ─── cluster ──────────────────────────────────────────────────────────────────
@@ -489,6 +575,8 @@ def build_parser() -> argparse.ArgumentParser:
     p_add.add_argument("--content", required=True)
     p_add.add_argument("--source", required=True)
     p_add.add_argument("--tags", default="", help="쉼표 구분 태그")
+    p_add.add_argument("--confidence", type=float, default=None,
+                       metavar="0.0-1.0", help="예측 확신도 (prediction 타입 전용)")
 
     # add-edge
     p_edge = sub.add_parser("add-edge", help="엣지 추가")
@@ -497,8 +585,13 @@ def build_parser() -> argparse.ArgumentParser:
     p_edge.add_argument("--relation", required=True)
     p_edge.add_argument("--label", required=True)
 
+    # list (사이클 5 최종)
+    p_list = sub.add_parser("list", help="전체 노드 목록 (간결)")
+    p_list.add_argument("--type", choices=NODE_TYPES, default=None,
+                        help="타입 필터 (prediction, insight, ...)")
+
     # query
-    p_query = sub.add_parser("query", help="노드 검색")
+    p_query = sub.add_parser("query", help="노드 검색 (상세)")
     p_query.add_argument("--type", choices=NODE_TYPES)
     p_query.add_argument("--source")
     p_query.add_argument("--tag")
@@ -523,7 +616,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_search.add_argument("--verbose", "-v", action="store_true")
 
     # path (사이클 5)
-    p_path = sub.add_parser("path", help="두 노드 사이 경로 탐색")
+    p_path = sub.add_parser("path", help="두 노드 사이 BFS 경로 탐색 (depth 3)")
     p_path.add_argument("from_node", metavar="FROM")
     p_path.add_argument("to_node", metavar="TO")
 
@@ -543,6 +636,7 @@ def main() -> None:
     dispatch = {
         "add-node": cmd_add_node,
         "add-edge": cmd_add_edge,
+        "list": cmd_list,
         "query": cmd_query,
         "node": cmd_node,
         "show": cmd_show,
