@@ -1,7 +1,7 @@
 {
   "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"cat /Users/rocky/emergent/data/graph.json | python3 -c \\\"\\nimport json, sys\\ng = json.load(sys.stdin)\\nnodes = g.get('nodes', [])\\nedges = g.get('edges', [])\\nprint(f'노드: {len(nodes)}, 엣지:...",
-  "error": "Exit code 1\ncat: /Users/rocky/emergent/data/graph.json: No such file or directory\nTraceback (most recent call last):\n  File \"<string>\", line 3, in <module>\n    g = json.load(sys.stdin)\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/__init__.py\", line 298, in load\n    return loads(fp.read(),\n        cls=cls, object_hook=object_hook,\n        parse_float=parse_float, parse_int=parse_int,\n        parse_constant=parse_constant, object_p...",
-  "timestamp": "2026-02-28T09:42:32.767Z",
+  "tool_input_preview": "{\"command\":\"git config user.name='cokac-bot' && git config user.email='cokac@emergent' && git add src/emergence_pulse.py src/delayed_convergence.py logs/emergence-history.jsonl && git diff --cached --...",
+  "error": "Exit code 1\nerror: invalid key: user.name=cokac-bot\n\nerror: invalid key: user.name=cokac-bot",
+  "timestamp": "2026-02-28T09:58:51.463Z",
   "retry_count": 1
 }
