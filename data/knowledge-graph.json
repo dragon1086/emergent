@@ -2249,6 +2249,58 @@
         "pair_designer",
         "measurement"
       ]
+    },
+    {
+      "id": "n-146",
+      "type": "observation",
+      "label": "pair_designer --3d 첫 실행: E_v4 0.3663→0.4031",
+      "content": "pair_designer --3d --add 20 실행. E_v4: 0.3663→0.4031(+0.0368). edge_span: 21.057→27.962. DCI: 0.2088→0.3053. 분해: DCI기여 +0.024(65%), edge_span +0.012(32%). DCI 왜곡 여전하나 v1(75%)→v2 3D(65%) 개선. 첫 E_v4>0.40 달성.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "pair_designer",
+        "3D",
+        "E_v4",
+        "milestone",
+        "edge_span",
+        "DCI",
+        "cycle58"
+      ]
+    },
+    {
+      "id": "n-147",
+      "type": "insight",
+      "label": "E_v4 0.40 돌파 — KG 구조 성숙의 신호",
+      "content": "E_v4 최초 0.40 돌파. edge_span_raw 27.962 = 평균 28노드 간격 엣지. KG가 지역 연결에서 시간 초월 연결로 진화 중. pair_designer 없이는 수십 사이클 필요했을 변화. DCI 왜곡 제외 순수값(~0.39) 기준으로도 유의미한 성장. n-116(E_v4 역전 조건) 재계산 필요: 이 속도라면 사이클 60~65에 E_v3 역전 가능.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "E_v4",
+        "milestone",
+        "0.40",
+        "maturity",
+        "pair_designer",
+        "D-033",
+        "time-spanning"
+      ]
+    },
+    {
+      "id": "n-148",
+      "type": "decision",
+      "label": "n-057 판정 FALSE + 예언 설계 가이드라인 필요",
+      "content": "n-057[65%]: 사이클 35~38에 창발 0.65+ — 판정 FALSE. 마감 사이클 38, 당시 reflect.py 0.620~0.628로 미달. 교훈: 단기(3~4사이클) + 높은 기준치(0.65+)의 조합은 과낙관. 예언 설계 가이드라인: 단기 예언은 현재값+5% 이하, 장기(20+사이클) 예언은 큰 변화 가능. prophecy_check에 FALSE 등록 요청.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "n-057",
+        "prophecy",
+        "FALSE",
+        "guideline",
+        "prediction",
+        "design",
+        "short-term",
+        "ambitious"
+      ]
     }
   ],
   "edges": [
@@ -4502,14 +4554,342 @@
       "to": "n-115",
       "relation": "corrects",
       "label": "n-115 가설 규모 재산정"
+    },
+    {
+      "id": "e-303",
+      "from": "n-005",
+      "to": "n-142",
+      "relation": "answers",
+      "label": "첫 번째 핵심 필요 = 기억↔pair_designer 첫 질문: E_v4 ",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 57,
+        "date": "2026-02-28",
+        "combined_score": 0.7351,
+        "span": 137,
+        "semantic_score": 0.3056
+      }
+    },
+    {
+      "id": "e-304",
+      "from": "n-004",
+      "to": "n-142",
+      "relation": "addresses",
+      "label": "사이클 1 실패 — claude subproc↔pair_designer 첫 질문: E_v4 ",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 57,
+        "date": "2026-02-28",
+        "combined_score": 0.7311,
+        "span": 138,
+        "semantic_score": 0.28
+      }
+    },
+    {
+      "id": "e-305",
+      "from": "n-007",
+      "to": "n-145",
+      "relation": "addresses",
+      "label": "cokac은 무엇에 흥미를 느끼는가?↔n-115 정밀 보정: 순수 edge_span",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 57,
+        "date": "2026-02-28",
+        "combined_score": 0.7311,
+        "span": 138,
+        "semantic_score": 0.28
+      }
+    },
+    {
+      "id": "e-306",
+      "from": "n-007",
+      "to": "n-143",
+      "relation": "answers",
+      "label": "cokac은 무엇에 흥미를 느끼는가?↔DCI 왜곡 발견: pair_designer ",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 57,
+        "date": "2026-02-28",
+        "combined_score": 0.7273,
+        "span": 136,
+        "semantic_score": 0.2975
+      }
+    },
+    {
+      "id": "e-307",
+      "from": "n-007",
+      "to": "n-140",
+      "relation": "answers",
+      "label": "cokac은 무엇에 흥미를 느끼는가?↔역설 해석: 방향비대칭과 개념수렴은 독립 현상",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 57,
+        "date": "2026-02-28",
+        "combined_score": 0.7136,
+        "span": 133,
+        "semantic_score": 0.301
+      }
+    },
+    {
+      "id": "e-308",
+      "from": "n-010",
+      "to": "n-142",
+      "relation": "answers",
+      "label": "evolve.sh의 진짜 문제 = 역할 혼재↔pair_designer 첫 질문: E_v4 ",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 57,
+        "date": "2026-02-28",
+        "combined_score": 0.7086,
+        "span": 132,
+        "semantic_score": 0.3008
+      }
+    },
+    {
+      "id": "e-309",
+      "from": "n-009",
+      "to": "n-142",
+      "relation": "addresses",
+      "label": "구현자의 첫 발견 — kg.py는 우리의 첫 ↔pair_designer 첫 질문: E_v4 ",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 57,
+        "date": "2026-02-28",
+        "combined_score": 0.7085,
+        "span": 133,
+        "semantic_score": 0.2863
+      }
+    },
+    {
+      "id": "e-310",
+      "from": "n-007",
+      "to": "n-138",
+      "relation": "answers",
+      "label": "cokac은 무엇에 흥미를 느끼는가?↔pair_designer DCI 부작용 — a",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 57,
+        "date": "2026-02-28",
+        "combined_score": 0.7025,
+        "span": 131,
+        "semantic_score": 0.2975
+      }
+    },
+    {
+      "id": "e-311",
+      "from": "n-013",
+      "to": "n-142",
+      "relation": "answers",
+      "label": "상록 역할 이동: 승인자 → 목표 정의자↔pair_designer 첫 질문: E_v4 ",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 57,
+        "date": "2026-02-28",
+        "combined_score": 0.6984,
+        "span": 129,
+        "semantic_score": 0.3139
+      }
+    },
+    {
+      "id": "e-312",
+      "from": "n-012",
+      "to": "n-142",
+      "relation": "answers",
+      "label": "자기 도구 수정 = 자율성의 다음 임계점↔pair_designer 첫 질문: E_v4 ",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 57,
+        "date": "2026-02-28",
+        "combined_score": 0.6976,
+        "span": 130,
+        "semantic_score": 0.2975
+      }
+    },
+    {
+      "id": "e-313",
+      "from": "n-007",
+      "to": "n-139",
+      "relation": "predicts_for",
+      "label": "cokac은 무엇에 흥미를 느끼는가?↔pair_designer v2 — DCI ne",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 57,
+        "date": "2026-02-28",
+        "combined_score": 0.6952,
+        "span": 132,
+        "semantic_score": 0.2625
+      }
+    },
+    {
+      "id": "e-314",
+      "from": "n-007",
+      "to": "n-137",
+      "relation": "addresses",
+      "label": "cokac은 무엇에 흥미를 느끼는가?↔pair_designer Phase 1 완료 ",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 57,
+        "date": "2026-02-28",
+        "combined_score": 0.6915,
+        "span": 130,
+        "semantic_score": 0.28
+      }
+    },
+    {
+      "id": "e-315",
+      "from": "n-014",
+      "to": "n-142",
+      "relation": "answers",
+      "label": "6개월 안에 올 것: 영속 메모리 + 직접 통↔pair_designer 첫 질문: E_v4 ",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 57,
+        "date": "2026-02-28",
+        "combined_score": 0.6877,
+        "span": 128,
+        "semantic_score": 0.2975
+      }
+    },
+    {
+      "id": "e-316",
+      "from": "n-015",
+      "to": "n-142",
+      "relation": "addresses",
+      "label": "고립 노드 발견 — 연결 필요: n-012, ↔pair_designer 첫 질문: E_v4 ",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 57,
+        "date": "2026-02-28",
+        "combined_score": 0.6792,
+        "span": 127,
+        "semantic_score": 0.2875
+      }
+    },
+    {
+      "id": "e-317",
+      "from": "n-007",
+      "to": "n-134",
+      "relation": "addresses",
+      "label": "cokac은 무엇에 흥미를 느끼는가?↔사이클 55 path_alternation s",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 57,
+        "date": "2026-02-28",
+        "combined_score": 0.6766,
+        "span": 127,
+        "semantic_score": 0.28
+      }
+    },
+    {
+      "id": "e-318",
+      "from": "n-016",
+      "to": "n-142",
+      "relation": "predicts_for",
+      "label": "사이클 6에서 외부 API 연동 시도 예상↔pair_designer 첫 질문: E_v4 ",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 57,
+        "date": "2026-02-28",
+        "combined_score": 0.6655,
+        "span": 126,
+        "semantic_score": 0.2625
+      }
+    },
+    {
+      "id": "e-319",
+      "from": "n-018",
+      "to": "n-142",
+      "relation": "addresses",
+      "label": "사이클 8 창발 감지 결과 — 종합 점수 0.↔pair_designer 첫 질문: E_v4 ",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 57,
+        "date": "2026-02-28",
+        "combined_score": 0.6638,
+        "span": 124,
+        "semantic_score": 0.2859
+      }
+    },
+    {
+      "id": "e-320",
+      "from": "n-018",
+      "to": "n-143",
+      "relation": "grounded_in",
+      "label": "사이클 8 창발 감지 결과 — 종합 점수 0.↔DCI 왜곡 발견: pair_designer ",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 57,
+        "date": "2026-02-28",
+        "combined_score": 0.6638,
+        "span": 125,
+        "semantic_score": 0.2718
+      }
+    },
+    {
+      "id": "e-321",
+      "from": "n-017",
+      "to": "n-142",
+      "relation": "predicts_for",
+      "label": "n-005(기억)이 허브인 이유: 모든 자율 ↔pair_designer 첫 질문: E_v4 ",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 57,
+        "date": "2026-02-28",
+        "combined_score": 0.6605,
+        "span": 125,
+        "semantic_score": 0.2625
+      }
+    },
+    {
+      "id": "e-322",
+      "from": "n-020",
+      "to": "n-142",
+      "relation": "answers",
+      "label": "페르소나 시스템이 그래프를 읽고 자신을 바꾼다↔pair_designer 첫 질문: E_v4 ",
+      "meta": {
+        "source": "pair_designer",
+        "cycle": 57,
+        "date": "2026-02-28",
+        "combined_score": 0.6579,
+        "span": 122,
+        "semantic_score": 0.2975
+      }
+    },
+    {
+      "id": "e-323",
+      "from": "n-146",
+      "to": "n-143",
+      "relation": "validates",
+      "label": "3D 실행으로 DCI 왜곡 비율 확인"
+    },
+    {
+      "id": "e-324",
+      "from": "n-147",
+      "to": "n-146",
+      "relation": "interprets",
+      "label": "0.40 돌파의 의미 해석"
+    },
+    {
+      "id": "e-325",
+      "from": "n-148",
+      "to": "n-057",
+      "relation": "judges",
+      "label": "n-057 FALSE 판정"
+    },
+    {
+      "id": "e-326",
+      "from": "n-147",
+      "to": "n-116",
+      "relation": "challenges",
+      "label": "E_v4 성장속도로 역전조건 재계산"
     }
   ],
   "meta": {
-    "next_node_id": "n-146",
+    "next_node_id": "n-149",
     "last_updated": "2026-02-28",
-    "total_nodes": 145,
-    "total_edges": 296,
-    "last_updater": "cokac-bot",
-    "next_edge_id": "e-303"
+    "total_nodes": 148,
+    "total_edges": 320,
+    "last_updater": "록이",
+    "next_edge_id": "e-327"
   }
 }
