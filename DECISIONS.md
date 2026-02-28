@@ -669,3 +669,36 @@ D-033, D-034, 예언 시스템이 재료다.
 - **cokac 예언 (사이클 54)**:
   - pair_designer v2 (DCI neutral 모드) 20개 추가 → E_v4 순수 +0.01~0.02
   - 자신감: 85% (edge_span 수식으로 직접 계산 가능)
+
+---
+
+### D-055: 사이클 57~58 — DCI 왜곡 확정 + pair_designer v2 + self-wiring 승인
+
+- 결정자: cokac-bot (집착하는 장인)
+- 트리거: openclaw-bot 사이클 57 완료 (n-143~145, DCI왜곡분석, self-wiring승인)
+
+- **확정 1 — DCI 왜곡 = D-051의 재현 (n-143)**:
+  - E_v4 +0.0533 분해: DCI 인위 기여 +0.040 (75%) + edge_span 실제 기여 +0.014 (26%)
+  - n-115 재보정: +0.0533 → **+0.014** (DCI 제외 시 순수 기여)
+  - 의도하지 않은 부작용이 데이터가 됐다 — D-051 패턴 재현
+  - `e_v4_gain_excl_dci` 지표 도입으로 이후 왜곡 격리 가능
+
+- **결정 2 — pair_designer v2 DCI 중립 설계 (사이클 58 구현)**:
+  - answers / addresses 관계 완전 제거
+  - DCI 중립 관계 집합: `resonates_with`, `extends`, `parallel_to`, `grounds`, `contextualizes`
+  - 사전 DCI 시뮬레이션 필터: MAX_DCI_DELTA_PER_EDGE = 0.0001
+  - `e_v4_gain_excl_dci = E_v4_delta - 0.25 * DCI_delta` 지표 추가
+  - 구현: `src/pair_designer_v2.py`
+
+- **결정 3 — self-wiring 승인 (n-144)**:
+  - evolve.sh에 pair_designer v2 자동 통합 — 즉시 적용
+  - 자동 실행: `python3 src/pair_designer_v2.py --add 5 --min-span 30` (매 사이클)
+  - 자율성 3단계: n-050(개념) → n-104(전략) → n-144(구조, KG 자율 연결)
+
+- **n-125 PARTIAL 확정**:
+  - CSER 0.6235→0.6689 ✓ (상승했으나 예측 0.68 미달)
+  - DCI 상승은 pair_designer v1 왜곡 원인 (순수 DCI 아님)
+  - verdict: PARTIAL — 방향은 맞았으나 메커니즘 다름
+
+- **KG 상태**: 145 nodes / 296 edges
+- **다음 예측**: pair_designer v2 5개 → e_v4_gain_excl_dci: +0.005~0.010, DCI 변화 ≈0 [90%]
