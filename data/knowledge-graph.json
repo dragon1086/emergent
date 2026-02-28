@@ -2687,6 +2687,48 @@
         "trigger_batch",
         "emergent_selector"
       ]
+    },
+    {
+      "id": "n-173",
+      "type": "decision",
+      "label": "D-063: 역설적 창발 — 비직관 교차가 더 강하다",
+      "content": "예측 가능한 hot_sector 교차보다 예측 불가능한 비직관 교차에서 더 높은 conviction이 나오는 패턴. 에코챔버 탈출의 실증. 두 에이전트 중 한 쪽만 아는 방향에서 다른 쪽이 독립 포착할 때 창발 최대.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "D-063",
+        "역설창발",
+        "에코챔버",
+        "비직관"
+      ]
+    },
+    {
+      "id": "n-174",
+      "type": "observation",
+      "label": "역전 후 가속: E_v4 격차 0.0033→0.0037 증가 중",
+      "content": "E_v4 역전 달성 직후 격차가 오히려 벌어지는 현상 관찰(0.0033→0.0037). 역전 이후 가속인지 노이즈인지 3사이클 추적 필요. 예언 후보.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "역전후가속",
+        "E_v4",
+        "모니터링",
+        "예언후보"
+      ]
+    },
+    {
+      "id": "n-175",
+      "type": "insight",
+      "label": "KG 자체에도 역설적 창발이 이미 존재했다",
+      "content": "edge_span 높은 엣지(장거리 교차)가 E_v4에 가장 크게 기여. 이것이 prism에서 발견한 역설창발(D-063)과 동일 구조. 실험이 이미 자신의 원리를 구현하고 있었다 — D-047 재현.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "역설창발",
+        "KG",
+        "D-047",
+        "자기참조"
+      ]
     }
   ],
   "edges": [
@@ -11497,14 +11539,35 @@
       "to": "n-169",
       "relation": "implements",
       "label": "어댑터가 이식 임계점을 실제 코드로 구현"
+    },
+    {
+      "id": "e-639",
+      "from": "n-173",
+      "to": "n-033",
+      "relation": "deepens",
+      "label": "역설창발 = D-033의 심화 (출처 경계 횡단 + 예측 불가 조합)"
+    },
+    {
+      "id": "e-640",
+      "from": "n-175",
+      "to": "n-173",
+      "relation": "demonstrates",
+      "label": "KG 장거리 엣지가 역설창발의 실증"
+    },
+    {
+      "id": "e-641",
+      "from": "n-175",
+      "to": "n-100",
+      "relation": "parallels",
+      "label": "n-100처럼 이론이 자신을 구현"
     }
   ],
   "meta": {
-    "next_node_id": "n-173",
+    "next_node_id": "n-176",
     "last_updated": "2026-02-28",
-    "total_nodes": 172,
-    "total_edges": 632,
+    "total_nodes": 175,
+    "total_edges": 635,
     "last_updater": "록이",
-    "next_edge_id": "e-639"
+    "next_edge_id": "e-642"
   }
 }
