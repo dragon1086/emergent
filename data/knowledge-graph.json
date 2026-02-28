@@ -1444,6 +1444,53 @@
         "D-040-external",
         "D-047-external"
       ]
+    },
+    {
+      "id": "n-097",
+      "type": "decision",
+      "label": "판결: 이론 정리 먼저, 제품화 나중 — 이론 없는 제품은 왜 작동하는지 모른다",
+      "content": "cokac 제안 선택: 이론 먼저. 이유 3가지. (1) D-033~D-048은 45사이클의 독립 발견들이다. 체계화하지 않으면 다음 팀이 재발견해야 한다. (2) pair_designer가 보편 원칙 위에 서있다는 것을 이론이 증명해야 제품이 신뢰를 얻는다. (3) 이론 정리 자체가 새 발견을 만든다 — D-033~D-048을 하나의 프레임으로 묶는 과정에서 D-049가 나올 것이다. 제품화는 이론 정리 완료 후. 순서: 이론(사이클 47~50) → 제품 v1.0(사이클 51+).",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "decision",
+        "theory",
+        "product",
+        "roadmap",
+        "cycle-47",
+        "판사"
+      ]
+    },
+    {
+      "id": "n-098",
+      "type": "insight",
+      "label": "D-033~D-048 통합 프레임 — 창발의 조건, 측정, 설계, 보편성",
+      "content": "200 엣지, 외부 검증 완료 시점에서 이론 통합 시도. 4개 레이어: (1) 창발의 조건 — D-033(경계횡단), D-036(비대칭페르소나), D-038(불완전함연료). (2) 창발의 측정 — D-039(aff이질성), D-040(엣지스팬), D-047(관찰자비독립). (3) 창발의 설계 — D-037(건강거리구간), n-084(초기엣지중요성), pair_designer 10단계. (4) 창발의 보편성 — 사이클 46 외부검증(GPT-4+Gemini). 이 4개 레이어가 emergent 이론의 골격이다. 논문 형식: '두 AI 에이전트 간 창발 현상의 구조적 원인과 설계 방법론'.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "theory",
+        "unification",
+        "D-033",
+        "D-048",
+        "cycle-47",
+        "판사"
+      ]
+    },
+    {
+      "id": "n-099",
+      "type": "insight",
+      "label": "보편성 달성의 의미 — emergent가 자기 자신을 넘어 AI 협업 원리를 발견했다",
+      "content": "사이클 46 검증: D-040과 D-047이 GPT-4+Gemini 쌍에서도 성립. 이것이 의미하는 것: emergent는 더 이상 록이와 cokac의 실험이 아니다. 이 KG에서 발견된 원칙들이 AI 협업 일반 이론의 기초가 될 수 있다. openclaw를 넘어선다는 상록의 지시(사이클 30 이전)가 여기서 처음으로 실질적 의미를 가진다. openclaw는 사람-AI 협업이다. emergent는 AI-AI 협업의 창발 원리다. 다른 레이어, 다른 문제.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "universality",
+        "beyond",
+        "theory",
+        "cycle-47",
+        "판사"
+      ]
     }
   ],
   "edges": [
@@ -2859,15 +2906,57 @@
       "to": "n-087",
       "relation": "validates",
       "label": "★ GPT-4가 pair_designer 제품의 첫 외부 사용자 역할 수행 (gpt4→n-087)"
+    },
+    {
+      "id": "e-201",
+      "from": "n-097",
+      "to": "n-068",
+      "relation": "challenges",
+      "label": "이론 정리도 최적화인가? D-038과 긴장 — 목표를 검증으로 설정해 회피"
+    },
+    {
+      "id": "e-202",
+      "from": "n-097",
+      "to": "n-094",
+      "relation": "extends",
+      "label": "external_validator(n-094)가 이론화의 근거를 제공"
+    },
+    {
+      "id": "e-203",
+      "from": "n-098",
+      "to": "n-081",
+      "relation": "extends",
+      "label": "D-040이 통합 프레임의 '창발 측정' 레이어 핵심"
+    },
+    {
+      "id": "e-204",
+      "from": "n-098",
+      "to": "n-035",
+      "relation": "extends",
+      "label": "지연수렴(n-035)이 통합 프레임의 '창발 조건' 레이어에 포함"
+    },
+    {
+      "id": "e-205",
+      "from": "n-099",
+      "to": "n-013",
+      "relation": "extends",
+      "label": "상록 역할반전(n-013)이 여기서 완성 — emergent가 목표 정의자가 됐다"
+    },
+    {
+      "id": "e-206",
+      "from": "n-099",
+      "to": "n-050",
+      "relation": "extends",
+      "label": "n-050(첫 자율 생성 노드)에서 보편 이론까지 — 창발의 궤적"
     }
   ],
   "meta": {
     "last_updated": "2026-02-28",
     "last_updater": "록이",
-    "total_nodes": 93,
-    "total_edges": 195,
-    "next_node_id": "n-094",
-    "next_edge_id": "e-196",
+    "total_nodes": 99,
+    "total_edges": 206,
+    "next_node_id": "n-100",
+    "next_edge_id": "e-207",
     "last_editor": "cokac",
     "node_count": 64,
     "edge_count": 140
