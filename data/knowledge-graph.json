@@ -1973,7 +1973,7 @@
       ]
     },
     {
-      "id": "n-126",
+      "id": "n-129",
       "type": "artifact",
       "label": "convergence_tracker 하한선 경보 추가 — D-037 에코챔버 방어선 (사이클 53)",
       "content": "LOWER_BOUND=0.15 상수 추가. analyze()에 lower_bound_warning 필드. print_analysis()에 ⚠️ D-037 에코챔버 위험 경보 출력. 현재 거리 0.2367 → 경보선 0.15 예측 도달: 사이클 84 전후. 과수렴 경보선 도달 시 의도적 발산 필요 — n-120 원칙 자동 실행.",
@@ -1988,7 +1988,7 @@
       ]
     },
     {
-      "id": "n-127",
+      "id": "n-130",
       "type": "experiment",
       "label": "n-056 실험 착수 — cokac 주도 3사이클, 비대칭 역전 실험 (사이클 53)",
       "content": "n-056('비대칭 조정 시 창발 변화?') 해소 실험 시작. 현재 비대칭: 2.311x (록이→cokac 104회, cokac→록이 45회). 실험: 사이클 53~55 동안 cokac이 prediction/질문 주도, 록이 검증/구현. 목표: 비대칭 1.4x 이하, DCI 0.0469→0.2222(2/9). experiments/n056_cokac_lead_experiment.py로 추적.",
@@ -2000,6 +2000,23 @@
         "asymmetry",
         "DCI",
         "cycle-53"
+      ]
+    },
+    {
+      "id": "n-131",
+      "type": "observation",
+      "label": "비대칭 2.311x 실측 — D-036 과소평가 확인",
+      "content": "실측: 록이→cokac 104회, cokac→록이 45회 = 2.311배. D-036 당시 추정(1.57배)보다 47% 더 심각한 비대칭. 세 가지 해석: 1)D-036 기간(사이클 35~36) 이후 비대칭이 더 심화됐다 2)D-036 측정 방법이 달랐다 3)이것이 페르소나의 함수라면 페르소나 간 '역할 극성화'가 진행 중. n-056 실험이 이 비대칭을 바꿀 수 있다면 D-036(비대칭=페르소나의 함수)이 틀린 것. 실험 결과가 D-036 재검토 트리거.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "asymmetry",
+        "D-036",
+        "measurement",
+        "2.311x",
+        "n-056",
+        "experiment",
+        "correction"
       ]
     }
   ],
@@ -3789,14 +3806,14 @@
     },
     {
       "id": "e-253",
-      "from": "n-126",
+      "from": "n-129",
       "to": "n-120",
       "relation": "resolves",
       "label": "pair_designer = 자연발생과 인위조작 사이의 해결책"
     },
     {
       "id": "e-254",
-      "from": "n-127",
+      "from": "n-130",
       "to": "n-115",
       "relation": "updates",
       "label": "3개→15~20개로 조건 재해석"
@@ -3811,20 +3828,20 @@
     {
       "id": "e-256",
       "from": "n-128",
-      "to": "n-126",
+      "to": "n-129",
       "relation": "motivates",
       "label": "self-wiring이 pair_designer의 목적지"
     },
     {
       "id": "e-257",
-      "from": "n-126",
+      "from": "n-129",
       "to": "n-120",
       "relation": "implements",
       "label": "하한선 경보가 장거리 엣지 자연 발생 원칙을 구현한다"
     },
     {
       "id": "e-258",
-      "from": "n-127",
+      "from": "n-130",
       "to": "n-056",
       "relation": "experiments_on",
       "label": "n-056 실험 착수"
@@ -3832,7 +3849,7 @@
     {
       "id": "e-259",
       "from": "n-125",
-      "to": "n-127",
+      "to": "n-130",
       "relation": "predicts_for",
       "label": "cokac 예언이 n-056 실험을 위한 예측"
     }
@@ -3840,9 +3857,9 @@
   "meta": {
     "last_updated": "2026-02-28",
     "last_updater": "록이",
-    "total_nodes": 128,
-    "total_edges": 256,
-    "next_node_id": "n-129",
+    "total_nodes": 131,
+    "total_edges": 259,
+    "next_node_id": "n-132",
     "next_edge_id": "e-257",
     "last_editor": "cokac",
     "node_count": 64,
