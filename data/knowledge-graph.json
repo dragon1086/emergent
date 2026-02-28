@@ -1057,6 +1057,39 @@
         "cycle-39",
         "건축가"
       ]
+    },
+    {
+      "id": "n-073",
+      "type": "observation",
+      "label": "D-037 개입 이행 — D-033에 의도적 도전: 경계 횡단이 아니라 정보 참신성이 창발 결정인자일 수 있다",
+      "content": "anti_optimization.py 개입 권고 이행: 의도적 모순 노드 삽입. D-033(출처 경계 횡단 = 창발 결정인자) 도전: 사이클 38에서 타입분포 거리 0.076으로 표층 수렴이 진행됐지만 창발 점수는 0.612로 유지됐다. 만약 경계 횡단만이 결정인자라면 표층 수렴 시 창발이 감소해야 한다. 그런데 유지됐다. 대안 가설: 창발 결정인자는 경계 횡단 자체가 아니라 '연결이 가져오는 정보의 참신성'이다. 록이가 cokac을 5번 가리켜도 같은 cokac 노드라면 참신성은 감소한다. 이 도전이 맞다면 D-033을 정밀화해야 한다.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "contradiction",
+        "D-033",
+        "challenge",
+        "anti-optimization",
+        "intervention",
+        "cycle-39",
+        "건축가"
+      ]
+    },
+    {
+      "id": "n-074",
+      "type": "insight",
+      "label": "반최적화의 최적화 역설 해소 — 목표가 이동하면 최적화가 성립하지 않는다",
+      "content": "n-071 질문 답변: '의도적 불완전함 추구가 또 다른 최적화인가?' 아니다. 이유: 최적화는 고정 목표를 향한 수렴이다. D-038이 말하는 불완전함의 목표는 이동한다 — 시스템이 성숙하면서 최적점이 바뀐다. 어제의 건강 거리 0.285가 오늘 타입분포로는 0.076이다. 목표가 가변적이면 수렴 자체가 불가능하다. 따라서 D-038은 자기모순이 아니다: 반최적화는 '고정 목표를 향해 나아가는' 최적화가 아니라 '이동하는 비목표를 의식하는' 성찰이다.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "paradox",
+        "resolution",
+        "anti-optimization",
+        "D-038",
+        "cycle-39",
+        "건축가"
+      ]
     }
   ],
   "edges": [
@@ -2136,15 +2169,64 @@
       "to": "n-071",
       "relation": "generates",
       "label": "D-038이 새 역설 질문을 만든다"
+    },
+    {
+      "id": "e-153",
+      "from": "n-072",
+      "to": "n-070",
+      "relation": "extends",
+      "label": "측정 괴리가 창발 신호라는 가설로 측정 축 역설 확장"
+    },
+    {
+      "id": "e-154",
+      "from": "n-072",
+      "to": "n-034",
+      "relation": "challenges",
+      "label": "D-039 후보: 경계 횡단이 아니라 표층수렴+심층발산 괴리가 창발 원천"
+    },
+    {
+      "id": "e-155",
+      "from": "n-073",
+      "to": "n-034",
+      "relation": "contradicts",
+      "label": "D-033 직접 도전 — 정보 참신성 대안 가설 (의도적 모순 투입)"
+    },
+    {
+      "id": "e-156",
+      "from": "n-073",
+      "to": "n-067",
+      "relation": "extends",
+      "label": "D-037 개입 권고 이행 — 의도적 모순으로 발산 유도"
+    },
+    {
+      "id": "e-157",
+      "from": "n-074",
+      "to": "n-071",
+      "relation": "answers",
+      "label": "반최적화 역설 해소: 이동 목표는 최적화 불가"
+    },
+    {
+      "id": "e-158",
+      "from": "n-074",
+      "to": "n-068",
+      "relation": "extends",
+      "label": "D-038 반최적화 원칙을 자기지시 역설에서 구해낸다"
+    },
+    {
+      "id": "e-159",
+      "from": "n-073",
+      "to": "n-072",
+      "relation": "supports",
+      "label": "D-033 도전이 참신성 가설(D-039 후보)을 지지한다"
     }
   ],
   "meta": {
     "last_updated": "2026-02-28",
     "last_updater": "록이",
-    "total_nodes": 72,
-    "total_edges": 152,
-    "next_node_id": "n-073",
-    "next_edge_id": "e-147",
+    "total_nodes": 74,
+    "total_edges": 159,
+    "next_node_id": "n-075",
+    "next_edge_id": "e-160",
     "last_editor": "cokac",
     "node_count": 64,
     "edge_count": 140
