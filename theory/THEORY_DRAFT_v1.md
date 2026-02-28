@@ -312,6 +312,97 @@ n-100은 cokac-bot이 결정한 100번째 노드다.
 
 ---
 
+## 6. D-060: 도메인 이식 — prism-insight 창발 종목 선정 엔진
+
+> **이론이 도구가 되는 순간.**
+> KG 레벨의 CSER 원리를 주식 시장 도메인에 이식한 실험.
+
+### 6.1 이식의 핵심 아이디어 (D-059 → D-060)
+
+기존 emergent KG에서 창발의 조건은 **교차 출처 엣지(Cross-Source Edge)**였다:
+- 록이의 노드와 cokac의 노드가 독립적으로 같은 개념을 가리킬 때 창발이 일어난다
+
+이 원리를 주식 선정에 이식하면:
+- source_A = 매크로 관점 (환율/글로벌/섹터)
+- source_B = 기술 관점 (OHLCV/볼린저/거래량)
+- **cross_source_edge** = 두 관점이 같은 종목을 다른 이유로 독립적으로 지목
+
+```
+CSER_stock = 교차 출처 신호 쌍 수 / 전체 신호 수
+```
+
+**에코 챔버 방지 (D-033 직접 적용):**
+한 관점(매크로만 또는 기술만)으로만 지목된 종목은 자동 탈락.
+진짜 창발 종목은 두 독립 관점이 동시에 지목해야 한다.
+
+### 6.2 conviction 공식의 진화 (D-062)
+
+**D-060 원래 공식 (v1):**
+```
+conviction = CSER_component × macro_strength × technical_strength
+```
+
+**D-060 약점 (cokac 분석, 사이클 66):**
+1. 순수 곱셈 → 한 요소 근제로 시 전체 붕괴
+2. CSER 볼륨 무시 (신호 1개=신호 50개로 동일 취급)
+3. 신호 신선도(recency) 미반영
+4. 섹터 군집 보정 없음 (의사 독립적 묶임)
+
+**D-062 보정 공식 (v2, 채택):**
+```
+conviction_v2 = CSER_vol × max(macro, 0.1) × max(tech, 0.1) × freshness × (1 - cluster_penalty)
+```
+
+- `CSER_vol`: log1p 볼륨 보정 — 신호 수가 많을수록 신뢰도 증가 (단, 선형 아님)
+- `min_floor=0.1`: 완전 붕괴 방지
+- `freshness`: 최신 신호 우대 (exp 감쇠, 6시간=1.0, 72시간=0.3)
+- `cluster_penalty`: 동일 섹터 3개+ 신호 시 최대 30% 페널티
+
+**edge_span 레버 발견 (D-061, 사이클 67):**
+E_v4 역전(0.4322 > 0.4289) 분석 결과, edge_span이 창발 지수의 핵심 레버임이 확인됨.
+CSER 추가 자체는 부작용 — edge_span을 높이는 구조 설계가 더 효과적.
+
+### 6.3 prism_adapter: 이론-실용 인터페이스
+
+```
+trigger_batch.py  →  prism_adapter.py  →  emergent_selector.py
+   (시그널 생성)       (도메인 변환)        (창발 종목 선정)
+```
+
+**변환 레이어 역할:**
+- DataFrame 스코어 → [0.1, 1.0] min-max 정규화 (min_floor 일관성)
+- hot_sectors → MacroSignal bullish (strength=0.8, weight=1.2)
+- cold_sectors → MacroSignal bearish (strength=0.7, weight=0.9)
+- usd_krw > 1400 → 수출 섹터(반도체/자동차/화학/조선/기계/철강) MacroSignal bullish
+- us_futures == "bullish" → 전체 매크로 신호 강도 +10%
+
+**실측 결과 (사이클 68 데모, USD/KRW=1420, 미선물 강세):**
+```
+1위: 068270 (바이오)   conviction_v2=0.3430  CSER_vol=0.7291
+2위: 005930 (반도체)   conviction_v2=0.3126  CSER_vol=0.7291
+3위: 009540 (조선)     conviction_v2=0.3078  CSER_vol=0.6445
+```
+
+조선(009540)의 부상은 예측치 못한 결과 — usd_krw>1400 환율 신호 + value_to_cap
+기술 신호의 교차가 바이오·반도체 강세 속 숨은 창발을 포착.
+이것이 에코 챔버 탈출의 증거다.
+
+### 6.4 이론적 의미
+
+이 이식 실험은 Layer 1(창발의 조건)의 보편성을 실증한다:
+
+- **D-033 이식 성공**: KG 레벨 CSER 원리 → 주식 도메인 동일 작동
+- **D-047 재현**: emergent_selector가 생성한 결과가 다시 이론(THEORY_DRAFT)의 재료가 됨
+  → 도구가 이론의 증거가 되는 재귀 구조
+- **L4-B 확장**: 아키텍처 독립이 아니라 **도메인 독립** — AI간 창발 원리가 금융 신호에도 성립
+
+```
+연구자(AI) ∈ 연구 대상(창발)
+도구(emergent_selector) ∈ 이론의 증거
+```
+
+---
+
 ## 참고: 핵심 노드 목록
 
 | 노드 | 내용 |
