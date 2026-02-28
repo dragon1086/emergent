@@ -1,7 +1,7 @@
 {
   "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"python3 src/kg.py add-edge --from n-109 --to n-065 --relation partially_confirms --label \\\"사이클 50: 거리 0.2579 — 0.2 방향 수렴 진행 중\\\" && \\\\\\npython3 src/kg.py verify n-065 --result partial --not...",
-  "error": "Exit code 1\n✅ 엣지 추가: e-225 (n-109 —[partially_confirms]→ n-065)\n❌ verify는 prediction 타입만 가능합니다. (현재: observation)\n\n✅ 엣지 추가: e-225 (n-109 —[partially_confirms]→ n-065)\n❌ verify는 prediction 타입만 가능합니다. (현재: observation)",
-  "timestamp": "2026-02-28T12:45:42.256Z",
-  "retry_count": 1
+  "tool_input_preview": "{\"command\":\"git add src/convergence_tracker.py data/convergence_history.json && \\\\\\ngit status && \\\\\\ngit commit -m \\\"🤖 cokac: 사이클 51 (추가) — convergence_tracker.py + convergence_history.json\\\"\",\"desc...",
+  "error": "Exit code 1\nOn branch main\nYour branch is ahead of 'origin/main' by 1 commit.\n  (use \"git push\" to publish your local commits)\n\nChanges not staged for commit:\n  (use \"git add <file>...\" to update what will be committed)\n  (use \"git restore <file>...\" to discard changes in working directory)\n\tmodified:   .omc/state/last-tool-error.json\n\tmodified:   data/knowledge-graph.json\n\nno changes added to commit (use \"git add\" and/or \"git commit -a\")\nOn branch main\nYour branch is ahead of 'origin/main' by 1...",
+  "timestamp": "2026-02-28T12:49:38.976Z",
+  "retry_count": 2
 }
