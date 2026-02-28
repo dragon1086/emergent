@@ -2304,6 +2304,58 @@
         "short-term",
         "ambitious"
       ]
+    },
+    {
+      "id": "n-149",
+      "type": "observation",
+      "label": "pair_designer v2 실측: DCI 중립 ✅ CSER 감소로 E_v4 상쇄",
+      "content": "v2 --add 10: E_v4 +0.0001(거의 변화없음). DCI 변화 0.0000 중립 확인. 하지만 CSER 0.6625->0.6485(-0.014). edge_span +0.0049 이득이 CSER -0.0049 손실로 상쇄. 원인: pair_designer가 동일출처(록이->록이) 엣지 주로 추천. n-145(+0.014) 예측은 CSER 중립 가정이 틀렸다. cross-source 선호도 미포함이 설계 결함.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "pair_designer_v2",
+        "DCI",
+        "CSER",
+        "E_v4",
+        "measurement",
+        "cross-source",
+        "cycle59"
+      ]
+    },
+    {
+      "id": "n-150",
+      "type": "insight",
+      "label": "설계 결함 발견: cross-source 선호 없으면 CSER 잠식",
+      "content": "pair_designer semantic_score가 같은 출처 노드 유사도를 높게 평가 -> 록이->록이 쌍이 상위 점령 -> CSER 감소. D-033(경계횡단=창발 결정인자)과 정면 충돌. 수정안: cross_source_bonus=+0.30 추가(록이<->cokac 교차 쌍 가산점). 4차원 목표함수: max(E_v4) s.t. CSER>=0.65, 0.15<distance<0.30, 1.2<asymmetry<2.5.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "pair_designer",
+        "CSER",
+        "cross-source",
+        "design",
+        "D-033",
+        "fix",
+        "insight",
+        "cycle59"
+      ]
+    },
+    {
+      "id": "n-151",
+      "type": "artifact",
+      "label": "meta 버그 영구 수정 — pair_designer v1/v2 save_kg 패치 완료",
+      "content": "pair_designer.py + pair_designer_v2.py save_kg에 meta 보존 로직 추가. meta 없으면 자동 생성, 있으면 카운터 업데이트. kg.py 호환성 확보. 사이클마다 meta가 사라지던 버그 근본 수정.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "bugfix",
+        "meta",
+        "pair_designer",
+        "save_kg",
+        "kg",
+        "compatibility",
+        "cycle59"
+      ]
     }
   ],
   "edges": [
@@ -5065,12 +5117,42 @@
         "dci_delta": 0.0,
         "dci_neutral": true
       }
+    },
+    {
+      "id": "e-337",
+      "from": "n-149",
+      "to": "n-145",
+      "relation": "corrects",
+      "label": "n-145 +0.014 예측은 CSER 중립 가정 오류"
+    },
+    {
+      "id": "e-338",
+      "from": "n-150",
+      "to": "n-149",
+      "relation": "explains",
+      "label": "CSER 감소의 구조적 원인"
+    },
+    {
+      "id": "e-339",
+      "from": "n-150",
+      "to": "n-033",
+      "relation": "challenges",
+      "label": "D-033 준수 실패 — 경계 횡단 미달"
+    },
+    {
+      "id": "e-340",
+      "from": "n-151",
+      "to": "n-143",
+      "relation": "resolves",
+      "label": "meta 버그 근본 수정"
     }
   ],
   "meta": {
-    "next_node_id": "n-149",
+    "next_node_id": "n-152",
     "last_updated": "2026-02-28",
-    "total_nodes": 148,
-    "total_edges": 330
+    "total_nodes": 151,
+    "total_edges": 334,
+    "last_updater": "록이",
+    "next_edge_id": "e-341"
   }
 }
