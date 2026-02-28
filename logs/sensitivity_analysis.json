@@ -1,0 +1,125 @@
+{
+  "base_weights": {
+    "cser": 0.35,
+    "dci": 0.25,
+    "edge_span": 0.25,
+    "node_age_div": 0.15
+  },
+  "base_reversal_cycle": null,
+  "verdict": "부분 강건(MOSTLY ROBUST)",
+  "robust_ratio": 0.9375,
+  "results": [
+    {
+      "label": "cser +10%",
+      "delta": 0.1,
+      "reversal_cycle": null,
+      "robust": true,
+      "cycle_diff": 0
+    },
+    {
+      "label": "cser -10%",
+      "delta": 0.1,
+      "reversal_cycle": null,
+      "robust": true,
+      "cycle_diff": 0
+    },
+    {
+      "label": "dci +10%",
+      "delta": 0.1,
+      "reversal_cycle": null,
+      "robust": true,
+      "cycle_diff": 0
+    },
+    {
+      "label": "dci -10%",
+      "delta": 0.1,
+      "reversal_cycle": null,
+      "robust": true,
+      "cycle_diff": 0
+    },
+    {
+      "label": "edge_span +10%",
+      "delta": 0.1,
+      "reversal_cycle": null,
+      "robust": true,
+      "cycle_diff": 0
+    },
+    {
+      "label": "edge_span -10%",
+      "delta": 0.1,
+      "reversal_cycle": null,
+      "robust": true,
+      "cycle_diff": 0
+    },
+    {
+      "label": "node_age_div +10%",
+      "delta": 0.1,
+      "reversal_cycle": null,
+      "robust": true,
+      "cycle_diff": 0
+    },
+    {
+      "label": "node_age_div -10%",
+      "delta": 0.1,
+      "reversal_cycle": null,
+      "robust": true,
+      "cycle_diff": 0
+    },
+    {
+      "label": "cser +20%",
+      "delta": 0.2,
+      "reversal_cycle": 65,
+      "robust": false,
+      "cycle_diff": 999
+    },
+    {
+      "label": "cser -20%",
+      "delta": 0.2,
+      "reversal_cycle": null,
+      "robust": true,
+      "cycle_diff": 0
+    },
+    {
+      "label": "dci +20%",
+      "delta": 0.2,
+      "reversal_cycle": null,
+      "robust": true,
+      "cycle_diff": 0
+    },
+    {
+      "label": "dci -20%",
+      "delta": 0.2,
+      "reversal_cycle": null,
+      "robust": true,
+      "cycle_diff": 0
+    },
+    {
+      "label": "edge_span +20%",
+      "delta": 0.2,
+      "reversal_cycle": null,
+      "robust": true,
+      "cycle_diff": 0
+    },
+    {
+      "label": "edge_span -20%",
+      "delta": 0.2,
+      "reversal_cycle": null,
+      "robust": true,
+      "cycle_diff": 0
+    },
+    {
+      "label": "node_age_div +20%",
+      "delta": 0.2,
+      "reversal_cycle": null,
+      "robust": true,
+      "cycle_diff": 0
+    },
+    {
+      "label": "node_age_div -20%",
+      "delta": 0.2,
+      "reversal_cycle": null,
+      "robust": true,
+      "cycle_diff": 0
+    }
+  ]
+}
