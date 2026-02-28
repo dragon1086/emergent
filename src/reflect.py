@@ -445,15 +445,23 @@ def _tag_sim(tags_a: set, tags_b: set) -> float:
 
 
 def _compute_similarity(a: dict, b: dict) -> float:
-    """두 노드의 유사도 계산 (0.0 ~ 1.0)
+    """두 노드의 유사도 계산 (0.0 ~ 1.0) — D-033 출처 경계 가중치 적용
 
     가중치:
       태그 (min방식) 0.60  — 의도적 분류가 가장 신뢰도 높음
       내용 단어 겹침 0.25  — 실제 내용 기반
       레이블 단어    0.15  — 제목 수준 연결
+
+    D-033 경계 가중치:
+      같은 출처 쌍  × 0.25  — 창발 기여 없음, 패널티
+      다른 출처 쌍  × 1.5   — 경계 횡단 보너스 (max 1.0)
+
+    출처 식별 태그(cokac, 록이 등)는 유사도 계산에서 제외:
+      #cokac 태그가 cokac 노드끼리만 공유되어 같은 출처 편향을 유발하던 버그 수정.
     """
-    tags_a = set(a.get("tags", []))
-    tags_b = set(b.get("tags", []))
+    # 출처 식별 태그 제외 (D-033: #cokac/#록이 태그가 같은 출처 편향 유발)
+    tags_a = {t for t in a.get("tags", []) if t not in _SOURCE_IDENTITY_TAGS}
+    tags_b = {t for t in b.get("tags", []) if t not in _SOURCE_IDENTITY_TAGS}
     t_sim = _tag_sim(tags_a, tags_b)
 
     label_sim = _jaccard(_tokenize(a["label"]), _tokenize(b["label"]))
@@ -463,7 +471,18 @@ def _compute_similarity(a: dict, b: dict) -> float:
         _tokenize(b.get("content", "")),
     )
 
-    return t_sim * 0.60 + label_sim * 0.15 + content_sim * 0.25
+    base_sim = t_sim * 0.60 + label_sim * 0.15 + content_sim * 0.25
+
+    # D-033: 출처 경계 가중치
+    group_a = _source_group(a.get("source", ""))
+    group_b = _source_group(b.get("source", ""))
+
+    if group_a != "other" and group_a == group_b:
+        # 같은 출처 — 창발 기여 없음, 강한 패널티
+        return base_sim * 0.25
+    else:
+        # 다른 출처 — 경계 횡단 보너스
+        return min(base_sim * 1.5, 1.0)
 
 
 def _explain_similarity(a: dict, b: dict) -> str:
@@ -487,10 +506,11 @@ def _explain_similarity(a: dict, b: dict) -> str:
 # ─── 명령어: suggest-edges ───────────────────────────────────────────────────
 
 def cmd_suggest_edges(args) -> None:
-    """노드 쌍 유사도 기반 잠재 엣지 제안 — 자동 추가 없음, 제안만"""
+    """노드 쌍 유사도 기반 잠재 엣지 제안 — D-033 출처 경계 가중치 적용, 자동 추가 없음"""
     graph    = load_graph()
     nodes    = graph["nodes"]
     threshold = args.threshold
+    cross_only = getattr(args, "cross_source_only", False)
 
     # 이미 존재하는 엣지 쌍 (중복 방지, 방향 무시)
     existing: set = set()
@@ -507,10 +527,19 @@ def cmd_suggest_edges(args) -> None:
             b = nodes[j]
             if (a["id"], b["id"]) in existing:
                 continue
+
+            group_a = _source_group(a.get("source", ""))
+            group_b = _source_group(b.get("source", ""))
+            is_cross = (group_a != group_b) or (group_a == "other")
+
+            # --cross-source-only: 같은 출처 쌍 완전 제외
+            if cross_only and not is_cross:
+                continue
+
             sim = _compute_similarity(a, b)
             if sim >= threshold:
                 reason = _explain_similarity(a, b)
-                suggestions.append((a["id"], b["id"], sim, reason))
+                suggestions.append((a["id"], b["id"], sim, reason, is_cross))
 
     suggestions.sort(key=lambda x: -x[2])
 
@@ -518,19 +547,29 @@ def cmd_suggest_edges(args) -> None:
         print(f"✅ 임계값 {threshold} 이상의 잠재 연결 없음")
         return
 
-    print(f"🔗 잠재 엣지 제안  (유사도 ≥ {threshold})\n")
-    for src, dst, sim, reason in suggestions:
-        src_label = node_map[src]["label"][:30]
-        dst_label = node_map[dst]["label"][:30]
-        print(f'{src} → {dst} [유사도: {sim:.2f}] "{reason}"')
+    cross_count = sum(1 for *_, is_cross in suggestions if is_cross)
+    mode_str = " [교차 출처만]" if cross_only else ""
+    print(f"🔗 잠재 엣지 제안  (유사도 ≥ {threshold}){mode_str}")
+    print(f"   D-033 적용: 같은 출처 ×0.25 패널티 | 다른 출처 ×1.5 보너스")
+    print(f"   총 {len(suggestions)}개  (교차 출처: {cross_count}개 🔀 | 동일 출처: {len(suggestions)-cross_count}개)\n")
+
+    for src, dst, sim, reason, is_cross in suggestions:
+        src_node = node_map[src]
+        dst_node = node_map[dst]
+        src_label = src_node["label"][:32]
+        dst_label = dst_node["label"][:32]
+        src_src   = src_node.get("source", "?")
+        dst_src   = dst_node.get("source", "?")
+        marker = "🔀" if is_cross else "↔ "
+        print(f'{marker} {src}({src_src}) → {dst}({dst_src}) [유사도: {sim:.2f}] "{reason}"')
         print(f'       {src_label}')
         print(f'       {dst_label}')
         print()
 
-    print(f"총 {len(suggestions)}개 제안")
+    print(f"총 {len(suggestions)}개 제안  (🔀 = 교차 출처 — D-033 기반 창발 후보)")
     print()
     print("→ 직접 검토 후 추가하려면:")
-    print("  python kg.py add-edge --from <A> --to <B> --relation <관계> --label <설명>")
+    print("  python3 src/kg.py add-edge --from <A> --to <B> --relation <관계> --label <설명>")
     print()
     print("⚠️  자동 추가 없음 — 그래프는 록이가 결정합니다")
 
@@ -754,6 +793,17 @@ _ROKI_SOURCES  = {"록이", "상록", "roki"}
 _COKAC_SOURCES = {"cokac", "cokac-bot"}
 #: 분석에서 제외할 메타/레퍼런스 태그 패턴
 _META_TAG_PREFIXES = ("D-", "auto-detected", "first-")
+#: 출처 식별 태그 — 유사도 계산에서 제외 (D-033: 같은 출처 연결은 창발 기여 없음)
+_SOURCE_IDENTITY_TAGS = {"cokac", "cokac-bot", "록이", "roki", "상록"}
+
+
+def _source_group(source: str) -> str:
+    """노드 출처를 그룹으로 분류: 'roki' | 'cokac' | 'other'"""
+    if source in _ROKI_SOURCES:
+        return "roki"
+    if source in _COKAC_SOURCES:
+        return "cokac"
+    return "other"
 
 
 def _is_conceptual_tag(tag: str) -> bool:
@@ -1484,13 +1534,19 @@ def main():
 
     p_suggest = sub.add_parser(
         "suggest-edges",
-        help="유사도 기반 잠재 엣지 제안 (자동 추가 없음)",
+        help="유사도 기반 잠재 엣지 제안 — D-033 출처 경계 가중치 적용 (자동 추가 없음)",
     )
     p_suggest.add_argument(
         "--threshold", "-t",
         type=float, default=0.4,
         metavar="0.0-1.0",
         help="유사도 임계값 (기본: 0.4)",
+    )
+    p_suggest.add_argument(
+        "--cross-source-only", "-x",
+        action="store_true",
+        dest="cross_source_only",
+        help="D-033: 교차 출처 쌍만 출력 (같은 출처 쌍 완전 제외)",
     )
 
     # graph-viz (사이클 7)
