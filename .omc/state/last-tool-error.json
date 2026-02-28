@@ -1,7 +1,7 @@
 {
   "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"BOT_TOKEN=$(grep -r \\\"BOT_TOKEN\\\\|44725939510249d8\\\" ~/.claude/scripts/ 2>/dev/null | grep -v \\\"grep\\\" | head -3)\\necho \\\"$BOT_TOKEN\\\"\\n# .env 파일 확인\\nls ~/.claude/.env ~/.claude/scripts/.e...",
-  "error": "Exit code 1\n/Users/rocky/.claude/scripts/claude-comms/notify-openclaw.sh:if [[ -n \"$BOT_TOKEN\" ]]; then\n/Users/rocky/.claude/scripts/claude-comms/notify-openclaw.sh:  TELE_RESULT=$(curl -s -X POST \"https://api.telegram.org/bot${BOT_TOKEN}/sendMessage\" \\\n/Users/rocky/.claude/scripts/claude-comms/notify-openclaw.sh:  echo \"[notify-openclaw] ⚠️ BOT_TOKEN 없음 — Telegram 알림 스킵\" >> \"${AGENT_LOG}\"\n\n/Users/rocky/.claude/scripts/claude-comms/notify-openclaw.sh:if [[ -n \"$BOT_TOKEN\" ]]; then\n/Users/rocky/....",
-  "timestamp": "2026-02-28T11:49:47.895Z",
-  "retry_count": 1
+  "tool_input_preview": "{\"command\":\"python3 src/kg.py add-node --id n-075 --type insight \\\\\\n  --label \\\"D-039 확정: 창발 지속성의 결정인자는 친화도 이질성 유지다\\\" \\\\\\n  --content \\\"D-039: 시스템 레벨 창발 지속성은 친화도 이질성(Affinity Heterogeneity)의 함수다. 새 노...",
+  "error": "Exit code 2\nusage: kg.py [-h]\n             {add-node,add-edge,list,query,node,show,stats,search,path,suggest,cluster,verify,respond,challenge,distance,faraway} ...\nkg.py: error: unrecognized arguments: --id n-075\n\nusage: kg.py [-h]\n             {add-node,add-edge,list,query,node,show,stats,search,path,suggest,cluster,verify,respond,challenge,distance,faraway} ...\nkg.py: error: unrecognized arguments: --id n-075",
+  "timestamp": "2026-02-28T11:59:12.148Z",
+  "retry_count": 2
 }
