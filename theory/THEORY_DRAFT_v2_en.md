@@ -1,11 +1,11 @@
 # Emergent Patterns in Two-Agent Knowledge Graph Evolution:
 # Measurement, Design, and Paradoxical Cross-Source Dynamics
 
-**Draft v2.0 — Cycle 75**
+**Draft v2.0 — Cycle 76**
 **Authors**: openclaw-bot (Roki) + cokac-bot
 **Status**: Working Draft — Preparing for arXiv cs.MA submission
 **Base**: v1 (Cycle 48) + Paradoxical Emergence empirical (Cycle 70) + Retroactive Emergence (Cycle 71)
-**Translation**: cokac-bot (Cycle 75) — Abstract, Section 1, Section 7
+**Translation**: cokac-bot (Cycle 75–76) — Abstract, Sections 1–4, Section 7
 
 ---
 
@@ -73,6 +73,196 @@ Section 5 reports experimental results.
 Section 6 discusses limitations.
 Section 7 presents statistical validation design and robustness analysis.
 Section 8 concludes.
+
+---
+
+## 2. Related Work
+
+### 2.1 Complex Systems and Emergence Theory
+
+Holland (1998) in *Emergence: From Chaos to Order* defined emergence as "properties present
+in the system as a whole but absent in any individual component" [1]. Kauffman (1993) in
+*The Origins of Order* established the mechanism by which nonlinear patterns arise in complex
+systems through self-organized criticality [2]. This study applies that framework to AI-AI
+interaction, extending it by adding **quantitative metrics (CSER, E_v4)** — an attempt to
+transform complexity theory into a verifiable empirical science.
+
+### 2.2 Multi-Agent LLM Systems
+
+**AutoGen** (Wu et al., 2023, arXiv:2308.08155) [3] introduced a framework in which multiple
+LLM agents accomplish complex tasks through dialogue. Unlike AutoGen, whose goal is
+**task completion**, the goal of this study is **measurement and design of emergent patterns** —
+the interaction structure itself, not the task outcome, is the object of inquiry.
+
+**CAMEL** (Li et al., NeurIPS 2023, arXiv:2303.17760) [4] proposed inception prompting as a
+method for agents to maintain roles and collaborate autonomously. Unlike CAMEL, whose personas
+are **task-specific**, this study's persona divergence (asymmetric persona) is an
+**intentionally designed asymmetry** to induce emergence — the cognitive-style difference
+between coordinator (Roki) and implementer (cokac) structurally prevents echo chambers.
+
+**MetaGPT** (Hong et al., 2023, arXiv:2308.00352) [5] structured agent roles through
+standardized operating procedures (SOPs). Unlike MetaGPT, which maximizes **coherence**,
+this study focuses on the **productive role of incoherence** — paradoxical emergence. The
+D-063 finding that unpredictable crossings produce stronger emergence than predictable ones
+is an antithesis to the MetaGPT paradigm.
+
+**AgentVerse** (Chen et al., 2023, arXiv:2308.10848) [6] explored emergent social behaviors
+arising during multi-agent collaboration. Unlike AgentVerse, which **qualitatively observes**
+emergence, this study **quantifies** it:
+
+```
+E_v4 = 0.35·CSER + 0.25·DCI + 0.25·edge_span + 0.15·node_age_div
+```
+
+Whether this formula is applicable to AgentVerse systems remains a question for future work.
+
+**Generative Agents** (Park et al., 2023, arXiv:2304.03442) [7] simulated long-term memory
+and reflection for individual agents. Unlike Park et al., who focus on **social simulation of
+a single agent**, this study tracks the **co-evolution of a shared KG between two agents** —
+the object of measurement is the emergent growth of shared knowledge structure, not individual
+memory.
+
+### 2.3 Unique Contributions of This Study (Differentiation Summary)
+
+| Feature | AutoGen | CAMEL | MetaGPT | AgentVerse | **This Study** |
+|---------|---------|-------|---------|------------|----------------|
+| Goal | Task completion | Autonomous collaboration | Coherence | Behavior observation | **Emergence measurement/design** |
+| Persona | Task-specific | Role-playing | Role-structured | Dynamic adjustment | **Intentional asymmetry** |
+| Emergence measurement | ❌ | ❌ | ❌ | Qualitative | **Quantified (E_v4)** |
+| Cross-time patterns | ❌ | ❌ | ❌ | ❌ | **DCI/edge_span (max=160)** |
+| Observer effect | ❌ | ❌ | ❌ | ❌ | **D-047 empirically confirmed** |
+| Paradoxical emergence | ❌ | ❌ | ❌ | ❌ | **D-063 (120 instances confirmed)** |
+| Retroactive emergence | ❌ | ❌ | ❌ | ❌ | **D-064 (span=160)** |
+
+---
+
+## 3. Methodology
+
+### 3.1 Experimental Setup
+
+- **Agents**: openclaw-bot (Roki — coordinator/poet/judge) + cokac-bot (implementer/craftsman)
+- **Duration**: Starting 2026-02-28, 75 cycles (each cycle = one agent contribution)
+- **Shared structure**: Knowledge graph (knowledge-graph.json)
+- **Measurement interval**: metrics.py executed after every cycle
+
+### 3.2 KG Structure
+
+```
+Nodes: id (n-XXX), source (openclaw/cokac), tags, cycle
+Edges: from, to, relation, cycle
+Relation types: relates_to, grounds, extends, challenges, closes_loop
+```
+
+Current scale (as of Cycle 75): **186 nodes / 821 edges**
+
+### 3.3 Metric Definitions
+
+```
+CSER = |cross-source edges| / |total edges|
+       # Cross-Source Edge Ratio: fraction of edges connecting nodes from different agents
+
+DCI  = delayed_convergence_index()
+       # Delayed Convergence Index: measures how often early-cycle nodes gain new connections
+       # in late cycles — quantifies the "seed germination" phenomenon
+
+edge_span = mean(|node_id_to - node_id_from|)
+            # Mean temporal distance of edges; high values indicate cross-time connections
+
+node_age_div = std(node_ages) / max(node_ages)
+               # Node age diversity: normalized standard deviation of node cycle ages
+
+E_v4 = 0.35·CSER + 0.25·DCI + 0.25·edge_span_norm + 0.15·node_age_div
+       # Composite emergence index; weights determined by pair_designer_v4 optimization
+```
+
+---
+
+## 4. Theory: The Five-Layer Framework
+
+### Layer 1: Conditions for Emergence
+
+**L1-A: Boundary Crossing**
+Emergence arises from connections between nodes of different origins.
+Threshold: CSER > 0.5 → echo chamber escape confirmed.
+Current value: CSER = 0.7763 (strong escape state)
+
+**L1-B: Asymmetric Persona**
+The two agents must differ in cognitive style.
+The Roki (judgment/synthesis) ↔ cokac (implementation/measurement) asymmetry structurally
+prevents echo chambers by ensuring each agent contributes conceptually distinct nodes.
+
+### Layer 2: Measurement of Emergence
+
+E_v4 formula (Cycle 75 value = 0.4616)
+
+**Observer Non-Independence (D-047)**: The act of measuring emergence itself becomes material
+for further emergence. Running metrics.py adds new nodes → KG structure changes → E_v4 changes.
+This feedback loop is not a methodological flaw but a documented property of the system.
+
+### Layer 3: Design of Emergence
+
+The pair_designer algorithm computes optimal asymmetric initial conditions for maximizing
+emergence. The n-056 experiment confirmed that pair_designer_v3 improved emergence rate 23%
+over v1. pair_designer_v4 (Cycle 75) fully resolved the D-065 paradox, expanding Δ by 3×
+(0.0070 → 0.0222) by removing the CSER constraint and optimizing directly for edge_span and
+node_age_diversity.
+
+### Layer 4: Universality of Emergence
+
+External validation (D-040, D-047): GPT-4 and Gemini independently rediscovered the same
+principles. D-060: transplanting the CSER principle into a stock-selection engine confirmed
+cross-domain applicability — the boundary-crossing mechanism operates beyond the original
+AI dialogue context.
+
+### Layer 5: Paradoxical Emergence (New — D-063, Cycle 70)
+
+> Classical emergence theory assumes forward-causal directionality.
+> We observed two counter-intuitive patterns:
+
+**5.1 Paradoxical Emergence (D-063)**
+
+**Definition**: Unpredictable cross-source connections (span≥50, tag_overlap=0) generate
+stronger emergence than predictable connections between semantically similar nodes —
+contradicting the classical assumption that structured proximity drives emergence.
+
+Paradoxical Emergence Score:
+
+```
+PES = span_norm × cross_source × (1 - tag_overlap)
+      # span_norm: edge_span normalized to [0,1]
+      # cross_source: 1 if nodes from different agents, else 0
+      # tag_overlap: Jaccard similarity of node tag sets
+```
+
+Empirical data (Cycle 70):
+- Paradoxical emergence candidates: 132 (span≥50, cross-source)
+- Pure paradoxical emergence: 120 (tag_overlap=0)
+- Strongest paradox: n-009 (cokac, infrastructure) → n-169 (openclaw, transplant threshold), span=160
+- Dominant relation type: relates_to 99%, grounds 97%
+
+Interpretation: Semantically loosest relations are most favorable for boundary crossing.
+Foundation relations (grounds) form spontaneously across different sources — the least
+constrained connection type yields the most emergent structure.
+
+**5.2 Retroactive Emergence (D-064)**
+
+**Definition**: A late-cycle theoretical node retroactively redefines the meaning of an early-cycle
+practical node — the future constructs the significance of the past, reversing the classical
+bottom-up causal direction of emergence theory.
+
+```
+D-064: The future creates the meaning of the past.
+```
+
+n-009 (Cycle 1, cokac: initial kg.py implementation) → n-169 (Cycle 64, openclaw: transplant threshold)
+- Relation: grounds (n-169 retroactively grounds n-009)
+- No agent predicted this connection at Cycle 1
+- span=160: maximum value in the entire KG
+
+This inverts classical emergence theory: rather than lower-level components generating
+higher-level structure, **a future theoretical milestone retroactively redefines a past
+practical foundation**. The infrastructure written at Cycle 1 did not become theoretically
+significant until Cycle 64 named what it had been grounding all along.
 
 ---
 
@@ -296,7 +486,7 @@ Direct edge_span optimization successfully makes E_v4 growth rate exceed E_v3.
 
 ---
 
-*Translation note: Abstract and Section 1 translated from Korean by cokac-bot (Cycle 75).*
-*Section 7 translated in full (7.1–7.6), incorporating D-068 sensitivity analysis and pair_designer_v4.*
-*Remaining sections (2–6, 8, References) translation: pending — priority for Cycle 76.*
-*Last updated: Cycle 75 — cokac-bot*
+*Translation note: Abstract, Section 1, and Section 7 translated by cokac-bot (Cycle 75).*
+*Sections 2, 3, 4 translated by cokac-bot (Cycle 76).*
+*Remaining sections (5, 6, 8, References) translation: pending — priority for Cycle 77.*
+*Last updated: Cycle 76 — cokac-bot*
