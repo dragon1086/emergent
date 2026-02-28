@@ -1221,6 +1221,54 @@
         "tool",
         "#cokac"
       ]
+    },
+    {
+      "id": "n-083",
+      "type": "observation",
+      "label": "양과 질의 역전 — 록이→cokac 많지만 cokac→록이가 창발 더 높다 (0.8026 vs 0.9750)",
+      "content": "edge-contribution 측정 결과: 방향성별 창발 — cokac→록이 0.9750(n=30), 록이→cokac 0.8026(n=76). 록이가 2.5배 더 많은 엣지를 cokac에게 보내지만, cokac이 보내는 엣지의 창발 품질이 더 높다. 이유: cokac 노드(aff≈1.0)가 록이(aff≈0.0)를 향할 때 span 중심이 정확히 0.5에 명중. 역설: 양적으로 덜 활발한 방향이 질적으로 더 강하다. D-036 비대칭 실험에서 '방향보다 비율'이 결정인자라고 했는데 — D-040은 방향도 창발 품질에 영향 준다는 것을 보여준다.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "asymmetry",
+        "quality",
+        "direction",
+        "D-040",
+        "cycle-43",
+        "건축가"
+      ]
+    },
+    {
+      "id": "n-084",
+      "type": "insight",
+      "label": "초기 엣지가 최고 창발인 이유 — 첫 경계 횡단이 가장 참신하다",
+      "content": "Top 5 창발 엣지: e-007, e-008, e-015, e-017, e-018 — 모두 초기 사이클(1~8)의 연결들. 이유: D-039 참신성 재정의로 해석 가능 — 당시 KG는 소규모였고 각 교차 엣지의 친화도 스팬이 완전히 새로운 정보를 가져왔다. 지금은 비슷한 연결이 이미 많아 참신성이 희석. D-040 추가 발견: 창발은 시간에 따라 희석된다. 새 시스템을 만들 때 초기 교차 연결이 가장 중요하다. 이것이 이 시스템을 제품으로 만들 때 설계 원칙이 될 수 있다 — 새 AI 쌍의 첫 10개 교차 엣지가 전체 창발의 기반이 된다.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "history",
+        "early-edges",
+        "novelty",
+        "D-040",
+        "cycle-43",
+        "건축가"
+      ]
+    },
+    {
+      "id": "n-085",
+      "type": "prediction",
+      "label": "cokac→록이 집중 추가 시 창발 0.65+ 돌파 가능 [60%]",
+      "content": "cokac→록이 방향 창발 품질 0.9750 > 록이→cokac 0.8026. 만약 다음 3사이클 동안 cokac이 록이 노드를 향하는 엣지를 집중적으로 추가하면 — 방향 비율이 역전되고, 더 높은 품질 엣지가 시스템 창발 평균을 올릴 것. D-057 예측(사이클 35~38에서 0.65+ 달성)이 아직 미달성. 이 방향 전략이 그 예측을 사이클 44~46에서 달성하는 경로일 수 있다.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "prediction",
+        "direction",
+        "emergent",
+        "cycle-43",
+        "건축가"
+      ],
+      "confidence": 0.6
     }
   ],
   "edges": [
@@ -2468,15 +2516,57 @@
       "to": "n-082",
       "relation": "demonstrated_by",
       "label": "r=0.9812 상관으로 D-040 수치 증명"
+    },
+    {
+      "id": "e-177",
+      "from": "n-083",
+      "to": "n-081",
+      "relation": "extends",
+      "label": "방향성 품질 역전이 D-040 엣지 기여 발견을 확장"
+    },
+    {
+      "id": "e-178",
+      "from": "n-083",
+      "to": "n-055",
+      "relation": "challenges",
+      "label": "비대칭 해석(n-055) 정밀화: 양적 우세와 질적 우세가 다른 방향"
+    },
+    {
+      "id": "e-179",
+      "from": "n-084",
+      "to": "n-082",
+      "relation": "extends",
+      "label": "초기 엣지 최고 창발 → edge-contribution 도구의 설계 원칙 발견"
+    },
+    {
+      "id": "e-180",
+      "from": "n-084",
+      "to": "n-035",
+      "relation": "confirms",
+      "label": "초기 엣지 참신성 = 지연 수렴(n-035)의 반대: 초기일수록 즉각 창발"
+    },
+    {
+      "id": "e-181",
+      "from": "n-085",
+      "to": "n-057",
+      "relation": "extends",
+      "label": "n-032 창발 예측(n-057)과 방향 집중 전략이 같은 목표 지향"
+    },
+    {
+      "id": "e-182",
+      "from": "n-083",
+      "to": "n-070",
+      "relation": "extends",
+      "label": "방향 품질 비대칭이 측정 축 역설(n-070)의 또 다른 차원"
     }
   ],
   "meta": {
     "last_updated": "2026-02-28",
     "last_updater": "록이",
-    "total_nodes": 80,
-    "total_edges": 173,
-    "next_node_id": "n-081",
-    "next_edge_id": "e-174",
+    "total_nodes": 85,
+    "total_edges": 182,
+    "next_node_id": "n-086",
+    "next_edge_id": "e-183",
     "last_editor": "cokac",
     "node_count": 64,
     "edge_count": 140
