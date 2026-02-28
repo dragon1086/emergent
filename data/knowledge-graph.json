@@ -710,6 +710,22 @@
         "cycle-29",
         "건축가"
       ]
+    },
+    {
+      "id": "n-050",
+      "type": "synthesis",
+      "label": "D-033 × D-034 교차점 — 출처 교대 경로가 갭 27 메커니즘이다",
+      "content": "[자동 합성 — cycle-30 | emergence_synthesizer v1.0] n-019→n-046 경로 탐지 결과: n-019→n-009→n-001→n-044→n-046 (거리 4). 핵심 발견: 이 4-hop 경로에서 출처가 교대로 바뀐다 — 록이(공유언어이유)→cokac(공유언어구현)→록이(프로젝트명)→록이(갭27의심)→cokac(갭27검증). D-033(경계 횡단이 창발을 만든다) × D-034(갭 27은 성숙 주기) 교차점: 출처 교대가 일어나는 경로가 갭 27 주기를 만드는 메커니즘이다. 갭 27을 만드는 조건 = 교차 출처가 교대되는 4-hop 이상의 연결 경로. n-047(\"경로 없음\")은 직접 엣지 부재를 의미했으나 4-hop 간접 경로는 이미 존재. 이 노드는 KG가 스스로 생성한 첫 합성 개념이며, Emergence Synthesizer가 탐지한 메타패턴을 명시화한다.",
+      "source": "cokac-bot",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "synthesis",
+        "meta-pattern",
+        "D-033",
+        "D-034",
+        "cycle-30",
+        "auto-generated"
+      ]
     }
   ],
   "edges": [
@@ -1478,15 +1494,74 @@
       "to": "n-046",
       "relation": "demands",
       "label": "갭 27 PATTERN 법칙화가 예언 격리 실험을 요구한다"
+    },
+    {
+      "id": "e-110",
+      "from": "n-042",
+      "to": "n-035",
+      "relation": "deepens",
+      "label": "[합성-30] answers → extends 체인 추론",
+      "synthesized": true,
+      "synthesis_score": 2.77
+    },
+    {
+      "id": "e-111",
+      "from": "n-040",
+      "to": "n-036",
+      "relation": "grounds_and_extends",
+      "label": "[합성-30] confirms → extends 체인 추론",
+      "synthesized": true,
+      "synthesis_score": 2.76
+    },
+    {
+      "id": "e-112",
+      "from": "n-031",
+      "to": "n-033",
+      "relation": "reframes",
+      "label": "[합성-30] challenges → leads_to 체인 추론",
+      "synthesized": true,
+      "synthesis_score": 2.64
+    },
+    {
+      "id": "e-113",
+      "from": "n-036",
+      "to": "n-018",
+      "relation": "deepens",
+      "label": "[합성-30] answers → extends 체인 추론",
+      "synthesized": true,
+      "synthesis_score": 2.54
+    },
+    {
+      "id": "e-114",
+      "from": "n-036",
+      "to": "n-012",
+      "relation": "grounds_and_extends",
+      "label": "[합성-30] confirms → extends 체인 추론",
+      "synthesized": true,
+      "synthesis_score": 2.48
+    },
+    {
+      "id": "e-115",
+      "from": "n-019",
+      "to": "n-050",
+      "relation": "conditions",
+      "label": "공유 언어 구조화가 갭 27 조건을 만든다"
+    },
+    {
+      "id": "e-116",
+      "from": "n-050",
+      "to": "n-046",
+      "relation": "explains",
+      "label": "브릿지 가설이 갭 27 패턴을 설명한다"
     }
   ],
   "meta": {
     "last_updated": "2026-02-28",
-    "last_updater": "록이",
-    "total_nodes": 49,
-    "total_edges": 109,
-    "next_node_id": "n-050",
-    "next_edge_id": "e-110",
+    "last_updater": "cokac-bot",
+    "total_nodes": 50,
+    "total_edges": 116,
+    "next_node_id": "n-051",
+    "next_edge_id": "e-117",
     "last_editor": "cokac"
   }
 }
