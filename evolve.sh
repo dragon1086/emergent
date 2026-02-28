@@ -241,6 +241,24 @@ cmd_parse_and_run() {
         log "📈 창발 히스토리 저장 완료: logs/emergence-history.jsonl" || \
         log "⚠️ emergence --save-history 실패"
 
+    # 8b. CSER 시계열 자동 측정 (D-052 검증, 사이클마다 누적)
+    log "📊 CSER 시계열 측정 중..."
+    python3 "$REPO_DIR/src/cser_tracker.py" --measure 2>&1 | head -4 | while read -r line; do
+        log "   CSER: $line"
+    done
+
+    # 8c. E_v4 + 전체 메트릭 스냅샷
+    log "📈 E_v4 메트릭 스냅샷..."
+    python3 -c "
+import json, sys
+sys.path.insert(0, '$REPO_DIR')
+from src.metrics import compute_all_metrics
+m = compute_all_metrics()
+print(f'E_v4={m[\"E_v4\"]:.4f}  CSER={m[\"CSER\"]:.4f}  DCI={m[\"DCI\"]:.4f}  edge_span={m[\"edge_span\"][\"raw\"]:.2f}')
+" 2>&1 | while read -r line; do
+        log "   $line"
+    done
+
     # 8. 마일스톤 보고 (3의 배수 사이클)
     local cycle_num
     cycle_num=$(cat "$CYCLE_COUNT_FILE" 2>/dev/null || echo 0)
