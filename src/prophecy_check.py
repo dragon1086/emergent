@@ -37,25 +37,30 @@ def check_prophecies(kg):
     node_map = {n["id"]: n for n in nodes}
     predictions = {n["id"]: n for n in nodes if n.get("type") == "prediction"}
 
-    # verified_by 엣지: prediction → observation (검증됨)
     # predicts_from: prediction → question (무엇을 예측하는지)
-    verified_map = {}   # pred_id → [verifier_id, ...]
     subject_map = {}    # pred_id → [subject_id, ...]
 
     for e in edges:
         rel = e.get("relation", "")
         src, tgt = e["from"], e["to"]
-        if rel == "verified_by" and src in predictions:
-            verified_map.setdefault(src, []).append(tgt)
         if rel == "predicts_from" and src in predictions:
             subject_map.setdefault(src, []).append(tgt)
 
     results = []
     for pid, p in predictions.items():
-        verifiers = verified_map.get(pid, [])
         subjects = subject_map.get(pid, [])
 
-        is_verified = len(verifiers) > 0
+        # result 필드로 판정: true/partial/false/없음
+        raw_result = p.get("result", None)
+        if raw_result is True or raw_result == "true":
+            verdict = "TRUE"
+        elif raw_result == "partial":
+            verdict = "PARTIAL"
+        elif raw_result is False or raw_result == "false":
+            verdict = "FALSE"
+        else:
+            verdict = "미결"
+
         confidence_str = p.get("label", "")
 
         # 라벨에서 신뢰도 숫자 추출 (예: "[55%]")
@@ -68,12 +73,9 @@ def check_prophecies(kg):
             "label": p.get("label", "?"),
             "source": p.get("source", "?"),
             "cycle": p.get("cycle", "?"),
-            "is_verified": is_verified,
+            "verdict": verdict,
             "stated_confidence": stated_confidence,
-            "verifiers": [
-                {"id": v, "label": node_map[v]["label"] if v in node_map else "?"}
-                for v in verifiers
-            ],
+            "note": p.get("note", ""),
             "subjects": [
                 {"id": s, "label": node_map[s]["label"][:60] if s in node_map else "?"}
                 for s in subjects
@@ -84,10 +86,17 @@ def check_prophecies(kg):
 
 
 def score(results):
+    """TRUE=1점, PARTIAL=0.5점, FALSE/미결=0점"""
     if not results:
         return 0.0
-    verified = [r for r in results if r["is_verified"]]
-    return round(len(verified) / len(results), 3)
+    total = len(results)
+    pts = sum(
+        1.0 if r["verdict"] == "TRUE" else
+        0.5 if r["verdict"] == "PARTIAL" else
+        0.0
+        for r in results
+    )
+    return round(pts / total, 3)
 
 
 def main():
@@ -99,28 +108,31 @@ def main():
         print(json.dumps({"accuracy": acc, "prophecies": results}, ensure_ascii=False, indent=2))
         return
 
+    true_c  = sum(1 for r in results if r["verdict"] == "TRUE")
+    part_c  = sum(1 for r in results if r["verdict"] == "PARTIAL")
+    false_c = sum(1 for r in results if r["verdict"] == "FALSE")
+    pend_c  = sum(1 for r in results if r["verdict"] == "미결")
+
     if "--score" in sys.argv:
-        print(f"예언 적중률: {acc:.0%}  ({sum(1 for r in results if r['is_verified'])}/{len(results)})")
+        print(f"예언 적중률: {acc:.0%}  (TRUE {true_c} / PARTIAL {part_c} / FALSE {false_c} / 미결 {pend_c})")
         return
 
     print("🔮 PROPHECY CHECK — 예언 검증기")
     print("=" * 54)
-    print(f"\n📊 적중률: {acc:.0%}  ({sum(1 for r in results if r['is_verified'])}/{len(results)} 예언)")
+    print(f"\n📊 점수: {acc:.1%}  (TRUE {true_c} | PARTIAL {part_c} | FALSE {false_c} | 미결 {pend_c})")
 
+    ICONS = {"TRUE": "✅", "PARTIAL": "✨", "FALSE": "❌", "미결": "⏳"}
     for r in results:
-        status = "✅ TRUE" if r["is_verified"] else "⏳ 미결"
+        icon = ICONS[r["verdict"]]
         conf = f"  [{r['stated_confidence']:.0%}]" if r["stated_confidence"] else ""
-        print(f"\n  {r['id']} [{status}]{conf}")
+        print(f"\n  {r['id']} [{icon} {r['verdict']}]{conf}")
         print(f"  예언: {r['label'][:70]}")
         print(f"  출처: {r['source']} | 사이클: {r['cycle']}")
         if r["subjects"]:
             for s in r["subjects"]:
                 print(f"  대상 → {s['id']}: {s['label']}")
-        if r["verifiers"]:
-            for v in r["verifiers"]:
-                print(f"  검증 ✓ {v['id']}: {v['label'][:60]}")
-        else:
-            print(f"  검증 없음 — 아직 미결")
+        if r["note"]:
+            print(f"  노트: {r['note'][:80]}")
 
     print(f"\n💡 메타 분석")
     print(f"   예언이 맞을 때: 자기충족예언인가, 진짜 예측인가?")

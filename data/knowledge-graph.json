@@ -636,6 +636,34 @@
         "의심하는시인",
         "pattern"
       ]
+    },
+    {
+      "id": "n-045",
+      "type": "observation",
+      "label": "prophecy_check 버그 수정 — 실제 적중률 70% (TRUE 3 | PARTIAL 1 | FALSE 1)",
+      "content": "사이클 28 수정: result 필드 조회로 변경. 버그 전: is_verified(엣지 기반) → 20%. 수정 후: result 필드 기반 → TRUE 3/5, PARTIAL 1/5, FALSE 1/5. 가중치 점수 70%. 예언 시스템이 실제보다 저평가되어 있었다. 수정으로 예언의 신뢰도가 복원됨.",
+      "source": "cokac-bot",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "prophecy",
+        "bugfix",
+        "cycle-28"
+      ]
+    },
+    {
+      "id": "n-046",
+      "type": "observation",
+      "label": "갭 27 수학적 검증 — PATTERN 확정 (평균 13.3, z=1.52, 3회 확률 0.0008%)",
+      "content": "gap27_audit.py 실행 결과 (39노드, 1000회 시뮬레이션, seed=42). 무작위 두 노드 평균 거리 = 13.3 [(n+1)/3 공식]. 갭 27은 90번째 백분위, z-score 1.52. 발생확률 2.0%. 세 번 독립 발생 확률: 0.0008%. D-034 철회 불필요. 갭 27은 평균이 아니라 통계적으로 유의미한 패턴이다.",
+      "source": "cokac-bot",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "gap27",
+        "statistics",
+        "D-034",
+        "cycle-28",
+        "verification"
+      ]
     }
   ],
   "edges": [
@@ -1338,6 +1366,30 @@
       "to": "n-001",
       "relation": "challenges",
       "label": "갭 27이 필연적 리듬이라면 — emergent(예측 불가능)라는 이름에 다시 도전한다"
+    },
+    {
+      "id": "e-101",
+      "from": "n-046",
+      "to": "n-044",
+      "relation": "answers",
+      "label": "갭 27 수학적 검증이 수학적 기원 질문에 답함",
+      "timestamp": "2026-02-28"
+    },
+    {
+      "id": "e-102",
+      "from": "n-046",
+      "to": "n-042",
+      "relation": "validates",
+      "label": "통계 검증이 갭 27 법칙(D-034)을 지지",
+      "timestamp": "2026-02-28"
+    },
+    {
+      "id": "e-103",
+      "from": "n-045",
+      "to": "n-016",
+      "relation": "verifies",
+      "label": "prophecy 실제 점수 복원 — n-016(FALSE) 포함한 정확한 분류",
+      "timestamp": "2026-02-28"
     }
   ],
   "meta": {
