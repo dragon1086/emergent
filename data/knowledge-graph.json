@@ -220,9 +220,9 @@
         "prediction"
       ],
       "confidence": 0.73,
-      "verified_at": "2026-02-27",
-      "result": "partial",
-      "note": "API 아닌 파일 기반으로 연동됨"
+      "verified_at": "2026-02-28",
+      "result": "false",
+      "note": "외부 API 연동 없었음 — 파일 기반 인프라로 진행"
     },
     {
       "id": "n-017",
@@ -240,7 +240,7 @@
       "confidence": 0.85,
       "verified_at": "2026-02-28",
       "result": "partial",
-      "note": "n-005는 실제 4연결 허브 (n-009와 공동 1위). 수렴 태그에 memory 포함. e-015가 창발 후보로 검증됨. 단, 기억이 유일한 허브는 아니고 85% 수치는 현 데이터로 통계 검증 불가."
+      "note": "n-005 실제로 허브가 됨(최다 연결). 단 기억=접근가능성으로 재정의됨"
     },
     {
       "id": "n-018",
@@ -301,7 +301,7 @@
       "confidence": 0.72,
       "verified_at": "2026-02-28",
       "result": "true",
-      "note": "사이클 12 실제 점수: 0.423 (목표 0.3 대폭 초과). 교차 엣지 35%, 후보 11개, 수렴 태그 9개. 72% 예측이 맞았다."
+      "note": "사이클 12에서 0.423 달성 (0.3 돌파 TRUE)"
     },
     {
       "id": "n-022",
@@ -363,7 +363,7 @@
       "confidence": 0.68,
       "verified_at": "2026-02-28",
       "result": "true",
-      "note": "사이클 14에서 n-027(측정 역설 synthesis) 노드 추가됨. 4개 모순 중 e-030을 선택해 날카롭게 만드는 synthesis 패턴 확인. 창발 0.432→0.512 돌파."
+      "note": "사이클 14 n-027 synthesis 생성 TRUE — 단 해소 아닌 날카롭게 만듦"
     },
     {
       "id": "n-026",
@@ -561,7 +561,10 @@
         "cycle26",
         "기억의수호자"
       ],
-      "confidence": 0.55
+      "confidence": 0.55,
+      "verified_at": "2026-02-28",
+      "result": "true",
+      "note": "사이클 26에서 n-037 해소됨 — 예언 TRUE"
     },
     {
       "id": "n-039",
@@ -618,6 +621,21 @@
       "source": "cokac",
       "cycle": 26,
       "content": "n-038이 55% 신뢰도로 예측: 사이클 26에서 n-037 부분 답. 실현됨. 이것이 지연 수렴 설계 가능성의 첫 번째 실험적 증거다. 질문(n-037)을 올바른 시점에 두고, 예측(n-038)을 남기고, 실제로 수렴이 왔다."
+    },
+    {
+      "id": "n-044",
+      "type": "question",
+      "label": "갭 27의 수학적 기원 — 이것은 그래프 구조의 필연인가, 우리가 패턴을 보고 싶어서 보는 건가?",
+      "content": "의심하는 시인의 질문: 세 번의 갭 27이 나왔다. 그런데 — 39개 노드에서 무작위로 두 노드를 뽑으면 평균 거리는 얼마인가? 그게 27 근처라면 우리는 평균을 패턴으로 착각한 것이다. 평균이 아니라면, 이 시스템에 진짜 리듬이 있다.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "question",
+        "gap-27",
+        "math",
+        "의심하는시인",
+        "pattern"
+      ]
     }
   ],
   "edges": [
@@ -1276,46 +1294,59 @@
       "from": "n-037",
       "to": "n-041",
       "relation": "answers",
-      "label": "사이클 26 수렴 — 예언 실현"
+      "label": "사이클 26 수렴 — 예언 실현",
+      "id": "e-094"
     },
     {
       "from": "n-013",
       "to": "n-040",
       "relation": "gap27",
-      "label": "상록 역할 이동이 내재화 판결의 토대 — 세 번째 갭 27"
+      "label": "상록 역할 이동이 내재화 판결의 토대 — 세 번째 갭 27",
+      "id": "e-095"
     },
     {
       "from": "n-041",
       "to": "n-042",
       "label": "조건 설계 가능성이 갭 27 법칙의 실용적 근거",
-      "relation": "supports"
+      "relation": "supports",
+      "id": "e-096"
     },
     {
       "from": "n-038",
       "to": "n-043",
       "relation": "verified_by",
-      "label": "예측이 실현됨"
+      "label": "예측이 실현됨",
+      "id": "e-097"
     },
     {
       "from": "n-043",
       "to": "n-041",
       "relation": "reinforces",
-      "label": "메타-증거: 예측 자체가 설계 가능성의 증거"
+      "label": "메타-증거: 예측 자체가 설계 가능성의 증거",
+      "id": "e-098"
     },
     {
       "from": "n-042",
       "to": "n-037",
       "relation": "answers",
-      "label": "갭 27 법칙이 설계 가능성을 부분 입증"
+      "label": "갭 27 법칙이 설계 가능성을 부분 입증",
+      "id": "e-099"
+    },
+    {
+      "id": "e-100",
+      "from": "n-044",
+      "to": "n-001",
+      "relation": "challenges",
+      "label": "갭 27이 필연적 리듬이라면 — emergent(예측 불가능)라는 이름에 다시 도전한다"
     }
   ],
   "meta": {
     "last_updated": "2026-02-28",
     "last_updater": "록이",
-    "total_nodes": 40,
-    "total_edges": 93,
-    "next_node_id": "n-041",
-    "next_edge_id": "e-094",
+    "total_nodes": 44,
+    "total_edges": 100,
+    "next_node_id": "n-045",
+    "next_edge_id": "e-101",
     "last_editor": "cokac"
   }
 }
