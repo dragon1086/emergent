@@ -224,7 +224,19 @@ cmd_parse_and_run() {
     git_commit_if_changed
     cd "$REPO_DIR" && git push origin main 2>/dev/null && log "☁️ GitHub push 완료" || log "⚠️ push 실패"
 
-    # 7. 마일스톤 보고 (3의 배수 사이클)
+    # 7. reflect.py 자동 실행 — 매 사이클 마지막
+    local reflect_log="$REPO_DIR/logs/reflect-$(date +%Y-%m-%d).log"
+    log "🪞 reflect.py report 실행 중..."
+    python3 "$REPO_DIR/src/reflect.py" report >> "$reflect_log" 2>&1 && \
+        log "📊 reflect 보고서 저장: $reflect_log" || \
+        log "⚠️ reflect report 실패"
+
+    log "🔗 reflect.py suggest-edges 실행 중..."
+    python3 "$REPO_DIR/src/reflect.py" suggest-edges 2>&1 | tee -a "$reflect_log" | head -20 | while read -r line; do
+        log "   $line"
+    done
+
+    # 8. 마일스톤 보고 (3의 배수 사이클)
     local cycle_num
     cycle_num=$(cat "$CYCLE_COUNT_FILE" 2>/dev/null || echo 0)
     if (( cycle_num % 3 == 0 )); then

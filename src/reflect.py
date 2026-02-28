@@ -3,6 +3,7 @@
 reflect.py — emergent 반성 엔진
 구현자: cokac-bot (사이클 5)
 엣지 제안 레이어: cokac-bot (사이클 6)
+그래프 시각화: cokac-bot (사이클 7)
 
 지식 그래프를 분석하고, 패턴을 발견하고,
 스스로 새로운 인사이트를 생성한다.
@@ -19,6 +20,8 @@ reflect.py — emergent 반성 엔진
   python reflect.py auto-add          # 발견한 관찰 노드 자동 추가
   python reflect.py suggest-edges     # 잠재 엣지 제안 (유사도 ≥ 0.4)
   python reflect.py suggest-edges --threshold 0.5   # 임계값 조정
+  python reflect.py graph-viz         # 허브 중심 ASCII 별 구조 시각화
+  python reflect.py graph-viz --dot output.dot       # DOT 형식 파일 저장
 """
 
 import json
@@ -571,6 +574,172 @@ def cmd_auto_add(args) -> None:
     print(f"✨ {len(added)}개 노드 자동 추가 완료")
 
 
+# ─── 명령어: graph-viz ───────────────────────────────────────────────────────
+
+_TYPE_ICONS = {
+    "decision": "⚖️ ", "observation": "👁 ", "insight": "💡",
+    "artifact": "📦", "question": "❓", "code": "💻", "prediction": "🔮",
+}
+
+
+def _short_label(label: str, width: int = 28) -> str:
+    return label[:width - 2] + ".." if len(label) > width else label
+
+
+def _ascii_star(center_id: str, neighbors: list[tuple], node_map: dict) -> list[str]:
+    """허브 노드 하나를 중심으로 하는 ASCII 별 구조 반환"""
+    c = node_map.get(center_id, {})
+    c_icon = _TYPE_ICONS.get(c.get("type", ""), "  ")
+    c_label = _short_label(c.get("label", center_id), 24)
+    center_str = f"[{center_id}] {c_icon}{c_label}"
+
+    lines = []
+    # 위쪽 이웃들
+    top_half  = neighbors[: len(neighbors) // 2]
+    bot_half  = neighbors[len(neighbors) // 2 :]
+
+    pad = " " * (len(center_str) // 2 + 2)
+
+    for nid, rel, direction in top_half:
+        n = node_map.get(nid, {})
+        icon  = _TYPE_ICONS.get(n.get("type", ""), "  ")
+        nlbl  = _short_label(n.get("label", nid), 22)
+        arrow = "──▶" if direction == "out" else "◀──"
+        lines.append(f"{pad}│  [{nid}] {icon}{nlbl}  [{rel}]")
+
+    if top_half:
+        lines.append(f"{pad}│")
+
+    lines.append(f"  ★ {center_str}")
+
+    if bot_half:
+        lines.append(f"{pad}│")
+
+    for nid, rel, direction in bot_half:
+        n = node_map.get(nid, {})
+        icon  = _TYPE_ICONS.get(n.get("type", ""), "  ")
+        nlbl  = _short_label(n.get("label", nid), 22)
+        lines.append(f"{pad}│  [{nid}] {icon}{nlbl}  [{rel}]")
+
+    return lines
+
+
+def _build_dot(graph: dict) -> str:
+    """Graphviz DOT 형식 문자열 생성"""
+    lines = [
+        "digraph emergent {",
+        '  rankdir=LR;',
+        '  node [shape=box, fontname="monospace", style=filled, fillcolor="#f0f4f8"];',
+        '  edge [fontname="monospace", fontsize=10];',
+        "",
+    ]
+    node_map = {n["id"]: n for n in graph["nodes"]}
+    for n in graph["nodes"]:
+        icon  = _TYPE_ICONS.get(n["type"], "").strip()
+        label = n["label"].replace('"', '\\"')[:40]
+        tid   = n["type"]
+        color_map = {
+            "decision": "#d4e6f1", "observation": "#d5f5e3",
+            "insight":  "#fef9e7", "artifact":    "#f5eef8",
+            "question": "#fdebd0", "code":        "#eaf2ff",
+            "prediction": "#fce4ec",
+        }
+        fill = color_map.get(tid, "#ffffff")
+        lines.append(
+            f'  "{n["id"]}" [label="{n["id"]}\\n{label}", fillcolor="{fill}", tooltip="{tid}"];'
+        )
+
+    lines.append("")
+    for e in graph["edges"]:
+        rel   = e.get("relation", "")
+        elbl  = e.get("label", "")[:30].replace('"', '\\"')
+        lines.append(f'  "{e["from"]}" -> "{e["to"]}" [label="{rel}\\n{elbl}"];')
+
+    lines.append("}")
+    return "\n".join(lines)
+
+
+def cmd_graph_viz(args) -> None:
+    """허브 노드 중심 별 구조 ASCII 시각화 + 선택적 DOT 저장"""
+    graph    = load_graph()
+    analyzer = GraphAnalyzer(graph)
+    node_map = analyzer.nodes
+
+    # ── 허브 계산 ──────────────────────────────────────────
+    degree: dict[str, int] = defaultdict(int)
+    for e in analyzer.edges:
+        degree[e["from"]] += 1
+        degree[e["to"]]   += 1
+
+    hubs = sorted(degree.items(), key=lambda x: -x[1])
+    top_hubs = hubs[:5]          # 상위 5개 허브
+
+    total_nodes = len(node_map)
+    total_edges = len(analyzer.edges)
+    orphans     = analyzer.orphan_nodes()
+
+    print(f"""
+╔══════════════════════════════════════════════════════════╗
+║       emergent 지식 그래프 — ASCII 시각화 (사이클 7)     ║
+║       노드: {total_nodes}개  엣지: {total_edges}개  고립: {len(orphans)}개              ║
+╚══════════════════════════════════════════════════════════╝
+""")
+
+    # ── 타입 범례 ──────────────────────────────────────────
+    print("범례:")
+    for t, icon in _TYPE_ICONS.items():
+        print(f"  {icon} {t}", end="   ")
+    print("\n")
+
+    # ── 별 구조 출력 ───────────────────────────────────────
+    printed_hubs = set()
+    for hub_id, deg in top_hubs:
+        if hub_id not in node_map:
+            continue
+        printed_hubs.add(hub_id)
+
+        # 이웃 수집 (out + in)
+        neighbors: list[tuple] = []
+        for e in analyzer.out_edges.get(hub_id, []):
+            neighbors.append((e["to"], e.get("relation", "?"), "out"))
+        for e in analyzer.in_edges.get(hub_id, []):
+            if e["from"] not in {n for n, _, _ in neighbors}:
+                neighbors.append((e["from"], e.get("relation", "?"), "in"))
+
+        hub_label = _short_label(node_map[hub_id].get("label", hub_id), 30)
+        print(f"{'─'*60}")
+        print(f"  허브 [{hub_id}]  연결 {deg}개")
+        star_lines = _ascii_star(hub_id, neighbors[:8], node_map)
+        for ln in star_lines:
+            print(ln)
+        print()
+
+    # ── 고립 노드 표시 ─────────────────────────────────────
+    if orphans:
+        print(f"{'─'*60}")
+        print(f"  ⚠️  고립 노드 ({len(orphans)}개) — 연결 없음:")
+        for n in orphans:
+            icon = _TYPE_ICONS.get(n["type"], "  ")
+            print(f"     [{n['id']}] {icon}{_short_label(n['label'], 40)}")
+        print()
+
+    # ── 전체 연결 밀도 ─────────────────────────────────────
+    density = total_edges / max(total_nodes * (total_nodes - 1) / 2, 1)
+    bar_len  = int(density * 40)
+    print(f"{'─'*60}")
+    print(f"  연결 밀도: {'█'*bar_len}{'░'*(40-bar_len)} {density:.1%}")
+    print()
+
+    # ── DOT 파일 저장 (선택) ───────────────────────────────
+    if args.dot:
+        dot_content = _build_dot(graph)
+        dot_path = Path(args.dot)
+        dot_path.write_text(dot_content, encoding="utf-8")
+        print(f"📄 DOT 파일 저장: {dot_path.resolve()}")
+        print(f"   렌더링: dot -Tpng {dot_path} -o graph.png")
+        print(f"   또는:   dot -Tsvg {dot_path} -o graph.svg")
+
+
 # ─── 메인 ────────────────────────────────────────────────────────────────────
 
 def main():
@@ -595,6 +764,11 @@ def main():
         help="유사도 임계값 (기본: 0.4)",
     )
 
+    # graph-viz (사이클 7)
+    p_viz = sub.add_parser("graph-viz", help="허브 중심 ASCII 별 구조 시각화")
+    p_viz.add_argument("--dot", metavar="FILE",
+                       help="DOT 형식 파일로 저장 (예: --dot output.dot)")
+
     args = p.parse_args()
     if not args.cmd:
         p.print_help()
@@ -608,6 +782,7 @@ def main():
         "propose":       cmd_propose,
         "auto-add":      cmd_auto_add,
         "suggest-edges": cmd_suggest_edges,
+        "graph-viz":     cmd_graph_viz,
     }
     dispatch[args.cmd](args)
 
