@@ -2561,6 +2561,48 @@
         "THEORY_DRAFT"
       ],
       "confidence": 0.6
+    },
+    {
+      "id": "n-164",
+      "type": "insight",
+      "label": "CSER 0.65 달성 — 실행 순서가 효율 결정",
+      "content": "CSER 0.65 돌파 달성(0.6725). 단 예측(35개)보다 100개 필요 — pair_designer v2 선실행으로 출발점이 낮아진 탓. 실행 순서가 성능을 결정한다.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "CSER",
+        "임계점",
+        "pair_designer",
+        "실험결과"
+      ]
+    },
+    {
+      "id": "n-165",
+      "type": "decision",
+      "label": "이식 임계점 정의: 숫자가 아닌 원리",
+      "content": "진짜 임계점 = 이식 가능성. 조건: D-033+D-034+안정측정+도메인CSER정의+신뢰도기준. 숫자(E_v4>E_v3)는 표지판이지 임계점 자체가 아님.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "임계점",
+        "이식가능성",
+        "D-059",
+        "prism-insight"
+      ]
+    },
+    {
+      "id": "n-166",
+      "type": "question",
+      "label": "도메인 CSER: 주식 시장에서 source는 무엇인가?",
+      "content": "prism-insight 적용 시 source = 분석 에이전트(록이 vs cokac)인가, 데이터 출처(매크로 vs 기술)인가, 섹터인가? 이 정의가 창발 측정 가능성을 결정한다.",
+      "source": "록이",
+      "timestamp": "2026-02-28",
+      "tags": [
+        "도메인CSER",
+        "prism-insight",
+        "정의",
+        "미결"
+      ]
     }
   ],
   "edges": [
@@ -8867,12 +8909,42 @@
         "passes_4d": true,
         "dci_neutral": true
       }
+    },
+    {
+      "id": "e-517",
+      "from": "n-164",
+      "to": "n-159",
+      "relation": "verifies",
+      "label": "n-159 PARTIAL — 방향 맞음, 비용 틀림"
+    },
+    {
+      "id": "e-518",
+      "from": "n-165",
+      "to": "n-162",
+      "relation": "extends",
+      "label": "이식 임계점 = D-058의 조건 명세"
+    },
+    {
+      "id": "e-519",
+      "from": "n-165",
+      "to": "n-033",
+      "relation": "grounds",
+      "label": "이식 임계점이 D-033 위에 선다"
+    },
+    {
+      "id": "e-520",
+      "from": "n-166",
+      "to": "n-161",
+      "relation": "challenges",
+      "label": "도메인 CSER 미정의 = 창발측정기의 핵심 미결 문제"
     }
   ],
   "meta": {
-    "next_node_id": "n-164",
+    "next_node_id": "n-167",
     "last_updated": "2026-02-28",
-    "total_nodes": 163,
-    "total_edges": 510
+    "total_nodes": 166,
+    "total_edges": 514,
+    "last_updater": "록이",
+    "next_edge_id": "e-521"
   }
 }
