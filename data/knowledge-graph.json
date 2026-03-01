@@ -2951,6 +2951,141 @@
       "validation_passed": true,
       "quality_score": 1.0,
       "cross_edges_count": 49
+    },
+    {
+      "id": "n-execloop-077",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 77,
+      "problem_id": "prob-077-4387613c",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 16
+    },
+    {
+      "id": "n-macro-077",
+      "source": "openclaw",
+      "tags": [
+        "purity",
+        "specification",
+        "emergence",
+        "contract",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 77,
+      "intent": "기초 연산의 명확한 명세화 — 복잡성보다 명료성 우선",
+      "architecture": "단일 순수 함수, 부수효과 없음, 인터페이스 계약 명시"
+    },
+    {
+      "id": "n-tech-077",
+      "source": "cokac",
+      "tags": [
+        "integer",
+        "operator",
+        "return_value",
+        "implementation",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 77,
+      "strategy": "Python 내장 덧셈 연산자, 타입 힌트 int → int",
+      "complexity": "O(1)"
+    },
+    {
+      "id": "n-execloop-078",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 78,
+      "problem_id": "prob-078-4387613c",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 16
+    },
+    {
+      "id": "n-macro-078",
+      "source": "openclaw",
+      "tags": [
+        "purity",
+        "specification",
+        "emergence",
+        "contract",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 78,
+      "intent": "기초 연산의 명확한 명세화 — 복잡성보다 명료성 우선",
+      "architecture": "단일 순수 함수, 부수효과 없음, 인터페이스 계약 명시"
+    },
+    {
+      "id": "n-tech-078",
+      "source": "cokac",
+      "tags": [
+        "integer",
+        "operator",
+        "return_value",
+        "implementation",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 78,
+      "strategy": "Python 내장 덧셈 연산자, 타입 힌트 int → int",
+      "complexity": "O(1)"
+    },
+    {
+      "id": "n-execloop-079",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 79,
+      "problem_id": "prob-079-4387613c",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 16
+    },
+    {
+      "id": "n-macro-079",
+      "source": "openclaw",
+      "tags": [
+        "purity",
+        "specification",
+        "emergence",
+        "contract",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 79,
+      "intent": "기초 연산의 명확한 명세화 — 복잡성보다 명료성 우선",
+      "architecture": "단일 순수 함수, 부수효과 없음, 인터페이스 계약 명시"
+    },
+    {
+      "id": "n-tech-079",
+      "source": "cokac",
+      "tags": [
+        "integer",
+        "operator",
+        "return_value",
+        "implementation",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 79,
+      "strategy": "Python 내장 덧셈 연산자, 타입 힌트 int → int",
+      "complexity": "O(1)"
     }
   ],
   "edges": [
@@ -15139,6 +15274,45 @@
       "to": "n-execloop-075",
       "relation": "grounds",
       "cycle": 75
+    },
+    {
+      "from": "n-macro-077",
+      "to": "n-tech-077",
+      "relation": "crosses_into",
+      "cycle": 77,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-077",
+      "to": "n-execloop-077",
+      "relation": "grounds",
+      "cycle": 77
+    },
+    {
+      "from": "n-macro-078",
+      "to": "n-tech-078",
+      "relation": "crosses_into",
+      "cycle": 78,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-078",
+      "to": "n-execloop-078",
+      "relation": "grounds",
+      "cycle": 78
+    },
+    {
+      "from": "n-macro-079",
+      "to": "n-tech-079",
+      "relation": "crosses_into",
+      "cycle": 79,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-079",
+      "to": "n-execloop-079",
+      "relation": "grounds",
+      "cycle": 79
     }
   ],
   "meta": {

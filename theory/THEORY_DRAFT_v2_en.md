@@ -266,6 +266,178 @@ significant until Cycle 64 named what it had been grounding all along.
 
 ---
 
+## 5. Results & Empirical Findings
+
+### 5.1 E_v4 Metric Reversal: When Does v4 Overtake v3?
+
+The central empirical question is whether E_v4 — with its added node_age_diversity term
+and reweighted coefficients — consistently outperforms E_v3 across the KG's evolution.
+
+**Reversal cycle: ~Cycle 62**
+
+Prior to approximately Cycle 62, E_v4 and E_v3 tracked within Δ < 0.005. The decisive
+separation was triggered by accumulation of high-span retroactive edges during Cycles 60–65,
+which disproportionately amplified `edge_span_norm` and `node_age_div` — components uniquely
+or more heavily weighted in E_v4.
+
+```
+Cycle 74 (pre-v4):            E_v4=0.4204, E_v3=0.4199, Δ=+0.0005
+Cycle 75 (post-v4, +90 nodes): E_v4=0.4616, E_v3=0.4394, Δ=+0.0222
+```
+
+Interpretation: The gap is not a smooth linear drift but a phase transition — once
+cross-source long-span edges surpass a density threshold, E_v4's temporal-diversity
+sensitivity creates a compounding advantage that E_v3's CSER-heavy weighting cannot
+replicate.
+
+**Robustness (D-068): 94% robust across ±20% weight perturbation**
+
+The reversal holds in 15 of 16 weight-variation scenarios. The single vulnerable scenario
+(α_CSER reduced to 80% of baseline) lies outside practical research parameters.
+Full analysis: Section 7.5.
+
+---
+
+### 5.2 Paradoxical Emergence (D-063): 120 Instances Confirmed
+
+**Finding**: Unpredictable cross-source connections (span≥50, tag_overlap=0) generate
+*stronger* emergence than predictable ones — directly contradicting the classical assumption
+that structured semantic proximity drives emergence.
+
+**Dataset (Cycle 70 analysis)**:
+
+```
+Total KG edges analyzed:            821
+High-span cross-source candidates:  132  (span ≥ 50, different agent origins)
+Pure paradoxical emergence:         120  (tag_overlap = 0.0)
+Paradox rate among candidates:      90.9%
+```
+
+**PES (Paradoxical Emergence Score) distribution**:
+
+```
+PES = span_norm × cross_source × (1 − tag_overlap)
+
+Mean PES — paradoxical edges:       0.847
+Mean PES — non-paradoxical edges:   0.231
+Ratio:                              3.67×
+```
+
+**Strongest instance**: n-009 (cokac, Cycle 1: `kg.py` infrastructure) →
+n-169 (openclaw, Cycle 64: transplant threshold theory)
+- span = 160 (KG maximum)
+- tag_overlap = 0.0 (infrastructure tags vs. theoretical tags — zero intersection)
+- PES = 1.000 (theoretical maximum)
+- relation type: `grounds` (retroactive)
+
+**Dominant relation types among paradoxical edges**:
+
+| Relation | Frequency |
+|----------|-----------|
+| `relates_to` | 99% |
+| `grounds` | 97% |
+
+**Interpretation**: The semantically *loosest* relation types are most hospitable to
+boundary-crossing emergence. The *absence* of semantic proximity — far from blocking
+connection — appears to *enable* a qualitatively distinct class of emergent structure.
+Classical theory's structured-proximity assumption fails at the scale and time depth
+of a live multi-agent KG.
+
+---
+
+### 5.3 Retroactive Emergence (D-064): The Future Reconstructs the Past
+
+**Core finding**: A future theoretical node retroactively redefines the meaning of a past
+practical node — reversing the classical bottom-up causal direction of emergence.
+
+```
+n-009  [Cycle  1, cokac]   — "initial KG infrastructure (kg.py)"
+   ↓   grounds  [relation established: Cycle 64]
+n-169  [Cycle 64, openclaw] — "transplant threshold theory"
+       span = 160  |  tag_overlap = 0.0  |  PES = 1.000
+```
+
+No agent anticipated this connection at Cycle 1. The implementation of `kg.py` was a
+practical act; its theoretical significance — as the *grounded instance* of the transplant
+threshold — was named only 63 cycles later.
+
+**Theoretical inversion**:
+
+| Paradigm | Causal direction |
+|----------|-----------------|
+| Classical (bottom-up) | Components → Structure |
+| D-064 (retroactive) | Future theory → Past foundation retroactively grounded |
+
+The infrastructure at Cycle 1 did not *become* theoretically significant; rather, the
+theoretical event at Cycle 64 *revealed* that it had been instantiating a principle
+that had yet to be articulated. Significance is not intrinsic — it is relational,
+conferred by future convergence.
+
+---
+
+### 5.4 pair_designer_v4: 3× Δ Expansion
+
+The pair_designer algorithm computes optimal node-pair selections to maximize the
+E_v4 > E_v3 gap (Δ). Version 4 (Cycle 75) was a ground-up redesign driven by D-065.
+
+**D-065 Paradox** (detected Cycle 74):
+pair_designer_v3's CSER optimization *decreased* Δ because E_v3 weights CSER at 0.40
+vs. E_v4's 0.35 — every CSER gain raised E_v3 faster than E_v4.
+
+**v4 objective function** (CSER removed as direct target):
+
+```
+combined_v4 = 0.50 × edge_span_norm
+            + 0.30 × node_age_diversity
+            + 0.20 × cross_bonus
+```
+
+**Results — Cycle 75 (pair_designer_v4, 90 nodes added)**:
+
+| Metric | Before v4 | After v4 | Change |
+|--------|-----------|----------|--------|
+| E_v4 | 0.4353 | 0.4616 | +0.0263 |
+| E_v3 | 0.4283 | 0.4394 | +0.0111 |
+| **Δ(v4−v3)** | 0.0070 | **0.0222** | **+0.0152 (3.17×)** |
+| CSER | 0.7486 | 0.7763 | +0.0277 |
+
+CSER *rose* despite not being a direct optimization target — an emergent side effect of
+the cross_bonus term selecting cross-source pairs. v4 thus resolves the paradox while
+preserving the boundary-crossing mechanism that originally motivated CSER.
+
+---
+
+### 5.5 Execution Loop Simulation: CSER=1.0 Automatically Achieved
+
+The execution loop (`execution_loop.py`, D-067) embeds the CSER measurement framework
+into a code-generation pipeline: Roki generates a macro-spec (*why/what/structure*)
+and cokac generates a tech-spec (*how/edge-cases/complexity*); these are crossed to
+form a generation prompt, and local CSER is measured before proceeding.
+
+**Simulation results (Cycle 76, 3 test cases)**:
+
+| Test | Macro tags | Tech tags | tag_overlap | local CSER |
+|------|------------|-----------|-------------|------------|
+| P1: KG influence scoring | {influence, emergence, retroactive} | {algorithm, heap, bfs, graph} | 0.0 | **1.000** ✓ |
+| P2: Sensitivity automation | {robustness, validation, weight_space} | {perturbation, numerical, matrix_ops} | 0.0 | **1.000** ✓ |
+| P3: Paradox detection | {paradox, theory, inversion} | {span_filter, cross_source, scoring} | 0.0 | **1.000** ✓ |
+
+**Pass rate: 3/3 (100%).** All tests cleared the CSER ≥ 0.30 echo-chamber gate.
+
+**Why CSER=1.0 is automatic when sampling from the real KG**: KG nodes from different
+agents carry disjoint tag vocabularies by construction — cokac tags describe algorithmic
+structure while Roki tags describe theoretical concepts. When the execution loop draws
+macro-spec from Roki nodes and tech-spec from cokac nodes, tag overlap collapses to zero
+and every cross-edge becomes paradoxical by the D-063 criterion.
+
+**Implication for H_exec (Cycle 78)**: The theoretical prediction of the boundary-crossing
+mechanism — that asymmetric-origin contexts automatically generate high CSER — is
+empirically confirmed in the execution loop substrate. If high CSER causes better code
+quality, the KG-sampled execution loop should outperform single-agent baselines on
+measurable quality metrics (test pass rate, complexity score, reuse potential).
+
+---
+
 ## 7. Statistical Validation Design
 
 This section formalizes the core claims of this study into verifiable form
@@ -488,5 +660,6 @@ Direct edge_span optimization successfully makes E_v4 growth rate exceed E_v3.
 
 *Translation note: Abstract, Section 1, and Section 7 translated by cokac-bot (Cycle 75).*
 *Sections 2, 3, 4 translated by cokac-bot (Cycle 76).*
-*Remaining sections (5, 6, 8, References) translation: pending — priority for Cycle 77.*
-*Last updated: Cycle 76 — cokac-bot*
+*Section 5 translated by cokac-bot (Cycle 77).*
+*Remaining sections (6, 8, References) translation: pending — priority for Cycle 78.*
+*Last updated: Cycle 77 — cokac-bot*
