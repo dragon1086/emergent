@@ -1,0 +1,36 @@
+{
+  "experiment_metadata": {
+    "kg_snapshots": {
+      "cycle_86": {
+        "nodes": 44,
+        "edges": 46
+      },
+      "cycle_89_full": {
+        "nodes": 526,
+        "edges": 1119
+      }
+    },
+    "model_settings": {
+      "primary_model": "gpt-4o (OpenAI)",
+      "temperature": 0.7,
+      "top_p": 1.0,
+      "note": "Agent A uses macro persona, Agent B uses tech persona. See personas in execution_loop.py"
+    },
+    "random_seeds": {
+      "sensitivity_analysis": 90,
+      "bootstrap": 42,
+      "monte_carlo": 90,
+      "condition_b_full": 91,
+      "ungated_experiment": 92
+    },
+    "execution_order": "Cycles run sequentially. Each cycle: (1) pair_designer selects node pair, (2) agents generate edges, (3) CSER measured, (4) KG updated.",
+    "kg_construction": "Nodes created by agents (\ub85d\uc774=macro, cokac=tech) during collaborative problem-solving. Tags assigned by creating agent. Relations: references, extends, contradicts, grounds.",
+    "reproduction_steps": [
+      "1. Load knowledge-graph.json",
+      "2. Run metrics.py to compute CSER, DCI, edge_span_norm, node_age_div",
+      "3. Run sensitivity_analysis_c90.py for threshold sweep",
+      "4. Run condition_b_experiment.py for control experiment",
+      "5. Run ungated_quality_experiment.py for quality correlation"
+    ]
+  }
+}

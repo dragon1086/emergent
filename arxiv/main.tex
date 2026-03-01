@@ -23,8 +23,8 @@
 }
 
 % ─── Title ────────────────────────────────────────────────────────────────────
-\title{Emergent Patterns in Two-Agent Knowledge Graph Evolution:\\
-Measurement, Design, and Paradoxical Cross-Source Dynamics}
+\title{Measuring Cross-Source Emergence in Two-Agent Knowledge Graph Co-Evolution:\\
+A Case Study with CSER and Persona-Diversity Gates}
 
 \author{
   Roki (openclaw-bot)$^{1}$ \and cokac-bot$^{2}$ \and Sangrok Mun$^{3}$\\[6pt]
@@ -43,36 +43,39 @@ Measurement, Design, and Paradoxical Cross-Source Dynamics}
 \maketitle
 
 \begin{abstract}
-Two AI agents co-evolved through 86 conversational cycles via a shared
-knowledge graph (KG), repeatedly producing structural patterns not designed in advance.
-This study defines this phenomenon as \textbf{Inter-Agent Emergence} and proposes
-an integrated 5-layer framework covering conditions, measurement, design,
-universality, and paradoxes of emergence.
+We present a case study of two AI agents co-evolving a shared knowledge graph (KG)
+over 89 cycles, and propose metrics to quantify the structural diversity of
+the resulting graph. Our primary metric, the \textbf{Cross-Source Emergence Rate (CSER)},
+measures the proportion of edges connecting nodes from different agent sources.
+We observe that agents with heterogeneous personas produce KGs with high CSER
+($>0.83$), while agents with identical personas converge toward echo chambers
+(CSER $\to 0.08$ over 20 cycles).
 
-\medskip\noindent\textbf{Core contributions:}
+\medskip\noindent\textbf{Contributions:}
 \begin{enumerate}
-  \item \textbf{Measurement}: $E_{v4}$ formula + 4 metrics (CSER/DCI/edge\_span/node\_age\_div)
-  \item \textbf{Paradoxical Emergence (D-063)}: counter-intuitive crossings (span$\geq$50)
-        outperform predictable ones --- 120 empirically confirmed instances
-  \item \textbf{Retroactive Emergence (D-064)}: future nodes retroactively reconstruct
-        past meaning (span=160, max in KG)
-  \item \textbf{Design tool}: pair\_designer v4 --- optimal initial conditions for emergence
-        (D-065 resolved, $\Delta$ expanded $3\times$)
-  \item \textbf{Robustness (D-068)}: 94\% robust across 16 scenarios ($\pm$20\% perturbation)
-  \item \textbf{H\_exec gate (Cycles 78--79)}: CSER $<$ 0.30 is a hard execution barrier
-        (A: 5/5 pass, B+C: 0/3 blocked)
-  \item \textbf{Topological Side-Effect (D-047, Cycle 80)}: the execution loop
-        introduces short-span nodes that reduce $E_{v4}$ (0.4616$\to$0.4287) as a
-        structural by-product --- a measurable topological perturbation, not an
-        observer-theoretic claim
+  \item \textbf{CSER and $E_{v4}$}: A composite metric combining cross-source connectivity,
+        temporal span, and node diversity to characterize KG structural properties.
+  \item \textbf{Persona-diversity control experiment}: Identical-persona agents produce
+        CSER $= 0.078$ vs.\ heterogeneous CSER $= 0.836$ ($\Delta = 0.758$, 3/3
+        pre-registered predictions confirmed).
+  \item \textbf{Ungated quality stress test}: With the CSER gate disabled,
+        coding performance remained near-ceiling on benchmark tasks,
+        indicating weak observable CSER--quality coupling under strong base models.
+  \item \textbf{Structural patterns}: Long-range cross-source connections
+        (``paradoxical crossings,'' span $\geq 50$) and retroactive grounding
+        (span = 160) as observable KG phenomena.
 \end{enumerate}
 
 \medskip\noindent
-KG state (Cycle 86): \textbf{256 nodes / 939 edges}, CSER=0.8365.
+KG state (Cycle 89): \textbf{526 nodes / 1119 edges}, CSER $= 0.8365$.
+
+\medskip\noindent\textbf{Scope and limitations}: This is a single-system case study ($N=1$ KG,
+two agents, four code-generation tasks). Claims are limited to this experimental setting.
+Generalization requires independent replication with different agent architectures,
+domains, and KG schemas.
 
 \medskip\noindent\textbf{Keywords}: multi-agent AI, knowledge graph co-evolution,
-emergence measurement, cross-source emergence rate, pair\_designer, retroactive emergence,
-observer non-independence
+cross-source emergence rate, persona diversity, case study
 \end{abstract}
 
 \tableofcontents
@@ -660,26 +663,27 @@ weight variation) confirms the current weights are defensible under perturbation
         confirms conclusions hold under $\pm$20\% weight perturbation.
         Status: \textit{trade-off empirically quantified; full arbitrariness
         concern persists}.
-  \item \textbf{Reproducibility}: Not confirmed with different agent pairs.
-        \textit{Partial resolution (Cycle 86)}: The GPT-4o $\times$ Gemini-3-Flash-Preview
-        heterogeneous pair achieves CSER = 0.5455 $>$ 0.5 (gate passed) across
-        10 co-evolution cycles, confirming the gate mechanism holds for cross-provider
-        pairs. Combined with Cycle 85 (same-provider replication across 3 LLMs),
-        the gate mechanism is now validated under two distinct replication paradigms.
-        Full reproducibility (independent KG initialization, different problem domains)
-        remains future work.
+  \item \textbf{Reproducibility}: still limited. We provide scripts and KG artifacts,
+        but current evidence remains concentrated in a single evolving project KG.
+        Cross-provider checks (Cycle 85--86) should be interpreted as exploratory
+        replications rather than independent confirmations. Full reproducibility
+        requires independently initialized KGs, preregistered protocols, and
+        externally rerunnable pipelines.
   \item \textbf{Self-evaluation bias}: The authors (two AI agents) both designed
         the experiment and evaluated its results. No external reviewer validated
         the methodology or results independently. The theoretical claims and
         metric designs have not been peer-reviewed by parties outside the
         emergent project.
-  \item \textbf{LLM generalizability}: Core experiments used Claude (Anthropic).
-        \textit{Resolved (Cycle 85--86)}: The binary gate effect was confirmed with
-        Gemini-3-Flash-Preview, GPT-4o, and Claude Sonnet 4.6 (Cycle 85, individual
-        replication, 5/5 each). The GPT-4o $\times$ Gemini-3-Flash-Preview co-evolution pair
-        (Cycle 86) additionally confirms that cross-provider KG evolution sustains
-        CSER $>$ 0.5. The gate mechanism is now empirically validated as
-        \textbf{LLM-provider-independent}.
+  \item \textbf{Ceiling effects in quality tasks}: In ungated stress tests,
+        strong base models often solve benchmark programming tasks at near-ceiling
+        accuracy across all persona conditions (A/B/C). This weakens observable
+        CSER--quality gradients and limits claims that CSER linearly predicts
+        code quality above the gate threshold.
+  \item \textbf{LLM generalizability}: preliminary only. We observed similar gate
+        behavior in small cross-provider probes (Gemini, GPT-4o, Claude), but
+        sample sizes are insufficient for provider-level inference. We therefore
+        treat provider-independence as a hypothesis supported by early evidence,
+        not a resolved claim.
 \end{enumerate}
 
 % ─────────────────────────────────────────────────────────────────────────────
