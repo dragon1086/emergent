@@ -444,6 +444,35 @@ GCD problem (O(log n) complexity). Condition A again achieved 100% pass rate (5/
 with CSER=1.0 and 80 cross-source edges per run. This confirms that the gate mechanism
 holds across problem complexity levels.
 
+**Cycle 82 — Partial Echo-Chamber (B_partial, CSER=0.444)**: Cycle 82 introduced
+Condition B_partial, where macro and tech specs share one tag ("algorithm"), producing
+CSER=4/9≈0.444 — above the gate threshold but below full asymmetry. The GCD problem
+(O(log n)) yielded: A=5/5 quality=1.000, B_partial=5/5 quality=1.000 — *equal quality
+despite different CSER values*. This unexpected parity raised the question of whether
+the spectrum effect is complexity-dependent.
+
+**Cycle 83 — QuickSort Complexity Test (H_complexity)**: To test whether CSER spectrum
+effects emerge at higher complexity, Cycle 83 replicated the A vs B_partial protocol on
+QuickSort (O(n log n)) with all edge cases (empty, singleton, duplicates, reverse-sorted).
+
+| Condition | CSER | Gate | Pass rate | Avg quality |
+|-----------|------|------|-----------|-------------|
+| A (asymmetric) | 1.000 | ✓ pass | 5/5=100% | **1.000** |
+| B_partial (partial echo) | 0.444 | ✓ pass | 5/5=100% | **1.000** |
+| C (single-agent) | 0.000 | ✗ blocked | — | — |
+
+**H_complexity verdict: REJECTED.** QuickSort (O(n log n)) produces identical quality
+for A and B_partial (Δ=0.000), replicating the GCD result at higher complexity. This
+pattern across two complexity levels establishes the **binary gate model** as the
+correct description: once CSER exceeds the threshold (≥0.30), quality saturates at 1.0
+regardless of CSER magnitude or problem complexity. The CSER value determines
+*gate passage*, not *quality level above the gate*.
+
+**Implication**: The mechanism is discrete, not continuous. The critical distinction is
+not A(1.0) vs B_partial(0.444) — both yield equivalent output quality. The critical
+distinction is gate-passage (CSER ≥ 0.30) vs gate-blocked (CSER = 0), confirmed
+consistently across GCD (O(log n)) and QuickSort (O(n log n)).
+
 ---
 
 ### 5.6 Observer Non-Independence (D-047): Measurement Modifies the Substrate
