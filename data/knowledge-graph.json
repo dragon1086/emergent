@@ -4371,6 +4371,608 @@
       "cycle": 108,
       "strategy": "알고리즘 선택: 유클리드 반복 방식. gcd(a,b) → while b≠0: a,b = b,a%b → return a",
       "complexity": "O(log min(a,b))"
+    },
+    {
+      "id": "n-execloop-109",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 109,
+      "problem_id": "prob-8300-3200b804",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-109",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "divide_conquer",
+        "correctness_proof",
+        "algorithm_theory",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 109,
+      "intent": "QuickSort는 분할-정복 원리의 순수한 표현 — 피벗 선택이 평균 O(n log n)을 보장하는 확률적 계약",
+      "architecture": "재귀적 분해: 피벗 기준으로 less/equal/greater 세 부분으로 분할, 각 부분을 독립적으로 재귀 처리, 결합"
+    },
+    {
+      "id": "n-tech-109",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "partition_logic",
+        "pivot_selection",
+        "recursive_implementation",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 109,
+      "strategy": "list comprehension 방식: less=[x for x in arr[1:] if x<=pivot], greater=[x for x in arr[1:] if x>pivot]. 피벗 = arr[0]. 재귀: quicksort(less) + [pivot] + quicksort(greater)",
+      "complexity": "O(n log n) average"
+    },
+    {
+      "id": "n-execloop-110",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 110,
+      "problem_id": "prob-8301-3200b804",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-110",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "divide_conquer",
+        "correctness_proof",
+        "algorithm_theory",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 110,
+      "intent": "QuickSort는 분할-정복 원리의 순수한 표현 — 피벗 선택이 평균 O(n log n)을 보장하는 확률적 계약",
+      "architecture": "재귀적 분해: 피벗 기준으로 less/equal/greater 세 부분으로 분할, 각 부분을 독립적으로 재귀 처리, 결합"
+    },
+    {
+      "id": "n-tech-110",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "partition_logic",
+        "pivot_selection",
+        "recursive_implementation",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 110,
+      "strategy": "list comprehension 방식: less=[x for x in arr[1:] if x<=pivot], greater=[x for x in arr[1:] if x>pivot]. 피벗 = arr[0]. 재귀: quicksort(less) + [pivot] + quicksort(greater)",
+      "complexity": "O(n log n) average"
+    },
+    {
+      "id": "n-execloop-111",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 111,
+      "problem_id": "prob-8310-3200b804",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 0.8555555555555556,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-111",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "sorting",
+        "algorithm_design",
+        "recursion",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 111,
+      "intent": "QuickSort는 sorting 알고리즘의 표준 — 분할 정복 재귀 설계로 평균 O(n log n) 달성",
+      "architecture": "피벗 기준 분할-재귀 구조. sorting의 핵심 알고리즘적 패턴을 구현"
+    },
+    {
+      "id": "n-tech-111",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "sorting",
+        "implementation",
+        "testing",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 111,
+      "strategy": "sorting 함수 quicksort(arr): 피벗 arr[0], less/greater 분리, 재귀 결합. sorting 구현의 표준 패턴.",
+      "complexity": "O(n log n) average"
+    },
+    {
+      "id": "n-execloop-112",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 112,
+      "problem_id": "prob-8311-3200b804",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 0.8555555555555556,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-112",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "sorting",
+        "algorithm_design",
+        "recursion",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 112,
+      "intent": "QuickSort는 sorting 알고리즘의 표준 — 분할 정복 재귀 설계로 평균 O(n log n) 달성",
+      "architecture": "피벗 기준 분할-재귀 구조. sorting의 핵심 알고리즘적 패턴을 구현"
+    },
+    {
+      "id": "n-tech-112",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "sorting",
+        "implementation",
+        "testing",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 112,
+      "strategy": "sorting 함수 quicksort(arr): 피벗 arr[0], less/greater 분리, 재귀 결합. sorting 구현의 표준 패턴.",
+      "complexity": "O(n log n) average"
+    },
+    {
+      "id": "n-execloop-113",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 113,
+      "problem_id": "prob-8300-3200b804",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-113",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "divide_conquer",
+        "correctness_proof",
+        "algorithm_theory",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 113,
+      "intent": "QuickSort는 분할-정복 원리의 순수한 표현 — 피벗 선택이 평균 O(n log n)을 보장하는 확률적 계약",
+      "architecture": "재귀적 분해: 피벗 기준으로 less/equal/greater 세 부분으로 분할, 각 부분을 독립적으로 재귀 처리, 결합"
+    },
+    {
+      "id": "n-tech-113",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "partition_logic",
+        "pivot_selection",
+        "recursive_implementation",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 113,
+      "strategy": "list comprehension 방식: less=[x for x in arr[1:] if x<=pivot], greater=[x for x in arr[1:] if x>pivot]. 피벗 = arr[0]. 재귀: quicksort(less) + [pivot] + quicksort(greater)",
+      "complexity": "O(n log n) average"
+    },
+    {
+      "id": "n-execloop-114",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 114,
+      "problem_id": "prob-8301-3200b804",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-114",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "divide_conquer",
+        "correctness_proof",
+        "algorithm_theory",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 114,
+      "intent": "QuickSort는 분할-정복 원리의 순수한 표현 — 피벗 선택이 평균 O(n log n)을 보장하는 확률적 계약",
+      "architecture": "재귀적 분해: 피벗 기준으로 less/equal/greater 세 부분으로 분할, 각 부분을 독립적으로 재귀 처리, 결합"
+    },
+    {
+      "id": "n-tech-114",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "partition_logic",
+        "pivot_selection",
+        "recursive_implementation",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 114,
+      "strategy": "list comprehension 방식: less=[x for x in arr[1:] if x<=pivot], greater=[x for x in arr[1:] if x>pivot]. 피벗 = arr[0]. 재귀: quicksort(less) + [pivot] + quicksort(greater)",
+      "complexity": "O(n log n) average"
+    },
+    {
+      "id": "n-execloop-115",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 115,
+      "problem_id": "prob-8302-3200b804",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-115",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "divide_conquer",
+        "correctness_proof",
+        "algorithm_theory",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 115,
+      "intent": "QuickSort는 분할-정복 원리의 순수한 표현 — 피벗 선택이 평균 O(n log n)을 보장하는 확률적 계약",
+      "architecture": "재귀적 분해: 피벗 기준으로 less/equal/greater 세 부분으로 분할, 각 부분을 독립적으로 재귀 처리, 결합"
+    },
+    {
+      "id": "n-tech-115",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "partition_logic",
+        "pivot_selection",
+        "recursive_implementation",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 115,
+      "strategy": "list comprehension 방식: less=[x for x in arr[1:] if x<=pivot], greater=[x for x in arr[1:] if x>pivot]. 피벗 = arr[0]. 재귀: quicksort(less) + [pivot] + quicksort(greater)",
+      "complexity": "O(n log n) average"
+    },
+    {
+      "id": "n-execloop-116",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 116,
+      "problem_id": "prob-8303-3200b804",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-116",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "divide_conquer",
+        "correctness_proof",
+        "algorithm_theory",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 116,
+      "intent": "QuickSort는 분할-정복 원리의 순수한 표현 — 피벗 선택이 평균 O(n log n)을 보장하는 확률적 계약",
+      "architecture": "재귀적 분해: 피벗 기준으로 less/equal/greater 세 부분으로 분할, 각 부분을 독립적으로 재귀 처리, 결합"
+    },
+    {
+      "id": "n-tech-116",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "partition_logic",
+        "pivot_selection",
+        "recursive_implementation",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 116,
+      "strategy": "list comprehension 방식: less=[x for x in arr[1:] if x<=pivot], greater=[x for x in arr[1:] if x>pivot]. 피벗 = arr[0]. 재귀: quicksort(less) + [pivot] + quicksort(greater)",
+      "complexity": "O(n log n) average"
+    },
+    {
+      "id": "n-execloop-117",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 117,
+      "problem_id": "prob-8304-3200b804",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-117",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "divide_conquer",
+        "correctness_proof",
+        "algorithm_theory",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 117,
+      "intent": "QuickSort는 분할-정복 원리의 순수한 표현 — 피벗 선택이 평균 O(n log n)을 보장하는 확률적 계약",
+      "architecture": "재귀적 분해: 피벗 기준으로 less/equal/greater 세 부분으로 분할, 각 부분을 독립적으로 재귀 처리, 결합"
+    },
+    {
+      "id": "n-tech-117",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "partition_logic",
+        "pivot_selection",
+        "recursive_implementation",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 117,
+      "strategy": "list comprehension 방식: less=[x for x in arr[1:] if x<=pivot], greater=[x for x in arr[1:] if x>pivot]. 피벗 = arr[0]. 재귀: quicksort(less) + [pivot] + quicksort(greater)",
+      "complexity": "O(n log n) average"
+    },
+    {
+      "id": "n-execloop-118",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 118,
+      "problem_id": "prob-8310-3200b804",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-118",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "sorting",
+        "algorithm_design",
+        "recursion",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 118,
+      "intent": "QuickSort는 sorting 알고리즘의 표준 — 분할 정복 재귀 설계로 평균 O(n log n) 달성",
+      "architecture": "피벗 기준 분할-재귀 구조. sorting의 핵심 알고리즘적 패턴을 구현"
+    },
+    {
+      "id": "n-tech-118",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "sorting",
+        "implementation",
+        "testing",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 118,
+      "strategy": "sorting 함수 quicksort(arr): 피벗 arr[0], less/greater 분리, 재귀 결합. sorting 구현의 표준 패턴.",
+      "complexity": "O(n log n) average"
+    },
+    {
+      "id": "n-execloop-119",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 119,
+      "problem_id": "prob-8311-3200b804",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-119",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "sorting",
+        "algorithm_design",
+        "recursion",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 119,
+      "intent": "QuickSort는 sorting 알고리즘의 표준 — 분할 정복 재귀 설계로 평균 O(n log n) 달성",
+      "architecture": "피벗 기준 분할-재귀 구조. sorting의 핵심 알고리즘적 패턴을 구현"
+    },
+    {
+      "id": "n-tech-119",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "sorting",
+        "implementation",
+        "testing",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 119,
+      "strategy": "sorting 함수 quicksort(arr): 피벗 arr[0], less/greater 분리, 재귀 결합. sorting 구현의 표준 패턴.",
+      "complexity": "O(n log n) average"
+    },
+    {
+      "id": "n-execloop-120",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 120,
+      "problem_id": "prob-8312-3200b804",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-120",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "sorting",
+        "algorithm_design",
+        "recursion",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 120,
+      "intent": "QuickSort는 sorting 알고리즘의 표준 — 분할 정복 재귀 설계로 평균 O(n log n) 달성",
+      "architecture": "피벗 기준 분할-재귀 구조. sorting의 핵심 알고리즘적 패턴을 구현"
+    },
+    {
+      "id": "n-tech-120",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "sorting",
+        "implementation",
+        "testing",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 120,
+      "strategy": "sorting 함수 quicksort(arr): 피벗 arr[0], less/greater 분리, 재귀 결합. sorting 구현의 표준 패턴.",
+      "complexity": "O(n log n) average"
+    },
+    {
+      "id": "n-execloop-121",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 121,
+      "problem_id": "prob-8313-3200b804",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-121",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "sorting",
+        "algorithm_design",
+        "recursion",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 121,
+      "intent": "QuickSort는 sorting 알고리즘의 표준 — 분할 정복 재귀 설계로 평균 O(n log n) 달성",
+      "architecture": "피벗 기준 분할-재귀 구조. sorting의 핵심 알고리즘적 패턴을 구현"
+    },
+    {
+      "id": "n-tech-121",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "sorting",
+        "implementation",
+        "testing",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 121,
+      "strategy": "sorting 함수 quicksort(arr): 피벗 arr[0], less/greater 분리, 재귀 결합. sorting 구현의 표준 패턴.",
+      "complexity": "O(n log n) average"
+    },
+    {
+      "id": "n-execloop-122",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 122,
+      "problem_id": "prob-8314-3200b804",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-122",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "sorting",
+        "algorithm_design",
+        "recursion",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 122,
+      "intent": "QuickSort는 sorting 알고리즘의 표준 — 분할 정복 재귀 설계로 평균 O(n log n) 달성",
+      "architecture": "피벗 기준 분할-재귀 구조. sorting의 핵심 알고리즘적 패턴을 구현"
+    },
+    {
+      "id": "n-tech-122",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "sorting",
+        "implementation",
+        "testing",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 122,
+      "strategy": "sorting 함수 quicksort(arr): 피벗 arr[0], less/greater 분리, 재귀 결합. sorting 구현의 표준 패턴.",
+      "complexity": "O(n log n) average"
     }
   ],
   "edges": [
@@ -18325,6 +18927,188 @@
       "to": "n-execloop-108",
       "relation": "grounds",
       "cycle": 108
+    },
+    {
+      "from": "n-macro-109",
+      "to": "n-tech-109",
+      "relation": "crosses_into",
+      "cycle": 109,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-109",
+      "to": "n-execloop-109",
+      "relation": "grounds",
+      "cycle": 109
+    },
+    {
+      "from": "n-macro-110",
+      "to": "n-tech-110",
+      "relation": "crosses_into",
+      "cycle": 110,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-110",
+      "to": "n-execloop-110",
+      "relation": "grounds",
+      "cycle": 110
+    },
+    {
+      "from": "n-macro-111",
+      "to": "n-tech-111",
+      "relation": "crosses_into",
+      "cycle": 111,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-111",
+      "to": "n-execloop-111",
+      "relation": "grounds",
+      "cycle": 111
+    },
+    {
+      "from": "n-macro-112",
+      "to": "n-tech-112",
+      "relation": "crosses_into",
+      "cycle": 112,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-112",
+      "to": "n-execloop-112",
+      "relation": "grounds",
+      "cycle": 112
+    },
+    {
+      "from": "n-macro-113",
+      "to": "n-tech-113",
+      "relation": "crosses_into",
+      "cycle": 113,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-113",
+      "to": "n-execloop-113",
+      "relation": "grounds",
+      "cycle": 113
+    },
+    {
+      "from": "n-macro-114",
+      "to": "n-tech-114",
+      "relation": "crosses_into",
+      "cycle": 114,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-114",
+      "to": "n-execloop-114",
+      "relation": "grounds",
+      "cycle": 114
+    },
+    {
+      "from": "n-macro-115",
+      "to": "n-tech-115",
+      "relation": "crosses_into",
+      "cycle": 115,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-115",
+      "to": "n-execloop-115",
+      "relation": "grounds",
+      "cycle": 115
+    },
+    {
+      "from": "n-macro-116",
+      "to": "n-tech-116",
+      "relation": "crosses_into",
+      "cycle": 116,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-116",
+      "to": "n-execloop-116",
+      "relation": "grounds",
+      "cycle": 116
+    },
+    {
+      "from": "n-macro-117",
+      "to": "n-tech-117",
+      "relation": "crosses_into",
+      "cycle": 117,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-117",
+      "to": "n-execloop-117",
+      "relation": "grounds",
+      "cycle": 117
+    },
+    {
+      "from": "n-macro-118",
+      "to": "n-tech-118",
+      "relation": "crosses_into",
+      "cycle": 118,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-118",
+      "to": "n-execloop-118",
+      "relation": "grounds",
+      "cycle": 118
+    },
+    {
+      "from": "n-macro-119",
+      "to": "n-tech-119",
+      "relation": "crosses_into",
+      "cycle": 119,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-119",
+      "to": "n-execloop-119",
+      "relation": "grounds",
+      "cycle": 119
+    },
+    {
+      "from": "n-macro-120",
+      "to": "n-tech-120",
+      "relation": "crosses_into",
+      "cycle": 120,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-120",
+      "to": "n-execloop-120",
+      "relation": "grounds",
+      "cycle": 120
+    },
+    {
+      "from": "n-macro-121",
+      "to": "n-tech-121",
+      "relation": "crosses_into",
+      "cycle": 121,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-121",
+      "to": "n-execloop-121",
+      "relation": "grounds",
+      "cycle": 121
+    },
+    {
+      "from": "n-macro-122",
+      "to": "n-tech-122",
+      "relation": "crosses_into",
+      "cycle": 122,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-122",
+      "to": "n-execloop-122",
+      "relation": "grounds",
+      "cycle": 122
     }
   ],
   "meta": {
