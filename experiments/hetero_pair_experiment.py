@@ -74,8 +74,8 @@ def _node_num(nid: str) -> int:
 
 # ─── API 호출 ──────────────────────────────────────────────────────────────────
 
-def call_openai(prompt: str, model: str = "gpt-4o") -> str:
-    """OpenAI API 호출 (GPT-5.2 대리: gpt-4o)"""
+def call_openai(prompt: str, model: str = "gpt-5.2") -> str:
+    """OpenAI API 호출 (GPT-5.2 최신)"""
     if not OPENAI_KEY:
         raise RuntimeError("OPENAI_API_KEY not set")
 
@@ -95,8 +95,8 @@ def call_openai(prompt: str, model: str = "gpt-4o") -> str:
     return data["choices"][0]["message"]["content"].strip()
 
 
-def call_gemini(prompt: str, model: str = "gemini-2.0-flash") -> str:
-    """Google Gemini API 호출 (Gemini-3-Flash 대리: gemini-2.0-flash)"""
+def call_gemini(prompt: str, model: str = "gemini-3.1-flash") -> str:
+    """Google Gemini API 호출 (Gemini-3.1-Flash 최신)"""
     if not GOOGLE_KEY:
         raise RuntimeError("GOOGLE_AI_API_KEY not set")
 
@@ -234,8 +234,8 @@ def kg_summary(kg: dict, max_nodes: int = 10) -> str:
 
 def run_experiment(n_cycles: int = 10) -> dict:
     print("═══ Heterogeneous LLM Pair Experiment (Cycle 86) ═══")
-    print("  Agent A (Proposer): GPT-5.2 [gpt-4o]")
-    print("  Agent B (Connector): Gemini-3-Flash [gemini-2.0-flash]")
+    print("  Agent A (Proposer): GPT-5.2")
+    print("  Agent B (Connector): Gemini-3.1-Flash")
     print(f"  Cycles: {n_cycles}")
     print()
 
@@ -372,8 +372,8 @@ def run_experiment(n_cycles: int = 10) -> dict:
         "cycle": 86,
         "experiment": "heterogeneous_llm_pair",
         "agents": {
-            "A": {"role": "Proposer", "model": "GPT-5.2 [gpt-4o]", "source_tag": "gpt"},
-            "B": {"role": "Connector", "model": "Gemini-3-Flash [gemini-2.0-flash]", "source_tag": "gemini"},
+            "A": {"role": "Proposer", "model": "GPT-5.2", "source_tag": "gpt"},
+            "B": {"role": "Connector", "model": "Gemini-3.1-Flash", "source_tag": "gemini"},
         },
         "n_cycles": n_cycles,
         "cycle_results": cycle_results,

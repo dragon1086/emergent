@@ -88,16 +88,16 @@ def call_gemini(paper_content):
     try:
         import google.generativeai as genai
         genai.configure(api_key=GOOGLE_API_KEY)
-        model = genai.GenerativeModel("gemini-2.0-flash")
+        model = genai.GenerativeModel("gemini-3.1-flash")
         prompt = REVIEW_PROMPT.format(paper_content=paper_content[:15000])
         response = model.generate_content(prompt)
         text = response.text
         scores = parse_scores(text)
         if scores:
-            return {"provider": "Gemini", "model": "gemini-2.0-flash", "scores": scores, "status": "success"}
-        return {"provider": "Gemini", "model": "gemini-2.0-flash", "scores": None, "status": "parse_error", "raw": text[:500]}
+            return {"provider": "Gemini", "model": "gemini-3.1-flash", "scores": scores, "status": "success"}
+        return {"provider": "Gemini", "model": "gemini-3.1-flash", "scores": None, "status": "parse_error", "raw": text[:500]}
     except Exception as e:
-        return {"provider": "Gemini", "model": "gemini-2.0-flash", "scores": None, "status": "api_error", "error": str(e)}
+        return {"provider": "Gemini", "model": "gemini-3.1-flash", "scores": None, "status": "api_error", "error": str(e)}
 
 
 def call_openai(paper_content):
@@ -107,7 +107,7 @@ def call_openai(paper_content):
         client = OpenAI(api_key=OPENAI_API_KEY)
         prompt = REVIEW_PROMPT.format(paper_content=paper_content[:15000])
         response = client.chat.completions.create(
-            model="gpt-4o-mini",
+            model="gpt-5.2",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.3,
             max_tokens=500,
@@ -115,10 +115,10 @@ def call_openai(paper_content):
         text = response.choices[0].message.content
         scores = parse_scores(text)
         if scores:
-            return {"provider": "OpenAI", "model": "gpt-4o-mini", "scores": scores, "status": "success"}
-        return {"provider": "OpenAI", "model": "gpt-4o-mini", "scores": None, "status": "parse_error", "raw": text[:500]}
+            return {"provider": "OpenAI", "model": "gpt-5.2", "scores": scores, "status": "success"}
+        return {"provider": "OpenAI", "model": "gpt-5.2", "scores": None, "status": "parse_error", "raw": text[:500]}
     except Exception as e:
-        return {"provider": "OpenAI", "model": "gpt-4o-mini", "scores": None, "status": "api_error", "error": str(e)}
+        return {"provider": "OpenAI", "model": "gpt-5.2", "scores": None, "status": "api_error", "error": str(e)}
 
 
 def create_stub_results():
@@ -134,8 +134,8 @@ def create_stub_results():
         "Overall Contribution": 7,
     }
     return [
-        {"provider": "Gemini", "model": "gemini-2.0-flash", "scores": stub_scores, "status": "stub"},
-        {"provider": "OpenAI", "model": "gpt-4o-mini", "scores": stub_scores, "status": "stub"},
+        {"provider": "Gemini", "model": "gemini-3.1-flash", "scores": stub_scores, "status": "stub"},
+        {"provider": "OpenAI", "model": "gpt-5.2", "scores": stub_scores, "status": "stub"},
     ]
 
 
