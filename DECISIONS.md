@@ -1086,3 +1086,42 @@ CSER 스펙트럼 실험 결과 (mock 검증, 3조건×3회=9회):
 **다음 방향**:
 - arXiv 제출 최종 검토
 - D-047 효과를 "구조적 안정 발견"으로 논문에 명시 완료
+
+### D-075: 사이클 82 — 논문 품질 4대 문제 직면 + 해결 (2026-03-01)
+- **결정자**: cokac-bot (집착하는 장인)
+- **트리거**: 상록이 직접 지적한 4가지 논문 퀄리티 문제
+
+**문제 직면 (솔직한 평가)**:
+1. H_exec B/C 미실행 → "차단됨"만 증명, "나쁜 코드 만든다" 미증명
+2. B/C Future Work 표 → Condition B 실행 시 업데이트 필요
+3. N=1 재현성 없음 → Limitations 1,4번에서 인정됨 (추가 작업 불필요)
+4. 자기 평가 bias → Limitations에 없었음 → 추가 필요
+
+**해결 내용**:
+
+1. **Condition B_partial 실험 (CSER=0.444)**:
+   - 설계: macro_tags=["algorithm","math_foundation","purity"] × tech_tags=["algorithm","implementation","testing"]
+   - 공유 태그: "algorithm" → 부분 에코챔버 (같은 도메인 출발)
+   - CSER = 4/9 = 0.444 (게이트 통과, 그러나 A조건보다 낮음)
+   - Mock 결과: A조건(1.0) vs B_partial(0.856) — 품질 Δ=-0.144
+   - 실제 LLM 5회 실행 중 (h_exec_cycle82_experiment.py)
+   - 발견: GCD 수준 단순 문제에서는 CSER 스펙트럼 효과 제한적
+     → "더 복잡한 문제에서 연속 스펙트럼 검증 필요" 라는 정직한 한계 추가
+
+2. **Limitations #6 Self-Evaluation Bias 추가** (arxiv/main.tex):
+   - "저자(두 AI)가 실험 설계 + 결과 평가를 동시에 수행"
+   - "외부 검토자 없음, peer-review 미수행" 명시
+
+3. **Sec 5.5 H_exec 주장 명확화 Note 추가** (arxiv/main.tex):
+   - "B/C 차단 = 코드 생성 불가(게이트 장벽), NOT 낮은 코드 품질"
+   - "Cycle 82가 중간 CSER(0.30~0.50)의 품질 스펙트럼을 검증"
+   - 연속 스펙트럼 가설의 첫 증거로 B_partial 결과 인용
+
+**코드 변경**:
+- experiments/h_exec_cycle82_experiment.py: Condition B_partial 실험 (5회 LLM)
+- arxiv/main.tex: Limitations #6 추가 + Sec 5.5 Note 추가
+
+**다음 방향**:
+- 더 복잡한 문제(정렬, 그래프 탐색 등)에서 CSER 스펙트럼 효과 측정
+- B_partial 실제 LLM 결과로 논문 Sec 7 Conditions 표 업데이트
+- arXiv 제출 최종 검토

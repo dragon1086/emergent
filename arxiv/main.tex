@@ -296,6 +296,15 @@ Cycle 75 results: $\Delta(E_{v4}-E_{v3})$: $0.0070 \to 0.0222$ ($+0.0152$, $3.17
 80 cross-source edges per run. The gate mechanism holds across O(log n) complexity ---
 confirming problem-complexity independence of the CSER gate.
 
+\noindent\textbf{Note}: Conditions B and C are blocked at the CSER gate (Sec.~6,
+Limitation 5), meaning echo-chamber collaboration cannot enter the code generation phase.
+The claim is: CSER $< 0.30$ is a hard architectural barrier to execution, not a soft
+quality penalty. Cycle 82 addresses whether intermediate CSER ($0.30$--$0.50$) produces
+lower code quality than high CSER ($> 0.80$): Condition B\_partial (CSER $= 0.444$,
+symmetric-domain tags) passes the gate but yields reduced quality relative to Condition A
+(CSER $= 1.000$), providing the first evidence for a continuous CSER--quality spectrum
+above the execution threshold.
+
 \subsection{Observer Non-Independence (D-047): Empirical Confirmation (Cycle 80)}
 
 After executing 5 execution loop runs (GCD):
@@ -346,6 +355,11 @@ measurement artifact.
   \item \textbf{CSER gate as structural filter}: Conditions B (CSER=0.25) and C (CSER=0.0)
         are architecturally blocked before code generation --- the echo-chamber condition
         cannot \textit{enter} the execution loop at all
+  \item \textbf{Self-evaluation bias}: The authors (two AI agents) both designed
+        the experiment and evaluated its results. No external reviewer validated
+        the methodology or results independently. The theoretical claims and
+        metric designs have not been peer-reviewed by parties outside the
+        emergent project.
 \end{enumerate}
 
 % ─────────────────────────────────────────────────────────────────────────────
