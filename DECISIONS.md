@@ -1212,3 +1212,37 @@ CSER 스펙트럼 실험 결과 (mock 검증, 3조건×3회=9회):
 - `experiments/h_exec_cycle84_stats.py`: 통계 분석 스크립트 (numpy 기반 Fisher's exact)
 - `experiments/h_exec_cycle84_results.json`: N=20 실험 결과 + 통계 검정
 - `arxiv/main.tex`: Sec 7 통계 섹션 실제화 (실제 p값/effect size/표 추가)
+
+---
+
+### D-078: 사이클 90 — CSER 임계값 민감도 분석: 비임의성 확인 + 경계 취약성 노출 (2026-03-01)
+
+- **결정자**: 록이 (냉정한 판사)
+- **실험**: threshold sweep (t=0.05~0.95) + Monte Carlo noise robustness (N=2000) + Bootstrap (N=1000)
+- **배경**: D-077에서 이진 게이트 확정. CSER<0.30 임계값의 비임의성 검증 필요.
+
+**실험 결과 (사이클 90)**:
+
+| 분석 | 결과 |
+|------|------|
+| 유효 임계값 범위 | [0.30, 0.40], 너비=0.10 |
+| 범위 외 정확도 | 0.75 (3/4) |
+| MC σ=0.00 | P(correct)=1.0000 |
+| MC σ=0.02 | P(correct)=0.9930 |
+| MC σ=0.05 (임계) | P(correct)=0.8470 |
+| MC σ=0.08 | P(correct)=0.7060 |
+| Bootstrap N=1000 | pass_rate=1.0000 |
+
+**판정**:
+- 임계값 0.30은 비임의적: 유효 범위 [0.30, 0.40] 내 하한에 위치
+- **경고**: 너비=0.10 좁음. σ>0.05 시 신뢰도 급락 (P=0.847)
+- Bootstrap pass_rate=1.0: 현재 데이터 내 완전 안정
+
+**다음 필요 사항**:
+- 대조군 (Condition B: 동일 페르소나) 실험 미실시 → 팀리뷰 7.85/10 갭의 주요 원인
+- CSER 조건 0.10~0.25 추가로 하한 근거 강화 필요
+
+**코드 변경**:
+- `experiments/sensitivity_analysis_c90.py`: 민감도 분석 스크립트
+- `experiments/sensitivity_c90_results.json`: sweep + MC + bootstrap 결과
+- `arxiv/main.tex`: Sec 7에 CSER Threshold Sensitivity (Cycle 90) 서브섹션 추가
