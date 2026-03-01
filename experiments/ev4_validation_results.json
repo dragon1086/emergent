@@ -1,0 +1,167 @@
+{
+  "experiment": "ev4_external_validation",
+  "cycle": 92,
+  "method": "KG temporal snapshots vs quality proxies",
+  "quality_proxy_used": "external_avg_quality",
+  "n_snapshots": 10,
+  "snapshots": [
+    {
+      "max_node_num": 18,
+      "n_nodes": 18,
+      "n_edges": 26,
+      "CSER": 0.4615,
+      "DCI": 0.1111,
+      "edge_span_norm": 0.2919,
+      "node_age_div": 0.2966,
+      "E_v4": 0.3068
+    },
+    {
+      "max_node_num": 36,
+      "n_nodes": 36,
+      "n_edges": 87,
+      "CSER": 0.5862,
+      "DCI": 0.3333,
+      "edge_span_norm": 0.2279,
+      "node_age_div": 0.2927,
+      "E_v4": 0.3894
+    },
+    {
+      "max_node_num": 54,
+      "n_nodes": 54,
+      "n_edges": 125,
+      "CSER": 0.624,
+      "DCI": 0.1593,
+      "edge_span_norm": 0.1692,
+      "node_age_div": 0.2913,
+      "E_v4": 0.3442
+    },
+    {
+      "max_node_num": 72,
+      "n_nodes": 72,
+      "n_edges": 182,
+      "CSER": 0.6758,
+      "DCI": 0.071,
+      "edge_span_norm": 0.2047,
+      "node_age_div": 0.2907,
+      "E_v4": 0.3491
+    },
+    {
+      "max_node_num": 90,
+      "n_nodes": 90,
+      "n_edges": 268,
+      "CSER": 0.7276,
+      "DCI": 0.0605,
+      "edge_span_norm": 0.2352,
+      "node_age_div": 0.2903,
+      "E_v4": 0.3721
+    },
+    {
+      "max_node_num": 108,
+      "n_nodes": 108,
+      "n_edges": 343,
+      "CSER": 0.7609,
+      "DCI": 0.0504,
+      "edge_span_norm": 0.2321,
+      "node_age_div": 0.29,
+      "E_v4": 0.3804
+    },
+    {
+      "max_node_num": 126,
+      "n_nodes": 126,
+      "n_edges": 409,
+      "CSER": 0.7653,
+      "DCI": 0.1852,
+      "edge_span_norm": 0.2199,
+      "node_age_div": 0.2898,
+      "E_v4": 0.4126
+    },
+    {
+      "max_node_num": 144,
+      "n_nodes": 144,
+      "n_edges": 509,
+      "CSER": 0.7583,
+      "DCI": 0.3074,
+      "edge_span_norm": 0.2538,
+      "node_age_div": 0.2897,
+      "E_v4": 0.4492
+    },
+    {
+      "max_node_num": 162,
+      "n_nodes": 162,
+      "n_edges": 616,
+      "CSER": 0.7338,
+      "DCI": 0.2733,
+      "edge_span_norm": 0.2755,
+      "node_age_div": 0.2896,
+      "E_v4": 0.4375
+    },
+    {
+      "max_node_num": 186,
+      "n_nodes": 186,
+      "n_edges": 818,
+      "CSER": 0.7763,
+      "DCI": 0.2186,
+      "edge_span_norm": 0.3673,
+      "node_age_div": 0.2895,
+      "E_v4": 0.4616
+    }
+  ],
+  "quality_values": [
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    1.0,
+    1.0,
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    1.0
+  ],
+  "correlations": {
+    "E_v4_vs_quality": {
+      "n": 14,
+      "pearson_r": 0.6325,
+      "pearson_p": 0.0001,
+      "spearman_r": 0.6325,
+      "spearman_p": 0.0001
+    },
+    "CSER_vs_quality": {
+      "n": 14,
+      "pearson_r": 0.6325,
+      "pearson_p": 0.0001,
+      "spearman_r": 0.6325,
+      "spearman_p": 0.0001
+    },
+    "DCI_vs_quality": {
+      "n": 14,
+      "pearson_r": 0.6325,
+      "pearson_p": 0.0001,
+      "spearman_r": 0.6325,
+      "spearman_p": 0.0001
+    },
+    "edge_span_vs_quality": {
+      "n": 14,
+      "pearson_r": 0.6325,
+      "pearson_p": 0.0001,
+      "spearman_r": 0.6325,
+      "spearman_p": 0.0001
+    },
+    "node_age_div_vs_quality": {
+      "n": 14,
+      "pearson_r": -0.6325,
+      "pearson_p": 0.0001,
+      "spearman_r": -0.6325,
+      "spearman_p": 0.0001
+    }
+  },
+  "validation_passed": true,
+  "threshold": 0.5,
+  "ev4_pearson_r": 0.6325,
+  "interpretation": "E_v4 외부 검증 성공. E_v4와 품질 지표 간 양의 중간 상관 (r=0.632). 가장 강한 단일 컴포넌트: CSER (r=0.632). 품질 프록시: external_avg_quality.",
+  "timestamp": "2026-03-01T05:07:02.780361"
+}
