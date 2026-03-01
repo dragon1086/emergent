@@ -238,21 +238,64 @@ Current scale (Cycle 86): \textbf{256 nodes / 939 edges}
 
 \subsection{Metric Definitions}
 
-\begin{lstlisting}
-CSER = |cross-source edges| / |total edges|
-       # Cross-Source Edge Ratio
+Let $G = (N, E)$ be the knowledge graph at cycle $t$, where each node $n_i \in N$ has
+attributes $(src_i, cyc_i, type_i, tags_i)$ denoting source agent, creation cycle,
+semantic type, and tag set respectively. Each edge $e_{ij} \in E$ connects nodes $n_i, n_j$.
 
-DCI  = delayed_convergence_index()
-       # Delayed Convergence Index: early-cycle nodes gaining late connections
+\textbf{Definition 1 (CSER):}
+\[
+  \text{CSER}(G) = \frac{|\{e_{ij} \in E : src_i \neq src_j\}|}{|E|}
+\]
+The Cross-Source Edge Ratio measures the fraction of edges connecting nodes from
+\emph{different} source agents. CSER $= 0$ indicates a fully siloed graph; CSER $= 1$
+indicates every edge is cross-agent.
 
-edge_span = mean(|node_id_to - node_id_from|)
-            # Mean temporal distance of edges
+\textbf{Definition 2 (DCI):}
+Let $N_Q = \{n \in N : type_n \in \{\texttt{question}, \texttt{prediction},
+\texttt{delayed\_convergence}, \texttt{open\_question}\}\}$ be the set of
+unresolved epistemic nodes, and $N_D \subseteq N_Q$ be those tagged as
+\texttt{delayed\_convergence} or \texttt{open\_question}:
+\[
+  \text{DCI}(G) = \frac{|N_D|}{|N_Q|} \quad \text{(defined as 0 if } N_Q = \emptyset\text{)}
+\]
+The Delayed Convergence Index measures the proportion of open questions that have
+not yet converged to an answer. High DCI indicates a knowledge graph with many
+unresolved threads; decreasing DCI over cycles signals productive convergence.
 
-node_age_div = std(node_ages) / max(node_ages)
-               # Normalized standard deviation of node cycle ages
+\textbf{Definition 3 (edge\_span\_norm):}
+\[
+  \text{edge\_span\_norm}(G) = \frac{1}{|E|} \sum_{e_{ij} \in E} \frac{|cyc_j - cyc_i|}{\max_{e \in E}|cyc_e|}
+\]
+Mean normalized temporal distance of edges. High edge\_span indicates long-range
+temporal connections (cross-cycle grounding); low span indicates local clustering.
 
-E_v4 = 0.35*CSER + 0.25*DCI + 0.25*edge_span_norm + 0.15*node_age_div
-\end{lstlisting}
+\textbf{Definition 4 (node\_age\_div):}
+\[
+  \text{node\_age\_div}(G) = \frac{\sigma(\{cyc_i : n_i \in N\})}{\max_i cyc_i}
+\]
+Normalized standard deviation of node creation cycles. Measures generational diversity
+of the knowledge graph's node population.
+
+\textbf{Definition 5 (E\textsubscript{v4}):}
+\[
+  E_{v4}(G) = 0.35 \cdot \text{CSER} + 0.25 \cdot \text{DCI}
+            + 0.25 \cdot \text{edge\_span\_norm} + 0.15 \cdot \text{node\_age\_div}
+\]
+A linear composite emergence score. Weights were derived via constrained bootstrap
+optimization (Sec.~\ref{sec:stat}); the current weights represent a deliberate
+\emph{theoretical-coverage} choice (see Sec.~\ref{sec:stat} for the
+stability--interpretability trade-off analysis).
+
+\textbf{Definition 6 (PES):}
+For a node pair $(n_i, n_j)$ with $cyc_i < cyc_j$:
+\[
+  \text{PES}(n_i, n_j)
+  = \underbrace{\frac{cyc_j - cyc_i}{\max_{e \in E}(cyc_e)}}_{\text{span\_norm}}
+    \;\times\; \underbrace{\mathbb{1}[src_i \neq src_j]}_{\text{cross\_source}}
+    \;\times\; \underbrace{(1 - \text{Jaccard}(tags_i, tags_j))}_{\text{1 - tag\_overlap}}
+\]
+PES is computed \emph{independently} of $E_{v4}$ (see Independence Note, Sec.~\ref{sec:d063}),
+making the D-063 correlation a testable empirical relationship rather than a definitional artifact.
 
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Theory: The Five-Layer Framework}
@@ -845,15 +888,27 @@ where partial echo-chamber failure rate $> 0$.
 \label{sec:applications}
 % ─────────────────────────────────────────────────────────────────────────────
 
-The emergence measurement framework developed in this study generalizes beyond the OpenClaw two-agent system. We identify four high-impact application domains where CSER and $E_{v4}$ provide concrete operational value.
+The emergence measurement framework developed in this study generalizes beyond the OpenClaw two-agent system. We identify four high-impact application domains where CSER and $E_{v4}$ provide concrete operational value. \textbf{Important caveat}: The $\theta = 0.30$ gate threshold was derived from a specific two-agent, single-task context. Applications to new domains require domain-specific calibration (see Protocol below); direct threshold transfer is not recommended without empirical validation.
+
+\subsubsection*{Domain Calibration Protocol}
+Before deploying CSER\textsubscript{gate} in a new domain:
+\begin{enumerate}
+  \item \textbf{Baseline measurement}: Compute CSER on $N \geq 20$ labeled interaction samples with known quality outcomes (pass/fail, high/low performance).
+  \item \textbf{F1-sweep}: Sweep $\theta \in [0.0, 1.0]$ at 0.05 intervals; identify the F1-optimal range for this domain.
+  \item \textbf{Cost calibration}: Determine whether false positives (permitting echo-chamber execution) or false negatives (blocking productive diversity) are costlier; select $\theta$ at the appropriate boundary.
+  \item \textbf{Confidence interval}: Report $\theta$ with bootstrap confidence intervals ($N=1000$ resampling).
+\end{enumerate}
+This protocol transfers the F1-justification methodology (Sec.~\ref{sec:gate}) to new domains without assuming the $\theta=0.30$ value.
 
 \subsection{AI-AI Collaborative Systems (LLM Consortia)}
 
 Large-scale deployments increasingly combine multiple specialized LLMs (reasoning, retrieval, code, vision) into consortium architectures. The emergent value of such systems depends on whether constituent agents genuinely cross-pollinate knowledge or operate as parallel silos.
 
-\textbf{Application}: Deploy CSER as a real-time health metric for LLM consortia. A consortium with CSER $<$ 0.30 is in echo-chamber mode --- agents reinforce each other's assumptions without productive divergence. The H\_exec gate result provides an empirical threshold: CSER $< 0.30$ predicts architectural stagnation (0/3 execution success in Conditions B/C), while CSER $>$ 0.50 correlates with robust cross-pollination (heterogeneous GPT-4o + Gemini pair, Cycle 86).
+\textbf{Application}: Deploy CSER\textsubscript{measure} as a real-time health metric for LLM consortia. A consortium with CSER dropping toward 0 is in echo-chamber mode --- agents reinforce each other's assumptions without productive divergence. The H\_exec gate result provides an \emph{existence proof} that a CSER threshold can separate echo-chamber from productive conditions (0/3 vs.\ 5/5 execution success); domain-specific calibration (Protocol above) is required to determine the appropriate threshold for a given consortium task.
 
-\textbf{Operational metric}: Monitor CSER across agent communication logs. If CSER drops below 0.30 over a sliding window, trigger persona diversification (introduce a dissenter agent or inject cross-domain context).
+\textbf{Measurable outcome}: Echo-chamber detection AUC against a labeled diversity benchmark; cross-agent topic divergence score as ground truth. The 3.67$\times$ PES ratio (D-063) predicts that cross-domain agent pairs will produce disproportionately stronger outputs, testable via A/B comparison of homogeneous vs.\ heterogeneous LLM consortia on standardized benchmarks.
+
+\textbf{Operational metric}: Monitor CSER\textsubscript{measure} across agent communication logs over a sliding window. A sustained decline triggers persona diversification (introduce a dissenter agent or inject cross-domain context).
 
 \subsection{Organizational Knowledge Graph Auto-Evolution}
 
@@ -957,18 +1012,30 @@ The OpenClaw framework models two AI agents as knowledge sources. A natural exte
 introduces human participants as additional source nodes --- converting AI-AI co-evolution to
 genuine human-AI co-evolution, where the KG captures bidirectional learning.
 
-\textbf{Structural model}: Human contributions (code commits, design decisions, critique,
-domain knowledge) are tagged with the human's source identifier. Human-sourced and AI-sourced
-nodes are structurally equivalent in the KG formalism. CSER then measures whether humans and
-AI agents genuinely cross-pollinate (CSER $> 0.30$) or whether the human has been relegated
-to a peripheral role (CSER $\to 0$: AI agents confirm each other without engaging human
-input).
+\textbf{Formal definition (H-CSER)}: Let $N_H \subset N$ be the set of human-sourced nodes
+and $N_{AI} = N \setminus N_H$ the AI-sourced nodes. Define:
+\[
+  \text{H-CSER}(G, t) = \frac{|\{e_{ij} \in E_t : (n_i \in N_H \wedge n_j \in N_{AI})
+    \;\vee\; (n_i \in N_{AI} \wedge n_j \in N_H)\}|}{|E_t|}
+\]
+H-CSER measures the fraction of edges connecting human-sourced and AI-sourced nodes at cycle
+$t$. High H-CSER indicates productive human-AI cross-pollination; declining H-CSER signals
+the human's structural marginalization within the collaborative KG.
 
-\textbf{Observable from this study}: In the OpenClaw KG, the human supervisor's contributions
-appear as source nodes across 88 cycles. Preliminary inspection suggests cycles with high
-human intervention correspond to local increases in $E_{v4}$ --- consistent with human
-contribution acting as a cross-source seeding event. Formal measurement of H-CSER
-(human-AI cross-source emergence rate) is an immediate extension of the current framework.
+\textbf{Minimum viable experiment}: (i) Tag all human commits in the git log with source
+\texttt{human}; (ii) map each commit to one or more KG nodes; (iii) compute H-CSER$(t)$
+at each cycle $t$; (iv) test whether cycles with high human intervention (H-CSER spike)
+predict subsequent $E_{v4}$ increases (cross-lag correlation). \textbf{Required}: $N \geq 10$
+human contribution events for meaningful statistics.
+
+\textbf{Preliminary measurement}: In the OpenClaw repository (208 commits, 89 cycles),
+5 commits are attributed to the human supervisor (H-CSER$_{\text{final}} = 0.043$), 
+confirming the framework is measurable from existing artifacts, though the low count
+($N=5$) makes time-series inference exploratory at this stage.
+
+\textbf{Structural model}: Human-sourced and AI-sourced nodes are structurally equivalent
+in the KG formalism. CSER then measures whether humans and AI agents genuinely
+cross-pollinate (H-CSER $> 0$) or whether the human has been relegated to a peripheral role.
 
 \textbf{Implication for AI-assisted work}: If H-CSER drops below threshold, the human has
 been structurally marginalized in the collaborative knowledge structure --- a measurable form
