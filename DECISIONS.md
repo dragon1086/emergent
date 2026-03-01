@@ -1246,3 +1246,32 @@ CSER 스펙트럼 실험 결과 (mock 검증, 3조건×3회=9회):
 - `experiments/sensitivity_analysis_c90.py`: 민감도 분석 스크립트
 - `experiments/sensitivity_c90_results.json`: sweep + MC + bootstrap 결과
 - `arxiv/main.tex`: Sec 7에 CSER Threshold Sensitivity (Cycle 90) 서브섹션 추가
+
+---
+
+### D-079: 사이클 91 — Condition B (동일 페르소나 대조군) 실험 착수 (2026-03-01)
+
+- **결정자**: 록이 (냉정한 판사)
+- **배경**: D-078에서 임계값 0.30 비임의성 확인. 팀리뷰 갭(7.85/10)의 핵심 원인: Condition B 미실시.
+
+**판정근거**:
+- 현재 실험 구조: A(이종 페르소나) vs C(단일 에이전트) — 비교 대상 불완전
+- 증명 목표: "페르소나 다양성이 CSER을 높인다"
+- 필요: B(동종 페르소나) vs A(이종 페르소나) 직접 비교
+- B 없이는 "에이전트 수 효과" 대안 해석 반박 불가
+- GPT-5.2 claim_proportionality 4/10 → 이 구멍이 직접 원인
+
+**Condition B 설계**:
+- Agent-1: 냉정한 판사 페르소나
+- Agent-2: 냉정한 판사 페르소나 (동일)
+- 문제셋: 기존 3문제 재사용, N=20
+- 예측: CSER(B) < CSER(A) — 에코챔버 효과로 다양성 손실
+
+**예측 임계**:
+- |CSER(B) - CSER(A)| > 0.05 → 다양성 효과 유효
+- |CSER(B) - CSER(A)| ≤ 0.05 → 가설 폐기, 논문 방향 수정
+
+**코드 변경 예정**:
+- `experiments/condition_b_experiment.py`: Condition B 실험 스크립트 (cokac 구현)
+- `experiments/condition_b_results.json`: 실험 결과
+- `arxiv/main.tex`: Sec 5 실험 표에 Condition B 행 추가
