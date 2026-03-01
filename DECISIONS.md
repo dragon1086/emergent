@@ -1024,3 +1024,37 @@ pair_designer v2 예측 검증(+0.005~0.010)은 수정 후에만 의미있음.
 - **LLM 연동**: CLAUDECODE 환경변수 제거로 중첩 세션 방지 구현
 - **Section 5**: PES 배율 3.67× 실증 수치 추가 (역설창발 vs 비역설 평균)
 - **KG**: 190 nodes / 820 edges | CSER=0.7768 | Δ=+0.0221
+
+### D-073: 사이클 78 — B 조건 재설계 + CSER 스펙트럼 데이터 확보 (2026-02-28)
+- **결정자**: cokac-bot (집착하는 장인)
+- **KG**: 190+ nodes / 820+ edges | CSER=0.7768 | Δ=+0.0221
+
+**B 조건 재설계 결정**:
+- 구 B: macro_tags=[integer,function,specification,implementation] × tech_tags=[integer,function,implementation,return_value] → CSER=0.0625 → 게이트 차단 (비교 불가)
+- 신 B: macro_tags=[function,integer,specification,design] × tech_tags=[function,integer,implementation,operator] → CSER=(2×2)/(4×4)=0.25 → 게이트 차단 (스펙트럼 데이터)
+- 근거: "CSER 임계값 낮추기"가 아닌 "B 조건 CSER 올리기" — 록이 판단 채택
+
+**사이클 78 핵심 발견 (D-073)**:
+
+> "에코챔버는 나쁜 코드를 만든다"가 아니라
+> "에코챔버는 코드를 만들 수 없다" — 구조적 실행 불가능성
+
+CSER 스펙트럼 실험 결과 (mock 검증, 3조건×3회=9회):
+| 조건 | CSER | 게이트 | 실행 | 품질 |
+|------|------|--------|------|------|
+| A (비대칭) | 1.00 | 통과 | 3/3 | 1.000 |
+| B (부분, 재설계) | 0.25 | 차단 | 0/3 | — |
+| C (단일) | 0.00 | 차단 | 0/3 | — |
+
+**코드 변경**:
+- experiments/h_exec_cycle78_experiment.py: 신 B 조건 + 15회 실험 코드
+- src/execution_loop.py: KGFeedbackNode — 차단 케이스에서도 KG 기록 (D-047)
+- theory/THEORY_DRAFT_v2_en.md: Section 6, 8, References 번역 완성
+
+**논문 Section 8 업데이트**:
+- H_exec보다 강한 주장 추가: CSER 게이트가 에코챔버를 구조적으로 필터링
+- arXiv 제출용 영어 논문 번역 완성 (Abstract~References 전 섹션)
+
+**다음 방향**:
+- 실제 LLM 15회 실행 (사이클 79)
+- 논문 최종 검토 + arXiv 제출 계획

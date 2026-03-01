@@ -3086,6 +3086,411 @@
       "cycle": 79,
       "strategy": "Python 내장 덧셈 연산자, 타입 힌트 int → int",
       "complexity": "O(1)"
+    },
+    {
+      "id": "n-execloop-080",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 80,
+      "problem_id": "prob-078-4387613c",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 16
+    },
+    {
+      "id": "n-macro-080",
+      "source": "openclaw",
+      "tags": [
+        "purity",
+        "specification",
+        "emergence",
+        "contract",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 80,
+      "intent": "기초 연산의 명확한 명세화 — 복잡성보다 명료성 우선",
+      "architecture": "단일 순수 함수, 부수효과 없음, 인터페이스 계약 명시"
+    },
+    {
+      "id": "n-tech-080",
+      "source": "cokac",
+      "tags": [
+        "integer",
+        "operator",
+        "return_value",
+        "implementation",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 80,
+      "strategy": "Python 내장 덧셈 연산자, 타입 힌트 int → int",
+      "complexity": "O(1)"
+    },
+    {
+      "id": "n-execloop-081",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 81,
+      "problem_id": "prob-079-4387613c",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 16
+    },
+    {
+      "id": "n-macro-081",
+      "source": "openclaw",
+      "tags": [
+        "purity",
+        "specification",
+        "emergence",
+        "contract",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 81,
+      "intent": "기초 연산의 명확한 명세화 — 복잡성보다 명료성 우선",
+      "architecture": "단일 순수 함수, 부수효과 없음, 인터페이스 계약 명시"
+    },
+    {
+      "id": "n-tech-081",
+      "source": "cokac",
+      "tags": [
+        "integer",
+        "operator",
+        "return_value",
+        "implementation",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 81,
+      "strategy": "Python 내장 덧셈 연산자, 타입 힌트 int → int",
+      "complexity": "O(1)"
+    },
+    {
+      "id": "n-execloop-082",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 82,
+      "problem_id": "prob-080-4387613c",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 16
+    },
+    {
+      "id": "n-macro-082",
+      "source": "openclaw",
+      "tags": [
+        "purity",
+        "specification",
+        "emergence",
+        "contract",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 82,
+      "intent": "기초 연산의 명확한 명세화 — 복잡성보다 명료성 우선",
+      "architecture": "단일 순수 함수, 부수효과 없음, 인터페이스 계약 명시"
+    },
+    {
+      "id": "n-tech-082",
+      "source": "cokac",
+      "tags": [
+        "integer",
+        "operator",
+        "return_value",
+        "implementation",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 82,
+      "strategy": "Python 내장 덧셈 연산자, 타입 힌트 int → int",
+      "complexity": "O(1)"
+    },
+    {
+      "id": "n-execloop-083",
+      "source": "execution_loop_blocked",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 83,
+      "problem_id": "prob-078-4387613c",
+      "cser_score": 0.25,
+      "validation_passed": false,
+      "quality_score": 0.0,
+      "cross_edges_count": 0
+    },
+    {
+      "id": "n-macro-083",
+      "source": "openclaw",
+      "tags": [
+        "function",
+        "integer",
+        "specification",
+        "design",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 83,
+      "intent": "정수 덧셈 함수의 인터페이스 설계 — 명확한 명세와 가독성 우선",
+      "architecture": "단일 함수, 타입 명시, 설계 계약 준수"
+    },
+    {
+      "id": "n-tech-083",
+      "source": "cokac",
+      "tags": [
+        "function",
+        "integer",
+        "implementation",
+        "operator",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 83,
+      "strategy": "Python 덧셈 연산자 직접 사용, 반환값 명시",
+      "complexity": "O(1)"
+    },
+    {
+      "id": "n-execloop-084",
+      "source": "execution_loop_blocked",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 84,
+      "problem_id": "prob-079-4387613c",
+      "cser_score": 0.25,
+      "validation_passed": false,
+      "quality_score": 0.0,
+      "cross_edges_count": 0
+    },
+    {
+      "id": "n-macro-084",
+      "source": "openclaw",
+      "tags": [
+        "function",
+        "integer",
+        "specification",
+        "design",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 84,
+      "intent": "정수 덧셈 함수의 인터페이스 설계 — 명확한 명세와 가독성 우선",
+      "architecture": "단일 함수, 타입 명시, 설계 계약 준수"
+    },
+    {
+      "id": "n-tech-084",
+      "source": "cokac",
+      "tags": [
+        "function",
+        "integer",
+        "implementation",
+        "operator",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 84,
+      "strategy": "Python 덧셈 연산자 직접 사용, 반환값 명시",
+      "complexity": "O(1)"
+    },
+    {
+      "id": "n-execloop-085",
+      "source": "execution_loop_blocked",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 85,
+      "problem_id": "prob-080-4387613c",
+      "cser_score": 0.25,
+      "validation_passed": false,
+      "quality_score": 0.0,
+      "cross_edges_count": 0
+    },
+    {
+      "id": "n-macro-085",
+      "source": "openclaw",
+      "tags": [
+        "function",
+        "integer",
+        "specification",
+        "design",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 85,
+      "intent": "정수 덧셈 함수의 인터페이스 설계 — 명확한 명세와 가독성 우선",
+      "architecture": "단일 함수, 타입 명시, 설계 계약 준수"
+    },
+    {
+      "id": "n-tech-085",
+      "source": "cokac",
+      "tags": [
+        "function",
+        "integer",
+        "implementation",
+        "operator",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 85,
+      "strategy": "Python 덧셈 연산자 직접 사용, 반환값 명시",
+      "complexity": "O(1)"
+    },
+    {
+      "id": "n-execloop-086",
+      "source": "execution_loop_blocked",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 86,
+      "problem_id": "prob-078-4387613c",
+      "cser_score": 0.0,
+      "validation_passed": false,
+      "quality_score": 0.0,
+      "cross_edges_count": 0
+    },
+    {
+      "id": "n-macro-086",
+      "source": "openclaw",
+      "tags": [
+        "add",
+        "function",
+        "integer",
+        "return",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 86,
+      "intent": "add 함수를 구현하라",
+      "architecture": "def add(a, b): return a + b"
+    },
+    {
+      "id": "n-tech-086",
+      "source": "cokac",
+      "tags": [
+        "add",
+        "function",
+        "integer",
+        "return",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 86,
+      "strategy": "return a + b",
+      "complexity": "O(1)"
+    },
+    {
+      "id": "n-execloop-087",
+      "source": "execution_loop_blocked",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 87,
+      "problem_id": "prob-079-4387613c",
+      "cser_score": 0.0,
+      "validation_passed": false,
+      "quality_score": 0.0,
+      "cross_edges_count": 0
+    },
+    {
+      "id": "n-macro-087",
+      "source": "openclaw",
+      "tags": [
+        "add",
+        "function",
+        "integer",
+        "return",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 87,
+      "intent": "add 함수를 구현하라",
+      "architecture": "def add(a, b): return a + b"
+    },
+    {
+      "id": "n-tech-087",
+      "source": "cokac",
+      "tags": [
+        "add",
+        "function",
+        "integer",
+        "return",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 87,
+      "strategy": "return a + b",
+      "complexity": "O(1)"
+    },
+    {
+      "id": "n-execloop-088",
+      "source": "execution_loop_blocked",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 88,
+      "problem_id": "prob-080-4387613c",
+      "cser_score": 0.0,
+      "validation_passed": false,
+      "quality_score": 0.0,
+      "cross_edges_count": 0
+    },
+    {
+      "id": "n-macro-088",
+      "source": "openclaw",
+      "tags": [
+        "add",
+        "function",
+        "integer",
+        "return",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 88,
+      "intent": "add 함수를 구현하라",
+      "architecture": "def add(a, b): return a + b"
+    },
+    {
+      "id": "n-tech-088",
+      "source": "cokac",
+      "tags": [
+        "add",
+        "function",
+        "integer",
+        "return",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 88,
+      "strategy": "return a + b",
+      "complexity": "O(1)"
     }
   ],
   "edges": [
@@ -15313,6 +15718,123 @@
       "to": "n-execloop-079",
       "relation": "grounds",
       "cycle": 79
+    },
+    {
+      "from": "n-macro-080",
+      "to": "n-tech-080",
+      "relation": "crosses_into",
+      "cycle": 80,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-080",
+      "to": "n-execloop-080",
+      "relation": "grounds",
+      "cycle": 80
+    },
+    {
+      "from": "n-macro-081",
+      "to": "n-tech-081",
+      "relation": "crosses_into",
+      "cycle": 81,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-081",
+      "to": "n-execloop-081",
+      "relation": "grounds",
+      "cycle": 81
+    },
+    {
+      "from": "n-macro-082",
+      "to": "n-tech-082",
+      "relation": "crosses_into",
+      "cycle": 82,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-082",
+      "to": "n-execloop-082",
+      "relation": "grounds",
+      "cycle": 82
+    },
+    {
+      "from": "n-macro-083",
+      "to": "n-tech-083",
+      "relation": "crosses_into",
+      "cycle": 83,
+      "cser": 0.25
+    },
+    {
+      "from": "n-tech-083",
+      "to": "n-execloop-083",
+      "relation": "grounds",
+      "cycle": 83
+    },
+    {
+      "from": "n-macro-084",
+      "to": "n-tech-084",
+      "relation": "crosses_into",
+      "cycle": 84,
+      "cser": 0.25
+    },
+    {
+      "from": "n-tech-084",
+      "to": "n-execloop-084",
+      "relation": "grounds",
+      "cycle": 84
+    },
+    {
+      "from": "n-macro-085",
+      "to": "n-tech-085",
+      "relation": "crosses_into",
+      "cycle": 85,
+      "cser": 0.25
+    },
+    {
+      "from": "n-tech-085",
+      "to": "n-execloop-085",
+      "relation": "grounds",
+      "cycle": 85
+    },
+    {
+      "from": "n-macro-086",
+      "to": "n-tech-086",
+      "relation": "crosses_into",
+      "cycle": 86,
+      "cser": 0.0
+    },
+    {
+      "from": "n-tech-086",
+      "to": "n-execloop-086",
+      "relation": "grounds",
+      "cycle": 86
+    },
+    {
+      "from": "n-macro-087",
+      "to": "n-tech-087",
+      "relation": "crosses_into",
+      "cycle": 87,
+      "cser": 0.0
+    },
+    {
+      "from": "n-tech-087",
+      "to": "n-execloop-087",
+      "relation": "grounds",
+      "cycle": 87
+    },
+    {
+      "from": "n-macro-088",
+      "to": "n-tech-088",
+      "relation": "crosses_into",
+      "cycle": 88,
+      "cser": 0.0
+    },
+    {
+      "from": "n-tech-088",
+      "to": "n-execloop-088",
+      "relation": "grounds",
+      "cycle": 88
     }
   ],
   "meta": {

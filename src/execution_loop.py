@@ -357,6 +357,19 @@ class ExecutionLoop:
                 "스펙 다양화 후 재시도 필요."
             )
             print(f"  ⚠ {msg}")
+            # KG에 차단 이벤트 기록 (D-047: 차단도 관찰 가능한 이벤트)
+            # 에코챔버 구조가 실행 루프에 진입하지 못했다는 사실 자체를 KG에 남긴다.
+            # → D-047 관찰자 비독립성 실증: 실험이 KG를 변형, 변형된 KG가 다음 실험에 영향
+            blocked_feedback = KGFeedbackNode(
+                cycle=cycle,
+                problem_id=problem.problem_id,
+                cser_score=cser,
+                validation_passed=False,
+                quality_score=0.0,
+                cross_edges_count=0,
+                source="execution_loop_blocked",
+            )
+            self._write_kg_feedback(blocked_feedback, macro, tech)
             result = self._make_result(cycle, problem, cser, False, 0.0, [], msg)
             self._record(result)
             return result
