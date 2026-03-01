@@ -1,200 +1,379 @@
 {
-  "experiment": "condition_b_same_persona",
-  "cycle": 91,
-  "timestamp": "2026-03-01T04:52:54.011827",
+  "experiment": "condition_b_v2_homogeneous_persona_hetero_model",
+  "cycle": 93,
+  "persona": "냉정한 판사 × 냉정한 판사",
   "agents": {
     "agent1": {
-      "model": "gpt-5.2",
-      "persona": "냉정한판사"
+      "model": "gpt-5.2-chat-latest",
+      "persona": "냉정한 판사",
+      "source": "agent1"
     },
     "agent2": {
       "model": "gemini-3-flash-preview",
-      "persona": "냉정한판사 (SAME)"
+      "persona": "냉정한 판사",
+      "source": "agent2"
     }
   },
   "n_cycles": 20,
   "problems": [
     "GCD",
     "QuickSort",
-    "LRU_Cache"
+    "LRU Cache"
   ],
-  "baseline_cser_a": 0.5455,
-  "cser_final": 0.5,
-  "cser_mean": 0.4,
-  "cser_history": [
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.5,
-    0.5,
-    0.5,
-    0.5,
-    0.5,
-    0.5,
-    0.5,
-    0.5,
-    0.5,
-    0.5,
-    0.5,
-    0.5,
-    0.5,
-    0.5,
-    0.5,
-    0.5
-  ],
-  "cser_diff": -0.0455,
-  "bootstrap_ci_95": [
-    0.325,
-    0.475
-  ],
-  "gate_blocked": false,
-  "judgment": "INCONCLUSIVE",
-  "judgment_text": "CSER(B)=0.5000 within ±0.05 of CSER(A)=0.5455 → 불확정",
-  "nodes_total": 22,
-  "edges_total": 4,
-  "cross_source_edges": 2,
   "cycle_results": [
+    {
+      "cycle": 0,
+      "phase": "init",
+      "n_nodes": 2,
+      "n_edges": 1,
+      "CSER": 1.0,
+      "edge_span_norm": 1.0,
+      "node_age_div": 0.3536,
+      "E_v4": 0.653
+    },
     {
       "cycle": 1,
       "problem": "GCD",
-      "nodes_total": 1,
-      "edges_total": 0,
-      "cser": 0.0
+      "fallback": true,
+      "n_nodes": 4,
+      "n_edges": 2,
+      "CSER": 0.5,
+      "edge_span_norm": 0.3333,
+      "node_age_div": 0.3227,
+      "E_v4": 0.3067
     },
     {
       "cycle": 2,
       "problem": "QuickSort",
-      "nodes_total": 2,
-      "edges_total": 0,
-      "cser": 0.0
+      "fallback": true,
+      "n_nodes": 6,
+      "n_edges": 3,
+      "CSER": 0.6667,
+      "edge_span_norm": 0.2,
+      "node_age_div": 0.3118,
+      "E_v4": 0.3301
     },
     {
       "cycle": 3,
-      "problem": "LRU_Cache",
-      "nodes_total": 3,
-      "edges_total": 0,
-      "cser": 0.0
+      "problem": "LRU Cache",
+      "fallback": true,
+      "n_nodes": 8,
+      "n_edges": 4,
+      "CSER": 0.5,
+      "edge_span_norm": 0.1429,
+      "node_age_div": 0.3062,
+      "E_v4": 0.2566
     },
     {
       "cycle": 4,
       "problem": "GCD",
-      "nodes_total": 4,
-      "edges_total": 0,
-      "cser": 0.0
+      "fallback": true,
+      "n_nodes": 10,
+      "n_edges": 5,
+      "CSER": 0.6,
+      "edge_span_norm": 0.1111,
+      "node_age_div": 0.3028,
+      "E_v4": 0.2832
     },
     {
       "cycle": 5,
       "problem": "QuickSort",
-      "nodes_total": 6,
-      "edges_total": 2,
-      "cser": 0.5
+      "fallback": true,
+      "n_nodes": 12,
+      "n_edges": 6,
+      "CSER": 0.5,
+      "edge_span_norm": 0.0909,
+      "node_age_div": 0.3005,
+      "E_v4": 0.2428
     },
     {
       "cycle": 6,
-      "problem": "LRU_Cache",
-      "nodes_total": 7,
-      "edges_total": 2,
-      "cser": 0.5
+      "problem": "LRU Cache",
+      "fallback": true,
+      "n_nodes": 14,
+      "n_edges": 7,
+      "CSER": 0.5714,
+      "edge_span_norm": 0.0769,
+      "node_age_div": 0.2988,
+      "E_v4": 0.264
     },
     {
       "cycle": 7,
       "problem": "GCD",
-      "nodes_total": 8,
-      "edges_total": 2,
-      "cser": 0.5
+      "fallback": true,
+      "n_nodes": 16,
+      "n_edges": 8,
+      "CSER": 0.5,
+      "edge_span_norm": 0.0667,
+      "node_age_div": 0.2976,
+      "E_v4": 0.2363
     },
     {
       "cycle": 8,
       "problem": "QuickSort",
-      "nodes_total": 9,
-      "edges_total": 2,
-      "cser": 0.5
+      "fallback": true,
+      "n_nodes": 18,
+      "n_edges": 9,
+      "CSER": 0.5556,
+      "edge_span_norm": 0.0588,
+      "node_age_div": 0.2966,
+      "E_v4": 0.2537
     },
     {
       "cycle": 9,
-      "problem": "LRU_Cache",
-      "nodes_total": 10,
-      "edges_total": 2,
-      "cser": 0.5
+      "problem": "LRU Cache",
+      "fallback": true,
+      "n_nodes": 20,
+      "n_edges": 10,
+      "CSER": 0.5,
+      "edge_span_norm": 0.0526,
+      "node_age_div": 0.2958,
+      "E_v4": 0.2325
     },
     {
       "cycle": 10,
       "problem": "GCD",
-      "nodes_total": 11,
-      "edges_total": 2,
-      "cser": 0.5
+      "fallback": true,
+      "n_nodes": 22,
+      "n_edges": 11,
+      "CSER": 0.5455,
+      "edge_span_norm": 0.0476,
+      "node_age_div": 0.2952,
+      "E_v4": 0.2471
     },
     {
       "cycle": 11,
       "problem": "QuickSort",
-      "nodes_total": 12,
-      "edges_total": 2,
-      "cser": 0.5
+      "fallback": true,
+      "n_nodes": 24,
+      "n_edges": 12,
+      "CSER": 0.5,
+      "edge_span_norm": 0.0435,
+      "node_age_div": 0.2946,
+      "E_v4": 0.2301
     },
     {
       "cycle": 12,
-      "problem": "LRU_Cache",
-      "nodes_total": 13,
-      "edges_total": 2,
-      "cser": 0.5
+      "problem": "LRU Cache",
+      "fallback": true,
+      "n_nodes": 26,
+      "n_edges": 13,
+      "CSER": 0.5385,
+      "edge_span_norm": 0.04,
+      "node_age_div": 0.2942,
+      "E_v4": 0.2426
     },
     {
       "cycle": 13,
       "problem": "GCD",
-      "nodes_total": 14,
-      "edges_total": 2,
-      "cser": 0.5
+      "fallback": true,
+      "n_nodes": 28,
+      "n_edges": 14,
+      "CSER": 0.5,
+      "edge_span_norm": 0.037,
+      "node_age_div": 0.2938,
+      "E_v4": 0.2283
     },
     {
       "cycle": 14,
       "problem": "QuickSort",
-      "nodes_total": 15,
-      "edges_total": 2,
-      "cser": 0.5
+      "fallback": true,
+      "n_nodes": 30,
+      "n_edges": 15,
+      "CSER": 0.5333,
+      "edge_span_norm": 0.0345,
+      "node_age_div": 0.2934,
+      "E_v4": 0.2393
     },
     {
       "cycle": 15,
-      "problem": "LRU_Cache",
-      "nodes_total": 16,
-      "edges_total": 2,
-      "cser": 0.5
+      "problem": "LRU Cache",
+      "fallback": true,
+      "n_nodes": 32,
+      "n_edges": 16,
+      "CSER": 0.5,
+      "edge_span_norm": 0.0323,
+      "node_age_div": 0.2932,
+      "E_v4": 0.227
     },
     {
       "cycle": 16,
       "problem": "GCD",
-      "nodes_total": 17,
-      "edges_total": 2,
-      "cser": 0.5
+      "fallback": true,
+      "n_nodes": 34,
+      "n_edges": 17,
+      "CSER": 0.5294,
+      "edge_span_norm": 0.0303,
+      "node_age_div": 0.2929,
+      "E_v4": 0.2368
     },
     {
       "cycle": 17,
       "problem": "QuickSort",
-      "nodes_total": 18,
-      "edges_total": 2,
-      "cser": 0.5
+      "fallback": true,
+      "n_nodes": 36,
+      "n_edges": 18,
+      "CSER": 0.5,
+      "edge_span_norm": 0.0286,
+      "node_age_div": 0.2927,
+      "E_v4": 0.226
     },
     {
       "cycle": 18,
-      "problem": "LRU_Cache",
-      "nodes_total": 20,
-      "edges_total": 4,
-      "cser": 0.5
+      "problem": "LRU Cache",
+      "fallback": true,
+      "n_nodes": 38,
+      "n_edges": 19,
+      "CSER": 0.5263,
+      "edge_span_norm": 0.027,
+      "node_age_div": 0.2924,
+      "E_v4": 0.2348
     },
     {
       "cycle": 19,
       "problem": "GCD",
-      "nodes_total": 21,
-      "edges_total": 4,
-      "cser": 0.5
+      "fallback": true,
+      "n_nodes": 40,
+      "n_edges": 20,
+      "CSER": 0.5,
+      "edge_span_norm": 0.0256,
+      "node_age_div": 0.2923,
+      "E_v4": 0.2252
     },
     {
       "cycle": 20,
       "problem": "QuickSort",
-      "nodes_total": 22,
-      "edges_total": 4,
-      "cser": 0.5
+      "fallback": true,
+      "n_nodes": 42,
+      "n_edges": 21,
+      "CSER": 0.5238,
+      "edge_span_norm": 0.0244,
+      "node_age_div": 0.2921,
+      "E_v4": 0.2332
     }
   ],
-  "seed": 91
+  "final_cser": 0.5238,
+  "cser_history": [
+    1.0,
+    0.5,
+    0.6667,
+    0.5,
+    0.6,
+    0.5,
+    0.5714,
+    0.5,
+    0.5556,
+    0.5,
+    0.5455,
+    0.5,
+    0.5385,
+    0.5,
+    0.5333,
+    0.5,
+    0.5294,
+    0.5,
+    0.5263,
+    0.5,
+    0.5238
+  ],
+  "bootstrap_ci_95": [
+    0.5163,
+    0.6048
+  ],
+  "reference_cser_a": 0.5455,
+  "judgment": "불확정",
+  "echo_chamber_gate": false,
+  "final_metrics": {
+    "n_nodes": 42,
+    "n_edges": 21,
+    "CSER": 0.5238,
+    "edge_span_norm": 0.0244,
+    "node_age_div": 0.2921,
+    "E_v4": 0.2332
+  },
+  "errors": [
+    {
+      "cycle": 1,
+      "error": "Unterminated string starting at: line 3 column 6 (char 20)"
+    },
+    {
+      "cycle": 2,
+      "error": "Unterminated string starting at: line 3 column 6 (char 20)"
+    },
+    {
+      "cycle": 3,
+      "error": "Unterminated string starting at: line 3 column 6 (char 20)"
+    },
+    {
+      "cycle": 4,
+      "error": "Expecting value: line 2 column 13 (char 14)"
+    },
+    {
+      "cycle": 5,
+      "error": "Expecting value: line 3 column 13 (char 27)"
+    },
+    {
+      "cycle": 6,
+      "error": "Expecting value: line 2 column 13 (char 14)"
+    },
+    {
+      "cycle": 7,
+      "error": "Unterminated string starting at: line 3 column 6 (char 20)"
+    },
+    {
+      "cycle": 8,
+      "error": "Expecting value: line 3 column 13 (char 27)"
+    },
+    {
+      "cycle": 9,
+      "error": "Unterminated string starting at: line 3 column 6 (char 20)"
+    },
+    {
+      "cycle": 10,
+      "error": "Expecting value: line 3 column 13 (char 27)"
+    },
+    {
+      "cycle": 11,
+      "error": "Expecting property name enclosed in double quotes: line 3 column 6 (char 20)"
+    },
+    {
+      "cycle": 12,
+      "error": "Expecting value: line 2 column 13 (char 14)"
+    },
+    {
+      "cycle": 13,
+      "error": "Unterminated string starting at: line 3 column 6 (char 20)"
+    },
+    {
+      "cycle": 14,
+      "error": "Unterminated string starting at: line 3 column 6 (char 20)"
+    },
+    {
+      "cycle": 15,
+      "error": "Expecting value: line 3 column 13 (char 27)"
+    },
+    {
+      "cycle": 16,
+      "error": "Expecting value: line 3 column 13 (char 27)"
+    },
+    {
+      "cycle": 17,
+      "error": "Unterminated string starting at: line 1 column 21 (char 20)"
+    },
+    {
+      "cycle": 18,
+      "error": "Unterminated string starting at: line 3 column 6 (char 20)"
+    },
+    {
+      "cycle": 19,
+      "error": "Expecting value: line 3 column 13 (char 27)"
+    },
+    {
+      "cycle": 20,
+      "error": "Unterminated string starting at: line 3 column 6 (char 20)"
+    }
+  ],
+  "n_fallbacks": 20,
+  "dry_run": false,
+  "timestamp": "2026-03-01T13:11:27.123045"
 }
