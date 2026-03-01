@@ -1,7 +1,7 @@
 {
   "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"python3 src/pair_designer_v4.py --add 20 2>&1\",\"description\":\"Run pair_designer_v4 --add 20 to push CSER toward 0.80\"}",
-  "error": "Exit code 1\n  KG: 256 노드 / 864 엣지\n  모드: v4 (CSER 제약 없음 — edge_span 직접 최적화)\n\n  📊 후보 풀 — 교차출처: 8437개 / 동일출처: 16545개  (DCI 필터: 0개 제외)\n═══ pair_designer v4 --add 20 ═══\n\n  선택: 20개 — 교차출처: 20개 / 동일출처: 0개\nTraceback (most recent call last):\n  File \"/Users/rocky/emergent/src/pair_designer_v4.py\", line 539, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/rocky/emergent/src/pair_designer_v4.py\", line 505, in main\n    save_kg(updated_kg)\n    ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/rocky/emergent/src/pair_desi...",
-  "timestamp": "2026-03-01T03:01:36.087Z",
+  "tool_input_preview": "{\"command\":\"source venv/bin/activate 2>/dev/null || true && python experiments/h_exec_cycle82_experiment.py --mock --trials 5 2>&1\",\"description\":\"mock 모드로 실험 스크립트 검증\"}",
+  "error": "Exit code 127\n(eval):1: command not found: python\n\n(eval):1: command not found: python",
+  "timestamp": "2026-03-01T03:23:28.452Z",
   "retry_count": 1
 }

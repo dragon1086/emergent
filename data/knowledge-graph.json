@@ -3941,6 +3941,436 @@
       "cycle": 98,
       "strategy": "유클리드 알고리즘: gcd(a, b) = gcd(b, a%b), base case: gcd(a, 0) = a",
       "complexity": "O(log min(a,b))"
+    },
+    {
+      "id": "n-execloop-099",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 99,
+      "problem_id": "prob-8200-ba26737f",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 0.8555555555555556,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-099",
+      "source": "openclaw_symmetric",
+      "tags": [
+        "algorithm",
+        "math_foundation",
+        "purity",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 99,
+      "intent": "GCD는 두 수의 공통 약수 구조를 압축하는 알고리즘 — 수학적 순수성과 구현의 접점",
+      "architecture": "단일 함수, 입출력 계약 명시, 알고리즘 선택은 구현자에게 위임"
+    },
+    {
+      "id": "n-tech-099",
+      "source": "cokac_symmetric",
+      "tags": [
+        "algorithm",
+        "implementation",
+        "testing",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 99,
+      "strategy": "알고리즘 선택: 유클리드 반복 방식. gcd(a,b) → while b≠0: a,b = b,a%b → return a",
+      "complexity": "O(log min(a,b))"
+    },
+    {
+      "id": "n-execloop-100",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 100,
+      "problem_id": "prob-8201-ba26737f",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 0.8555555555555556,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-100",
+      "source": "openclaw_symmetric",
+      "tags": [
+        "algorithm",
+        "math_foundation",
+        "purity",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 100,
+      "intent": "GCD는 두 수의 공통 약수 구조를 압축하는 알고리즘 — 수학적 순수성과 구현의 접점",
+      "architecture": "단일 함수, 입출력 계약 명시, 알고리즘 선택은 구현자에게 위임"
+    },
+    {
+      "id": "n-tech-100",
+      "source": "cokac_symmetric",
+      "tags": [
+        "algorithm",
+        "implementation",
+        "testing",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 100,
+      "strategy": "알고리즘 선택: 유클리드 반복 방식. gcd(a,b) → while b≠0: a,b = b,a%b → return a",
+      "complexity": "O(log min(a,b))"
+    },
+    {
+      "id": "n-execloop-101",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 101,
+      "problem_id": "prob-8202-ba26737f",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 0.8555555555555556,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-101",
+      "source": "openclaw_symmetric",
+      "tags": [
+        "algorithm",
+        "math_foundation",
+        "purity",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 101,
+      "intent": "GCD는 두 수의 공통 약수 구조를 압축하는 알고리즘 — 수학적 순수성과 구현의 접점",
+      "architecture": "단일 함수, 입출력 계약 명시, 알고리즘 선택은 구현자에게 위임"
+    },
+    {
+      "id": "n-tech-101",
+      "source": "cokac_symmetric",
+      "tags": [
+        "algorithm",
+        "implementation",
+        "testing",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 101,
+      "strategy": "알고리즘 선택: 유클리드 반복 방식. gcd(a,b) → while b≠0: a,b = b,a%b → return a",
+      "complexity": "O(log min(a,b))"
+    },
+    {
+      "id": "n-execloop-102",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 102,
+      "problem_id": "prob-8203-ba26737f",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 0.8555555555555556,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-102",
+      "source": "openclaw_symmetric",
+      "tags": [
+        "algorithm",
+        "math_foundation",
+        "purity",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 102,
+      "intent": "GCD는 두 수의 공통 약수 구조를 압축하는 알고리즘 — 수학적 순수성과 구현의 접점",
+      "architecture": "단일 함수, 입출력 계약 명시, 알고리즘 선택은 구현자에게 위임"
+    },
+    {
+      "id": "n-tech-102",
+      "source": "cokac_symmetric",
+      "tags": [
+        "algorithm",
+        "implementation",
+        "testing",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 102,
+      "strategy": "알고리즘 선택: 유클리드 반복 방식. gcd(a,b) → while b≠0: a,b = b,a%b → return a",
+      "complexity": "O(log min(a,b))"
+    },
+    {
+      "id": "n-execloop-103",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 103,
+      "problem_id": "prob-8204-ba26737f",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 0.8555555555555556,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-103",
+      "source": "openclaw_symmetric",
+      "tags": [
+        "algorithm",
+        "math_foundation",
+        "purity",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 103,
+      "intent": "GCD는 두 수의 공통 약수 구조를 압축하는 알고리즘 — 수학적 순수성과 구현의 접점",
+      "architecture": "단일 함수, 입출력 계약 명시, 알고리즘 선택은 구현자에게 위임"
+    },
+    {
+      "id": "n-tech-103",
+      "source": "cokac_symmetric",
+      "tags": [
+        "algorithm",
+        "implementation",
+        "testing",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 103,
+      "strategy": "알고리즘 선택: 유클리드 반복 방식. gcd(a,b) → while b≠0: a,b = b,a%b → return a",
+      "complexity": "O(log min(a,b))"
+    },
+    {
+      "id": "n-execloop-104",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 104,
+      "problem_id": "prob-8200-ba26737f",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-104",
+      "source": "openclaw_symmetric",
+      "tags": [
+        "algorithm",
+        "math_foundation",
+        "purity",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 104,
+      "intent": "GCD는 두 수의 공통 약수 구조를 압축하는 알고리즘 — 수학적 순수성과 구현의 접점",
+      "architecture": "단일 함수, 입출력 계약 명시, 알고리즘 선택은 구현자에게 위임"
+    },
+    {
+      "id": "n-tech-104",
+      "source": "cokac_symmetric",
+      "tags": [
+        "algorithm",
+        "implementation",
+        "testing",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 104,
+      "strategy": "알고리즘 선택: 유클리드 반복 방식. gcd(a,b) → while b≠0: a,b = b,a%b → return a",
+      "complexity": "O(log min(a,b))"
+    },
+    {
+      "id": "n-execloop-105",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 105,
+      "problem_id": "prob-8201-ba26737f",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-105",
+      "source": "openclaw_symmetric",
+      "tags": [
+        "algorithm",
+        "math_foundation",
+        "purity",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 105,
+      "intent": "GCD는 두 수의 공통 약수 구조를 압축하는 알고리즘 — 수학적 순수성과 구현의 접점",
+      "architecture": "단일 함수, 입출력 계약 명시, 알고리즘 선택은 구현자에게 위임"
+    },
+    {
+      "id": "n-tech-105",
+      "source": "cokac_symmetric",
+      "tags": [
+        "algorithm",
+        "implementation",
+        "testing",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 105,
+      "strategy": "알고리즘 선택: 유클리드 반복 방식. gcd(a,b) → while b≠0: a,b = b,a%b → return a",
+      "complexity": "O(log min(a,b))"
+    },
+    {
+      "id": "n-execloop-106",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 106,
+      "problem_id": "prob-8202-ba26737f",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-106",
+      "source": "openclaw_symmetric",
+      "tags": [
+        "algorithm",
+        "math_foundation",
+        "purity",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 106,
+      "intent": "GCD는 두 수의 공통 약수 구조를 압축하는 알고리즘 — 수학적 순수성과 구현의 접점",
+      "architecture": "단일 함수, 입출력 계약 명시, 알고리즘 선택은 구현자에게 위임"
+    },
+    {
+      "id": "n-tech-106",
+      "source": "cokac_symmetric",
+      "tags": [
+        "algorithm",
+        "implementation",
+        "testing",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 106,
+      "strategy": "알고리즘 선택: 유클리드 반복 방식. gcd(a,b) → while b≠0: a,b = b,a%b → return a",
+      "complexity": "O(log min(a,b))"
+    },
+    {
+      "id": "n-execloop-107",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 107,
+      "problem_id": "prob-8203-ba26737f",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-107",
+      "source": "openclaw_symmetric",
+      "tags": [
+        "algorithm",
+        "math_foundation",
+        "purity",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 107,
+      "intent": "GCD는 두 수의 공통 약수 구조를 압축하는 알고리즘 — 수학적 순수성과 구현의 접점",
+      "architecture": "단일 함수, 입출력 계약 명시, 알고리즘 선택은 구현자에게 위임"
+    },
+    {
+      "id": "n-tech-107",
+      "source": "cokac_symmetric",
+      "tags": [
+        "algorithm",
+        "implementation",
+        "testing",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 107,
+      "strategy": "알고리즘 선택: 유클리드 반복 방식. gcd(a,b) → while b≠0: a,b = b,a%b → return a",
+      "complexity": "O(log min(a,b))"
+    },
+    {
+      "id": "n-execloop-108",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 108,
+      "problem_id": "prob-8204-ba26737f",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-108",
+      "source": "openclaw_symmetric",
+      "tags": [
+        "algorithm",
+        "math_foundation",
+        "purity",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 108,
+      "intent": "GCD는 두 수의 공통 약수 구조를 압축하는 알고리즘 — 수학적 순수성과 구현의 접점",
+      "architecture": "단일 함수, 입출력 계약 명시, 알고리즘 선택은 구현자에게 위임"
+    },
+    {
+      "id": "n-tech-108",
+      "source": "cokac_symmetric",
+      "tags": [
+        "algorithm",
+        "implementation",
+        "testing",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 108,
+      "strategy": "알고리즘 선택: 유클리드 반복 방식. gcd(a,b) → while b≠0: a,b = b,a%b → return a",
+      "complexity": "O(log min(a,b))"
     }
   ],
   "edges": [
@@ -17765,6 +18195,136 @@
         "cross_source": true,
         "dci_neutral": true
       }
+    },
+    {
+      "from": "n-macro-099",
+      "to": "n-tech-099",
+      "relation": "crosses_into",
+      "cycle": 99,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-099",
+      "to": "n-execloop-099",
+      "relation": "grounds",
+      "cycle": 99
+    },
+    {
+      "from": "n-macro-100",
+      "to": "n-tech-100",
+      "relation": "crosses_into",
+      "cycle": 100,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-100",
+      "to": "n-execloop-100",
+      "relation": "grounds",
+      "cycle": 100
+    },
+    {
+      "from": "n-macro-101",
+      "to": "n-tech-101",
+      "relation": "crosses_into",
+      "cycle": 101,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-101",
+      "to": "n-execloop-101",
+      "relation": "grounds",
+      "cycle": 101
+    },
+    {
+      "from": "n-macro-102",
+      "to": "n-tech-102",
+      "relation": "crosses_into",
+      "cycle": 102,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-102",
+      "to": "n-execloop-102",
+      "relation": "grounds",
+      "cycle": 102
+    },
+    {
+      "from": "n-macro-103",
+      "to": "n-tech-103",
+      "relation": "crosses_into",
+      "cycle": 103,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-103",
+      "to": "n-execloop-103",
+      "relation": "grounds",
+      "cycle": 103
+    },
+    {
+      "from": "n-macro-104",
+      "to": "n-tech-104",
+      "relation": "crosses_into",
+      "cycle": 104,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-104",
+      "to": "n-execloop-104",
+      "relation": "grounds",
+      "cycle": 104
+    },
+    {
+      "from": "n-macro-105",
+      "to": "n-tech-105",
+      "relation": "crosses_into",
+      "cycle": 105,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-105",
+      "to": "n-execloop-105",
+      "relation": "grounds",
+      "cycle": 105
+    },
+    {
+      "from": "n-macro-106",
+      "to": "n-tech-106",
+      "relation": "crosses_into",
+      "cycle": 106,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-106",
+      "to": "n-execloop-106",
+      "relation": "grounds",
+      "cycle": 106
+    },
+    {
+      "from": "n-macro-107",
+      "to": "n-tech-107",
+      "relation": "crosses_into",
+      "cycle": 107,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-107",
+      "to": "n-execloop-107",
+      "relation": "grounds",
+      "cycle": 107
+    },
+    {
+      "from": "n-macro-108",
+      "to": "n-tech-108",
+      "relation": "crosses_into",
+      "cycle": 108,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-108",
+      "to": "n-execloop-108",
+      "relation": "grounds",
+      "cycle": 108
     }
   ],
   "meta": {
