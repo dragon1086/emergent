@@ -1,0 +1,14 @@
+{
+  "domain": "novel_ops_vex",
+  "description": "새로운 연산 규칙 (학습 데이터에 없는 것)",
+  "problem": "(3⊕4)⊗(2⊕5) where a⊕b=a*b-a-b+1, a⊗b=a+b-floor(a*b/2)",
+  "answer": -2,
+  "n_trials": 5,
+  "overall": {
+    "solo": 0.2,
+    "pipeline": 1.0,
+    "emergent": 1.0
+  },
+  "delta_solo_to_collab": "+80%p (5x improvement)",
+  "key_finding": "GPT-5.2 단독은 새 규칙 계산에서 20% 그치지만, 협업(4calls)은 100% 달성"
+}
