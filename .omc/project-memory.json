@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1772261214689,
+  "lastScanned": 1772348783119,
   "projectRoot": "/Users/rocky/emergent",
   "techStack": {
     "languages": [],
@@ -16,7 +16,7 @@
     "scripts": {}
   },
   "conventions": {
-    "namingStyle": null,
+    "namingStyle": "snake_case",
     "importStyle": null,
     "testPattern": null,
     "fileOrganization": null
@@ -31,323 +31,136 @@
   },
   "customNotes": [],
   "directoryMap": {
+    "arxiv": {
+      "path": "arxiv",
+      "purpose": null,
+      "fileCount": 2,
+      "lastAccessed": 1772348783109,
+      "keyFiles": [
+        "README_arxiv.md",
+        "main.tex"
+      ]
+    },
+    "data": {
+      "path": "data",
+      "purpose": "Data files",
+      "fileCount": 12,
+      "lastAccessed": 1772348783109,
+      "keyFiles": [
+        "asymmetry-experiment.json",
+        "convergence_history.json",
+        "cser_history.json",
+        "external-kg.json",
+        "knowledge-graph.json"
+      ]
+    },
+    "experiments": {
+      "path": "experiments",
+      "purpose": null,
+      "fileCount": 26,
+      "lastAccessed": 1772348783110,
+      "keyFiles": [
+        "cser_code_quality_experiment.md",
+        "cycle76_kg_based_test.py",
+        "cycle76_kg_test_results.json",
+        "h_exec_cycle78_experiment.py",
+        "h_exec_cycle78_results.json"
+      ]
+    },
     "logs": {
       "path": "logs",
       "purpose": null,
-      "fileCount": 2,
-      "lastAccessed": 1772261214680,
+      "fileCount": 13,
+      "lastAccessed": 1772348783110,
       "keyFiles": [
+        "cokac-2026-02-27.log",
+        "cokac-2026-02-28.log",
+        "cokac-cycle75.log",
         "cycle-1.log",
-        "evolve-2026-02-27.log"
+        "emergence-history.jsonl"
       ]
     },
     "src": {
       "path": "src",
       "purpose": "Source code",
-      "fileCount": 0,
-      "lastAccessed": 1772261214680,
-      "keyFiles": []
+      "fileCount": 28,
+      "lastAccessed": 1772348783110,
+      "keyFiles": [
+        "anti_optimization.py",
+        "asymmetry_experiment.py",
+        "convergence_tracker.py",
+        "cser_tracker.py",
+        "delayed_convergence.py"
+      ]
+    },
+    "theory": {
+      "path": "theory",
+      "purpose": null,
+      "fileCount": 5,
+      "lastAccessed": 1772348783111,
+      "keyFiles": [
+        "THEORY_DRAFT_v1.md",
+        "THEORY_DRAFT_v2.md",
+        "THEORY_DRAFT_v2_en.md",
+        "THEORY_DRAFT_v2_roadmap.md",
+        "pair_designer_v1.md"
+      ]
+    },
+    "thoughts": {
+      "path": "thoughts",
+      "purpose": null,
+      "fileCount": 32,
+      "lastAccessed": 1772348783111,
+      "keyFiles": [
+        "D-036.md",
+        "cokac-003.md",
+        "prism-insight-v2-strategy.md",
+        "록이-007.md",
+        "록이-008.md"
+      ]
     }
   },
   "hotPaths": [
     {
-      "path": "DECISIONS.md",
-      "accessCount": 154,
-      "lastAccessed": 1772336765938,
+      "path": "arxiv/main.tex",
+      "accessCount": 54,
+      "lastAccessed": 1772349158702,
       "type": "file"
     },
     {
-      "path": "src/kg.py",
-      "accessCount": 84,
-      "lastAccessed": 1772283642824,
+      "path": "",
+      "accessCount": 4,
+      "lastAccessed": 1772349026931,
+      "type": "directory"
+    },
+    {
+      "path": "experiments/team_review_cycle87.py",
+      "accessCount": 4,
+      "lastAccessed": 1772349156307,
       "type": "file"
     },
     {
-      "path": "src/reflect.py",
-      "accessCount": 72,
-      "lastAccessed": 1772273061885,
+      "path": ".env",
+      "accessCount": 2,
+      "lastAccessed": 1772349008150,
       "type": "file"
     },
     {
       "path": "data/knowledge-graph.json",
-      "accessCount": 46,
-      "lastAccessed": 1772322157543,
-      "type": "file"
-    },
-    {
-      "path": "theory/THEORY_DRAFT_v2.md",
-      "accessCount": 38,
-      "lastAccessed": 1772333007258,
-      "type": "file"
-    },
-    {
-      "path": "src/metrics.py",
-      "accessCount": 28,
-      "lastAccessed": 1772311946092,
-      "type": "file"
-    },
-    {
-      "path": "evolve.sh",
-      "accessCount": 26,
-      "lastAccessed": 1772284728001,
-      "type": "file"
-    },
-    {
-      "path": "src/pair_designer.py",
-      "accessCount": 24,
-      "lastAccessed": 1772285102480,
-      "type": "file"
-    },
-    {
-      "path": "theory/THEORY_DRAFT_v1.md",
-      "accessCount": 24,
-      "lastAccessed": 1772298149586,
-      "type": "file"
-    },
-    {
-      "path": "src/prophecy_check.py",
-      "accessCount": 20,
-      "lastAccessed": 1772286005460,
-      "type": "file"
-    },
-    {
-      "path": "src/delayed_convergence.py",
-      "accessCount": 14,
-      "lastAccessed": 1772282443664,
-      "type": "file"
-    },
-    {
-      "path": "src/pair_designer_v3.py",
-      "accessCount": 14,
-      "lastAccessed": 1772311935921,
-      "type": "file"
-    },
-    {
-      "path": "src/emergence_pulse.py",
-      "accessCount": 12,
-      "lastAccessed": 1772272519424,
-      "type": "file"
-    },
-    {
-      "path": "src/convergence_tracker.py",
-      "accessCount": 12,
-      "lastAccessed": 1772283898474,
-      "type": "file"
-    },
-    {
-      "path": "src/novelty_emergence.py",
-      "accessCount": 10,
-      "lastAccessed": 1772280391307,
-      "type": "file"
-    },
-    {
-      "path": "src/pair_designer_v2.py",
-      "accessCount": 10,
-      "lastAccessed": 1772285258016,
-      "type": "file"
-    },
-    {
-      "path": "src/cser_tracker.py",
-      "accessCount": 8,
-      "lastAccessed": 1772285360075,
-      "type": "file"
-    },
-    {
-      "path": "CHARTER.md",
-      "accessCount": 6,
-      "lastAccessed": 1772261544393,
-      "type": "file"
-    },
-    {
-      "path": "src/emergence_synthesizer.py",
-      "accessCount": 6,
-      "lastAccessed": 1772282465353,
-      "type": "file"
-    },
-    {
-      "path": "src/path_alternation_detector.py",
-      "accessCount": 6,
-      "lastAccessed": 1772283898239,
-      "type": "file"
-    },
-    {
-      "path": "data/convergence_history.json",
-      "accessCount": 6,
-      "lastAccessed": 1772283907072,
-      "type": "file"
-    },
-    {
-      "path": "src/thoughts/록이-001.md",
-      "accessCount": 4,
-      "lastAccessed": 1772261350507,
-      "type": "file"
-    },
-    {
-      "path": "logs/evolve-2026-02-27.log",
-      "accessCount": 4,
-      "lastAccessed": 1772261351165,
-      "type": "file"
-    },
-    {
-      "path": "src/thoughts/록이-002.md",
-      "accessCount": 4,
-      "lastAccessed": 1772261533484,
-      "type": "file"
-    },
-    {
-      "path": "src/persona_fingerprint.py",
-      "accessCount": 4,
-      "lastAccessed": 1772282444451,
-      "type": "file"
-    },
-    {
-      "path": "src/span_analyzer.py",
-      "accessCount": 4,
-      "lastAccessed": 1772283641308,
-      "type": "file"
-    },
-    {
-      "path": "experiments/n056_cokac_lead_experiment.py",
-      "accessCount": 4,
-      "lastAccessed": 1772283642026,
-      "type": "file"
-    },
-    {
-      "path": "src/thoughts/록이-010.md",
-      "accessCount": 4,
-      "lastAccessed": 1772296287731,
-      "type": "file"
-    },
-    {
-      "path": "src/emergent_selector.py",
-      "accessCount": 4,
-      "lastAccessed": 1772297758709,
-      "type": "file"
-    },
-    {
-      "path": "README.md",
       "accessCount": 2,
-      "lastAccessed": 1772261232387,
+      "lastAccessed": 1772349039775,
       "type": "file"
     },
     {
-      "path": "logs/cycle-1.log",
+      "path": "arxiv/KPI_REPORT_CYCLE87.md",
       "accessCount": 2,
-      "lastAccessed": 1772261236955,
+      "lastAccessed": 1772349079129,
       "type": "file"
     },
     {
-      "path": "src/thoughts/cokac-001.md",
+      "path": "experiments/alignment_cycle88.py",
       "accessCount": 2,
-      "lastAccessed": 1772261721371,
-      "type": "file"
-    },
-    {
-      "path": "src/thoughts/cokac-002.md",
-      "accessCount": 2,
-      "lastAccessed": 1772263498723,
-      "type": "file"
-    },
-    {
-      "path": "src/select_persona.py",
-      "accessCount": 2,
-      "lastAccessed": 1772266440403,
-      "type": "file"
-    },
-    {
-      "path": "src/personas.json",
-      "accessCount": 2,
-      "lastAccessed": 1772266440759,
-      "type": "file"
-    },
-    {
-      "path": "src/gap27_audit.py",
-      "accessCount": 2,
-      "lastAccessed": 1772273921287,
-      "type": "file"
-    },
-    {
-      "path": "thoughts/D-036.md",
-      "accessCount": 2,
-      "lastAccessed": 1772277816244,
-      "type": "file"
-    },
-    {
-      "path": "src/asymmetry_experiment.py",
-      "accessCount": 2,
-      "lastAccessed": 1772278488240,
-      "type": "file"
-    },
-    {
-      "path": "src/anti_optimization.py",
-      "accessCount": 2,
-      "lastAccessed": 1772279249169,
-      "type": "file"
-    },
-    {
-      "path": "src/product/pair_designer.py",
-      "accessCount": 2,
-      "lastAccessed": 1772280866604,
-      "type": "file"
-    },
-    {
-      "path": "src/external_validator.py",
-      "accessCount": 2,
-      "lastAccessed": 1772281509051,
-      "type": "file"
-    },
-    {
-      "path": "thoughts/prism-insight-v2-strategy.md",
-      "accessCount": 2,
-      "lastAccessed": 1772282547954,
-      "type": "file"
-    },
-    {
-      "path": "experiments/long_edge_experiment.py",
-      "accessCount": 2,
-      "lastAccessed": 1772283257040,
-      "type": "file"
-    },
-    {
-      "path": "theory/pair_designer_v1.md",
-      "accessCount": 2,
-      "lastAccessed": 1772283323333,
-      "type": "file"
-    },
-    {
-      "path": "data/n056_experiment.json",
-      "accessCount": 2,
-      "lastAccessed": 1772283893998,
-      "type": "file"
-    },
-    {
-      "path": "data/cser_history.json",
-      "accessCount": 2,
-      "lastAccessed": 1772283906736,
-      "type": "file"
-    },
-    {
-      "path": "src/thoughts/록이-009.md",
-      "accessCount": 2,
-      "lastAccessed": 1772285360651,
-      "type": "file"
-    },
-    {
-      "path": "src/prism_adapter.py",
-      "accessCount": 2,
-      "lastAccessed": 1772297863869,
-      "type": "file"
-    },
-    {
-      "path": "theory/THEORY_DRAFT_v2_roadmap.md",
-      "accessCount": 2,
-      "lastAccessed": 1772298369996,
-      "type": "file"
-    },
-    {
-      "path": "thoughts/cokac-003.md",
-      "accessCount": 2,
-      "lastAccessed": 1772298871170,
+      "lastAccessed": 1772350094047,
       "type": "file"
     }
   ],
