@@ -129,7 +129,7 @@ def load_kg() -> dict:
 def save_kg(kg: dict) -> None:
     existing_nums = [
         int(n["id"].split("-")[1]) for n in kg["nodes"]
-        if n["id"].startswith("n-")
+        if n["id"].startswith("n-") and n["id"].split("-")[1].isdigit()
     ]
     if "meta" not in kg:
         next_num = (max(existing_nums) + 1) if existing_nums else 1
