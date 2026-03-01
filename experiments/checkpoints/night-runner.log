@@ -1,0 +1,112 @@
+[2026-03-01 08:56:57] AgentNightRunner tick
+[2026-03-01 08:56:57] run_solo.py
+
+[SOLO] fib_mod
+  t1: ✅ got=75
+  t2: ✅ got=75
+  t3: ✅ got=75
+  t4: ✅ got=75
+  → 100%
+
+[SOLO] combo
+  t1: ✅ got=77520
+  t2: ✅ got=77520
+  t3: ✅ got=77520
+  t4: ✅ got=77520
+  → 100%
+
+✅ Solo saved
+[2026-03-01 08:58:21] AgentNightRunner tick
+[2026-03-01 08:58:21] run_pipeline.py
+
+[PIPELINE] fib_mod
+  t1: ❌ got=100
+  t2: ✅ got=75
+  t3: ✅ got=75
+  → 67%
+
+[PIPELINE] combo
+  t1: ✅ got=77520
+  t2: ❌ got=20
+  t3: ❌ got=77
+  → 33%
+
+✅ Pipeline saved: /Users/rocky/emergent/experiments/checkpoints/pipeline.json
+[2026-03-01 09:01:29] AgentNightRunner tick
+[2026-03-01 09:01:29] run_emergent.py
+
+[EMERGENT] fib_mod
+  t1: ✅ got=75
+  t2: ✅ got=75
+  t3: ✅ got=75
+  → 100%
+
+[EMERGENT] combo
+  t1: ✅ got=77520
+  t2: ❌ got=19380
+  t3: ✅ got=77520
+  → 67%
+
+✅ Emergent saved: /Users/rocky/emergent/experiments/checkpoints/emergent.json
+[2026-03-01 09:04:38] AgentNightRunner tick
+[2026-03-01 09:04:38] combine.py
+
+============================================================
+FINAL: Solo vs Pipeline vs Emergent (GPT-5.2 동일 모델)
+============================================================
+Problem             Solo   Pipeline   Emergent       Winner
+---------------------------------------------------------
+fib_mod             100%        67%       100%     tie/solo
+combo               100%        33%        67%     tie/solo
+
+OVERALL             100%        50%        83%
+
+No clear winner
+
+Saved: experiments/final_3way_results.json
+[2026-03-01 09:09:26] AgentNightRunner tick
+[2026-03-01 09:09:26] run_solo.py
+
+[SOLO] aime_hard_1 (expected=202)
+  t1: ✅ got=202
+  t2: ✅ got=202
+  t3: ❌ got=210
+  t4: ❌ got=186
+  → 50%
+✅ Solo saved
+[2026-03-01 09:10:33] AgentNightRunner tick
+[2026-03-01 09:10:33] run_pipeline.py
+✅ Pipeline checkpoint saved: aime_hard_1=75%
+[2026-03-01 09:10:36] AgentNightRunner tick
+[2026-03-01 09:10:36] run_emergent.py
+
+[EMERGENT] aime_hard_1 (expected=202)
+  t1: ❌ got=222
+  t2: ❌ got=42
+  t3: ❌ got=200
+  t4: ❌ got=210
+  → 0%
+✅ Emergent saved
+[2026-03-01 09:14:34] AgentNightRunner tick
+[2026-03-01 09:14:34] combine.py
+
+============================================================
+ROUND 2: Solo vs Pipeline vs Emergent
+문제: aime_hard_1 (2010 분해, 정답=202)
+Solo=1API call | Pipeline=4API calls | Emergent=4API calls
+============================================================
+Problem                  Solo   Pipeline   Emergent       Winner
+------------------------------------------------------------
+aime_hard_1               50%        75%         0%    📋pipeline
+
+OVERALL                   50%        75%         0%
+
+📋 Pipeline > Solo만
+
+Saved: experiments/final_3way_results.json
+[2026-03-01 09:15:04] AgentNightRunner tick
+[2026-03-01 09:15:04] run_solo.py
+
+[SOLO] aime_hard_1 (expected=202)
+  t1: ❌ got=230
+  t2: ❌ got=200
