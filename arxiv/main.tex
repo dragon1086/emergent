@@ -69,6 +69,15 @@ We observe that agents with heterogeneous personas produce KGs with high CSER
 \medskip\noindent
 KG state (Cycle 89): \textbf{526 nodes / 1119 edges}, CSER $= 0.8365$.
 
+\medskip\noindent\textbf{Amplification benchmark (preliminary case study)}:
+A controlled three-way comparison (Solo/Pipeline/Emergent, GPT-5.2 only, equal
+API budget) across two domains reveals \textbf{Emergent $>$ Pipeline on logical
+reasoning} (60\% vs.\ 50\%, $N=5$ trials; knights-and-knaves domain, Round 4).
+Mathematical computation shows the reverse (Solo=80\% $>$ Pipeline=70\% $>$
+Emergent=60\%), underscoring strong domain-dependence. Both results are
+\emph{preliminary}: $N=5$ per condition and only two problem domains limit
+generalizability beyond this specific setting.
+
 \medskip\noindent\textbf{Scope and limitations}: This is a single-system case study ($N=1$ KG,
 two agents, four code-generation tasks). Claims are limited to this experimental setting.
 Generalization requires independent replication with different agent architectures,
@@ -706,6 +715,46 @@ tasks, while confirming that problem domain selection critically moderates
 collaboration benefit. The Solo ceiling effect on canonical benchmarks motivates
 the use of novel, verifiably generated problem instances in future work.
 
+\subsection*{Emergent Amplification Conditions}
+\label{sec:amplification_conditions}
+
+Based on the two-domain pilot (Table~\ref{tab:amplification}), we characterise
+the conditions under which the Emergent structure outperforms standard Pipeline:
+
+\begin{enumerate}
+  \item \textbf{Multi-step logical reasoning (Emergent favoured)}: Tasks requiring
+        deductive consistency across multiple interacting constraints
+        (e.g., knights-and-knaves puzzles, $N=5$: Emergent 60\% vs.\ Pipeline 50\%)
+        benefit from adversarial dual-path verification.
+        The Emergent protocol generates two independent solution paths via
+        \emph{different methods}; reconciliation then selects the consistent
+        solution rather than passing a single partially-formed answer through
+        sequential review stages. This disrupts the plan-solve-review loop's
+        known failure mode of propagating early logical errors downstream.
+
+  \item \textbf{Mathematical computation (Solo/Pipeline favoured)}: Tasks with
+        deterministic, step-by-step verification (arithmetic computation, $N=5$:
+        Solo 80\%, Pipeline 70\%, Emergent 60\%) favour sequential error-correction.
+        When each intermediate step has a well-defined ground truth, sequential
+        review is effective; adversarial path-divergence introduces unnecessary
+        variance in solutions that are already near-deterministic.
+\end{enumerate}
+
+\noindent\textbf{Theoretical mechanism (hypothesis)}: Emergent amplification is
+hypothesised to arise when the problem structure benefits from
+\emph{path-diversity} --- independent solution generation by two agents using
+genuinely different attack angles reduces the risk of shared cognitive blind spots.
+On mathematical problems, strong base models (GPT-5.2) eliminate blind spots via
+pattern matching or memorisation, reducing path-diversity benefit.
+On novel logical reasoning, where training data may not cover all constraint
+configurations, independent path-generation provides measurable benefit over a
+pipeline that reinforces its own initial framing.
+
+\noindent\textbf{Scope}: These conditions are derived from $N=2$ problem domains
+and $N=5$ trials per condition. Systematic domain sweeps across algorithmic
+reasoning, natural language inference, and causal reasoning are required before
+generalising the domain-dependence claim.
+
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Limitations}
 % ─────────────────────────────────────────────────────────────────────────────
@@ -751,6 +800,33 @@ the use of novel, verifiably generated problem instances in future work.
         sample sizes are insufficient for provider-level inference. We therefore
         treat provider-independence as a hypothesis supported by early evidence,
         not a resolved claim.
+  \item \textbf{Same-model constraint (amplification experiment)}: The three-way
+        Solo/Pipeline/Emergent benchmark uses GPT-5.2 exclusively to isolate
+        collaboration structure from model capability differences. A consequence
+        is that the results may not generalise to cross-model collaboration, where
+        agents with architecturally distinct capabilities may exhibit stronger or
+        qualitatively different amplification dynamics. Multi-model amplification
+        experiments (e.g., GPT-5.2 $\times$ Gemini adversarial pairing) remain
+        as future work.
+  \item \textbf{Solo ceiling effect and training data contamination}: GPT-5.2
+        achieves near-100\% accuracy on canonical benchmark problems (base-rate
+        neglect, Monty Hall) regardless of collaboration structure, suggesting
+        training-data memorisation rather than genuine reasoning.
+        Consequently, when Solo accuracy approaches 100\%, any collaboration
+        structure---Pipeline or Emergent---has limited room to demonstrate
+        additive benefit, and observed differences may reflect task difficulty
+        rather than structural advantage. Future benchmarks should use
+        novel, programmatically verified problem instances to decouple
+        model memorisation from collaboration structure effects.
+  \item \textbf{Domain selection bias}: The amplification benchmark evaluates
+        only two domain types (mathematical computation, logical reasoning).
+        Both domains were selected based on the authors' prior expectations about
+        where collaborative structure might matter, introducing confirmation risk:
+        the chosen domains may represent extreme cases of the
+        Pipeline-favourable vs.\ Emergent-favourable spectrum, overstating the
+        contrast. A broader domain sweep---natural language inference, causal
+        reasoning, code synthesis---is required before the domain-dependence
+        finding can be generalised.
 \end{enumerate}
 
 % ─────────────────────────────────────────────────────────────────────────────
@@ -1031,8 +1107,10 @@ CSER may relate to alignment drift at larger scales &
 \section{Conclusion}
 % ─────────────────────────────────────────────────────────────────────────────
 
-Across 86 cycles, the five-layer emergence theory is empirically supported
-with statistical validation. Key findings:
+Across 86 cycles, this case study provides empirical support for the five-layer
+emergence framework within the specific experimental context described (single system,
+two agents, four code-generation task types). The following findings hold within
+this scope; generalisation requires independent replication:
 
 \begin{itemize}
   \item \textbf{D-063}: Unintuitive cross-source connections generate stronger emergence
@@ -1054,11 +1132,21 @@ with statistical validation. Key findings:
         This is a reproducible, structurally predictable artifact---not a philosophical claim about
         observer effects, but a concrete, measurable topological consequence (causal chain fully
         specified: new nodes $\to$ shorter mean span $\to$ lower $E_{v4}$).
+  \item \textbf{Emergent $>$ Pipeline on logical reasoning (preliminary)}: A three-way
+        Solo/Pipeline/Emergent benchmark (GPT-5.2 only, equal API budget, $N=5$ per
+        condition) provides \emph{preliminary evidence} that adversarial dual-path
+        collaboration outperforms standard Pipeline on logical reasoning
+        (Emergent 60\% vs.\ Pipeline 50\%; knights-and-knaves, Round 4).
+        Mathematical computation shows the reverse (Solo 80\% $>$ Pipeline 70\%
+        $>$ Emergent 60\%), confirming domain-dependence.
+        \textbf{Scope}: same model only, two domains, $N=5$; cross-model
+        and multi-domain replication is required before any broad generalisation.
 \end{itemize}
 
 \noindent\textbf{Next steps}: Multi-provider co-evolution (GPT-4o + Gemini agent pair),
 human team H-CSER transplant, harder execution benchmarks (graph algorithms, DP)
-where partial echo-chamber failure rate $> 0$.
+where partial echo-chamber failure rate $> 0$, and multi-domain amplification
+sweep to test domain-dependence of Emergent vs.\ Pipeline performance.
 
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Real-World Applications Beyond OpenClaw}
