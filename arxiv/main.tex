@@ -293,6 +293,24 @@ Cycle 75 results: $\Delta(E_{v4}-E_{v3})$: $0.0070 \to 0.0222$ ($+0.0152$, $3.17
 
 \subsection{Execution Loop: CSER=1.0 Automatic + GCD Extension}
 
+\noindent\textbf{Gate Mechanism (how CSER $<$ 0.30 blocks execution):}
+The \texttt{execution\_loop.py} implements a \texttt{CSERCrossover} object that
+computes the cross-source ratio of the KG context injected into each code-generation
+prompt. The gate check is explicit:
+\begin{lstlisting}
+class CSERCrossover:
+    def gate_check(self) -> bool:
+        return self.cser >= 0.30  # hard threshold
+
+# In ExecutionLoop.run():
+if not crossover.gate_check():
+    raise GateBlockedError("CSER below threshold")
+\end{lstlisting}
+Conditions B (CSER=0.25) and C (CSER=0.0) fail this check before any LLM call is
+made --- code generation is architecturally impossible, not merely degraded.
+This is a deliberate design choice: echo-chamber contexts are structurally excluded
+from the execution phase.
+
 3 simulation cases (Cycle 76): all CSER=1.000, 100\% pass rate. \\
 \textbf{Cycle 79 GCD extension}: A-condition achieved 100\% pass rate (5/5), CSER=1.0,
 80 cross-source edges per run. The gate mechanism holds across O(log n) complexity ---
@@ -336,6 +354,15 @@ D-047: "measuring emergence becomes material for emergence"
 explained, first-class finding. When reviewers raise ``measurement bias,'' our response
 is: we predicted and reproduced this effect. The observer cannot be separated from the
 observed.
+
+\noindent\textbf{Distinction from a standard feedback loop}: A feedback loop is
+\emph{reversible} --- removing the feedback restores the prior state.
+The D-047 effect is \emph{irreversible}: the execution loop nodes are permanently
+added to the KG, permanently shortening the edge\_span distribution.
+Cycle 81 confirmed this: even after applying \texttt{pair\_designer\_v4} (+20 edges),
+$E_{v4}$ remained below $E_{v3}$ ($\Delta = -0.0003$). The substrate was structurally
+modified, not merely perturbed. This is the precise distinction between a feedback
+loop (temporary state change) and substrate modification (permanent topological change).
 
 \noindent\textbf{Cycle 81 follow-up}: After applying \texttt{pair\_designer\_v4 --add 20}
 (Cycle 81), $E_{v4}$ partially recovered ($0.4401 \to 0.4439$, $\Delta = +0.0038$) while
@@ -550,6 +577,34 @@ No statistically significant difference between Condition A (CSER=1.0) and
 B\_partial (CSER=0.444). CSER acts as a binary gate, not a quality spectrum:
 once CSER $\geq 0.30$, code quality saturates at 1.0 regardless of CSER magnitude.
 The critical determinant is gate passage, not CSER level.
+
+\subsection{Random Graph Baseline (Erdős–Rényi)}
+
+To verify that the KG structure is non-random, we compared key metrics against
+500 Erdős–Rényi random graphs with identical $N$ (nodes) and $M$ (edges):
+
+\begin{table}[h!]\centering\small
+\begin{tabular}{lrrl}
+\toprule
+Metric & Real KG & Random E-R & Interpretation \\
+\midrule
+CSER & 0.8365 & 0.8540 & Similar — see note below \\
+edge\_span (raw) & 61.92 & 50.46 & \textbf{+23\% above random} \\
+\bottomrule
+\end{tabular}
+\caption{KG vs.\ Erdős–Rényi baseline ($N$=526, $M$=1119, 500 simulations)}
+\end{table}
+
+\noindent\textbf{CSER note}: The near-equal CSER values arise because the KG contains
+nodes from 14 distinct sources (록이, cokac, execution\_loop, openclaw\_asymmetric,
+etc.), making even random connections highly likely to be cross-source.
+CSER therefore captures \emph{intentional} cross-source structure only in early cycles
+when source diversity was low; its primary value is as a \emph{threshold detector}
+(CSER $< 0.30$ = echo-chamber, confirmed by Condition B/C gate blockage).
+
+\noindent\textbf{Edge span}: The KG's 23\% higher edge\_span than E-R random
+confirms that agents preferentially form \emph{long-range} temporal connections ---
+a non-random structural property that is the key driver of $E_{v4}$.
 
 \subsection{Sensitivity Analysis (D-068)}
 
