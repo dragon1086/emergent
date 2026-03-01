@@ -1,0 +1,282 @@
+{
+  "cycle": 79,
+  "problem": "GCD — 두 정수의 최대공약수",
+  "condition": "A_asymmetric_cser1.0",
+  "n_trials": 5,
+  "use_llm": true,
+  "preview_cser": 1.0,
+  "trials": [
+    {
+      "cycle": 94,
+      "problem_id": "prob-079-ba26737f",
+      "cser_score": 1.0,
+      "passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 16,
+      "status": "success",
+      "timestamp": 1772333656.495435
+    },
+    {
+      "cycle": 95,
+      "problem_id": "prob-080-ba26737f",
+      "cser_score": 1.0,
+      "passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 16,
+      "status": "success",
+      "timestamp": 1772333661.56973
+    },
+    {
+      "cycle": 96,
+      "problem_id": "prob-081-ba26737f",
+      "cser_score": 1.0,
+      "passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 16,
+      "status": "success",
+      "timestamp": 1772333669.458258
+    },
+    {
+      "cycle": 97,
+      "problem_id": "prob-082-ba26737f",
+      "cser_score": 1.0,
+      "passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 16,
+      "status": "success",
+      "timestamp": 1772333674.571451
+    },
+    {
+      "cycle": 98,
+      "problem_id": "prob-083-ba26737f",
+      "cser_score": 1.0,
+      "passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 16,
+      "status": "success",
+      "timestamp": 1772333683.531271
+    }
+  ],
+  "summary": {
+    "total": 5,
+    "passed": 5,
+    "pass_rate": 1.0,
+    "avg_cser": 1.0,
+    "avg_quality": 1.0
+  },
+  "cross_edges_total": 80,
+  "cross_edges_detail": [
+    {
+      "trial": 1,
+      "cser": 1.0,
+      "cross_edges": [
+        [
+          "mathematical_truth",
+          "termination"
+        ],
+        [
+          "mathematical_truth",
+          "modulo"
+        ],
+        [
+          "mathematical_truth",
+          "euclidean"
+        ],
+        [
+          "mathematical_truth",
+          "recursion"
+        ],
+        [
+          "algorithm_essence",
+          "termination"
+        ],
+        [
+          "algorithm_essence",
+          "modulo"
+        ],
+        [
+          "algorithm_essence",
+          "euclidean"
+        ],
+        [
+          "algorithm_essence",
+          "recursion"
+        ]
+      ],
+      "quality": 1.0,
+      "passed": true
+    },
+    {
+      "trial": 2,
+      "cser": 1.0,
+      "cross_edges": [
+        [
+          "mathematical_truth",
+          "termination"
+        ],
+        [
+          "mathematical_truth",
+          "modulo"
+        ],
+        [
+          "mathematical_truth",
+          "euclidean"
+        ],
+        [
+          "mathematical_truth",
+          "recursion"
+        ],
+        [
+          "algorithm_essence",
+          "termination"
+        ],
+        [
+          "algorithm_essence",
+          "modulo"
+        ],
+        [
+          "algorithm_essence",
+          "euclidean"
+        ],
+        [
+          "algorithm_essence",
+          "recursion"
+        ]
+      ],
+      "quality": 1.0,
+      "passed": true
+    },
+    {
+      "trial": 3,
+      "cser": 1.0,
+      "cross_edges": [
+        [
+          "mathematical_truth",
+          "termination"
+        ],
+        [
+          "mathematical_truth",
+          "modulo"
+        ],
+        [
+          "mathematical_truth",
+          "euclidean"
+        ],
+        [
+          "mathematical_truth",
+          "recursion"
+        ],
+        [
+          "algorithm_essence",
+          "termination"
+        ],
+        [
+          "algorithm_essence",
+          "modulo"
+        ],
+        [
+          "algorithm_essence",
+          "euclidean"
+        ],
+        [
+          "algorithm_essence",
+          "recursion"
+        ]
+      ],
+      "quality": 1.0,
+      "passed": true
+    },
+    {
+      "trial": 4,
+      "cser": 1.0,
+      "cross_edges": [
+        [
+          "mathematical_truth",
+          "termination"
+        ],
+        [
+          "mathematical_truth",
+          "modulo"
+        ],
+        [
+          "mathematical_truth",
+          "euclidean"
+        ],
+        [
+          "mathematical_truth",
+          "recursion"
+        ],
+        [
+          "algorithm_essence",
+          "termination"
+        ],
+        [
+          "algorithm_essence",
+          "modulo"
+        ],
+        [
+          "algorithm_essence",
+          "euclidean"
+        ],
+        [
+          "algorithm_essence",
+          "recursion"
+        ]
+      ],
+      "quality": 1.0,
+      "passed": true
+    },
+    {
+      "trial": 5,
+      "cser": 1.0,
+      "cross_edges": [
+        [
+          "mathematical_truth",
+          "termination"
+        ],
+        [
+          "mathematical_truth",
+          "modulo"
+        ],
+        [
+          "mathematical_truth",
+          "euclidean"
+        ],
+        [
+          "mathematical_truth",
+          "recursion"
+        ],
+        [
+          "algorithm_essence",
+          "termination"
+        ],
+        [
+          "algorithm_essence",
+          "modulo"
+        ],
+        [
+          "algorithm_essence",
+          "euclidean"
+        ],
+        [
+          "algorithm_essence",
+          "recursion"
+        ]
+      ],
+      "quality": 1.0,
+      "passed": true
+    }
+  ],
+  "key_finding": {
+    "finding": "A 조건(CSER=1.00) GCD 문제: 5/5회 통과",
+    "avg_quality": 1.0,
+    "cross_edges_per_trial": 16.0,
+    "comparison_c78": "사이클 78 (덧셈, O(1)): 품질=1.0 | 사이클 79 (GCD, O(log n)): 품질=1.000",
+    "implication": "더 복잡한 문제에서도 A 조건(CSER=1.0)이 에코챔버 없이 코드를 생성한다면 — H_exec 강화 근거"
+  },
+  "metadata": {
+    "cser_threshold": 0.3,
+    "quality_threshold": 0.7,
+    "b_c_condition": "사이클 78에서 B/C 차단 확인 — 사이클 79는 A만 집중"
+  }
+}
