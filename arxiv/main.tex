@@ -299,11 +299,13 @@ confirming problem-complexity independence of the CSER gate.
 \noindent\textbf{Note}: Conditions B and C are blocked at the CSER gate (Sec.~6,
 Limitation 5), meaning echo-chamber collaboration cannot enter the code generation phase.
 The claim is: CSER $< 0.30$ is a hard architectural barrier to execution, not a soft
-quality penalty. Cycle 82 addresses whether intermediate CSER ($0.30$--$0.50$) produces
-lower code quality than high CSER ($> 0.80$): Condition B\_partial (CSER $= 0.444$,
-symmetric-domain tags) passes the gate but yields reduced quality relative to Condition A
-(CSER $= 1.000$), providing the first evidence for a continuous CSER--quality spectrum
-above the execution threshold.
+quality penalty. Cycle 82 tested Condition B\_partial (CSER $= 0.444$, symmetric-domain
+tags, GCD problem, 5 trials via real LLM): gate passed, 5/5 tests passed, quality $= 1.000$
+--- identical to Condition A. \textbf{Finding}: for simple problems (GCD, O($\log n$)), the
+CSER spectrum above the execution threshold does not produce quality differences. The
+gate remains a hard binary barrier (CSER $< 0.30$ $\to$ execution impossible); quality
+differentiation requires more complex problems. Future work should probe CSER--quality
+correlation at higher algorithmic complexity (O($n \log n$) and above).
 
 \subsection{Observer Non-Independence (D-047): Empirical Confirmation (Cycle 80)}
 
@@ -375,9 +377,14 @@ pairs (threshold: CSER $>$ 0.5). \\
 \subsection{Conditions}
 
 \begin{itemize}
-  \item \textbf{Condition A} (this study, executed): Asymmetric persona.
-        CSER=0.8009, $E_{v4}$=0.4401
-  \item \textbf{Condition B} (future): Symmetric persona (predicted CSER $<$ 0.5)
+  \item \textbf{Condition A} (executed, Cycle 79): Asymmetric persona.
+        CSER=1.000, GCD 5/5 pass, quality=1.000
+  \item \textbf{Condition B\_partial} (executed, Cycle 82): Symmetric-domain persona
+        (shared ``algorithm'' tag). CSER=0.444, GCD 5/5 pass, quality=1.000.
+        Gate passed; no quality degradation on simple problems.
+        Quality differentiation requires higher algorithmic complexity.
+  \item \textbf{Condition B} (gate-blocked, Cycles 78--79): CSER=0.25, blocked
+        before code generation (hard architectural barrier)
   \item \textbf{Condition C} (future): Single agent (predicted CSER $\approx$ 0)
 \end{itemize}
 
