@@ -1,0 +1,531 @@
+{
+  "problem": "LRU Cache (get/put O(1))",
+  "cycle": 84,
+  "n_trials": 20,
+  "summaries": {
+    "A": {
+      "condition": "A",
+      "n_trials": 20,
+      "cser_predicted": 1.0,
+      "cser_actual": 1.0,
+      "passed": 20,
+      "pass_rate": 1.0,
+      "avg_quality": 1.0,
+      "quality_scores": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gate_passed": true,
+      "blocked_by_gate": false,
+      "individual_results": [
+        {
+          "cycle": 149,
+          "problem_id": "prob-8400-b0a42247",
+          "cser_score": 1.0,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 9,
+          "status": "success",
+          "timestamp": 1772336633.745196
+        },
+        {
+          "cycle": 150,
+          "problem_id": "prob-8401-b0a42247",
+          "cser_score": 1.0,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 9,
+          "status": "success",
+          "timestamp": 1772336642.963378
+        },
+        {
+          "cycle": 151,
+          "problem_id": "prob-8402-b0a42247",
+          "cser_score": 1.0,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 9,
+          "status": "success",
+          "timestamp": 1772336649.47792
+        },
+        {
+          "cycle": 152,
+          "problem_id": "prob-8403-b0a42247",
+          "cser_score": 1.0,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 9,
+          "status": "success",
+          "timestamp": 1772336655.817358
+        },
+        {
+          "cycle": 153,
+          "problem_id": "prob-8404-b0a42247",
+          "cser_score": 1.0,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 9,
+          "status": "success",
+          "timestamp": 1772336665.9574971
+        },
+        {
+          "cycle": 154,
+          "problem_id": "prob-8405-b0a42247",
+          "cser_score": 1.0,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 9,
+          "status": "success",
+          "timestamp": 1772336672.020798
+        },
+        {
+          "cycle": 155,
+          "problem_id": "prob-8406-b0a42247",
+          "cser_score": 1.0,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 9,
+          "status": "success",
+          "timestamp": 1772336681.453176
+        },
+        {
+          "cycle": 156,
+          "problem_id": "prob-8407-b0a42247",
+          "cser_score": 1.0,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 9,
+          "status": "success",
+          "timestamp": 1772336690.893
+        },
+        {
+          "cycle": 157,
+          "problem_id": "prob-8408-b0a42247",
+          "cser_score": 1.0,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 9,
+          "status": "success",
+          "timestamp": 1772336697.145429
+        },
+        {
+          "cycle": 158,
+          "problem_id": "prob-8409-b0a42247",
+          "cser_score": 1.0,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 9,
+          "status": "success",
+          "timestamp": 1772336706.683618
+        },
+        {
+          "cycle": 159,
+          "problem_id": "prob-8410-b0a42247",
+          "cser_score": 1.0,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 9,
+          "status": "success",
+          "timestamp": 1772336712.716012
+        },
+        {
+          "cycle": 160,
+          "problem_id": "prob-8411-b0a42247",
+          "cser_score": 1.0,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 9,
+          "status": "success",
+          "timestamp": 1772336718.457887
+        },
+        {
+          "cycle": 161,
+          "problem_id": "prob-8412-b0a42247",
+          "cser_score": 1.0,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 9,
+          "status": "success",
+          "timestamp": 1772336726.0184278
+        },
+        {
+          "cycle": 162,
+          "problem_id": "prob-8413-b0a42247",
+          "cser_score": 1.0,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 9,
+          "status": "success",
+          "timestamp": 1772336731.8683672
+        },
+        {
+          "cycle": 163,
+          "problem_id": "prob-8414-b0a42247",
+          "cser_score": 1.0,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 9,
+          "status": "success",
+          "timestamp": 1772336738.080391
+        },
+        {
+          "cycle": 164,
+          "problem_id": "prob-8415-b0a42247",
+          "cser_score": 1.0,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 9,
+          "status": "success",
+          "timestamp": 1772336743.913121
+        },
+        {
+          "cycle": 165,
+          "problem_id": "prob-8416-b0a42247",
+          "cser_score": 1.0,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 9,
+          "status": "success",
+          "timestamp": 1772336750.422267
+        },
+        {
+          "cycle": 166,
+          "problem_id": "prob-8417-b0a42247",
+          "cser_score": 1.0,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 9,
+          "status": "success",
+          "timestamp": 1772336756.431082
+        },
+        {
+          "cycle": 167,
+          "problem_id": "prob-8418-b0a42247",
+          "cser_score": 1.0,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 9,
+          "status": "success",
+          "timestamp": 1772336762.721078
+        },
+        {
+          "cycle": 168,
+          "problem_id": "prob-8419-b0a42247",
+          "cser_score": 1.0,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 9,
+          "status": "success",
+          "timestamp": 1772336771.632711
+        }
+      ]
+    },
+    "B_partial": {
+      "condition": "B_partial",
+      "n_trials": 20,
+      "cser_predicted": 0.4444444444444444,
+      "cser_actual": 0.4444444444444444,
+      "passed": 20,
+      "pass_rate": 1.0,
+      "avg_quality": 1.0,
+      "quality_scores": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gate_passed": true,
+      "blocked_by_gate": false,
+      "individual_results": [
+        {
+          "cycle": 169,
+          "problem_id": "prob-8420-b0a42247",
+          "cser_score": 0.4444444444444444,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 4,
+          "status": "success",
+          "timestamp": 1772336777.979032
+        },
+        {
+          "cycle": 170,
+          "problem_id": "prob-8421-b0a42247",
+          "cser_score": 0.4444444444444444,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 4,
+          "status": "success",
+          "timestamp": 1772336783.808903
+        },
+        {
+          "cycle": 171,
+          "problem_id": "prob-8422-b0a42247",
+          "cser_score": 0.4444444444444444,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 4,
+          "status": "success",
+          "timestamp": 1772336790.3197298
+        },
+        {
+          "cycle": 172,
+          "problem_id": "prob-8423-b0a42247",
+          "cser_score": 0.4444444444444444,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 4,
+          "status": "success",
+          "timestamp": 1772336796.238432
+        },
+        {
+          "cycle": 173,
+          "problem_id": "prob-8424-b0a42247",
+          "cser_score": 0.4444444444444444,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 4,
+          "status": "success",
+          "timestamp": 1772336802.795156
+        },
+        {
+          "cycle": 174,
+          "problem_id": "prob-8425-b0a42247",
+          "cser_score": 0.4444444444444444,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 4,
+          "status": "success",
+          "timestamp": 1772336809.921898
+        },
+        {
+          "cycle": 175,
+          "problem_id": "prob-8426-b0a42247",
+          "cser_score": 0.4444444444444444,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 4,
+          "status": "success",
+          "timestamp": 1772336816.722613
+        },
+        {
+          "cycle": 176,
+          "problem_id": "prob-8427-b0a42247",
+          "cser_score": 0.4444444444444444,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 4,
+          "status": "success",
+          "timestamp": 1772336826.264427
+        },
+        {
+          "cycle": 177,
+          "problem_id": "prob-8428-b0a42247",
+          "cser_score": 0.4444444444444444,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 4,
+          "status": "success",
+          "timestamp": 1772336833.046748
+        },
+        {
+          "cycle": 178,
+          "problem_id": "prob-8429-b0a42247",
+          "cser_score": 0.4444444444444444,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 4,
+          "status": "success",
+          "timestamp": 1772336839.539146
+        },
+        {
+          "cycle": 179,
+          "problem_id": "prob-8430-b0a42247",
+          "cser_score": 0.4444444444444444,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 4,
+          "status": "success",
+          "timestamp": 1772336846.086845
+        },
+        {
+          "cycle": 180,
+          "problem_id": "prob-8431-b0a42247",
+          "cser_score": 0.4444444444444444,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 4,
+          "status": "success",
+          "timestamp": 1772336856.046456
+        },
+        {
+          "cycle": 181,
+          "problem_id": "prob-8432-b0a42247",
+          "cser_score": 0.4444444444444444,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 4,
+          "status": "success",
+          "timestamp": 1772336862.340193
+        },
+        {
+          "cycle": 182,
+          "problem_id": "prob-8433-b0a42247",
+          "cser_score": 0.4444444444444444,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 4,
+          "status": "success",
+          "timestamp": 1772336868.628356
+        },
+        {
+          "cycle": 183,
+          "problem_id": "prob-8434-b0a42247",
+          "cser_score": 0.4444444444444444,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 4,
+          "status": "success",
+          "timestamp": 1772336874.39931
+        },
+        {
+          "cycle": 184,
+          "problem_id": "prob-8435-b0a42247",
+          "cser_score": 0.4444444444444444,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 4,
+          "status": "success",
+          "timestamp": 1772336880.9851341
+        },
+        {
+          "cycle": 185,
+          "problem_id": "prob-8436-b0a42247",
+          "cser_score": 0.4444444444444444,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 4,
+          "status": "success",
+          "timestamp": 1772336886.980261
+        },
+        {
+          "cycle": 186,
+          "problem_id": "prob-8437-b0a42247",
+          "cser_score": 0.4444444444444444,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 4,
+          "status": "success",
+          "timestamp": 1772336894.042521
+        },
+        {
+          "cycle": 187,
+          "problem_id": "prob-8438-b0a42247",
+          "cser_score": 0.4444444444444444,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 4,
+          "status": "success",
+          "timestamp": 1772336900.611138
+        },
+        {
+          "cycle": 188,
+          "problem_id": "prob-8439-b0a42247",
+          "cser_score": 0.4444444444444444,
+          "passed": true,
+          "quality_score": 1.0,
+          "cross_edges_count": 4,
+          "status": "success",
+          "timestamp": 1772336907.426783
+        }
+      ]
+    },
+    "C": {
+      "condition": "C",
+      "n_trials": 1,
+      "cser_predicted": 0.0,
+      "cser_actual": 0.0,
+      "passed": 0,
+      "pass_rate": 0.0,
+      "avg_quality": 0.0,
+      "quality_scores": [],
+      "gate_passed": false,
+      "blocked_by_gate": true,
+      "individual_results": []
+    }
+  },
+  "cser_map": {
+    "A": 1.0,
+    "B_partial": 0.4444444444444444,
+    "C": 0.0
+  },
+  "statistical_tests": {
+    "n_A": 20,
+    "n_B": 20,
+    "pass_A": 20,
+    "pass_B": 20,
+    "fail_A": 0,
+    "fail_B": 0,
+    "pass_rate_A": 1.0,
+    "pass_rate_B": 1.0,
+    "mean_quality_A": 1.0,
+    "mean_quality_B": 1.0,
+    "std_quality_A": 0.0,
+    "std_quality_B": 0.0,
+    "contingency": [
+      [
+        20,
+        0
+      ],
+      [
+        20,
+        0
+      ]
+    ],
+    "fisher_p": 1.0,
+    "fisher_significant": false,
+    "mannwhitney_u": 200.0,
+    "mannwhitney_note": "U=200.0 (max=400, null=200.0)",
+    "cohen_d": 0.0,
+    "cohen_d_magnitude": "negligible",
+    "alpha": 0.05,
+    "interpretation": "이진 게이트 모델 확정 (A = B_partial 차이 없음)",
+    "model": "binary_gate_confirmed",
+    "c_blocked": true,
+    "c_cser": 0.0,
+    "combined_note": "N=20 (LRU Cache only). Cycle 82 GCD(N=5) + Cycle 83 QuickSort(N=5) = combined N=15 same pattern."
+  }
+}

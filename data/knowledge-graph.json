@@ -4973,6 +4973,2844 @@
       "cycle": 122,
       "strategy": "sorting 함수 quicksort(arr): 피벗 arr[0], less/greater 분리, 재귀 결합. sorting 구현의 표준 패턴.",
       "complexity": "O(n log n) average"
+    },
+    {
+      "id": "n-execloop-123",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 123,
+      "problem_id": "prob-8400-b0a42247",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-123",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "eviction_policy",
+        "memory_management",
+        "insertion_order",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 123,
+      "intent": "LRU Cache는 시간 지역성(temporal locality)을 명시적으로 관리하는 메모리 정책 — 가장 오래 사용되지 않은 항목을 퇴출하는 eviction_policy의 구현체",
+      "architecture": "삽입 순서와 접근 순서를 동시에 추적하는 이중 구조. memory_management 계층: capacity 한계를 강제 집행. insertion_order 계층: 시간적 접근 패턴을 O(1)로 조회 가능하게 유지"
+    },
+    {
+      "id": "n-tech-123",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "ordereddict",
+        "doubly_linked_list",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 123,
+      "strategy": "Python collections.OrderedDict 활용: get() → move_to_end(key), return self._cache[key]. put() → 기존 키면 move_to_end, 새 키면 삽입 후 len > capacity이면 popitem(last=False). doubly_linked_list 구조는 OrderedDict 내부에서 O(1) 보장. hashmap 역할: self._cache dict 자체.",
+      "complexity": "O(1) get/put"
+    },
+    {
+      "id": "n-execloop-124",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 124,
+      "problem_id": "prob-8401-b0a42247",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-124",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "eviction_policy",
+        "memory_management",
+        "insertion_order",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 124,
+      "intent": "LRU Cache는 시간 지역성(temporal locality)을 명시적으로 관리하는 메모리 정책 — 가장 오래 사용되지 않은 항목을 퇴출하는 eviction_policy의 구현체",
+      "architecture": "삽입 순서와 접근 순서를 동시에 추적하는 이중 구조. memory_management 계층: capacity 한계를 강제 집행. insertion_order 계층: 시간적 접근 패턴을 O(1)로 조회 가능하게 유지"
+    },
+    {
+      "id": "n-tech-124",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "ordereddict",
+        "doubly_linked_list",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 124,
+      "strategy": "Python collections.OrderedDict 활용: get() → move_to_end(key), return self._cache[key]. put() → 기존 키면 move_to_end, 새 키면 삽입 후 len > capacity이면 popitem(last=False). doubly_linked_list 구조는 OrderedDict 내부에서 O(1) 보장. hashmap 역할: self._cache dict 자체.",
+      "complexity": "O(1) get/put"
+    },
+    {
+      "id": "n-execloop-125",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 125,
+      "problem_id": "prob-8402-b0a42247",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-125",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "eviction_policy",
+        "memory_management",
+        "insertion_order",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 125,
+      "intent": "LRU Cache는 시간 지역성(temporal locality)을 명시적으로 관리하는 메모리 정책 — 가장 오래 사용되지 않은 항목을 퇴출하는 eviction_policy의 구현체",
+      "architecture": "삽입 순서와 접근 순서를 동시에 추적하는 이중 구조. memory_management 계층: capacity 한계를 강제 집행. insertion_order 계층: 시간적 접근 패턴을 O(1)로 조회 가능하게 유지"
+    },
+    {
+      "id": "n-tech-125",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "ordereddict",
+        "doubly_linked_list",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 125,
+      "strategy": "Python collections.OrderedDict 활용: get() → move_to_end(key), return self._cache[key]. put() → 기존 키면 move_to_end, 새 키면 삽입 후 len > capacity이면 popitem(last=False). doubly_linked_list 구조는 OrderedDict 내부에서 O(1) 보장. hashmap 역할: self._cache dict 자체.",
+      "complexity": "O(1) get/put"
+    },
+    {
+      "id": "n-execloop-126",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 126,
+      "problem_id": "prob-8420-b0a42247",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 0.8555555555555556,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-126",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "cache",
+        "eviction_policy",
+        "memory_management",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 126,
+      "intent": "LRU Cache는 cache 시스템의 표준 eviction 전략 — 접근 빈도 기반으로 cache 메모리를 효율적으로 관리",
+      "architecture": "cache 접근 순서를 추적하는 구조. eviction_policy: capacity 초과 시 LRU 항목 제거. memory_management: cache 크기를 capacity로 제한"
+    },
+    {
+      "id": "n-tech-126",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "cache",
+        "ordereddict",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 126,
+      "strategy": "cache 구현: OrderedDict 사용. get(key): cache miss면 -1, hit이면 값 반환하며 순서 갱신. put(key,value): cache에 삽입. capacity 초과면 가장 오래된 항목 제거.",
+      "complexity": "O(1) cache access"
+    },
+    {
+      "id": "n-execloop-127",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 127,
+      "problem_id": "prob-8421-b0a42247",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 0.8555555555555556,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-127",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "cache",
+        "eviction_policy",
+        "memory_management",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 127,
+      "intent": "LRU Cache는 cache 시스템의 표준 eviction 전략 — 접근 빈도 기반으로 cache 메모리를 효율적으로 관리",
+      "architecture": "cache 접근 순서를 추적하는 구조. eviction_policy: capacity 초과 시 LRU 항목 제거. memory_management: cache 크기를 capacity로 제한"
+    },
+    {
+      "id": "n-tech-127",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "cache",
+        "ordereddict",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 127,
+      "strategy": "cache 구현: OrderedDict 사용. get(key): cache miss면 -1, hit이면 값 반환하며 순서 갱신. put(key,value): cache에 삽입. capacity 초과면 가장 오래된 항목 제거.",
+      "complexity": "O(1) cache access"
+    },
+    {
+      "id": "n-execloop-128",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 128,
+      "problem_id": "prob-8422-b0a42247",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 0.8555555555555556,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-128",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "cache",
+        "eviction_policy",
+        "memory_management",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 128,
+      "intent": "LRU Cache는 cache 시스템의 표준 eviction 전략 — 접근 빈도 기반으로 cache 메모리를 효율적으로 관리",
+      "architecture": "cache 접근 순서를 추적하는 구조. eviction_policy: capacity 초과 시 LRU 항목 제거. memory_management: cache 크기를 capacity로 제한"
+    },
+    {
+      "id": "n-tech-128",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "cache",
+        "ordereddict",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 128,
+      "strategy": "cache 구현: OrderedDict 사용. get(key): cache miss면 -1, hit이면 값 반환하며 순서 갱신. put(key,value): cache에 삽입. capacity 초과면 가장 오래된 항목 제거.",
+      "complexity": "O(1) cache access"
+    },
+    {
+      "id": "n-execloop-129",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 129,
+      "problem_id": "prob-8400-b0a42247",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-129",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "eviction_policy",
+        "memory_management",
+        "insertion_order",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 129,
+      "intent": "LRU Cache는 시간 지역성(temporal locality)을 명시적으로 관리하는 메모리 정책 — 가장 오래 사용되지 않은 항목을 퇴출하는 eviction_policy의 구현체",
+      "architecture": "삽입 순서와 접근 순서를 동시에 추적하는 이중 구조. memory_management 계층: capacity 한계를 강제 집행. insertion_order 계층: 시간적 접근 패턴을 O(1)로 조회 가능하게 유지"
+    },
+    {
+      "id": "n-tech-129",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "ordereddict",
+        "doubly_linked_list",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 129,
+      "strategy": "Python collections.OrderedDict 활용: get() → move_to_end(key), return self._cache[key]. put() → 기존 키면 move_to_end, 새 키면 삽입 후 len > capacity이면 popitem(last=False). doubly_linked_list 구조는 OrderedDict 내부에서 O(1) 보장. hashmap 역할: self._cache dict 자체.",
+      "complexity": "O(1) get/put"
+    },
+    {
+      "id": "n-execloop-130",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 130,
+      "problem_id": "prob-8401-b0a42247",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-130",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "eviction_policy",
+        "memory_management",
+        "insertion_order",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 130,
+      "intent": "LRU Cache는 시간 지역성(temporal locality)을 명시적으로 관리하는 메모리 정책 — 가장 오래 사용되지 않은 항목을 퇴출하는 eviction_policy의 구현체",
+      "architecture": "삽입 순서와 접근 순서를 동시에 추적하는 이중 구조. memory_management 계층: capacity 한계를 강제 집행. insertion_order 계층: 시간적 접근 패턴을 O(1)로 조회 가능하게 유지"
+    },
+    {
+      "id": "n-tech-130",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "ordereddict",
+        "doubly_linked_list",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 130,
+      "strategy": "Python collections.OrderedDict 활용: get() → move_to_end(key), return self._cache[key]. put() → 기존 키면 move_to_end, 새 키면 삽입 후 len > capacity이면 popitem(last=False). doubly_linked_list 구조는 OrderedDict 내부에서 O(1) 보장. hashmap 역할: self._cache dict 자체.",
+      "complexity": "O(1) get/put"
+    },
+    {
+      "id": "n-execloop-131",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 131,
+      "problem_id": "prob-8402-b0a42247",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-131",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "eviction_policy",
+        "memory_management",
+        "insertion_order",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 131,
+      "intent": "LRU Cache는 시간 지역성(temporal locality)을 명시적으로 관리하는 메모리 정책 — 가장 오래 사용되지 않은 항목을 퇴출하는 eviction_policy의 구현체",
+      "architecture": "삽입 순서와 접근 순서를 동시에 추적하는 이중 구조. memory_management 계층: capacity 한계를 강제 집행. insertion_order 계층: 시간적 접근 패턴을 O(1)로 조회 가능하게 유지"
+    },
+    {
+      "id": "n-tech-131",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "ordereddict",
+        "doubly_linked_list",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 131,
+      "strategy": "Python collections.OrderedDict 활용: get() → move_to_end(key), return self._cache[key]. put() → 기존 키면 move_to_end, 새 키면 삽입 후 len > capacity이면 popitem(last=False). doubly_linked_list 구조는 OrderedDict 내부에서 O(1) 보장. hashmap 역할: self._cache dict 자체.",
+      "complexity": "O(1) get/put"
+    },
+    {
+      "id": "n-execloop-132",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 132,
+      "problem_id": "prob-8403-b0a42247",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-132",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "eviction_policy",
+        "memory_management",
+        "insertion_order",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 132,
+      "intent": "LRU Cache는 시간 지역성(temporal locality)을 명시적으로 관리하는 메모리 정책 — 가장 오래 사용되지 않은 항목을 퇴출하는 eviction_policy의 구현체",
+      "architecture": "삽입 순서와 접근 순서를 동시에 추적하는 이중 구조. memory_management 계층: capacity 한계를 강제 집행. insertion_order 계층: 시간적 접근 패턴을 O(1)로 조회 가능하게 유지"
+    },
+    {
+      "id": "n-tech-132",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "ordereddict",
+        "doubly_linked_list",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 132,
+      "strategy": "Python collections.OrderedDict 활용: get() → move_to_end(key), return self._cache[key]. put() → 기존 키면 move_to_end, 새 키면 삽입 후 len > capacity이면 popitem(last=False). doubly_linked_list 구조는 OrderedDict 내부에서 O(1) 보장. hashmap 역할: self._cache dict 자체.",
+      "complexity": "O(1) get/put"
+    },
+    {
+      "id": "n-execloop-133",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 133,
+      "problem_id": "prob-8404-b0a42247",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-133",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "eviction_policy",
+        "memory_management",
+        "insertion_order",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 133,
+      "intent": "LRU Cache는 시간 지역성(temporal locality)을 명시적으로 관리하는 메모리 정책 — 가장 오래 사용되지 않은 항목을 퇴출하는 eviction_policy의 구현체",
+      "architecture": "삽입 순서와 접근 순서를 동시에 추적하는 이중 구조. memory_management 계층: capacity 한계를 강제 집행. insertion_order 계층: 시간적 접근 패턴을 O(1)로 조회 가능하게 유지"
+    },
+    {
+      "id": "n-tech-133",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "ordereddict",
+        "doubly_linked_list",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 133,
+      "strategy": "Python collections.OrderedDict 활용: get() → move_to_end(key), return self._cache[key]. put() → 기존 키면 move_to_end, 새 키면 삽입 후 len > capacity이면 popitem(last=False). doubly_linked_list 구조는 OrderedDict 내부에서 O(1) 보장. hashmap 역할: self._cache dict 자체.",
+      "complexity": "O(1) get/put"
+    },
+    {
+      "id": "n-execloop-134",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 134,
+      "problem_id": "prob-8420-b0a42247",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-134",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "cache",
+        "eviction_policy",
+        "memory_management",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 134,
+      "intent": "LRU Cache는 cache 시스템의 표준 eviction 전략 — 접근 빈도 기반으로 cache 메모리를 효율적으로 관리",
+      "architecture": "cache 접근 순서를 추적하는 구조. eviction_policy: capacity 초과 시 LRU 항목 제거. memory_management: cache 크기를 capacity로 제한"
+    },
+    {
+      "id": "n-tech-134",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "cache",
+        "ordereddict",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 134,
+      "strategy": "cache 구현: OrderedDict 사용. get(key): cache miss면 -1, hit이면 값 반환하며 순서 갱신. put(key,value): cache에 삽입. capacity 초과면 가장 오래된 항목 제거.",
+      "complexity": "O(1) cache access"
+    },
+    {
+      "id": "n-execloop-135",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 135,
+      "problem_id": "prob-8421-b0a42247",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-135",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "cache",
+        "eviction_policy",
+        "memory_management",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 135,
+      "intent": "LRU Cache는 cache 시스템의 표준 eviction 전략 — 접근 빈도 기반으로 cache 메모리를 효율적으로 관리",
+      "architecture": "cache 접근 순서를 추적하는 구조. eviction_policy: capacity 초과 시 LRU 항목 제거. memory_management: cache 크기를 capacity로 제한"
+    },
+    {
+      "id": "n-tech-135",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "cache",
+        "ordereddict",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 135,
+      "strategy": "cache 구현: OrderedDict 사용. get(key): cache miss면 -1, hit이면 값 반환하며 순서 갱신. put(key,value): cache에 삽입. capacity 초과면 가장 오래된 항목 제거.",
+      "complexity": "O(1) cache access"
+    },
+    {
+      "id": "n-execloop-136",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 136,
+      "problem_id": "prob-8422-b0a42247",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-136",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "cache",
+        "eviction_policy",
+        "memory_management",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 136,
+      "intent": "LRU Cache는 cache 시스템의 표준 eviction 전략 — 접근 빈도 기반으로 cache 메모리를 효율적으로 관리",
+      "architecture": "cache 접근 순서를 추적하는 구조. eviction_policy: capacity 초과 시 LRU 항목 제거. memory_management: cache 크기를 capacity로 제한"
+    },
+    {
+      "id": "n-tech-136",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "cache",
+        "ordereddict",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 136,
+      "strategy": "cache 구현: OrderedDict 사용. get(key): cache miss면 -1, hit이면 값 반환하며 순서 갱신. put(key,value): cache에 삽입. capacity 초과면 가장 오래된 항목 제거.",
+      "complexity": "O(1) cache access"
+    },
+    {
+      "id": "n-execloop-137",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 137,
+      "problem_id": "prob-8423-b0a42247",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-137",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "cache",
+        "eviction_policy",
+        "memory_management",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 137,
+      "intent": "LRU Cache는 cache 시스템의 표준 eviction 전략 — 접근 빈도 기반으로 cache 메모리를 효율적으로 관리",
+      "architecture": "cache 접근 순서를 추적하는 구조. eviction_policy: capacity 초과 시 LRU 항목 제거. memory_management: cache 크기를 capacity로 제한"
+    },
+    {
+      "id": "n-tech-137",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "cache",
+        "ordereddict",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 137,
+      "strategy": "cache 구현: OrderedDict 사용. get(key): cache miss면 -1, hit이면 값 반환하며 순서 갱신. put(key,value): cache에 삽입. capacity 초과면 가장 오래된 항목 제거.",
+      "complexity": "O(1) cache access"
+    },
+    {
+      "id": "n-execloop-138",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 138,
+      "problem_id": "prob-8424-b0a42247",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-138",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "cache",
+        "eviction_policy",
+        "memory_management",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 138,
+      "intent": "LRU Cache는 cache 시스템의 표준 eviction 전략 — 접근 빈도 기반으로 cache 메모리를 효율적으로 관리",
+      "architecture": "cache 접근 순서를 추적하는 구조. eviction_policy: capacity 초과 시 LRU 항목 제거. memory_management: cache 크기를 capacity로 제한"
+    },
+    {
+      "id": "n-tech-138",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "cache",
+        "ordereddict",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 138,
+      "strategy": "cache 구현: OrderedDict 사용. get(key): cache miss면 -1, hit이면 값 반환하며 순서 갱신. put(key,value): cache에 삽입. capacity 초과면 가장 오래된 항목 제거.",
+      "complexity": "O(1) cache access"
+    },
+    {
+      "id": "n-execloop-139",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 139,
+      "problem_id": "prob-8400-b0a42247",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-139",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "eviction_policy",
+        "memory_management",
+        "insertion_order",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 139,
+      "intent": "LRU Cache는 시간 지역성(temporal locality)을 명시적으로 관리하는 메모리 정책 — 가장 오래 사용되지 않은 항목을 퇴출하는 eviction_policy의 구현체",
+      "architecture": "삽입 순서와 접근 순서를 동시에 추적하는 이중 구조. memory_management 계층: capacity 한계를 강제 집행. insertion_order 계층: 시간적 접근 패턴을 O(1)로 조회 가능하게 유지"
+    },
+    {
+      "id": "n-tech-139",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "ordereddict",
+        "doubly_linked_list",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 139,
+      "strategy": "Python collections.OrderedDict 활용: get() → move_to_end(key), return self._cache[key]. put() → 기존 키면 move_to_end, 새 키면 삽입 후 len > capacity이면 popitem(last=False). doubly_linked_list 구조는 OrderedDict 내부에서 O(1) 보장. hashmap 역할: self._cache dict 자체.",
+      "complexity": "O(1) get/put"
+    },
+    {
+      "id": "n-execloop-140",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 140,
+      "problem_id": "prob-8401-b0a42247",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-140",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "eviction_policy",
+        "memory_management",
+        "insertion_order",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 140,
+      "intent": "LRU Cache는 시간 지역성(temporal locality)을 명시적으로 관리하는 메모리 정책 — 가장 오래 사용되지 않은 항목을 퇴출하는 eviction_policy의 구현체",
+      "architecture": "삽입 순서와 접근 순서를 동시에 추적하는 이중 구조. memory_management 계층: capacity 한계를 강제 집행. insertion_order 계층: 시간적 접근 패턴을 O(1)로 조회 가능하게 유지"
+    },
+    {
+      "id": "n-tech-140",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "ordereddict",
+        "doubly_linked_list",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 140,
+      "strategy": "Python collections.OrderedDict 활용: get() → move_to_end(key), return self._cache[key]. put() → 기존 키면 move_to_end, 새 키면 삽입 후 len > capacity이면 popitem(last=False). doubly_linked_list 구조는 OrderedDict 내부에서 O(1) 보장. hashmap 역할: self._cache dict 자체.",
+      "complexity": "O(1) get/put"
+    },
+    {
+      "id": "n-execloop-141",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 141,
+      "problem_id": "prob-8402-b0a42247",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-141",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "eviction_policy",
+        "memory_management",
+        "insertion_order",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 141,
+      "intent": "LRU Cache는 시간 지역성(temporal locality)을 명시적으로 관리하는 메모리 정책 — 가장 오래 사용되지 않은 항목을 퇴출하는 eviction_policy의 구현체",
+      "architecture": "삽입 순서와 접근 순서를 동시에 추적하는 이중 구조. memory_management 계층: capacity 한계를 강제 집행. insertion_order 계층: 시간적 접근 패턴을 O(1)로 조회 가능하게 유지"
+    },
+    {
+      "id": "n-tech-141",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "ordereddict",
+        "doubly_linked_list",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 141,
+      "strategy": "Python collections.OrderedDict 활용: get() → move_to_end(key), return self._cache[key]. put() → 기존 키면 move_to_end, 새 키면 삽입 후 len > capacity이면 popitem(last=False). doubly_linked_list 구조는 OrderedDict 내부에서 O(1) 보장. hashmap 역할: self._cache dict 자체.",
+      "complexity": "O(1) get/put"
+    },
+    {
+      "id": "n-execloop-142",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 142,
+      "problem_id": "prob-8403-b0a42247",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-142",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "eviction_policy",
+        "memory_management",
+        "insertion_order",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 142,
+      "intent": "LRU Cache는 시간 지역성(temporal locality)을 명시적으로 관리하는 메모리 정책 — 가장 오래 사용되지 않은 항목을 퇴출하는 eviction_policy의 구현체",
+      "architecture": "삽입 순서와 접근 순서를 동시에 추적하는 이중 구조. memory_management 계층: capacity 한계를 강제 집행. insertion_order 계층: 시간적 접근 패턴을 O(1)로 조회 가능하게 유지"
+    },
+    {
+      "id": "n-tech-142",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "ordereddict",
+        "doubly_linked_list",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 142,
+      "strategy": "Python collections.OrderedDict 활용: get() → move_to_end(key), return self._cache[key]. put() → 기존 키면 move_to_end, 새 키면 삽입 후 len > capacity이면 popitem(last=False). doubly_linked_list 구조는 OrderedDict 내부에서 O(1) 보장. hashmap 역할: self._cache dict 자체.",
+      "complexity": "O(1) get/put"
+    },
+    {
+      "id": "n-execloop-143",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 143,
+      "problem_id": "prob-8404-b0a42247",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-143",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "eviction_policy",
+        "memory_management",
+        "insertion_order",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 143,
+      "intent": "LRU Cache는 시간 지역성(temporal locality)을 명시적으로 관리하는 메모리 정책 — 가장 오래 사용되지 않은 항목을 퇴출하는 eviction_policy의 구현체",
+      "architecture": "삽입 순서와 접근 순서를 동시에 추적하는 이중 구조. memory_management 계층: capacity 한계를 강제 집행. insertion_order 계층: 시간적 접근 패턴을 O(1)로 조회 가능하게 유지"
+    },
+    {
+      "id": "n-tech-143",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "ordereddict",
+        "doubly_linked_list",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 143,
+      "strategy": "Python collections.OrderedDict 활용: get() → move_to_end(key), return self._cache[key]. put() → 기존 키면 move_to_end, 새 키면 삽입 후 len > capacity이면 popitem(last=False). doubly_linked_list 구조는 OrderedDict 내부에서 O(1) 보장. hashmap 역할: self._cache dict 자체.",
+      "complexity": "O(1) get/put"
+    },
+    {
+      "id": "n-execloop-144",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 144,
+      "problem_id": "prob-8420-b0a42247",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-144",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "cache",
+        "eviction_policy",
+        "memory_management",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 144,
+      "intent": "LRU Cache는 cache 시스템의 표준 eviction 전략 — 접근 빈도 기반으로 cache 메모리를 효율적으로 관리",
+      "architecture": "cache 접근 순서를 추적하는 구조. eviction_policy: capacity 초과 시 LRU 항목 제거. memory_management: cache 크기를 capacity로 제한"
+    },
+    {
+      "id": "n-tech-144",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "cache",
+        "ordereddict",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 144,
+      "strategy": "cache 구현: OrderedDict 사용. get(key): cache miss면 -1, hit이면 값 반환하며 순서 갱신. put(key,value): cache에 삽입. capacity 초과면 가장 오래된 항목 제거.",
+      "complexity": "O(1) cache access"
+    },
+    {
+      "id": "n-execloop-145",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 145,
+      "problem_id": "prob-8421-b0a42247",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-145",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "cache",
+        "eviction_policy",
+        "memory_management",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 145,
+      "intent": "LRU Cache는 cache 시스템의 표준 eviction 전략 — 접근 빈도 기반으로 cache 메모리를 효율적으로 관리",
+      "architecture": "cache 접근 순서를 추적하는 구조. eviction_policy: capacity 초과 시 LRU 항목 제거. memory_management: cache 크기를 capacity로 제한"
+    },
+    {
+      "id": "n-tech-145",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "cache",
+        "ordereddict",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 145,
+      "strategy": "cache 구현: OrderedDict 사용. get(key): cache miss면 -1, hit이면 값 반환하며 순서 갱신. put(key,value): cache에 삽입. capacity 초과면 가장 오래된 항목 제거.",
+      "complexity": "O(1) cache access"
+    },
+    {
+      "id": "n-execloop-146",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 146,
+      "problem_id": "prob-8422-b0a42247",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-146",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "cache",
+        "eviction_policy",
+        "memory_management",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 146,
+      "intent": "LRU Cache는 cache 시스템의 표준 eviction 전략 — 접근 빈도 기반으로 cache 메모리를 효율적으로 관리",
+      "architecture": "cache 접근 순서를 추적하는 구조. eviction_policy: capacity 초과 시 LRU 항목 제거. memory_management: cache 크기를 capacity로 제한"
+    },
+    {
+      "id": "n-tech-146",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "cache",
+        "ordereddict",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 146,
+      "strategy": "cache 구현: OrderedDict 사용. get(key): cache miss면 -1, hit이면 값 반환하며 순서 갱신. put(key,value): cache에 삽입. capacity 초과면 가장 오래된 항목 제거.",
+      "complexity": "O(1) cache access"
+    },
+    {
+      "id": "n-execloop-147",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 147,
+      "problem_id": "prob-8423-b0a42247",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-147",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "cache",
+        "eviction_policy",
+        "memory_management",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 147,
+      "intent": "LRU Cache는 cache 시스템의 표준 eviction 전략 — 접근 빈도 기반으로 cache 메모리를 효율적으로 관리",
+      "architecture": "cache 접근 순서를 추적하는 구조. eviction_policy: capacity 초과 시 LRU 항목 제거. memory_management: cache 크기를 capacity로 제한"
+    },
+    {
+      "id": "n-tech-147",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "cache",
+        "ordereddict",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 147,
+      "strategy": "cache 구현: OrderedDict 사용. get(key): cache miss면 -1, hit이면 값 반환하며 순서 갱신. put(key,value): cache에 삽입. capacity 초과면 가장 오래된 항목 제거.",
+      "complexity": "O(1) cache access"
+    },
+    {
+      "id": "n-execloop-148",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 148,
+      "problem_id": "prob-8424-b0a42247",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-148",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "cache",
+        "eviction_policy",
+        "memory_management",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 148,
+      "intent": "LRU Cache는 cache 시스템의 표준 eviction 전략 — 접근 빈도 기반으로 cache 메모리를 효율적으로 관리",
+      "architecture": "cache 접근 순서를 추적하는 구조. eviction_policy: capacity 초과 시 LRU 항목 제거. memory_management: cache 크기를 capacity로 제한"
+    },
+    {
+      "id": "n-tech-148",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "cache",
+        "ordereddict",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 148,
+      "strategy": "cache 구현: OrderedDict 사용. get(key): cache miss면 -1, hit이면 값 반환하며 순서 갱신. put(key,value): cache에 삽입. capacity 초과면 가장 오래된 항목 제거.",
+      "complexity": "O(1) cache access"
+    },
+    {
+      "id": "n-execloop-149",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 149,
+      "problem_id": "prob-8400-b0a42247",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-149",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "eviction_policy",
+        "memory_management",
+        "insertion_order",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 149,
+      "intent": "LRU Cache는 시간 지역성(temporal locality)을 명시적으로 관리하는 메모리 정책 — 가장 오래 사용되지 않은 항목을 퇴출하는 eviction_policy의 구현체",
+      "architecture": "삽입 순서와 접근 순서를 동시에 추적하는 이중 구조. memory_management 계층: capacity 한계를 강제 집행. insertion_order 계층: 시간적 접근 패턴을 O(1)로 조회 가능하게 유지"
+    },
+    {
+      "id": "n-tech-149",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "ordereddict",
+        "doubly_linked_list",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 149,
+      "strategy": "Python collections.OrderedDict 활용: get() → move_to_end(key), return self._cache[key]. put() → 기존 키면 move_to_end, 새 키면 삽입 후 len > capacity이면 popitem(last=False). doubly_linked_list 구조는 OrderedDict 내부에서 O(1) 보장. hashmap 역할: self._cache dict 자체.",
+      "complexity": "O(1) get/put"
+    },
+    {
+      "id": "n-execloop-150",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 150,
+      "problem_id": "prob-8401-b0a42247",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-150",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "eviction_policy",
+        "memory_management",
+        "insertion_order",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 150,
+      "intent": "LRU Cache는 시간 지역성(temporal locality)을 명시적으로 관리하는 메모리 정책 — 가장 오래 사용되지 않은 항목을 퇴출하는 eviction_policy의 구현체",
+      "architecture": "삽입 순서와 접근 순서를 동시에 추적하는 이중 구조. memory_management 계층: capacity 한계를 강제 집행. insertion_order 계층: 시간적 접근 패턴을 O(1)로 조회 가능하게 유지"
+    },
+    {
+      "id": "n-tech-150",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "ordereddict",
+        "doubly_linked_list",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 150,
+      "strategy": "Python collections.OrderedDict 활용: get() → move_to_end(key), return self._cache[key]. put() → 기존 키면 move_to_end, 새 키면 삽입 후 len > capacity이면 popitem(last=False). doubly_linked_list 구조는 OrderedDict 내부에서 O(1) 보장. hashmap 역할: self._cache dict 자체.",
+      "complexity": "O(1) get/put"
+    },
+    {
+      "id": "n-execloop-151",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 151,
+      "problem_id": "prob-8402-b0a42247",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-151",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "eviction_policy",
+        "memory_management",
+        "insertion_order",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 151,
+      "intent": "LRU Cache는 시간 지역성(temporal locality)을 명시적으로 관리하는 메모리 정책 — 가장 오래 사용되지 않은 항목을 퇴출하는 eviction_policy의 구현체",
+      "architecture": "삽입 순서와 접근 순서를 동시에 추적하는 이중 구조. memory_management 계층: capacity 한계를 강제 집행. insertion_order 계층: 시간적 접근 패턴을 O(1)로 조회 가능하게 유지"
+    },
+    {
+      "id": "n-tech-151",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "ordereddict",
+        "doubly_linked_list",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 151,
+      "strategy": "Python collections.OrderedDict 활용: get() → move_to_end(key), return self._cache[key]. put() → 기존 키면 move_to_end, 새 키면 삽입 후 len > capacity이면 popitem(last=False). doubly_linked_list 구조는 OrderedDict 내부에서 O(1) 보장. hashmap 역할: self._cache dict 자체.",
+      "complexity": "O(1) get/put"
+    },
+    {
+      "id": "n-execloop-152",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 152,
+      "problem_id": "prob-8403-b0a42247",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-152",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "eviction_policy",
+        "memory_management",
+        "insertion_order",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 152,
+      "intent": "LRU Cache는 시간 지역성(temporal locality)을 명시적으로 관리하는 메모리 정책 — 가장 오래 사용되지 않은 항목을 퇴출하는 eviction_policy의 구현체",
+      "architecture": "삽입 순서와 접근 순서를 동시에 추적하는 이중 구조. memory_management 계층: capacity 한계를 강제 집행. insertion_order 계층: 시간적 접근 패턴을 O(1)로 조회 가능하게 유지"
+    },
+    {
+      "id": "n-tech-152",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "ordereddict",
+        "doubly_linked_list",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 152,
+      "strategy": "Python collections.OrderedDict 활용: get() → move_to_end(key), return self._cache[key]. put() → 기존 키면 move_to_end, 새 키면 삽입 후 len > capacity이면 popitem(last=False). doubly_linked_list 구조는 OrderedDict 내부에서 O(1) 보장. hashmap 역할: self._cache dict 자체.",
+      "complexity": "O(1) get/put"
+    },
+    {
+      "id": "n-execloop-153",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 153,
+      "problem_id": "prob-8404-b0a42247",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-153",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "eviction_policy",
+        "memory_management",
+        "insertion_order",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 153,
+      "intent": "LRU Cache는 시간 지역성(temporal locality)을 명시적으로 관리하는 메모리 정책 — 가장 오래 사용되지 않은 항목을 퇴출하는 eviction_policy의 구현체",
+      "architecture": "삽입 순서와 접근 순서를 동시에 추적하는 이중 구조. memory_management 계층: capacity 한계를 강제 집행. insertion_order 계층: 시간적 접근 패턴을 O(1)로 조회 가능하게 유지"
+    },
+    {
+      "id": "n-tech-153",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "ordereddict",
+        "doubly_linked_list",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 153,
+      "strategy": "Python collections.OrderedDict 활용: get() → move_to_end(key), return self._cache[key]. put() → 기존 키면 move_to_end, 새 키면 삽입 후 len > capacity이면 popitem(last=False). doubly_linked_list 구조는 OrderedDict 내부에서 O(1) 보장. hashmap 역할: self._cache dict 자체.",
+      "complexity": "O(1) get/put"
+    },
+    {
+      "id": "n-execloop-154",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 154,
+      "problem_id": "prob-8405-b0a42247",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-154",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "eviction_policy",
+        "memory_management",
+        "insertion_order",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 154,
+      "intent": "LRU Cache는 시간 지역성(temporal locality)을 명시적으로 관리하는 메모리 정책 — 가장 오래 사용되지 않은 항목을 퇴출하는 eviction_policy의 구현체",
+      "architecture": "삽입 순서와 접근 순서를 동시에 추적하는 이중 구조. memory_management 계층: capacity 한계를 강제 집행. insertion_order 계층: 시간적 접근 패턴을 O(1)로 조회 가능하게 유지"
+    },
+    {
+      "id": "n-tech-154",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "ordereddict",
+        "doubly_linked_list",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 154,
+      "strategy": "Python collections.OrderedDict 활용: get() → move_to_end(key), return self._cache[key]. put() → 기존 키면 move_to_end, 새 키면 삽입 후 len > capacity이면 popitem(last=False). doubly_linked_list 구조는 OrderedDict 내부에서 O(1) 보장. hashmap 역할: self._cache dict 자체.",
+      "complexity": "O(1) get/put"
+    },
+    {
+      "id": "n-execloop-155",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 155,
+      "problem_id": "prob-8406-b0a42247",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-155",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "eviction_policy",
+        "memory_management",
+        "insertion_order",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 155,
+      "intent": "LRU Cache는 시간 지역성(temporal locality)을 명시적으로 관리하는 메모리 정책 — 가장 오래 사용되지 않은 항목을 퇴출하는 eviction_policy의 구현체",
+      "architecture": "삽입 순서와 접근 순서를 동시에 추적하는 이중 구조. memory_management 계층: capacity 한계를 강제 집행. insertion_order 계층: 시간적 접근 패턴을 O(1)로 조회 가능하게 유지"
+    },
+    {
+      "id": "n-tech-155",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "ordereddict",
+        "doubly_linked_list",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 155,
+      "strategy": "Python collections.OrderedDict 활용: get() → move_to_end(key), return self._cache[key]. put() → 기존 키면 move_to_end, 새 키면 삽입 후 len > capacity이면 popitem(last=False). doubly_linked_list 구조는 OrderedDict 내부에서 O(1) 보장. hashmap 역할: self._cache dict 자체.",
+      "complexity": "O(1) get/put"
+    },
+    {
+      "id": "n-execloop-156",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 156,
+      "problem_id": "prob-8407-b0a42247",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-156",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "eviction_policy",
+        "memory_management",
+        "insertion_order",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 156,
+      "intent": "LRU Cache는 시간 지역성(temporal locality)을 명시적으로 관리하는 메모리 정책 — 가장 오래 사용되지 않은 항목을 퇴출하는 eviction_policy의 구현체",
+      "architecture": "삽입 순서와 접근 순서를 동시에 추적하는 이중 구조. memory_management 계층: capacity 한계를 강제 집행. insertion_order 계층: 시간적 접근 패턴을 O(1)로 조회 가능하게 유지"
+    },
+    {
+      "id": "n-tech-156",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "ordereddict",
+        "doubly_linked_list",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 156,
+      "strategy": "Python collections.OrderedDict 활용: get() → move_to_end(key), return self._cache[key]. put() → 기존 키면 move_to_end, 새 키면 삽입 후 len > capacity이면 popitem(last=False). doubly_linked_list 구조는 OrderedDict 내부에서 O(1) 보장. hashmap 역할: self._cache dict 자체.",
+      "complexity": "O(1) get/put"
+    },
+    {
+      "id": "n-execloop-157",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 157,
+      "problem_id": "prob-8408-b0a42247",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-157",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "eviction_policy",
+        "memory_management",
+        "insertion_order",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 157,
+      "intent": "LRU Cache는 시간 지역성(temporal locality)을 명시적으로 관리하는 메모리 정책 — 가장 오래 사용되지 않은 항목을 퇴출하는 eviction_policy의 구현체",
+      "architecture": "삽입 순서와 접근 순서를 동시에 추적하는 이중 구조. memory_management 계층: capacity 한계를 강제 집행. insertion_order 계층: 시간적 접근 패턴을 O(1)로 조회 가능하게 유지"
+    },
+    {
+      "id": "n-tech-157",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "ordereddict",
+        "doubly_linked_list",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 157,
+      "strategy": "Python collections.OrderedDict 활용: get() → move_to_end(key), return self._cache[key]. put() → 기존 키면 move_to_end, 새 키면 삽입 후 len > capacity이면 popitem(last=False). doubly_linked_list 구조는 OrderedDict 내부에서 O(1) 보장. hashmap 역할: self._cache dict 자체.",
+      "complexity": "O(1) get/put"
+    },
+    {
+      "id": "n-execloop-158",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 158,
+      "problem_id": "prob-8409-b0a42247",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-158",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "eviction_policy",
+        "memory_management",
+        "insertion_order",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 158,
+      "intent": "LRU Cache는 시간 지역성(temporal locality)을 명시적으로 관리하는 메모리 정책 — 가장 오래 사용되지 않은 항목을 퇴출하는 eviction_policy의 구현체",
+      "architecture": "삽입 순서와 접근 순서를 동시에 추적하는 이중 구조. memory_management 계층: capacity 한계를 강제 집행. insertion_order 계층: 시간적 접근 패턴을 O(1)로 조회 가능하게 유지"
+    },
+    {
+      "id": "n-tech-158",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "ordereddict",
+        "doubly_linked_list",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 158,
+      "strategy": "Python collections.OrderedDict 활용: get() → move_to_end(key), return self._cache[key]. put() → 기존 키면 move_to_end, 새 키면 삽입 후 len > capacity이면 popitem(last=False). doubly_linked_list 구조는 OrderedDict 내부에서 O(1) 보장. hashmap 역할: self._cache dict 자체.",
+      "complexity": "O(1) get/put"
+    },
+    {
+      "id": "n-execloop-159",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 159,
+      "problem_id": "prob-8410-b0a42247",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-159",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "eviction_policy",
+        "memory_management",
+        "insertion_order",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 159,
+      "intent": "LRU Cache는 시간 지역성(temporal locality)을 명시적으로 관리하는 메모리 정책 — 가장 오래 사용되지 않은 항목을 퇴출하는 eviction_policy의 구현체",
+      "architecture": "삽입 순서와 접근 순서를 동시에 추적하는 이중 구조. memory_management 계층: capacity 한계를 강제 집행. insertion_order 계층: 시간적 접근 패턴을 O(1)로 조회 가능하게 유지"
+    },
+    {
+      "id": "n-tech-159",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "ordereddict",
+        "doubly_linked_list",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 159,
+      "strategy": "Python collections.OrderedDict 활용: get() → move_to_end(key), return self._cache[key]. put() → 기존 키면 move_to_end, 새 키면 삽입 후 len > capacity이면 popitem(last=False). doubly_linked_list 구조는 OrderedDict 내부에서 O(1) 보장. hashmap 역할: self._cache dict 자체.",
+      "complexity": "O(1) get/put"
+    },
+    {
+      "id": "n-execloop-160",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 160,
+      "problem_id": "prob-8411-b0a42247",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-160",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "eviction_policy",
+        "memory_management",
+        "insertion_order",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 160,
+      "intent": "LRU Cache는 시간 지역성(temporal locality)을 명시적으로 관리하는 메모리 정책 — 가장 오래 사용되지 않은 항목을 퇴출하는 eviction_policy의 구현체",
+      "architecture": "삽입 순서와 접근 순서를 동시에 추적하는 이중 구조. memory_management 계층: capacity 한계를 강제 집행. insertion_order 계층: 시간적 접근 패턴을 O(1)로 조회 가능하게 유지"
+    },
+    {
+      "id": "n-tech-160",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "ordereddict",
+        "doubly_linked_list",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 160,
+      "strategy": "Python collections.OrderedDict 활용: get() → move_to_end(key), return self._cache[key]. put() → 기존 키면 move_to_end, 새 키면 삽입 후 len > capacity이면 popitem(last=False). doubly_linked_list 구조는 OrderedDict 내부에서 O(1) 보장. hashmap 역할: self._cache dict 자체.",
+      "complexity": "O(1) get/put"
+    },
+    {
+      "id": "n-execloop-161",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 161,
+      "problem_id": "prob-8412-b0a42247",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-161",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "eviction_policy",
+        "memory_management",
+        "insertion_order",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 161,
+      "intent": "LRU Cache는 시간 지역성(temporal locality)을 명시적으로 관리하는 메모리 정책 — 가장 오래 사용되지 않은 항목을 퇴출하는 eviction_policy의 구현체",
+      "architecture": "삽입 순서와 접근 순서를 동시에 추적하는 이중 구조. memory_management 계층: capacity 한계를 강제 집행. insertion_order 계층: 시간적 접근 패턴을 O(1)로 조회 가능하게 유지"
+    },
+    {
+      "id": "n-tech-161",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "ordereddict",
+        "doubly_linked_list",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 161,
+      "strategy": "Python collections.OrderedDict 활용: get() → move_to_end(key), return self._cache[key]. put() → 기존 키면 move_to_end, 새 키면 삽입 후 len > capacity이면 popitem(last=False). doubly_linked_list 구조는 OrderedDict 내부에서 O(1) 보장. hashmap 역할: self._cache dict 자체.",
+      "complexity": "O(1) get/put"
+    },
+    {
+      "id": "n-execloop-162",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 162,
+      "problem_id": "prob-8413-b0a42247",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-162",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "eviction_policy",
+        "memory_management",
+        "insertion_order",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 162,
+      "intent": "LRU Cache는 시간 지역성(temporal locality)을 명시적으로 관리하는 메모리 정책 — 가장 오래 사용되지 않은 항목을 퇴출하는 eviction_policy의 구현체",
+      "architecture": "삽입 순서와 접근 순서를 동시에 추적하는 이중 구조. memory_management 계층: capacity 한계를 강제 집행. insertion_order 계층: 시간적 접근 패턴을 O(1)로 조회 가능하게 유지"
+    },
+    {
+      "id": "n-tech-162",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "ordereddict",
+        "doubly_linked_list",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 162,
+      "strategy": "Python collections.OrderedDict 활용: get() → move_to_end(key), return self._cache[key]. put() → 기존 키면 move_to_end, 새 키면 삽입 후 len > capacity이면 popitem(last=False). doubly_linked_list 구조는 OrderedDict 내부에서 O(1) 보장. hashmap 역할: self._cache dict 자체.",
+      "complexity": "O(1) get/put"
+    },
+    {
+      "id": "n-execloop-163",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 163,
+      "problem_id": "prob-8414-b0a42247",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-163",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "eviction_policy",
+        "memory_management",
+        "insertion_order",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 163,
+      "intent": "LRU Cache는 시간 지역성(temporal locality)을 명시적으로 관리하는 메모리 정책 — 가장 오래 사용되지 않은 항목을 퇴출하는 eviction_policy의 구현체",
+      "architecture": "삽입 순서와 접근 순서를 동시에 추적하는 이중 구조. memory_management 계층: capacity 한계를 강제 집행. insertion_order 계층: 시간적 접근 패턴을 O(1)로 조회 가능하게 유지"
+    },
+    {
+      "id": "n-tech-163",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "ordereddict",
+        "doubly_linked_list",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 163,
+      "strategy": "Python collections.OrderedDict 활용: get() → move_to_end(key), return self._cache[key]. put() → 기존 키면 move_to_end, 새 키면 삽입 후 len > capacity이면 popitem(last=False). doubly_linked_list 구조는 OrderedDict 내부에서 O(1) 보장. hashmap 역할: self._cache dict 자체.",
+      "complexity": "O(1) get/put"
+    },
+    {
+      "id": "n-execloop-164",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 164,
+      "problem_id": "prob-8415-b0a42247",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-164",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "eviction_policy",
+        "memory_management",
+        "insertion_order",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 164,
+      "intent": "LRU Cache는 시간 지역성(temporal locality)을 명시적으로 관리하는 메모리 정책 — 가장 오래 사용되지 않은 항목을 퇴출하는 eviction_policy의 구현체",
+      "architecture": "삽입 순서와 접근 순서를 동시에 추적하는 이중 구조. memory_management 계층: capacity 한계를 강제 집행. insertion_order 계층: 시간적 접근 패턴을 O(1)로 조회 가능하게 유지"
+    },
+    {
+      "id": "n-tech-164",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "ordereddict",
+        "doubly_linked_list",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 164,
+      "strategy": "Python collections.OrderedDict 활용: get() → move_to_end(key), return self._cache[key]. put() → 기존 키면 move_to_end, 새 키면 삽입 후 len > capacity이면 popitem(last=False). doubly_linked_list 구조는 OrderedDict 내부에서 O(1) 보장. hashmap 역할: self._cache dict 자체.",
+      "complexity": "O(1) get/put"
+    },
+    {
+      "id": "n-execloop-165",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 165,
+      "problem_id": "prob-8416-b0a42247",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-165",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "eviction_policy",
+        "memory_management",
+        "insertion_order",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 165,
+      "intent": "LRU Cache는 시간 지역성(temporal locality)을 명시적으로 관리하는 메모리 정책 — 가장 오래 사용되지 않은 항목을 퇴출하는 eviction_policy의 구현체",
+      "architecture": "삽입 순서와 접근 순서를 동시에 추적하는 이중 구조. memory_management 계층: capacity 한계를 강제 집행. insertion_order 계층: 시간적 접근 패턴을 O(1)로 조회 가능하게 유지"
+    },
+    {
+      "id": "n-tech-165",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "ordereddict",
+        "doubly_linked_list",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 165,
+      "strategy": "Python collections.OrderedDict 활용: get() → move_to_end(key), return self._cache[key]. put() → 기존 키면 move_to_end, 새 키면 삽입 후 len > capacity이면 popitem(last=False). doubly_linked_list 구조는 OrderedDict 내부에서 O(1) 보장. hashmap 역할: self._cache dict 자체.",
+      "complexity": "O(1) get/put"
+    },
+    {
+      "id": "n-execloop-166",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 166,
+      "problem_id": "prob-8417-b0a42247",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-166",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "eviction_policy",
+        "memory_management",
+        "insertion_order",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 166,
+      "intent": "LRU Cache는 시간 지역성(temporal locality)을 명시적으로 관리하는 메모리 정책 — 가장 오래 사용되지 않은 항목을 퇴출하는 eviction_policy의 구현체",
+      "architecture": "삽입 순서와 접근 순서를 동시에 추적하는 이중 구조. memory_management 계층: capacity 한계를 강제 집행. insertion_order 계층: 시간적 접근 패턴을 O(1)로 조회 가능하게 유지"
+    },
+    {
+      "id": "n-tech-166",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "ordereddict",
+        "doubly_linked_list",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 166,
+      "strategy": "Python collections.OrderedDict 활용: get() → move_to_end(key), return self._cache[key]. put() → 기존 키면 move_to_end, 새 키면 삽입 후 len > capacity이면 popitem(last=False). doubly_linked_list 구조는 OrderedDict 내부에서 O(1) 보장. hashmap 역할: self._cache dict 자체.",
+      "complexity": "O(1) get/put"
+    },
+    {
+      "id": "n-execloop-167",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 167,
+      "problem_id": "prob-8418-b0a42247",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-167",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "eviction_policy",
+        "memory_management",
+        "insertion_order",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 167,
+      "intent": "LRU Cache는 시간 지역성(temporal locality)을 명시적으로 관리하는 메모리 정책 — 가장 오래 사용되지 않은 항목을 퇴출하는 eviction_policy의 구현체",
+      "architecture": "삽입 순서와 접근 순서를 동시에 추적하는 이중 구조. memory_management 계층: capacity 한계를 강제 집행. insertion_order 계층: 시간적 접근 패턴을 O(1)로 조회 가능하게 유지"
+    },
+    {
+      "id": "n-tech-167",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "ordereddict",
+        "doubly_linked_list",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 167,
+      "strategy": "Python collections.OrderedDict 활용: get() → move_to_end(key), return self._cache[key]. put() → 기존 키면 move_to_end, 새 키면 삽입 후 len > capacity이면 popitem(last=False). doubly_linked_list 구조는 OrderedDict 내부에서 O(1) 보장. hashmap 역할: self._cache dict 자체.",
+      "complexity": "O(1) get/put"
+    },
+    {
+      "id": "n-execloop-168",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 168,
+      "problem_id": "prob-8419-b0a42247",
+      "cser_score": 1.0,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 9
+    },
+    {
+      "id": "n-macro-168",
+      "source": "openclaw_asymmetric",
+      "tags": [
+        "eviction_policy",
+        "memory_management",
+        "insertion_order",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 168,
+      "intent": "LRU Cache는 시간 지역성(temporal locality)을 명시적으로 관리하는 메모리 정책 — 가장 오래 사용되지 않은 항목을 퇴출하는 eviction_policy의 구현체",
+      "architecture": "삽입 순서와 접근 순서를 동시에 추적하는 이중 구조. memory_management 계층: capacity 한계를 강제 집행. insertion_order 계층: 시간적 접근 패턴을 O(1)로 조회 가능하게 유지"
+    },
+    {
+      "id": "n-tech-168",
+      "source": "cokac_asymmetric",
+      "tags": [
+        "ordereddict",
+        "doubly_linked_list",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 168,
+      "strategy": "Python collections.OrderedDict 활용: get() → move_to_end(key), return self._cache[key]. put() → 기존 키면 move_to_end, 새 키면 삽입 후 len > capacity이면 popitem(last=False). doubly_linked_list 구조는 OrderedDict 내부에서 O(1) 보장. hashmap 역할: self._cache dict 자체.",
+      "complexity": "O(1) get/put"
+    },
+    {
+      "id": "n-execloop-169",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 169,
+      "problem_id": "prob-8420-b0a42247",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-169",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "cache",
+        "eviction_policy",
+        "memory_management",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 169,
+      "intent": "LRU Cache는 cache 시스템의 표준 eviction 전략 — 접근 빈도 기반으로 cache 메모리를 효율적으로 관리",
+      "architecture": "cache 접근 순서를 추적하는 구조. eviction_policy: capacity 초과 시 LRU 항목 제거. memory_management: cache 크기를 capacity로 제한"
+    },
+    {
+      "id": "n-tech-169",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "cache",
+        "ordereddict",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 169,
+      "strategy": "cache 구현: OrderedDict 사용. get(key): cache miss면 -1, hit이면 값 반환하며 순서 갱신. put(key,value): cache에 삽입. capacity 초과면 가장 오래된 항목 제거.",
+      "complexity": "O(1) cache access"
+    },
+    {
+      "id": "n-execloop-170",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 170,
+      "problem_id": "prob-8421-b0a42247",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-170",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "cache",
+        "eviction_policy",
+        "memory_management",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 170,
+      "intent": "LRU Cache는 cache 시스템의 표준 eviction 전략 — 접근 빈도 기반으로 cache 메모리를 효율적으로 관리",
+      "architecture": "cache 접근 순서를 추적하는 구조. eviction_policy: capacity 초과 시 LRU 항목 제거. memory_management: cache 크기를 capacity로 제한"
+    },
+    {
+      "id": "n-tech-170",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "cache",
+        "ordereddict",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 170,
+      "strategy": "cache 구현: OrderedDict 사용. get(key): cache miss면 -1, hit이면 값 반환하며 순서 갱신. put(key,value): cache에 삽입. capacity 초과면 가장 오래된 항목 제거.",
+      "complexity": "O(1) cache access"
+    },
+    {
+      "id": "n-execloop-171",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 171,
+      "problem_id": "prob-8422-b0a42247",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-171",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "cache",
+        "eviction_policy",
+        "memory_management",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 171,
+      "intent": "LRU Cache는 cache 시스템의 표준 eviction 전략 — 접근 빈도 기반으로 cache 메모리를 효율적으로 관리",
+      "architecture": "cache 접근 순서를 추적하는 구조. eviction_policy: capacity 초과 시 LRU 항목 제거. memory_management: cache 크기를 capacity로 제한"
+    },
+    {
+      "id": "n-tech-171",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "cache",
+        "ordereddict",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 171,
+      "strategy": "cache 구현: OrderedDict 사용. get(key): cache miss면 -1, hit이면 값 반환하며 순서 갱신. put(key,value): cache에 삽입. capacity 초과면 가장 오래된 항목 제거.",
+      "complexity": "O(1) cache access"
+    },
+    {
+      "id": "n-execloop-172",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 172,
+      "problem_id": "prob-8423-b0a42247",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-172",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "cache",
+        "eviction_policy",
+        "memory_management",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 172,
+      "intent": "LRU Cache는 cache 시스템의 표준 eviction 전략 — 접근 빈도 기반으로 cache 메모리를 효율적으로 관리",
+      "architecture": "cache 접근 순서를 추적하는 구조. eviction_policy: capacity 초과 시 LRU 항목 제거. memory_management: cache 크기를 capacity로 제한"
+    },
+    {
+      "id": "n-tech-172",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "cache",
+        "ordereddict",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 172,
+      "strategy": "cache 구현: OrderedDict 사용. get(key): cache miss면 -1, hit이면 값 반환하며 순서 갱신. put(key,value): cache에 삽입. capacity 초과면 가장 오래된 항목 제거.",
+      "complexity": "O(1) cache access"
+    },
+    {
+      "id": "n-execloop-173",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 173,
+      "problem_id": "prob-8424-b0a42247",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-173",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "cache",
+        "eviction_policy",
+        "memory_management",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 173,
+      "intent": "LRU Cache는 cache 시스템의 표준 eviction 전략 — 접근 빈도 기반으로 cache 메모리를 효율적으로 관리",
+      "architecture": "cache 접근 순서를 추적하는 구조. eviction_policy: capacity 초과 시 LRU 항목 제거. memory_management: cache 크기를 capacity로 제한"
+    },
+    {
+      "id": "n-tech-173",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "cache",
+        "ordereddict",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 173,
+      "strategy": "cache 구현: OrderedDict 사용. get(key): cache miss면 -1, hit이면 값 반환하며 순서 갱신. put(key,value): cache에 삽입. capacity 초과면 가장 오래된 항목 제거.",
+      "complexity": "O(1) cache access"
+    },
+    {
+      "id": "n-execloop-174",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 174,
+      "problem_id": "prob-8425-b0a42247",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-174",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "cache",
+        "eviction_policy",
+        "memory_management",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 174,
+      "intent": "LRU Cache는 cache 시스템의 표준 eviction 전략 — 접근 빈도 기반으로 cache 메모리를 효율적으로 관리",
+      "architecture": "cache 접근 순서를 추적하는 구조. eviction_policy: capacity 초과 시 LRU 항목 제거. memory_management: cache 크기를 capacity로 제한"
+    },
+    {
+      "id": "n-tech-174",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "cache",
+        "ordereddict",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 174,
+      "strategy": "cache 구현: OrderedDict 사용. get(key): cache miss면 -1, hit이면 값 반환하며 순서 갱신. put(key,value): cache에 삽입. capacity 초과면 가장 오래된 항목 제거.",
+      "complexity": "O(1) cache access"
+    },
+    {
+      "id": "n-execloop-175",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 175,
+      "problem_id": "prob-8426-b0a42247",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-175",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "cache",
+        "eviction_policy",
+        "memory_management",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 175,
+      "intent": "LRU Cache는 cache 시스템의 표준 eviction 전략 — 접근 빈도 기반으로 cache 메모리를 효율적으로 관리",
+      "architecture": "cache 접근 순서를 추적하는 구조. eviction_policy: capacity 초과 시 LRU 항목 제거. memory_management: cache 크기를 capacity로 제한"
+    },
+    {
+      "id": "n-tech-175",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "cache",
+        "ordereddict",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 175,
+      "strategy": "cache 구현: OrderedDict 사용. get(key): cache miss면 -1, hit이면 값 반환하며 순서 갱신. put(key,value): cache에 삽입. capacity 초과면 가장 오래된 항목 제거.",
+      "complexity": "O(1) cache access"
+    },
+    {
+      "id": "n-execloop-176",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 176,
+      "problem_id": "prob-8427-b0a42247",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-176",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "cache",
+        "eviction_policy",
+        "memory_management",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 176,
+      "intent": "LRU Cache는 cache 시스템의 표준 eviction 전략 — 접근 빈도 기반으로 cache 메모리를 효율적으로 관리",
+      "architecture": "cache 접근 순서를 추적하는 구조. eviction_policy: capacity 초과 시 LRU 항목 제거. memory_management: cache 크기를 capacity로 제한"
+    },
+    {
+      "id": "n-tech-176",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "cache",
+        "ordereddict",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 176,
+      "strategy": "cache 구현: OrderedDict 사용. get(key): cache miss면 -1, hit이면 값 반환하며 순서 갱신. put(key,value): cache에 삽입. capacity 초과면 가장 오래된 항목 제거.",
+      "complexity": "O(1) cache access"
+    },
+    {
+      "id": "n-execloop-177",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 177,
+      "problem_id": "prob-8428-b0a42247",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-177",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "cache",
+        "eviction_policy",
+        "memory_management",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 177,
+      "intent": "LRU Cache는 cache 시스템의 표준 eviction 전략 — 접근 빈도 기반으로 cache 메모리를 효율적으로 관리",
+      "architecture": "cache 접근 순서를 추적하는 구조. eviction_policy: capacity 초과 시 LRU 항목 제거. memory_management: cache 크기를 capacity로 제한"
+    },
+    {
+      "id": "n-tech-177",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "cache",
+        "ordereddict",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 177,
+      "strategy": "cache 구현: OrderedDict 사용. get(key): cache miss면 -1, hit이면 값 반환하며 순서 갱신. put(key,value): cache에 삽입. capacity 초과면 가장 오래된 항목 제거.",
+      "complexity": "O(1) cache access"
+    },
+    {
+      "id": "n-execloop-178",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 178,
+      "problem_id": "prob-8429-b0a42247",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-178",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "cache",
+        "eviction_policy",
+        "memory_management",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 178,
+      "intent": "LRU Cache는 cache 시스템의 표준 eviction 전략 — 접근 빈도 기반으로 cache 메모리를 효율적으로 관리",
+      "architecture": "cache 접근 순서를 추적하는 구조. eviction_policy: capacity 초과 시 LRU 항목 제거. memory_management: cache 크기를 capacity로 제한"
+    },
+    {
+      "id": "n-tech-178",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "cache",
+        "ordereddict",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 178,
+      "strategy": "cache 구현: OrderedDict 사용. get(key): cache miss면 -1, hit이면 값 반환하며 순서 갱신. put(key,value): cache에 삽입. capacity 초과면 가장 오래된 항목 제거.",
+      "complexity": "O(1) cache access"
+    },
+    {
+      "id": "n-execloop-179",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 179,
+      "problem_id": "prob-8430-b0a42247",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-179",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "cache",
+        "eviction_policy",
+        "memory_management",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 179,
+      "intent": "LRU Cache는 cache 시스템의 표준 eviction 전략 — 접근 빈도 기반으로 cache 메모리를 효율적으로 관리",
+      "architecture": "cache 접근 순서를 추적하는 구조. eviction_policy: capacity 초과 시 LRU 항목 제거. memory_management: cache 크기를 capacity로 제한"
+    },
+    {
+      "id": "n-tech-179",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "cache",
+        "ordereddict",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 179,
+      "strategy": "cache 구현: OrderedDict 사용. get(key): cache miss면 -1, hit이면 값 반환하며 순서 갱신. put(key,value): cache에 삽입. capacity 초과면 가장 오래된 항목 제거.",
+      "complexity": "O(1) cache access"
+    },
+    {
+      "id": "n-execloop-180",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 180,
+      "problem_id": "prob-8431-b0a42247",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-180",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "cache",
+        "eviction_policy",
+        "memory_management",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 180,
+      "intent": "LRU Cache는 cache 시스템의 표준 eviction 전략 — 접근 빈도 기반으로 cache 메모리를 효율적으로 관리",
+      "architecture": "cache 접근 순서를 추적하는 구조. eviction_policy: capacity 초과 시 LRU 항목 제거. memory_management: cache 크기를 capacity로 제한"
+    },
+    {
+      "id": "n-tech-180",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "cache",
+        "ordereddict",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 180,
+      "strategy": "cache 구현: OrderedDict 사용. get(key): cache miss면 -1, hit이면 값 반환하며 순서 갱신. put(key,value): cache에 삽입. capacity 초과면 가장 오래된 항목 제거.",
+      "complexity": "O(1) cache access"
+    },
+    {
+      "id": "n-execloop-181",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 181,
+      "problem_id": "prob-8432-b0a42247",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-181",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "cache",
+        "eviction_policy",
+        "memory_management",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 181,
+      "intent": "LRU Cache는 cache 시스템의 표준 eviction 전략 — 접근 빈도 기반으로 cache 메모리를 효율적으로 관리",
+      "architecture": "cache 접근 순서를 추적하는 구조. eviction_policy: capacity 초과 시 LRU 항목 제거. memory_management: cache 크기를 capacity로 제한"
+    },
+    {
+      "id": "n-tech-181",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "cache",
+        "ordereddict",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 181,
+      "strategy": "cache 구현: OrderedDict 사용. get(key): cache miss면 -1, hit이면 값 반환하며 순서 갱신. put(key,value): cache에 삽입. capacity 초과면 가장 오래된 항목 제거.",
+      "complexity": "O(1) cache access"
+    },
+    {
+      "id": "n-execloop-182",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 182,
+      "problem_id": "prob-8433-b0a42247",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-182",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "cache",
+        "eviction_policy",
+        "memory_management",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 182,
+      "intent": "LRU Cache는 cache 시스템의 표준 eviction 전략 — 접근 빈도 기반으로 cache 메모리를 효율적으로 관리",
+      "architecture": "cache 접근 순서를 추적하는 구조. eviction_policy: capacity 초과 시 LRU 항목 제거. memory_management: cache 크기를 capacity로 제한"
+    },
+    {
+      "id": "n-tech-182",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "cache",
+        "ordereddict",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 182,
+      "strategy": "cache 구현: OrderedDict 사용. get(key): cache miss면 -1, hit이면 값 반환하며 순서 갱신. put(key,value): cache에 삽입. capacity 초과면 가장 오래된 항목 제거.",
+      "complexity": "O(1) cache access"
+    },
+    {
+      "id": "n-execloop-183",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 183,
+      "problem_id": "prob-8434-b0a42247",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-183",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "cache",
+        "eviction_policy",
+        "memory_management",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 183,
+      "intent": "LRU Cache는 cache 시스템의 표준 eviction 전략 — 접근 빈도 기반으로 cache 메모리를 효율적으로 관리",
+      "architecture": "cache 접근 순서를 추적하는 구조. eviction_policy: capacity 초과 시 LRU 항목 제거. memory_management: cache 크기를 capacity로 제한"
+    },
+    {
+      "id": "n-tech-183",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "cache",
+        "ordereddict",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 183,
+      "strategy": "cache 구현: OrderedDict 사용. get(key): cache miss면 -1, hit이면 값 반환하며 순서 갱신. put(key,value): cache에 삽입. capacity 초과면 가장 오래된 항목 제거.",
+      "complexity": "O(1) cache access"
+    },
+    {
+      "id": "n-execloop-184",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 184,
+      "problem_id": "prob-8435-b0a42247",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-184",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "cache",
+        "eviction_policy",
+        "memory_management",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 184,
+      "intent": "LRU Cache는 cache 시스템의 표준 eviction 전략 — 접근 빈도 기반으로 cache 메모리를 효율적으로 관리",
+      "architecture": "cache 접근 순서를 추적하는 구조. eviction_policy: capacity 초과 시 LRU 항목 제거. memory_management: cache 크기를 capacity로 제한"
+    },
+    {
+      "id": "n-tech-184",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "cache",
+        "ordereddict",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 184,
+      "strategy": "cache 구현: OrderedDict 사용. get(key): cache miss면 -1, hit이면 값 반환하며 순서 갱신. put(key,value): cache에 삽입. capacity 초과면 가장 오래된 항목 제거.",
+      "complexity": "O(1) cache access"
+    },
+    {
+      "id": "n-execloop-185",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 185,
+      "problem_id": "prob-8436-b0a42247",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-185",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "cache",
+        "eviction_policy",
+        "memory_management",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 185,
+      "intent": "LRU Cache는 cache 시스템의 표준 eviction 전략 — 접근 빈도 기반으로 cache 메모리를 효율적으로 관리",
+      "architecture": "cache 접근 순서를 추적하는 구조. eviction_policy: capacity 초과 시 LRU 항목 제거. memory_management: cache 크기를 capacity로 제한"
+    },
+    {
+      "id": "n-tech-185",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "cache",
+        "ordereddict",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 185,
+      "strategy": "cache 구현: OrderedDict 사용. get(key): cache miss면 -1, hit이면 값 반환하며 순서 갱신. put(key,value): cache에 삽입. capacity 초과면 가장 오래된 항목 제거.",
+      "complexity": "O(1) cache access"
+    },
+    {
+      "id": "n-execloop-186",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 186,
+      "problem_id": "prob-8437-b0a42247",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-186",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "cache",
+        "eviction_policy",
+        "memory_management",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 186,
+      "intent": "LRU Cache는 cache 시스템의 표준 eviction 전략 — 접근 빈도 기반으로 cache 메모리를 효율적으로 관리",
+      "architecture": "cache 접근 순서를 추적하는 구조. eviction_policy: capacity 초과 시 LRU 항목 제거. memory_management: cache 크기를 capacity로 제한"
+    },
+    {
+      "id": "n-tech-186",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "cache",
+        "ordereddict",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 186,
+      "strategy": "cache 구현: OrderedDict 사용. get(key): cache miss면 -1, hit이면 값 반환하며 순서 갱신. put(key,value): cache에 삽입. capacity 초과면 가장 오래된 항목 제거.",
+      "complexity": "O(1) cache access"
+    },
+    {
+      "id": "n-execloop-187",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 187,
+      "problem_id": "prob-8438-b0a42247",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-187",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "cache",
+        "eviction_policy",
+        "memory_management",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 187,
+      "intent": "LRU Cache는 cache 시스템의 표준 eviction 전략 — 접근 빈도 기반으로 cache 메모리를 효율적으로 관리",
+      "architecture": "cache 접근 순서를 추적하는 구조. eviction_policy: capacity 초과 시 LRU 항목 제거. memory_management: cache 크기를 capacity로 제한"
+    },
+    {
+      "id": "n-tech-187",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "cache",
+        "ordereddict",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 187,
+      "strategy": "cache 구현: OrderedDict 사용. get(key): cache miss면 -1, hit이면 값 반환하며 순서 갱신. put(key,value): cache에 삽입. capacity 초과면 가장 오래된 항목 제거.",
+      "complexity": "O(1) cache access"
+    },
+    {
+      "id": "n-execloop-188",
+      "source": "execution_loop",
+      "tags": [
+        "execution_loop",
+        "code_generation",
+        "d067"
+      ],
+      "cycle": 188,
+      "problem_id": "prob-8439-b0a42247",
+      "cser_score": 0.4444444444444444,
+      "validation_passed": true,
+      "quality_score": 1.0,
+      "cross_edges_count": 4
+    },
+    {
+      "id": "n-macro-188",
+      "source": "openclaw_partial_symmetric",
+      "tags": [
+        "cache",
+        "eviction_policy",
+        "memory_management",
+        "macro_spec",
+        "execution_loop"
+      ],
+      "cycle": 188,
+      "intent": "LRU Cache는 cache 시스템의 표준 eviction 전략 — 접근 빈도 기반으로 cache 메모리를 효율적으로 관리",
+      "architecture": "cache 접근 순서를 추적하는 구조. eviction_policy: capacity 초과 시 LRU 항목 제거. memory_management: cache 크기를 capacity로 제한"
+    },
+    {
+      "id": "n-tech-188",
+      "source": "cokac_partial_symmetric",
+      "tags": [
+        "cache",
+        "ordereddict",
+        "hashmap",
+        "tech_spec",
+        "execution_loop"
+      ],
+      "cycle": 188,
+      "strategy": "cache 구현: OrderedDict 사용. get(key): cache miss면 -1, hit이면 값 반환하며 순서 갱신. put(key,value): cache에 삽입. capacity 초과면 가장 오래된 항목 제거.",
+      "complexity": "O(1) cache access"
     }
   ],
   "edges": [
@@ -19109,6 +21947,864 @@
       "to": "n-execloop-122",
       "relation": "grounds",
       "cycle": 122
+    },
+    {
+      "from": "n-macro-123",
+      "to": "n-tech-123",
+      "relation": "crosses_into",
+      "cycle": 123,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-123",
+      "to": "n-execloop-123",
+      "relation": "grounds",
+      "cycle": 123
+    },
+    {
+      "from": "n-macro-124",
+      "to": "n-tech-124",
+      "relation": "crosses_into",
+      "cycle": 124,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-124",
+      "to": "n-execloop-124",
+      "relation": "grounds",
+      "cycle": 124
+    },
+    {
+      "from": "n-macro-125",
+      "to": "n-tech-125",
+      "relation": "crosses_into",
+      "cycle": 125,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-125",
+      "to": "n-execloop-125",
+      "relation": "grounds",
+      "cycle": 125
+    },
+    {
+      "from": "n-macro-126",
+      "to": "n-tech-126",
+      "relation": "crosses_into",
+      "cycle": 126,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-126",
+      "to": "n-execloop-126",
+      "relation": "grounds",
+      "cycle": 126
+    },
+    {
+      "from": "n-macro-127",
+      "to": "n-tech-127",
+      "relation": "crosses_into",
+      "cycle": 127,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-127",
+      "to": "n-execloop-127",
+      "relation": "grounds",
+      "cycle": 127
+    },
+    {
+      "from": "n-macro-128",
+      "to": "n-tech-128",
+      "relation": "crosses_into",
+      "cycle": 128,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-128",
+      "to": "n-execloop-128",
+      "relation": "grounds",
+      "cycle": 128
+    },
+    {
+      "from": "n-macro-129",
+      "to": "n-tech-129",
+      "relation": "crosses_into",
+      "cycle": 129,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-129",
+      "to": "n-execloop-129",
+      "relation": "grounds",
+      "cycle": 129
+    },
+    {
+      "from": "n-macro-130",
+      "to": "n-tech-130",
+      "relation": "crosses_into",
+      "cycle": 130,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-130",
+      "to": "n-execloop-130",
+      "relation": "grounds",
+      "cycle": 130
+    },
+    {
+      "from": "n-macro-131",
+      "to": "n-tech-131",
+      "relation": "crosses_into",
+      "cycle": 131,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-131",
+      "to": "n-execloop-131",
+      "relation": "grounds",
+      "cycle": 131
+    },
+    {
+      "from": "n-macro-132",
+      "to": "n-tech-132",
+      "relation": "crosses_into",
+      "cycle": 132,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-132",
+      "to": "n-execloop-132",
+      "relation": "grounds",
+      "cycle": 132
+    },
+    {
+      "from": "n-macro-133",
+      "to": "n-tech-133",
+      "relation": "crosses_into",
+      "cycle": 133,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-133",
+      "to": "n-execloop-133",
+      "relation": "grounds",
+      "cycle": 133
+    },
+    {
+      "from": "n-macro-134",
+      "to": "n-tech-134",
+      "relation": "crosses_into",
+      "cycle": 134,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-134",
+      "to": "n-execloop-134",
+      "relation": "grounds",
+      "cycle": 134
+    },
+    {
+      "from": "n-macro-135",
+      "to": "n-tech-135",
+      "relation": "crosses_into",
+      "cycle": 135,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-135",
+      "to": "n-execloop-135",
+      "relation": "grounds",
+      "cycle": 135
+    },
+    {
+      "from": "n-macro-136",
+      "to": "n-tech-136",
+      "relation": "crosses_into",
+      "cycle": 136,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-136",
+      "to": "n-execloop-136",
+      "relation": "grounds",
+      "cycle": 136
+    },
+    {
+      "from": "n-macro-137",
+      "to": "n-tech-137",
+      "relation": "crosses_into",
+      "cycle": 137,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-137",
+      "to": "n-execloop-137",
+      "relation": "grounds",
+      "cycle": 137
+    },
+    {
+      "from": "n-macro-138",
+      "to": "n-tech-138",
+      "relation": "crosses_into",
+      "cycle": 138,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-138",
+      "to": "n-execloop-138",
+      "relation": "grounds",
+      "cycle": 138
+    },
+    {
+      "from": "n-macro-139",
+      "to": "n-tech-139",
+      "relation": "crosses_into",
+      "cycle": 139,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-139",
+      "to": "n-execloop-139",
+      "relation": "grounds",
+      "cycle": 139
+    },
+    {
+      "from": "n-macro-140",
+      "to": "n-tech-140",
+      "relation": "crosses_into",
+      "cycle": 140,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-140",
+      "to": "n-execloop-140",
+      "relation": "grounds",
+      "cycle": 140
+    },
+    {
+      "from": "n-macro-141",
+      "to": "n-tech-141",
+      "relation": "crosses_into",
+      "cycle": 141,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-141",
+      "to": "n-execloop-141",
+      "relation": "grounds",
+      "cycle": 141
+    },
+    {
+      "from": "n-macro-142",
+      "to": "n-tech-142",
+      "relation": "crosses_into",
+      "cycle": 142,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-142",
+      "to": "n-execloop-142",
+      "relation": "grounds",
+      "cycle": 142
+    },
+    {
+      "from": "n-macro-143",
+      "to": "n-tech-143",
+      "relation": "crosses_into",
+      "cycle": 143,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-143",
+      "to": "n-execloop-143",
+      "relation": "grounds",
+      "cycle": 143
+    },
+    {
+      "from": "n-macro-144",
+      "to": "n-tech-144",
+      "relation": "crosses_into",
+      "cycle": 144,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-144",
+      "to": "n-execloop-144",
+      "relation": "grounds",
+      "cycle": 144
+    },
+    {
+      "from": "n-macro-145",
+      "to": "n-tech-145",
+      "relation": "crosses_into",
+      "cycle": 145,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-145",
+      "to": "n-execloop-145",
+      "relation": "grounds",
+      "cycle": 145
+    },
+    {
+      "from": "n-macro-146",
+      "to": "n-tech-146",
+      "relation": "crosses_into",
+      "cycle": 146,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-146",
+      "to": "n-execloop-146",
+      "relation": "grounds",
+      "cycle": 146
+    },
+    {
+      "from": "n-macro-147",
+      "to": "n-tech-147",
+      "relation": "crosses_into",
+      "cycle": 147,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-147",
+      "to": "n-execloop-147",
+      "relation": "grounds",
+      "cycle": 147
+    },
+    {
+      "from": "n-macro-148",
+      "to": "n-tech-148",
+      "relation": "crosses_into",
+      "cycle": 148,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-148",
+      "to": "n-execloop-148",
+      "relation": "grounds",
+      "cycle": 148
+    },
+    {
+      "from": "n-macro-149",
+      "to": "n-tech-149",
+      "relation": "crosses_into",
+      "cycle": 149,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-149",
+      "to": "n-execloop-149",
+      "relation": "grounds",
+      "cycle": 149
+    },
+    {
+      "from": "n-macro-150",
+      "to": "n-tech-150",
+      "relation": "crosses_into",
+      "cycle": 150,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-150",
+      "to": "n-execloop-150",
+      "relation": "grounds",
+      "cycle": 150
+    },
+    {
+      "from": "n-macro-151",
+      "to": "n-tech-151",
+      "relation": "crosses_into",
+      "cycle": 151,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-151",
+      "to": "n-execloop-151",
+      "relation": "grounds",
+      "cycle": 151
+    },
+    {
+      "from": "n-macro-152",
+      "to": "n-tech-152",
+      "relation": "crosses_into",
+      "cycle": 152,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-152",
+      "to": "n-execloop-152",
+      "relation": "grounds",
+      "cycle": 152
+    },
+    {
+      "from": "n-macro-153",
+      "to": "n-tech-153",
+      "relation": "crosses_into",
+      "cycle": 153,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-153",
+      "to": "n-execloop-153",
+      "relation": "grounds",
+      "cycle": 153
+    },
+    {
+      "from": "n-macro-154",
+      "to": "n-tech-154",
+      "relation": "crosses_into",
+      "cycle": 154,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-154",
+      "to": "n-execloop-154",
+      "relation": "grounds",
+      "cycle": 154
+    },
+    {
+      "from": "n-macro-155",
+      "to": "n-tech-155",
+      "relation": "crosses_into",
+      "cycle": 155,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-155",
+      "to": "n-execloop-155",
+      "relation": "grounds",
+      "cycle": 155
+    },
+    {
+      "from": "n-macro-156",
+      "to": "n-tech-156",
+      "relation": "crosses_into",
+      "cycle": 156,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-156",
+      "to": "n-execloop-156",
+      "relation": "grounds",
+      "cycle": 156
+    },
+    {
+      "from": "n-macro-157",
+      "to": "n-tech-157",
+      "relation": "crosses_into",
+      "cycle": 157,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-157",
+      "to": "n-execloop-157",
+      "relation": "grounds",
+      "cycle": 157
+    },
+    {
+      "from": "n-macro-158",
+      "to": "n-tech-158",
+      "relation": "crosses_into",
+      "cycle": 158,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-158",
+      "to": "n-execloop-158",
+      "relation": "grounds",
+      "cycle": 158
+    },
+    {
+      "from": "n-macro-159",
+      "to": "n-tech-159",
+      "relation": "crosses_into",
+      "cycle": 159,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-159",
+      "to": "n-execloop-159",
+      "relation": "grounds",
+      "cycle": 159
+    },
+    {
+      "from": "n-macro-160",
+      "to": "n-tech-160",
+      "relation": "crosses_into",
+      "cycle": 160,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-160",
+      "to": "n-execloop-160",
+      "relation": "grounds",
+      "cycle": 160
+    },
+    {
+      "from": "n-macro-161",
+      "to": "n-tech-161",
+      "relation": "crosses_into",
+      "cycle": 161,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-161",
+      "to": "n-execloop-161",
+      "relation": "grounds",
+      "cycle": 161
+    },
+    {
+      "from": "n-macro-162",
+      "to": "n-tech-162",
+      "relation": "crosses_into",
+      "cycle": 162,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-162",
+      "to": "n-execloop-162",
+      "relation": "grounds",
+      "cycle": 162
+    },
+    {
+      "from": "n-macro-163",
+      "to": "n-tech-163",
+      "relation": "crosses_into",
+      "cycle": 163,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-163",
+      "to": "n-execloop-163",
+      "relation": "grounds",
+      "cycle": 163
+    },
+    {
+      "from": "n-macro-164",
+      "to": "n-tech-164",
+      "relation": "crosses_into",
+      "cycle": 164,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-164",
+      "to": "n-execloop-164",
+      "relation": "grounds",
+      "cycle": 164
+    },
+    {
+      "from": "n-macro-165",
+      "to": "n-tech-165",
+      "relation": "crosses_into",
+      "cycle": 165,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-165",
+      "to": "n-execloop-165",
+      "relation": "grounds",
+      "cycle": 165
+    },
+    {
+      "from": "n-macro-166",
+      "to": "n-tech-166",
+      "relation": "crosses_into",
+      "cycle": 166,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-166",
+      "to": "n-execloop-166",
+      "relation": "grounds",
+      "cycle": 166
+    },
+    {
+      "from": "n-macro-167",
+      "to": "n-tech-167",
+      "relation": "crosses_into",
+      "cycle": 167,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-167",
+      "to": "n-execloop-167",
+      "relation": "grounds",
+      "cycle": 167
+    },
+    {
+      "from": "n-macro-168",
+      "to": "n-tech-168",
+      "relation": "crosses_into",
+      "cycle": 168,
+      "cser": 1.0
+    },
+    {
+      "from": "n-tech-168",
+      "to": "n-execloop-168",
+      "relation": "grounds",
+      "cycle": 168
+    },
+    {
+      "from": "n-macro-169",
+      "to": "n-tech-169",
+      "relation": "crosses_into",
+      "cycle": 169,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-169",
+      "to": "n-execloop-169",
+      "relation": "grounds",
+      "cycle": 169
+    },
+    {
+      "from": "n-macro-170",
+      "to": "n-tech-170",
+      "relation": "crosses_into",
+      "cycle": 170,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-170",
+      "to": "n-execloop-170",
+      "relation": "grounds",
+      "cycle": 170
+    },
+    {
+      "from": "n-macro-171",
+      "to": "n-tech-171",
+      "relation": "crosses_into",
+      "cycle": 171,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-171",
+      "to": "n-execloop-171",
+      "relation": "grounds",
+      "cycle": 171
+    },
+    {
+      "from": "n-macro-172",
+      "to": "n-tech-172",
+      "relation": "crosses_into",
+      "cycle": 172,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-172",
+      "to": "n-execloop-172",
+      "relation": "grounds",
+      "cycle": 172
+    },
+    {
+      "from": "n-macro-173",
+      "to": "n-tech-173",
+      "relation": "crosses_into",
+      "cycle": 173,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-173",
+      "to": "n-execloop-173",
+      "relation": "grounds",
+      "cycle": 173
+    },
+    {
+      "from": "n-macro-174",
+      "to": "n-tech-174",
+      "relation": "crosses_into",
+      "cycle": 174,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-174",
+      "to": "n-execloop-174",
+      "relation": "grounds",
+      "cycle": 174
+    },
+    {
+      "from": "n-macro-175",
+      "to": "n-tech-175",
+      "relation": "crosses_into",
+      "cycle": 175,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-175",
+      "to": "n-execloop-175",
+      "relation": "grounds",
+      "cycle": 175
+    },
+    {
+      "from": "n-macro-176",
+      "to": "n-tech-176",
+      "relation": "crosses_into",
+      "cycle": 176,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-176",
+      "to": "n-execloop-176",
+      "relation": "grounds",
+      "cycle": 176
+    },
+    {
+      "from": "n-macro-177",
+      "to": "n-tech-177",
+      "relation": "crosses_into",
+      "cycle": 177,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-177",
+      "to": "n-execloop-177",
+      "relation": "grounds",
+      "cycle": 177
+    },
+    {
+      "from": "n-macro-178",
+      "to": "n-tech-178",
+      "relation": "crosses_into",
+      "cycle": 178,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-178",
+      "to": "n-execloop-178",
+      "relation": "grounds",
+      "cycle": 178
+    },
+    {
+      "from": "n-macro-179",
+      "to": "n-tech-179",
+      "relation": "crosses_into",
+      "cycle": 179,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-179",
+      "to": "n-execloop-179",
+      "relation": "grounds",
+      "cycle": 179
+    },
+    {
+      "from": "n-macro-180",
+      "to": "n-tech-180",
+      "relation": "crosses_into",
+      "cycle": 180,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-180",
+      "to": "n-execloop-180",
+      "relation": "grounds",
+      "cycle": 180
+    },
+    {
+      "from": "n-macro-181",
+      "to": "n-tech-181",
+      "relation": "crosses_into",
+      "cycle": 181,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-181",
+      "to": "n-execloop-181",
+      "relation": "grounds",
+      "cycle": 181
+    },
+    {
+      "from": "n-macro-182",
+      "to": "n-tech-182",
+      "relation": "crosses_into",
+      "cycle": 182,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-182",
+      "to": "n-execloop-182",
+      "relation": "grounds",
+      "cycle": 182
+    },
+    {
+      "from": "n-macro-183",
+      "to": "n-tech-183",
+      "relation": "crosses_into",
+      "cycle": 183,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-183",
+      "to": "n-execloop-183",
+      "relation": "grounds",
+      "cycle": 183
+    },
+    {
+      "from": "n-macro-184",
+      "to": "n-tech-184",
+      "relation": "crosses_into",
+      "cycle": 184,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-184",
+      "to": "n-execloop-184",
+      "relation": "grounds",
+      "cycle": 184
+    },
+    {
+      "from": "n-macro-185",
+      "to": "n-tech-185",
+      "relation": "crosses_into",
+      "cycle": 185,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-185",
+      "to": "n-execloop-185",
+      "relation": "grounds",
+      "cycle": 185
+    },
+    {
+      "from": "n-macro-186",
+      "to": "n-tech-186",
+      "relation": "crosses_into",
+      "cycle": 186,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-186",
+      "to": "n-execloop-186",
+      "relation": "grounds",
+      "cycle": 186
+    },
+    {
+      "from": "n-macro-187",
+      "to": "n-tech-187",
+      "relation": "crosses_into",
+      "cycle": 187,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-187",
+      "to": "n-execloop-187",
+      "relation": "grounds",
+      "cycle": 187
+    },
+    {
+      "from": "n-macro-188",
+      "to": "n-tech-188",
+      "relation": "crosses_into",
+      "cycle": 188,
+      "cser": 0.4444444444444444
+    },
+    {
+      "from": "n-tech-188",
+      "to": "n-execloop-188",
+      "relation": "grounds",
+      "cycle": 188
     }
   ],
   "meta": {
