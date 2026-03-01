@@ -1,7 +1,7 @@
 {
   "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"pip3 list 2>/dev/null | grep -i \\\"scipy\\\\|numpy\\\" && python3 -c \\\"import scipy; import numpy; print('OK')\\\" 2>&1\",\"description\":\"scipy/numpy 설치 여부 확인\"}",
-  "error": "Exit code 1\nnumpy           2.4.2\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import scipy; import numpy; print('OK')\n    ^^^^^^^^^^^^\nModuleNotFoundError: No module named 'scipy'\n\nnumpy           2.4.2\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import scipy; import numpy; print('OK')\n    ^^^^^^^^^^^^\nModuleNotFoundError: No module named 'scipy'",
-  "timestamp": "2026-03-01T03:44:05.544Z",
+  "tool_input_preview": "{\"command\":\"python3 -c \\\"import numpy; print('numpy:', numpy.__version__)\\\" 2>&1 && python3 -c \\\"import scipy; print('scipy:', scipy.__version__)\\\" 2>&1\",\"description\":\"numpy/scipy 설치 상태 확인\"}",
+  "error": "Exit code 1\nnumpy: 2.4.2\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import scipy; print('scipy:', scipy.__version__)\n    ^^^^^^^^^^^^\nModuleNotFoundError: No module named 'scipy'\n\nnumpy: 2.4.2\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import scipy; print('scipy:', scipy.__version__)\n    ^^^^^^^^^^^^\nModuleNotFoundError: No module named 'scipy'",
+  "timestamp": "2026-03-01T04:52:16.698Z",
   "retry_count": 1
 }
