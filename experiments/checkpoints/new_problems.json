@@ -1,0 +1,20 @@
+[
+  {
+    "id": "crt_three_congruences",
+    "problem": "Find the smallest positive integer x such that x \u2261 3 (mod 7), x \u2261 5 (mod 11), and x \u2261 2 (mod 13). Apply the Chinese Remainder Theorem or systematic search.",
+    "answer": "808",
+    "verify_code": "answer = next(n for n in range(1, 10000) if n % 7 == 3 and n % 11 == 5 and n % 13 == 2); assert answer == 808, f'Got {answer}'; print(answer)"
+  },
+  {
+    "id": "euler_totient_sum",
+    "problem": "Let \u03c6(n) be Euler's totient function (the count of integers from 1 to n that are coprime to n). Compute the sum \u03c6(1) + \u03c6(2) + \u03c6(3) + ... + \u03c6(50).",
+    "answer": "774",
+    "verify_code": "def phi(n):\n    result = n; temp = n; p = 2\n    while p * p <= temp:\n        if temp % p == 0:\n            while temp % p == 0: temp //= p\n            result -= result // p\n        p += 1\n    if temp > 1: result -= result // temp\n    return result\nanswer = sum(phi(k) for k in range(1, 51)); assert answer == 774, f'Got {answer}'; print(answer)"
+  },
+  {
+    "id": "derangement_d8",
+    "problem": "A derangement is a permutation of a set where no element appears in its original position. How many derangements exist for a set of 8 elements? (That is, compute D(8).)",
+    "answer": "14833",
+    "verify_code": "def D(n):\n    if n == 0: return 1\n    if n == 1: return 0\n    d = [0] * (n + 1); d[0] = 1; d[1] = 0\n    for i in range(2, n + 1): d[i] = (i - 1) * (d[i-1] + d[i-2])\n    return d[n]\nanswer = D(8); assert answer == 14833, f'Got {answer}'; print(answer)"
+  }
+]
