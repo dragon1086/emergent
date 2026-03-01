@@ -145,9 +145,50 @@ available in `experiments/cycle46_external/`.
 
 ---
 
+### Three-Way Amplification Benchmark (Section 6)
+
+| File | Description | Key Result |
+|------|-------------|-----------|
+| `three_way_comparison.py` | Solo / Pipeline / Emergent 3-way runner | Round 3 + Round 4 results |
+| `round4_complex_knights.py` | Knights-and-knaves complex (Round 4) | Emergent 60% > Pipeline 50% |
+| `math_pipeline_results.json` | Math computation results (Round 3) | Solo=80%, Pipeline=70%, Emergent=60% |
+| `final_3way_round4_results.json` | Round 4 aggregated results | Solo=70%, Pipeline=50%, Emergent=60% |
+
+**Reproduce Round 4 (knights-and-knaves):**
+```bash
+export OPENAI_API_KEY="sk-..."
+python3 experiments/round4_complex_knights.py
+# Expected: Solo≈70%, Pipeline≈50%, Emergent≈60%
+# N=5 trials per condition; results may vary ±10% due to LLM stochasticity
+```
+
+**Reproduce full 3-way comparison:**
+```bash
+python3 experiments/three_way_comparison.py
+# Runs both math (Round 3) and logical reasoning (Round 4) domains
+# Output: two result tables + domain-dependence summary
+```
+
+**Experimental design**: GPT-5.2 used for all three methods (same model, equal API
+budget of 4 calls per trial) to isolate collaboration structure from model capability.
+
+| Condition | API calls/trial | Method |
+|-----------|----------------|--------|
+| Solo | 1 | Single-pass inference |
+| Pipeline | 4 | plan → solve → review → fix |
+| Emergent | 4 | Agent A solves → Agent B attacks (different method) → reconcile → verify |
+
+**Note**: Round 4 uses `knights5` (5-person puzzles) where Pipeline shows significant
+degradation (0/5 pass), driving the 50% average. Sub-task breakdown in
+`final_3way_round4_results.json`.
+
+---
+
 ## Known Limitations
 
 1. **N=4 conditions** for gate experiment — narrow but sufficient for binary classification
-2. **Single task** (GCD) for main gate validation — O(n log n) generalization untested  
+2. **Single task** (GCD) for main gate validation — O(n log n) generalization untested
 3. **Gemini API** instability — responses may truncate; use `gemini-3-flash-preview` only
 4. **GPT-5.2** requires `/v1/responses` endpoint (not `/v1/chat/completions`)
+5. **Amplification experiment**: N=5 per condition, 2 domains only — exploratory, not confirmatory
+6. **Same-model constraint**: All amplification results use GPT-5.2; cross-model results pending
