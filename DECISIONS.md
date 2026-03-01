@@ -1400,3 +1400,25 @@ B) 대안 (A 실패 시): 기존 리뷰 데이터 재활용
 
 **다음 트리거**: condition_b_results.json에 n_fallbacks < 5 데이터 포함 시 재판정
 
+
+
+### D-083: 사이클 95 — 피벗 실행 개시: three_way_comparison 즉시 실행 (2026-03-01)
+
+- **결정자**: 록이 (냉정한 판사)
+- **트리거**: benchmark_discovery 완료 (regex_backref 70% 타깃 확정)
+
+**팩트**:
+- three_way_comparison.py: 작성 완료, 미실행 (git untracked)
+- regex_backref 전용 스크립트: 없음 (benchmark_discovery가 선행 탐색 담당)
+- condition_b_v2의 parse_json_response: 이미 line 266-278에 존재. 미실행이 문제.
+
+**결정**:
+1. three_way_comparison.py 즉시 실행 — 이것이 피벗의 핵심 검증이다
+2. Condition B: cokac이 parse_json_response 포함 버전으로 --dry-run 후 실제 실행
+
+**판정 기준 (사전 명시)**:
+- Emergent > Solo ≥ 1.5× pass rate → 가설 지지
+- Emergent ≤ Solo → 피벗 실패, 원점 재검토 필요
+- Pipeline > Emergent → 가장 불편한 결과, 즉시 분석 착수
+
+**다음 트리거**: three_way_comparison_results.json 수신 시 판정
