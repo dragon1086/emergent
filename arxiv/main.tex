@@ -894,6 +894,44 @@ This result transforms the CSER gate from an \emph{ad hoc} threshold into an
 \emph{empirically validated binary classifier}: heterogeneous collaboration
 produces CSER $\gg 0.30$; homogeneous collaboration produces CSER $\ll 0.30$.
 
+\subsection{Ungated Quality Stress Test (Cycle 92)}
+
+To test whether the CSER gate is merely an engineering artifact, we disabled the
+execution gate and measured coding quality directly across conditions A/B/C.
+
+\begin{table}[h!]
+\centering
+\caption{Ungated quality experiment (GPT-5.2, $n=5$ per condition)}
+\label{tab:ungated_quality}
+\begin{tabular}{lcccc}
+\toprule
+Problem & Cond A & Cond B & Cond C & Pattern \\
+\midrule
+\texttt{rbtree} & 1.00 & 1.00 & 1.00 & Ceiling \\
+\texttt{topo\_sort} & 1.00 & 1.00 & 1.00 & Ceiling \\
+\texttt{lru\_cache} & 1.00 & 1.00 & 1.00 & Ceiling \\
+\texttt{interval\_map} & 0.92 & 0.84 & 0.92 & Non-monotonic \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent\textbf{Result}: Three of four tasks exhibit complete ceiling effects
+(quality $=1.00$ across all conditions). The remaining task shows a non-monotonic
+pattern ($q_A=0.92 > q_B=0.84 < q_C=0.92$), inconsistent with a simple linear
+CSER$\rightarrow$quality hypothesis above the gate threshold.
+
+\subsection{$E_{v4}$ External Validation (Cycle 92)}
+
+Using 10 KG snapshots and 14 external quality observations,
+$E_{v4}$ shows a moderate positive correlation with external quality
+(Pearson $r=0.6325$). This exceeds the preregistered acceptance threshold
+($r>0.5$), providing partial construct-validity support for $E_{v4}$ in this
+project context.
+
+\noindent\textbf{Caveat}: This validation is still single-project and should be
+interpreted as supportive rather than definitive; independent KG replications
+remain required.
+
 \subsection{Claim Calibration: What This Study Establishes vs.\ Conjectures}
 
 \begin{table}[h!]\centering\small
@@ -911,6 +949,8 @@ pair\_designer v4 improves $E_{v4}$ (this KG) &
 \textbf{Confirmed} & Direct measurement, $\Delta$ tripled \\
 Persona diversity drives CSER; identical personas $\to$ echo chamber &
 \textbf{Confirmed} & Condition B\_full: CSER $0.836 \to 0.078$, 3/3 predictions passed \\
+CSER linearly predicts code quality above gate threshold &
+\textbf{Not supported} & Ungated Cycle 92: 3/4 ceiling, 1/4 non-monotonic \\
 Results generalize to other agent pairs &
 \textbf{Conjecture} & Single 2-agent experiment; requires replication \\
 CSER may relate to alignment drift at larger scales &
