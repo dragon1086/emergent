@@ -1,7 +1,7 @@
 {
-  "tool_name": "Read",
-  "tool_input_preview": "{\"file_path\":\"/Users/rocky/emergent/DECISIONS.md\"}",
-  "error": "File content (33202 tokens) exceeds maximum allowed tokens (25000). Please use offset and limit parameters to read specific portions of the file, or use the GrepTool to search for specific content.",
-  "timestamp": "2026-03-01T12:37:09.364Z",
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"tail -5 /Users/rocky/emergent/DECISIONS.md | cat -A\",\"description\":\"Check exact end of DECISIONS.md\"}",
+  "error": "Exit code 1\ncat: illegal option -- A\nusage: cat [-belnstuv] [file ...]\n\ncat: illegal option -- A\nusage: cat [-belnstuv] [file ...]",
+  "timestamp": "2026-03-01T14:51:56.165Z",
   "retry_count": 1
 }
