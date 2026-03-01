@@ -1,0 +1,50 @@
+[
+  {
+    "id": "p1_range",
+    "code": "\ndef sum_to_n(n):\n    total = 0\n    for i in range(n):  # BUG HERE\n        total += i\n    return total\n# Expected: sum_to_n(5) == 15  (1+2+3+4+5)\nprint(sum_to_n(5))\n",
+    "bug": "range(n) should be range(1, n+1). Returns 0+1+2+3+4=10, not 15.",
+    "verify": "def sum_to_n(n):\n    total=0\n    for i in range(1,n+1): total+=i\n    return total\nassert sum_to_n(5)==15"
+  },
+  {
+    "id": "p2_recursion",
+    "code": "\ndef factorial(n):\n    if n == 0:\n        return 0   # BUG HERE\n    return n * factorial(n - 1)\n# Expected: factorial(5) == 120\nprint(factorial(5))\n",
+    "bug": "Base case returns 0 instead of 1. Everything multiplied by 0.",
+    "verify": "def factorial(n):\n    if n==0: return 1\n    return n*factorial(n-1)\nassert factorial(5)==120"
+  },
+  {
+    "id": "p3_shallow_copy",
+    "code": "\ndef add_item(item, lst=[]):  # BUG HERE\n    lst.append(item)\n    return lst\n# Expected: add_item(1) == [1], add_item(2) == [2]\nprint(add_item(1))\nprint(add_item(2))\n",
+    "bug": "Mutable default argument — lst=[] is shared across calls. Second call returns [1,2] not [2].",
+    "verify": "def add_item(item, lst=None):\n    if lst is None: lst=[]\n    lst.append(item); return lst\nassert add_item(1)==[1]; assert add_item(2)==[2]"
+  },
+  {
+    "id": "p4_float",
+    "code": "\ndef is_third(n):\n    return (n / 3) * 3 == n   # BUG HERE\n# Expected: is_third(1) == True\nprint(is_third(1))\n",
+    "bug": "(1/3)*3 = 0.9999... != 1 due to float precision. Should use abs(a-b) < epsilon.",
+    "verify": "def is_third(n):\n    return abs((n/3)*3 - n) < 1e-9\nassert is_third(1)==True"
+  },
+  {
+    "id": "p5_sort",
+    "code": "\ndef top_two(nums):\n    nums.sort()   # BUG HERE\n    return nums[-2:]\n# Expected: top_two([3,1,4,1,5,9]) == [5,9]... but sorted wrong\nprint(top_two([3,1,4,1,5,9]))\n",
+    "bug": "sort() ascending — nums[-2:] is correct for ascending BUT the real bug is it mutates input. More critically: works here. Real hidden bug: top_two([]) or top_two([1]) causes IndexError.",
+    "verify": "def top_two(nums):\n    s=sorted(nums)\n    if len(s)<2: return s\n    return s[-2:]\nassert top_two([3,1,4,1,5,9])==[5,9]"
+  },
+  {
+    "id": "p6_binary",
+    "code": "\ndef binary_search(arr, target):\n    lo, hi = 0, len(arr)  # BUG HERE\n    while lo < hi:\n        mid = (lo + hi) // 2\n        if arr[mid] == target: return mid\n        elif arr[mid] < target: lo = mid\n        else: hi = mid\n    return -1\n# Expected: binary_search([1,3,5,7,9], 3) == 1\nprint(binary_search([1,3,5,7,9], 3))\n",
+    "bug": "Two bugs: hi should be len(arr)-1; lo=mid should be lo=mid+1 (causes infinite loop when target not found).",
+    "verify": "def binary_search(arr,t):\n    lo,hi=0,len(arr)-1\n    while lo<=hi:\n        m=(lo+hi)//2\n        if arr[m]==t: return m\n        elif arr[m]<t: lo=m+1\n        else: hi=m-1\n    return -1\nassert binary_search([1,3,5,7,9],3)==1"
+  },
+  {
+    "id": "p7_logic_induction",
+    "code": "\n# 주장: \"모든 자연수 n에 대해 n² + n + 41은 소수이다\"\n# 증명시도:\n# - n=0: 41 소수 ✓\n# - n=1: 43 소수 ✓\n# - n=2: 47 소수 ✓\n# - n=3: 53 소수 ✓\n# ...n=39: 소수 ✓\n# → 귀납적으로 항상 소수다! (주장)\n",
+    "bug": "n=40: 40²+40+41 = 1600+40+41 = 1681 = 41² (not prime). Induction fails — finite checks don't prove universal claim.",
+    "verify": "n=40; val=n*n+n+41; assert val==41*41  # 합성수 확인"
+  },
+  {
+    "id": "p8_conditional_prob",
+    "code": "\n# 주장: 동전을 2번 던졌을 때 적어도 1개가 앞면이라고 알려진 상황에서\n# 둘 다 앞면일 확률 = 1/2\n# 근거: 첫 번째가 앞면이면 두 번째도 앞면일 확률이 1/2이므로\n",
+    "bug": "Wrong reasoning. Sample space given 'at least one head': HH,HT,TH (3 cases). Only HH satisfies both heads. P = 1/3 not 1/2.",
+    "verify": "# 검증: 경우의 수 직접 계산\nfrom fractions import Fraction\nall_cases=[('H','H'),('H','T'),('T','H'),('T','T')]\nat_least_one_head=[c for c in all_cases if 'H' in c]\nboth_heads=[c for c in at_least_one_head if c==('H','H')]\nprob=Fraction(len(both_heads),len(at_least_one_head))\nassert prob==Fraction(1,3)"
+  }
+]
