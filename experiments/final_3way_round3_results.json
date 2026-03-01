@@ -1,0 +1,84 @@
+{
+  "model": "gpt-5.2",
+  "domain": "logic_reasoning_puzzles",
+  "round": 3,
+  "n_trials": 5,
+  "problems": [
+    "digit_arrangement",
+    "knights_knaves"
+  ],
+  "overall": {
+    "solo": 0.8,
+    "pipeline": 0.7,
+    "emergent": 0.6
+  },
+  "results": {
+    "digit_arrangement": {
+      "solo": {
+        "accuracy": 0.8,
+        "raw": [
+          1,
+          1,
+          0,
+          1,
+          1
+        ]
+      },
+      "pipeline": {
+        "accuracy": 1.0,
+        "raw": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "emergent": {
+        "accuracy": 0.4,
+        "raw": [
+          1,
+          0,
+          1,
+          0,
+          0
+        ]
+      }
+    },
+    "knights_knaves": {
+      "solo": {
+        "accuracy": 0.8,
+        "raw": [
+          1,
+          0,
+          1,
+          1,
+          1
+        ]
+      },
+      "pipeline": {
+        "accuracy": 0.4,
+        "raw": [
+          0,
+          1,
+          0,
+          0,
+          1
+        ]
+      },
+      "emergent": {
+        "accuracy": 0.8,
+        "raw": [
+          0,
+          1,
+          1,
+          1,
+          1
+        ]
+      }
+    }
+  },
+  "verdict": "\u2696\ufe0f  \ubc29\ubc95 \uac04 \ucc28\uc774 \ubbf8\ubbf8",
+  "summary": "Solo=80% Pipeline=70% Emergent=60%",
+  "emergent_design": "independent_2path_consensus"
+}
