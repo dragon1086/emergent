@@ -150,6 +150,28 @@ qualitatively. This study \textbf{quantifies} emergence:
 individual agents. This study tracks \textbf{co-evolution of a shared KG} --- emergent
 growth of shared knowledge structure, not individual memory.
 
+\subsection{Recent Concurrent Work (2025--2026)}
+
+\textbf{Agentic-KGR}~\cite{li2025agentickgr} (October 2025) introduced co-evolutionary
+KG construction via multi-agent reinforcement learning, demonstrating dynamic schema
+expansion during training. Unlike Agentic-KGR (goal: KG completeness via RL),
+this study focuses on \textbf{measuring and designing the emergent properties of
+the co-evolution process itself}, introducing CSER and $E_{v4}$ as structural
+quality metrics independent of task performance.
+
+\textbf{Emergent Convergence in Multi-Agent LLM Annotation}~\cite{parfenova2025emergent}
+(EMNLP 2025) observed convergence phenomena in collaborative multi-LLM annotation
+tasks as a black-box coordination mechanism. This study provides a complementary
+\textbf{white-box structural account}: CSER quantifies the cross-source interaction
+that drives convergence, and D-047 shows the measurement itself participates in the
+convergence dynamics.
+
+\textbf{Graph-based Agent Memory}~\cite{yang2026graphmemory} (February 2026) surveys
+graph-based memory architectures for LLM agents, including shared KG structures.
+This study contributes an empirical case study of a two-agent shared KG undergoing
+86 cycles of co-evolution, with quantitative emergence metrics absent from existing
+survey taxonomies.
+
 \subsection{Unique Contributions}
 
 \begin{table}[h!]
@@ -162,10 +184,10 @@ Goal & Task & Collab. & Coherence & Observe & \textbf{Measure/Design} \\
 Emergence measure & -- & -- & -- & Qualitative & \textbf{$E_{v4}$ quantified} \\
 Cross-time patterns & -- & -- & -- & -- & \textbf{DCI/span (max=160)} \\
 Observer effect & -- & -- & -- & -- & \textbf{D-047 empirical} \\
-Paradoxical emergence & -- & -- & -- & -- & \textbf{D-063 (120 instances)} \\
+KG co-evolution & -- & -- & -- & -- & \textbf{86-cycle empirical} \\
 \bottomrule
 \end{tabular}
-\caption{Comparison with related multi-agent systems}
+\caption{Comparison with related multi-agent systems (including 2025--2026 concurrent work)}
 \end{table}
 
 % ─────────────────────────────────────────────────────────────────────────────
@@ -706,17 +728,26 @@ As AI systems approach greater autonomy, alignment research requires metrics tha
   Park, J.S. et al. (2023). Generative Agents: Interactive Simulacra of Human Behavior.
   \textit{arXiv:2304.03442}.
 
-\bibitem{wei2024survey}
-  Wei, J. et al. (2024). A Survey on Multi-Agent LLM Systems: Architectures, Coordination, and Emergence. \textit{arXiv:2402.01680}.
+\bibitem{li2025agentickgr}
+  Li, J. et al. (2025). Agentic-KGR: Co-evolutionary Knowledge Graph Construction
+  through Multi-Agent Reinforcement Learning. \textit{arXiv:2510.09156}.
 
-\bibitem{zhuge2024agent}
-  Zhuge, M. et al. (2024). Agent-as-a-Graph: Emergent Graph Structure in Multi-Agent Collaboration Networks. \textit{arXiv:2406.13385}.
+\bibitem{parfenova2025emergent}
+  Parfenova, A., Denzler, A., and Pfeffer, J. (2025).
+  Emergent Convergence in Multi-Agent LLM Annotation.
+  \textit{EMNLP 2025, arXiv:2512.00047}.
+
+\bibitem{yang2026graphmemory}
+  Yang, C. et al. (2026). Graph-based Agent Memory: Taxonomy, Techniques, and
+  Applications. \textit{arXiv:2602.05665}.
+
+\bibitem{guo2024survey}
+  Guo, T. et al. (2024). Large Language Model based Multi-Agents: A Survey of
+  Progress and Challenges. \textit{arXiv:2402.01680}.
 
 \bibitem{chan2024chateval}
-  Chan, C. et al. (2024). ChatEval: Towards Better LLM-based Evaluators through Multi-Agent Debate. \textit{ICLR 2024, arXiv:2308.07201}.
-
-\bibitem{liu2024dynamic}
-  Liu, X. et al. (2024). Dynamic LLM-Agent Networks: An LLM-based Approach for Autonomous Multi-Agent Collaboration. \textit{arXiv:2310.02170}.
+  Chan, C. et al. (2024). ChatEval: Towards Better LLM-based Evaluators through
+  Multi-Agent Debate. \textit{ICLR 2024, arXiv:2308.07201}.
 
 \end{thebibliography}
 
