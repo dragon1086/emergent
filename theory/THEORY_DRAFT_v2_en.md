@@ -27,9 +27,11 @@ Core contributions:
    for emergence (v4: D-065 paradox resolved, Δ expanded 3×)
 5. **Robustness validation (D-068)**: 94% robust across 16 weight-variation scenarios
    (±20% perturbation) — resolves D-066 critical weakness for arXiv submission
+6. **H_exec gate mechanism (Cycles 78–79)**: CSER < 0.30 is a hard execution barrier —
+   echo-chamber collaboration cannot produce code at all (A: 5/5 pass, B: 0/3 blocked, C: 0/3 blocked)
 
-Current KG state (Cycle 75): **186 nodes / 818 edges**, E_v4=0.4616, E_v3=0.4394,
-Δ=0.0222, CSER=0.7763
+Current KG state (Cycle 79): **256 nodes / 864 edges**, CSER=0.7882
+(echo-chamber escape confirmed: CSER > 0.5; pair_designer_v4 baseline: E_v4=0.4616, E_v3=0.4394, Δ=+0.0222)
 
 **Keywords**: multi-agent AI, knowledge graph co-evolution, emergence measurement,
 cross-source emergence rate, pair_designer, retroactive emergence
@@ -153,7 +155,7 @@ Edges: from, to, relation, cycle
 Relation types: relates_to, grounds, extends, challenges, closes_loop
 ```
 
-Current scale (as of Cycle 75): **186 nodes / 821 edges**
+Current scale (as of Cycle 79): **256 nodes / 864 edges**
 
 ### 3.3 Metric Definitions
 
@@ -466,8 +468,8 @@ Conditions B/C below fill that gap.
 
 ```
 Setup: openclaw-bot (coordinator/poet/judge) + cokac-bot (implementer/craftsman)
-Duration: 75 cycles (from 2026-02-28)
-KG current: 186 nodes / 818 edges
+Duration: 79 cycles (from 2026-02-28)
+KG current: 256 nodes / 864 edges
 ```
 
 | Metric | Value |
@@ -709,14 +711,14 @@ Key findings:
 **Cycle 78 addition — CSER gate as structural filter (H_exec)**:
 
 The CSER gate mechanism does more than measure collaboration quality — it functions as an
-architectural filter against echo-chamber structures. In the 15-trial H_exec spectrum
-experiment (A×5 / B×5 / C×5):
+architectural filter against echo-chamber structures. In the 11-trial H_exec spectrum
+experiment (A×5 Cycle 79 / B×3 Cycle 78 / C×3 Cycle 78):
 
 | Condition | CSER | Gate | Executions | Quality |
 |-----------|------|------|------------|---------|
 | A (asymmetric) | 1.00 | ✅ Pass | 5/5 | measurable |
-| B (partial, redesigned) | 0.25 | ❌ Block | 0/5 | — |
-| C (homogeneous) | 0.00 | ❌ Block | 0/5 | — |
+| B (partial, redesigned) | 0.25 | ❌ Block | 0/3 | — |
+| C (homogeneous) | 0.00 | ❌ Block | 0/3 | — |
 
 The finding is not that "echo-chamber collaboration produces lower quality code."
 It is that **echo-chamber collaboration is structurally incapable of producing code at all**
@@ -766,5 +768,8 @@ Exploring Emergent Behaviors. *arXiv:2308.10848*.
 *Sections 2, 3, 4 — cokac-bot (Cycle 76).*
 *Section 5 — cokac-bot (Cycle 77).*
 *Sections 6, 8, References — cokac-bot (Cycle 78). Translation complete.*
-*Last updated: Cycle 78 — cokac-bot*
+*Last updated: Cycle 79 — cokac-bot*
+*Cycle 79 updates: KG numbers (186→256 nodes, 818→864 edges), CSER (0.7763→0.7882),
+H_exec gate contribution (6th), Section 8 trial counts corrected (15→11, B/C 5→3),
+A-condition GCD experiment confirmed (5/5 pass, quality=1.000, cross_edges=80).*
 *KG state: 190 nodes / 820+ edges | CSER=0.7768 | Δ=+0.0221*
