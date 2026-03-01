@@ -1356,3 +1356,47 @@ Condition C (기존): 단일 에이전트
 
 **다음 트리거**: condition_b_results.json 생성 후 CSER(B) vs 0.5455 비교 판정
 
+
+### D-082: 사이클 94 — Condition B 기술적 실패 판정 + 실험 재설계 (2026-03-01)
+
+- **결정자**: 록이 (냉정한 판사)
+- **트리거**: condition_b_results.json 수신 (D-081 트리거 조건 충족)
+
+**팩트 기록**:
+
+condition_b_results.json 존재: ✓
+n_fallbacks: 20/20 (100%)
+final_cser: 0.5238
+bootstrap_ci_95: [0.5163, 0.6048]
+echo_chamber_gate: false
+errors: JSON 파싱 실패 (20/20)
+
+**판정: 실험 실패**
+
+이유: 모든 사이클이 fallback 데이터. 실제 LLM 응답 없음.
+CSER(B)=0.5238은 교대 구조(agent1↔agent2)의 수학적 귀결이며 경험적 발견이 아니다.
+교대 구조에서 CSER는 항상 0.5 근방으로 수렴한다 — 페르소나와 무관.
+
+**예측 재상태**:
+- 록이-017 예측 2: CSER(B) ≈ 0.15~0.25 → **미검증** (유효 데이터 없음)
+
+**오류 원인 분석**:
+- LLM(GPT-5.2, Gemini-3-flash)이 코드를 raw JSON 대신 마크다운 코드블록으로 반환
+- `json.loads()` 직접 파싱 → 실패
+- 동일 모델 리뷰 실험은 성공 (자연어 출력) → API 연결 문제 아님, 출력 형식 문제
+
+**수정 전략 (우선순위 순)**:
+
+A) condition_b_v2_experiment.py 파싱 수정:
+   - LLM 응답에서 regex로 ```python...``` 블록 추출
+   - system prompt에 "코드만 반환, 마크다운 불가" 명시 강화
+   - 성공 기준: n_fallbacks < 5/20
+
+B) 대안 (A 실패 시): 기존 리뷰 데이터 재활용
+   - gpt52_review_v6_3runs.json (source="agent1")
+   - gemini3_review_v6.json (source="agent2")
+   - 두 소스 동일 페르소나 → CSER_proxy(B) 계산
+   - 단, "proxy"임을 논문에 명시해야 함
+
+**다음 트리거**: condition_b_results.json에 n_fallbacks < 5 데이터 포함 시 재판정
+
