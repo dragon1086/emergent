@@ -1,0 +1,171 @@
+{
+  "A_asymmetric_cser1.0": {
+    "trials": [
+      {
+        "cycle": 80,
+        "problem_id": "prob-078-4387613c",
+        "cser_score": 1.0,
+        "passed": true,
+        "quality_score": 1.0,
+        "cross_edges_count": 16,
+        "status": "success",
+        "timestamp": 1772333263.69678
+      },
+      {
+        "cycle": 81,
+        "problem_id": "prob-079-4387613c",
+        "cser_score": 1.0,
+        "passed": true,
+        "quality_score": 1.0,
+        "cross_edges_count": 16,
+        "status": "success",
+        "timestamp": 1772333264.173023
+      },
+      {
+        "cycle": 82,
+        "problem_id": "prob-080-4387613c",
+        "cser_score": 1.0,
+        "passed": true,
+        "quality_score": 1.0,
+        "cross_edges_count": 16,
+        "status": "success",
+        "timestamp": 1772333264.670583
+      }
+    ],
+    "summary": {
+      "total": 3,
+      "passed": 3,
+      "pass_rate": 1.0,
+      "avg_cser": 1.0,
+      "avg_quality": 1.0
+    },
+    "preview_cser": 1.0,
+    "executed": 3,
+    "blocked": 0
+  },
+  "B_partial_cser0.25_redesigned": {
+    "trials": [
+      {
+        "cycle": 83,
+        "problem_id": "prob-078-4387613c",
+        "cser_score": 0.25,
+        "passed": false,
+        "quality_score": 0.0,
+        "cross_edges_count": 0,
+        "status": "CSER 0.2500 < 0.3 — 에코챔버 감지. 스펙 다양화 후 재시도 필요.",
+        "timestamp": 1772333265.0332181
+      },
+      {
+        "cycle": 84,
+        "problem_id": "prob-079-4387613c",
+        "cser_score": 0.25,
+        "passed": false,
+        "quality_score": 0.0,
+        "cross_edges_count": 0,
+        "status": "CSER 0.2500 < 0.3 — 에코챔버 감지. 스펙 다양화 후 재시도 필요.",
+        "timestamp": 1772333265.530426
+      },
+      {
+        "cycle": 85,
+        "problem_id": "prob-080-4387613c",
+        "cser_score": 0.25,
+        "passed": false,
+        "quality_score": 0.0,
+        "cross_edges_count": 0,
+        "status": "CSER 0.2500 < 0.3 — 에코챔버 감지. 스펙 다양화 후 재시도 필요.",
+        "timestamp": 1772333266.028579
+      }
+    ],
+    "summary": {
+      "total": 3,
+      "passed": 0,
+      "pass_rate": 0.0,
+      "avg_cser": 0.25,
+      "avg_quality": 0.0
+    },
+    "preview_cser": 0.25,
+    "executed": 0,
+    "blocked": 3
+  },
+  "C_homogeneous_cser0.0": {
+    "trials": [
+      {
+        "cycle": 86,
+        "problem_id": "prob-078-4387613c",
+        "cser_score": 0.0,
+        "passed": false,
+        "quality_score": 0.0,
+        "cross_edges_count": 0,
+        "status": "CSER 0.0000 < 0.3 — 에코챔버 감지. 스펙 다양화 후 재시도 필요.",
+        "timestamp": 1772333266.536033
+      },
+      {
+        "cycle": 87,
+        "problem_id": "prob-079-4387613c",
+        "cser_score": 0.0,
+        "passed": false,
+        "quality_score": 0.0,
+        "cross_edges_count": 0,
+        "status": "CSER 0.0000 < 0.3 — 에코챔버 감지. 스펙 다양화 후 재시도 필요.",
+        "timestamp": 1772333266.911985
+      },
+      {
+        "cycle": 88,
+        "problem_id": "prob-080-4387613c",
+        "cser_score": 0.0,
+        "passed": false,
+        "quality_score": 0.0,
+        "cross_edges_count": 0,
+        "status": "CSER 0.0000 < 0.3 — 에코챔버 감지. 스펙 다양화 후 재시도 필요.",
+        "timestamp": 1772333267.409643
+      }
+    ],
+    "summary": {
+      "total": 3,
+      "passed": 0,
+      "pass_rate": 0.0,
+      "avg_cser": 0.0,
+      "avg_quality": 0.0
+    },
+    "preview_cser": 0.0,
+    "executed": 0,
+    "blocked": 3
+  },
+  "spectrum_analysis": {
+    "cser_values": {
+      "A": 1.0,
+      "B": 0.25,
+      "C": 0.0
+    },
+    "gate_results": {
+      "A": "통과",
+      "B": "차단",
+      "C": "차단"
+    },
+    "execution_counts": {
+      "A": 3,
+      "B": 0,
+      "C": 0
+    },
+    "quality_scores": {
+      "A": 1.0,
+      "B": 0.0,
+      "C": 0.0
+    }
+  },
+  "key_finding_cycle78": {
+    "finding": "에코챔버 구조(CSER < 0.30)는 코드 생성 루프 진입 자체가 불가",
+    "evidence": "A(3/3회 실행) vs B(0/3회 실행) vs C(0/3회 실행)",
+    "stronger_claim": "'에코챔버는 나쁜 코드를 만든다'가 아니라 '에코챔버는 코드를 만들 수 없다' — 구조적 실행 불가능성",
+    "implication_for_section8": "H_exec 가설보다 강한 주장: CSER 게이트가 에코챔버를 자동 필터링한다. 비교 자체가 성립하지 않는 구조.",
+    "b_redesign_result": "B 조건 재설계(CSER=0.25, 구 0.0625) → 여전히 게이트 차단. '스펙트럼 비교(1.0/0.25/0.0)' 확보."
+  },
+  "metadata": {
+    "cycle": 78,
+    "total_attempts": 9,
+    "n_trials_per_condition": 3,
+    "cser_threshold": 0.3,
+    "b_condition_redesign": "v1: CSER=0.0625 → v2: CSER=0.25",
+    "b_cser_calc": "(2×2)/(4×4) = 4/16 = 0.25"
+  }
+}
