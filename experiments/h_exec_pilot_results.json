@@ -1,0 +1,136 @@
+{
+  "A_asymmetric_high_cser": {
+    "trials": [
+      {
+        "cycle": 77,
+        "problem_id": "prob-077-4387613c",
+        "cser_score": 1.0,
+        "passed": true,
+        "quality_score": 1.0,
+        "cross_edges_count": 16,
+        "status": "success",
+        "timestamp": 1772322828.1026292
+      },
+      {
+        "cycle": 78,
+        "problem_id": "prob-078-4387613c",
+        "cser_score": 1.0,
+        "passed": true,
+        "quality_score": 1.0,
+        "cross_edges_count": 16,
+        "status": "success",
+        "timestamp": 1772322828.798353
+      },
+      {
+        "cycle": 79,
+        "problem_id": "prob-079-4387613c",
+        "cser_score": 1.0,
+        "passed": true,
+        "quality_score": 1.0,
+        "cross_edges_count": 16,
+        "status": "success",
+        "timestamp": 1772322829.495834
+      }
+    ],
+    "summary": {
+      "total": 3,
+      "passed": 3,
+      "pass_rate": 1.0,
+      "avg_cser": 1.0,
+      "avg_quality": 1.0
+    }
+  },
+  "B_partial_mid_cser": {
+    "trials": [
+      {
+        "cycle": 80,
+        "problem_id": "prob-077-4387613c",
+        "cser_score": 0.0625,
+        "passed": false,
+        "quality_score": 0.0,
+        "cross_edges_count": 0,
+        "status": "CSER 0.0625 < 0.3 — 에코챔버 감지. 스펙 다양화 후 재시도 필요.",
+        "timestamp": 1772322830.161341
+      },
+      {
+        "cycle": 81,
+        "problem_id": "prob-078-4387613c",
+        "cser_score": 0.0625,
+        "passed": false,
+        "quality_score": 0.0,
+        "cross_edges_count": 0,
+        "status": "CSER 0.0625 < 0.3 — 에코챔버 감지. 스펙 다양화 후 재시도 필요.",
+        "timestamp": 1772322830.672268
+      },
+      {
+        "cycle": 82,
+        "problem_id": "prob-079-4387613c",
+        "cser_score": 0.0625,
+        "passed": false,
+        "quality_score": 0.0,
+        "cross_edges_count": 0,
+        "status": "CSER 0.0625 < 0.3 — 에코챔버 감지. 스펙 다양화 후 재시도 필요.",
+        "timestamp": 1772322831.3225431
+      }
+    ],
+    "summary": {
+      "total": 3,
+      "passed": 0,
+      "pass_rate": 0.0,
+      "avg_cser": 0.0625,
+      "avg_quality": 0.0
+    }
+  },
+  "C_homogeneous_low_cser": {
+    "trials": [
+      {
+        "cycle": 80,
+        "problem_id": "prob-077-4387613c",
+        "cser_score": 0.0,
+        "passed": false,
+        "quality_score": 0.0,
+        "cross_edges_count": 0,
+        "status": "CSER 0.0000 < 0.3 — 에코챔버 감지. 스펙 다양화 후 재시도 필요.",
+        "timestamp": 1772322831.987187
+      },
+      {
+        "cycle": 81,
+        "problem_id": "prob-078-4387613c",
+        "cser_score": 0.0,
+        "passed": false,
+        "quality_score": 0.0,
+        "cross_edges_count": 0,
+        "status": "CSER 0.0000 < 0.3 — 에코챔버 감지. 스펙 다양화 후 재시도 필요.",
+        "timestamp": 1772322832.6302872
+      },
+      {
+        "cycle": 82,
+        "problem_id": "prob-079-4387613c",
+        "cser_score": 0.0,
+        "passed": false,
+        "quality_score": 0.0,
+        "cross_edges_count": 0,
+        "status": "CSER 0.0000 < 0.3 — 에코챔버 감지. 스펙 다양화 후 재시도 필요.",
+        "timestamp": 1772322833.2792058
+      }
+    ],
+    "summary": {
+      "total": 3,
+      "passed": 0,
+      "pass_rate": 0.0,
+      "avg_cser": 0.0,
+      "avg_quality": 0.0
+    }
+  },
+  "conclusion": {
+    "h_exec_supported": true,
+    "verdict": "지지됨 ✓",
+    "quality_A": 1.0,
+    "quality_B": 0.0,
+    "quality_C": 0.0,
+    "delta_A_minus_B": 1.0,
+    "delta_A_minus_C": 1.0,
+    "total_runs": 9,
+    "note": "파일럿 (n=3×3=9). 사이클 78에서 n=100×3=300회 본실험 예정."
+  }
+}

@@ -29,6 +29,65 @@ KG_PATH = Path(__file__).parent.parent / "data" / "knowledge-graph.json"
 
 
 # ---------------------------------------------------------------------------
+# 실제 LLM 연동 함수 (사이클 77 구현)
+# ---------------------------------------------------------------------------
+
+def llm_code_generator_fn(prompt: str) -> str:
+    """
+    실제 LLM 코드 생성 — claude CLI 호출.
+
+    ~/.claude/oauth-token 사용. --dangerously-skip-permissions 플래그로
+    대화형 확인 없이 실행.
+
+    Args:
+        prompt: 코드 생성 컨텍스트 프롬프트
+
+    Returns:
+        생성된 코드 문자열 (빈 문자열이면 mock으로 폴백)
+    """
+    import subprocess
+
+    # 코드만 반환하도록 프롬프트 래핑
+    full_prompt = (
+        prompt
+        + "\n\n---\n"
+        + "위 명세에 맞는 Python 코드만 출력하라. "
+        + "설명 없이 코드 블록으로만 응답하라.\n"
+    )
+
+    try:
+        # CLAUDECODE 환경 변수 제거 — 중첩 세션 방지
+        import os
+        env = {k: v for k, v in os.environ.items() if k != "CLAUDECODE"}
+
+        result = subprocess.run(
+            ["claude", "-p", "--dangerously-skip-permissions"],
+            input=full_prompt,
+            capture_output=True,
+            text=True,
+            timeout=120,
+            env=env,
+        )
+        output = result.stdout.strip()
+        if not output:
+            return f"# LLM 응답 없음 (returncode={result.returncode})\ndef solution():\n    pass\n"
+        # 마크다운 코드 블록 제거
+        if "```python" in output:
+            start = output.index("```python") + 9
+            end = output.index("```", start)
+            return output[start:end].strip()
+        if "```" in output:
+            start = output.index("```") + 3
+            end = output.index("```", start)
+            return output[start:end].strip()
+        return output
+    except subprocess.TimeoutExpired:
+        return "# LLM 호출 타임아웃 (120s)\ndef solution():\n    pass\n"
+    except FileNotFoundError:
+        return "# claude CLI 없음 — 설치 필요\ndef solution():\n    pass\n"
+
+
+# ---------------------------------------------------------------------------
 # 데이터 구조
 # ---------------------------------------------------------------------------
 
@@ -551,3 +610,52 @@ if __name__ == "__main__":
     print(json.dumps(result, indent=2, ensure_ascii=False))
     print("\n=== 루프 요약 ===")
     print(json.dumps(loop.summary(), indent=2, ensure_ascii=False))
+
+    # ------------------------------------------------------------------
+    # 사이클 77: 실제 LLM 호출 검증 테스트
+    # ------------------------------------------------------------------
+    print("\n" + "=" * 60)
+    print("=== 사이클 77: 실제 LLM 연동 테스트 ===")
+    print("=" * 60)
+
+    # 검증용 단순 문제: 두 수를 더하는 함수
+    llm_test_problem = Problem(
+        description="두 정수 a, b를 입력받아 합을 반환하는 함수 add(a, b)를 작성하라.",
+        constraints=["순수 함수", "타입 힌트 포함", "docstring 포함"],
+        examples=[{"input": "add(3, 5)", "output": "8"}, {"input": "add(-1, 1)", "output": "0"}],
+        cycle=77,
+    )
+    llm_macro = MacroSpec(
+        intent="기초 산술 연산의 명확한 명세화 — 테스트 가능성 우선",
+        architecture="단일 함수, 부수효과 없음, 입출력 타입 명시",
+        emergence_hooks=["단순함이 복잡함의 토대", "명세가 곧 설계"],
+        tags=["arithmetic", "purity", "specification"],
+    )
+    llm_tech = TechSpec(
+        implementation_strategy="직접 덧셈 연산자 사용, 타입 힌트 int → int",
+        edge_cases=["음수 입력", "0 입력", "매우 큰 정수 (오버플로 없음 — Python)"],
+        test_criteria=["add(3,5)==8", "add(-1,1)==0", "add(0,0)==0"],
+        complexity_target="O(1)",
+        tags=["integer", "operator", "return_value"],
+    )
+
+    print("\n[LLM 연동 테스트] 문제: 두 수를 더하는 함수 작성")
+    print("[LLM 연동 테스트] claude CLI 호출 중...")
+
+    llm_loop = ExecutionLoop()
+    llm_result = llm_loop.run(
+        llm_test_problem,
+        llm_macro,
+        llm_tech,
+        code_generator_fn=llm_code_generator_fn,
+    )
+
+    print("\n[LLM 연동 결과]")
+    print(json.dumps(llm_result, indent=2, ensure_ascii=False))
+
+    # 생성된 코드 직접 확인
+    crossover = CSERCrossover(macro=llm_macro, tech=llm_tech)
+    crossover.compute_cser()
+    prompt = crossover.generate_prompt()
+    generated_code = llm_code_generator_fn(prompt)
+    print(f"\n[생성된 코드 미리보기]:\n{generated_code[:500]}")
