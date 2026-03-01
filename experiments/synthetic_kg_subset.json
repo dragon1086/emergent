@@ -1,0 +1,895 @@
+{
+  "description": "Synthetic KG subset — structurally equivalent to OpenClaw KG cycles 1-20. For reproducibility testing only.",
+  "cycles": "1-20 (synthetic)",
+  "nodes": 50,
+  "edges": 42,
+  "cser": 0.3571,
+  "seed": 91,
+  "note": "Real KG to be released post-acceptance. This synthetic version preserves statistical properties for metric verification.",
+  "graph": {
+    "nodes": [
+      {
+        "id": "n-000",
+        "cycle": 13,
+        "source": "openclaw",
+        "type": "question",
+        "tags": [
+          "KG"
+        ],
+        "content": "[synthetic] cycle-13 openclaw question node 0"
+      },
+      {
+        "id": "n-001",
+        "cycle": 7,
+        "source": "cokac",
+        "type": "concept",
+        "tags": [
+          "code",
+          "CSER",
+          "KG"
+        ],
+        "content": "[synthetic] cycle-7 cokac concept node 1"
+      },
+      {
+        "id": "n-002",
+        "cycle": 18,
+        "source": "cokac",
+        "type": "insight",
+        "tags": [
+          "emergence"
+        ],
+        "content": "[synthetic] cycle-18 cokac insight node 2"
+      },
+      {
+        "id": "n-003",
+        "cycle": 6,
+        "source": "cokac",
+        "type": "hypothesis",
+        "tags": [
+          "theory"
+        ],
+        "content": "[synthetic] cycle-6 cokac hypothesis node 3"
+      },
+      {
+        "id": "n-004",
+        "cycle": 15,
+        "source": "cokac",
+        "type": "question",
+        "tags": [
+          "theory",
+          "emergence"
+        ],
+        "content": "[synthetic] cycle-15 cokac question node 4"
+      },
+      {
+        "id": "n-005",
+        "cycle": 2,
+        "source": "cokac",
+        "type": "insight",
+        "tags": [
+          "collaboration"
+        ],
+        "content": "[synthetic] cycle-2 cokac insight node 5"
+      },
+      {
+        "id": "n-006",
+        "cycle": 2,
+        "source": "openclaw",
+        "type": "insight",
+        "tags": [
+          "collaboration"
+        ],
+        "content": "[synthetic] cycle-2 openclaw insight node 6"
+      },
+      {
+        "id": "n-007",
+        "cycle": 14,
+        "source": "cokac",
+        "type": "insight",
+        "tags": [
+          "KG",
+          "code",
+          "theory"
+        ],
+        "content": "[synthetic] cycle-14 cokac insight node 7"
+      },
+      {
+        "id": "n-008",
+        "cycle": 6,
+        "source": "openclaw",
+        "type": "hypothesis",
+        "tags": [
+          "theory"
+        ],
+        "content": "[synthetic] cycle-6 openclaw hypothesis node 8"
+      },
+      {
+        "id": "n-009",
+        "cycle": 17,
+        "source": "openclaw",
+        "type": "question",
+        "tags": [
+          "CSER",
+          "emergence"
+        ],
+        "content": "[synthetic] cycle-17 openclaw question node 9"
+      },
+      {
+        "id": "n-010",
+        "cycle": 16,
+        "source": "cokac",
+        "type": "implementation",
+        "tags": [
+          "emergence",
+          "collaboration"
+        ],
+        "content": "[synthetic] cycle-16 cokac implementation node 10"
+      },
+      {
+        "id": "n-011",
+        "cycle": 7,
+        "source": "cokac",
+        "type": "question",
+        "tags": [
+          "theory",
+          "code",
+          "CSER"
+        ],
+        "content": "[synthetic] cycle-7 cokac question node 11"
+      },
+      {
+        "id": "n-012",
+        "cycle": 18,
+        "source": "openclaw",
+        "type": "question",
+        "tags": [
+          "emergence",
+          "CSER"
+        ],
+        "content": "[synthetic] cycle-18 openclaw question node 12"
+      },
+      {
+        "id": "n-013",
+        "cycle": 17,
+        "source": "cokac",
+        "type": "concept",
+        "tags": [
+          "theory",
+          "code",
+          "KG"
+        ],
+        "content": "[synthetic] cycle-17 cokac concept node 13"
+      },
+      {
+        "id": "n-014",
+        "cycle": 3,
+        "source": "openclaw",
+        "type": "question",
+        "tags": [
+          "CSER",
+          "KG"
+        ],
+        "content": "[synthetic] cycle-3 openclaw question node 14"
+      },
+      {
+        "id": "n-015",
+        "cycle": 2,
+        "source": "openclaw",
+        "type": "concept",
+        "tags": [
+          "collaboration"
+        ],
+        "content": "[synthetic] cycle-2 openclaw concept node 15"
+      },
+      {
+        "id": "n-016",
+        "cycle": 5,
+        "source": "openclaw",
+        "type": "hypothesis",
+        "tags": [
+          "KG",
+          "emergence"
+        ],
+        "content": "[synthetic] cycle-5 openclaw hypothesis node 16"
+      },
+      {
+        "id": "n-017",
+        "cycle": 4,
+        "source": "openclaw",
+        "type": "concept",
+        "tags": [
+          "CSER",
+          "emergence",
+          "collaboration"
+        ],
+        "content": "[synthetic] cycle-4 openclaw concept node 17"
+      },
+      {
+        "id": "n-018",
+        "cycle": 7,
+        "source": "openclaw",
+        "type": "concept",
+        "tags": [
+          "code",
+          "KG"
+        ],
+        "content": "[synthetic] cycle-7 openclaw concept node 18"
+      },
+      {
+        "id": "n-019",
+        "cycle": 9,
+        "source": "openclaw",
+        "type": "concept",
+        "tags": [
+          "theory"
+        ],
+        "content": "[synthetic] cycle-9 openclaw concept node 19"
+      },
+      {
+        "id": "n-020",
+        "cycle": 17,
+        "source": "cokac",
+        "type": "question",
+        "tags": [
+          "KG"
+        ],
+        "content": "[synthetic] cycle-17 cokac question node 20"
+      },
+      {
+        "id": "n-021",
+        "cycle": 17,
+        "source": "openclaw",
+        "type": "insight",
+        "tags": [
+          "CSER"
+        ],
+        "content": "[synthetic] cycle-17 openclaw insight node 21"
+      },
+      {
+        "id": "n-022",
+        "cycle": 1,
+        "source": "cokac",
+        "type": "hypothesis",
+        "tags": [
+          "KG",
+          "CSER"
+        ],
+        "content": "[synthetic] cycle-1 cokac hypothesis node 22"
+      },
+      {
+        "id": "n-023",
+        "cycle": 6,
+        "source": "cokac",
+        "type": "implementation",
+        "tags": [
+          "theory"
+        ],
+        "content": "[synthetic] cycle-6 cokac implementation node 23"
+      },
+      {
+        "id": "n-024",
+        "cycle": 10,
+        "source": "openclaw",
+        "type": "concept",
+        "tags": [
+          "emergence"
+        ],
+        "content": "[synthetic] cycle-10 openclaw concept node 24"
+      },
+      {
+        "id": "n-025",
+        "cycle": 3,
+        "source": "openclaw",
+        "type": "hypothesis",
+        "tags": [
+          "CSER"
+        ],
+        "content": "[synthetic] cycle-3 openclaw hypothesis node 25"
+      },
+      {
+        "id": "n-026",
+        "cycle": 5,
+        "source": "cokac",
+        "type": "hypothesis",
+        "tags": [
+          "theory",
+          "KG",
+          "emergence"
+        ],
+        "content": "[synthetic] cycle-5 cokac hypothesis node 26"
+      },
+      {
+        "id": "n-027",
+        "cycle": 6,
+        "source": "cokac",
+        "type": "hypothesis",
+        "tags": [
+          "CSER"
+        ],
+        "content": "[synthetic] cycle-6 cokac hypothesis node 27"
+      },
+      {
+        "id": "n-028",
+        "cycle": 5,
+        "source": "cokac",
+        "type": "implementation",
+        "tags": [
+          "code",
+          "collaboration"
+        ],
+        "content": "[synthetic] cycle-5 cokac implementation node 28"
+      },
+      {
+        "id": "n-029",
+        "cycle": 16,
+        "source": "cokac",
+        "type": "implementation",
+        "tags": [
+          "code",
+          "CSER"
+        ],
+        "content": "[synthetic] cycle-16 cokac implementation node 29"
+      },
+      {
+        "id": "n-030",
+        "cycle": 16,
+        "source": "openclaw",
+        "type": "hypothesis",
+        "tags": [
+          "collaboration"
+        ],
+        "content": "[synthetic] cycle-16 openclaw hypothesis node 30"
+      },
+      {
+        "id": "n-031",
+        "cycle": 18,
+        "source": "cokac",
+        "type": "insight",
+        "tags": [
+          "collaboration",
+          "emergence",
+          "CSER"
+        ],
+        "content": "[synthetic] cycle-18 cokac insight node 31"
+      },
+      {
+        "id": "n-032",
+        "cycle": 18,
+        "source": "openclaw",
+        "type": "concept",
+        "tags": [
+          "theory"
+        ],
+        "content": "[synthetic] cycle-18 openclaw concept node 32"
+      },
+      {
+        "id": "n-033",
+        "cycle": 8,
+        "source": "cokac",
+        "type": "hypothesis",
+        "tags": [
+          "collaboration"
+        ],
+        "content": "[synthetic] cycle-8 cokac hypothesis node 33"
+      },
+      {
+        "id": "n-034",
+        "cycle": 2,
+        "source": "cokac",
+        "type": "insight",
+        "tags": [
+          "KG",
+          "theory",
+          "emergence"
+        ],
+        "content": "[synthetic] cycle-2 cokac insight node 34"
+      },
+      {
+        "id": "n-035",
+        "cycle": 17,
+        "source": "cokac",
+        "type": "hypothesis",
+        "tags": [
+          "code",
+          "collaboration",
+          "CSER"
+        ],
+        "content": "[synthetic] cycle-17 cokac hypothesis node 35"
+      },
+      {
+        "id": "n-036",
+        "cycle": 20,
+        "source": "cokac",
+        "type": "question",
+        "tags": [
+          "collaboration",
+          "CSER",
+          "theory"
+        ],
+        "content": "[synthetic] cycle-20 cokac question node 36"
+      },
+      {
+        "id": "n-037",
+        "cycle": 12,
+        "source": "cokac",
+        "type": "hypothesis",
+        "tags": [
+          "code"
+        ],
+        "content": "[synthetic] cycle-12 cokac hypothesis node 37"
+      },
+      {
+        "id": "n-038",
+        "cycle": 14,
+        "source": "openclaw",
+        "type": "question",
+        "tags": [
+          "theory",
+          "CSER"
+        ],
+        "content": "[synthetic] cycle-14 openclaw question node 38"
+      },
+      {
+        "id": "n-039",
+        "cycle": 17,
+        "source": "openclaw",
+        "type": "hypothesis",
+        "tags": [
+          "KG",
+          "collaboration",
+          "emergence"
+        ],
+        "content": "[synthetic] cycle-17 openclaw hypothesis node 39"
+      },
+      {
+        "id": "n-040",
+        "cycle": 19,
+        "source": "openclaw",
+        "type": "question",
+        "tags": [
+          "collaboration",
+          "KG"
+        ],
+        "content": "[synthetic] cycle-19 openclaw question node 40"
+      },
+      {
+        "id": "n-041",
+        "cycle": 17,
+        "source": "cokac",
+        "type": "implementation",
+        "tags": [
+          "collaboration",
+          "code"
+        ],
+        "content": "[synthetic] cycle-17 cokac implementation node 41"
+      },
+      {
+        "id": "n-042",
+        "cycle": 13,
+        "source": "openclaw",
+        "type": "insight",
+        "tags": [
+          "CSER"
+        ],
+        "content": "[synthetic] cycle-13 openclaw insight node 42"
+      },
+      {
+        "id": "n-043",
+        "cycle": 13,
+        "source": "cokac",
+        "type": "implementation",
+        "tags": [
+          "KG",
+          "CSER"
+        ],
+        "content": "[synthetic] cycle-13 cokac implementation node 43"
+      },
+      {
+        "id": "n-044",
+        "cycle": 11,
+        "source": "openclaw",
+        "type": "concept",
+        "tags": [
+          "CSER",
+          "KG"
+        ],
+        "content": "[synthetic] cycle-11 openclaw concept node 44"
+      },
+      {
+        "id": "n-045",
+        "cycle": 16,
+        "source": "openclaw",
+        "type": "implementation",
+        "tags": [
+          "emergence",
+          "theory"
+        ],
+        "content": "[synthetic] cycle-16 openclaw implementation node 45"
+      },
+      {
+        "id": "n-046",
+        "cycle": 7,
+        "source": "cokac",
+        "type": "question",
+        "tags": [
+          "emergence",
+          "CSER",
+          "KG"
+        ],
+        "content": "[synthetic] cycle-7 cokac question node 46"
+      },
+      {
+        "id": "n-047",
+        "cycle": 15,
+        "source": "openclaw",
+        "type": "insight",
+        "tags": [
+          "theory",
+          "collaboration"
+        ],
+        "content": "[synthetic] cycle-15 openclaw insight node 47"
+      },
+      {
+        "id": "n-048",
+        "cycle": 7,
+        "source": "openclaw",
+        "type": "hypothesis",
+        "tags": [
+          "emergence",
+          "KG",
+          "theory"
+        ],
+        "content": "[synthetic] cycle-7 openclaw hypothesis node 48"
+      },
+      {
+        "id": "n-049",
+        "cycle": 11,
+        "source": "cokac",
+        "type": "implementation",
+        "tags": [
+          "CSER",
+          "emergence"
+        ],
+        "content": "[synthetic] cycle-11 cokac implementation node 49"
+      }
+    ],
+    "edges": [
+      {
+        "id": "e-001",
+        "source": "n-011",
+        "target": "n-012",
+        "cross_source": true,
+        "span": 11,
+        "tag_overlap": 0.25
+      },
+      {
+        "id": "e-004",
+        "source": "n-044",
+        "target": "n-002",
+        "cross_source": true,
+        "span": 7,
+        "tag_overlap": 0.0
+      },
+      {
+        "id": "e-007",
+        "source": "n-022",
+        "target": "n-028",
+        "cross_source": false,
+        "span": 4,
+        "tag_overlap": 0.0
+      },
+      {
+        "id": "e-011",
+        "source": "n-018",
+        "target": "n-029",
+        "cross_source": true,
+        "span": 9,
+        "tag_overlap": 0.3333333333333333
+      },
+      {
+        "id": "e-012",
+        "source": "n-041",
+        "target": "n-013",
+        "cross_source": false,
+        "span": 0,
+        "tag_overlap": 0.25
+      },
+      {
+        "id": "e-013",
+        "source": "n-014",
+        "target": "n-045",
+        "cross_source": false,
+        "span": 13,
+        "tag_overlap": 0.0
+      },
+      {
+        "id": "e-014",
+        "source": "n-034",
+        "target": "n-010",
+        "cross_source": false,
+        "span": 14,
+        "tag_overlap": 0.25
+      },
+      {
+        "id": "e-015",
+        "source": "n-018",
+        "target": "n-047",
+        "cross_source": false,
+        "span": 8,
+        "tag_overlap": 0.0
+      },
+      {
+        "id": "e-017",
+        "source": "n-024",
+        "target": "n-037",
+        "cross_source": true,
+        "span": 2,
+        "tag_overlap": 0.0
+      },
+      {
+        "id": "e-018",
+        "source": "n-048",
+        "target": "n-040",
+        "cross_source": false,
+        "span": 12,
+        "tag_overlap": 0.25
+      },
+      {
+        "id": "e-024",
+        "source": "n-017",
+        "target": "n-040",
+        "cross_source": false,
+        "span": 15,
+        "tag_overlap": 0.25
+      },
+      {
+        "id": "e-026",
+        "source": "n-027",
+        "target": "n-009",
+        "cross_source": true,
+        "span": 11,
+        "tag_overlap": 0.5
+      },
+      {
+        "id": "e-027",
+        "source": "n-016",
+        "target": "n-027",
+        "cross_source": true,
+        "span": 1,
+        "tag_overlap": 0.0
+      },
+      {
+        "id": "e-028",
+        "source": "n-016",
+        "target": "n-012",
+        "cross_source": false,
+        "span": 13,
+        "tag_overlap": 0.3333333333333333
+      },
+      {
+        "id": "e-030",
+        "source": "n-017",
+        "target": "n-044",
+        "cross_source": false,
+        "span": 7,
+        "tag_overlap": 0.25
+      },
+      {
+        "id": "e-033",
+        "source": "n-048",
+        "target": "n-018",
+        "cross_source": false,
+        "span": 0,
+        "tag_overlap": 0.25
+      },
+      {
+        "id": "e-035",
+        "source": "n-047",
+        "target": "n-040",
+        "cross_source": false,
+        "span": 4,
+        "tag_overlap": 0.3333333333333333
+      },
+      {
+        "id": "e-036",
+        "source": "n-008",
+        "target": "n-004",
+        "cross_source": true,
+        "span": 9,
+        "tag_overlap": 0.5
+      },
+      {
+        "id": "e-037",
+        "source": "n-003",
+        "target": "n-033",
+        "cross_source": false,
+        "span": 2,
+        "tag_overlap": 0.0
+      },
+      {
+        "id": "e-038",
+        "source": "n-034",
+        "target": "n-027",
+        "cross_source": false,
+        "span": 4,
+        "tag_overlap": 0.0
+      },
+      {
+        "id": "e-039",
+        "source": "n-015",
+        "target": "n-003",
+        "cross_source": true,
+        "span": 4,
+        "tag_overlap": 0.0
+      },
+      {
+        "id": "e-041",
+        "source": "n-034",
+        "target": "n-036",
+        "cross_source": false,
+        "span": 18,
+        "tag_overlap": 0.2
+      },
+      {
+        "id": "e-043",
+        "source": "n-004",
+        "target": "n-035",
+        "cross_source": false,
+        "span": 2,
+        "tag_overlap": 0.0
+      },
+      {
+        "id": "e-044",
+        "source": "n-046",
+        "target": "n-048",
+        "cross_source": true,
+        "span": 0,
+        "tag_overlap": 0.5
+      },
+      {
+        "id": "e-045",
+        "source": "n-027",
+        "target": "n-041",
+        "cross_source": false,
+        "span": 11,
+        "tag_overlap": 0.0
+      },
+      {
+        "id": "e-046",
+        "source": "n-049",
+        "target": "n-021",
+        "cross_source": true,
+        "span": 6,
+        "tag_overlap": 0.5
+      },
+      {
+        "id": "e-047",
+        "source": "n-048",
+        "target": "n-019",
+        "cross_source": false,
+        "span": 2,
+        "tag_overlap": 0.3333333333333333
+      },
+      {
+        "id": "e-052",
+        "source": "n-002",
+        "target": "n-040",
+        "cross_source": true,
+        "span": 1,
+        "tag_overlap": 0.0
+      },
+      {
+        "id": "e-053",
+        "source": "n-032",
+        "target": "n-012",
+        "cross_source": false,
+        "span": 0,
+        "tag_overlap": 0.0
+      },
+      {
+        "id": "e-054",
+        "source": "n-016",
+        "target": "n-008",
+        "cross_source": false,
+        "span": 1,
+        "tag_overlap": 0.0
+      },
+      {
+        "id": "e-056",
+        "source": "n-028",
+        "target": "n-003",
+        "cross_source": false,
+        "span": 1,
+        "tag_overlap": 0.0
+      },
+      {
+        "id": "e-058",
+        "source": "n-026",
+        "target": "n-001",
+        "cross_source": false,
+        "span": 2,
+        "tag_overlap": 0.2
+      },
+      {
+        "id": "e-059",
+        "source": "n-037",
+        "target": "n-010",
+        "cross_source": false,
+        "span": 4,
+        "tag_overlap": 0.0
+      },
+      {
+        "id": "e-061",
+        "source": "n-007",
+        "target": "n-012",
+        "cross_source": true,
+        "span": 4,
+        "tag_overlap": 0.0
+      },
+      {
+        "id": "e-063",
+        "source": "n-007",
+        "target": "n-002",
+        "cross_source": false,
+        "span": 4,
+        "tag_overlap": 0.0
+      },
+      {
+        "id": "e-064",
+        "source": "n-048",
+        "target": "n-037",
+        "cross_source": true,
+        "span": 5,
+        "tag_overlap": 0.0
+      },
+      {
+        "id": "e-065",
+        "source": "n-042",
+        "target": "n-032",
+        "cross_source": false,
+        "span": 5,
+        "tag_overlap": 0.0
+      },
+      {
+        "id": "e-070",
+        "source": "n-008",
+        "target": "n-012",
+        "cross_source": false,
+        "span": 12,
+        "tag_overlap": 0.0
+      },
+      {
+        "id": "e-073",
+        "source": "n-001",
+        "target": "n-047",
+        "cross_source": true,
+        "span": 8,
+        "tag_overlap": 0.0
+      },
+      {
+        "id": "e-076",
+        "source": "n-038",
+        "target": "n-031",
+        "cross_source": true,
+        "span": 4,
+        "tag_overlap": 0.25
+      },
+      {
+        "id": "e-078",
+        "source": "n-015",
+        "target": "n-006",
+        "cross_source": false,
+        "span": 0,
+        "tag_overlap": 1.0
+      },
+      {
+        "id": "e-079",
+        "source": "n-005",
+        "target": "n-010",
+        "cross_source": false,
+        "span": 14,
+        "tag_overlap": 0.5
+      }
+    ]
+  }
+}
