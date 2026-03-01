@@ -1,0 +1,108 @@
+{
+  "cycle": 85,
+  "experiment": "multi_llm_replication",
+  "condition": "A",
+  "problem": "GCD",
+  "results": [
+    {
+      "model": "gemini-3-flash-preview",
+      "n": 5,
+      "pass_rate": 1.0,
+      "passed": 5,
+      "results": [
+        {
+          "trial": 1,
+          "passed": true,
+          "code_len": 109
+        },
+        {
+          "trial": 2,
+          "passed": true,
+          "code_len": 109
+        },
+        {
+          "trial": 3,
+          "passed": true,
+          "code_len": 109
+        },
+        {
+          "trial": 4,
+          "passed": true,
+          "code_len": 83
+        },
+        {
+          "trial": 5,
+          "passed": true,
+          "code_len": 109
+        }
+      ]
+    },
+    {
+      "model": "gpt-5.2",
+      "n": 5,
+      "pass_rate": 1.0,
+      "passed": 5,
+      "results": [
+        {
+          "trial": 1,
+          "passed": true,
+          "code_len": 109
+        },
+        {
+          "trial": 2,
+          "passed": true,
+          "code_len": 114
+        },
+        {
+          "trial": 3,
+          "passed": true,
+          "code_len": 109
+        },
+        {
+          "trial": 4,
+          "passed": true,
+          "code_len": 114
+        },
+        {
+          "trial": 5,
+          "passed": true,
+          "code_len": 109
+        }
+      ]
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "n": 5,
+      "pass_rate": 1.0,
+      "passed": 5,
+      "results": [
+        {
+          "trial": 1,
+          "passed": true,
+          "code_len": 83
+        },
+        {
+          "trial": 2,
+          "passed": true,
+          "code_len": 83
+        },
+        {
+          "trial": 3,
+          "passed": true,
+          "code_len": 83
+        },
+        {
+          "trial": 4,
+          "passed": true,
+          "code_len": 83
+        },
+        {
+          "trial": 5,
+          "passed": true,
+          "code_len": 83
+        }
+      ]
+    }
+  ],
+  "binary_gate_replicated": true
+}
