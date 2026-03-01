@@ -1,0 +1,37 @@
+[
+  {
+    "id": "vex",
+    "rules": "a⊕b = a×b - a - b + 1\na⊗b = a + b - floor(a×b/2)",
+    "question": "Compute (3⊕4)⊗(2⊕5)",
+    "answer": "-2",
+    "solo_acc_simple": "20%"
+  },
+  {
+    "id": "hex_ops",
+    "rules": "a★b = (a+b)×(a-b)\na☆b = a² - b + 1",
+    "question": "Compute (5★3)☆2",
+    "answer": "255",
+    "solo_acc_simple": "?"
+  },
+  {
+    "id": "mod_chain",
+    "rules": "a⊞b = (a×b) mod 7\na⊟b = (a+b²) mod 11",
+    "question": "Compute (6⊞4)⊟3",
+    "answer": "1",
+    "solo_acc_simple": "?"
+  },
+  {
+    "id": "cond_ops",
+    "rules": "a⊛b = a+b if a>b, else a×b\na⊘b = a-b if a×b>10, else a+b",
+    "question": "Compute (7⊛3)⊘4",
+    "answer": "6",
+    "solo_acc_simple": "?"
+  },
+  {
+    "id": "fseq",
+    "rules": "f(1)=1,f(2)=2. n>2: f(n)=f(n-1)+f(n-2) if n odd, f(n-1)×f(n-2)-1 if n even",
+    "question": "Find f(8)",
+    "answer": "1832",
+    "solo_acc_simple": "?"
+  }
+]
