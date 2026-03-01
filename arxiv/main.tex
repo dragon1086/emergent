@@ -320,6 +320,37 @@ Mean PES (non-paradoxical) & 0.231 \\
 
 \subsection{Retroactive Emergence (D-064)}
 
+\noindent\textbf{Formal definition}: A \emph{retroactive grounding} event occurs when
+a node $n_j$ added at cycle $t_j$ establishes a semantic relation to a prior node
+$n_i$ (added at cycle $t_i < t_j$), where the edge $(n_i, n_j)$ \emph{could not have
+been predicted} at cycle $t_i$ because $n_j$ did not yet exist. The retroactive
+emergence score for this event is its PES value:
+\[
+  \text{RES}(n_i, n_j) = \text{PES}(n_i, n_j)
+  = \text{span\_norm}(n_i, n_j) \times \text{cross\_source}(n_i, n_j)
+    \times (1 - \text{tag\_overlap}(n_i, n_j))
+\]
+where $\text{span\_norm} = (t_j - t_i) / \max\_span$, and the relation is classified as
+retroactive if $\text{span\_norm} \geq 0.5$ (i.e., the grounding spans more than half
+the KG history). Detection algorithm:
+
+\begin{lstlisting}[language=Python]
+def detect_retroactive(kg, span_threshold=0.5):
+    max_span = max(n.cycle for n in kg.nodes)
+    events = []
+    for edge in kg.edges:
+        ni, nj = edge.source, edge.target
+        if ni.cycle < nj.cycle:  # forward temporal direction
+            span_norm = (nj.cycle - ni.cycle) / max_span
+            if span_norm >= span_threshold:
+                pes = span_norm * edge.cross_source * (1 - edge.tag_overlap)
+                events.append({"edge": (ni.id, nj.id), "span": span_norm,
+                                "pes": pes, "cycle_established": nj.cycle})
+    return sorted(events, key=lambda x: -x["pes"])
+\end{lstlisting}
+
+\noindent\textbf{Empirical instance} (Cycle 64, span=160, PES=1.000):
+
 \begin{lstlisting}
 n-009 [Cycle 1, cokac] -- "initial KG infrastructure (kg.py)"
   grounds  [relation established: Cycle 64]
@@ -659,6 +690,40 @@ a non-random structural property that is the key driver of $E_{v4}$.
 16 weight-variation scenarios ($\pm$10\%, $\pm$20\%). Result: \textbf{94\% robust}
 (15/16 scenarios maintain $E_{v4} > E_{v3}$). Single vulnerability: CSER weight
 reduced to 80\% baseline --- outside practical research scope.
+
+\subsubsection{CSER Threshold Sensitivity (Cycle 90)}
+
+To address the concern that the CSER $< 0.30$ threshold is arbitrary, we conduct a
+threshold sweep across $t \in \{0.05, 0.10, \ldots, 0.95\}$ and Monte Carlo noise
+robustness analysis ($N=2000$, seed=90).
+
+\textbf{Threshold sweep}: Perfect 4/4 classification is achieved for $t \in [0.30, 0.40]$.
+Outside this range, accuracy drops to 0.75 (Condition B\_partial misclassified).
+The current threshold (0.30) sits at the lower boundary of the valid range.
+
+\textbf{Noise robustness} (Gaussian noise $\mathcal{N}(0,\sigma)$ added to CSER):
+
+\begin{table}[h!]\centering\small
+\begin{tabular}{lc}
+\toprule
+Noise $\sigma$ & P(correct classification) \\
+\midrule
+0.00 & 1.0000 \\
+0.02 & 0.9930 \\
+0.05 & 0.8470 \\
+0.08 & 0.7060 \\
+\bottomrule
+\end{tabular}
+\caption{CSER threshold robustness under measurement noise (MC $N=2000$)}
+\end{table}
+
+\textbf{Interpretation}: The gate is exact at zero noise (all four empirical CSER
+values are well-separated from 0.30: nearest is B=0.25, gap=0.05). Under realistic
+CSER estimation noise ($\sigma \leq 0.02$), P(correct)$=0.993$. The valid threshold
+range [0.30, 0.40] has width 0.10 --- narrow but non-trivial given the discrete
+4-condition experimental design. The primary limitation is the small $N=4$ condition
+set; a wider condition sweep (CSER=0.10, 0.15, 0.20) would tighten the valid range
+characterization. Bootstrap stability: pass rate$=1.0000$ ($N=1000$ iterations).
 
 \subsection{Statistical Power Analysis}
 
