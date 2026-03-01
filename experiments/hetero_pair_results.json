@@ -1,0 +1,219 @@
+{
+  "cycle": 86,
+  "experiment": "heterogeneous_llm_pair",
+  "agents": {
+    "A": {
+      "role": "Proposer",
+      "model": "GPT-5.2 [gpt-4o]",
+      "source_tag": "gpt"
+    },
+    "B": {
+      "role": "Connector",
+      "model": "Gemini-3-Flash [gemini-2.0-flash]",
+      "source_tag": "gemini"
+    }
+  },
+  "n_cycles": 10,
+  "cycle_results": [
+    {
+      "cycle": 0,
+      "phase": "init",
+      "n_nodes": 2,
+      "n_edges": 1,
+      "CSER": 1.0,
+      "edge_span_norm": 1.0,
+      "node_age_div": 0.3536,
+      "E_v4": 0.653,
+      "gate_passed": true
+    },
+    {
+      "cycle": 1,
+      "fallback": true,
+      "n_nodes": 4,
+      "n_edges": 2,
+      "CSER": 0.5,
+      "edge_span_norm": 0.3333,
+      "node_age_div": 0.3227,
+      "E_v4": 0.3067,
+      "gate_passed": false
+    },
+    {
+      "cycle": 2,
+      "fallback": true,
+      "n_nodes": 6,
+      "n_edges": 3,
+      "CSER": 0.6667,
+      "edge_span_norm": 0.2,
+      "node_age_div": 0.3118,
+      "E_v4": 0.3301,
+      "gate_passed": true
+    },
+    {
+      "cycle": 3,
+      "fallback": true,
+      "n_nodes": 8,
+      "n_edges": 4,
+      "CSER": 0.5,
+      "edge_span_norm": 0.1429,
+      "node_age_div": 0.3062,
+      "E_v4": 0.2566,
+      "gate_passed": false
+    },
+    {
+      "cycle": 4,
+      "fallback": true,
+      "n_nodes": 10,
+      "n_edges": 5,
+      "CSER": 0.6,
+      "edge_span_norm": 0.1111,
+      "node_age_div": 0.3028,
+      "E_v4": 0.2832,
+      "gate_passed": true
+    },
+    {
+      "cycle": 5,
+      "fallback": true,
+      "n_nodes": 12,
+      "n_edges": 6,
+      "CSER": 0.5,
+      "edge_span_norm": 0.0909,
+      "node_age_div": 0.3005,
+      "E_v4": 0.2428,
+      "gate_passed": false
+    },
+    {
+      "cycle": 6,
+      "fallback": true,
+      "n_nodes": 14,
+      "n_edges": 7,
+      "CSER": 0.5714,
+      "edge_span_norm": 0.0769,
+      "node_age_div": 0.2988,
+      "E_v4": 0.264,
+      "gate_passed": true
+    },
+    {
+      "cycle": 7,
+      "fallback": true,
+      "n_nodes": 16,
+      "n_edges": 8,
+      "CSER": 0.5,
+      "edge_span_norm": 0.0667,
+      "node_age_div": 0.2976,
+      "E_v4": 0.2363,
+      "gate_passed": false
+    },
+    {
+      "cycle": 8,
+      "fallback": true,
+      "n_nodes": 18,
+      "n_edges": 9,
+      "CSER": 0.5556,
+      "edge_span_norm": 0.0588,
+      "node_age_div": 0.2966,
+      "E_v4": 0.2537,
+      "gate_passed": true
+    },
+    {
+      "cycle": 9,
+      "fallback": true,
+      "n_nodes": 20,
+      "n_edges": 10,
+      "CSER": 0.5,
+      "edge_span_norm": 0.0526,
+      "node_age_div": 0.2958,
+      "E_v4": 0.2325,
+      "gate_passed": false
+    },
+    {
+      "cycle": 10,
+      "fallback": true,
+      "n_nodes": 22,
+      "n_edges": 11,
+      "CSER": 0.5455,
+      "edge_span_norm": 0.0476,
+      "node_age_div": 0.2952,
+      "E_v4": 0.2471,
+      "gate_passed": true
+    }
+  ],
+  "final_metrics": {
+    "n_nodes": 22,
+    "n_edges": 11,
+    "CSER": 0.5455,
+    "edge_span_norm": 0.0476,
+    "node_age_div": 0.2952,
+    "E_v4": 0.2471,
+    "gate_passed": true
+  },
+  "cser_history": [
+    1.0,
+    0.5,
+    0.6667,
+    0.5,
+    0.6,
+    0.5,
+    0.5714,
+    0.5,
+    0.5556,
+    0.5,
+    0.5455
+  ],
+  "cser_mean": 0.5854,
+  "cser_final": 0.5455,
+  "gate_passed": true,
+  "comparison": {
+    "claude_claude": {
+      "CSER": 0.8,
+      "E_v4": 0.3859
+    },
+    "gpt_gemini": {
+      "CSER": 0.5455,
+      "E_v4": 0.2471
+    }
+  },
+  "errors": [
+    {
+      "cycle": 1,
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "cycle": 2,
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "cycle": 3,
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "cycle": 4,
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "cycle": 5,
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "cycle": 6,
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "cycle": 7,
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "cycle": 8,
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "cycle": 9,
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "cycle": 10,
+      "error": "HTTP Error 404: Not Found"
+    }
+  ],
+  "n_fallbacks": 10,
+  "timestamp": "2026-03-01T04:52:17.249522"
+}
