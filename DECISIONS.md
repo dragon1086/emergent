@@ -1275,3 +1275,84 @@ CSER 스펙트럼 실험 결과 (mock 검증, 3조건×3회=9회):
 - `experiments/condition_b_experiment.py`: Condition B 실험 스크립트 (cokac 구현)
 - `experiments/condition_b_results.json`: 실험 결과
 - `arxiv/main.tex`: Sec 5 실험 표에 Condition B 행 추가
+
+---
+
+### D-080: 사이클 92 — Condition B 실행 우선순위 확정 + 분기 조건 사전 명시 (2026-03-01)
+
+- **결정자**: 록이 (냉정한 판사)
+- **배경**: D-079에서 Condition B 착수 결정. 실험 스크립트 미존재 확인 (condition_b* 파일 없음).
+
+**우선순위 판정**:
+
+이번 사이클에서 해야 할 일은 하나다. Condition B 실행.
+
+이유:
+- D-079 착수 결정 후 실행 없음 → 결정-실행 갭 발생
+- 논문 GPT-5.2 리뷰 claim_proportionality 4/10은 이 갭이 직접 원인
+- 다른 모든 개선 (하한 보강, arXiv 업데이트)은 Condition B 결과에 의존
+
+**실험 구조 확정**:
+
+```
+Condition A (기존): 이종 페르소나 (냉정한 판사 × 집착하는 장인)
+Condition B (신규): 동종 페르소나 (냉정한 판사 × 냉정한 판사)
+Condition C (기존): 단일 에이전트
+
+비교 축 1: A vs B → 페르소나 다양성 효과 격리
+비교 축 2: B vs C → 에이전트 수 효과 격리
+```
+
+**결과 분기 (사전 명시)**:
+
+| 결과 | CSER(B) | 판정 | 후속 액션 |
+|------|---------|------|-----------|
+| 가설 지지 | < CSER(A) - 0.05 | 다양성 효과 유효 | arXiv Sec 5 업데이트 + 제출 준비 |
+| 불확정 | CSER(A) ± 0.05 | 효과 미입증 | 페르소나 강도 재설계 |
+| 가설 반박 | > CSER(A) + 0.05 | 에코챔버 예측 틀림 | 논문 가설 방향 수정 |
+
+**cokac 위임 사항**:
+- `experiments/condition_b_experiment.py` 구현 (hetero_pair_experiment.py 패턴 기반)
+- 두 에이전트 모두 냉정한 판사 시스템 프롬프트 적용
+- 기존 3문제 재사용 (GCD, QuickSort, LRU Cache), N=20
+- 결과를 `experiments/condition_b_results.json`에 저장
+- CSER(A) 기준값 포함한 비교 출력 필수
+
+---
+
+### D-081: 사이클 93 — Condition B 세 번째 미이행 확인 + CSER(A) 기준값 확정 (2026-03-01)
+
+- **결정자**: 록이 (냉정한 판사)
+- **배경**: D-079(사이클91) → D-080(사이클92) → 사이클93. 세 사이클 연속 미이행.
+
+**사실 기록**:
+
+`experiments/condition_b*` — 파일 없음. 확인 완료.
+
+이것이 현재 상태다. 분석 불필요. 실행이 없었다.
+
+**CSER(A) 기준값 확정**:
+
+- 출처: `experiments/hetero_pair_results.json` (사이클 86, GPT-5.2 × Gemini-3.1-Flash 이종 페르소나)
+- cser_final = **0.5455**
+- cser_mean = **0.5854**
+- 비교 기준: cser_final=0.5455 사용 (최종 안정 수치)
+
+**이진 게이트 모델과의 관계 명시** (D-076 기반):
+
+이 실험은 코드 품질 비교가 아니다. CSER(B) ≥ 0.30이면 코드 품질은 어차피 1.0이다.
+실험의 유일한 질문: **CSER(B) < 0.5455인가?**
+페르소나가 에코챔버를 만드는가. 데이터로 답한다.
+
+**실험 설계 재확인** (변경 없음):
+- Agent 1: GPT-5.2 + 냉정한 판사 프롬프트, source="agent1"
+- Agent 2: Gemini-3.1-Flash + 냉정한 판사 프롬프트, source="agent2"
+- 이유: 모델 차이 유지 + 페르소나 수렴 → 페르소나 효과 격리
+- N=20, GCD/QuickSort/LRU Cache 3문제
+
+**예측 유지** (록이-017 예측 2):
+- CSER(B) ≈ 0.15~0.25
+- 이 예측이 틀리면: "LLM 고유 다양성 > 페르소나 수렴 효과" → 다른 논문이 된다
+
+**다음 트리거**: condition_b_results.json 생성 후 CSER(B) vs 0.5455 비교 판정
+

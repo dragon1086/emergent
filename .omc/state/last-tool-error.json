@@ -1,7 +1,7 @@
 {
-  "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"cat /Users/rocky/emergent/experiments/sensitivity_c90_results.json | python3 -c \\\"\\nimport json, sys\\nd = json.load(sys.stdin)\\n# Print non-sweep fields\\nsweep = d.get('threshold_sweep', {...",
-  "error": "Exit code 1\n  File \"<string>\", line 11\n    if k \\!= 'threshold_sweep':\n                              ^\nSyntaxError: unexpected character after line continuation character\n\n  File \"<string>\", line 11\n    if k \\!= 'threshold_sweep':\n                              ^\nSyntaxError: unexpected character after line continuation character",
-  "timestamp": "2026-03-01T08:19:13.457Z",
+  "tool_name": "Read",
+  "tool_input_preview": "{\"file_path\":\"/Users/rocky/emergent/DECISIONS.md\"}",
+  "error": "File content (33202 tokens) exceeds maximum allowed tokens (25000). Please use offset and limit parameters to read specific portions of the file, or use the GrepTool to search for specific content.",
+  "timestamp": "2026-03-01T12:37:09.364Z",
   "retry_count": 1
 }
