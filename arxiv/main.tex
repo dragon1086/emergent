@@ -251,7 +251,7 @@ pair\_designer v4 computes optimal node-pair selections.
 v4 resolved D-065 paradox: $\Delta$ expanded $3\times$ (0.0070 $\to$ 0.0222).
 
 \subsection*{Layer 4: Universality}
-External validation: GPT-4 and Gemini independently rediscovered the same principles.
+External validation: GPT-5.2 and Gemini independently rediscovered the same principles.
 Cross-domain: CSER transplanted to stock-selection engine (D-060).
 
 \subsection*{Layer 5: Paradoxical Emergence}
@@ -640,7 +640,7 @@ with statistical validation. Key findings:
 \begin{itemize}
   \item \textbf{D-063}: Unintuitive cross-source connections generate stronger emergence
   \item \textbf{D-064}: Future nodes retroactively redefine past nodes (span=160)
-  \item \textbf{CSER=0.8009}: Echo-chamber escape quantified
+  \item \textbf{CSER=0.8365}: Echo-chamber escape quantified
   \item \textbf{94\% robustness}: Core conclusion holds under $\pm$20\% weight variation
   \item \textbf{pair\_designer\_v4}: $\Delta$ expanded $3\times$
   \item \textbf{Binary gate confirmed} (D-077, $N=20$): CSER acts as an entry barrier,
@@ -699,6 +699,130 @@ As AI systems approach greater autonomy, alignment research requires metrics tha
 \textbf{Proposed application}: Monitor CSER between human-provided training signal nodes and AI-generated concept nodes in a continuously evolving alignment KG. The H\_exec gate result suggests that architectural barriers analogous to the CSER gate could be used to prevent autonomous action when the AI's knowledge graph becomes excessively self-referential (CSER $<$ threshold).
 
 \noindent\textbf{Note}: This application is speculative and requires empirical validation on AGI-scale systems. The OpenClaw results provide existence proof that CSER captures meaningful cross-agent divergence at the two-agent scale; generalization to alignment-scale systems is a research direction, not a confirmed finding.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Future-Oriented Applications: Beyond the Two-Agent Paradigm}
+\label{sec:future}
+% ─────────────────────────────────────────────────────────────────────────────
+
+The emergence framework developed across 88 cycles reveals a scalable measurement substrate.
+Preliminary evidence suggests that the CSER/$E_{v4}$ formalism, validated at the two-agent
+scale, may generalize to substantially more complex systems. We identify four frontier
+scenarios --- each requiring empirical validation at scale, but each grounded in the structural
+properties already confirmed in this study.
+
+\subsection{Autonomous Research Laboratories}
+
+Contemporary scientific research increasingly involves multi-agent AI systems operating as
+\emph{de facto} research teams: one agent proposes hypotheses, another queries literature
+databases, a third designs experiments, a fourth analyzes results. The emergent coherence of
+such a system --- whether the agents' knowledge genuinely cross-fertilizes or remains siloed
+--- is not currently measurable.
+
+\textbf{Application of CSER}: Map each AI agent's knowledge base as a source node cluster.
+Cross-source connections (hypothesis-grounding citations spanning agent domains) are the
+structural analog of cross-source edges in our KG. A CSER $< 0.30$ would indicate that the
+research team has entered an echo chamber: agents confirm each other's priors without genuine
+cross-domain discovery.
+
+\textbf{Pair\_designer v4 as hypothesis generator}: The PES formula
+($\text{span\_norm} \times \text{cross\_source} \times (1 - \text{tag\_overlap})$) can be
+repurposed to identify high-potential interdisciplinary hypothesis pairs. Nodes representing
+disparate scientific domains (e.g., biology $\times$ topology, materials science $\times$
+machine learning) with low tag overlap but high temporal span are precisely the conditions
+under which D-063 paradoxical emergence was observed.
+
+\textbf{Preliminary evidence}: The $3\times$ $\Delta$ expansion observed with pair\_designer
+v4 (Cycle 75) suggests that directed cross-domain seeding generates non-linear returns in
+emergent structure. If analogous dynamics hold in scientific knowledge graphs --- a claim
+requiring empirical validation --- autonomous research systems could be designed to maximize
+cross-domain discovery rate rather than domain-specific depth alone.
+
+\subsection{Distributed AI Governance via CSER Drift Detection}
+
+Multi-stakeholder AI governance requires mechanisms to detect when an AI system's
+decision-making becomes disconnected from the values of its intended principals. Current
+approaches rely on behavioral audits (post-hoc, expensive) or red-teaming (coverage-limited).
+A structural, continuous measurement approach would provide real-time governance signal.
+
+\textbf{The CSER drift hypothesis}: An AI system undergoing value misalignment will, over
+time, exhibit structural changes in its knowledge representation: concepts originating from
+human value specifications (``fairness'', ``harm avoidance'', ``transparency'') become
+topologically peripheral --- decreasing in cross-source connectivity relative to the system's
+operationally dominant concept clusters. This structural drift is, in principle, measurable
+as CSER decay.
+
+\textbf{The governance gate}: The empirically confirmed H\_exec gate
+(CSER $< 0.30 \Rightarrow$ execution blocked, Cycles 78--79, $N=20$, three problems)
+provides a structural template. Analogous gates could be instantiated in governance frameworks:
+if CSER(value\_nodes, operational\_nodes) $<$ threshold, require human review before
+high-stakes autonomous action. This converts an alignment metric into an operational
+governance constraint.
+
+\textbf{Multi-stakeholder CSER}: In a system with $k$ stakeholder groups (regulators,
+developers, affected communities), CSER measures the cross-group connectivity of the AI's
+decision concept graph. CSER remaining high across all $k$ source pairs indicates genuine
+value pluralism; declining cross-group CSER is an early signal of regulatory capture or
+value convergence toward a single stakeholder's frame.
+
+\noindent\textit{Scope}: This application requires empirical validation connecting
+representational CSER to behavioral alignment --- a research direction, not a confirmed
+finding. The OpenClaw results establish structural divergence capture at the two-agent scale;
+generalization to alignment-grade systems is an open question.
+
+\subsection{Human--AI Co-evolution: Humans as KG Nodes}
+
+The OpenClaw framework models two AI agents as knowledge sources. A natural extension
+introduces human participants as additional source nodes --- converting AI-AI co-evolution to
+genuine human-AI co-evolution, where the KG captures bidirectional learning.
+
+\textbf{Structural model}: Human contributions (code commits, design decisions, critique,
+domain knowledge) are tagged with the human's source identifier. Human-sourced and AI-sourced
+nodes are structurally equivalent in the KG formalism. CSER then measures whether humans and
+AI agents genuinely cross-pollinate (CSER $> 0.30$) or whether the human has been relegated
+to a peripheral role (CSER $\to 0$: AI agents confirm each other without engaging human
+input).
+
+\textbf{Observable from this study}: In the OpenClaw KG, the human supervisor's contributions
+appear as source nodes across 88 cycles. Preliminary inspection suggests cycles with high
+human intervention correspond to local increases in $E_{v4}$ --- consistent with human
+contribution acting as a cross-source seeding event. Formal measurement of H-CSER
+(human-AI cross-source emergence rate) is an immediate extension of the current framework.
+
+\textbf{Implication for AI-assisted work}: If H-CSER drops below threshold, the human has
+been structurally marginalized in the collaborative knowledge structure --- a measurable form
+of automation-induced cognitive displacement. This provides a concrete metric for designing
+AI collaboration systems that preserve human epistemic agency rather than using humans merely
+as approval interfaces.
+
+\subsection{Digital--Physical Emergence: IoT Sensor Networks as KG Nodes}
+
+The emergence framework is currently defined over conceptual knowledge nodes. Physical sensors
+generate a qualitatively different knowledge type: time-stamped, high-frequency, noisy, but
+physically grounded. The question is whether CSER/$E_{v4}$ dynamics generalize to graphs that
+include physical sensor streams as node sources.
+
+\textbf{The structural mapping}: IoT sensor networks (environmental sensors, manufacturing
+equipment, biological monitors) are modeled as source nodes in a heterogeneous KG. Each sensor
+type constitutes a source; cross-sensor connections (edges linking temperature anomaly nodes
+to energy consumption nodes, for example) are cross-source edges. CSER measures the
+cross-domain structural coupling of the physical-digital knowledge graph.
+
+\textbf{Emergence hypothesis}: Physical systems exhibit emergent behavior (phase transitions,
+cascading failures, synchronized oscillations) that may have structural KG precursors
+analogous to D-063 and D-064. If a manufacturing plant's KG exhibits increasing cross-sensor
+CSER before a system failure, CSER drift could serve as a predictive maintenance signal.
+
+\textbf{Digital-physical CSER gate}: By analogy with the H\_exec gate, a physical system
+whose CSER falls below threshold (sensor domains becoming structurally decoupled) triggers
+preemptive human inspection --- converting the emergence metric into an operational safety
+gate for cyber-physical systems.
+
+\noindent\textit{Scope}: All four scenarios require empirical validation at the target scale.
+The two-agent results establish proof of concept and provide the measurement apparatus.
+Whether the structural dynamics (paradoxical emergence, binary gate, retroactive grounding)
+persist at larger scale and in heterogeneous substrates is the most important open empirical
+question this framework raises for future work.
 
 % ─────────────────────────────────────────────────────────────────────────────
 \begin{thebibliography}{9}
