@@ -216,7 +216,7 @@ def call_openai(prompt: str, model: str = OPENAI_MODEL, max_tokens: int = 400) -
         "model": model,
         "messages": [{"role": "user", "content": prompt}],
         "temperature": 0.7,
-        "max_tokens": max_tokens,
+        "max_completion_tokens": max_tokens,
     }).encode()
     req = urllib.request.Request(
         "https://api.openai.com/v1/chat/completions",
