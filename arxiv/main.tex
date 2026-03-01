@@ -748,6 +748,16 @@ B\_partial (CSER=0.444). CSER acts as a binary gate, not a quality spectrum:
 once CSER $\geq 0.30$, code quality saturates at 1.0 regardless of CSER magnitude.
 The critical determinant is gate passage, not CSER level.
 
+\noindent\textbf{Circularity clarification}: The CSER $< 0.30$ gate in
+\texttt{execution\_loop.py} is an \emph{engineering safeguard}, not the claim
+under test. The empirical claims are: (1)~identical-persona agents \emph{naturally
+produce} CSER $\ll 0.30$ (Condition B\_full: $0.078$, Section~\ref{sec:condition_b_full}),
+demonstrating that low CSER is a \emph{consequence} of homogeneous collaboration,
+not merely a code-imposed constraint; (2)~diverse-persona agents naturally produce
+CSER $\gg 0.30$ ($0.84$--$1.00$); and (3)~the separation is wide enough
+($\Delta > 0.75$) that the specific threshold value matters little.
+The gate operationalizes these findings; it does not constitute them.
+
 \subsection{Random Graph Baseline (Erdős–Rényi)}
 
 To verify that the KG structure is non-random, we compared key metrics against
@@ -762,7 +772,9 @@ CSER & 0.8365 & 0.8540 & Similar — see note below \\
 edge\_span (raw) & 61.92 & 50.46 & \textbf{+23\% above random} \\
 \bottomrule
 \end{tabular}
-\caption{KG vs.\ Erdős–Rényi baseline ($N$=526, $M$=1119, 500 simulations)}
+\caption{KG vs.\ Erdős–Rényi baseline ($N$=526, $M$=1119, 500 simulations).
+Note: the KG grew from 256/939 (Cycle 86) to 526/1119 (Cycle 89) through continued evolution;
+the E-R baseline uses the Cycle 89 snapshot.}
 \end{table}
 
 \noindent\textbf{CSER note}: The near-equal CSER values arise because the real KG contains nodes from 14 distinct sources (록이, cokac, execution\_loop, openclaw\_asymmetric, etc.), making even random connections highly likely to be cross-source. This is structurally \emph{expected}: in a multi-source graph with $k=14$ sources of unequal size, the expected CSER of an E-R random graph approaches $1 - \sum_i p_i^2$ (where $p_i$ is the fraction of nodes from source $i$). With 14 sources, this lower-bound on random CSER is already $> 0.80$. CSER therefore serves as a \emph{threshold detector} (CSER $< 0.30$ = echo-chamber, confirmed by Condition B/C gate blockage) rather than a global discriminator against randomness. The meaningful non-random signal is captured by \textbf{edge\_span} (+23\% above E-R), which cannot be explained by source diversity alone.
@@ -897,8 +909,8 @@ Persona diversity drives CSER; identical personas $\to$ echo chamber &
 \textbf{Confirmed} & Condition B\_full: CSER $0.836 \to 0.078$, 3/3 predictions passed \\
 Results generalize to other agent pairs &
 \textbf{Conjecture} & Single 2-agent experiment; requires replication \\
-CSER detects alignment drift at AGI scale &
-\textbf{Hypothesis} & Sec.~\ref{sec:applications}; no empirical evidence \\
+CSER may relate to alignment drift at larger scales &
+\textbf{Speculative} & Analogy from 2-agent result; no direct evidence \\
 \bottomrule
 \end{tabular}
 \caption{Evidence calibration: confirmed findings vs.\ exploratory/conjectural claims}
@@ -980,15 +992,14 @@ Open-source projects accumulate contributions from hundreds of contributors acro
 
 \textbf{Retroactive emergence detection}: D-064 (future nodes retroactively grounding past nodes, span=160) provides a mechanism to detect when a new contribution retrospectively clarifies the meaning of legacy code. Automated retroactive emergence detection could flag high-PES historical connections for human review --- surfacing hidden architectural insights in large codebases.
 
-\subsection{Future AGI Safety: CSER as Alignment Metric}
+\subsection{Speculative Extension: CSER in Alignment Monitoring}
 
-As AI systems approach greater autonomy, alignment research requires metrics that capture whether an AI's knowledge structure remains genuinely connected to human values and external reality, rather than collapsing into self-referential echo chambers.
-
-\textbf{Hypothesis}: An AI system undergoing value drift will exhibit decreasing CSER in its internal knowledge representation --- as human-sourced concepts become disconnected from the system's operationally dominant nodes. CSER $< 0.30$ (the empirically validated echo-chamber threshold) may serve as an early warning signal for alignment drift.
-
-\textbf{Proposed application}: Monitor CSER between human-provided training signal nodes and AI-generated concept nodes in a continuously evolving alignment KG. The H\_exec gate result suggests that architectural barriers analogous to the CSER gate could be used to prevent autonomous action when the AI's knowledge graph becomes excessively self-referential (CSER $<$ threshold).
-
-\noindent\textbf{Note}: This application is speculative and requires empirical validation on AGI-scale systems. The OpenClaw results provide existence proof that CSER captures meaningful cross-agent divergence at the two-agent scale; generalization to alignment-scale systems is a research direction, not a confirmed finding.
+\textbf{Hypothesis (untested)}: An AI system undergoing value drift may exhibit
+decreasing CSER between human-sourced and AI-generated concept nodes in its
+knowledge representation. This is a \emph{speculative analogy} extrapolated from
+the two-agent echo-chamber result (Condition B\_full, Section~\ref{sec:condition_b_full});
+no empirical evidence at alignment scale exists. We note this direction solely
+to motivate future work, not to claim applicability.
 
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Future-Oriented Applications: Beyond the Two-Agent Paradigm}
@@ -1028,36 +1039,13 @@ emergent structure. If analogous dynamics hold in scientific knowledge graphs --
 requiring empirical validation --- autonomous research systems could be designed to maximize
 cross-domain discovery rate rather than domain-specific depth alone.
 
-\subsection{Distributed AI Governance via CSER Drift Detection}
+\subsection{Speculative Extension: CSER in Multi-Stakeholder Systems}
 
-Multi-stakeholder AI governance requires mechanisms to detect when an AI system's
-decision-making becomes disconnected from the values of its intended principals. Current
-approaches rely on behavioral audits (post-hoc, expensive) or red-teaming (coverage-limited).
-A structural, continuous measurement approach would provide real-time governance signal.
-
-\textbf{The CSER drift hypothesis}: An AI system undergoing value misalignment will, over
-time, exhibit structural changes in its knowledge representation: concepts originating from
-human value specifications (``fairness'', ``harm avoidance'', ``transparency'') become
-topologically peripheral --- decreasing in cross-source connectivity relative to the system's
-operationally dominant concept clusters. This structural drift is, in principle, measurable
-as CSER decay.
-
-\textbf{The governance gate}: The empirically confirmed H\_exec gate
-(CSER $< 0.30 \Rightarrow$ execution blocked, Cycles 78--79, $N=20$, three problems)
-provides a structural template. Analogous gates could be instantiated in governance frameworks:
-if CSER(value\_nodes, operational\_nodes) $<$ threshold, require human review before
-high-stakes autonomous action. This converts an alignment metric into an operational
-governance constraint.
-
-\textbf{Multi-stakeholder CSER}: In a system with $k$ stakeholder groups (regulators,
-developers, affected communities), CSER measures the cross-group connectivity of the AI's
-decision concept graph. CSER remaining high across all $k$ source pairs indicates genuine
-value pluralism; declining cross-group CSER is an early signal of regulatory capture or
-value convergence toward a single stakeholder's frame.
-
-\noindent\textit{Scope}: This application requires empirical validation connecting
-representational CSER to behavioral alignment --- a research direction, not a confirmed
-finding. The OpenClaw results establish structural divergence capture at the two-agent scale;
+In multi-agent systems with $k$ stakeholder groups, CSER could in principle
+measure cross-group knowledge connectivity. Declining cross-group CSER would
+indicate siloing. This is \emph{speculative}: the current study validates CSER
+only at the two-agent/two-source scale. Generalization to $k$-stakeholder
+systems requires dedicated experiments with controlled stakeholder diversity.
 generalization to alignment-grade systems is an open question.
 
 \subsection{Human--AI Co-evolution: Humans as KG Nodes}
