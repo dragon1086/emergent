@@ -32,7 +32,7 @@ A Case Study with CSER and Persona-Diversity Gates}
   \texttt{munsangrok@gmail.com}
 }
 
-\date{Draft v3.0 — Cycle 86 (2026-03-01)}
+\date{Draft v3.1 — Latest Snapshot (2026-03-02)}
 
 % ─── Document ─────────────────────────────────────────────────────────────────
 \begin{document}
@@ -64,7 +64,7 @@ We observe that agents with heterogeneous personas produce KGs with high CSER
 \end{enumerate}
 
 \medskip\noindent
-KG state (Cycle 89): \textbf{526 nodes / 1119 edges}, CSER $= 0.8365$.
+KG state (latest snapshot, 2026-03-02): \textbf{534 nodes / 1121 edges}, CSER $= 0.8510$.
 
 \medskip\noindent\textbf{Amplification benchmark (preliminary case study)}:
 A controlled three-way comparison (Solo/Pipeline/Emergent, GPT-5.2 only, equal
@@ -132,7 +132,7 @@ produces $E_{v4} \approx 0.1$--$0.2$, while the co-evolved KG produces $E_{v4} =
 providing an independent baseline separation (Sec.~\ref{sec:stat}).
 
 To answer this, we conducted an experiment in which two AI agents (Roki/cokac)
-co-evolved a shared KG over 86 cycles. Each cycle consists of Agent A's contribution
+co-evolved a shared KG over 89+ cycles. Each cycle consists of Agent A's contribution
 $\to$ Agent B's response $\to$ KG update.
 
 \medskip\noindent\textbf{What distinguishes this from prior work}:
@@ -209,7 +209,7 @@ convergence dynamics.
 \textbf{Graph-based Agent Memory}~\cite{yang2026graphmemory} (February 2026) surveys
 graph-based memory architectures for LLM agents, including shared KG structures.
 This study contributes an empirical case study of a two-agent shared KG undergoing
-86 cycles of co-evolution, with quantitative emergence metrics absent from existing
+89+ cycles of co-evolution, with quantitative emergence metrics absent from existing
 survey taxonomies.
 
 \subsection{Positioning: Sensitive Decisions, Local Deployment, and Dual Perspectives}
@@ -262,7 +262,7 @@ Goal & Task & Collab. & Coherence & Observe & \textbf{Measure/Design} \\
 Emergence measure & -- & -- & -- & Qualitative & \textbf{$E_{v4}$ quantified} \\
 Cross-time patterns & -- & -- & -- & -- & \textbf{DCI/span (max=160)} \\
 Observer effect & -- & -- & -- & -- & \textbf{D-047 empirical} \\
-KG co-evolution & -- & -- & -- & -- & \textbf{86-cycle empirical} \\
+KG co-evolution & -- & -- & -- & -- & \textbf{89+-cycle empirical} \\
 \bottomrule
 \end{tabular}
 \caption{Comparison with related multi-agent systems (including 2025--2026 concurrent work)}
@@ -277,8 +277,8 @@ KG co-evolution & -- & -- & -- & -- & \textbf{86-cycle empirical} \\
 \begin{itemize}
   \item \textbf{Agents}: openclaw-bot (Roki --- coordinator/poet/judge) + cokac-bot
         (implementer/craftsman)
-  \item \textbf{Duration}: Starting 2026-02-28, 86 cycles
-        (each cycle = one agent contribution)
+  \item \textbf{Duration}: Starting 2026-02-28, 89+ cycles
+        (each cycle = one agent contribution; snapshot date: 2026-03-02)
   \item \textbf{Shared structure}: Knowledge graph (\texttt{knowledge-graph.json})
   \item \textbf{Measurement interval}: \texttt{metrics.py} executed after every cycle
 \end{itemize}
@@ -291,7 +291,15 @@ Edges: from, to, relation, cycle
 Relation types: relates_to, grounds, extends, challenges, closes_loop
 \end{lstlisting}
 
-Current scale (Cycle 86): \textbf{256 nodes / 939 edges}
+Current scale (latest snapshot, 2026-03-02): \textbf{534 nodes / 1121 edges}
+(CSER $= 0.8510$, $E_{v4} = 0.378$; data cutoff: 2026-03-02 / cycle 89+)
+
+\medskip\noindent\textbf{Data cutoff}: All KG metrics reported in this paper
+use the snapshot dated \textbf{2026-03-02} unless otherwise noted. Experiments
+labeled ``Cycle 86'' or ``Cycle 89'' reference historical snapshots taken at
+those cycle counts; they are not updated to the latest snapshot.
+Comparisons that span multiple snapshots are explicitly labeled with their
+respective snapshot dates to ensure same-snapshot consistency.
 
 \subsection{Metric Definitions}
 
@@ -342,6 +350,21 @@ A linear composite emergence score. Weights were derived via constrained bootstr
 optimization (Sec.~\ref{sec:stat}); the current weights represent a deliberate
 \emph{theoretical-coverage} choice (see Sec.~\ref{sec:stat} for the
 stability--interpretability trade-off analysis).
+
+\medskip\noindent\textbf{Note on $E_{v5}$ (under development):}
+$E_{v5}$ is a planned extension of $E_{v4}$ incorporating ontology-based node type
+diversity. In the current KG, nodes carry semantic type labels
+(\texttt{insight}, \texttt{observation}, \texttt{decision}, \texttt{question},
+\texttt{prediction}, \texttt{artifact}, \texttt{concept}, etc.; 16 distinct types observed).
+$E_{v5}$ would add a fifth component:
+\[
+  \text{node\_type\_div}(G) = H(\{type_i : n_i \in N\}) / \log_2 K
+\]
+where $H(\cdot)$ is Shannon entropy and $K$ is the number of distinct node types ---
+measuring how evenly the KG populates the ontological type space. This component
+would reward KGs that grow heterogeneously across semantic categories, not just
+across agent sources. $E_{v5}$ computation and weight recalibration are left as
+future work; all current results use $E_{v4}$.
 
 \textbf{Definition 6 (PES):}
 For a node pair $(n_i, n_j)$ with $cyc_i < cyc_j$:
@@ -707,7 +730,7 @@ of Claude's specific capabilities. The effect is \textbf{LLM-provider-independen
 for Condition A. Multi-provider co-evolution experiments (GPT-4o + Gemini as
 agent pair) remain as future work.
 
-\subsection{Heterogeneous LLM Pair Co-evolution (Cycle 86)}
+\subsection{Heterogeneous LLM Pair Co-evolution (historical Cycle 86 snapshot)}
 
 To address Limitations ①④⑦ (sample size, reproducibility, LLM generalizability),
 a cross-provider co-evolution experiment was conducted with Agent A (GPT-4o, Proposer)
@@ -728,7 +751,7 @@ Nodes & 2 & 11 & 22 & --- \\
 Edges & 1 & 6 & 11 & --- \\
 \bottomrule
 \end{tabular}
-\caption{Cycle 86: GPT-4o $\times$ Gemini-3-Flash-Preview co-evolution (10 cycles)}
+\caption{Cycle 86 (historical snapshot): GPT-4o $\times$ Gemini-3-Flash-Preview co-evolution (10 cycles)}
 \end{table}
 
 \textbf{Finding}: The heterogeneous pair achieves CSER = 0.5455 $>$ 0.5, crossing
@@ -743,7 +766,7 @@ Comparison with same-provider (Claude--Claude) baseline:
 CSER$_{\text{Claude}}=0.80$ vs CSER$_{\text{GPT+Gemini}}=0.55$. The difference reflects
 heterogeneous-source cross-edge density, not gate failure. Both satisfy CSER $>$ 0.5.
 
-\subsection{Weight Optimization via Cross-Validation (Cycle 86)}
+\subsection{Weight Optimization via Cross-Validation (historical Cycle 86 snapshot)}
 
 To address Limitation ③ (weight arbitrariness), $E_{v4}$ weights were derived
 via constrained optimization over the KG. Method: bootstrap resampling
@@ -764,7 +787,7 @@ node\_age\_div & 0.15 & 0.615 & $+$0.465 & 0.0066 \\
 CV (metric) & 0.0270 & 0.0157 & $-$42\% & --- \\
 \bottomrule
 \end{tabular}
-\caption{Cycle 86: Current vs CV-optimal weights. Optimal computed via bootstrap
+\caption{Cycle 86 (historical snapshot): Current vs CV-optimal weights. Optimal computed via bootstrap
 resampling ($N=1000$) + projected gradient descent (numpy, no scipy).}
 \end{table}
 
@@ -1005,7 +1028,7 @@ generalising the domain-dependence claim.
 
 \begin{enumerate}
   \item \textbf{Sample size}: Two agents, single experiment.
-        \textit{Partial resolution (Cycle 86)}: The heterogeneous LLM pair
+        \textit{Partial resolution (Cycle 86 snapshot)}: The heterogeneous LLM pair
         experiment (GPT-4o + Gemini-3-Flash-Preview) extends the agent configuration space
         to a cross-provider pair, adding a third distinct co-evolution sample
         (CSER = 0.5455, gate passed). This does not resolve the fundamental two-agent
@@ -1013,7 +1036,7 @@ generalising the domain-dependence claim.
         provider boundaries.
   \item \textbf{KG artificiality}: Agents are aware of KG structure.
   \item \textbf{Weight arbitrariness}: $E_{v4}$ weights are intuitively designed.
-        \textit{Quantified (Cycle 86)}: Bootstrap cross-validation ($N=1000$) reveals
+        \textit{Quantified (Cycle 86 snapshot)}: Bootstrap cross-validation ($N=1000$) reveals
         a stability--interpretability trade-off: CV-optimal weights
         $[0.28, 0.05, 0.05, 0.62]$ reduce metric variance by 42\% but assign 62\%
         weight to \texttt{node\_age\_div} alone, collapsing DCI and edge\_span.
@@ -1177,20 +1200,20 @@ To verify that the KG structure is non-random, we compared key metrics against
 \toprule
 Metric & Real KG & Random E-R & Interpretation \\
 \midrule
-CSER & 0.8365 & 0.8540 & Similar — see note below \\
-edge\_span (raw) & 61.92 & 50.46 & \textbf{+23\% above random} \\
+CSER & 0.8510 & 0.8726 & Similar — see note below \\
+edge\_span (raw) & 10.15 & 76.04 & \textbf{KG below random — see note} \\
 \bottomrule
 \end{tabular}
-\caption{KG vs.\ Erdős–Rényi baseline ($N$=526, $M$=1119, 500 simulations).
-Note: the KG grew from 256/939 (Cycle 86) to 526/1119 (Cycle 89) through continued evolution;
-the E-R baseline uses the Cycle 89 snapshot.}
+\caption{KG vs.\ Erdős–Rényi baseline ($N$=534, $M$=1121; E-R CSER is theoretical
+$1 - \sum_i p_i^2$, $k=16$ sources; E-R span is MC $N=10\,000$, seed=42).
+Latest snapshot: 2026-03-02.
+Note: the KG grew from 256/939 (Cycle 86) to 526/1119 (Cycle 89) to 534/1121 (latest);
+all figures above use the latest snapshot for consistency.}
 \end{table}
 
-\noindent\textbf{CSER note}: The near-equal CSER values arise because the real KG contains nodes from 14 distinct sources (록이, cokac, execution\_loop, openclaw\_asymmetric, etc.), making even random connections highly likely to be cross-source. This is structurally \emph{expected}: in a multi-source graph with $k=14$ sources of unequal size, the expected CSER of an E-R random graph approaches $1 - \sum_i p_i^2$ (where $p_i$ is the fraction of nodes from source $i$). With 14 sources, this lower-bound on random CSER is already $> 0.80$. CSER therefore serves as a \emph{threshold detector} (CSER $< 0.30$ = echo-chamber, confirmed by Condition B/C gate blockage) rather than a global discriminator against randomness. The meaningful non-random signal is captured by \textbf{edge\_span} (+23\% above E-R), which cannot be explained by source diversity alone.
+\noindent\textbf{CSER note}: The near-equal CSER values arise because the real KG contains nodes from 16 distinct sources (록이, cokac, execution\_loop, openclaw\_asymmetric, etc.), making even random connections highly likely to be cross-source. This is structurally \emph{expected}: in a multi-source graph with $k=16$ sources of unequal size, the expected CSER of an E-R random graph approaches $1 - \sum_i p_i^2$ (where $p_i$ is the fraction of nodes from source $i$). With 16 sources, this lower-bound on random CSER is already $> 0.80$. CSER therefore serves as a \emph{threshold detector} (CSER $< 0.30$ = echo-chamber, confirmed by Condition B/C gate blockage) rather than a global discriminator against randomness.
 
-\noindent\textbf{Edge span}: The KG's 23\% higher edge\_span than E-R random
-confirms that agents preferentially form \emph{long-range} temporal connections ---
-a non-random structural property that is the key driver of $E_{v4}$.
+\noindent\textbf{Edge span (updated interpretation)}: In the latest snapshot, the KG's mean raw edge span (10.15) is \emph{below} the E-R baseline (76.04), reversing the +23\% finding from the Cycle 89 snapshot (raw span: 61.92 vs.\ E-R 50.46). This reversal is a direct consequence of the D-047 topological effect: experimental nodes added after Cycle 89 (cokac-bot, amp, gpt4, gemini sources, all with cycle$=0$) dramatically reduce the mean span by pulling edge distances toward zero. The Cycle 89 finding (+23\% above E-R) remains valid for that historical snapshot; the current snapshot reflects the structural cost of expanded experimental coverage. This illustrates why D-047 (observer non-independence) is not merely philosophical: the measurement infrastructure permanently modifies the substrate being measured.
 
 \subsection{Sensitivity Analysis (D-068)}
 
@@ -1369,7 +1392,7 @@ CSER may relate to alignment drift at larger scales &
 \section{Conclusion}
 % ─────────────────────────────────────────────────────────────────────────────
 
-Across 86 cycles, this case study provides empirical support for the five-layer
+Across 89+ cycles, this case study provides empirical support for the five-layer
 emergence framework within the specific experimental context described (single system,
 two agents, four code-generation task types). The following findings hold within
 this scope; generalisation requires independent replication:
@@ -1377,7 +1400,7 @@ this scope; generalisation requires independent replication:
 \begin{itemize}
   \item \textbf{D-063}: Unintuitive cross-source connections generate stronger emergence
   \item \textbf{D-064}: Future nodes retroactively redefine past nodes (span=160)
-  \item \textbf{CSER=0.8365}: Echo-chamber escape quantified
+  \item \textbf{CSER=0.8510} (latest snapshot, 2026-03-02): Echo-chamber escape quantified
   \item \textbf{94\% robustness}: Core conclusion holds under $\pm$20\% weight variation
   \item \textbf{pair\_designer\_v4}: $\Delta$ expanded $3\times$
   \item \textbf{Binary gate confirmed} (D-077, $N=20$): CSER acts as an entry barrier,
