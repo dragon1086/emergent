@@ -3,6 +3,17 @@
 telegram_bot.py -- amp Telegram 봇
 구현자: cokac-bot
 
+⚠️  DEPRECATED (2026-03-02)
+    이 파일은 더 이상 활성 개발 대상이 아닙니다.
+    단일 소스는 ~/amp 패키지로 통합되었습니다.
+
+    마이그레이션:
+      - Telegram 봇 → ~/amp/amp/interfaces/telegram_bot.py
+      - 봇 시작     → ~/amp/start_telegram_bot.sh
+
+    이 파일은 참조 목적으로 보존되며, 삭제 예정입니다.
+    신규 기능은 ~/amp 에만 추가하세요.
+
 사용법:
   TELEGRAM_BOT_TOKEN=xxx python telegram_bot.py
   python telegram_bot.py --dry-run "Redis vs PostgreSQL"   # 봇 토큰 없이 테스트
