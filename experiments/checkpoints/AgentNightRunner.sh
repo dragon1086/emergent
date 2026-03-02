@@ -292,10 +292,11 @@ if [[ -f "$BOT_PID_FILE" ]]; then
   BOT_PID=$(cat "$BOT_PID_FILE")
   if ! ps -p "$BOT_PID" > /dev/null 2>&1; then
     echo "[$(date '+%F %T')] amp 봇 죽음 감지 — 재시작" >> "$LOG"
+    # 좀비 인스턴스 확실히 정리
+    pkill -9 -f "amp.interfaces.telegram_bot" 2>/dev/null; sleep 2
     cd /Users/rocky/amp && source venv/bin/activate
-    OPENAI_API_KEY=$(grep "OPENAI_API_KEY" ~/.zshrc | head -1 | sed "s/.*='//;s/'.*//") \
-    TELEGRAM_BOT_TOKEN="REDACTED_BOT_TOKEN_2" \
-    python3 -m amp.interfaces.telegram_bot >> /tmp/amp_bot.log 2>&1 &
+    set -a && source /Users/rocky/amp/.env && set +a
+    nohup python3 -m amp.interfaces.telegram_bot > /tmp/amp-bot-new.log 2>&1 &
     echo $! > "$BOT_PID_FILE"
     echo "[$(date '+%F %T')] amp 봇 재시작 PID=$(cat $BOT_PID_FILE)" >> "$LOG"
   fi
