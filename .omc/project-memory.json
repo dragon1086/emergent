@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1772348783119,
+  "lastScanned": 1772441711976,
   "projectRoot": "/Users/rocky/emergent",
   "techStack": {
     "languages": [],
@@ -27,25 +27,31 @@
     "mainDirectories": [
       "src"
     ],
-    "gitBranches": null
+    "gitBranches": {
+      "defaultBranch": "main",
+      "branchingStrategy": null
+    }
   },
   "customNotes": [],
   "directoryMap": {
     "arxiv": {
       "path": "arxiv",
       "purpose": null,
-      "fileCount": 2,
-      "lastAccessed": 1772348783109,
+      "fileCount": 10,
+      "lastAccessed": 1772441711967,
       "keyFiles": [
-        "README_arxiv.md",
-        "main.tex"
+        "EXPERIMENT_RESULTS_C89.md",
+        "GEMINI_REVIEW_C89.json",
+        "GEMINI_REVIEW_C89.md",
+        "GPT_REVIEW_C89.json",
+        "KPI_C89.json"
       ]
     },
     "data": {
       "path": "data",
       "purpose": "Data files",
       "fileCount": 12,
-      "lastAccessed": 1772348783109,
+      "lastAccessed": 1772441711967,
       "keyFiles": [
         "asymmetry-experiment.json",
         "convergence_history.json",
@@ -54,24 +60,36 @@
         "knowledge-graph.json"
       ]
     },
+    "design": {
+      "path": "design",
+      "purpose": null,
+      "fileCount": 4,
+      "lastAccessed": 1772441711967,
+      "keyFiles": [
+        "AMP_PROGRESS.md",
+        "amp_state.json",
+        "design_kg.json",
+        "update_progress.py"
+      ]
+    },
     "experiments": {
       "path": "experiments",
       "purpose": null,
-      "fileCount": 26,
-      "lastAccessed": 1772348783110,
+      "fileCount": 95,
+      "lastAccessed": 1772441711968,
       "keyFiles": [
-        "cser_code_quality_experiment.md",
-        "cycle76_kg_based_test.py",
-        "cycle76_kg_test_results.json",
-        "h_exec_cycle78_experiment.py",
-        "h_exec_cycle78_results.json"
+        "BENCHMARK_DESIGN.md",
+        "README.md",
+        "agent_c_gpt52_results.json",
+        "alignment_cycle88.py",
+        "alignment_cycle88_results.json"
       ]
     },
     "logs": {
       "path": "logs",
       "purpose": null,
-      "fileCount": 13,
-      "lastAccessed": 1772348783110,
+      "fileCount": 17,
+      "lastAccessed": 1772441711968,
       "keyFiles": [
         "cokac-2026-02-27.log",
         "cokac-2026-02-28.log",
@@ -84,7 +102,7 @@
       "path": "src",
       "purpose": "Source code",
       "fileCount": 28,
-      "lastAccessed": 1772348783110,
+      "lastAccessed": 1772441711968,
       "keyFiles": [
         "anti_optimization.py",
         "asymmetry_experiment.py",
@@ -97,7 +115,7 @@
       "path": "theory",
       "purpose": null,
       "fileCount": 5,
-      "lastAccessed": 1772348783111,
+      "lastAccessed": 1772441711968,
       "keyFiles": [
         "THEORY_DRAFT_v1.md",
         "THEORY_DRAFT_v2.md",
@@ -109,244 +127,58 @@
     "thoughts": {
       "path": "thoughts",
       "purpose": null,
-      "fileCount": 32,
-      "lastAccessed": 1772348783111,
+      "fileCount": 36,
+      "lastAccessed": 1772441711968,
       "keyFiles": [
         "D-036.md",
+        "TEAM_REVIEW_CYCLE90.md",
+        "TEAM_REVIEW_REPORT.md",
         "cokac-003.md",
-        "prism-insight-v2-strategy.md",
-        "록이-007.md",
-        "록이-008.md"
+        "prism-insight-v2-strategy.md"
       ]
     }
   },
   "hotPaths": [
     {
-      "path": "arxiv/main.tex",
-      "accessCount": 72,
-      "lastAccessed": 1772351402809,
-      "type": "file"
-    },
-    {
-      "path": "DECISIONS.md",
-      "accessCount": 42,
-      "lastAccessed": 1772376586960,
-      "type": "file"
-    },
-    {
       "path": "",
-      "accessCount": 26,
-      "lastAccessed": 1772376568154,
+      "accessCount": 14,
+      "lastAccessed": 1772441788693,
       "type": "directory"
-    },
-    {
-      "path": "experiments/condition_b_v2_experiment.py",
-      "accessCount": 10,
-      "lastAccessed": 1772376587648,
-      "type": "file"
-    },
-    {
-      "path": "experiments/logic_3way_round3.py",
-      "accessCount": 8,
-      "lastAccessed": 1772386253662,
-      "type": "file"
-    },
-    {
-      "path": "experiments/checkpoints/run_emergent.py",
-      "accessCount": 8,
-      "lastAccessed": 1772391569248,
-      "type": "file"
-    },
-    {
-      "path": "experiments/hetero_pair_experiment.py",
-      "accessCount": 6,
-      "lastAccessed": 1772368638585,
-      "type": "file"
-    },
-    {
-      "path": "experiments/checkpoints/run_solo.py",
-      "accessCount": 6,
-      "lastAccessed": 1772390786339,
-      "type": "file"
-    },
-    {
-      "path": "experiments/checkpoints/run_pipeline.py",
-      "accessCount": 6,
-      "lastAccessed": 1772390804056,
-      "type": "file"
-    },
-    {
-      "path": "experiments/team_review_cycle87.py",
-      "accessCount": 4,
-      "lastAccessed": 1772349156307,
-      "type": "file"
-    },
-    {
-      "path": "experiments/gemini_review_cycle89.py",
-      "accessCount": 4,
-      "lastAccessed": 1772351355459,
-      "type": "file"
-    },
-    {
-      "path": "experiments/h_exec_cycle84_experiment.py",
-      "accessCount": 4,
-      "lastAccessed": 1772364799486,
-      "type": "file"
-    },
-    {
-      "path": "src/thoughts/록이-017.md",
-      "accessCount": 4,
-      "lastAccessed": 1772368638075,
-      "type": "file"
-    },
-    {
-      "path": "src/thoughts/록이-016.md",
-      "accessCount": 4,
-      "lastAccessed": 1772368645114,
-      "type": "file"
-    },
-    {
-      "path": "experiments/checkpoints/combine.py",
-      "accessCount": 4,
-      "lastAccessed": 1772390508037,
-      "type": "file"
-    },
-    {
-      "path": ".env",
-      "accessCount": 3,
-      "lastAccessed": 1772351254147,
-      "type": "file"
-    },
-    {
-      "path": "data/knowledge-graph.json",
-      "accessCount": 2,
-      "lastAccessed": 1772349039775,
-      "type": "file"
-    },
-    {
-      "path": "arxiv/KPI_REPORT_CYCLE87.md",
-      "accessCount": 2,
-      "lastAccessed": 1772349079129,
-      "type": "file"
-    },
-    {
-      "path": "experiments/alignment_cycle88.py",
-      "accessCount": 2,
-      "lastAccessed": 1772350094047,
-      "type": "file"
-    },
-    {
-      "path": "experiments/h_exec_cycle84_results.json",
-      "accessCount": 2,
-      "lastAccessed": 1772351237525,
-      "type": "file"
-    },
-    {
-      "path": "experiments/h_exec_cycle84_stats.py",
-      "accessCount": 2,
-      "lastAccessed": 1772351241893,
-      "type": "file"
-    },
-    {
-      "path": "experiments/h_exec_cycle89_stats.py",
-      "accessCount": 2,
-      "lastAccessed": 1772351320241,
-      "type": "file"
-    },
-    {
-      "path": "arxiv/EXPERIMENT_RESULTS_C89.md",
-      "accessCount": 2,
-      "lastAccessed": 1772351333789,
-      "type": "file"
-    },
-    {
-      "path": "arxiv/QA_REPORT_C89.md",
-      "accessCount": 2,
-      "lastAccessed": 1772351362027,
-      "type": "file"
-    },
-    {
-      "path": "arxiv/GEMINI_REVIEW_C89.md",
-      "accessCount": 2,
-      "lastAccessed": 1772351404616,
-      "type": "file"
-    },
-    {
-      "path": "thoughts/록이-036.md",
-      "accessCount": 2,
-      "lastAccessed": 1772353338459,
-      "type": "file"
-    },
-    {
-      "path": "src/thoughts/록이-018.md",
-      "accessCount": 2,
-      "lastAccessed": 1772368849758,
-      "type": "file"
-    },
-    {
-      "path": "experiments/condition_b_results.json",
-      "accessCount": 2,
-      "lastAccessed": 1772372575013,
-      "type": "file"
-    },
-    {
-      "path": "thoughts/록이-035.md",
-      "accessCount": 2,
-      "lastAccessed": 1772372575839,
-      "type": "file"
-    },
-    {
-      "path": "experiments/ungated_quality_results.json",
-      "accessCount": 2,
-      "lastAccessed": 1772372615567,
-      "type": "file"
-    },
-    {
-      "path": "experiments/three_way_comparison.py",
-      "accessCount": 2,
-      "lastAccessed": 1772376646784,
-      "type": "file"
-    },
-    {
-      "path": "src/thoughts/록이-019.md",
-      "accessCount": 2,
-      "lastAccessed": 1772376776805,
-      "type": "file"
-    },
-    {
-      "path": "experiments/math_3way_pipeline.py",
-      "accessCount": 2,
-      "lastAccessed": 1772385994218,
-      "type": "file"
-    },
-    {
-      "path": "experiments/math_3way_emergent.py",
-      "accessCount": 2,
-      "lastAccessed": 1772385994535,
-      "type": "file"
     },
     {
       "path": "experiments/final_3way_round4_results.json",
       "accessCount": 2,
-      "lastAccessed": 1772390508410,
+      "lastAccessed": 1772441765835,
       "type": "file"
     },
     {
-      "path": "experiments/checkpoints/new_problems.json",
+      "path": "experiments/amp_benchmark_results_real.json",
       "accessCount": 2,
-      "lastAccessed": 1772390508826,
+      "lastAccessed": 1772441771534,
+      "type": "file"
+    },
+    {
+      "path": "experiments/final_3way_results.json",
+      "accessCount": 2,
+      "lastAccessed": 1772441772085,
       "type": "file"
     },
     {
       "path": "experiments/final_3way_round3_results.json",
       "accessCount": 2,
-      "lastAccessed": 1772390516965,
+      "lastAccessed": 1772441782009,
       "type": "file"
     },
     {
-      "path": "experiments/checkpoints/AgentNightRunner.sh",
+      "path": "experiments/benchmark_discovery_results.json",
       "accessCount": 2,
-      "lastAccessed": 1772390540819,
+      "lastAccessed": 1772441782293,
+      "type": "file"
+    },
+    {
+      "path": "design/AMP_PROGRESS.md",
+      "accessCount": 2,
+      "lastAccessed": 1772441787191,
       "type": "file"
     }
   ],
