@@ -43,6 +43,11 @@ RESULTS_FILE = REPO / "experiments" / "amp_benchmark_results.json"
 
 DRY_RUN = "--dry-run" in sys.argv
 
+# --output 지원
+_output_arg = next((sys.argv[i+1] for i, a in enumerate(sys.argv) if a == "--output" and i+1 < len(sys.argv)), None)
+if _output_arg:
+    RESULTS_FILE = Path(_output_arg) if Path(_output_arg).is_absolute() else REPO / _output_arg
+
 # ─── 테스트 질문 (10개, 다양한 실생활 결정 질문) ─────────────────────────────
 
 TEST_QUESTIONS = [
@@ -92,7 +97,7 @@ CONTROL_PERSONA_B = "Critic"
 # ─── API 호출 ─────────────────────────────────────────────────────────────────
 
 def call_openai(system_prompt: str, user_prompt: str, max_tokens: int = 600, retries: int = 3) -> str:
-    """OpenAI GPT-5.2 호출. max_completion_tokens 사용, temperature 미설정."""
+    """OpenAI GPT-5.2 호출. max_completion_tokens 미사용 (gpt-5.2에서 빈 응답 버그)."""
     if DRY_RUN:
         return f"[DRY-RUN] GPT-5.2 response to: {user_prompt[:60]}..."
 
@@ -106,7 +111,6 @@ def call_openai(system_prompt: str, user_prompt: str, max_tokens: int = 600, ret
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt},
         ],
-        "max_completion_tokens": max_tokens,
     }).encode()
 
     for attempt in range(retries):
@@ -322,7 +326,7 @@ def judge_answers(question: str, answer_a: str, answer_b: str) -> dict:
         "}"
     )
 
-    raw = call_gemini(judge_sys, judge_prompt, max_tokens=400)
+    raw = call_gemini(judge_sys, judge_prompt, max_tokens=800)
 
     if DRY_RUN:
         return {
