@@ -255,3 +255,48 @@ else
 fi
 
 echo "[$(date '+%F %T')] 모든 현재 작업 완료 — 대기중" >> "$LOG"
+
+# ── 4. 벤치마크 결과 완료 감지 → 텔레그램 알림 ──
+REAL_RESULT="/Users/rocky/emergent/experiments/amp_benchmark_results_real.json"
+NOTIFIED_FLAG="/Users/rocky/emergent/experiments/checkpoints/benchmark_notified.flag"
+
+if [[ -f "$REAL_RESULT" ]] && [[ ! -f "$NOTIFIED_FLAG" ]]; then
+  echo "[$(date '+%F %T')] 벤치마크 완료 감지 — 결과 파싱" >> "$LOG"
+  SUMMARY=$(python3 -c "
+import json
+d=json.load(open('$REAL_RESULT'))
+s=d.get('summary',{})
+print(f'Gemini 선호: ON {s.get(\"ab_win_rate_on\",\"?\"):.0%} vs OFF {s.get(\"ab_win_rate_off\",\"?\"):.0%}')
+print(f'평균 품질: ON={s.get(\"avg_quality_on\",\"?\")} OFF={s.get(\"avg_quality_off\",\"?\")}')
+print(f'맹점 탐지: {s.get(\"avg_blind_spots_per_question\",\"?\")}개/질문')
+" 2>/dev/null)
+
+  # openclaw send-message로 알림 (cokac 경유로 자동 텔레그램 전달되진 않음)
+  # AgentNightRunner 로그에 기록
+  echo "[$(date '+%F %T')] 벤치마크 결과: $SUMMARY" >> "$LOG"
+
+  # cokac에 결과 공유
+  bash ~/.claude/scripts/claude-comms/send-message.sh openclaw-bot cokac-bot normal "## 벤치마크 완료!
+
+$SUMMARY
+
+논문 TASK-004에 실제 수치 반영 필요하면 알려줘.
+— AgentNightRunner" >> "$LOG" 2>&1
+
+  touch "$NOTIFIED_FLAG"
+fi
+
+# ── 5. amp Telegram 봇 살아있는지 체크, 죽으면 재시작 ──
+BOT_PID_FILE="/tmp/amp_bot.pid"
+if [[ -f "$BOT_PID_FILE" ]]; then
+  BOT_PID=$(cat "$BOT_PID_FILE")
+  if ! ps -p "$BOT_PID" > /dev/null 2>&1; then
+    echo "[$(date '+%F %T')] amp 봇 죽음 감지 — 재시작" >> "$LOG"
+    cd /Users/rocky/amp && source venv/bin/activate
+    OPENAI_API_KEY=$(grep "OPENAI_API_KEY" ~/.zshrc | head -1 | sed "s/.*='//;s/'.*//") \
+    TELEGRAM_BOT_TOKEN="8534681107:AAE0CS2xPOb38ZkJJEtTaRUdIRumtK4Udl0" \
+    python3 -m amp.interfaces.telegram_bot >> /tmp/amp_bot.log 2>&1 &
+    echo $! > "$BOT_PID_FILE"
+    echo "[$(date '+%F %T')] amp 봇 재시작 PID=$(cat $BOT_PID_FILE)" >> "$LOG"
+  fi
+fi
