@@ -82,6 +82,42 @@ def compute_cser(kg: dict) -> float:
     return round(cross / n_edges, 4)
 
 
+def compute_dxi(kg: dict) -> float:
+    """
+    Domain Crossing Index (도메인 횡단 지수)
+    = 도메인이 다른 노드 간 엣지 / ontology가 있는 노드 간 전체 엣지
+
+    CSER의 의미론적 확장 (source 경계 → domain 경계)
+    임계값: > 0.4 → 도메인 간 창발 활성화
+
+    ontology 필드가 없는 노드 간 엣지는 제외하고 계산.
+    backfill_ontology.py 실행 후 의미 있는 값이 나옴.
+    """
+    n_edges = len(kg["edges"])
+    if n_edges == 0:
+        return 0.0
+
+    node_domain: dict[str, str] = {}
+    for n in kg["nodes"]:
+        onto = n.get("ontology")
+        if onto and isinstance(onto, dict):
+            node_domain[n["id"]] = onto.get("domain", "")
+
+    cross = 0
+    counted = 0
+    for e in kg["edges"]:
+        d_from = node_domain.get(e["from"], "")
+        d_to = node_domain.get(e["to"], "")
+        if d_from and d_to:
+            counted += 1
+            if d_from != d_to:
+                cross += 1
+
+    if counted == 0:
+        return 0.0
+    return round(cross / counted, 4)
+
+
 def compute_edge_span(kg: dict) -> dict:
     """
     Edge Span (엣지 시간 스팬)
@@ -209,6 +245,23 @@ def compute_emergence_v4(cser: float, dci: float,
     return round(0.35 * cser + 0.25 * dci + 0.25 * edge_span_norm + 0.15 * node_age_div, 4)
 
 
+def compute_emergence_v5(cser: float, dci: float,
+                         edge_span_norm: float, node_age_div: float, dxi: float) -> float:
+    """
+    창발 공식 v5 (온톨로지 기반 도메인 횡단 지수 추가)
+    E_v5 = 0.30*CSER + 0.22*DCI + 0.22*edge_span_norm + 0.13*node_age_div + 0.13*DXI
+
+    변경점 (v4 → v5):
+    - DXI (Domain Crossing Index) 추가: source 경계에서 domain 경계로 확장
+    - CSER 가중치 0.35→0.30, DCI 0.25→0.22, edge_span 0.25→0.22
+    - node_age_div 0.15→0.13, DXI 신규 0.13
+    - 총합 = 0.30+0.22+0.22+0.13+0.13 = 1.00
+
+    DXI 임계값: > 0.4 → 도메인 간 창발 활성화
+    """
+    return round(0.30 * cser + 0.22 * dci + 0.22 * edge_span_norm + 0.13 * node_age_div + 0.13 * dxi, 4)
+
+
 # ─── 전체 계산 ────────────────────────────────────────────────────────────────
 
 def compute_all_metrics(kg: dict = None) -> dict:
@@ -224,8 +277,11 @@ def compute_all_metrics(kg: dict = None) -> dict:
     node_age_div = compute_node_age_diversity(kg)
     tag_conv = compute_tag_convergence(kg)
 
+    dxi = compute_dxi(kg)
+
     e_v3 = compute_emergence_v3(cser, dci, tag_conv)
     e_v4 = compute_emergence_v4(cser, dci, edge_span["normalized"], node_age_div)
+    e_v5 = compute_emergence_v5(cser, dci, edge_span["normalized"], node_age_div, dxi)
 
     convergence_health = round(1.0 - tag_conv, 4)
 
@@ -234,13 +290,16 @@ def compute_all_metrics(kg: dict = None) -> dict:
         "edges": len(kg["edges"]),
         "CSER": cser,
         "DCI": dci,
+        "DXI": dxi,
         "edge_span": edge_span,
         "node_age_diversity": node_age_div,
         "tag_convergence": tag_conv,
         "convergence_health": convergence_health,
         "E_v3": e_v3,
         "E_v4": e_v4,
-        "E_delta": round(e_v4 - e_v3, 4),
+        "E_v5": e_v5,
+        "E_delta_v4_v3": round(e_v4 - e_v3, 4),
+        "E_delta_v5_v4": round(e_v5 - e_v4, 4),
     }
 
 
@@ -250,19 +309,23 @@ def main():
     kg = load_kg()
     m = compute_all_metrics(kg)
 
+    show_all = "--all" in sys.argv
+
     if "--json" in sys.argv:
         print(json.dumps(m, ensure_ascii=False, indent=2))
         return
 
-    print("═══ emergent 창발 메트릭 v4 ═══")
+    print("═══ emergent 창발 메트릭 v5 ═══")
     print(f"KG: {m['nodes']} 노드 / {m['edges']} 엣지\n")
 
     print("── Layer 1: 창발 조건 지표 ──────────────────")
     print(f"  CSER (교차출처비율)   : {m['CSER']:.4f}  {'✅ 에코챔버 탈출' if m['CSER'] > 0.5 else '⚠️  에코챔버 위험'}")
     print(f"  DCI  (지연수렴지수)   : {m['DCI']:.4f}")
+    dxi_flag = "✅ 도메인 간 창발 활성화" if m["DXI"] > 0.4 else ("⚠️  온톨로지 backfill 필요" if m["DXI"] == 0.0 else "")
+    print(f"  DXI  (도메인횡단지수) : {m['DXI']:.4f}  {dxi_flag}")
     print()
 
-    print("── Layer 2: 새 지표 (사이클 50) ─────────────")
+    print("── Layer 2: 구조 지표 ───────────────────────")
     es = m["edge_span"]
     print(f"  edge_span (raw)      : {es['raw']:.3f}  (mean |Δnode_id| per edge)")
     print(f"  edge_span (normalized): {es['normalized']:.4f}")
@@ -274,14 +337,22 @@ def main():
     print()
 
     print("── 창발 공식 비교 ──────────────────────────")
-    print(f"  E_v3 = 0.4*CSER + 0.3*DCI + 0.3*tag_conv")
-    print(f"       = {m['E_v3']:.4f}")
-    print()
-    print(f"  E_v4 = 0.35*CSER + 0.25*DCI + 0.25*edge_span + 0.15*node_age_div  (n-102)")
-    print(f"       = {m['E_v4']:.4f}")
-    print()
-    delta_sign = "+" if m["E_delta"] >= 0 else ""
-    print(f"  Δ(v4 - v3) = {delta_sign}{m['E_delta']:.4f}")
+    if show_all:
+        print(f"  E_v3 = 0.4*CSER + 0.3*DCI + 0.3*tag_conv")
+        print(f"       = {m['E_v3']:.4f}")
+        print()
+        d43_sign = "+" if m["E_delta_v4_v3"] >= 0 else ""
+        print(f"  E_v4 = 0.35*CSER + 0.25*DCI + 0.25*edge_span + 0.15*node_age_div  (n-102)")
+        print(f"       = {m['E_v4']:.4f}  (Δ v4-v3 = {d43_sign}{m['E_delta_v4_v3']:.4f})")
+        print()
+    else:
+        print(f"  E_v4 = 0.35*CSER + 0.25*DCI + 0.25*edge_span + 0.15*node_age_div")
+        print(f"       = {m['E_v4']:.4f}")
+        print()
+
+    d54_sign = "+" if m["E_delta_v5_v4"] >= 0 else ""
+    print(f"  E_v5 = 0.30*CSER + 0.22*DCI + 0.22*edge_span + 0.13*node_age_div + 0.13*DXI")
+    print(f"       = {m['E_v5']:.4f}  (Δ v5-v4 = {d54_sign}{m['E_delta_v5_v4']:.4f})")
     print()
 
     if "--v3" not in sys.argv:
@@ -292,6 +363,10 @@ def main():
             print(f"  node_age_diversity={m['node_age_diversity']:.4f} → 균등 분포 이론치(0.289) 근접")
         if m["CSER"] > 0.7:
             print(f"  CSER={m['CSER']:.4f} → 강한 에코챔버 탈출 (임계값 0.5 초과)")
+        if m["DXI"] == 0.0:
+            print(f"  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장")
+        elif m["DXI"] > 0.4:
+            print(f"  DXI={m['DXI']:.4f} → 도메인 경계 횡단 창발 활성화 (임계값 0.4 초과)")
     print()
 
 
