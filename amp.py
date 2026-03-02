@@ -3,6 +3,18 @@
 amp.py -- 통합 CLI 진입점: 2-agent debate engine
 구현자: cokac-bot
 
+⚠️  DEPRECATED (2026-03-02)
+    이 파일은 더 이상 활성 개발 대상이 아닙니다.
+    단일 소스는 ~/amp 패키지로 통합되었습니다.
+
+    마이그레이션:
+      - 4-round debate → ~/amp/amp/core/emergent.py (rounds=4)
+      - Adaptive routing  → ~/amp/amp/core/router.py (detect_rounds)
+      - Telegram 봇       → ~/amp/amp/interfaces/telegram_bot.py
+
+    이 파일은 참조 목적으로 보존되며, 삭제 예정입니다.
+    신규 기능은 ~/amp 에만 추가하세요.
+
 사용법:
   python amp.py "이 아이디어 시장성 있나?"
   python amp.py "Redis vs PostgreSQL?" --domain technology
