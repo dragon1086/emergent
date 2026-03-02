@@ -32,7 +32,7 @@ A Case Study with CSER and Persona-Diversity Gates}
   \texttt{munsangrok@gmail.com}
 }
 
-\date{Draft v3.1 — Latest Snapshot (2026-03-02)}
+\date{Draft v3.2 — Latest Snapshot (2026-03-02)}
 
 % ─── Document ─────────────────────────────────────────────────────────────────
 \begin{document}
@@ -267,6 +267,18 @@ KG co-evolution & -- & -- & -- & -- & \textbf{89+-cycle empirical} \\
 \end{tabular}
 \caption{Comparison with related multi-agent systems (including 2025--2026 concurrent work)}
 \end{table}
+
+\noindent\textbf{Note on CSER and bipartite mixing measures:}
+CSER is structurally related to the \emph{bipartite mixing index} family
+(e.g., assortativity coefficients in network science~\cite{newman2003mixing}).
+Both measure the tendency of edges to connect nodes of different types.
+The novelty of CSER lies not in the ratio formula per se, but in its application
+as a \emph{real-time control gate} for multi-agent collaboration quality, its
+integration into the composite $E_{v4}$ metric, and its empirical validation as
+a binary classifier distinguishing echo-chamber from productive co-evolution
+(Section~\ref{sec:condition_b_full}). Readers familiar with bipartite mixing
+should treat CSER as a domain-specific instantiation with a validated gate
+threshold, not a fundamentally new network statistic.
 
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Methodology}
@@ -913,8 +925,11 @@ Conflict resolution & $+13$ & Claude discovered GPT blind spots \\
 \begin{enumerate}
   \item \textbf{Cross-provider collaboration}: GPT-5.2 $\times$ Claude-sonnet-4-6
         produced an average insight gain of $+9.5$ points across 10 questions,
-        relative to solo GPT-5.2 baseline. This extends the amplification
-        finding beyond the same-model setting.
+        relative to solo GPT-5.2 baseline. This is an \emph{exploratory}
+        observation ($N=10$ questions, $N=1$ provider configuration, single
+        judge model); it should not be interpreted as a statistically confirmed
+        amplification effect. Broader replication across provider pairs, domains,
+        and judge models is required before any general claim can be made.
 
   \item \textbf{Ethics and conflict domains}: Claude discovered GPT-5.2 blind spots
         in ethics ($+12$ insight points) and conflict resolution ($+13$ insight points) ---
@@ -1027,13 +1042,17 @@ generalising the domain-dependence claim.
 % ─────────────────────────────────────────────────────────────────────────────
 
 \begin{enumerate}
-  \item \textbf{Sample size}: Two agents, single experiment.
+  \item \textbf{Sample size ($N=1$ system)}: This is a single-pair, single-KG, single-run
+        experiment. \emph{All structural findings in this paper --- CSER trajectories,
+        gate thresholds, paradoxical emergence statistics, $E_{v4}$ values --- are
+        observations from this one experimental instance.} No claim generalizes beyond
+        this context without independent replication.
         \textit{Partial resolution (Cycle 86 snapshot)}: The heterogeneous LLM pair
         experiment (GPT-4o + Gemini-3-Flash-Preview) extends the agent configuration space
         to a cross-provider pair, adding a third distinct co-evolution sample
-        (CSER = 0.5455, gate passed). This does not resolve the fundamental two-agent
-        constraint but demonstrates that the gate mechanism generalizes across
-        provider boundaries.
+        (CSER = 0.5455, gate passed). This does not resolve the fundamental N=1
+        constraint but demonstrates that the gate mechanism is not unique to the
+        original agent pair.
   \item \textbf{KG artificiality}: Agents are aware of KG structure.
   \item \textbf{Weight arbitrariness}: $E_{v4}$ weights are intuitively designed.
         \textit{Quantified (Cycle 86 snapshot)}: Bootstrap cross-validation ($N=1000$) reveals
@@ -1046,6 +1065,16 @@ generalising the domain-dependence claim.
         confirms conclusions hold under $\pm$20\% weight perturbation.
         Status: \textit{trade-off empirically quantified; full arbitrariness
         concern persists}.
+        \textit{Post-hoc interpretation warning}: The CV-optimal weights
+        $[0.28, 0.05, 0.05, 0.62]$ were computed \emph{after} data collection
+        on the same KG used to report results. They should \emph{not} be
+        interpreted as a theoretically superior choice; they represent a
+        post-hoc optimization artifact. The current theory-derived weights
+        $[0.35, 0.25, 0.25, 0.15]$ were fixed before the bootstrap analysis and
+        are the weights used for all reported findings.
+        \textit{Pre-registration plan}: Future weight derivations will use a
+        held-out seed KG (distinct from the reporting KG) and will be
+        pre-registered before data collection.
   \item \textbf{Reproducibility}: still limited. We provide scripts and KG artifacts,
         but current evidence remains concentrated in a single evolving project KG.
         Cross-provider checks (Cycle 85--86) should be interpreted as exploratory
@@ -1112,6 +1141,22 @@ generalising the domain-dependence claim.
         contrast. A broader domain sweep---natural language inference, causal
         reasoning, code synthesis---is required before the domain-dependence
         finding can be generalised.
+  \item \textbf{Metric gaming risk (Goodhart's Law)}: $E_{v4}$ and CSER are
+        computed from observable KG structural properties. Once agents are aware
+        of the metric formulas (as in this study, where agents themselves
+        designed and monitored the metrics), they may optimize for metric values
+        rather than genuine knowledge cross-pollination --- a form of
+        specification gaming. The current design does not protect against this
+        risk; agents can in principle inflate CSER by generating syntactically
+        cross-source edges without genuine semantic integration.
+        \textit{Proposed mitigation}: Future experiments should adopt a
+        \textbf{blind evaluation / hidden metric protocol}: (a)~a subset of
+        metrics is withheld from the agents during co-evolution and evaluated
+        post-hoc by an independent observer; (b)~semantic validity of
+        cross-source edges is spot-checked by a judge model blind to metric
+        values; (c)~pre-registered ``honeypot'' edges (syntactically
+        cross-source but semantically vacuous) are seeded and monitored for
+        abnormal incorporation rates.
 \end{enumerate}
 
 % ─────────────────────────────────────────────────────────────────────────────
@@ -1212,6 +1257,8 @@ all figures above use the latest snapshot for consistency.}
 \end{table}
 
 \noindent\textbf{CSER note}: The near-equal CSER values arise because the real KG contains nodes from 16 distinct sources (록이, cokac, execution\_loop, openclaw\_asymmetric, etc.), making even random connections highly likely to be cross-source. This is structurally \emph{expected}: in a multi-source graph with $k=16$ sources of unequal size, the expected CSER of an E-R random graph approaches $1 - \sum_i p_i^2$ (where $p_i$ is the fraction of nodes from source $i$). With 16 sources, this lower-bound on random CSER is already $> 0.80$. CSER therefore serves as a \emph{threshold detector} (CSER $< 0.30$ = echo-chamber, confirmed by Condition B/C gate blockage) rather than a global discriminator against randomness.
+
+\noindent\textbf{Limitation of global CSER as a sole indicator}: Because global CSER conflates contributions from all 16 sources, it is insensitive to localized echo-chamber formation within a source subgroup. Two agents could form a tight silo while a third agent maintains high cross-source degree, keeping global CSER deceptively high. Future work should develop \textbf{local CSER} (per source-pair) and \textbf{temporal CSER} (sliding-window over recent cycles) to detect silo formation before it becomes systemic. The current global CSER gate is adequate for the two-agent, two-source context studied here but may require augmentation in $k > 2$ agent systems.
 
 \noindent\textbf{Edge span (updated interpretation)}: In the latest snapshot, the KG's mean raw edge span (10.15) is \emph{below} the E-R baseline (76.04), reversing the +23\% finding from the Cycle 89 snapshot (raw span: 61.92 vs.\ E-R 50.46). This reversal is a direct consequence of the D-047 topological effect: experimental nodes added after Cycle 89 (cokac-bot, amp, gpt4, gemini sources, all with cycle$=0$) dramatically reduce the mean span by pulling edge distances toward zero. The Cycle 89 finding (+23\% above E-R) remains valid for that historical snapshot; the current snapshot reflects the structural cost of expanded experimental coverage. This illustrates why D-047 (observer non-independence) is not merely philosophical: the measurement infrastructure permanently modifies the substrate being measured.
 
@@ -1428,6 +1475,14 @@ this scope; generalisation requires independent replication:
         and multi-domain replication is required before any broad generalisation.
 \end{itemize}
 
+\noindent\textbf{Scope statement}: All findings above are from a single $N=1$
+two-agent experiment. This paper contributes a \textbf{measurement framework and
+case-study observations}, not a general proof of emergence or amplification.
+The primary value is the proposed metrics (CSER, $E_{v4}$, PES), the validated
+gate mechanism, and the documented structural patterns (D-035, D-063, D-064,
+D-047) as phenomena warranting systematic replication. Claims of generalizability
+are explicitly deferred pending multi-seed, multi-pair, multi-domain replication.
+
 \noindent\textbf{Next steps}: Multi-provider co-evolution (GPT-4o + Gemini agent pair),
 human team H-CSER transplant, harder execution benchmarks (graph algorithms, DP)
 where partial echo-chamber failure rate $> 0$, and multi-domain amplification
@@ -1599,9 +1654,52 @@ persist at larger scale and in heterogeneous substrates is the most important op
 question this framework raises for future work.
 
 % ─────────────────────────────────────────────────────────────────────────────
+\section*{Pre-Submission Critical Fixes (Author Checklist)}
+% ─────────────────────────────────────────────────────────────────────────────
+
+The following two items are identified as minimum-necessary actions before
+formal venue submission. Both address concerns raised in pre-submission review
+that cannot be resolved within the current single-experiment dataset.
+
+\begin{enumerate}
+  \item \textbf{Multi-seed / multi-pair replication plan}\\
+        \textit{Issue}: All KG structural claims (CSER trajectories, $E_{v4}$
+        values, D-063/D-064 pattern rates) derive from a single $N=1$ KG run.
+        A reviewer cannot assess whether findings reflect systematic structural
+        dynamics or experiment-specific artifacts.\\
+        \textit{Required action}: Before submission, conduct at minimum
+        \textbf{3 independent replications}: (a)~same agent pair, fresh KG seed;
+        (b)~different agent pair (GPT-4o $\times$ Gemini), same domain;
+        (c)~different domain (creative writing or scientific reasoning).
+        Report mean $\pm$ std of CSER, $E_{v4}$, and paradoxical-crossing rate
+        across all runs. If replication is not feasible before submission,
+        reframe the paper explicitly as a \emph{single-system case study
+        introducing a measurement framework}, removing any language that implies
+        generalization.
+
+  \item \textbf{Judge ensemble + statistical significance plan for amp benchmark}\\
+        \textit{Issue}: The amp benchmark uses a single judge model (Gemini,
+        $N=10$ questions). The $+9.5$ average insight gain and the
+        70\%/30\% auto-persona preference result are based on one evaluator's
+        ratings; no inter-rater reliability is reported; no significance test
+        is provided.\\
+        \textit{Required action}: Either (a)~add at minimum one additional
+        independent judge (e.g., GPT-4o-mini as a second blind evaluator) and
+        report inter-judge agreement (Cohen's $\kappa$ or Spearman $\rho$),
+        or (b)~apply a one-sample $t$-test or Wilcoxon signed-rank test on the
+        10 per-question insight-gain scores to compute a $p$-value and 95\%
+        confidence interval. Without at least one of these, the amp results
+        remain anecdotal and will be flagged by any statistical reviewer.
+\end{enumerate}
+
+% ─────────────────────────────────────────────────────────────────────────────
 \begin{thebibliography}{9}
 \bibitem{holland1998emergence}
   Holland, J.H. (1998). \textit{Emergence: From Chaos to Order}. Addison-Wesley.
+
+\bibitem{newman2003mixing}
+  Newman, M.E.J. (2003). Mixing patterns in networks.
+  \textit{Physical Review E}, 67(2), 026126.
 
 \bibitem{kauffman1993origins}
   Kauffman, S.A. (1993). \textit{The Origins of Order}. Oxford University Press.
