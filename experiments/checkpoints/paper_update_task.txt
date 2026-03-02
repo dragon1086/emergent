@@ -1,0 +1,32 @@
+논문 /Users/rocky/emergent/arxiv/main.tex 개선 작업.
+
+## 현재 실험 결과 (통합 필요)
+- Round 4 (knights_knaves): Solo=70% Pipeline=50% Emergent=60% → Emergent>Pipeline ✅
+- Round 3 (논리추론): Solo=80% Pipeline=70% Emergent=60%
+- 결론: 논리 추론 도메인에서 Emergent 협업 구조가 표준 Pipeline보다 우위
+
+## 작업 목표
+GPT-5.2 리뷰 점수 개선 (현재 4.67/10, 목표 6.0+)
+GPT-5.2 주요 비판 해결:
+1. "실험 재현성 부족" → experiments/README.md 보완
+2. "주장 과장" → 클레임 범위 축소 + 한계 명시
+3. "이론적 기반 약함" → Emergent amplification 메커니즘 설명 강화
+
+## 구체적 수정 사항
+1. Abstract: "case study" 프레이밍 유지, Emergent>Pipeline 결과 추가
+2. Section 추가: "Emergent Amplification Conditions"
+   - 어떤 도메인에서 Emergent가 Pipeline보다 유리한가
+   - 논리추론 > 수학계산 (실험적 근거)
+3. Limitations 섹션 강화:
+   - Same-model 한계 명시
+   - Solo 천장 효과 (학습 데이터 오염 가능성)
+   - 도메인 선택 편향
+4. 결론 재작성: 과장 제거, "preliminary evidence" 프레이밍
+
+## 파일 위치
+- 논문: /Users/rocky/emergent/arxiv/main.tex
+- 실험결과: /Users/rocky/emergent/experiments/final_3way_round4_results.json
+
+## 완료 후
+cd /Users/rocky/emergent && git add -A && git commit -m "📝 논문 개선: Emergent>Pipeline 결과 통합, 한계 강화"
+openclaw system event --text "논문 개선 완료 — GPT-5.2 재심 준비" --mode now
