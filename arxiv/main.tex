@@ -312,6 +312,10 @@ labeled ``Cycle 86'' or ``Cycle 89'' reference historical snapshots taken at
 those cycle counts; they are not updated to the latest snapshot.
 Comparisons that span multiple snapshots are explicitly labeled with their
 respective snapshot dates to ensure same-snapshot consistency.
+Supplementary controlled experiments labeled ``Cycle 90,'' ``Cycle 91,''
+and ``Cycle 92'' are independent experiments conducted after the main KG
+snapshot; they do not modify the main KG state and should be interpreted
+separately from the primary case-study findings.
 
 \subsection{Metric Definitions}
 
@@ -535,7 +539,7 @@ Mean PES (paradoxical) & 0.847 \\
 Mean PES (non-paradoxical) & 0.231 \\
 \bottomrule
 \end{tabular}
-\caption{D-063 Paradoxical Emergence statistics}
+\caption{D-063 Paradoxical Emergence statistics (historical snapshot, Cycle 86-era; $N=821$ edges at time of analysis; latest KG: 534 nodes / 1121 edges)}
 \end{table}
 
 \noindent\textbf{Independence note}: PES is computed solely from structural KG properties (span, cross\_source flag, tag\_overlap) and is \emph{not} derived from $E_{v4}$. The correlation between PES and $E_{v4}$ is therefore a testable empirical relationship, not a definitional artifact. This prevents the D-063 finding from being weakened by circular-reasoning objections.
@@ -1157,6 +1161,22 @@ generalising the domain-dependence claim.
         values; (c)~pre-registered ``honeypot'' edges (syntactically
         cross-source but semantically vacuous) are seeded and monitored for
         abnormal incorporation rates.
+        This risk is \emph{acute} in the current study: the agents who
+        co-evolved the KG are the same agents who designed and monitored the
+        metrics, creating a potential circular optimization loop not controlled
+        by any blinded evaluation.
+  \item \textbf{Global CSER indistinguishable from random at high source-count}:
+        As shown in the Erdős–Rényi comparison (Section~\ref{sec:stat}),
+        the current KG's global CSER ($= 0.8510$) is nearly identical to the
+        random E-R baseline ($\approx 0.87$) at $k=16$ distinct sources.
+        With many sources, even random edge formation is overwhelmingly
+        cross-source, so global CSER loses discriminative power as a
+        \emph{quality} indicator at scale. CSER is valid as a
+        \emph{threshold detector} in binary classification contexts
+        (echo-chamber CSER $< 0.30$ vs.\ productive CSER $> 0.50$) but
+        should \textbf{not} be used as a continuous quality score in mature
+        multi-source KGs without developing local per-source-pair CSER
+        (Section~\ref{sec:stat}).
 \end{enumerate}
 
 % ─────────────────────────────────────────────────────────────────────────────
@@ -1268,7 +1288,7 @@ all figures above use the latest snapshot for consistency.}
 (15/16 scenarios maintain $E_{v4} > E_{v3}$). Single vulnerability: CSER weight
 reduced to 80\% baseline --- outside practical research scope.
 
-\subsubsection{CSER Threshold Sensitivity (Cycle 90)}
+\subsubsection{CSER Threshold Sensitivity (Cycle 90, supplementary experiment)}
 
 To address the concern that the CSER $< 0.30$ threshold is arbitrary, we conduct a
 threshold sweep across $t \in \{0.05, 0.10, \ldots, 0.95\}$ and Monte Carlo noise
@@ -1369,7 +1389,7 @@ This result transforms the CSER gate from an \emph{ad hoc} threshold into an
 \emph{empirically validated binary classifier}: heterogeneous collaboration
 produces CSER $\gg 0.30$; homogeneous collaboration produces CSER $\ll 0.30$.
 
-\subsection{Ungated Quality Stress Test (Cycle 92)}
+\subsection{Ungated Quality Stress Test (Cycle 92, supplementary experiment)}
 
 To test whether the CSER gate is merely an engineering artifact, we disabled the
 execution gate and measured coding quality directly across conditions A/B/C.
@@ -1395,7 +1415,7 @@ Problem & Cond A & Cond B & Cond C & Pattern \\
 pattern ($q_A=0.92 > q_B=0.84 < q_C=0.92$), inconsistent with a simple linear
 CSER$\rightarrow$quality hypothesis above the gate threshold.
 
-\subsection{$E_{v4}$ External Validation (Cycle 92)}
+\subsection{$E_{v4}$ External Validation (Cycle 92, supplementary experiment)}
 
 Using 10 KG snapshots and 14 external quality observations,
 $E_{v4}$ shows a moderate positive correlation with external quality
@@ -1475,9 +1495,14 @@ this scope; generalisation requires independent replication:
         and multi-domain replication is required before any broad generalisation.
 \end{itemize}
 
-\noindent\textbf{Scope statement}: All findings above are from a single $N=1$
-two-agent experiment. This paper contributes a \textbf{measurement framework and
-case-study observations}, not a general proof of emergence or amplification.
+\noindent\textbf{Scope statement}: All KG structural findings above derive from a
+single $N=1$ two-agent, single-KG experiment. The amplification benchmark
+($N=10$ questions, one cross-provider configuration, single judge) and the
+supplementary controlled experiments (Cycles 90--92) are distinct from the
+main KG case study and carry their own, narrower $N$-constraints; they should
+not be interpreted as independent replications of the $N=1$ KG findings.
+This paper contributes a \textbf{measurement framework and case-study
+observations}, not a general proof of emergence or amplification.
 The primary value is the proposed metrics (CSER, $E_{v4}$, PES), the validated
 gate mechanism, and the documented structural patterns (D-035, D-063, D-064,
 D-047) as phenomena warranting systematic replication. Claims of generalizability
@@ -1493,7 +1518,7 @@ sweep to test domain-dependence of Emergent vs.\ Pipeline performance.
 \label{sec:applications}
 % ─────────────────────────────────────────────────────────────────────────────
 
-The emergence measurement framework developed in this study generalizes beyond the OpenClaw two-agent system. We identify four high-impact application domains where CSER and $E_{v4}$ provide concrete operational value. \textbf{Important caveat}: The $\theta = 0.30$ gate threshold was derived from a specific two-agent, single-task context. Applications to new domains require domain-specific calibration (see Protocol below); direct threshold transfer is not recommended without empirical validation.
+The emergence measurement framework developed in this study \emph{may} generalize beyond the OpenClaw two-agent system; the following applications are \textbf{speculative extrapolations} from a single $N=1$ case study and are offered as research directions, not validated findings. We identify three candidate application domains where CSER and $E_{v4}$ could provide operational value pending independent validation. \textbf{Important caveat}: The $\theta = 0.30$ gate threshold was derived from a specific two-agent, single-task context. Applications to new domains require domain-specific calibration (see Protocol below); direct threshold transfer is not recommended without empirical validation.
 
 \subsubsection*{Domain Calibration Protocol}
 Before deploying CSER\textsubscript{gate} in a new domain:
@@ -1521,7 +1546,7 @@ Enterprises increasingly build knowledge graphs from heterogeneous internal sour
 
 \textbf{Application}: Apply pair\_designer v4 to recommend cross-silo knowledge connections. Given an organizational KG with departmental source tags (engineering, marketing, research), pair\_designer selects node pairs with high cross-source potential and low tag overlap --- the exact conditions (PES $= \text{span\_norm} \times \text{cross\_source} \times (1-\text{tag\_overlap})$) that generate paradoxical emergence (D-063). Automatically surfacing high-PES node pairs to knowledge curators provides a principled, metric-driven workflow for organizational learning.
 
-\textbf{Expected gain}: The $3\times$ $\Delta$ expansion demonstrated in Cycle 75 (pair\_designer v4 vs. random edge addition) translates to a $3\times$ improvement in cross-silo connection density per curation session.
+\textbf{Projected gain (speculative)}: The $3\times$ $\Delta$ expansion demonstrated in Cycle 75 (pair\_designer v4 vs.\ random edge addition) \emph{may} suggest a $3\times$ improvement in cross-silo connection density per curation session, but this extrapolation has not been empirically validated outside the two-agent KG context.
 
 \subsection{Open-Source Collective Intelligence Systems}
 
