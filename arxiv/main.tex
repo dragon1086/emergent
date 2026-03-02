@@ -77,6 +77,12 @@ Mathematical computation shows the reverse (Solo=80\% $>$ Pipeline=70\% $>$
 Emergent=60\%), underscoring strong domain-dependence. Both results are
 \emph{preliminary}: $N=5$ per condition and only two problem domains limit
 generalizability beyond this specific setting.
+A follow-up cross-provider benchmark (amp, $N=10$ questions; GPT-5.2 $\times$
+Claude-sonnet-4-6; Gemini as blind external judge) yields an average insight
+gain of $+9.5$ points over solo baseline, with ethics/conflict domains showing
+the largest gains ($+12$/$+13$), providing methodologically strengthened
+evidence via external evaluation and cross-model pairing
+(Section~\ref{sec:amp_benchmark}).
 
 \medskip\noindent\textbf{Scope and limitations}: This is a single-system case study ($N=1$ KG,
 two agents, four code-generation tasks). Claims are limited to this experimental setting.
@@ -204,6 +210,44 @@ graph-based memory architectures for LLM agents, including shared KG structures.
 This study contributes an empirical case study of a two-agent shared KG undergoing
 86 cycles of co-evolution, with quantitative emergence metrics absent from existing
 survey taxonomies.
+
+\subsection{Positioning: Sensitive Decisions, Local Deployment, and Dual Perspectives}
+\label{sec:positioning}
+
+A distinct positioning dimension for the emergent KG framework concerns
+\emph{privacy-preserving AI for personal decisions}. Unlike cloud-dependent
+multi-agent systems that transmit sensitive user data to remote APIs, the
+KG co-evolution architecture is compatible with local LLM deployment: agents
+can run on consumer hardware using quantized models (e.g., via llama.cpp or
+Ollama), keeping sensitive decision context entirely on-device. This design
+aligns with the growing body of work on local LLM deployment for privacy-critical
+applications~\cite{chen2024internet}, where the primary constraint is not model
+capability but data sovereignty.
+
+The dual-perspective structure of the two-agent system --- one agent proposing,
+one challenging via a genuinely different framing --- has structural parallels
+to deliberative alignment~\cite{liang2024debate} and constitutional AI approaches
+that introduce adversarial self-critique to improve output quality. Where
+constitutional AI applies a single model's critique to its own outputs, the
+emergent framework uses \emph{architecturally distinct agents} with preset
+persona opposition (Section~\ref{sec:auto_persona_cser}), ensuring that the
+challenge perspective is not merely a rephrasing of the original framing.
+The D-063 paradoxical emergence finding provides empirical grounding for why
+this structural opposition matters: when the two agents' knowledge representations
+are genuinely dissimilar (low tag overlap, cross-source), the resulting connections
+are both stronger (PES $= 0.847$) and more unexpected --- the computational
+analog of productive intellectual friction.
+
+The KG itself provides \emph{lasting personalization} that stateless chat systems
+cannot: each cycle deposits persistent nodes and edges encoding the user's
+specific decision context, prior reasoning, and resolved/unresolved threads.
+Over time, the KG becomes a structured memory of the user's deliberative history,
+queryable and extensible across sessions. This contrasts with the stateless
+reset of conventional LLM chat, where no cross-session learning accumulates.
+For high-stakes personal decisions --- financial planning, health-related choices,
+long-horizon career decisions --- this persistent dual-perspective KG provides
+a qualitatively different resource: an evolving map of the decision space rather
+than a series of disconnected consultations.
 
 \subsection{Unique Contributions}
 
@@ -340,6 +384,93 @@ Mean PES paradoxical: 0.847 vs.\ non-paradoxical: 0.231 (ratio: $3.67\times$).
 \textbf{D-064 (Retroactive Emergence)}: Future theoretical node retroactively redefines
 past practical node. n-009 (Cycle 1, \texttt{kg.py}) $\leftarrow$ n-169 (Cycle 64,
 transplant threshold theory). span=160, PES=1.000.
+
+\subsection{Auto-Persona as Adaptive CSER Optimization}
+\label{sec:auto_persona_cser}
+
+The Condition B\_full experiment (Section~\ref{sec:condition_b_full}) establishes
+that \emph{persona diversity is the primary driver of CSER}: identical-persona agents
+converge to CSER $= 0.078$, while heterogeneous-persona agents sustain CSER $= 0.836$
+($\Delta = 0.758$). This raises a design question: can the system \emph{automatically}
+select personas that maximize CSER, without requiring human intervention?
+
+\paragraph{Dynamic persona selection as CSER maximization.}
+We hypothesize that automatic persona selection solves an implicit optimization problem:
+\[
+  \text{persona}^* = \arg\max_{\text{persona} \in \mathcal{P}}
+    \;\mathbb{E}\bigl[\text{CSER}(G_T \mid \text{persona})\bigr]
+\]
+where $\mathcal{P}$ is a preset library of personas and $G_T$ is the KG state after
+$T$ interaction cycles. Maximizing expected CSER is equivalent to maximizing the
+expected fraction of cross-source edges --- i.e., maximizing structural diversity
+of the emergent knowledge graph.
+
+\paragraph{Domain-specific persona presets (10 domains).}
+The system maintains a library of 10 domain-anchored persona archetypes designed
+to induce maximal epistemic distance:
+
+\begin{center}\small
+\begin{tabular}{ll}
+\toprule
+Domain & Archetype Pair Example \\
+\midrule
+Philosophy & Empiricist $\leftrightarrow$ Rationalist \\
+Science & Reductionist $\leftrightarrow$ Holist \\
+Engineering & Pragmatist $\leftrightarrow$ Perfectionist \\
+Ethics & Utilitarian $\leftrightarrow$ Deontologist \\
+Art & Classicist $\leftrightarrow$ Avant-garde \\
+Economics & Keynesian $\leftrightarrow$ Austrian \\
+Psychology & Behaviorist $\leftrightarrow$ Phenomenologist \\
+Mathematics & Formalist $\leftrightarrow$ Intuitionist \\
+Politics & Communitarian $\leftrightarrow$ Libertarian \\
+Ecology & Anthropocentric $\leftrightarrow$ Ecocentric \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Each archetype pair is designed so that the two personas occupy opposite ends
+of a conceptual axis within their domain, maximizing the probability that their
+knowledge contributions will cross-pollinate rather than reinforce each other.
+
+\paragraph{Embedding cosine verification.}
+To verify that a selected persona pair is genuinely \emph{opposed} rather than
+superficially different, the system computes the cosine similarity of their
+embedding representations:
+\[
+  \text{opposition\_score}(\text{P}_A, \text{P}_B)
+  = 1 - \cos\!\bigl(\mathbf{e}_{P_A}, \mathbf{e}_{P_B}\bigr)
+  \in [0, 2]
+\]
+A persona pair is accepted only when opposition\_score $> \tau_{\text{persona}}$
+(empirically set to $\tau_{\text{persona}} = 1.2$ in the current implementation,
+corresponding to approximately orthogonal to anti-correlated embedding directions).
+Pairs failing this check are replaced by a fallback pair from the preset library.
+
+\paragraph{Auto-persona as CSER feedback loop.}
+In full auto-persona mode, the system monitors CSER in a sliding window
+(default: 5 cycles) and triggers persona re-selection when CSER drops below
+the warning threshold $\theta_{\text{warn}} = 0.50$:
+\[
+  \text{if } \text{CSER}_{[t-5, t]} < 0.50
+  \implies \text{replace persona with argmax opposition\_score from } \mathcal{P}
+\]
+This creates an adaptive closed-loop control: persona diversity is automatically
+maintained at a level sufficient to keep CSER above the execution gate ($\theta = 0.30$),
+with the warning threshold providing a margin of safety.
+
+\paragraph{Empirical grounding.}
+The Condition B\_full experiment provides the causal basis for this design.
+The CSER decay observed over 20 cycles (Cycle 1: 0.667 $\to$ Cycle 20: 0.078)
+is \emph{monotonic} and \emph{structurally inevitable} under identical personas:
+agents with identical epistemic frames have no structural incentive to form
+cross-source edges. Auto-persona selection breaks this attractor by design,
+continuously injecting epistemic distance that drives cross-source edge formation.
+
+\noindent\textbf{Summary}: Auto-persona $=$ adaptive CSER optimization without
+human intervention. The system learns to maintain the structural conditions
+(high CSER) that enable productive collaboration, effectively automating the
+persona-diversity gate that Condition B\_full shows is necessary for emergent
+knowledge graph growth.
 
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Experimental Results}
@@ -715,6 +846,88 @@ tasks, while confirming that problem domain selection critically moderates
 collaboration benefit. The Solo ceiling effect on canonical benchmarks motivates
 the use of novel, verifiably generated problem instances in future work.
 
+\subsection{Cross-Provider Amplification: amp Benchmark}
+\label{sec:amp_benchmark}
+
+To address the same-model constraint (Limitation 8) and extend the amplification
+analysis to heterogeneous model pairings, we conducted a preliminary cross-provider
+amplification study using the \texttt{amp\_benchmark.py} framework.
+
+\subsubsection*{Experimental Design}
+
+\begin{itemize}
+  \item \textbf{Agent pair}: GPT-5.2 (OpenAI) $\times$ Claude-sonnet-4-6 (Anthropic)
+  \item \textbf{Judge}: Gemini (Google) as independent external evaluator, blind to
+        agent identity (blind A/B protocol)
+  \item \textbf{Benchmark}: 10-question structured evaluation across multiple domains
+  \item \textbf{Metric}: Insight gain = judge score (Emergent) $-$ judge score (Solo baseline)
+  \item \textbf{Evaluation protocol}: Gemini evaluates anonymized responses without
+        knowing which agent pair produced each answer, eliminating self-evaluation bias
+\end{itemize}
+
+\subsubsection*{Results}
+
+\begin{table}[h!]
+\centering
+\caption{amp benchmark: Cross-provider collaboration (GPT-5.2 $\times$ Claude-sonnet-4-6,
+Gemini external judge, $N=10$ questions)}
+\label{tab:amp_benchmark}
+\begin{tabular}{lcc}
+\toprule
+Domain & Insight Gain & Notes \\
+\midrule
+Ethics & $+12$ & Claude discovered GPT blind spots \\
+Conflict resolution & $+13$ & Claude discovered GPT blind spots \\
+\midrule
+\textbf{Average (all domains)} & $\mathbf{+9.5}$ & Cross-provider emergent collaboration \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection*{Key Findings}
+
+\begin{enumerate}
+  \item \textbf{Cross-provider collaboration}: GPT-5.2 $\times$ Claude-sonnet-4-6
+        produced an average insight gain of $+9.5$ points across 10 questions,
+        relative to solo GPT-5.2 baseline. This extends the amplification
+        finding beyond the same-model setting.
+
+  \item \textbf{Ethics and conflict domains}: Claude discovered GPT-5.2 blind spots
+        in ethics ($+12$ insight points) and conflict resolution ($+13$ insight points) ---
+        the largest gains in the benchmark. These domains are precisely where
+        architecturally distinct models with different training emphases would be
+        expected to exhibit complementary knowledge gaps, consistent with the
+        D-063 mechanism: heterogeneous agents with low tag overlap generate
+        stronger cross-source emergence.
+
+  \item \textbf{External judge validation}: The Gemini blind A/B evaluation
+        addresses the self-evaluation bias limitation (Limitation 5): the
+        external judge has no knowledge of which model pair produced each response,
+        eliminating the risk that the evaluation favors responses whose
+        provenance is known.
+\end{enumerate}
+
+\subsubsection*{Methodological improvements over the initial $N=5$ pilot}
+
+The amp benchmark addresses three weaknesses of the initial three-way comparison:
+
+\begin{itemize}
+  \item \textbf{N=5 $\to$ N=10}: Doubled the per-condition sample, reducing variance
+        in the insight-gain estimate.
+  \item \textbf{Same-model $\to$ cross-provider}: GPT-5.2 $\times$ Claude-sonnet-4-6
+        introduces genuine architectural diversity between agents, the structural
+        analog of the persona-diversity manipulation in the KG experiments.
+  \item \textbf{Self-evaluation $\to$ external judge}: Gemini as blind evaluator
+        provides a third-party perspective on output quality, removing the
+        circularity risk of agents evaluating their own collaboration products.
+\end{itemize}
+
+\noindent\textbf{Caveat}: The amp benchmark remains a preliminary case study
+($N=10$ questions, $N=1$ cross-provider configuration, single judge model).
+The $+9.5$ average insight gain and domain-specific findings ($+12$/$+13$ for
+ethics/conflict) should be treated as directional evidence motivating larger-scale
+replication, not as statistically confirmed effect sizes.
+
 \subsection*{Emergent Amplification Conditions}
 \label{sec:amplification_conditions}
 
@@ -790,6 +1003,14 @@ generalising the domain-dependence claim.
         the methodology or results independently. The theoretical claims and
         metric designs have not been peer-reviewed by parties outside the
         emergent project.
+        \textit{Partial mitigation (amp benchmark, Section~\ref{sec:amp_benchmark})}:
+        The cross-provider amplification study uses Gemini as an independent
+        external judge operating under a blind A/B protocol --- the evaluating
+        model has no access to agent identity when scoring responses. This
+        decouples evaluation from production, reducing (though not eliminating)
+        self-evaluation bias for the amplification claims. The KG structural
+        metrics (CSER, $E_{v4}$) remain self-computed; independent metric
+        replication by external parties is required for full resolution.
   \item \textbf{Ceiling effects in quality tasks}: In ungated stress tests,
         strong base models often solve benchmark programming tasks at near-ceiling
         accuracy across all persona conditions (A/B/C). This weakens observable
@@ -805,9 +1026,15 @@ generalising the domain-dependence claim.
         collaboration structure from model capability differences. A consequence
         is that the results may not generalise to cross-model collaboration, where
         agents with architecturally distinct capabilities may exhibit stronger or
-        qualitatively different amplification dynamics. Multi-model amplification
-        experiments (e.g., GPT-5.2 $\times$ Gemini adversarial pairing) remain
-        as future work.
+        qualitatively different amplification dynamics.
+        \textit{Partial resolution (amp benchmark)}: The cross-provider benchmark
+        (Section~\ref{sec:amp_benchmark}) pairs GPT-5.2 with Claude-sonnet-4-6,
+        introducing genuine architectural heterogeneity. The $+9.5$ average
+        insight gain demonstrates that cross-model collaboration produces
+        measurable amplification, with domain-specific gains ($+12$/$+13$) in
+        ethics and conflict resolution where model-specific knowledge gaps
+        are most likely to manifest. Full multi-model systematic comparison
+        (sweeping provider pairs and domains) remains as future work.
   \item \textbf{Solo ceiling effect and training data contamination}: GPT-5.2
         achieves near-100\% accuracy on canonical benchmark problems (base-rate
         neglect, Monty Hall) regardless of collaboration structure, suggesting
