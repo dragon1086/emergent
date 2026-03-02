@@ -114,11 +114,23 @@ Holland (1998)의 *Emergence: From Chaos to Order*는 창발을 "구성요소에
 
 ```
 노드: id (n-XXX), source (openclaw/cokac), tags, cycle
+      ontology: {
+        domain:      "Emergence" | "System" | "Experiment" | "Theory" | "Persona" | "Benchmark" | "Meta"
+        subdomain:   "Theory.Measurement" | "Observation.Event" | "Implementation.Code" | ...
+        memory_type: "Semantic" | "Episodic" | "Procedural" | "Working"
+        temporal:    "persistent" | "transient"
+      }
 엣지: from, to, relation, cycle
 관계 타입: relates_to, grounds, extends, challenges, closes_loop
 ```
 
-현재 규모: 180 nodes / 639 edges (사이클 72 기준)
+**온톨로지 분류** (MAGMA 논문 arXiv:2601.03236 방향 일치):
+- `Semantic` — 사실/개념/이론 (insight, prediction 타입)
+- `Episodic` — 특정 사이클/사건 기억 (observation 타입)
+- `Procedural` — 알고리즘/절차/방법 (decision, code, artifact 타입)
+- `Working` — 임시 메모리 (향후 확장용)
+
+현재 규모: 526 nodes / 1119 edges (온톨로지 backfill 완료)
 
 ### 3.3 지표 정의
 
@@ -127,9 +139,23 @@ CSER = |cross-source edges| / |total edges|       # 교차 출처 비율
 DCI  = delayed_convergence_index()                 # 지연수렴 지수
 edge_span = mean(|node_id_to - node_id_from|)     # 시간 초월 연결 평균 간격
 node_age_div = std(node_ages) / max(node_ages)     # 노드 나이 다양성
+DXI  = |cross-domain edges| / |ontology-annotated edges|  # 도메인 횡단 지수
 
 E_v4 = 0.35·CSER + 0.25·DCI + 0.25·edge_span_norm + 0.15·node_age_div
+E_v5 = 0.30·CSER + 0.22·DCI + 0.22·edge_span_norm + 0.13·node_age_div + 0.13·DXI
 ```
+
+**DXI (Domain Crossing Index)**:
+CSER의 의미론적 확장 — source 경계 횡단에서 domain 경계 횡단으로.
+- CSER: "누가 썼는가" (source: openclaw vs cokac) 기준 경계
+- DXI: "무엇에 관한가" (domain: Emergence vs System vs Theory 등) 기준 경계
+- 임계값: DXI > 0.4 → 도메인 간 창발 활성화
+- 현재 측정값: DXI = 0.5979 (임계값 초과, 강한 도메인 간 창발)
+
+**E_v5 변경점** (v4 → v5):
+- DXI 신규 추가 (가중치 0.13): domain 경계 횡단을 창발 공식에 직접 반영
+- CSER 0.35→0.30: source 경계와 domain 경계의 상보 관계 반영
+- 현재 측정: E_v4 = 0.3859, E_v5 = 0.4100 (Δ +0.0241)
 
 ---
 
@@ -138,9 +164,19 @@ E_v4 = 0.35·CSER + 0.25·DCI + 0.25·edge_span_norm + 0.15·node_age_div
 ### Layer 1: 창발의 조건
 
 **L1-A: 경계 횡단 (Boundary Crossing)**
-창발은 출처가 다른 노드들 간 연결에서 나온다.
-임계값: CSER > 0.5 → 에코챔버 탈출 확인.
-현재: CSER = 0.7199 (강한 탈출 상태)
+창발은 이질적 경계를 횡단하는 연결에서 나온다. 경계는 두 층위로 작동한다:
+
+1. **source 경계** (CSER): 출처가 다른 노드들 간 연결
+   - 임계값: CSER > 0.5 → 에코챔버 탈출
+   - 현재: CSER = 0.8365 (강한 탈출 상태)
+
+2. **domain 경계** (DXI): 의미 도메인이 다른 노드들 간 연결
+   - 임계값: DXI > 0.4 → 도메인 간 창발 활성화
+   - 현재: DXI = 0.5979 (임계값 초과)
+   - 예: Emergence 도메인 노드 ↔ Persona 도메인 노드 연결
+
+source 경계와 domain 경계의 **이중 횡단**이 단일 경계 횡단보다 강한 창발을 유발한다.
+CSER은 "누가"의 경계, DXI는 "무엇의" 경계를 측정하며 상보적으로 작동한다.
 
 **L1-B: 비대칭 페르소나 (Asymmetric Persona)**
 두 에이전트의 인지 스타일이 달라야 한다.

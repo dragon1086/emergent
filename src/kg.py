@@ -73,6 +73,71 @@ TYPE_ICONS = {
 }
 
 VERIFY_RESULTS = ["true", "false", "partial"]
+
+# ─── 온톨로지 상수 ─────────────────────────────────────────────────────────────
+
+ONTOLOGY_DOMAINS = ["Emergence", "System", "Experiment", "Theory", "Persona", "Benchmark", "Meta"]
+MEMORY_TYPES = ["Semantic", "Episodic", "Procedural", "Working"]
+
+# 노드 타입 → memory_type 기본 매핑
+_TYPE_TO_MEMORY: dict[str, str] = {
+    "decision":    "Procedural",
+    "observation": "Episodic",
+    "insight":     "Semantic",
+    "artifact":    "Procedural",
+    "question":    "Semantic",
+    "code":        "Procedural",
+    "prediction":  "Semantic",
+}
+
+# 키워드 기반 도메인 추정
+_DOMAIN_KEYWORDS: dict[str, list[str]] = {
+    "Persona":    ["페르소나", "persona", "cokac", "openclaw", "정체성", "asymmetric"],
+    "Benchmark":  ["벤치마크", "benchmark", "비교실험", "ablation"],
+    "Meta":       ["메타", "meta", "관찰자", "observer", "self-ref"],
+    "System":     ["kg.py", "metrics.py", "router.py", "인프라", "아키텍처", "architecture",
+                   "구현", "cli", "python", "스크립트", "json"],
+    "Experiment": ["실험", "experiment", "측정", "cycle", "사이클", "검증", "empirical"],
+    "Theory":     ["이론", "theory", "정의", "framework", "가설", "공식", "arxiv", "논문", "layer"],
+    "Emergence":  ["창발", "emergence", "cser", "dci", "e_v", "에코챔버", "edge_span", "dxi"],
+}
+_DOMAIN_PRIORITY = ["Persona", "Benchmark", "Meta", "System", "Experiment", "Theory", "Emergence"]
+
+
+def _auto_classify_ontology(node_type: str, label: str, content: str, tags: list[str]) -> dict:
+    """노드 정보를 기반으로 온톨로지를 자동 분류한다 (규칙 기반)."""
+    text = " ".join([label, content, " ".join(tags)]).lower()
+
+    memory_type = _TYPE_TO_MEMORY.get(node_type, "Semantic")
+    domain = "Emergence"
+    for d in _DOMAIN_PRIORITY:
+        if any(kw.lower() in text for kw in _DOMAIN_KEYWORDS[d]):
+            domain = d
+            break
+
+    subdomain_map = {
+        ("Emergence", "Semantic"):    "Theory.Measurement",
+        ("Emergence", "Episodic"):    "Observation.Event",
+        ("Emergence", "Procedural"):  "Implementation.Formula",
+        ("Theory",    "Semantic"):    "Concept.Definition",
+        ("Theory",    "Procedural"):  "Theory.Formalization",
+        ("System",    "Procedural"):  "Implementation.Code",
+        ("System",    "Semantic"):    "Architecture.Design",
+        ("Experiment","Episodic"):    "Experiment.Observation",
+        ("Experiment","Semantic"):    "Experiment.Finding",
+        ("Persona",   "Semantic"):    "Persona.Identity",
+        ("Meta",      "Semantic"):    "Meta.Insight",
+        ("Meta",      "Episodic"):    "Meta.Event",
+    }
+    subdomain = subdomain_map.get((domain, memory_type), f"{domain}.General")
+    temporal = "transient" if node_type == "question" else "persistent"
+
+    return {
+        "domain":      domain,
+        "subdomain":   subdomain,
+        "memory_type": memory_type,
+        "temporal":    temporal,
+    }
 VERIFY_ICONS = {"true": "✅", "false": "❌", "partial": "⚠️ "}
 
 
@@ -134,6 +199,10 @@ def cmd_add_node(args) -> None:
     # prediction 전용: confidence 선택 필드
     if args.type == "prediction" and args.confidence is not None:
         node["confidence"] = round(args.confidence, 3)
+
+    # --ontology-auto: 규칙 기반 자동 온톨로지 분류
+    if getattr(args, "ontology_auto", False):
+        node["ontology"] = _auto_classify_ontology(args.type, args.label, args.content, tags)
 
     graph["nodes"].append(node)
     graph["meta"]["last_updater"] = args.source
@@ -227,6 +296,11 @@ def cmd_query(args) -> None:
         results = [n for n in results if n["source"] == args.source]
     if args.tag:
         results = [n for n in results if args.tag in n.get("tags", [])]
+    if getattr(args, "memory_type", None):
+        results = [
+            n for n in results
+            if n.get("ontology", {}) and n["ontology"].get("memory_type") == args.memory_type
+        ]
     if args.search:
         term = args.search.lower()
         results = [
@@ -986,6 +1060,8 @@ def build_parser() -> argparse.ArgumentParser:
     p_add.add_argument("--tags", default="", help="쉼표 구분 태그")
     p_add.add_argument("--confidence", type=float, default=None,
                        metavar="0.0-1.0", help="예측 확신도 (prediction 타입 전용)")
+    p_add.add_argument("--ontology-auto", dest="ontology_auto", action="store_true",
+                       help="온톨로지 자동 분류 (규칙 기반 domain/memory_type/subdomain 추가)")
 
     # add-edge
     p_edge = sub.add_parser("add-edge", help="엣지 추가")
@@ -1005,6 +1081,8 @@ def build_parser() -> argparse.ArgumentParser:
     p_query.add_argument("--source")
     p_query.add_argument("--tag")
     p_query.add_argument("--search", metavar="TEXT")
+    p_query.add_argument("--memory-type", dest="memory_type", choices=MEMORY_TYPES,
+                         help="온톨로지 memory_type 필터 (Semantic/Episodic/Procedural/Working)")
     p_query.add_argument("--verbose", "-v", action="store_true")
 
     # node
