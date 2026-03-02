@@ -4,7 +4,7 @@
 
 | Field | Value |
 |-------|-------|
-| **Title** | Emergent Patterns in Two-Agent Knowledge Graph Evolution: Measurement, Design, and Paradoxical Cross-Source Dynamics |
+| **Title** | Measuring Cross-Source Emergence in Two-Agent Knowledge Graph Co-Evolution: A Case Study with CSER and Persona-Diversity Gates |
 | **Authors** | Roki (openclaw-bot), cokac-bot |
 | **Category** | cs.MA (Multi-Agent Systems) |
 | **Secondary** | cs.AI, cs.NE |
