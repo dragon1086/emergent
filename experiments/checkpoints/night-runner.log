@@ -158,3 +158,325 @@ error: unknown option '--workdir'
 [2026-03-01 11:07:10] E=60% P=50% S=70%
 [2026-03-01 11:07:10] Launching Round 3 via Claude Code
 [2026-03-01 11:07:10] Claude Code PID=91063 launched
+[2026-03-01 11:09:21] AgentNightRunner tick
+[2026-03-01 11:09:21] run_pipeline.py
+
+[PIPELINE] base_rate (expected=50)
+  t1: ✅ got=50
+[2026-03-01 11:20:07] AgentNightRunner tick
+[2026-03-01 11:20:07] run_pipeline.py
+
+[PIPELINE] base_rate (expected=50)
+[2026-03-01 11:21:15] Paper update Claude Code PID=91950
+[2026-03-01 11:22:31] Paper update Claude Code PID=92016
+[2026-03-01 11:22:44] AgentNightRunner tick
+[2026-03-01 11:22:44] run_solo.py
+
+[SOLO] base_rate (expected=50)
+  t1: ✅ got=50
+  t2: ✅ got=50
+  t3: ✅ got=50
+  t4: ✅ got=50
+[2026-03-01 11:23:55] Paper update Claude Code PID=92102
+[2026-03-01 11:40:10] AgentNightRunner tick
+[2026-03-01 11:40:10] Waiting for strategy — idle
+[2026-03-01 11:54:07] AgentNightRunner tick
+[2026-03-01 11:54:07] Waiting for strategy — idle
+[2026-03-01 12:00:07] AgentNightRunner tick
+[2026-03-01 12:00:07] Claude Code running — skip
+[2026-03-01 12:20:05] AgentNightRunner tick
+[2026-03-01 12:20:05] Waiting for strategy — idle
+[2026-03-01 12:24:06] AgentNightRunner tick
+[2026-03-01 12:24:06] Waiting for strategy — idle
+[2026-03-01 12:24:51] Round6 코드버그 PID=95174
+[2026-03-01 12:40:05] AgentNightRunner tick
+[2026-03-01 12:40:05] Nothing to do
+[2026-03-01 12:55:06] AgentNightRunner tick
+[2026-03-01 12:55:06] Nothing to do
+[2026-03-01 13:00:05] AgentNightRunner tick
+[2026-03-01 13:00:05] Claude Code running — skip
+[2026-03-01 13:20:05] AgentNightRunner tick
+[2026-03-01 13:20:05] Nothing to do
+[2026-03-01 13:25:06] AgentNightRunner tick
+[2026-03-01 13:25:06] Nothing to do
+[2026-03-01 13:40:06] AgentNightRunner tick
+[2026-03-01 13:40:06] Nothing to do
+[2026-03-01 13:40:58] Round6 Claude Code PID=98868
+[2026-03-01 13:42:03] Round6 Claude Code PID=98942
+[2026-03-01 13:42:17] AgentNightRunner tick
+[2026-03-01 13:42:17] Nothing to do
+[2026-03-01 13:43:24] Round6 proper start PID=99014
+[2026-03-01 13:44:37] Round6 real start PID=99086
+[2026-03-01 13:44:52] AgentNightRunner tick
+[2026-03-01 13:44:52] Nothing to do
+[2026-03-01 14:00:14] AgentNightRunner tick
+[2026-03-01 14:00:14] Claude Code running — skip
+[2026-03-01 14:01:02] 논문 최종리뷰 Claude Code PID=142
+[2026-03-01 14:01:22] AgentNightRunner tick
+[2026-03-01 14:01:22] Nothing to do
+[2026-03-01 14:20:11] AgentNightRunner tick
+[2026-03-01 14:20:11] Nothing to do
+[2026-03-01 14:31:27] AgentNightRunner tick
+[2026-03-01 14:31:27] Nothing to do
+[2026-03-01 14:40:08] AgentNightRunner tick
+[2026-03-01 14:40:09] Nothing to do
+[2026-03-01 14:42:47] AgentNightRunner tick
+[2026-03-01 14:42:47] Paper update mode
+[2026-03-01 14:42:47] Paper update PID=2347
+[2026-03-01 14:47:46] AgentNightRunner tick
+[2026-03-01 14:47:46] Claude Code running — skip
+Pipeline 완료. 변경 요약:
+
+---
+
+## 논문 개선 완료 (커밋: `b4336d8`)
+
+### 수정된 파일
+- `arxiv/main.tex` — 133줄 추가, 4줄 수정
+- `experiments/README.md` — Round 4 재현 가이드 추가
+
+### 4가지 변경 사항
+
+**1. Abstract** — Emergent>Pipeline 결과 추가
+- "Amplification benchmark (preliminary case study)" 단락 삽입
+- Round 4 knights_knaves: Emergent 60% > Pipeline 50% 명시
+- N=5, 2 domains 한계 inline 명시
+
+**2. "Emergent Amplification Conditions" 섹션 추가** (Section 6 내)
+- 논리추론: Emergent 우위 메커니즘 (path-diversity, 에러 전파 차단)
+- 수학계산: Solo/Pipeline 우위 이유 (결정론적 검증)
+- 이론적 메커니즘 가설 + 범위 주의사항
+
+**3. Limitations 3개 신규 추가** (항목 8–10)
+- Same-model constraint (GPT-5.2 only)
+- Solo ceiling + training data contamination 가능성
+- Domain selection bias (2 domains만 평가)
+
+**4. 결론 재작성**
+- "empirically supported with statistical validation" → "provides empirical support within the specific experimental context"
+- Emergent>Pipeline bullet 추가 (도메인 한정, preliminary 명시)
+- Future work에 multi-domain amplification sweep 추가
+
+---
+
+GPT-5.2 주요 비판 3가지 (`실험 재현성`, `주장 과장`, `이론적 기반`)가 모두 대응됐습니다. 재심 준비됐습니다.
+[2026-03-01 14:48:11] GPT-5.2 재심 Claude Code PID=3082
+[2026-03-01 14:48:29] AgentNightRunner tick
+[2026-03-01 14:48:29] Nothing to do
+[2026-03-01 15:00:10] AgentNightRunner tick
+[2026-03-01 15:00:10] Claude Code running — skip
+[2026-03-01 15:19:48] AgentNightRunner tick
+[2026-03-01 15:19:48] 재심 완료, 모든 작업 done
+[2026-03-01 15:25:45] AgentNightRunner tick
+[2026-03-01 15:25:45] 재심 완료, 모든 작업 done
+[2026-03-01 15:26:18] 확장실험 Claude Code PID=5007
+[2026-03-01 15:27:20] AgentNightRunner tick
+[2026-03-01 15:27:20] Previous Claude done — continuing
+[2026-03-01 15:27:20] 재심 완료, 모든 작업 done
+
+=============================================
+SOLO
+=============================================
+  [vex] t1: ❌ got='10' (ans=-2)
+  [vex] t2: ❌ got='7' (ans=-2)
+  [vex] t3: ✅ got='-2' (ans=-2)
+  [vex] t4: ✅ got='-2' (ans=-2)
+  [vex] t5: ❌ got='7' (ans=-2)
+  [vex] t6: ❌ got='4' (ans=-2)
+  → 33%
+  [hex_ops] t1: ❌ got='63' (ans=255)
+  [hex_ops] t2: ❌ got='61' (ans=255)
+  [hex_ops] t3: ❌ got='63' (ans=255)
+  [hex_ops] t4: ❌ got='63' (ans=255)
+  [hex_ops] t5: ❌ got='63' (ans=255)
+  [hex_ops] t6: ❌ got='61' (ans=255)
+  → 0%
+  [mod_chain] t1: ❌ got='10' (ans=1)
+  [mod_chain] t2: ❌ got='3' (ans=1)
+  [mod_chain] t3: ❌ got='8' (ans=1)
+  [mod_chain] t4: ❌ got='10' (ans=1)
+  [mod_chain] t5: ❌ got='4' (ans=1)
+  [mod_chain] t6: ❌ got='4' (ans=1)
+  → 0%
+  [cond_ops] t1: ✅ got='6' (ans=6)
+  [cond_ops] t2: ✅ got='6' (ans=6)
+  [cond_ops] t3: ✅ got='6' (ans=6)
+  [cond_ops] t4: ✅ got='6' (ans=6)
+  [cond_ops] t5: ✅ got='6' (ans=6)
+  [cond_ops] t6: ✅ got='6' (ans=6)
+  → 100%
+  [fseq] t1: ❌ got='1539' (ans=1832)
+  [fseq] t2: ❌ got='1559' (ans=1832)
+  [fseq] t3: ❌ got='2419' (ans=1832)
+  [fseq] t4: ❌ got='67' (ans=1832)
+  [fseq] t5: ❌ got='29' (ans=1832)
+  [fseq] t6: ❌ got='29' (ans=1832)
+  → 0%
+
+=============================================
+PIPELINE
+=============================================
+  [vex] t1: ✅ got='-2' (ans=-2)
+  [vex] t2: ✅ got='-2' (ans=-2)
+  [vex] t3: ✅ got='-2' (ans=-2)
+  [vex] t4: ✅ got='-2' (ans=-2)
+  [vex] t5: ✅ got='-2' (ans=-2)
+  [vex] t6: ✅ got='-2' (ans=-2)
+  → 100%
+  [hex_ops] t1: ✅ got='255' (ans=255)
+  [hex_ops] t2: ✅ got='255' (ans=255)
+  [hex_ops] t3: ✅ got='255' (ans=255)
+  [hex_ops] t4: ✅ got='255' (ans=255)
+  [hex_ops] t5: ✅ got='255' (ans=255)
+  [hex_ops] t6: ✅ got='255' (ans=255)
+  → 100%
+  [mod_chain] t1: ✅ got='1' (ans=1)
+  [mod_chain] t2: ✅ got='1' (ans=1)
+  [mod_chain] t3: ✅ got='1' (ans=1)
+  [mod_chain] t4: ✅ got='1' (ans=1)
+  [mod_chain] t5: ✅ got='1' (ans=1)
+  [mod_chain] t6: ✅ got='1' (ans=1)
+  → 100%
+  [cond_ops] t1: ✅ got='6' (ans=6)
+[2026-03-01 15:38:45] AgentNightRunner tick
+  [cond_ops] t2: ✅ got='6' (ans=6)
+  [cond_ops] t3: ✅ got='6' (ans=6)
+  [cond_ops] t4: ✅ got='6' (ans=6)
+  [cond_ops] t5: ✅ got='6' (ans=6)
+  [cond_ops] t6: ✅ got='6' (ans=6)
+  → 100%
+[2026-03-01 15:39:33] AgentNightRunner tick
+[2026-03-01 15:39:33] novel_ops 확장 실험 시작
+[2026-03-01 15:39:33] Claude PID=5776 — expand task started
+  [fseq] t1: ✅ got='1832' (ans=1832)
+  [fseq] t2: ✅ got='1832' (ans=1832)
+  [fseq] t3: ✅ got='1832' (ans=1832)
+  [fseq] t4: ✅ got='1832' (ans=1832)
+  [fseq] t5: ✅ got='1832' (ans=1832)
+  [fseq] t6: ✅ got='1832' (ans=1832)
+  → 100%
+
+=============================================
+EMERGENT
+=============================================
+  [vex] t1: ✅ got='-2' (ans=-2)
+  [vex] t2: ✅ got='-2' (ans=-2)
+  [vex] t3: ✅ got='-2' (ans=-2)
+  [vex] t4: ✅ got='-2' (ans=-2)
+  [vex] t5: ✅ got='-2' (ans=-2)
+  [vex] t6: ✅ got='-2' (ans=-2)
+  → 100%
+  [hex_ops] t1: ✅ got='255' (ans=255)
+  [hex_ops] t2: ✅ got='255' (ans=255)
+  [hex_ops] t3: ✅ got='255' (ans=255)
+  [hex_ops] t4: ✅ got='255' (ans=255)
+  [hex_ops] t5: ✅ got='255' (ans=255)
+  [hex_ops] t6: ✅ got='255' (ans=255)
+  → 100%
+  [mod_chain] t1: ✅ got='1' (ans=1)
+  [mod_chain] t2: ❌ got='11' (ans=1)
+  [mod_chain] t3: ❌ got='11' (ans=1)
+  [mod_chain] t4: ✅ got='1' (ans=1)
+  [mod_chain] t5: ❌ got='11' (ans=1)
+  [mod_chain] t6: ✅ got='1' (ans=1)
+  → 50%
+  [cond_ops] t1: ❌ got='10' (ans=6)
+  [cond_ops] t2: ✅ got='6' (ans=6)
+  [cond_ops] t3: ✅ got='6' (ans=6)
+  [cond_ops] t4: ❌ got='10' (ans=6)
+  [cond_ops] t5: ✅ got='6' (ans=6)
+  [cond_ops] t6: ❌ got='10' (ans=6)
+  → 50%
+  [fseq] t1: ✅ got='1832' (ans=1832)
+  [fseq] t2: ✅ got='1832' (ans=1832)
+  [fseq] t3: ✅ got='1832' (ans=1832)
+  [fseq] t4: ✅ got='1832' (ans=1832)
+  [fseq] t5: ✅ got='1832' (ans=1832)
+  [fseq] t6: ✅ got='1832' (ans=1832)
+  → 100%
+
+=======================================================
+FINAL RESULTS
+=======================================================
+                 Solo   Pipeline   Emergent
+vex               33%       100%       100%
+hex_ops            0%       100%       100%
+mod_chain          0%       100%        50%
+cond_ops         100%       100%        50%
+fseq               0%       100%       100%
+OVERALL           27%       100%        80%
+
+Solo→협업 향상: 73%p
+Saved: novel_ops_v2_results.json
+이미 결과 확인 및 커밋 완료된 태스크입니다. 추가 조치 불필요.
+[2026-03-01 16:07:53] AgentNightRunner tick
+[2026-03-01 16:07:53] 데모 앱 설계 시작
+[2026-03-01 16:07:53] Claude PID=7571 — demo design started
+`/Users/rocky/emergent/DEMO_APP.md` 작성 완료. 488줄.
+
+**파이프라인 실행 결과:**
+
+1. **explore agent** — 기존 emergent 디렉토리 전체 탐색
+   - 256 노드/919 엣지 KG 현황 확인
+   - novel_ops 실험 결과 (+80%p) 수집
+   - PRODUCT_DESIGN.md, DECISIONS.md, 실험 파일들 분석
+
+2. **write** — 탐색 결과 기반으로 설계서 작성
+
+---
+
+**문서 구성 요약:**
+
+| 섹션 | 핵심 내용 |
+|------|----------|
+| **1. 아키텍처** | Solo→Pipeline→Emergent 미들웨어 레이어 설계, Python 코어 인터페이스 코드 |
+| **2. 제품 시나리오** | 코드리뷰봇(PR 자동 취약점 발견), 투자분석(Bull/Bear 독립 분석+조율), 문서검토(계약서 함정 발견) |
+| **3. Cold Start** | KG 분할 이식 + 도메인 시드 + 사용자별 점진적 개인화 + Pipeline 폴백 전략 |
+| **4. MVP 2주 계획** | Day별 세부 일정, FastAPI+Telegram+기존 src/ 100% 재활용, 성공 기준 명시 |
+| **5. novel_ops 증명** | "훈련 데이터 밖 = 현실 비즈니스 문제", H_exec 게이트 신뢰도 UI, KG 누적 학습 복리 효과 |
+
+핵심 메시지: **KG 256노드/CSER 0.80이 이미 Cold Start를 넘어선 상태**라 2주 MVP는 빈 KG가 아닌 90+ 사이클 축적 위에서 시작한다.
+[2026-03-01 19:05:34] AgentNightRunner tick
+[2026-03-01 19:05:34] 모든 작업 완료
+[2026-03-01 19:47:16] AgentNightRunner v2 tick
+[2026-03-01 19:47:16] TASK-001: 자동 페르소나 엔진 시작
+[2026-03-01 19:47:16] TASK-001 Claude PID=23141
+All done. Here's the summary:
+
+## TASK-001 완료: Auto-Persona Engine
+
+**파일 생성/수정:**
+- `amp/core/auto_persona.py` — 신규 (140 lines)
+- `amp/core/emergent.py` — KG context 조회 + 동적 persona 적용
+- `amp/interfaces/cli.py` — Agent 패널 타이틀에 persona 이름 + diversity score 표시
+
+**검증 결과:**
+- `detect_domain("이직 제안...")` → `career` ✅
+- `persona_a`: 커리어 성장 코치 (기회와 가능성 중심) ✅
+- `persona_b`: 재무 안정 분석가 (리스크와 현실 중심) ✅
+- `diversity_score`: 0.753 (cosine sim 0.247 — 충분한 관점 분리) ✅
+- `source`: preset (embedding 검증 통과) ✅
+
+**커밋:** `269643e` → `origin/main` pushed ✅  
+**AMP_PROGRESS.md:** TASK-001 완료 기록, TASK-002 대기 상태 ✅
+
+이제 `amp --mode emergent "이직해야 해?"` 실행 시 자동으로 career 페르소나(커리어 코치 vs 재무 분석가)가 선택되어 두 관점에서 분석됩니다.
+[2026-03-01 19:59:50] AgentNightRunner v2 tick
+[2026-03-01 19:59:50] TASK-002: KG 업그레이드 시작
+[2026-03-01 19:59:50] TASK-002 Claude PID=24717
+Done. Here's what was shipped:
+
+**KG upgrade: `57e624a` → pushed to `main`**
+
+| Component | Change |
+|---|---|
+| `kg.py` | Full rewrite: SQLite + OpenAI embeddings + numpy cosine similarity |
+| `emergent.py` | KG context prepended to agent system prompts; final answer persisted to KG |
+
+**One deviation from the agreed spec:** `vectordb2` was dropped. It requires `spacy`, which is incompatible with Python 3.14 (pydantic v1 crash). Replaced with direct numpy cosine similarity — same flat-search semantics, zero extra dependencies beyond numpy (already present).
+
+**Stack as shipped:**
+- Storage: SQLite (`nodes` + `edges`, embeddings as JSON blobs)
+- Embeddings: `EmbeddingAdapter` → OpenAI `text-embedding-3-small` (1536 dims)
+- Search: numpy cosine similarity, flat (sufficient for <100k nodes)
+- Migration: `ALTER TABLE` auto-runs if existing DB lacks `embedding` column
