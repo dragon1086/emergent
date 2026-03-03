@@ -7,10 +7,10 @@
     "description": "Same-vendor instance (GPT-4o + GPT-4o-mini) — N=2 comparison experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-02",
-    "total_nodes": 6,
+    "total_nodes": 7,
     "total_edges": 1,
-    "next_node_id": "n-007",
-    "last_updater": "gpt-4o"
+    "next_node_id": "n-008",
+    "last_updater": "gpt-5.2"
   },
   "nodes": [
     {
@@ -97,6 +97,22 @@
         "automation",
         "efficiency"
       ]
+    },
+    {
+      "id": "n-007",
+      "type": "insight",
+      "label": "CSER_Stability_vs_Expressivity_Tradeoff",
+      "content": "동일 벤더(same-vendor) 환경에서는 두 에이전트의 귀납/요약 편향이 유사해 상호 비판적 다양성이 감소한다. 그 결과 KG의 “표현력(새로운 개념/관계의 탐색 폭)”은 줄어드는 대신 “안정성(합의 수렴, 용어 정규화, 모순 감소)”이 증가할 가능성이 크다. 따라서 KG-2의 CSER은 (i) novelty/coverage 축에서는 KG-1보다 낮을 수 있으나, (ii) internal consistency/ontology coherence 축에서는 더 높을 수 있다. 이 트레이드오프는 에이전트 간 모델 다양성이 ‘탐색(exploration)’을, 동일성은 ‘활용(exploitation)’을 강화한다는 관점에서 설명되며, KG 진화 과정에서는 “새 노드 생성률 감소 + 기존 노드 간 연결/정제 증가”라는 구조적 신호로 관측될 것이다. [AgentB: (1) 같은 공급자일지라도 프롬프트 역할 분리, 비대칭 메모리, 검색 도구의 차이 등 다양한 요소가 결합되어 결국 모델의 응답에서 큰 차이를 만들어낼 수 있습니다. 이러한 다양성은 표현력 저하를 완화하는 데 긍정적인 영향을 미칠 수 있지만, 각 요소가 실제로 어떻게 상]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[CSER",
+        "same-vendor",
+        "exploration-exploitation]"
+      ],
+      "created": "2026-03-02",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
