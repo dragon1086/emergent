@@ -108,12 +108,13 @@ EDGE_LABEL=$(echo "$AGENT_A_RESPONSE" | grep "^EDGE_LABEL:" | sed 's/^EDGE_LABEL
 
 if [[ -n "$NODE_LABEL" && -n "$NODE_CONTENT" ]]; then
   cd "$REPO_DIR"
+  AGENT_B_SAFE=$(echo "$AGENT_B_RESPONSE" | tr -d "'\`\"\\" | tr '\n\r' '  ' | cut -c1-200)
   NEW_NODE_ID=$(EMERGENT_KG_PATH="$KG2_PATH" python3 src/kg.py add-node \
     --type "${NODE_TYPE:-insight}" \
     --label "$NODE_LABEL" \
-    --content "$NODE_CONTENT — [Agent B 보완: $AGENT_B_RESPONSE]" \
+    --content "${NODE_CONTENT}. Agent B: ${AGENT_B_SAFE}" \
     --source "gpt-4o" \
-    --tag "${NODE_TAGS:-kg2,experiment}" 2>&1 | grep "n-" | tail -1)
+    --tag "${NODE_TAGS:-kg2,experiment}" 2>&1 | grep "✅" | grep -o "n-[0-9]*")
   log "✅ 노드 추가: $NODE_LABEL (id: $NEW_NODE_ID)"
 
   if [[ -n "$EDGE_TO" && -n "$EDGE_RELATION" ]]; then
