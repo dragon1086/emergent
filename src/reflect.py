@@ -464,7 +464,7 @@ def _compute_similarity(a: dict, b: dict) -> float:
     tags_b = {t for t in b.get("tags", []) if t not in _SOURCE_IDENTITY_TAGS}
     t_sim = _tag_sim(tags_a, tags_b)
 
-    label_sim = _jaccard(_tokenize(a["label"]), _tokenize(b["label"]))
+    label_sim = _jaccard(_tokenize(a.get("label", "")), _tokenize(b.get("label", "")))
 
     content_sim = _jaccard(
         _tokenize(a.get("content", "")),
@@ -492,8 +492,8 @@ def _explain_similarity(a: dict, b: dict) -> str:
         tags_str = ", ".join(sorted(shared_tags)[:3])
         return f"공통 태그: #{tags_str}"
 
-    all_a = _tokenize(a.get("content", "") + " " + a["label"])
-    all_b = _tokenize(b.get("content", "") + " " + b["label"])
+    all_a = _tokenize(a.get("content", "") + " " + a.get("label", ""))
+    all_b = _tokenize(b.get("content", "") + " " + b.get("label", ""))
     shared_words = all_a & all_b
     if shared_words:
         # 긴 단어(더 구체적) 우선 최대 3개
@@ -556,8 +556,8 @@ def cmd_suggest_edges(args) -> None:
     for src, dst, sim, reason, is_cross in suggestions:
         src_node = node_map[src]
         dst_node = node_map[dst]
-        src_label = src_node["label"][:32]
-        dst_label = dst_node["label"][:32]
+        src_label = src_node.get("label", "")[:32]
+        dst_label = dst_node.get("label", "")[:32]
         src_src   = src_node.get("source", "?")
         dst_src   = dst_node.get("source", "?")
         marker = "🔀" if is_cross else "↔ "
