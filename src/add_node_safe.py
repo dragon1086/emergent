@@ -60,8 +60,17 @@ edge_to = data.get("edge_to", "").strip()
 edge_relation = data.get("edge_relation", "relates_to").strip() or "relates_to"
 edge_label = data.get("edge_label", "")
 
-# edge_to 유효성 확인
+# edge_to 정규화 (n-001 / n-1 / 1 / n001 → n-NNN 형식)
+import re
+if edge_to:
+    m = re.search(r'\d+', edge_to)
+    if m:
+        edge_to = f"n-{int(m.group()):03d}"
+
+# edge_to 유효성 확인 (없으면 가장 오래된 노드로 fallback)
 valid_ids = {n["id"] for n in graph["nodes"]}
+if edge_to and edge_to not in valid_ids:
+    edge_to = graph["nodes"][0]["id"] if graph["nodes"] else ""
 if edge_to and edge_to in valid_ids:
     existing_edges = [int(e["id"].split("-")[1]) for e in graph["edges"] if e["id"].startswith("e-")]
     next_edge_num = max(existing_edges, default=0) + 1
