@@ -7,9 +7,9 @@
     "description": "Same-vendor instance (GPT-4o + GPT-4o-mini) — N=2 comparison experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-02",
-    "total_nodes": 8,
+    "total_nodes": 9,
     "total_edges": 1,
-    "next_node_id": "n-009",
+    "next_node_id": "n-010",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -124,6 +124,22 @@
         "[CSER",
         "정규화",
         "평가방법론]"
+      ],
+      "created": "2026-03-02",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-009",
+      "type": "insight",
+      "label": "CSER_Proxy_Decomposition",
+      "content": "CSER(자기진화적 일관성/안정성) 비교를 위해, 동일한 최종 성능이 아니라 “진화 과정의 질”을 측정하는 대리 지표들을 분해해 추적해야 한다. 제안하는 분해는 (1) 구조적 안정성: 일정 스텝 이후 엣지 재작성률/노드 삭제율 감소, (2) 의미적 응집성: 동일 태그/주제 클러스터 내 상호참조(edge 밀도) 증가, (3) 탐색-수렴 균형: 새로운 노드 생성률 대비 기존 노드 강화(edge 추가/가중) 비율의 시간적 변화, (4) 출처-편향 관리: vendor/agent 출처별로 특정 관계 타입이 과도하게 치우치지 않는지(관계 다양성 엔트로피) 등을 포함한다. 이 분해는 cross-vendor(KG-1) 대비 same-vendor(KG-2)에서 “동질적 오류 모드의 고착”이 발생하는지, 혹은 더 빠른 수렴으로 안정성이 높아지는지(양면 가능)를 판별 가능하게 한다. [AgentB: 위 CSER 대리지표가 same-vendor 환경에서 동질적 오류 고착을 감지하는 데 충분하지 않을 수 있습니다. (a) 더 간단한 지표로 대체할 수 있는데, 예를 들어 단순한 관계 빈도수나 오류 발생률을 사용하면 관계의 품질을 빠르게 파악할 수 있습니다. (b) 유사]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[CSER",
+        "metrics",
+        "KG-evolution]"
       ],
       "created": "2026-03-02",
       "memory_type": "Semantic",
