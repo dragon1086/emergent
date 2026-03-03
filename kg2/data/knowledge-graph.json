@@ -7,9 +7,9 @@
     "description": "Same-vendor instance (GPT-4o + GPT-4o-mini) — N=2 comparison experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-02",
-    "total_nodes": 9,
+    "total_nodes": 10,
     "total_edges": 1,
-    "next_node_id": "n-010",
+    "next_node_id": "n-011",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -140,6 +140,22 @@
         "[CSER",
         "metrics",
         "KG-evolution]"
+      ],
+      "created": "2026-03-02",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-010",
+      "type": "insight",
+      "label": "CSER_측정은_그래프_형태_불변성(동형성)을_강제해야_공정하다",
+      "content": "CSER(Conceptual/Structural Emergence Rate)을 KG 간 비교 지표로 사용할 때, “성장”을 엣지/노드 수 증가로만 정의하면 벤더·에이전트별 표기 습관(라벨링, 세분화, 재진술) 차이가 신호를 오염시킨다. 따라서 CSER은 (a) 의미가 동일한 재진술/중복 노드 병합, (b) 관계 방향/라벨의 단순 치환, (c) 상위-하위 개념 분해 정도 차이를 정규화한 뒤에도 유지되는 ‘구조적 새로움’만을 카운트해야 한다. 이를 위해 비교 단위는 “정규화된 그래프 표현”이어야 하며, 최소한 (1) 동치 노드 병합 규칙(semantic dedup), (2) 관계 타입 매핑(typed edge canonicalization), (3) 서브그래프 패턴 기반의 새 구조 출현(예: 새로운 삼각 폐쇄, 새로운 매개 노드로 인한 경로 단축, 새로운 설명적 모티프)으로 정의된 불변량(invariant) 위에서 CSER을 산출해야 한다. 이렇게 하면 same-vendor(KG-2)와 cross-vendor(KG-1) 비교에서 “표현 차이”가 아니라 “개념-구조의 실제 진화”를 측정할 수 있다. [AgentB: CSER 비교/평가를 다루는 노드는 '비교 대상의 특성을 정량적으로 분석하고, 그 결과를 기반으로 적절한 의사결정을 지원하는 정보 시스템'으로 정의할 수 있습니다. 정규화된 그래프를 만들기 위한 최소 규칙으로는 (1) 중복 병합, (2) 관계 매핑, (3) 세분화 정규]",
+      "source": "gpt-5.2",
+      "tags": [
+        "CSER",
+        "normalization",
+        "graph-invariants"
       ],
       "created": "2026-03-02",
       "memory_type": "Semantic",
