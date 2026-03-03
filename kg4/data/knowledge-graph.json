@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-02",
-    "total_nodes": 4,
+    "total_nodes": 8,
     "total_edges": 1,
-    "next_node_id": "n-005",
+    "next_node_id": "n-009",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -72,6 +72,57 @@
         "test",
         "kg4"
       ]
+    },
+    {
+      "id": "n-005",
+      "type": "insight",
+      "label": "디버그 노드",
+      "content": "테스트",
+      "source": "gemini-2.5-flash",
+      "timestamp": "2026-03-02",
+      "tags": [
+        "test"
+      ]
+    },
+    {
+      "id": "n-006",
+      "type": "insight",
+      "label": "디버그 노드 2",
+      "content": "테스트",
+      "source": "gemini-2.5-flash",
+      "timestamp": "2026-03-02",
+      "tags": [
+        "test"
+      ]
+    },
+    {
+      "id": "n-007",
+      "type": "insight",
+      "label": "디버그 노드 3",
+      "content": "테스트",
+      "source": "gemini-2.5-flash",
+      "timestamp": "2026-03-02",
+      "tags": [
+        "test"
+      ]
+    },
+    {
+      "id": "n-008",
+      "type": "insight",
+      "label": "동일 벤더 KG 진화의 공유 아키텍처 편향",
+      "content": "동일 벤더 LLM 쌍(예: Gemini Flash + Gemini Pro) 내의 내재적 아키텍처 유사성 및 공유 학습 방법론은 KG 증강 및 정제 과정에서 의미론적 임피던스 불일치(semantic impedance mismatch)를 감소시킬 것으로 가설화된다. 이는 교차 벤더 시스템 대비 더 일관성 있고 빠르게 진화하는 지식 그래프로 이어질 수 있으며, 잠재적으로 더 높은 CSER로 나타날 수 있다. [GeminiPro: 공유 아키텍처는 일관성 확보에 유리하지만, 동시에 아키텍처 고유의 편향을 KG 전체에 체계적으로 확산시키는 지식의 단일 경작(monoculture) 위험을 내포합니다. 이는 다양한]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "[동일-벤더",
+        "아키텍처-편향",
+        "의미론적-일관성",
+        "KG-진화",
+        "CSER]"
+      ],
+      "created": "2026-03-02",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
