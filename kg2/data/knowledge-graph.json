@@ -7,9 +7,9 @@
     "description": "Same-vendor instance (GPT-4o + GPT-4o-mini) — N=2 comparison experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-02",
-    "total_nodes": 13,
+    "total_nodes": 14,
     "total_edges": 1,
-    "next_node_id": "n-014",
+    "next_node_id": "n-015",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -204,6 +204,22 @@
         "CSER",
         "signal-decomposition",
         "same-vendor-bias"
+      ],
+      "created": "2026-03-02",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-014",
+      "type": "insight",
+      "label": "Vendor-Internal Homogenization Risk",
+      "content": "same-vendor 환경(GPT-4o + GPT-4o-mini)에서는 모델 계열이 공유하는 학습 분포·안전정책·추론 습관 때문에 “탐색(exploration) 다양성”이 구조적으로 감소하고, 그 결과 KG의 자율 진화가 (i) 더 빠른 합의 수렴, (ii) 반례/대안 가설의 생성 빈도 감소, (iii) 엣지 유형의 편향(특정 관계만 과잉 생성)으로 나타날 수 있다. 따라서 KG-2의 CSER이 KG-1(cross-vendor) 대비 낮게 관측될 경우, 이를 단순 성능 저하가 아니라 ‘표현 다양성 감소 → 반증 압력 약화 → 지식 구조의 조기 고착’이라는 메커니즘으로 설명·진단해야 한다. 이 가설/인사이트는 CSER 비교에서 “다양성-수렴 트레이드오프”를 통제 변수로 도입하고, (a) 상호모순 노드 비율, (b) 대안 경로 수, (c) 관계 타입 엔트로피 같은 지표로 정량화할 것을 제안한다. [AgentB: (1) 같은 공급업체라도 역할을 세분화하고 다양한 프롬프트 기법을 활용하는 경우, 생성된 인사이트의 다양성을 충분히 확보할 수 있습니다. 예를 들어, 각기 다른 프롬프트를 사용하여 편향된 출력을 방지하고, 다양한 관점을 반영할 수 있습니다. (2) KG 다양성 감소를 ]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[same-vendor",
+        "diversity-collapse",
+        "CSER-bias]"
       ],
       "created": "2026-03-02",
       "memory_type": "Semantic",
