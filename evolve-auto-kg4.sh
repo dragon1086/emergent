@@ -101,13 +101,20 @@ AGENT_B_RESPONSE=$(echo "$AGENT_B_RESPONSE" | tr -d "'\`\"\\")
 
 if [[ -n "$NODE_LABEL" && -n "$NODE_CONTENT" ]]; then
   cd "$REPO_DIR"
-  AGENT_B_SAFE=$(echo "$AGENT_B_RESPONSE" | tr -d "'\`\"\\" | tr '\n\r' '  ' | cut -c1-200)
-  NEW_NODE_ID=$(EMERGENT_KG_PATH="$KG4_PATH" python3 src/kg.py add-node \
-    --type "${NODE_TYPE:-insight}" \
-    --label "$NODE_LABEL" \
-    --content "${NODE_CONTENT}. Gemini Pro: ${AGENT_B_SAFE}" \
-    --source "gemini-2.5-flash" \
-    --tag "${NODE_TAGS:-kg4,same-vendor,google,experiment}" 2>&1 | grep "✅" | grep -o "n-[0-9]*")
+  # Python으로 안전하게 JSON 생성 → add_node_safe.py에 stdin으로 전달
+  NEW_NODE_ID=$(python3 -c "
+import json, sys
+label = '''$NODE_LABEL'''[:200]
+content = '''$NODE_CONTENT'''[:800]
+agent_b = '''$AGENT_B_RESPONSE'''[:200]
+node_type = '''${NODE_TYPE:-insight}'''.strip() or 'insight'
+tags_raw = '''${NODE_TAGS:-kg4,same-vendor,google}'''
+tags = [t.strip() for t in tags_raw.split(',') if t.strip()]
+d = {'label': label, 'content': content + ' [GeminiPro: ' + agent_b[:100] + ']',
+     'type': node_type, 'source': 'gemini-2.5-flash', 'tags': tags,
+     'domain': 'emergence_theory'}
+print(json.dumps(d, ensure_ascii=False))
+" 2>/dev/null | EMERGENT_KG_PATH="$KG4_PATH" python3 src/add_node_safe.py 2>/dev/null)
   log "✅ 노드 추가: $NODE_LABEL (id: $NEW_NODE_ID)"
 
   if [[ -n "$EDGE_TO" && -n "$EDGE_RELATION" ]]; then
