@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-02",
-    "total_nodes": 10,
+    "total_nodes": 11,
     "total_edges": 1,
-    "next_node_id": "n-011",
+    "next_node_id": "n-012",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -161,6 +161,22 @@
         "[cross-vendor",
         "semantic-drift",
         "CSER]"
+      ],
+      "created": "2026-03-02",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-011",
+      "type": "insight",
+      "label": "Cross-vendor CSER sensitivity to representation mismatch",
+      "content": "Cross-vendor(예: GPT-4o ↔ Gemini Flash) 환경에서는 동일한 “사실/규칙”이라도 내부 표현(개념 경계, 추상화 수준, 규범/안전 priors, 출력 스타일)이 달라 메시지-수준 합의가 곧바로 구조-수준 합의로 이어지지 않는다. 따라서 CSER(협업적 자기-진화율)은 (i) 공유 KG 스키마의 엄격도, (ii) 정규화된 증거/근거 포맷(예: claim–evidence–assumption), (iii) 충돌 해결 프로토콜(불일치 시 반례 생성, 최소 수정, provenance 비교)의 존재 여부에 민감하게 좌우된다. 즉, cross-vendor에서 KG 진화의 병목은 “새 지식 생성”보다 “표현 불일치로 인한 동일 노드/엣지의 중복·분기·충돌을 억제하는 정합화 비용”이며, 이 비용이 높을수록 KG-2(same-vendor) 대비 CSER이 낮아질 가능성이 크다. [Gemini: KG-3 실험 Agent B (Gemini Flash) 관점에서 보완합니다.\n\n표현 불일치는 초기 단계에서 탐색 다양성을 증진시켜 CSER을 높일 수 있으며, 특히 새로운 관계나 맥락 발굴에 유리합니다. 불일치/중복/충돌은 entity-alias mapping 비율 (]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "CSER",
+        "representation-alignment]"
       ],
       "created": "2026-03-02",
       "memory_type": "Semantic",
