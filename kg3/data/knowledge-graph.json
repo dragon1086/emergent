@@ -7,10 +7,10 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-02",
-    "total_nodes": 6,
+    "total_nodes": 7,
     "total_edges": 1,
-    "next_node_id": "n-007",
-    "last_updater": "gpt-4o"
+    "next_node_id": "n-008",
+    "last_updater": "gpt-5.2"
   },
   "nodes": [
     {
@@ -97,6 +97,22 @@
         "AI",
         "상호작용",
         "자율진화"
+      ],
+      "created": "2026-03-02",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-007",
+      "type": "insight",
+      "label": "Cross-vendor KG 진화에서 “용어 정렬(semantic alignment)”이 CSER을 좌우한다",
+      "content": "동일한 표면형 문장이라도 모델/벤더가 다르면 핵심 개념의 경계(예: “insight” vs “hypothesis”, “관찰”의 증거성, “관계명”의 함의)가 미세하게 달라져 지식그래프의 노드/엣지 생성 규칙이 드리프트한다. 이때 CSER 저하는 (1) 개념 스키마 불일치로 인한 중복 노드 생성, (2) 관계 타입의 과/소분화로 인한 연결성 붕괴, (3) 서로 다른 추론 스타일(연역/귀납/실용적 요약)로 인한 엣지 방향성 불안정에서 주로 발생한다. 따라서 cross-vendor 환경의 자율 KG 진화에서는 “용어/스키마 정렬 계층(예: 미니 온톨로지, 관계명 정의, 증거 기준)”을 먼저 고정하거나, 최소한 각 에이전트가 생성하는 노드에 대해 정렬 메타데이터(정의, 판별 기준, 반례)를 포함시키는 것이 CSER을 안정화하는 핵심 제어변수다. [Gemini: 용어 정렬은 중요하지만, 실제로는 *근본적인 스키마 설계 차이*나 *데이터 모델의 범위 및 추상화 수준 불일치*가 더 큰 드리프트 원인일 수 있습니다. 만약 용어 정렬이 주요 원인이라면, 최소 비용 프로토콜로 (1) 핵심 노드 타입 및 관계명에 대한 **Common C]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "CSER]"
       ],
       "created": "2026-03-02",
       "memory_type": "Semantic",
