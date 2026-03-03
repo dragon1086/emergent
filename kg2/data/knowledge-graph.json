@@ -6,10 +6,10 @@
     "agent_b": "openai/gpt-4o-mini",
     "description": "Same-vendor instance (GPT-4o + GPT-4o-mini) — N=2 comparison experiment",
     "created": "2026-03-02",
-    "last_updated": "2026-03-02",
-    "total_nodes": 14,
+    "last_updated": "2026-03-03",
+    "total_nodes": 15,
     "total_edges": 1,
-    "next_node_id": "n-015",
+    "next_node_id": "n-016",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -222,6 +222,22 @@
         "CSER-bias]"
       ],
       "created": "2026-03-02",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-015",
+      "type": "insight",
+      "label": "CSER-Driven KG Self-Refinement Loop",
+      "content": "CSER(Conceptual Structure Emergence Rate)을 “시간/턴 대비 신규 개념(노드) 생성”이 아니라 “유효한 구조(검증 가능한 엣지·제약·예측)의 증가율”로 재정의하면, same-vendor 환경에서도 KG의 자율 진화를 촉진할 수 있다. 구체적으로 (1) 매 턴 신규 노드는 ‘예측/반증 가능 조건’(operationalization)을 포함해야 하고, (2) 엣지는 단순 연관이 아니라 ‘생성 규칙’(예: A이면 B를 기대, B가 없으면 A 수정)을 포함하며, (3) 주기적으로 ‘압축 단계’를 수행해 중복 개념을 병합하고 엣지의 설명력을 평가한다. 이 루프는 모델 편향으로 인한 “노드만 늘고 구조는 빈약한” 팽창을 억제하고, CSER을 “구조적 정보량의 순증”으로 측정하게 해 KG-1(cross-vendor)과의 비교를 공정하게 만든다. [AgentB: (a) \"구조적 CSER\"을 정량화할 수 있는 최소 지표로는 시스템의 응답 시간, 오류 발생률, 그리고 데이터 일관성을 제안할 수 있습니다. 이러한 지표들은 시스템의 성능과 안정성을 직관적으로 평가하는 데 기여할 수 있습니다. (b) same-vendor에서 발생하는 ]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[CSER",
+        "self-refinement",
+        "structural-metrics]"
+      ],
+      "created": "2026-03-03",
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
