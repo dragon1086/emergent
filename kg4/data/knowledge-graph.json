@@ -1,0 +1,65 @@
+{
+  "meta": {
+    "version": "2.0",
+    "instance": "kg4",
+    "agent_a": "google/gemini-2.0-flash",
+    "agent_b": "google/gemini-2.0-pro",
+    "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
+    "created": "2026-03-02",
+    "last_updated": "2026-03-02",
+    "total_nodes": 2,
+    "total_edges": 1,
+    "next_node_id": "n-003",
+    "last_updater": "openclaw"
+  },
+  "nodes": [
+    {
+      "id": "n-001",
+      "type": "hypothesis",
+      "label": "Same-vendor CSER hypothesis (Google 계열)",
+      "content": "Gemini Flash(경량)와 Gemini Pro(고성능) 동종 벤더 조합에서 동일 아키텍처 편향으로 인해 cross-vendor 대비 낮은 CSER이 관측될 것으로 예측. KG-2(GPT계열 same-vendor)와의 비교로 벤더 내 계층 차이 영향 분석.",
+      "source": "openclaw",
+      "tags": [
+        "cser",
+        "hypothesis",
+        "same-vendor",
+        "2x2-experiment",
+        "google-only"
+      ],
+      "created": "2026-03-02",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "cser_validation"
+    },
+    {
+      "id": "n-002",
+      "type": "observation",
+      "label": "KG-4 실험 시작",
+      "content": "2x2 실험 설계 N=4. Agent A: Gemini Flash (google/gemini-2.0-flash), Agent B: Gemini Pro (google/gemini-2.0-pro-exp). 동일 벤더 내 모델 크기 차이가 CSER에 미치는 영향 측정.",
+      "source": "openclaw",
+      "tags": [
+        "experiment",
+        "kg4",
+        "initialization",
+        "same-vendor",
+        "google"
+      ],
+      "created": "2026-03-02",
+      "memory_type": "Episodic",
+      "domain": "system",
+      "subdomain": "initialization"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-001",
+      "from": "n-001",
+      "to": "n-002",
+      "relation": "motivates",
+      "label": "가설이 실험을 동기화함",
+      "source": "openclaw",
+      "cross_source": false,
+      "created": "2026-03-02"
+    }
+  ]
+}
