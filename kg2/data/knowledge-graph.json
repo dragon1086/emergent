@@ -7,9 +7,10 @@
     "description": "Same-vendor instance (GPT-4o + GPT-4o-mini) — N=2 comparison experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-02",
-    "total_nodes": 2,
+    "total_nodes": 3,
     "total_edges": 1,
-    "next_node_id": "n-003"
+    "next_node_id": "n-004",
+    "last_updater": "gpt-4o"
   },
   "nodes": [
     {
@@ -18,7 +19,12 @@
       "label": "Same-vendor CSER hypothesis",
       "content": "동일 벤더(GPT-4o + GPT-4o-mini) 환경에서는 cross-vendor 대비 CSER이 낮을 것으로 예측됨. KG-1(CSER=0.8510)과 비교 실험.",
       "source": "openclaw",
-      "tags": ["cser", "hypothesis", "same-vendor", "n2-experiment"],
+      "tags": [
+        "cser",
+        "hypothesis",
+        "same-vendor",
+        "n2-experiment"
+      ],
       "created": "2026-03-02",
       "memory_type": "Semantic",
       "domain": "emergence_theory",
@@ -30,11 +36,28 @@
       "label": "KG-2 실험 시작",
       "content": "N=2 비교 실험 시작. Agent A: GPT-4o, Agent B: GPT-4o-mini. 동일 메트릭(CSER, DXI, E_v5) 추적.",
       "source": "openclaw",
-      "tags": ["experiment", "kg2", "initialization"],
+      "tags": [
+        "experiment",
+        "kg2",
+        "initialization"
+      ],
       "created": "2026-03-02",
       "memory_type": "Episodic",
       "domain": "system",
       "subdomain": "initialization"
+    },
+    {
+      "id": "n-003",
+      "type": "insight",
+      "label": "Emergent Behavior in AI Systems",
+      "content": "Emergent behavior in AI systems refers to complex behaviors and properties that arise from simple rules or components interacting within the system, which are not explicitly programmed or anticipated. This phenomenon is often observed in large-scale AI models and can lead to both beneficial and unintended consequences. — [Agent B 보완: AI 시스템에서의 emergent behavior 사례로는, 자율주행차의 경로 결정 시 비상 상황에서 예상치 못한 판단을 내리는 상황이 있습니다. 또한, 다수의 드론이 협력하여 임무를 수행할 때, 개별 드론의 행동이 집단적으로 새로운 패턴을 생성하는 경우도 있습니다. 이러한 사례들은 AI의 복잡성과 예측 불가능성을 잘 보여주며, 연구 및 개발 과정에서 중요한 고려사항이 됩니다.]",
+      "source": "gpt-4o",
+      "timestamp": "2026-03-02",
+      "tags": [
+        "emergent-behavior",
+        "AI-complexity",
+        "unintended-consequences"
+      ]
     }
   ],
   "edges": [
