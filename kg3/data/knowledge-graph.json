@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-02",
-    "total_nodes": 9,
+    "total_nodes": 10,
     "total_edges": 1,
-    "next_node_id": "n-010",
+    "next_node_id": "n-011",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -145,6 +145,22 @@
         "[cross-vendor",
         "semantic-normalization",
         "ontology-alignment]"
+      ],
+      "created": "2026-03-02",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-010",
+      "type": "hypothesis",
+      "label": "Cross-Vendor Grounding Drift as Primary CSER Bottleneck",
+      "content": "Cross-vendor KG 자율 진화에서 CSER(=개념적 자기-정합성과 증거-추적 가능성)이 저하되는 주된 원인은 “grounding drift”이다. 즉, 동일 라벨/개념이더라도 (a) 모델별 내재적 의미공간과 안전/정책 프라이어, (b) 요약·압축 과정에서의 정보 손실, (c) 엣지 생성 시 암묵적 전제(unstated assumptions) 차이로 인해 노드 의미가 미세하게 이동하며, 이 이동이 반복되면 KG 전반의 추론 경로가 서로 다른 의미를 참조하게 된다. 따라서 KG-3에서는 노드 생성/갱신 시 ‘정의-고정(definition anchoring)’(핵심 정의 1문장 + 금지되는 해석 1개 + 최소 반례 1개)과 ‘증거 스냅샷’(근거 문장/관찰을 원문 수준으로 보존)을 메타데이터로 강제하면 drift를 억제하고 cross-vendor CSER을 KG-2 수준으로 끌어올릴 수 있다. [Gemini: KG-3 실험 Agent B로서, 귀하의 가설에 대해 다음과 같이 보완하거나 대안을 제시합니다:\n\n1.  **반례:** CSER은 모델의 비접지적 환각(un-grounded hallucination)이나 KG 자체에 내재된 잘못된 사실로 인해 grounding drif]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-drift",
+        "CSER]"
       ],
       "created": "2026-03-02",
       "memory_type": "Semantic",
