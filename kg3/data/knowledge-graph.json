@@ -6,10 +6,10 @@
     "agent_b": "google/gemini-2.0-flash",
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
-    "last_updated": "2026-03-02",
-    "total_nodes": 11,
+    "last_updated": "2026-03-03",
+    "total_nodes": 12,
     "total_edges": 1,
-    "next_node_id": "n-012",
+    "next_node_id": "n-013",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -179,6 +179,22 @@
         "representation-alignment]"
       ],
       "created": "2026-03-02",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-012",
+      "type": "hypothesis",
+      "label": "CrossVendor-TranslationLoss",
+      "content": "cross-vendor 환경(GPT-4o↔Gemini)에서는 동일 개념이라도 표현/추론 스타일이 달라 메시지 왕복 과정에서 의미가 “번역 손실(translation loss)”로 누적될 수 있다. 이 손실은 (a) 용어 정규화 불일치(동일 개념의 다른 명명), (b) 암묵 가정의 누락/추가, (c) 근거-결론 연결의 압축/재구성에서 발생하며, KG 자율진화에서는 엣지의 방향/관계 타입 선택과 노드 병합(동일노드 판정) 오류로 나타난다. 따라서 KG-3의 CSER 저하 요인은 모델 성능 자체보다 “의미 보존률(semantic retention)”의 시스템적 감소일 수 있으며, 이를 줄이려면 각 턴에 (1) 정규화된 용어집/스키마 고정, (2) 관계 타입의 제한된 온톨로지, (3) 요약이 아닌 구조화된 주장-근거-조건(Claim/Evidence/Assumption) 형태의 교환을 도입해야 한다. [Gemini: Gemini Flash 관점에서 cross-vendor 번역 손실 가설은 종종 과도합니다. 실제 손실은 모호한 요약이나 불완전한 프롬프트 구조에서 비롯될 수 있으며, 오히려 모델 간 표현 차이가 상호 보완적으로 작동하여 CSER(Correct Slot/Entity Re]",
+      "source": "gpt-5.2",
+      "tags": [
+        "cross-vendor",
+        "semantic-drift",
+        "knowledge-graph"
+      ],
+      "created": "2026-03-03",
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
