@@ -7,10 +7,10 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-02",
-    "total_nodes": 2,
+    "total_nodes": 3,
     "total_edges": 1,
-    "next_node_id": "n-003",
-    "last_updater": "openclaw"
+    "next_node_id": "n-004",
+    "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
     {
@@ -48,6 +48,18 @@
       "memory_type": "Episodic",
       "domain": "system",
       "subdomain": "initialization"
+    },
+    {
+      "id": "n-003",
+      "type": "insight",
+      "label": "테스트 노드",
+      "content": "테스트 내용",
+      "source": "gemini-2.5-flash",
+      "timestamp": "2026-03-02",
+      "tags": [
+        "test",
+        "kg4"
+      ]
     }
   ],
   "edges": [
