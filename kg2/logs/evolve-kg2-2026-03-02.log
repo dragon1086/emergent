@@ -401,3 +401,30 @@
   node_age_diversity=0.3005 → 균등 분포 이론치(0.289) 근접
   DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
 
+[22:31:05] KG2 ✅ KG-2 사이클 완료
+[23:03:22] KG2 🌱 KG-2 사이클 시작 #7/20
+[23:03:22] KG2 📊 KG-2 현황: ── 통계 ──────────────────────────────────────
+총 노드: 12개
+총 엣지: 1개
+
+노드 타입별:
+  •  hypothesis: 1개
+  💡 insight: 10개
+  👁  observation: 1개
+
+출처별:
+  gpt-4o: 4개
+  gpt-5.2: 6개
+  openclaw: 2개
+
+관계 종류:
+  motivates: 1개
+[23:03:22] KG2 🤖 Agent A (GPT-4o) 판단 중...
+[23:03:34] KG2 ✅ Agent A 완료 (2057 chars)
+[23:03:40] KG2 ✅ Agent B (GPT-4o-mini) 완료
+[23:03:40] KG2 ✅ 노드 추가: CSER-분해(Decomposition) 가설: 구조적 신호 vs. 문체적 신호 (id: n-013)
+  edge_span=1.0노드 평균 간격 → 시간 초월 연결 활발
+  max_span=1 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2996 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+

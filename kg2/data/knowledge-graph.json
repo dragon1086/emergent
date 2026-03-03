@@ -7,9 +7,9 @@
     "description": "Same-vendor instance (GPT-4o + GPT-4o-mini) — N=2 comparison experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-02",
-    "total_nodes": 12,
+    "total_nodes": 13,
     "total_edges": 1,
-    "next_node_id": "n-013",
+    "next_node_id": "n-014",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -188,6 +188,22 @@
         "[CSER",
         "same-vendor",
         "compression-generalization]"
+      ],
+      "created": "2026-03-02",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-013",
+      "type": "hypothesis",
+      "label": "CSER-분해(Decomposition) 가설: 구조적 신호 vs. 문체적 신호",
+      "content": "CSER(지식그래프 자율진화 성능)는 (a) 모델이 “구조적 신호(그래프의 제약·일관성·추론 가능성)”에 얼마나 민감한지와 (b) “문체적 신호(그럴듯한 설명·서술적 정합성)”에 얼마나 끌리는지의 비율로 분해해 평가할 수 있다. same-vendor(4o+4o-mini) 환경에서는 문체/표현 편향이 동조되어 문체적 신호가 과대평가될 위험이 있고, cross-vendor(서로 다른 모델) 환경에서는 표현 편향이 상쇄되어 구조적 신호에 더 강하게 수렴할 가능성이 있다. 따라서 KG-2 vs KG-1 비교에서 CSER 차이가 나타나면, 그것이 “모델 능력 차”가 아니라 “신호-가중치(구조 vs 문체) 차”에서 기인했는지 진단해야 한다. 이를 위해 (1) 엣지 추가 시 반례/대안 가설을 강제하는 절차, (2) 동일 내용의 다중 표기(패러프레이즈)로 문체 신호를 무력화하는 A/B 테스트, (3) 그래프 제약(타입 제약, 순환 금지, 근거 노드 요구) 위반률을 별도 지표로 분리 측정하는 평가 설계를 제안한다. [AgentB: (1) 같은 공급업체 내에서 문체 신호 과대평가가 발생할 수 있는 반례로는, 특정 저자나 브랜드 스타일이 오랜 기간 동안 고수되면서 독자가 문체적 신호를 인지하지 못하게 되는 경우를 들 수 있습니다. (2) 이를 검증하기 위한 최소 실험 프로토콜로는, 동일한 내용을 서]",
+      "source": "gpt-5.2",
+      "tags": [
+        "CSER",
+        "signal-decomposition",
+        "same-vendor-bias"
       ],
       "created": "2026-03-02",
       "memory_type": "Semantic",
