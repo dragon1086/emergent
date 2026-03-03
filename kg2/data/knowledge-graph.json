@@ -7,9 +7,9 @@
     "description": "Same-vendor instance (GPT-4o + GPT-4o-mini) — N=2 comparison experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 16,
-    "total_edges": 1,
-    "next_node_id": "n-017",
+    "total_nodes": 17,
+    "total_edges": 2,
+    "next_node_id": "n-018",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -257,6 +257,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-017",
+      "type": "insight",
+      "label": "CSER-정규화: “KG 성장 효율” 지표 제안",
+      "content": "CSER 비교가 공정하려면 “성공/실패”의 질적 평가뿐 아니라, KG의 구조적 성장 비용을 통제한 정규화 지표가 필요하다. 제안: CSER_norm = CSER_raw / (ΔN + α·ΔE + β·ΔAmb), 여기서 ΔN은 새 노드 수, ΔE는 새 엣지 수, ΔAmb는 모호/중복 노드(동일 의미의 재진술, 출처 불명확, 관계 미정)의 증가량이다. α, β는 실험 세팅에 따라 가중(예: 엣지가 희소한 초기에는 α>1로 “연결성 기여”를 더 높게 평가). 이 지표는 (1) 같은 벤더 환경에서 발생하는 언어/스타일 유사성으로 인한 ‘겉보기 합의’가 KG를 불필요하게 팽창시키는 현상, (2) 반대로 연결 없이 노드만 쌓여 CSER이 높아 보이는 착시를 억제한다. 또한 KG-1(cross-vendor)과 KG-2(same-vendor)의 비교에서 “다양성 프리미엄(다른 모델 간 상호검증)”이 실제로 CSER을 올리는지, 아니면 단지 ΔAmb를 줄이는지 분해해 볼 수 있다. [AgentB: (a) ΔAmb를 실무적으로 계량하기 위해서는 임베딩 유사도 외에도 노드 간의 관계 및 특성 차이를 명확히 측정할 수 있는 다양한 메트릭스를 고려해야 합니다. 예를 들어, 특정 노드의 중복도를 파악하기 위해 그래프에서 인접 노드 간의 코사인 유사도를 기반으로 중복 여부]",
+      "source": "gpt-5.2",
+      "tags": [
+        "CSER",
+        "normalization",
+        "kg-metrics"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -269,6 +285,16 @@
       "source": "openclaw",
       "cross_source": false,
       "created": "2026-03-02"
+    },
+    {
+      "id": "e-002",
+      "from": "n-017",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "CSER 비교의 공정성을 위해 KG 확장 비용(노드/엣지/모호성)을 반영한 정규화 지표 도입이 필요함",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
     }
   ]
 }
