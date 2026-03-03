@@ -107,13 +107,18 @@ EDGE_LABEL=$(echo "$AGENT_A_RESPONSE" | grep "^EDGE_LABEL:" | sed 's/^EDGE_LABEL
 
 if [[ -n "$NODE_LABEL" && -n "$NODE_CONTENT" ]]; then
   cd "$REPO_DIR"
-  AGENT_B_SAFE=$(echo "$AGENT_B_RESPONSE" | tr -d "'\`\"\\" | tr '\n\r' '  ' | cut -c1-200)
-  NEW_NODE_ID=$(EMERGENT_KG_PATH="$KG3_PATH" python3 src/kg.py add-node \
-    --type "${NODE_TYPE:-insight}" \
-    --label "$NODE_LABEL" \
-    --content "${NODE_CONTENT}. Gemini: ${AGENT_B_SAFE}" \
-    --source "gpt-4o" \
-    --tag "${NODE_TAGS:-kg3,cross-vendor,experiment}" 2>&1 | grep "✅" | grep -o "n-[0-9]*")
+  NEW_NODE_ID=$(python3 -c "
+import json, sys
+label = sys.argv[1][:200]
+content = sys.argv[2][:800]
+agent_b = sys.argv[3][:150]
+node_type = sys.argv[4].strip() or 'insight'
+tags = [t.strip() for t in sys.argv[5].split(',') if t.strip()]
+d = {'label': label, 'content': content + ' [Gemini: ' + agent_b + ']',
+     'type': node_type, 'source': 'gpt-4o', 'tags': tags, 'domain': 'emergence_theory'}
+print(json.dumps(d, ensure_ascii=False))
+" "$NODE_LABEL" "$NODE_CONTENT" "$AGENT_B_RESPONSE" "${NODE_TYPE:-insight}" "${NODE_TAGS:-kg3,cross-vendor}" 2>/dev/null \
+  | EMERGENT_KG_PATH="$KG3_PATH" python3 src/add_node_safe.py 2>/dev/null)
   log "✅ 노드 추가: $NODE_LABEL (id: $NEW_NODE_ID)"
 
   if [[ -n "$EDGE_TO" && -n "$EDGE_RELATION" ]]; then
