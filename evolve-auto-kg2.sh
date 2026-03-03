@@ -70,7 +70,7 @@ AGENT_A_RESPONSE=$(python3 -c "
 import openai, os, sys
 client = openai.OpenAI(api_key='$OPENAI_KEY')
 resp = client.chat.completions.create(
-    model='gpt-4o',
+    model='gpt-5.2',
     messages=[{'role':'user','content':'''$PROMPT'''}],
     temperature=0.7
 )
@@ -116,7 +116,7 @@ agent_b = sys.argv[3][:150]
 node_type = sys.argv[4].strip() or 'insight'
 tags = [t.strip() for t in sys.argv[5].split(',') if t.strip()]
 d = {'label': label, 'content': content + ' [AgentB: ' + agent_b + ']',
-     'type': node_type, 'source': 'gpt-4o', 'tags': tags, 'domain': 'emergence_theory'}
+     'type': node_type, 'source': 'gpt-5.2', 'tags': tags, 'domain': 'emergence_theory'}
 print(json.dumps(d, ensure_ascii=False))
 " "$NODE_LABEL" "$NODE_CONTENT" "$AGENT_B_RESPONSE" "${NODE_TYPE:-insight}" "${NODE_TAGS:-kg2,same-vendor}" 2>/dev/null \
   | EMERGENT_KG_PATH="$KG2_PATH" python3 src/add_node_safe.py 2>/dev/null)
