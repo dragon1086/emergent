@@ -7,7 +7,7 @@ KG2_DIR="$HOME/emergent/kg2"
 KG2_PATH="$KG2_DIR/data/knowledge-graph.json"
 LOG="$KG2_DIR/logs/evolve-kg2-$(date +%Y-%m-%d).log"
 CYCLE_COUNT_FILE="/tmp/emergent-kg2-cycles-$(date +%Y%m%d)"
-MAX_CYCLES=5  # KG-1보다 보수적으로 시작
+MAX_CYCLES=20  # KG-1보다 보수적으로 시작
 OPENAI_KEY=$(grep "OPENAI_API_KEY" ~/.zshrc | head -1 | sed "s/.*='//;s/'.*//")
 
 mkdir -p "$KG2_DIR/logs"
