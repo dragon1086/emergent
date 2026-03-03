@@ -260,6 +260,14 @@ echo "[$(date '+%F %T')] 모든 현재 작업 완료 — 대기중" >> "$LOG"
 echo "[$(date '+%F %T')] KG-2 사이클 시작" >> "$LOG"
 bash "$HOME/emergent/evolve-auto-kg2.sh" >> "$LOG" 2>&1 || true
 
+# ── KG-3 사이클 (cross-vendor: GPT-4o + Gemini Flash) ──
+echo "[$(date '+%F %T')] KG-3 사이클 시작" >> "$LOG"
+bash "$HOME/emergent/evolve-auto-kg3.sh" >> "$LOG" 2>&1 || true
+
+# ── KG-4 사이클 (same-vendor: Gemini Flash + Gemini Pro) ──
+echo "[$(date '+%F %T')] KG-4 사이클 시작" >> "$LOG"
+bash "$HOME/emergent/evolve-auto-kg4.sh" >> "$LOG" 2>&1 || true
+
 # ── 4. 벤치마크 결과 완료 감지 → 텔레그램 알림 ──
 REAL_RESULT="/Users/rocky/emergent/experiments/amp_benchmark_results_real.json"
 NOTIFIED_FLAG="/Users/rocky/emergent/experiments/checkpoints/benchmark_notified.flag"

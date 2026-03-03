@@ -1,0 +1,64 @@
+{
+  "meta": {
+    "version": "2.0",
+    "instance": "kg3",
+    "agent_a": "openai/gpt-4o",
+    "agent_b": "google/gemini-2.0-flash",
+    "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
+    "created": "2026-03-02",
+    "last_updated": "2026-03-02",
+    "total_nodes": 2,
+    "total_edges": 1,
+    "next_node_id": "n-003",
+    "last_updater": "openclaw"
+  },
+  "nodes": [
+    {
+      "id": "n-001",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER hypothesis (GPT-4o + Gemini)",
+      "content": "GPT-4o(OpenAI)와 Gemini Flash(Google) 이종 벤더 조합에서 동종 벤더 대비 높은 CSER이 관측될 것으로 예측. KG-1(GPT-5.2+Claude)과의 cross-vendor 비교 및 KG-2(same-vendor GPT계열)와의 차이 분석.",
+      "source": "openclaw",
+      "tags": [
+        "cser",
+        "hypothesis",
+        "cross-vendor",
+        "2x2-experiment",
+        "google-openai"
+      ],
+      "created": "2026-03-02",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "cser_validation"
+    },
+    {
+      "id": "n-002",
+      "type": "observation",
+      "label": "KG-3 실험 시작",
+      "content": "2x2 실험 설계 N=4. Agent A: GPT-4o (OpenAI), Agent B: Gemini Flash (Google). 동일 메트릭(CSER, DXI, E_v5) 추적. 이종 벤더 간 인식론적 다양성 측정.",
+      "source": "openclaw",
+      "tags": [
+        "experiment",
+        "kg3",
+        "initialization",
+        "cross-vendor"
+      ],
+      "created": "2026-03-02",
+      "memory_type": "Episodic",
+      "domain": "system",
+      "subdomain": "initialization"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-001",
+      "from": "n-001",
+      "to": "n-002",
+      "relation": "motivates",
+      "label": "가설이 실험을 동기화함",
+      "source": "openclaw",
+      "cross_source": false,
+      "created": "2026-03-02"
+    }
+  ]
+}
