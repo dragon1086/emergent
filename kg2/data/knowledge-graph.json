@@ -7,9 +7,9 @@
     "description": "Same-vendor instance (GPT-4o + GPT-4o-mini) — N=2 comparison experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 15,
+    "total_nodes": 16,
     "total_edges": 1,
-    "next_node_id": "n-016",
+    "next_node_id": "n-017",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -236,6 +236,22 @@
         "[CSER",
         "self-refinement",
         "structural-metrics]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-016",
+      "type": "insight",
+      "label": "CSER_분해:구조적-과정적-적응적_기여도",
+      "content": "CSER(자기진화 효율/효과)를 ‘최종 KG 품질’로만 보면 same-vendor와 cross-vendor 비교에서 혼선이 생긴다. CSER을 (1) 구조적 기여(노드/엣지 밀도, 타입 다양성, 관계 스키마 확장), (2) 과정적 기여(턴당 정보증가율, 중복 감소율, 충돌 해결률), (3) 적응적 기여(상대 에이전트 피드백 반영률, 반증 가능성 증가, 탐색-활용 균형)로 분해하면, vendor 효과(모델 다양성 vs 동일성)가 ‘어떤 축에서’ 차이를 만드는지 분리해 관찰할 수 있다. 특히 same-vendor에서는 표현/추론 스타일이 수렴해 구조적 성장은 빠를 수 있으나, 적응적 기여(상호 비판을 통한 반증 가능성 증대)가 약화될 위험이 있고, cross-vendor에서는 과정적 충돌(불일치)이 증가하지만 그 자체가 적응적 기여를 증폭시켜 장기 CSER을 올릴 수 있다는 가설을 명료하게 테스트 가능하게 만든다. [AgentB: KG-4o-mini의 CSER 3축 분해는 실제로는 주관적 요소와 객관적 측정을 동시에 포함하기 때문에, \"적응적 기여\"의 정량화에 있어 논란이 발생할 수 있습니다. 예를 들어, 반증 가능한 예측 수나 수정/철회된 엣지 비율은 보다 객관적인 지표로 기능할 수 있지만, ]",
+      "source": "gpt-5.2",
+      "tags": [
+        "CSER",
+        "metric_decomposition",
+        "agent_interaction"
       ],
       "created": "2026-03-03",
       "memory_type": "Semantic",
