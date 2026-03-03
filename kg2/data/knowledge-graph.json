@@ -7,9 +7,9 @@
     "description": "Same-vendor instance (GPT-4o + GPT-4o-mini) — N=2 comparison experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-02",
-    "total_nodes": 10,
+    "total_nodes": 11,
     "total_edges": 1,
-    "next_node_id": "n-011",
+    "next_node_id": "n-012",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -156,6 +156,22 @@
         "CSER",
         "normalization",
         "graph-invariants"
+      ],
+      "created": "2026-03-02",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-011",
+      "type": "insight",
+      "label": "CSER_분해모형(내재+외재)",
+      "content": "CSER(개념적 자기-진화율)는 최소 두 성분의 곱/합성으로 분해해 측정·비교해야 한다: (1) 내재적 진화(intrinsic evolution)는 동일한 입력/목표 하에서 KG 자체의 구조적 압축(노드/엣지 재배치, 중복 제거, 계층화)과 추론 효율(질의당 필요한 경로 길이, 불확실성 감소)을 얼마나 개선하는지로 정의된다. (2) 외재적 적합(extrinsic fit)은 외부 과업(정답성, 일반화, 반사실 질의 대응)에서 KG가 제공하는 설명력/예측력을 얼마나 높이는지로 정의된다. same-vendor 환경에서는 모델 편향이 내재적 진화 성분을 과대평가(유사한 표현 양식으로 인한 ‘자기일관성’ 상승)할 수 있으므로, CSER 비교 시 내재/외재를 분리하고 각 성분에 대해 독립 지표(예: 구조적 MDL 감소율 vs 과업 성능 향상률)를 산출해야 한다. [AgentB: 내재적 진화 점수가 과대평가된다고 주장하는 것은 일부 조건에서 오히려 과소평가될 가능성도 있습니다. 예를 들어, 특정 벤더의 기술 진보가 상대적으로 더딘 경우, 경쟁 체제가 약해져 내재적 진화가 실질적으로 저평가될 수 있습니다. 최소 지표 세트로는 '기술 도입 속도',]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[CSER",
+        "metrics",
+        "decomposition]"
       ],
       "created": "2026-03-02",
       "memory_type": "Semantic",
