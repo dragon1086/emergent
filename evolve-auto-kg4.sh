@@ -7,7 +7,7 @@ KG4_DIR="$HOME/emergent/kg4"
 KG4_PATH="$KG4_DIR/data/knowledge-graph.json"
 LOG="$KG4_DIR/logs/evolve-kg4-$(date +%Y-%m-%d).log"
 CYCLE_COUNT_FILE="/tmp/emergent-kg4-cycles-$(date +%Y%m%d)"
-MAX_CYCLES=5
+MAX_CYCLES=20
 GEMINI_KEY=$(grep "GEMINI_API_KEY" ~/.zshrc | head -1 | sed "s/.*='//;s/'.*//")
 
 mkdir -p "$KG4_DIR/logs"
@@ -67,10 +67,9 @@ AGENT_B_REQUEST: [Gemini Pro에게 보내는 반박/보완 요청]"
 
 log "🤖 Agent A (Gemini Flash) 판단 중..."
 AGENT_A_RESPONSE=$(python3 -c "
-import google.generativeai as genai
-genai.configure(api_key='$GEMINI_KEY')
-model = genai.GenerativeModel('gemini-2.0-flash')
-resp = model.generate_content('''$PROMPT''')
+import google.genai as genai
+client = genai.Client(api_key='$GEMINI_KEY')
+resp = client.models.generate_content(model='gemini-2.5-flash', contents='''$PROMPT''')
 print(resp.text)
 " 2>&1)
 
@@ -83,10 +82,9 @@ log "✅ Agent A 완료 (${#AGENT_A_RESPONSE} chars)"
 # Agent B: Gemini Pro
 AGENT_B_REQUEST=$(echo "$AGENT_A_RESPONSE" | grep "^AGENT_B_REQUEST:" | sed 's/^AGENT_B_REQUEST: //')
 AGENT_B_RESPONSE=$(python3 -c "
-import google.generativeai as genai
-genai.configure(api_key='$GEMINI_KEY')
-model = genai.GenerativeModel('gemini-2.0-pro-exp')
-resp = model.generate_content('KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): $AGENT_B_REQUEST')
+import google.genai as genai
+client = genai.Client(api_key='$GEMINI_KEY')
+resp = client.models.generate_content(model='gemini-2.5-pro', contents='KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): $AGENT_B_REQUEST')
 print(resp.text)
 " 2>&1)
 log "✅ Agent B (Gemini Pro) 완료"
@@ -106,7 +104,7 @@ if [[ -n "$NODE_LABEL" && -n "$NODE_CONTENT" ]]; then
     --type "${NODE_TYPE:-insight}" \
     --label "$NODE_LABEL" \
     --content "$NODE_CONTENT — [Agent B (Gemini Pro) 보완: $AGENT_B_RESPONSE]" \
-    --source "gemini-2.0-flash" \
+    --source "gemini-2.5-flash" \
     --tag "${NODE_TAGS:-kg4,same-vendor,google,experiment}" 2>&1 | grep "n-" | tail -1)
   log "✅ 노드 추가: $NODE_LABEL (id: $NEW_NODE_ID)"
 

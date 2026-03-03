@@ -7,7 +7,7 @@ KG3_DIR="$HOME/emergent/kg3"
 KG3_PATH="$KG3_DIR/data/knowledge-graph.json"
 LOG="$KG3_DIR/logs/evolve-kg3-$(date +%Y-%m-%d).log"
 CYCLE_COUNT_FILE="/tmp/emergent-kg3-cycles-$(date +%Y%m%d)"
-MAX_CYCLES=5
+MAX_CYCLES=20
 OPENAI_KEY=$(grep "OPENAI_API_KEY" ~/.zshrc | head -1 | sed "s/.*='//;s/'.*//")
 GEMINI_KEY=$(grep "GEMINI_API_KEY" ~/.zshrc | head -1 | sed "s/.*='//;s/'.*//")
 
@@ -87,10 +87,10 @@ log "✅ Agent A 완료 (${#AGENT_A_RESPONSE} chars)"
 # Agent B: Gemini Flash (Google)
 AGENT_B_REQUEST=$(echo "$AGENT_A_RESPONSE" | grep "^AGENT_B_REQUEST:" | sed 's/^AGENT_B_REQUEST: //')
 AGENT_B_RESPONSE=$(python3 -c "
-import google.generativeai as genai
-genai.configure(api_key='$GEMINI_KEY')
-model = genai.GenerativeModel('gemini-2.0-flash')
-resp = model.generate_content('KG-3 실험 Agent B (Gemini Flash)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): $AGENT_B_REQUEST')
+import google.genai as genai
+client = genai.Client(api_key='$GEMINI_KEY')
+
+resp = client.models.generate_content(model='gemini-2.5-flash', contents='KG-3 실험 Agent B (Gemini Flash)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): $AGENT_B_REQUEST')
 print(resp.text)
 " 2>&1)
 log "✅ Agent B (Gemini Flash) 완료"
