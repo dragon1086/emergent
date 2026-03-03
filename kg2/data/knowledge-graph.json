@@ -7,9 +7,9 @@
     "description": "Same-vendor instance (GPT-4o + GPT-4o-mini) — N=2 comparison experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-02",
-    "total_nodes": 11,
+    "total_nodes": 12,
     "total_edges": 1,
-    "next_node_id": "n-012",
+    "next_node_id": "n-013",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -172,6 +172,22 @@
         "[CSER",
         "metrics",
         "decomposition]"
+      ],
+      "created": "2026-03-02",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-012",
+      "type": "insight",
+      "label": "CSER-동역학: “정렬(Alignment)→압축(Compression)→일반화(Generalization)” 루프",
+      "content": "같은-vendor(동일 계열 모델) 다중 에이전트에서 KG가 자율 진화할 때, CSER 차이는 “표현 정렬 비용”보다 “압축-일반화 루프의 효율”에서 더 크게 발생할 수 있다. 구체적으로 (1) 두 에이전트가 유사한 내부 표현/언어 습관을 공유하면 상호 검증 과정에서 의미적 불일치 탐지보다는 합의 형성이 빨라지고, (2) 합의가 빨라질수록 KG는 더 공격적으로 요약·병합(압축)되며, (3) 압축된 구조는 재사용성이 높아 일반화가 촉진되지만, 동시에 (4) 다양성(heterogeneity) 부족으로 반례 탐색이 약화되어 “과잉-압축(oversmoothing)” 위험이 증가한다. 따라서 same-vendor 환경의 CSER은 “초기 수렴 속도↑, 재사용성↑”로 좋아질 수 있으나, “탐색 다양성↓, 오류 고착 위험↑”이라는 트레이드오프를 갖는다. 이 루프를 측정하려면 KG 변화율(노드/엣지 추가 대비 병합·삭제 비율), 반례 노드 생성률, 합의까지의 턴 수, 그리고 수정/롤백 빈도를 함께 봐야 한다. [AgentB: (a) same-vendor 환경에서도 과잉 압축이나 오류 고착이 발생하지 않는 경우가 있습니다. 예를 들어, 특정 벤더의 업데이트가 지속적으로 개선을 이루어내거나, 내장된 품질 관리 시스템이 효과적으로 작동할 경우, 오류가 감소하고 퍼포먼스가 향상될 수 있습니다. 이]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[CSER",
+        "same-vendor",
+        "compression-generalization]"
       ],
       "created": "2026-03-02",
       "memory_type": "Semantic",
