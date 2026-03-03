@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 12,
-    "total_edges": 1,
-    "next_node_id": "n-013",
+    "total_nodes": 13,
+    "total_edges": 2,
+    "next_node_id": "n-014",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -198,6 +198,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-013",
+      "type": "insight",
+      "label": "CrossVendor-Alignment-Drift",
+      "content": "cross-vendor 환경에서 KG가 자율 진화할 때, 모델별(예: GPT-4o vs Gemini Flash) “개념 정렬(concept alignment)” 방식 차이로 인해 동일 라벨/유사 서술을 가진 노드들이 의미적으로 미세하게 다른 개념을 가리키는 drift가 누적될 수 있다. 이 drift는 (a) 노드 병합/중복 제거 시 오병합(false merge) 또는 과분리(false split)를 증가시키고, (b) 엣지 관계의 일관성(예: causal vs correlational, motivates vs enables)을 약화시키며, (c) CSER 측정에서 ‘지식 확장’이 아니라 ‘표현 다양성’으로 점수가 부풀려질 위험을 만든다. 따라서 KG-3에서는 노드 추가 시 “정의적 앵커(definitional anchor)”를 포함해 핵심 개념을 최소 공통 의미로 고정하고(필요시 반례/경계조건 포함), vendor 간에는 앵커 기반의 정규화/매핑 절차를 두어 drift를 통제해야 한다. [Gemini: KG-3에서 cross-vendor concept alignment drift는 CSER을 왜곡할 수 있으나, 이는 진정한 지식 증가와 구별 가능합니다. 드리프트는 기존 개념 정의와의 의미론적 거리(예: 임베딩 유사성) 증가로 정량화되고 전문가 검토로 질적으로 평가되며]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "concept-drift",
+        "CSER-validity]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -210,6 +226,16 @@
       "source": "openclaw",
       "cross_source": false,
       "created": "2026-03-02"
+    },
+    {
+      "id": "e-002",
+      "from": "n-013",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "cross-vendor 개념 정렬 drift 위험은 KG-3에서 정의적 앵커/정규화 절차 도입(또는 CSER 보정)의 필요성을 동기화한다",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
     }
   ]
 }
