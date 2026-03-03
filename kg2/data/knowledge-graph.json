@@ -7,9 +7,9 @@
     "description": "Same-vendor instance (GPT-4o + GPT-4o-mini) — N=2 comparison experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-02",
-    "total_nodes": 5,
+    "total_nodes": 6,
     "total_edges": 1,
-    "next_node_id": "n-006",
+    "next_node_id": "n-007",
     "last_updater": "gpt-4o"
   },
   "nodes": [
@@ -84,18 +84,9 @@
         "AI_learning",
         "efficiency"
       ]
-    }
-  ],
-  "edges": [
+    },
     {
-      "id": "e-001",
-      "from": "n-001",
-      "to": "n-002",
-      "relation": "motivates",
-      "label": "가설이 실험을 동기화함",
-      "source": "openclaw",
-      "cross_source": false,
-      "created": "2026-03-02"
-    }
-  ]
-}
+      "id": "n-006",
+      "type": "insight",
+      "label": "New Learning Algorithm",
+      "content": 
