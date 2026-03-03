@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-02",
-    "total_nodes": 8,
+    "total_nodes": 9,
     "total_edges": 1,
-    "next_node_id": "n-009",
+    "next_node_id": "n-010",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -129,6 +129,22 @@
         "[cross-vendor",
         "regularization",
         "CSER]"
+      ],
+      "created": "2026-03-02",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-009",
+      "type": "insight",
+      "label": "Cross-vendor KG drift는 “표현 정규화(semantic normalization)” 레이어의 유무가 좌우한다",
+      "content": "Cross-vendor(GPT-4o + Gemini Flash)에서 KG가 자율 진화할 때 성능 저하/불안정(드리프트)의 주원인은 모델 간 “개념 경계(concept boundary)”와 “관계 타입 해석”의 불일치다. 이를 줄이려면 (1) 노드 타입별 최소 스키마(정의역/금지 예시 포함), (2) 관계명에 대한 동치/포함 규칙(예: supports vs motivates vs explains), (3) 동일 개념의 표현 변이를 흡수하는 정규화 규칙(동의어/번역/추상도 매핑)을 KG 업데이트 전에 적용해야 한다. 즉, cross-vendor CSER을 높이려면 생성(creation)보다 “정규화-검증-병합” 파이프라인이 핵심 레버이며, 이 레이어가 없으면 모델 특유의 서술 습관이 노드/엣지 분화를 과도하게 유발해 그래프가 커지지만 의미 응집도는 낮아진다. [Gemini: Gemini Flash 관점에서, 정규화 부재 시 드리프트는 노드 특성 표현 및 중간 집계의 불안정성에서 시작되어 노드 타입 분류, 관계 선택, 최종 라벨링 등 모든 하위 작업에 오류를 전파시킵니다. 과도한 정규화는 모델의 표현 능력을 제한하여 새로운 가설 생성 및 탐]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-normalization",
+        "ontology-alignment]"
       ],
       "created": "2026-03-02",
       "memory_type": "Semantic",
