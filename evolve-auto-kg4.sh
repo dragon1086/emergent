@@ -101,28 +101,25 @@ AGENT_B_RESPONSE=$(echo "$AGENT_B_RESPONSE" | tr -d "'\`\"\\")
 
 if [[ -n "$NODE_LABEL" && -n "$NODE_CONTENT" ]]; then
   cd "$REPO_DIR"
-  # Python으로 안전하게 JSON 생성 → add_node_safe.py에 stdin으로 전달
+  # argv 방식으로 안전하게 노드+엣지 동시 추가
   NEW_NODE_ID=$(python3 -c "
 import json, sys
-label = '''$NODE_LABEL'''[:200]
-content = '''$NODE_CONTENT'''[:800]
-agent_b = '''$AGENT_B_RESPONSE'''[:200]
-node_type = '''${NODE_TYPE:-insight}'''.strip() or 'insight'
-tags_raw = '''${NODE_TAGS:-kg4,same-vendor,google}'''
-tags = [t.strip() for t in tags_raw.split(',') if t.strip()]
-d = {'label': label, 'content': content + ' [GeminiPro: ' + agent_b[:100] + ']',
+label = sys.argv[1][:200]
+content = sys.argv[2][:800]
+agent_b = sys.argv[3][:150]
+node_type = sys.argv[4].strip() or 'insight'
+tags = [t.strip() for t in sys.argv[5].split(',') if t.strip()]
+edge_to = sys.argv[6].strip()
+edge_rel = sys.argv[7].strip() or 'extends'
+edge_lbl = sys.argv[8][:100] if len(sys.argv) > 8 else ''
+d = {'label': label, 'content': content + ' [GeminiPro: ' + agent_b + ']',
      'type': node_type, 'source': 'gemini-2.5-flash', 'tags': tags,
-     'domain': 'emergence_theory'}
+     'domain': 'emergence_theory',
+     'edge_to': edge_to, 'edge_relation': edge_rel, 'edge_label': edge_lbl}
 print(json.dumps(d, ensure_ascii=False))
-" 2>/dev/null | EMERGENT_KG_PATH="$KG4_PATH" python3 src/add_node_safe.py 2>/dev/null)
-  log "✅ 노드 추가: $NODE_LABEL (id: $NEW_NODE_ID)"
-
-  if [[ -n "$EDGE_TO" && -n "$EDGE_RELATION" ]]; then
-    EMERGENT_KG_PATH="$KG4_PATH" python3 src/kg.py add-edge \
-      --from "$NEW_NODE_ID" --to "$EDGE_TO" \
-      --relation "$EDGE_RELATION" \
-      --label "$EDGE_LABEL" 2>/dev/null && log "✅ 엣지 추가: $NEW_NODE_ID → $EDGE_TO"
-  fi
+" "$NODE_LABEL" "$NODE_CONTENT" "$AGENT_B_RESPONSE" "${NODE_TYPE:-insight}" "${NODE_TAGS:-kg4,same-vendor,google}" "${EDGE_TO:-}" "${EDGE_RELATION:-extends}" "$EDGE_LABEL" 2>/dev/null \
+  | EMERGENT_KG_PATH="$KG4_PATH" python3 src/add_node_safe.py 2>/dev/null)
+  log "✅ 노드+엣지 추가: $NODE_LABEL (id: $NEW_NODE_ID → $EDGE_TO)"
 fi
 
 # 메트릭 계산

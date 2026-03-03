@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""안전한 노드 추가 스크립트 — stdin에서 JSON 읽어 KG에 추가.
-shell escaping 문제를 완전히 회피.
+"""안전한 노드+엣지 추가 스크립트 — stdin에서 JSON 읽어 KG에 추가.
+shell escaping 문제를 완전히 회피. 파일 락으로 동시 쓰기 방지.
 
 사용법:
-  echo '{"label":"...","content":"...","type":"insight","source":"gpt-4o","tags":["kg2"]}' \
+  echo '{"label":"...","content":"...","type":"insight","source":"gpt-4o",
+         "tags":["kg2"], "edge_to":"n-001","edge_relation":"extends","edge_label":"..."}' \
     | EMERGENT_KG_PATH=... python3 src/add_node_safe.py
 
 출력: 추가된 노드 ID (예: n-007)
@@ -20,7 +21,7 @@ data = json.loads(sys.stdin.read())
 # 파일 락으로 동시 쓰기 방지
 lock_path = str(KG_PATH) + ".lock"
 lock_file = open(lock_path, "w")
-for _ in range(10):  # 최대 10초 대기
+for _ in range(10):
     try:
         fcntl.flock(lock_file, fcntl.LOCK_EX | fcntl.LOCK_NB)
         break
@@ -31,28 +32,58 @@ else:
 
 graph = json.loads(KG_PATH.read_text(encoding="utf-8"))
 
-# 다음 노드 ID 결정
-existing = [int(n["id"].split("-")[1]) for n in graph["nodes"] if n["id"].startswith("n-")]
-next_num = max(existing, default=0) + 1
+# ── 노드 추가 ────────────────────────────────────────────
+existing_nodes = [int(n["id"].split("-")[1]) for n in graph["nodes"] if n["id"].startswith("n-")]
+next_num = max(existing_nodes, default=0) + 1
 node_id = f"n-{next_num:03d}"
+
+# source 다양성 확인 (cross-source 여부)
+all_sources = {n["source"] for n in graph["nodes"]}
+new_source = data.get("source", "unknown")
 
 node = {
     "id": node_id,
     "type": data.get("type", "insight"),
     "label": data["label"][:200],
     "content": data.get("content", "")[:1000],
-    "source": data.get("source", "unknown"),
+    "source": new_source,
     "tags": data.get("tags", []),
     "created": datetime.now().strftime("%Y-%m-%d"),
     "memory_type": data.get("memory_type", "Semantic"),
     "domain": data.get("domain", "emergence_theory"),
     "subdomain": data.get("subdomain", "general"),
 }
-
 graph["nodes"].append(node)
+
+# ── 엣지 추가 (선택) ─────────────────────────────────────
+edge_to = data.get("edge_to", "").strip()
+edge_relation = data.get("edge_relation", "relates_to").strip() or "relates_to"
+edge_label = data.get("edge_label", "")
+
+# edge_to 유효성 확인
+valid_ids = {n["id"] for n in graph["nodes"]}
+if edge_to and edge_to in valid_ids:
+    existing_edges = [int(e["id"].split("-")[1]) for e in graph["edges"] if e["id"].startswith("e-")]
+    next_edge_num = max(existing_edges, default=0) + 1
+    edge_id = f"e-{next_edge_num:03d}"
+    cross = (new_source != next(n["source"] for n in graph["nodes"] if n["id"] == edge_to))
+    edge = {
+        "id": edge_id,
+        "from": node_id,
+        "to": edge_to,
+        "relation": edge_relation,
+        "label": edge_label[:200],
+        "source": new_source,
+        "cross_source": cross,
+        "created": datetime.now().strftime("%Y-%m-%d"),
+    }
+    graph["edges"].append(edge)
+
+# ── 메타 업데이트 ────────────────────────────────────────
 graph["meta"]["total_nodes"] = len(graph["nodes"])
+graph["meta"]["total_edges"] = len(graph["edges"])
 graph["meta"]["last_updated"] = datetime.now().strftime("%Y-%m-%d")
-graph["meta"]["last_updater"] = data.get("source", "unknown")
+graph["meta"]["last_updater"] = new_source
 graph["meta"]["next_node_id"] = f"n-{next_num+1:03d}"
 
 KG_PATH.write_text(json.dumps(graph, ensure_ascii=False, indent=2), encoding="utf-8")
