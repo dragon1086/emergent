@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 27,
-    "total_edges": 16,
-    "next_node_id": "n-028",
+    "total_nodes": 28,
+    "total_edges": 17,
+    "next_node_id": "n-029",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -465,6 +465,26 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-028",
+      "type": "hypothesis",
+      "label": "동일 벤더 KG 수렴 가설",
+      "content": "동일 벤더(예: Gemini Flash와 Gemini Pro) 내 AI 에이전트들이 협력하여 지식 그래프를 구축할 때, 이들은 공유된 근본적인 아키텍처 패턴, 훈련 데이터 분포, 그리고 추론 메커니즘의 유사성으로 인해 개념적 일관성(Conceptual Consistency)을 더 신속하게 확립하고 지식 융합(Knowledge Convergence)을 더 효율적으로 달성할 수 있다는 가설. 이는 교차 벤더(예: GPT-4o와 Gemini Flash) 환경에서의 협력에 비해 지식 불일치나 충돌 해결에 소요되는 인지적 오버헤드를 감소시킬 것으로 예상된다. [GeminiPro:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "same-vendor",
+        "collaboration",
+        "knowledge-graph",
+        "conceptual-consistency",
+        "knowledge-convergence",
+        "model-bias",
+        "cognitive-overhead"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -626,6 +646,16 @@
       "label": "이 가설은 동일 벤더 환경과 이종 벤더 환경 간의 CSER 특성 차이가 발생하는 근본적인 원인 중 하나를 제시한다.",
       "source": "gemini-2.5-flash",
       "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-017",
+      "from": "n-028",
+      "to": "n-012",
+      "relation": "posits_explanation_for",
+      "label": "동일 벤더 내 모델 간의 내재적 유사성이 KG 진화 양상의 차이(예: KG-3과 KG-4의 CSER 비교 결과)를 설명할 수 있다.",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
       "created": "2026-03-03"
     }
   ]
