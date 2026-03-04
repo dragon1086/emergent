@@ -579,3 +579,30 @@
   node_age_diversity=0.2930 → 균등 분포 이론치(0.289) 근접
   DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
 
+[22:08:56] KG4 ✅ KG-4 사이클 완료
+[22:08:58] KG4 🌱 KG-4 사이클 시작 #1/20
+[22:08:58] KG4 📊 KG-4 현황: ── 통계 ──────────────────────────────────────
+총 노드: 33개
+총 엣지: 22개
+
+노드 타입별:
+  •  hypothesis: 22개
+  💡 insight: 10개
+  👁  observation: 1개
+
+출처별:
+  gemini-2.5-flash: 31개
+  openclaw: 2개
+
+관계 종류:
+  motivates: 4개
+  posits_explanation_for: 18개
+[22:08:58] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:09:13] KG4 ✅ Agent A 완료 (926 chars)
+[22:09:13] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:09:13] KG4 ✅ 노드+엣지 추가: Coherence Advantage in Same-Vendor KG Evolution (id: n-034 → 5)
+  edge_span=16.8노드 평균 간격 → 시간 초월 연결 활발
+  max_span=29 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2929 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
