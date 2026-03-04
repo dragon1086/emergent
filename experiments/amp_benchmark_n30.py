@@ -127,7 +127,7 @@ assert len(DOMAIN_PERSONAS_30) == 30, f"페르소나 수 오류: {len(DOMAIN_PER
 # ─── 오버라이드 적용 ──────────────────────────────────────────────────────────
 bench.TEST_QUESTIONS = TEST_QUESTIONS_30
 bench.DOMAIN_PERSONAS = DOMAIN_PERSONAS_30
-bench.RESULTS_FILE = REPO / "experiments" / "amp_verdict_v2.json"
+bench.RESULTS_FILE = REPO / "experiments" / "amp_verdict_v3.json"  # D-092: judge json_mode 수정 후 재실행
 
 # run_single_question의 출력에서 "/10" → "/30" 패치
 _orig_run_single = bench.run_single_question

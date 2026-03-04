@@ -205,8 +205,10 @@ def call_openai(system_prompt: str, user_prompt: str, max_tokens: int = 600, ret
     raise RuntimeError("OpenAI call failed after retries")
 
 
-def call_gemini(system_prompt: str, user_prompt: str, max_tokens: int = 800, retries: int = 3) -> str:
-    """Gemini API 호출. gemini-2.0-flash fallback 포함."""
+def call_gemini(system_prompt: str, user_prompt: str, max_tokens: int = 800, retries: int = 3, json_mode: bool = False) -> str:
+    """Gemini API 호출. gemini-2.0-flash fallback 포함.
+    json_mode=True: response_mime_type='application/json' + temperature=0 강제 (judge용)
+    """
     if DRY_RUN:
         return f"[DRY-RUN] Gemini response to: {user_prompt[:60]}..."
 
@@ -216,12 +218,16 @@ def call_gemini(system_prompt: str, user_prompt: str, max_tokens: int = 800, ret
     # 모델 우선순위: gemini-3-flash-preview -> gemini-2.0-flash
     models_to_try = ["gemini-3-flash-preview", "gemini-2.0-flash"]
 
+    gen_config: dict = {"maxOutputTokens": max_tokens, "temperature": 0 if json_mode else 0.3}
+    if json_mode:
+        gen_config["response_mime_type"] = "application/json"
+
     for model in models_to_try:
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={GOOGLE_KEY}"
         payload = json.dumps({
             "system_instruction": {"parts": [{"text": system_prompt}]},
             "contents": [{"parts": [{"text": user_prompt}]}],
-            "generationConfig": {"maxOutputTokens": max_tokens, "temperature": 0.3},
+            "generationConfig": gen_config,
         }).encode()
 
         for attempt in range(retries):
@@ -394,7 +400,7 @@ def judge_answers(question: str, answer_a: str, answer_b: str) -> dict:
         "}"
     )
 
-    raw = call_gemini(judge_sys, judge_prompt, max_tokens=800)
+    raw = call_gemini(judge_sys, judge_prompt, max_tokens=800, json_mode=True)
 
     if DRY_RUN:
         return {
