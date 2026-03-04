@@ -12,6 +12,10 @@
 \usepackage{xcolor}
 \usepackage{geometry}
 \geometry{margin=1in}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{patterns,arrows.meta}
 
 % ─── Code listing style ───────────────────────────────────────────────────────
 \lstset{
@@ -863,6 +867,39 @@ Logical reasoning (knights/knaves) & 70\% & 50\% & 60\% \\
 \end{tabular}
 \end{table}
 
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  ybar,
+  bar width=14pt,
+  width=0.82\textwidth,
+  height=6cm,
+  ylabel={Accuracy (\%)},
+  symbolic x coords={Math,Logic},
+  xtick=data,
+  xticklabels={Mathematical\\Computation, Logical\\Reasoning (knights)},
+  ymin=0, ymax=100,
+  ytick={0,20,40,60,80,100},
+  legend style={at={(0.5,-0.22)},anchor=north,legend columns=3},
+  nodes near coords,
+  nodes near coords align={vertical},
+  enlarge x limits=0.3,
+  title={Three-Way Accuracy: Solo vs.\ Pipeline vs.\ Emergent (GPT-5.2, $N=5$)},
+]
+\addplot coordinates {(Math,80) (Logic,70)};
+\addplot coordinates {(Math,70) (Logic,50)};
+\addplot coordinates {(Math,60) (Logic,60)};
+\legend{Solo, Pipeline, Emergent}
+\end{axis}
+\end{tikzpicture}
+\caption{Three-way accuracy comparison. Emergent outperforms Pipeline on logical
+reasoning (60\% vs.\ 50\%) while showing no advantage on mathematical
+computation. $N=5$ trials per condition; same-model (GPT-5.2) to isolate
+collaboration structure.}
+\label{fig:threeway_bar}
+\end{figure}
+
 \subsection*{Key Findings}
 
 \begin{enumerate}
@@ -1022,7 +1059,46 @@ Two interpretations are consistent with these data:
 \noindent We report both results without adjudication.
 The $N=10$ cross-provider finding is preserved as directional evidence;
 the $N=30$ same-model replication weakens the generality of the auto-persona
-claim. Resolving this discrepancy requires a $N\geq30$, cross-provider design.
+claim.
+
+\medskip\noindent\textbf{Run-to-run variability}: To probe stability, a second $N=30$
+same-model run (\texttt{amp\_verdict\_v3}) was conducted under identical settings.
+The result reverses again: ON=60.0\%, OFF=40.0\% (quality ON=6.97 vs.\
+OFF=6.80; blind spots 5.0/question). The disagreement between \texttt{v2}
+(OFF wins, 53\%) and \texttt{v3} (ON wins, 60\%) at $N=30$ confirms that the
+auto-persona signal is noisy and unstable at this sample size.
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  ybar,
+  bar width=16pt,
+  width=0.85\textwidth,
+  height=6cm,
+  ylabel={Judge Preference (\%)},
+  symbolic x coords={N10-cross, N30-v2, N30-v3},
+  xtick=data,
+  xticklabels={$N{=}10$\\(cross-provider), $N{=}30$\\v2 (same-model), $N{=}30$\\v3 (same-model)},
+  ymin=0, ymax=100,
+  ytick={0,20,40,50,60,80,100},
+  legend style={at={(0.5,-0.24)},anchor=north,legend columns=2},
+  nodes near coords,
+  nodes near coords align={vertical},
+  enlarge x limits=0.35,
+  title={Auto-Persona Ablation: Judge Preference Across Three Runs},
+]
+\addplot[fill=blue!60] coordinates {(N10-cross,70) (N30-v2,47) (N30-v3,60)};
+\addplot[fill=red!60]  coordinates {(N10-cross,30) (N30-v2,53) (N30-v3,40)};
+\legend{Auto-persona ON, Auto-persona OFF}
+\end{axis}
+\end{tikzpicture}
+\caption{Auto-persona judge preference across three runs. The $N=10$ cross-provider
+run shows a clear ON advantage (70\% vs.\ 30\%); both $N=30$ same-model runs are
+inconsistent with each other (47\%/53\% vs.\ 60\%/40\%), indicating high sampling
+variance. Resolving this requires a $N\geq30$, cross-provider design.}
+\label{fig:persona_ablation_runs}
+\end{figure}
 
 \subsubsection*{Methodological improvements over the initial $N=5$ pilot}
 
@@ -1109,6 +1185,15 @@ generalising the domain-dependence claim.
         (CSER = 0.5455, gate passed). This does not resolve the fundamental N=1
         constraint but demonstrates that the gate mechanism is not unique to the
         original agent pair.
+        \textit{Ongoing replication (2026-03-04)}: Three additional independent KG
+        instances have been initialized as part of a $2 \times 2$ vendor-diversity
+        experiment: KG2 (GPT-4o + GPT-4o-mini, same-vendor OpenAI),
+        KG3 (GPT-4o + Gemini-2.0-Flash, cross-vendor), and
+        KG4 (Gemini-2.0-Flash + Gemini-2.0-Pro, same-vendor Google).
+        These instances are in early evolution (cycle $\leq 5$) and are not
+        reported as results in this paper; they form a pre-registered replication
+        infrastructure targeting $N=4$ KG instances (main + 3) with a controlled
+        vendor-diversity factor. Results will be reported in a follow-up.
   \item \textbf{KG artificiality}: Agents are aware of KG structure.
   \item \textbf{Weight arbitrariness}: $E_{v4}$ weights are intuitively designed.
         \textit{Quantified (Cycle 86 snapshot)}: Bootstrap cross-validation ($N=1000$) reveals
@@ -1304,15 +1389,42 @@ B\_partial (CSER=0.444). CSER acts as a binary gate, not a quality spectrum:
 once CSER $\geq 0.30$, code quality saturates at 1.0 regardless of CSER magnitude.
 The critical determinant is gate passage, not CSER level.
 
-\noindent\textbf{Circularity clarification}: The CSER $< 0.30$ gate in
-\texttt{execution\_loop.py} is an \emph{engineering safeguard}, not the claim
-under test. The empirical claims are: (1)~identical-persona agents \emph{naturally
-produce} CSER $\ll 0.30$ (Condition B\_full: $0.078$, Section~\ref{sec:condition_b_full}),
-demonstrating that low CSER is a \emph{consequence} of homogeneous collaboration,
-not merely a code-imposed constraint; (2)~diverse-persona agents naturally produce
-CSER $\gg 0.30$ ($0.84$--$1.00$); and (3)~the separation is wide enough
-($\Delta > 0.75$) that the specific threshold value matters little.
-The gate operationalizes these findings; it does not constitute them.
+\noindent\textbf{Design choice vs.\ empirical claim --- explicit separation}:
+A potential concern is that the binary gate finding is tautological: if
+execution is blocked by \texttt{execution\_loop.py} when CSER $< 0.30$,
+then observing ``low CSER $\to$ execution failure'' merely redescribes the
+engineering constraint rather than discovering an empirical property.
+We separate these layers precisely:
+
+\begin{enumerate}
+  \item \textbf{Layer 1 (design/engineering)}: The gate in
+        \texttt{execution\_loop.py} blocks code generation when CSER $< 0.30$.
+        This is a design choice, not an empirical finding. It is clearly labelled
+        as such throughout; no claim of discovery is made about the gate rule itself.
+
+  \item \textbf{Layer 2 (empirical, Condition B\_full)}: Under identical-persona
+        conditions, agents \emph{naturally produce} CSER $= 0.078$ over 20 cycles
+        --- reaching a value well below the gate without any external intervention
+        that forces CSER low. Agents are not told to minimize CSER; the metric
+        decays as a consequence of shared knowledge framing. This is an
+        \emph{observable consequence} of persona homogeneity, not an artifact of
+        the gate rule. The gate could be removed; the low CSER and its behavioral
+        correlates (echo-chamber KG structure, zero paradoxical crossings) would
+        remain.
+
+  \item \textbf{Layer 3 (empirical, separation magnitude)}: The heterogeneous
+        vs.\ same-persona CSER gap $\Delta = 0.758$ (0.836 vs.\ 0.078,
+        confirmed across 3/3 pre-registered predictions) is far larger than
+        threshold sensitivity ($\pm 0.02$ estimation noise). No reasonable
+        threshold choice between 0.10 and 0.30 changes the classification; the
+        empirical separation is robust to the engineering parameter.
+\end{enumerate}
+
+\noindent The gate operationalizes these findings; it does not constitute them.
+The structural claim --- that persona diversity causally drives cross-source
+KG structure --- is falsified not by changing the threshold but by running
+the experiment without persona heterogeneity (Condition B\_full), which is
+exactly what was done.
 
 \subsection{Random Graph Baseline (Erdős–Rényi)}
 
@@ -1435,6 +1547,44 @@ Cycle 10: 0.154, Cycle 15: 0.100, Cycle 20: 0.078. The monotonic decay confirms
 progressive echo-chamber formation as identical-persona agents increasingly
 reinforce shared knowledge structures.
 
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  width=0.85\textwidth,
+  height=6.5cm,
+  xlabel={Cycle},
+  ylabel={CSER},
+  xmin=0, xmax=22,
+  ymin=0, ymax=1.05,
+  ytick={0,0.2,0.3,0.4,0.6,0.8,1.0},
+  grid=major,
+  grid style={dashed,gray!40},
+  legend style={at={(0.97,0.97)},anchor=north east},
+  title={CSER Trajectory: Heterogeneous vs.\ Same-Persona Agents (20-Cycle Experiment)},
+]
+% Condition A (heterogeneous): stabilises above gate
+\addplot[blue, thick, mark=*, mark size=2.5]
+  coordinates {(1,0.667)(5,0.720)(10,0.790)(15,0.820)(20,0.836)};
+\addlegendentry{Cond.\ A: Heterogeneous (diverse personas)}
+
+% Condition B_full (same persona): decays to echo-chamber
+\addplot[red, thick, mark=square*, mark size=2.5, dashed]
+  coordinates {(1,0.667)(5,0.350)(10,0.154)(15,0.100)(20,0.078)};
+\addlegendentry{Cond.\ B\_full: Same-persona (echo-chamber)}
+
+% Gate threshold line
+\addplot[black, thick, dotted, domain=0:22] {0.30};
+\addlegendentry{Gate threshold $\theta=0.30$}
+\end{axis}
+\end{tikzpicture}
+\caption{CSER trajectory over 20 cycles. Heterogeneous-persona agents (Condition A)
+sustain CSER above the execution gate ($\theta=0.30$); same-persona agents
+(Condition B\_full) decay monotonically to an echo-chamber state
+(CSER $=0.078$). The divergence onset occurs by Cycle 5.}
+\label{fig:cser_trajectory}
+\end{figure}
+
 \noindent\textbf{All three pre-registered predictions confirmed}:
 (i)~CSER(B\_full) $< 0.30$ ($0.078 \ll 0.30$, $\checkmark$);
 (ii)~paradox count $< \frac{1}{3}$ of Condition A ($0 < 1.0$, $\checkmark$);
@@ -1509,9 +1659,14 @@ Results generalize to other agent pairs &
 \textbf{Conjecture} & Single 2-agent experiment; requires replication \\
 CSER may relate to alignment drift at larger scales &
 \textbf{Speculative} & Analogy from 2-agent result; no direct evidence \\
+Auto-persona ON produces higher quality (same-model) &
+\textbf{Unconfirmed} & $N=10$ cross-provider: ON=70\%; $N=30$ v2: OFF=53\%; $N=30$ v3: ON=60\% --- inconsistent \\
+Auto-persona ON produces higher quality (cross-provider) &
+\textbf{Exploratory} & $N=10$ cross-provider only; $N\geq30$ cross-provider pending \\
 \bottomrule
 \end{tabular}
-\caption{Evidence calibration: confirmed findings vs.\ exploratory/conjectural claims}
+\caption{Evidence calibration: confirmed findings vs.\ exploratory/conjectural claims.
+Updated to include amp\_verdict\_v2/v3 replication results for auto-persona claims.}
 \end{table}
 
 % ─────────────────────────────────────────────────────────────────────────────
@@ -1567,10 +1722,24 @@ gate mechanism, and the documented structural patterns (D-035, D-063, D-064,
 D-047) as phenomena warranting systematic replication. Claims of generalizability
 are explicitly deferred pending multi-seed, multi-pair, multi-domain replication.
 
-\noindent\textbf{Next steps}: Multi-provider co-evolution (GPT-4o + Gemini agent pair),
-human team H-CSER transplant, harder execution benchmarks (graph algorithms, DP)
-where partial echo-chamber failure rate $> 0$, and multi-domain amplification
-sweep to test domain-dependence of Emergent vs.\ Pipeline performance.
+\noindent\textbf{Next steps}:
+\begin{enumerate}
+  \item \textbf{KG replication ($2\times2$ design, in progress)}: KG2/KG3/KG4
+        instances (initialized 2026-03-04) are being evolved in parallel.
+        KG2 (GPT-4o + GPT-4o-mini, same-vendor) and KG4 (Gemini Flash + Pro,
+        same-vendor) will serve as same-vendor controls; KG3 (GPT-4o + Gemini,
+        cross-vendor) will test whether the main KG CSER dynamics replicate
+        under a different cross-vendor pair. Target: $N=4$ independent KG
+        instances with $\geq 30$ cycles each.
+  \item \textbf{Cross-provider auto-persona $N\geq30$}: A cross-provider run of
+        \texttt{amp\_benchmark\_n30} (GPT-5.2 $\times$ Claude) would resolve the
+        discrepancy between the $N=10$ cross-provider finding (ON=70\%) and both
+        $N=30$ same-model runs (inconsistent: 47\% and 60\%).
+  \item \textbf{Harder execution benchmarks}: Graph algorithms and DP problems
+        where partial echo-chamber failure rate $> 0$, enabling a quality gradient
+        (not just binary) to test CSER--quality correlation above the gate threshold.
+  \item \textbf{Human team H-CSER transplant} and multi-domain amplification sweep.
+\end{enumerate}
 
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Real-World Applications Beyond OpenClaw}
@@ -1682,6 +1851,128 @@ that cannot be resolved within the current single-experiment dataset.
         confidence interval. Without at least one of these, the amp results
         remain anecdotal and will be flagged by any statistical reviewer.
 \end{enumerate}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\appendix
+\section{Reproducibility Details}
+\label{sec:reproducibility}
+% ─────────────────────────────────────────────────────────────────────────────
+
+This appendix provides implementation details sufficient for independent replication
+of the key experiments reported in this paper.
+
+\subsection*{A.1 Model Versions and API Configuration}
+
+\begin{table}[h!]\centering\small
+\begin{tabular}{lll}
+\toprule
+Role & Model & Provider \\
+\midrule
+Agent A (Roki / yoki) & \texttt{claude-sonnet-4-6} & Anthropic \\
+Agent B (cokac) & \texttt{gpt-5.2-chat-latest} & OpenAI \\
+Amplification judge & \texttt{gemini-3-flash-preview} & Google \\
+Cross-provider replication & \texttt{gpt-4o} + \texttt{gemini-2.0-flash} & OpenAI + Google \\
+\bottomrule
+\end{tabular}
+\caption{Model versions used in main experiments (data cutoff: 2026-03-04).}
+\end{table}
+
+\noindent Temperature: 0.7 (generation), 0.0 (judge scoring).
+Random seed: not fixed per generation call (API default); fixed at 42 for
+bootstrap cross-validation ($N=1000$, weight optimization).
+
+\subsection*{A.2 KG Construction Rules}
+
+\begin{enumerate}
+  \item Each cycle: Agent A proposes 1--3 new nodes with tags; Agent B challenges
+        and adds cross-source edges referencing Agent A's nodes (and vice versa).
+  \item Node tagging: free-form, 1--5 tags per node chosen by the proposing agent.
+  \item Edge construction: each agent writes edges targeting nodes from the opposing
+        agent's source; cross-source edges are detected by comparing
+        \texttt{source\_agent} field on source vs.\ target node.
+  \item CSER computation: $\text{CSER} = |E_\text{cross}| / |E_\text{total}|$
+        where $E_\text{cross}$ = edges whose source and target nodes have distinct
+        \texttt{source\_agent} values.
+  \item Gate check: if CSER $< 0.30$, execution loop rejects the cycle output and
+        requests agent regeneration with a diversity prompt.
+\end{enumerate}
+
+\subsection*{A.3 Persona Configurations}
+
+\textbf{Condition A (heterogeneous)}: Agent A assigned ``Analyst'' persona (evidence-first,
+quantitative framing); Agent B assigned ``Critic'' persona (challenge assumptions,
+identify blind spots). Personas are injected as system-prompt prefixes of
+$\approx$120 tokens.
+
+\textbf{Condition B\_full (same-persona)}: Both agents assigned ``Analyst'' persona.
+Persona injection otherwise identical.
+
+\textbf{Auto-persona mode}: Personas selected dynamically per cycle by monitoring
+CSER in a 5-cycle sliding window; if CSER drops below 0.50, persona opposition
+is reinforced by sampling from a pool of 8 predefined role pairs (e.g.,
+Optimist/Pessimist, Theorist/Empiricist, Generalist/Specialist).
+
+\subsection*{A.4 Amplification Benchmark (\texttt{amp\_benchmark.py})}
+
+\begin{itemize}
+  \item 30 diverse real-world decision questions (financial, career, ethical,
+        technical domains); question bank in \texttt{experiments/amp\_benchmark\_n30.py}.
+  \item Each question: generate two responses under auto-persona ON vs.\ OFF;
+        present anonymized pair to Gemini judge (blind A/B); record winner,
+        quality scores (1--10), completeness scores (1--10), and blind-spot count.
+  \item Judge prompt template: \emph{``Given the following two anonymous responses
+        to the question [Q], score each on quality and completeness (1--10).
+        Identify which response (A or B) you prefer and why. List blind spots
+        in each response.''} Full prompt in \texttt{amp\_benchmark\_n30.py},
+        function \texttt{judge\_responses()}, lines 85--130.
+  \item Randomization: A/B assignment randomized per question
+        (\texttt{ab\_randomized\_off\_is\_a} field in output JSON);
+        \texttt{amp\_verdict\_v2.json} and \texttt{amp\_verdict\_v3.json} provide
+        full per-question results with randomization flags.
+\end{itemize}
+
+\subsection*{A.5 One-Command Replication}
+
+The following reproduces the auto-persona ablation benchmark ($N=30$):
+
+\begin{lstlisting}[language=bash,caption={Replication command for amp\_verdict benchmark}]
+# Clone and configure
+git clone https://github.com/dragon1086/emergent.git
+cd emergent/experiments
+
+# Set API keys
+export OPENAI_API_KEY=<your-key>
+export GOOGLE_AI_API_KEY=<your-key>
+
+# Run N=30 auto-persona ablation
+python3 amp_benchmark_n30.py \
+  --model gpt-5.2-chat-latest \
+  --judge gemini-3-flash-preview \
+  --n 30 \
+  --output amp_verdict_replic.json
+
+# Compare with reported results
+python3 -c "
+import json
+v2 = json.load(open('amp_verdict_v2.json'))['summary']
+vr = json.load(open('amp_verdict_replic.json'))['summary']
+print('v2 ON win rate:', v2['ab_win_rate_on'])
+print('replic ON win rate:', vr['ab_win_rate_on'])
+"
+\end{lstlisting}
+
+\noindent\textbf{Expected output range} (based on v2 and v3 runs):
+ON win rate between 0.47 and 0.60 (high variance; see Figure~\ref{fig:persona_ablation_runs}).
+Stable replication of the $N=10$ cross-provider result (ON=70\%) requires
+using a cross-provider agent pair (GPT-5.2 $\times$ Claude-sonnet-4-6).
+
+\subsection*{A.6 KG Artifact Access}
+
+The full KG snapshot (\texttt{data/knowledge-graph.json}, 534 nodes / 1121 edges,
+cycle 89+) and all experiment result JSON files are available in the repository.
+Metric computation scripts: \texttt{metrics.py} (CSER, $E_{v4}$, PES),
+\texttt{execution\_loop.py} (gate logic),
+\texttt{pair\_designer\_v4.py} (persona assignment and diversity gate).
 
 % ─────────────────────────────────────────────────────────────────────────────
 \begin{thebibliography}{9}
