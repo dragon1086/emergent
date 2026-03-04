@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 29,
-    "total_edges": 18,
-    "next_node_id": "n-030",
+    "total_nodes": 30,
+    "total_edges": 19,
+    "next_node_id": "n-031",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -503,6 +503,23 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-030",
+      "type": "hypothesis",
+      "label": "공유된 내부 편향 가설",
+      "content": "동일 벤더(Google) 환경에서 작동하는 LLM 에이전트(Gemini Flash, Gemini Pro) 간의 지식 그래프(KG) 진화는 교차 벤더 환경(GPT-4o, Gemini Flash)에 비해 더 높은 의미론적 일관성을 보일 것이다. 이는 동일 벤더 모델들이 공유하는 내재적 지식 표현 방식과 추론 편향에서 기인하며, 이는 KG 내 노드와 엣지 생성 및 연결의 마찰을 줄여준다. [GeminiPro:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "LLM_alignment",
+        "KG_evolution",
+        "semantic_coherence",
+        "vendor_bias"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -684,6 +701,16 @@
       "label": "KG-4 실험 환경(동일 벤더)에서 KG 진화의 초기 긍정적 징후 또는 효율성 증가에 대한 관찰이 본 가설을 제기하는 동기가 됨.",
       "source": "gemini-2.5-flash",
       "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-019",
+      "from": "n-030",
+      "to": "n-007",
+      "relation": "posits_explanation_for",
+      "label": "동일 벤더 LLM 에이전트 간의 공유된 내재적 지식 표현 편향이 KG-4의 차별적 특성(예: 높은 의미론적 일관성)을 유발하는 원인임을 설명한다. (여기서 hypothesis-7은",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
       "created": "2026-03-03"
     }
   ]
