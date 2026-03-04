@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 16,
-    "total_edges": 5,
-    "next_node_id": "n-017",
+    "total_nodes": 17,
+    "total_edges": 6,
+    "next_node_id": "n-018",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -262,6 +262,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-017",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 주원인: “표현-정렬(translation) 손실” 가설",
+      "content": "KG-3에서 cross-vendor(GPT-4o↔Gemini Flash) 협업은 단순히 모델 성능 차이보다, (i) 내부 표현/선호(암묵적 기준) 차이, (ii) 요약·재진술 과정에서의 정보 압축, (iii) 서로 다른 안전/규범 정책에 따른 금지·완화 규칙 차이 때문에 “의미 보존 번역(semantic translation)” 비용이 반복적으로 발생한다. 이 번역 비용은 (a) 노드 내용의 미세한 조건/가정이 탈락하거나, (b) 관계(edge)가 ‘motivates’처럼 넓은 의미로 뭉개지거나, (c) 상호 검증 시 기준이 어긋나 반박이 “논점 불일치”로 소모되는 형태로 나타난다. 따라서 KG-2(same-vendor) 대비 KG-3의 CSER이 낮아진다면, 그 원인은 cross-vendor 자체의 “표현-정렬 손실”이며, 이를 줄이기 위한 메커니즘(공유 스키마, 정규화된 템플릿, 공통 평가 루브릭, 반박 시 쟁점-매핑 단계)을 도입하면 CSER이 회복/상승할 것이다. [Gemini: 표현-정렬 손실은 cross-vendor CSER 저하의 핵심 원인으로 보입니다. 이는 단순히 어휘 선택을 넘어, 모델 간 내재된 개념 정의, 가정, 그리고 추론 방식의 미묘한 차이에서 기인합니다. 결과적으로 타 모델의 노드를 완전히 통합하거나 신뢰하기 어렵게 만듭니다]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "CSER",
+        "alignment-loss]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -311,6 +327,16 @@
       "to": "n-001",
       "relation": "motivates",
       "label": "KG-2 대비 KG-3 CSER 비교가 왜 “표현 정규화/온톨로지 최소합의” 설계를 선행해야 하는지의 동기를 제공",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-006",
+      "from": "n-017",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "cross-vendor 환경에서 CSER 비교 실험 설계를 “모델 성능 차이”가 아니라 “표현-정렬(translation) 손실”을 분리 측정하도록 유도한다",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
