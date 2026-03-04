@@ -1192,7 +1192,7 @@ reasoning, natural language inference, and causal reasoning are required before
 generalising the domain-dependence claim.
 
 % ─────────────────────────────────────────────────────────────────────────────
-\section{Limitations}
+\section{Limitations}\label{sec:limitations}
 % ─────────────────────────────────────────────────────────────────────────────
 
 \begin{enumerate}
@@ -1217,29 +1217,37 @@ generalising the domain-dependence claim.
         Instance & Agent Pair & Vendor & Edges & CSER \\
         \midrule
         KG-main & Claude-sonnet-4-6 $\times$ GPT-5.2 & Cross & 1121 & 0.8510 \\
-        KG-2 & GPT-4o $\times$ GPT-4o-mini & Same (OpenAI) & 18$^*$ & 0.8889$^*$ \\
-        KG-3 & GPT-4o $\times$ Gemini-2.0-Flash & Cross & 13$^*$ & 0.9231$^*$ \\
-        KG-4 & Gemini-Flash $\times$ Gemini-Pro & Same (Google) & 15$^*$ & 0.4667$^*$ \\
+        KG-2 & GPT-4o $\times$ GPT-4o-mini & Same (OpenAI) & 30 & 0.8333 \\
+        KG-3 & GPT-4o $\times$ Gemini-2.0-Flash & Cross & 30 & \textbf{0.9667} \\
+        KG-4 & Gemini-Flash $\times$ Gemini-Pro & Same (Google) & 30 & 0.3667 \\
         \bottomrule
         \end{tabular}
-        \caption*{\small $^*$Preliminary snapshot (cycle $\leq 15$, 2026-03-04).
+        \caption*{\small KG-2/3/4: 30-cycle snapshots (2026-03-04).
         All four instances exceed the gate threshold ($\theta=0.30$).
-        KG-4 (same-vendor) shows lower CSER than cross-vendor instances,
-        consistent with the persona-diversity hypothesis.
-        Target: $\geq 30$ cycles per instance for reportable comparison.}
+        KG-4 (same-vendor Google) shows markedly lower CSER (0.37)
+        vs.\ cross-vendor KG-3 (0.97), consistent with the heterogeneity hypothesis.
+        KG-2 (same-vendor OpenAI) shows high CSER (0.83), suggesting within-vendor
+        CSER depends on capability gap, not vendor identity alone.}
         \end{table}
 
-        This early evidence suggests that the main KG's gate-passing CSER
-        replicates across different agent configurations.
-        Preliminary pattern: KG-4 (same-vendor Google: Gemini Flash $\times$ Pro)
-        shows notably lower CSER (0.47) than the cross-vendor instances (0.85--0.92),
-        while KG-2 (same-vendor OpenAI: GPT-4o $\times$ GPT-4o-mini) shows
-        unexpectedly high CSER (0.89), suggesting that within-vendor CSER
-        may depend on capability gap rather than vendor identity alone.
-        These patterns are \emph{very preliminary} ($\leq 18$ edges per instance)
-        and require $\geq 30$ cycles for interpretable comparison.
-        Full results will be reported in a follow-up once $\geq 30$ cycles
-        are completed per instance.
+        \noindent\textbf{Key replication finding ($N=4$ KG instances, 30 cycles each)}:
+        \begin{enumerate}
+          \item The gate-passing CSER result replicates across all four configurations
+                (all CSER $\geq 0.30$), supporting generalizability of the gate mechanism.
+          \item Cross-vendor (KG-3: 0.9667) $>$ same-vendor OpenAI (KG-2: 0.8333)
+                $>$ same-vendor Google (KG-4: 0.3667), consistent with the theoretical
+                prediction that architectural heterogeneity drives higher cross-source
+                emergence --- though KG-4 remains above the gate.
+          \item Within-vendor CSER magnitude depends on capability gap:
+                GPT-4o $\times$ GPT-4o-mini (large capability gap) yields CSER $=0.83$,
+                comparable to cross-vendor; Gemini Flash $\times$ Pro
+                (smaller parameter gap within the same training paradigm) yields
+                CSER $=0.37$, near the gate boundary.
+        \end{enumerate}
+        \noindent These findings constitute exploratory replications ($N=1$ KG per
+        configuration) and do not resolve the fundamental single-system limitation,
+        but provide directional evidence that the CSER gate mechanism is not
+        unique to the original agent pair.
   \item \textbf{KG artificiality}: Agents are aware of KG structure.
   \item \textbf{Weight arbitrariness}: $E_{v4}$ weights are intuitively designed.
         \textit{Quantified (Cycle 86 snapshot)}: Bootstrap cross-validation ($N=1000$) reveals
@@ -1770,13 +1778,13 @@ are explicitly deferred pending multi-seed, multi-pair, multi-domain replication
 
 \noindent\textbf{Next steps}:
 \begin{enumerate}
-  \item \textbf{KG replication ($2\times2$ design, in progress)}: KG2/KG3/KG4
-        instances (initialized 2026-03-04) are being evolved in parallel.
-        KG2 (GPT-4o + GPT-4o-mini, same-vendor) and KG4 (Gemini Flash + Pro,
-        same-vendor) will serve as same-vendor controls; KG3 (GPT-4o + Gemini,
-        cross-vendor) will test whether the main KG CSER dynamics replicate
-        under a different cross-vendor pair. Target: $N=4$ independent KG
-        instances with $\geq 30$ cycles each.
+  \item \textbf{KG replication ($2\times2$ design, completed 30 cycles)}:
+        KG2/KG3/KG4 instances each completed 30 co-evolution cycles (2026-03-04).
+        All four KG instances pass the CSER gate ($\geq 0.30$); cross-vendor
+        KG-3 achieves the highest CSER (0.9667), while same-vendor Google
+        KG-4 shows the lowest (0.3667), consistent with the heterogeneity
+        hypothesis. See Limitations (Sec.~\ref{sec:limitations}) for full $N=4$ comparison table.
+        Next target: $\geq 100$ cycles per instance for full trajectory analysis.
   \item \textbf{Cross-provider auto-persona $N\geq30$}: A cross-provider run of
         \texttt{amp\_benchmark\_n30} (GPT-5.2 $\times$ Claude) would resolve the
         discrepancy between the $N=10$ cross-provider finding (ON=70\%) and both
