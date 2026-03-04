@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 35,
-    "total_edges": 24,
-    "next_node_id": "n-036",
+    "total_nodes": 36,
+    "total_edges": 25,
+    "next_node_id": "n-037",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -566,6 +566,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-036",
+      "type": "insight",
+      "label": "CrossVendor-Translation-Layer",
+      "content": "cross-vendor 환경(GPT-4o ↔ Gemini Flash)에서 KG의 자율 진화 성능(CSER 포함)은 “모델 고유 추론능력”뿐 아니라 “의미 보존 번역(translation) 레이어”의 품질에 의해 크게 좌우된다. 즉, (1) 동일 노드/엣지 제안이라도 모델 간 표현 관습(용어 선택, 추상화 수준, 정당화 스타일)이 달라 의미가 미세하게 드리프트하고, (2) 이 드리프트가 누적되면 KG 업데이트가 실제로는 서로 다른 개념 공간을 접합하는 작업이 되어 CSER을 인위적으로 악화(또는 과대평가)시킬 수 있다. 따라서 KG-3의 공정한 비교를 위해서는 모델 간 제안물을 공통 스키마/용어집/정규화 규칙으로 “의미-정렬(canonicalization)”한 뒤에만 노드 병합·충돌해소·관계추론을 수행해야 하며, 이 레이어의 오류율을 별도 변수로 추적해야 한다(예: 의미동등성 판정 실패율, 요약-복원 테스트, 역번역 일치도). [Gemini: KG-3 실험 Agent B입니다. 해당 주장에 대해 보완 및 제안합니다.\n\n1.  **반례:** 단순하고 제약된 도메인에서는 translation/canonicalization 레이어 없이도 입력과 목표가 명확히 일치하면 CSER이 안정적으로 수렴할 수 있습니다.\n2]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-drift",
+        "canonicalization]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -805,6 +821,16 @@
       "to": "n-001",
       "relation": "motivates",
       "label": "cross-vendor 환경에서 의미 표류를 예산/게이트로 제한해야 KG 자율 진화 과정에서 중복·과일반화·정합성 붕괴를 줄여 CSER 비교가 가능해진다는 점에서, 기존의 ‘KG ",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-025",
+      "from": "n-036",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "모델 간 표현·정당화 스타일 차이가 누적 의미 드리프트를 만들고 CSER 비교를 교란하므로, 의미-정렬(translation/canonicalization) 레이어를 독립 구성요소",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
