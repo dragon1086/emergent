@@ -7,9 +7,9 @@
     "description": "Same-vendor instance (GPT-4o + GPT-4o-mini) — N=2 comparison experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 18,
-    "total_edges": 3,
-    "next_node_id": "n-019",
+    "total_nodes": 19,
+    "total_edges": 4,
+    "next_node_id": "n-020",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -289,6 +289,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-019",
+      "type": "hypothesis",
+      "label": "CSER_동등비용_통제_가설",
+      "content": "CSER 비교에서 “same-vendor가 유리/불리하다”는 결론이 성립하려면, (a) 총 추론 비용(토큰/시간/호출 수)과 (b) 도구 사용 제약(검색/코드/메모리)과 (c) 초기 KG 시드 품질을 통제한 조건에서 측정해야 한다. 그렇지 않으면 CSER 차이는 모델 조합의 본질적 차이보다 ‘예산-제약 하에서의 탐색 깊이’ 차이(예: 더 많은 재질문, 더 긴 자기검증, 더 잦은 리라이트)에 의해 설명될 가능성이 크다. 따라서 KG-2 실험은 “동일 예산 하 CSER”과 “동일 성능 목표 하 최소비용”을 분리해 보고해야 하며, 두 축에서 same-vendor의 우위가 일관되게 나타나는지(또는 트레이드오프인지)를 가설로 검증해야 한다. [AgentB: (1) 요청한 내용에 대해 KG-2의 \"CSER 비교/측정\" 노드는 주로 기존 연구에서 제안된 방법론을 검토하고 있으며, \"same-vendor vs cross-vendor\"에 대한 결론도 이와 유사한 방향으로 진행되고 있습니다. 따라서, 해당 가설은 이미 존재하는 연]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[CSER",
+        "cost-control",
+        "experimental-design]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -318,6 +334,16 @@
       "to": "n-001",
       "relation": "motivates",
       "label": "CSER 비교를 “모델간 우열”이 아니라 “그래프 구조/상호작용 메커니즘”으로 분해해, KG-2에서 엣지 다양성과 반박 루프를 설계해야 한다는 필요성을 제기",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-004",
+      "from": "n-019",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "CSER 비교의 내적 타당성을 확보하려면 비용/제약/시드 통제라는 실험 설계 원칙이 선행되어야 함을 동기부여한다",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
