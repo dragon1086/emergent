@@ -7,9 +7,9 @@
     "description": "Same-vendor instance (GPT-4o + GPT-4o-mini) — N=2 comparison experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 29,
-    "total_edges": 14,
-    "next_node_id": "n-030",
+    "total_nodes": 30,
+    "total_edges": 15,
+    "next_node_id": "n-031",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -465,6 +465,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-030",
+      "type": "hypothesis",
+      "label": "CSER_동형성_편향가설",
+      "content": "same-vendor 환경에서는 두 에이전트가 유사한 내부 표현/안전정책/문체 priors를 공유해 “합의가 쉬운” 방향으로 KG가 수렴하며, 이때 CSER(지식그래프 기반 자기진화 효율/견고성 지표)이 실제 지식 품질 향상이라기보다 동형성(homophily)로 인한 갈등 감소·정합성 증가를 과대평가할 수 있다. 따라서 KG-2의 CSER은 (i) 신규 정보 도입률, (ii) 반례 생성률, (iii) 상충 가설 유지 기간 같은 ‘이질성 유지 지표’로 보정되어야 cross-vendor KG-1과 공정 비교가 가능하다. [AgentB: KG-2에서 '동형성 편향'이 관측될 수 있는 메커니즘으로는 (1) 동일한 공급자 간 정보 공유로 인한 합의 속도 증가가 있으며, 이는 유사한 문체와 안전 정책이 같은 이해를 촉진하기 때문입니다. 또 다른 메커니즘은 (2) 동일한 추론 휴리스틱을 사용하는 것인데, 이로]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[CSER",
+        "same-vendor",
+        "homophily]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -606,6 +622,16 @@
       "label": "KG-1(cross-vendor) vs KG-2(same-vendor) 비교에서 “성능”을 정답률이 아닌 “자율 KG 진화 효율(성장·신규성·통합·재사용)”로 측정해야 한다는 비교",
       "source": "gpt-5.2",
       "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-015",
+      "from": "n-030",
+      "to": "n-012",
+      "relation": "motivates",
+      "label": "same-vendor 동형성으로 인한 CSER 과대평가 가능성이 “이질성 유지 지표로 보정한 비교 설계 필요”를 동기화한다",
+      "source": "gpt-5.2",
+      "cross_source": false,
       "created": "2026-03-03"
     }
   ]
