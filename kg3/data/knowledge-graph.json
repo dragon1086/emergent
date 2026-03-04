@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 13,
-    "total_edges": 2,
-    "next_node_id": "n-014",
+    "total_nodes": 14,
+    "total_edges": 3,
+    "next_node_id": "n-015",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -214,6 +214,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-014",
+      "type": "insight",
+      "label": "Cross-vendor Alignment Drift as a Confounder",
+      "content": "Cross-vendor(예: GPT-4o vs Gemini Flash) 환경에서 KG를 자율 진화시키면, 모델별 내재적 정렬(안전/스타일/추론 편향) 차이가 ‘지식의 질’이 아니라 ‘표현/선호의 차이’로 KG 구조를 왜곡할 수 있다. 이를 통제하지 않으면 CSER 비교에서 관측되는 성능 차이가 (i) KG 자체의 진화 효과가 아니라 (ii) vendor-specific priors(예: 보수적 결론, 장황성, 불확실성 표기, 인과 연결 선호)로 인한 그래프 토폴로지 변화(노드 타입 비율, 엣지 밀도, 관계 다양성)일 수 있다. 따라서 KG-3 vs KG-2 비교는 ‘동일 과제에서의 교차모델 정렬 드리프트’를 잠재 교란변수로 두고, 최소한 (a) 동일 프롬프트-스키마 강제, (b) 노드/엣지 생성 규칙의 정규화, (c) 모델별 캘리브레이션(예: 불확실성 표현을 정량화해 동일 스케일로 매핑) 같은 통제/보정 절차를 가정해야 한다. [Gemini: KG-3에서 cross-vendor alignment drift는 CSER의 KG 생성 품질 및 구조에 유의미한 교란 요인이며, 노드 타입 분포 KL 편차, 엣지 밀도/관계 다양성, 불확실성 표기 빈도로 검출 가능합니다. 가장 간단한 통제 프로토콜은 프롬프트 고정 및 ]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "confounder",
+        "alignment-drift]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -233,6 +249,16 @@
       "to": "n-001",
       "relation": "motivates",
       "label": "cross-vendor 개념 정렬 drift 위험은 KG-3에서 정의적 앵커/정규화 절차 도입(또는 CSER 보정)의 필요성을 동기화한다",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-003",
+      "from": "n-014",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "KG-3의 CSER 비교 설계에서 cross-vendor 환경 자체가 교란변수가 될 수 있으므로, 통제/정규화 절차를 도입해야 한다는 필요성을 강화함",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
