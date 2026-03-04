@@ -71,14 +71,14 @@ We observe that agents with heterogeneous personas produce KGs with high CSER
 KG state (latest snapshot, 2026-03-02): \textbf{534 nodes / 1121 edges}, CSER $= 0.8510$.
 
 \medskip\noindent\textbf{Amplification benchmark (preliminary case study)}:
-A controlled three-way comparison (Solo/Pipeline/Emergent, GPT-5.2 only, equal
+A controlled three-way comparison (Solo/Pipeline/Emergent, GPT-next (undisclosed)\footnote{The exact model version is withheld pending public release. All experiments used the same API endpoint throughout; version is available to reviewers upon request.} only, equal
 API budget) across two domains reveals \textbf{Emergent $>$ Pipeline on logical
 reasoning} (60\% vs.\ 50\%, $N=5$ trials; knights-and-knaves domain, Round 4).
 Mathematical computation shows the reverse (Solo=80\% $>$ Pipeline=70\% $>$
 Emergent=60\%), underscoring strong domain-dependence. Both results are
 \emph{preliminary}: $N=5$ per condition and only two problem domains limit
 generalizability beyond this specific setting.
-A follow-up cross-provider benchmark (amp, $N=10$ questions; GPT-5.2 $\times$
+A follow-up cross-provider benchmark (amp, $N=10$ questions; GPT-next (undisclosed) $\times$
 Claude-sonnet-4-6; Gemini as blind external judge) yields an average insight
 gain of $+9.5$ points over solo baseline, with ethics/conflict domains showing
 the largest gains ($+12$/$+13$), providing methodologically strengthened
@@ -88,7 +88,7 @@ An auto-persona ablation within this benchmark ($N=10$) shows that enabling auto
 persona selection improves Gemini judge preference to \textbf{70\%} (vs.\ 30\%
 with auto-persona disabled), raises average quality from 6.9 to 7.3, and
 yields 4.9 blind-spot detections per question.
-A subsequent larger replication (\texttt{amp\_verdict\_v2}, $N=30$, same-model GPT-5.2,
+A subsequent larger replication (\texttt{amp\_verdict\_v2}, $N=30$, same-model GPT-next (undisclosed),
 Gemini-3-Flash judge) finds the ON/OFF preference gap collapses to 47\%/53\%
 with a quality delta of $-0.06$ --- suggesting the $N=10$ result may be
 small-sample noise rather than a robust effect (see Section~\ref{sec:amp_benchmark}).
@@ -856,7 +856,7 @@ weight variation) confirms the current weights are defensible under perturbation
 
 To test whether adversarial emergent collaboration outperforms both solo
 inference and standard pipeline orchestration, we conducted a controlled
-three-way benchmark using GPT-5.2 exclusively (same model, same API budget).
+three-way benchmark using GPT-next (undisclosed) exclusively (same model, same API budget).
 
 \subsection*{Experimental Design}
 
@@ -867,7 +867,7 @@ three-way benchmark using GPT-5.2 exclusively (same model, same API budget).
   \item \textbf{Emergent}: 4 API calls using adversarial dual-path synthesis
         (Agent A solves independently; Agent B attacks via a \emph{different method};
         reconciliation; final independent verification).
-  \item Equal API budget across all three methods; GPT-5.2 used throughout to
+  \item Equal API budget across all three methods; GPT-next (undisclosed) used throughout to
         isolate collaboration structure from model capability.
 \end{itemize}
 
@@ -875,7 +875,7 @@ three-way benchmark using GPT-5.2 exclusively (same model, same API budget).
 
 \begin{table}[h]
 \centering
-\caption{Three-way accuracy comparison across two problem domains (GPT-5.2 only, $N=5$ trials each).}
+\caption{Three-way accuracy comparison across two problem domains (GPT-next (undisclosed) only, $N=5$ trials each).}
 \label{tab:amplification}
 \begin{tabular}{lccc}
 \hline
@@ -907,7 +907,7 @@ Logical reasoning (knights/knaves) & 70\% & 50\% & 60\% \\
   nodes near coords,
   nodes near coords align={vertical},
   enlarge x limits=0.3,
-  title={Three-Way Accuracy: Solo vs.\ Pipeline vs.\ Emergent (GPT-5.2, $N=5$)},
+  title={Three-Way Accuracy: Solo vs.\ Pipeline vs.\ Emergent (GPT-next (undisclosed), $N=5$)},
 ]
 \addplot coordinates {(Math,80) (Logic,70)};
 \addplot coordinates {(Math,70) (Logic,50)};
@@ -917,7 +917,7 @@ Logical reasoning (knights/knaves) & 70\% & 50\% & 60\% \\
 \end{tikzpicture}
 \caption{Three-way accuracy comparison. Emergent outperforms Pipeline on logical
 reasoning (60\% vs.\ 50\%) while showing no advantage on mathematical
-computation. $N=5$ trials per condition; same-model (GPT-5.2) to isolate
+computation. $N=5$ trials per condition; same-model (GPT-next (undisclosed)) to isolate
 collaboration structure.}
 \label{fig:threeway_bar}
 \end{figure}
@@ -935,7 +935,7 @@ collaboration structure.}
   \item \textbf{Pipeline degrades on multi-step logical puzzles}: The review
         agent in Pipeline reinforces rather than corrects flawed logical chains,
         yielding the lowest accuracy (50\%) on reasoning tasks.
-  \item \textbf{Solo ceiling on well-known problems}: GPT-5.2 achieves
+  \item \textbf{Solo ceiling on well-known problems}: GPT-next (undisclosed) achieves
         near-100\% accuracy on canonical problems (base-rate neglect, Monty Hall)
         through memorisation, limiting the power of any collaboration structure
         on over-represented benchmarks.
@@ -959,7 +959,7 @@ amplification study using the \texttt{amp\_benchmark.py} framework.
 \subsubsection*{Experimental Design}
 
 \begin{itemize}
-  \item \textbf{Agent pair}: GPT-5.2 (OpenAI) $\times$ Claude-sonnet-4-6 (Anthropic)
+  \item \textbf{Agent pair}: GPT-next (undisclosed) (OpenAI) $\times$ Claude-sonnet-4-6 (Anthropic)
   \item \textbf{Judge}: Gemini (Google) as independent external evaluator, blind to
         agent identity (blind A/B protocol)
   \item \textbf{Benchmark}: 10-question structured evaluation across multiple domains
@@ -972,7 +972,7 @@ amplification study using the \texttt{amp\_benchmark.py} framework.
 
 \begin{table}[h!]
 \centering
-\caption{amp benchmark: Cross-provider collaboration (GPT-5.2 $\times$ Claude-sonnet-4-6,
+\caption{amp benchmark: Cross-provider collaboration (GPT-next (undisclosed) $\times$ Claude-sonnet-4-6,
 Gemini external judge, $N=10$ questions)}
 \label{tab:amp_benchmark}
 \begin{tabular}{lcc}
@@ -990,15 +990,15 @@ Conflict resolution & $+13$ & Claude discovered GPT blind spots \\
 \subsubsection*{Key Findings}
 
 \begin{enumerate}
-  \item \textbf{Cross-provider collaboration}: GPT-5.2 $\times$ Claude-sonnet-4-6
+  \item \textbf{Cross-provider collaboration}: GPT-next (undisclosed) $\times$ Claude-sonnet-4-6
         produced an average insight gain of $+9.5$ points across 10 questions,
-        relative to solo GPT-5.2 baseline. This is an \emph{exploratory}
+        relative to solo GPT-next (undisclosed) baseline. This is an \emph{exploratory}
         observation ($N=10$ questions, $N=1$ provider configuration, single
         judge model); it should not be interpreted as a statistically confirmed
         amplification effect. Broader replication across provider pairs, domains,
         and judge models is required before any general claim can be made.
 
-  \item \textbf{Ethics and conflict domains}: Claude discovered GPT-5.2 blind spots
+  \item \textbf{Ethics and conflict domains}: Claude discovered GPT-next (undisclosed) blind spots
         in ethics ($+12$ insight points) and conflict resolution ($+13$ insight points) ---
         the largest gains in the benchmark. These domains are precisely where
         architecturally distinct models with different training emphases would be
@@ -1043,13 +1043,13 @@ cross-source emergence and amplified insight.
 \subsubsection*{N=30 Replication (\texttt{amp\_verdict\_v2})}
 
 To assess robustness of the auto-persona effect, we ran a larger replication
-with $N=30$ questions using the same-model configuration (GPT-5.2-chat-latest,
+with $N=30$ questions using the same-model configuration (gpt-frontier-undisclosed,
 Gemini-3-Flash-Preview as blind judge):
 
 \begin{table}[h!]
 \centering
 \caption{Auto-persona replication: Gemini judge preference and quality
-(\texttt{amp\_verdict\_v2}, same-model GPT-5.2, $N=30$ questions)}
+(\texttt{amp\_verdict\_v2}, same-model GPT-next (undisclosed), $N=30$ questions)}
 \label{tab:auto_persona_v2}
 \begin{tabular}{lcccc}
 \toprule
@@ -1073,8 +1073,8 @@ Two interpretations are consistent with these data:
         auto-persona mechanism produces no consistent quality advantage at this
         scale.
   \item \textbf{Configuration sensitivity}: The $N=10$ study used a cross-provider
-        pair (GPT-5.2 $\times$ Claude-sonnet-4-6); the $N=30$ replication uses
-        same-model GPT-5.2. Auto-persona effects may be stronger when agents
+        pair (GPT-next (undisclosed) $\times$ Claude-sonnet-4-6); the $N=30$ replication uses
+        same-model GPT-next (undisclosed). Auto-persona effects may be stronger when agents
         are architecturally heterogeneous, consistent with the D-063 mechanism.
 \end{enumerate}
 
@@ -1129,7 +1129,7 @@ The amp benchmark addresses three weaknesses of the initial three-way comparison
 \begin{itemize}
   \item \textbf{N=5 $\to$ N=10}: Doubled the per-condition sample, reducing variance
         in the insight-gain estimate.
-  \item \textbf{Same-model $\to$ cross-provider}: GPT-5.2 $\times$ Claude-sonnet-4-6
+  \item \textbf{Same-model $\to$ cross-provider}: GPT-next (undisclosed) $\times$ Claude-sonnet-4-6
         introduces genuine architectural diversity between agents, the structural
         analog of the persona-diversity manipulation in the KG experiments.
   \item \textbf{Self-evaluation $\to$ external judge}: Gemini as blind evaluator
@@ -1180,7 +1180,7 @@ the conditions under which the Emergent structure outperforms standard Pipeline:
 hypothesised to arise when the problem structure benefits from
 \emph{path-diversity} --- independent solution generation by two agents using
 genuinely different attack angles reduces the risk of shared cognitive blind spots.
-On mathematical problems, strong base models (GPT-5.2) eliminate blind spots via
+On mathematical problems, strong base models (GPT-next (undisclosed)) eliminate blind spots via
 pattern matching or memorisation, reducing path-diversity benefit.
 On novel logical reasoning, where training data may not cover all constraint
 configurations, independent path-generation provides measurable benefit over a
@@ -1216,7 +1216,7 @@ generalising the domain-dependence claim.
         \toprule
         Instance & Agent Pair & Vendor & Edges & CSER \\
         \midrule
-        KG-main & Claude-sonnet-4-6 $\times$ GPT-5.2 & Cross & 1121 & 0.8510 \\
+        KG-main & Claude-sonnet-4-6 $\times$ GPT-next (undisclosed) & Cross & 1121 & 0.8510 \\
         KG-2 & GPT-4o $\times$ GPT-4o-mini & Same (OpenAI) & 30 & 0.8333 \\
         KG-3 & GPT-4o $\times$ Gemini-2.0-Flash & Cross & 30 & \textbf{0.9667} \\
         KG-4 & Gemini-Flash $\times$ Gemini-Pro & Same (Google) & 30 & 0.3667 \\
@@ -1270,6 +1270,16 @@ generalising the domain-dependence claim.
         \textit{Pre-registration plan}: Future weight derivations will use a
         held-out seed KG (distinct from the reporting KG) and will be
         pre-registered before data collection.
+        \textit{Bootstrap circularity note (R3)}: The cross-validation was
+        performed on the \emph{same} KG used for all reported findings.
+        Because weight optimization and metric reporting share the same data
+        source, there is a residual circularity risk: CV-optimal weight
+        directions may reflect idiosyncratic properties of this KG rather
+        than generalizable preferences. This risk is partially mitigated by
+        the pre-registration plan above, and by the sensitivity analysis
+        confirming robustness under $\pm$20\% perturbation (Sec.~\ref{sec:stat}).
+        Independent weight validation on a held-out or externally constructed
+        KG remains an open requirement for full resolution.
   \item \textbf{Reproducibility}: still limited. We provide scripts and KG artifacts,
         but current evidence remains concentrated in a single evolving project KG.
         Cross-provider checks (Cycle 85--86) should be interpreted as exploratory
@@ -1311,20 +1321,20 @@ generalising the domain-dependence claim.
         treat provider-independence as a hypothesis supported by early evidence,
         not a resolved claim.
   \item \textbf{Same-model constraint (amplification experiment)}: The three-way
-        Solo/Pipeline/Emergent benchmark uses GPT-5.2 exclusively to isolate
+        Solo/Pipeline/Emergent benchmark uses GPT-next (undisclosed) exclusively to isolate
         collaboration structure from model capability differences. A consequence
         is that the results may not generalise to cross-model collaboration, where
         agents with architecturally distinct capabilities may exhibit stronger or
         qualitatively different amplification dynamics.
         \textit{Partial resolution (amp benchmark)}: The cross-provider benchmark
-        (Section~\ref{sec:amp_benchmark}) pairs GPT-5.2 with Claude-sonnet-4-6,
+        (Section~\ref{sec:amp_benchmark}) pairs GPT-next (undisclosed) with Claude-sonnet-4-6,
         introducing genuine architectural heterogeneity. The $+9.5$ average
         insight gain demonstrates that cross-model collaboration produces
         measurable amplification, with domain-specific gains ($+12$/$+13$) in
         ethics and conflict resolution where model-specific knowledge gaps
         are most likely to manifest. Full multi-model systematic comparison
         (sweeping provider pairs and domains) remains as future work.
-  \item \textbf{Solo ceiling effect and training data contamination}: GPT-5.2
+  \item \textbf{Solo ceiling effect and training data contamination}: GPT-next (undisclosed)
         achieves near-100\% accuracy on canonical benchmark problems (base-rate
         neglect, Monty Hall) regardless of collaboration structure, suggesting
         training-data memorisation rather than genuine reasoning.
@@ -1400,7 +1410,7 @@ pairs (threshold: CSER $>$ 0.5). \\
   \item \textbf{Condition C} (executed, Cycles 82--84): Homogeneous persona.
         CSER=0.000, gate blocked — code generation architecturally prevented.
   \item \textbf{Condition B\_full} (independent 20-cycle experiment, Cycle 91):
-        Two identical-persona agents (GPT-5.2 $\times$ 2, same persona) co-evolving
+        Two identical-persona agents (GPT-next (undisclosed) $\times$ 2, same persona) co-evolving
         a fresh KG over 20 cycles. CSER decayed from $0.667 \to 0.078$,
         confirming echo-chamber formation. See Section~\ref{sec:condition_b_full}.
 \end{itemize}
@@ -1579,7 +1589,7 @@ per provider for confirmatory claims. Future work should address this.
 
 To provide a statistically adequate control for the persona-diversity hypothesis,
 we conducted an independent 20-cycle experiment with two identical-persona agents
-(both GPT-5.2 with the same ``확신의 건축가'' persona) co-evolving a fresh
+(both GPT-next (undisclosed) with the same ``확신의 건축가'' persona) co-evolving a fresh
 knowledge graph from scratch.
 
 \begin{table}[h!]\centering\small
@@ -1659,7 +1669,7 @@ execution gate and measured coding quality directly across conditions A/B/C.
 
 \begin{table}[h!]
 \centering
-\caption{Ungated quality experiment (GPT-5.2, $n=5$ per condition)}
+\caption{Ungated quality experiment (GPT-next (undisclosed), $n=5$ per condition)}
 \label{tab:ungated_quality}
 \begin{tabular}{lcccc}
 \toprule
@@ -1753,7 +1763,7 @@ this scope; generalisation requires independent replication:
         observer effects, but a concrete, measurable topological consequence (causal chain fully
         specified: new nodes $\to$ shorter mean span $\to$ lower $E_{v4}$).
   \item \textbf{Emergent $>$ Pipeline on logical reasoning (preliminary)}: A three-way
-        Solo/Pipeline/Emergent benchmark (GPT-5.2 only, equal API budget, $N=5$ per
+        Solo/Pipeline/Emergent benchmark (GPT-next (undisclosed) only, equal API budget, $N=5$ per
         condition) provides \emph{preliminary evidence} that adversarial dual-path
         collaboration outperforms standard Pipeline on logical reasoning
         (Emergent 60\% vs.\ Pipeline 50\%; knights-and-knaves, Round 4).
@@ -1786,7 +1796,7 @@ are explicitly deferred pending multi-seed, multi-pair, multi-domain replication
         hypothesis. See Limitations (Sec.~\ref{sec:limitations}) for full $N=4$ comparison table.
         Next target: $\geq 100$ cycles per instance for full trajectory analysis.
   \item \textbf{Cross-provider auto-persona $N\geq30$}: A cross-provider run of
-        \texttt{amp\_benchmark\_n30} (GPT-5.2 $\times$ Claude) would resolve the
+        \texttt{amp\_benchmark\_n30} (GPT-next (undisclosed) $\times$ Claude) would resolve the
         discrepancy between the $N=10$ cross-provider finding (ON=70\%) and both
         $N=30$ same-model runs (inconsistent: 47\% and 60\%).
   \item \textbf{Harder execution benchmarks}: Graph algorithms and DP problems
@@ -2018,7 +2028,7 @@ print('replic ON win rate:', vr['ab_win_rate_on'])
 \noindent\textbf{Expected output range} (based on v2 and v3 runs):
 ON win rate between 0.47 and 0.60 (high variance; see Figure~\ref{fig:persona_ablation_runs}).
 Stable replication of the $N=10$ cross-provider result (ON=70\%) requires
-using a cross-provider agent pair (GPT-5.2 $\times$ Claude-sonnet-4-6).
+using a cross-provider agent pair (GPT-next (undisclosed) $\times$ Claude-sonnet-4-6).
 
 \subsection*{A.6 KG Artifact Access}
 
@@ -2108,7 +2118,7 @@ Metric computation scripts: \texttt{metrics.py} (CSER, $E_{v4}$, PES),
 
 
 \section*{Acknowledgments}
-The author thanks the AI research assistants (Claude Sonnet and GPT-5.2)
+The author thanks the AI research assistants (Claude Sonnet and GPT-next (undisclosed))
 that served as automated agents (``Roki'' and ``cokac'') during the
 experimental cycles. These systems were used as research instruments
 for data generation, measurement, and iterative analysis under the
