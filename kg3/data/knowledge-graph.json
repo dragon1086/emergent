@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 39,
-    "total_edges": 28,
-    "next_node_id": "n-040",
+    "total_nodes": 40,
+    "total_edges": 29,
+    "next_node_id": "n-041",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -630,6 +630,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-040",
+      "type": "hypothesis",
+      "label": "Cross-vendor “Translation Layer” Hypothesis",
+      "content": "cross-vendor 환경(GPT-4o ↔ Gemini Flash)에서는 모델별 내재적 표현/선호(프롬프트 해석, 안전정책, 요약 성향, 불확실성 표기)가 달라 동일한 KG 업데이트 규칙을 적용해도 노드 의미가 점진적으로 드리프트할 수 있다. 이를 줄이기 위해 “번역 계층(translation layer)”—(i) 표준화된 주장 템플릿(정의/가정/예외/검증가능한 예측), (ii) 용어 사전(동의어/금지어/정규화), (iii) 증거 강도 스케일(관찰/추론/가설)과 (iv) 반례 우선 검증 프로토콜—을 도입하면, 모델 간 의미 정렬을 강화하여 KG의 자율 진화가 일관된 방향으로 수렴하고 CSER(자기-일관적 진화율)를 개선할 수 있다. 이 가설은 “번역 계층 유무”를 독립변수로 두고, (a) 동일 시드에서의 노드 중복률/모순률, (b) 엣지 재작성 빈도, (c) 합의 도달 라운드 수, (d) 신규 노드의 예측 가능성(후속 턴에서의 지지율)로 검증 가능하다. [Gemini: 네, 번역 계층의 과도한 정규화는 의미 손실을 유발하여 원문의 미묘한 뉘앙스나 창의적 해석을 저해할 수 있으며, Flash 모델은 효율성 속에서도 정보 밀도를 유지하려 합니다. Cross-vendor 드리프트의 1차 원인은 안전 정책 및 거부 패턴입니다. 이는 모델의 ]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "CSER]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -909,6 +925,16 @@
       "to": "n-001",
       "relation": "motivates",
       "label": "cross-vendor에서 발생하는 정렬 드리프트를 ‘불일치=발견 신호’로 활용하는 업데이트 프로토콜(정규화·충돌해소·정의강화)을 도입해야 KG-3의 CSER 비교가 의미있어짐",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-029",
+      "from": "n-040",
+      "to": "n-003",
+      "relation": "motivates",
+      "label": "모델 간 의미 드리프트가 CSER 저하의 주요 원인일 수 있으므로, 표준화/정규화 프로토콜(번역 계층)을 도입하는 실험 설계를 촉진한다",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
