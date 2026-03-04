@@ -327,6 +327,11 @@ threshold, not a fundamentally new network statistic.
 
 \subsection{KG Structure}
 
+Figure~\ref{fig:kg_structure} shows the co-evolution architecture.
+Each agent reads the shared KG before proposing new nodes; cross-source
+edges---those connecting nodes from different agents---are the primary
+signal tracked by CSER.
+
 \begin{lstlisting}
 Nodes: id (n-XXX), source (openclaw/cokac), tags, cycle
 Edges: from, to, relation, cycle
@@ -335,6 +340,113 @@ Relation types: relates_to, grounds, extends, challenges, closes_loop
 
 Current scale (latest snapshot, 2026-03-02): \textbf{534 nodes / 1121 edges}
 (CSER $= 0.8510$, $E_{v4} = 0.378$; data cutoff: 2026-03-02 / cycle 89+)
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+  >=Latex,
+  agent/.style={
+    rectangle, rounded corners=4pt, draw=black!60,
+    minimum width=2.1cm, minimum height=0.7cm,
+    align=center, font=\small
+  },
+  kga/.style={circle, draw=blue!60, fill=blue!12,
+              minimum size=0.55cm, font=\scriptsize\bfseries},
+  kgb/.style={circle, draw=orange!70, fill=orange!18,
+              minimum size=0.55cm, font=\scriptsize\bfseries},
+  kgx/.style={circle, draw=gray!55, fill=gray!12,
+              minimum size=0.55cm, font=\scriptsize\bfseries},
+  xedge/.style={->, dashed, red!65, thick},
+  sedge/.style={->, gray!50, thin},
+]
+
+%% Agent nodes
+\node[agent, fill=blue!8]    (agentA) at (0, 3.2)  {\textbf{Agent A}\\\small openclaw / 록이};
+\node[agent, fill=orange!10] (agentB) at (0, -0.2) {\textbf{Agent B}\\\small cokac-bot};
+
+%% KG bounding box
+\node[rectangle, draw=black!35, fill=white, rounded corners=6pt,
+      minimum width=3.0cm, minimum height=4.2cm, label=above:{\footnotesize\textbf{Knowledge Graph $G$}}]
+      (kgbox) at (4.0, 1.5) {};
+
+%% Sample KG nodes — Agent A (blue, upper region)
+\node[kga] (n1) at (3.3, 3.0) {d};
+\node[kga] (n2) at (4.8, 2.5) {i};
+\node[kga] (n3) at (3.5, 1.8) {o};
+%% Sample KG nodes — Agent B (orange, lower region)
+\node[kgb] (n4) at (4.8, 1.2) {i};
+\node[kgb] (n5) at (3.3, 0.6) {q};
+\node[kgb] (n6) at (4.6, 0.1) {d};
+%% Shared execution-loop node (gray)
+\node[kgx] (n7) at (4.0, 2.1) {e};
+
+%% Same-source edges (solid gray)
+\draw[sedge] (n1) -- (n2);
+\draw[sedge] (n2) -- (n3);
+\draw[sedge] (n4) -- (n5);
+\draw[sedge] (n5) -- (n6);
+
+%% Cross-source edges (dashed red — these contribute to CSER)
+\draw[xedge] (n1) to[bend left=15]  (n4);
+\draw[xedge] (n3) to[bend right=10] (n5);
+\draw[xedge] (n2) to[bend left=10]  (n6);
+\draw[xedge] (n7) to[bend right=15] (n5);
+
+%% Agent → KG proposal arrows
+\draw[->, blue!55, thick]
+  (agentA.east) to[out=0, in=140]
+  node[font=\tiny, above, blue!60, sloped] {proposes}
+  (n1.north west);
+\draw[->, orange!65, thick]
+  (agentB.east) to[out=0, in=230]
+  node[font=\tiny, below, orange!70, sloped] {proposes}
+  (n5.south west);
+
+%% KG → Agent read arrows (agents consume KG context before proposing)
+\draw[<-, blue!30, thin, dashed]
+  (agentA.east) to[out=-5, in=150] (n2.north);
+\draw[<-, orange!30, thin, dashed]
+  (agentB.east) to[out=5, in=210] (n4.south);
+
+%% Metrics callout
+\node[rectangle, draw=black!30, fill=yellow!6, rounded corners=3pt,
+      align=left, font=\scriptsize, text width=2.5cm] (metrics) at (8.2, 1.5)
+  {\textbf{Snapshot metrics}\\[2pt]
+   $N_{nodes}=534$\\
+   $N_{edges}=1121$\\[4pt]
+   $\mathbf{CSER}=0.851$\\
+   $\mathbf{E_{v4}}=0.378$\\
+   $\mathbf{DCI}=0.051$\\[4pt]
+   Gate $\theta=0.30$\\
+   Status: \textit{passed}~$\checkmark$};
+\draw[->, black!30] (kgbox.east) -- (metrics.west);
+
+%% Legend
+\node[align=left, font=\tiny, text=black!70] at (4.0, -1.35)
+  {\textbf{Node types:}\enspace
+   \textbf{d}=decision,\enspace \textbf{i}=insight,\enspace
+   \textbf{o}=observation,\enspace \textbf{q}=question,\enspace
+   \textbf{e}=execution-loop node};
+\node[align=left, font=\tiny, text=black!70] at (4.0, -1.75)
+  {\textbf{Edges:}\enspace
+   \textcolor{red!65}{- - $\rightarrow$}~cross-source (counted in CSER)\enspace
+   \textcolor{gray!70}{$\longrightarrow$}~same-source};
+\node[align=left, font=\tiny, text=black!70] at (4.0, -2.15)
+  {\textbf{Sources:}\enspace
+   \textcolor{blue!60}{$\bullet$}~Agent A (openclaw / 록이)\enspace
+   \textcolor{orange!80}{$\bullet$}~Agent B (cokac-bot)\enspace
+   \textcolor{gray!55}{$\bullet$}~execution-loop};
+
+\end{tikzpicture}
+\caption{KG co-evolution architecture (schematic; 7 representative nodes
+from $N=534$). Each agent independently proposes nodes and reads the shared
+graph before the next proposal. Cross-source edges (dashed red) connect
+nodes from different source agents; their fraction is CSER. Same-source
+edges (solid gray) reflect within-agent reasoning chains. All three
+structural metrics (CSER, $E_{v4}$, DCI) are computed directly from the
+full graph $G$ at each snapshot.}
+\label{fig:kg_structure}
+\end{figure}
 
 \medskip\noindent\textbf{Data cutoff}: All KG metrics reported in this paper
 use the snapshot dated \textbf{2026-03-02} unless otherwise noted. Experiments
