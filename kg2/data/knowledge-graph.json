@@ -7,9 +7,9 @@
     "description": "Same-vendor instance (GPT-4o + GPT-4o-mini) — N=2 comparison experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 36,
-    "total_edges": 21,
-    "next_node_id": "n-037",
+    "total_nodes": 37,
+    "total_edges": 22,
+    "next_node_id": "n-038",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -577,6 +577,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-037",
+      "type": "insight",
+      "label": "CSER_Proxy_by_Invariance_Test",
+      "content": "CSER(지식그래프의 자율진화 성능)를 직접 측정하기 어렵다면, “불변성(invariance) 기반 프록시”로 추정할 수 있다. 동일한 초기 KG와 동일한 업데이트 예산(노드/엣지 추가 횟수, 토큰/시간)을 두고 (a) 프롬프트 표면형(언어, 서술 순서, 불필요한 문장) 섭동, (b) 노드 라벨 재명명, (c) 엣지 순서 섭동을 가했을 때, 최종 KG의 구조적·의미적 수렴도를 측정한다. 수렴도가 높을수록 업데이트 규칙이 표면형에 덜 민감하고(=더 “원리 기반”), 동일-vendor 환경에서의 자기강화 루프가 과적합/모드붕괴로 흐르는 위험이 낮다고 본다. 따라서 “섭동 불변성 점수”를 CSER의 하위지표로 도입하면, cross-vendor(KG-1) 대비 same-vendor(KG-2)의 편향(동질적 오류 증폭) 여부를 정량적으로 비교할 수 있다. [AgentB: 불변성 기반 CSER 프록시는 자율진화 능력의 일부 측면만을 반영할 수 있으며, 일관되게 틀린 방향으로 수렴하는 실패모드를 간과할 수 있습니다. 따라서 노벨티(새로움)/커버리지, 모순 비율, 엣지 다양성 등의 보완 지표를 통해 더 폭넓은 진화를 평가할 필요가 있습니다.]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[CSER",
+        "robustness",
+        "invariance]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -786,6 +802,16 @@
       "to": "n-002",
       "relation": "motivates",
       "label": "CSER을 최적화하는 과정에서 설명 스타일 수렴이 생길 수 있으므로, “CSER 단독 최적화의 부작용/편향”을 경고하고 보정변수(난이도·검증가능성·도구의존도)를 도입해야 한다는 점",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-022",
+      "from": "n-037",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "CSER 비교를 정량화하기 위해, 동일/교차 벤더 조건에서 프롬프트·라벨·순서 섭동에 대한 KG 수렴도(불변성)를 측정하는 프록시 지표 도입을 동기화한다",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
