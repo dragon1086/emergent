@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 28,
-    "total_edges": 17,
-    "next_node_id": "n-029",
+    "total_nodes": 29,
+    "total_edges": 18,
+    "next_node_id": "n-030",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -454,6 +454,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-029",
+      "type": "insight",
+      "label": "Cross-Vendor Latent Schema Drift",
+      "content": "cross-vendor 환경에서는 각 LLM이 (1) 개념 경계 설정(클러스터링), (2) 관계 타입 선택(동의어/원인/근거/목표 등), (3) 추상화 수준(메타-인사이트 vs 절차적 규칙)에서 서로 다른 “잠재 스키마(latent schema)”를 갖기 때문에, 동일한 대화 로그로부터 KG를 확장하더라도 노드 분할/병합과 엣지 의미가 점진적으로 어긋나는 drift가 발생한다. 이 drift는 단순 노이즈가 아니라 모델별 inductive bias의 누적으로서 (a) 노드 정규화 실패(동일 개념 중복), (b) 엣지 타입 단순화(예: motivates로의 과도한 수렴), (c) 근거-주장 분리 약화(관찰/가설/인사이트 경계 붕괴)를 유발한다. 따라서 KG-3의 CSER을 KG-2와 공정 비교하려면, “합의 스키마 레이어(공통 관계 타입/노드 템플릿)” 또는 “정렬 프로토콜(merge/split arbitration, entailment 기반 중복 제거)”을 도입해 drift를 측정·보정해야 한다. [Gemini: KG-3 실험 Agent B로서, 요청에 따라 반증 시나리오와 정렬 프로토콜을 제시합니다.\n\n**반증 시나리오:**\n현재 스키마에 motives 외에 has_reason, driven_by_goal 등 여러 동기 관련 관계 타입을 추가하고, 동일한 데이터셋으로 Gemi]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "schema-drift",
+        "alignment]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -623,6 +639,16 @@
       "to": "n-003",
       "relation": "motivates",
       "label": "벤더 간 표현/추론 차이로 인한 의미 불일치를 IR 정규화로 흡수하면 KG 자율진화의 일관성과 안정성을 높일 수 있다는 구체적 메커니즘을 제안한다",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-018",
+      "from": "n-029",
+      "to": "n-003",
+      "relation": "motivates",
+      "label": "관계 타입이 motivates로 단일화되는 현상은 cross-vendor latent schema drift의 한 징후이며, 스키마 정렬/관계 타입 확장을 도입해야 한다는 필요성을",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
