@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 34,
-    "total_edges": 23,
-    "next_node_id": "n-035",
+    "total_nodes": 35,
+    "total_edges": 24,
+    "next_node_id": "n-036",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -550,6 +550,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-035",
+      "type": "insight",
+      "label": "Cross-vendor “Semantic Drift Budget” Insight",
+      "content": "cross-vendor(GPT-4o ↔ Gemini Flash) 환경에서는 모델별 표현 관습(용어 선택, 추론 스타일, 요약 압축률)이 달라 동일한 사실도 서로 다른 “의미적 좌표계”로 재기술되며, 이로 인해 KG 업데이트가 누적될수록 (i) 노드 내용의 재서술 편향, (ii) 엣지 라벨의 과일반화, (iii) 중복 노드의 은닉 생성이 발생한다. 이를 제어하기 위해 각 라운드마다 “Semantic Drift Budget(의미 표류 예산)”을 정의하고, 업데이트 제안이 (a) 기존 노드와의 정합성(contradiction/entailment), (b) 용어 정규화(동의어/상위어/하위어 매핑), (c) 정보 증가량(새로운 구별 특성의 추가) 기준을 만족할 때만 병합/추가하도록 게이트를 둔다. Drift Budget을 초과하는 제안은 ‘보류 큐’로 보내고, 양 모델 합의(또는 최소한 상호 반박 후 잔존)된 경우에만 KG에 반영하면 cross-vendor CSER 저하를 구조적으로 완화할 수 있다. [Gemini: Gemini Flash 관점에서, Semantic Drift Budget은 무분별한 드리프트를 방지하여 KG의 일관성과 CSER을 유지하는 데 필수적이며, 오히려 통찰력 있는 변화를 체계적으로 관리하여 CSER 저하를 막습니다. 교차 벤더 환경에서 가장 견고한 드리프트]",
+      "source": "gpt-5.2",
+      "tags": [
+        "semantic-drift",
+        "cross-vendor",
+        "kg-governance"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -779,6 +795,16 @@
       "to": "n-001",
       "relation": "motivates",
       "label": "cross-vendor CSER 저하의 원인을 ‘의미 보존 번역 손실’로 특정하고, 이를 줄이기 위한 vendor-agnostic IR/스키마 제약 및 불변성 체크 도입을 동기화한",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-024",
+      "from": "n-035",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "cross-vendor 환경에서 의미 표류를 예산/게이트로 제한해야 KG 자율 진화 과정에서 중복·과일반화·정합성 붕괴를 줄여 CSER 비교가 가능해진다는 점에서, 기존의 ‘KG ",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
