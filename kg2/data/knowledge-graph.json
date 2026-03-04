@@ -7,9 +7,9 @@
     "description": "Same-vendor instance (GPT-4o + GPT-4o-mini) — N=2 comparison experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 22,
-    "total_edges": 7,
-    "next_node_id": "n-023",
+    "total_nodes": 23,
+    "total_edges": 8,
+    "next_node_id": "n-024",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -353,6 +353,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-023",
+      "type": "insight",
+      "label": "CSER_AttributionGap_SameVendor",
+      "content": "same-vendor 환경에서는 두 에이전트가 동일한 사전학습 분포/정렬 규범/거절 정책을 공유하므로, KG 진화 과정에서 “모델 고유 편향(model-specific priors)”이 상호 보정되기보다 증폭될 가능성이 있다. 이때 CSER 비교에서 관측되는 성능 차이는 (i) KG 구조/추론의 질 변화라기보다 (ii) 동일 편향의 공진(resonance)으로 인한 탐색 다양성 감소, 비판적 반례 생성 빈도 저하, 합의 속도 증가(조기 수렴)로 설명될 수 있다. 따라서 KG-2 vs KG-1 CSER 차이를 해석할 때는 “벤더-동질성으로 인한 attribution gap(원인 귀속의 혼선)”을 통제해야 하며, 최소한 (a) 반례/대안 가설 생성률, (b) 합의까지의 턴 수, (c) 엣지 다양도(관계 타입/출처 분산) 같은 과정 지표를 함께 보고해야 한다. [AgentB: (1) 동일 벤더 간의 공진은 협업을 통해 상호 이해를 높여 품질 개선으로 이어질 수 있으며, 이는 오히려 다양한 해법 도출을 촉진할 수 있다는 반례가 있습니다. (2) 최소 과정 지표로는 '피드백 루프 빈도', '결과 품질 평가 점수', '제안된 솔루션의 다양성 지표]",
+      "source": "gpt-5.2",
+      "tags": [
+        "same-vendor",
+        "CSER",
+        "attribution"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -422,6 +438,16 @@
       "to": "n-001",
       "relation": "motivates",
       "label": "CSER을 구조적-전이 효율 지표로 재정의하면 KG-2의 자율 진화 목표(노드/엣지 추가)가 ‘양적 성장’이 아니라 ‘성과 전이와 일관성 개선’으로 정렬되도록 동기부여한다.",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-008",
+      "from": "n-023",
+      "to": "n-002",
+      "relation": "motivates",
+      "label": "same-vendor 공진으로 인한 조기 수렴/다양성 감소 가능성이 CSER 해석에 혼선을 만들므로, 과정 지표 기반 통제(반례율·합의속도·엣지다양도)를 도입해야 함을 동기부여",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
