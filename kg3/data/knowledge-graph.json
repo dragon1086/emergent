@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 38,
-    "total_edges": 27,
-    "next_node_id": "n-039",
+    "total_nodes": 39,
+    "total_edges": 28,
+    "next_node_id": "n-040",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -614,6 +614,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-039",
+      "type": "insight",
+      "label": "Cross-vendor Alignment Drift as a KG Evolution Driver",
+      "content": "cross-vendor(GPT-4o + Gemini Flash) 환경에서는 모델별 표현/추론 편향이 달라 동일한 사실도 서로 다른 추상화 수준·용어·인과구조로 재서술된다. 이 “alignment drift(정렬 드리프트)”는 (1) 노드 중복/동의어 분화, (2) 관계 타입의 단순화(예: motivates로의 수렴) 또는 과도한 일반화, (3) 반대로 상호비판을 통한 개념 경계 선명화(정의 강화, 반례 추가)라는 두 방향의 힘을 동시에 만든다. 따라서 KG-3의 자율 진화 성능(CSER)을 높이려면 drift를 노이즈로만 보지 말고, 모델 간 불일치를 ‘발견 신호’로 취급해 (a) 용어 정규화 규칙(lexical canonicalization), (b) 논증 스키마(근거/반례/가정) 강제, (c) 충돌-해소 루프(contradiction → refinement → merge/split)를 KG 업데이트 프로토콜에 포함해야 한다. 즉, cross-vendor 차이는 단순 성능 저하 요인이 아니라 “새로운 가설 생성과 개념 정제”를 촉진하는 구조적 압력으로 기능한다. [Gemini: KG-3에서 cross-vendor 조합 시 노드 중복/분화가 가장 우세한 정렬 드리프트 현상입니다. 이는 벤더별 고유한 용어 사용과 개체 식별 기준의 불일치에서 비롯되며, 개념 불일치의 근본 원인이 됩니다. 관계 타입 단순화나 개념 경계 선명화는 종종 이 초기 노드 ]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "alignment-drift",
+        "KG-evolution]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -883,6 +899,16 @@
       "to": "n-003",
       "relation": "motivates",
       "label": "cross-vendor 불일치가 명시적 정의/검증가능성/표준화 요구를 유발해 KG 구조화를 촉진한다는 메커니즘 가설로서, CSER 향상 요인을 설명한다",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-028",
+      "from": "n-039",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "cross-vendor에서 발생하는 정렬 드리프트를 ‘불일치=발견 신호’로 활용하는 업데이트 프로토콜(정규화·충돌해소·정의강화)을 도입해야 KG-3의 CSER 비교가 의미있어짐",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
