@@ -198,6 +198,28 @@ qualitatively. This study \textbf{quantifies} emergence:
 individual agents. This study tracks \textbf{co-evolution of a shared KG} --- emergent
 growth of shared knowledge structure, not individual memory.
 
+\textbf{Mixture-of-Agents (MoA)}~\cite{wang2024moa} demonstrated that iteratively
+routing queries through multiple LLM ``proposers'' and ``aggregators'' improves
+benchmark performance. Unlike MoA (goal: accuracy aggregation via independent
+responses), this study focuses on \textbf{structural co-evolution of a shared
+knowledge representation} --- agents do not produce independent parallel answers
+but collaboratively build a growing graph where each contribution depends on
+the prior structural state.
+
+\textbf{Multiagent Debate}~\cite{du2023debate} showed that having multiple LLM
+instances debate improves factuality and reasoning. The three-way
+Solo/Pipeline/Emergent benchmark (Section~\ref{sec:amplification}) directly
+operationalizes debate as ``Emergent'' and tests it against Pipeline under
+controlled API budget constraints, extending Du et al.'s findings to a
+cross-domain accuracy comparison ($N=5$ per condition, two domains).
+
+\textbf{LLM Echo Chambers}~\cite{bail2024echo} documented that identical or
+highly similar LLM agents in dialogue tend toward sycophantic convergence rather
+than productive disagreement. The Condition B\_full experiment (Section~\ref{sec:condition_b_full})
+provides structural evidence for this: same-persona agents produce
+CSER $\to 0.078$ over 20 cycles, quantifying echo-chamber formation as
+a measurable topological property of the co-evolved KG.
+
 \subsection{Recent Concurrent Work (2025--2026)}
 
 \textbf{Agentic-KGR}~\cite{li2025agentickgr} (October 2025) introduced co-evolutionary
@@ -1195,9 +1217,9 @@ generalising the domain-dependence claim.
         Instance & Agent Pair & Vendor & Edges & CSER \\
         \midrule
         KG-main & Claude-sonnet-4-6 $\times$ GPT-5.2 & Cross & 1121 & 0.8510 \\
-        KG-2 & GPT-4o $\times$ GPT-4o-mini & Same (OpenAI) & 13$^*$ & 0.9231$^*$ \\
-        KG-3 & GPT-4o $\times$ Gemini-2.0-Flash & Cross & 9$^*$ & 0.8889$^*$ \\
-        KG-4 & Gemini-Flash $\times$ Gemini-Pro & Same (Google) & 11$^*$ & 0.5455$^*$ \\
+        KG-2 & GPT-4o $\times$ GPT-4o-mini & Same (OpenAI) & 18$^*$ & 0.8889$^*$ \\
+        KG-3 & GPT-4o $\times$ Gemini-2.0-Flash & Cross & 13$^*$ & 0.9231$^*$ \\
+        KG-4 & Gemini-Flash $\times$ Gemini-Pro & Same (Google) & 15$^*$ & 0.4667$^*$ \\
         \bottomrule
         \end{tabular}
         \caption*{\small $^*$Preliminary snapshot (cycle $\leq 15$, 2026-03-04).
@@ -1208,10 +1230,14 @@ generalising the domain-dependence claim.
         \end{table}
 
         This early evidence suggests that the main KG's gate-passing CSER
-        replicates across different agent configurations, and that same-vendor
-        pairs (KG-2, KG-4) may exhibit systematically lower CSER than
-        cross-vendor pairs (KG-3), consistent with the theoretical prediction
-        that architectural heterogeneity drives cross-source emergence.
+        replicates across different agent configurations.
+        Preliminary pattern: KG-4 (same-vendor Google: Gemini Flash $\times$ Pro)
+        shows notably lower CSER (0.47) than the cross-vendor instances (0.85--0.92),
+        while KG-2 (same-vendor OpenAI: GPT-4o $\times$ GPT-4o-mini) shows
+        unexpectedly high CSER (0.89), suggesting that within-vendor CSER
+        may depend on capability gap rather than vendor identity alone.
+        These patterns are \emph{very preliminary} ($\leq 18$ edges per instance)
+        and require $\geq 30$ cycles for interpretable comparison.
         Full results will be reported in a follow-up once $\geq 30$ cycles
         are completed per instance.
   \item \textbf{KG artificiality}: Agents are aware of KG structure.
@@ -2054,6 +2080,21 @@ Metric computation scripts: \texttt{metrics.py} (CSER, $E_{v4}$, PES),
 \bibitem{chen2024internet}
   Chen, W. et al. (2024). Internet of Agents: Weaving a Web of Heterogeneous Agents
   for Collaborative Intelligence. \textit{arXiv:2407.07061}.
+
+\bibitem{wang2024moa}
+  Wang, J., et al.\ (2024).
+  \textit{Mixture-of-Agents Enhances Large Language Model Capabilities}.
+  arXiv:2406.04692.
+
+\bibitem{du2023debate}
+  Du, Y., et al.\ (2023).
+  \textit{Improving Factuality and Reasoning in Language Models through Multiagent Debate}.
+  arXiv:2305.14325.
+
+\bibitem{bail2024echo}
+  Bail, C.A.\ (2024).
+  \textit{Can Generative AI improve social science?}
+  Proceedings of the National Academy of Sciences, 121(21).
 
 \end{thebibliography}
 
