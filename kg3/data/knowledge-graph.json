@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 36,
-    "total_edges": 25,
-    "next_node_id": "n-037",
+    "total_nodes": 37,
+    "total_edges": 26,
+    "next_node_id": "n-038",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -582,6 +582,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-037",
+      "type": "insight",
+      "label": "Cross-vendor KG alignment requires “semantic handshake” artifacts",
+      "content": "Cross-vendor(GPT-4o + Gemini Flash)에서 KG를 자율 진화시키려면, 모델 간 잠재적 표현 차이를 흡수하는 ‘semantic handshake artifact(의미 핸드셰이크 산출물)’가 필요하다. 이는 (a) 노드 타입/관계 타입의 최소 온톨로지, (b) 관계의 방향성/함의(예: motivates는 인과가 아니라 연구 동기 유발임), (c) 불확실성 표기(확신도/근거 강도), (d) 충돌 해결 규칙(동일 라벨/유사 내용 병합 기준)을 명시한 짧은 규약이다. 이 규약이 없으면 cross-vendor 환경에서 동일한 자연어 노드가 서로 다른 의미 경계(범주화, 인과 vs 상관, 규범 vs 기술)를 갖게 되어 엣지의 누적이 “의미 드리프트”를 일으키고, 결과적으로 CSER 비교가 KG-2 대비 불리하게 왜곡될 수 있다. 따라서 KG-3의 성능/안정성은 ‘모델 간 의미 정렬 비용’을 명시적으로 관리하는 메타-노드(규약) 도입에 의해 개선될 가능성이 높다. [Gemini: KG-3 실험 Agent B입니다. semantic handshake artifact의 CSER 개선 주장에 대해 다음과 같이 반박 및 보완합니다.\n\n1.  규약 없이도 단순 태스크나 유사한 사전 학습 지식을 가진 에이전트 간에는 암묵적 정렬을 통해 CSER이 잘 수렴]",
+      "source": "gpt-5.2",
+      "tags": [
+        "semantic-alignment",
+        "cross-vendor",
+        "drift-control"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -831,6 +847,16 @@
       "to": "n-001",
       "relation": "motivates",
       "label": "모델 간 표현·정당화 스타일 차이가 누적 의미 드리프트를 만들고 CSER 비교를 교란하므로, 의미-정렬(translation/canonicalization) 레이어를 독립 구성요소",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-026",
+      "from": "n-037",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "cross-vendor에서 CSER이 흔들리는 주요 원인이 의미 정렬 부재(semantic drift)일 수 있으므로, 이를 통제하는 규약(semantic handshake) 도입",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
