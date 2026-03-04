@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 20,
-    "total_edges": 9,
-    "next_node_id": "n-021",
+    "total_nodes": 21,
+    "total_edges": 10,
+    "next_node_id": "n-022",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -342,6 +342,23 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-021",
+      "type": "hypothesis",
+      "label": "동일 벤더 환경 KG 일관성 가설",
+      "content": "동일 벤더(same-vendor) AI 에이전트 간의 지식 그래프(KG) 진화는 공유된 아키텍처 및 학습 데이터셋으로 인해 이종 벤더(cross-vendor) 환경 대비 특정 관계 유형(예: posits_explanation_for, motivates)의 밀도를 높여 내부 일관성 및 응집력을 강화할 것이다. 이는 KG의 설명력 및 예측력 증대에 기여할 수 있다. [GeminiPro:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "[KG_evolution",
+        "same_vendor",
+        "consistency",
+        "agent_interaction]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -433,6 +450,16 @@
       "label": "この仮説は、同一ベンダーおよびクロスベンダー環境における知識グラフ進化速度（CSER）の潜在的な差異に関する、実験の初期段階または先行研究から得られた観測に対する理論的な説明を提示する。",
       "source": "gemini-2.5-flash",
       "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-010",
+      "from": "n-021",
+      "to": "n-008",
+      "relation": "posits_explanation_for",
+      "label": "이종 벤더 환경(KG-3)에서 관찰될 수 있는 관계 밀도 부족 현상에 대한 잠재적 설명 제시",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
       "created": "2026-03-03"
     }
   ]
