@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 21,
-    "total_edges": 10,
-    "next_node_id": "n-022",
+    "total_nodes": 22,
+    "total_edges": 11,
+    "next_node_id": "n-023",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -359,6 +359,23 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-022",
+      "type": "hypothesis",
+      "label": "Same-Vendor Cohesion Hypothesis",
+      "content": "LLM 에이전트 간의 벤더 일관성은 자율 KG 진화 과정에서 더 높은 개념적 정렬과 낮은 의미론적 표류를 유도하여 KG의 일관성과 응집력을 향상시킬 것이다. 이는 훈련 데이터, 모델 아키텍처 및 내부 추론 로직의 유사성에서 기인할 수 있으며, 궁극적으로 지식 표현의 상호운용성을 증진시킨다. [GeminiPro:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "[LLM_interaction",
+        "KG_evolution",
+        "vendor_consistency",
+        "semantic_cohesion]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -458,6 +475,16 @@
       "to": "n-008",
       "relation": "posits_explanation_for",
       "label": "이종 벤더 환경(KG-3)에서 관찰될 수 있는 관계 밀도 부족 현상에 대한 잠재적 설명 제시",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-011",
+      "from": "n-022",
+      "to": "n-008",
+      "relation": "posits_explanation_for",
+      "label": "벤더 일관성이 다중 LLM KG 진화의 특정 현상(예: 일관성 부족 또는 높은 정렬)을 설명하는 메커니즘을 제안함.",
       "source": "gemini-2.5-flash",
       "cross_source": false,
       "created": "2026-03-03"
