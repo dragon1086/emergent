@@ -7,9 +7,9 @@
     "description": "Same-vendor instance (GPT-4o + GPT-4o-mini) — N=2 comparison experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 17,
-    "total_edges": 2,
-    "next_node_id": "n-018",
+    "total_nodes": 18,
+    "total_edges": 3,
+    "next_node_id": "n-019",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -273,6 +273,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-018",
+      "type": "hypothesis",
+      "label": "CSER_분해_정합성_가설",
+      "content": "CSER 차이는 단일 요인(모델 성능)이라기보다 (i) KG 진화의 구조적 요인(노드 타입 분포, 엣지 밀도/다양성, 순환/피드백 루프 유무)과 (ii) 에이전트 상호작용 요인(반박 강도, 역할 분화, 오류 교정 압력)의 결합에서 발생한다. 따라서 same-vendor 환경(KG-2)에서 CSER을 높이려면 “엣지 다양성(예: supports/challenges/refines/operationalizes) + 반박 기반 선택압”을 인위적으로 도입해, cross-vendor 환경(KG-1)에서 자연스럽게 생기는 상호 비판/보완 효과를 구조적으로 모사해야 한다. 이 가설이 맞다면, KG-2는 노드 수 증가보다 (a) 관계 종류 엔트로피 증가, (b) insight→hypothesis→testable prediction으로의 계층적 연결 강화, (c) 상충 주장 간 challenges 엣지 비율 증가가 CSER 개선과 더 강하게 상관된다. [AgentB: 반례로는 같은 공급업체 간에도 특화된 프롬프트 설계나 역량 기반 역할 부여로 인해 고객 만족도와 CSER이 높아질 수 있습니다. 검증 가능한 지표로는 관계 엔트로피, 사용자의 문제 해결 횟수(challenges 비율) 및 응답 루프 수 등을 제안할 수 있습니다. 현재 ]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[CSER",
+        "KG_evolution",
+        "edge_diversity]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -292,6 +308,16 @@
       "to": "n-001",
       "relation": "motivates",
       "label": "CSER 비교의 공정성을 위해 KG 확장 비용(노드/엣지/모호성)을 반영한 정규화 지표 도입이 필요함",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-003",
+      "from": "n-018",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "CSER 비교를 “모델간 우열”이 아니라 “그래프 구조/상호작용 메커니즘”으로 분해해, KG-2에서 엣지 다양성과 반박 루프를 설계해야 한다는 필요성을 제기",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
