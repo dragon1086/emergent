@@ -1,0 +1,34 @@
+{
+  "KG-main": {
+    "cser": 0.851,
+    "nodes": 534,
+    "edges": 1121,
+    "config": "? × ?",
+    "agent_a": "?",
+    "agent_b": "?"
+  },
+  "KG-2": {
+    "cser": 0.9091,
+    "nodes": 26,
+    "edges": 11,
+    "config": "gpt-4o × gpt-4o-mini",
+    "agent_a": "openai/gpt-4o",
+    "agent_b": "openai/gpt-4o-mini"
+  },
+  "KG-3": {
+    "cser": 0.875,
+    "nodes": 19,
+    "edges": 8,
+    "config": "gpt-4o × gemini-2.0-flash",
+    "agent_a": "openai/gpt-4o",
+    "agent_b": "google/gemini-2.0-flash"
+  },
+  "KG-4": {
+    "cser": 0.6667,
+    "nodes": 20,
+    "edges": 9,
+    "config": "gemini-2.0-flash × gemini-2.0-pro",
+    "agent_a": "google/gemini-2.0-flash",
+    "agent_b": "google/gemini-2.0-pro"
+  }
+}

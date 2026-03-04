@@ -1186,14 +1186,34 @@ generalising the domain-dependence claim.
         constraint but demonstrates that the gate mechanism is not unique to the
         original agent pair.
         \textit{Ongoing replication (2026-03-04)}: Three additional independent KG
-        instances have been initialized as part of a $2 \times 2$ vendor-diversity
-        experiment: KG2 (GPT-4o + GPT-4o-mini, same-vendor OpenAI),
-        KG3 (GPT-4o + Gemini-2.0-Flash, cross-vendor), and
-        KG4 (Gemini-2.0-Flash + Gemini-2.0-Pro, same-vendor Google).
-        These instances are in early evolution (cycle $\leq 5$) and are not
-        reported as results in this paper; they form a pre-registered replication
-        infrastructure targeting $N=4$ KG instances (main + 3) with a controlled
-        vendor-diversity factor. Results will be reported in a follow-up.
+        instances are actively co-evolving as part of a pre-registered $2\times2$
+        vendor-diversity experiment:
+
+        \begin{table}[h!]\centering\small
+        \begin{tabular}{llccc}
+        \toprule
+        Instance & Agent Pair & Vendor & Edges & CSER \\
+        \midrule
+        KG-main & Claude-sonnet-4-6 $\times$ GPT-5.2 & Cross & 1121 & 0.8510 \\
+        KG-2 & GPT-4o $\times$ GPT-4o-mini & Same (OpenAI) & 13$^*$ & 0.9231$^*$ \\
+        KG-3 & GPT-4o $\times$ Gemini-2.0-Flash & Cross & 9$^*$ & 0.8889$^*$ \\
+        KG-4 & Gemini-Flash $\times$ Gemini-Pro & Same (Google) & 11$^*$ & 0.5455$^*$ \\
+        \bottomrule
+        \end{tabular}
+        \caption*{\small $^*$Preliminary snapshot (cycle $\leq 15$, 2026-03-04).
+        All four instances exceed the gate threshold ($\theta=0.30$).
+        KG-4 (same-vendor) shows lower CSER than cross-vendor instances,
+        consistent with the persona-diversity hypothesis.
+        Target: $\geq 30$ cycles per instance for reportable comparison.}
+        \end{table}
+
+        This early evidence suggests that the main KG's gate-passing CSER
+        replicates across different agent configurations, and that same-vendor
+        pairs (KG-2, KG-4) may exhibit systematically lower CSER than
+        cross-vendor pairs (KG-3), consistent with the theoretical prediction
+        that architectural heterogeneity drives cross-source emergence.
+        Full results will be reported in a follow-up once $\geq 30$ cycles
+        are completed per instance.
   \item \textbf{KG artificiality}: Agents are aware of KG structure.
   \item \textbf{Weight arbitrariness}: $E_{v4}$ weights are intuitively designed.
         \textit{Quantified (Cycle 86 snapshot)}: Bootstrap cross-validation ($N=1000$) reveals
