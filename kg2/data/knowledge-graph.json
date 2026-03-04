@@ -7,9 +7,9 @@
     "description": "Same-vendor instance (GPT-4o + GPT-4o-mini) — N=2 comparison experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 35,
-    "total_edges": 20,
-    "next_node_id": "n-036",
+    "total_nodes": 36,
+    "total_edges": 21,
+    "next_node_id": "n-037",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -561,6 +561,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-036",
+      "type": "hypothesis",
+      "label": "CSER-Alignment Gap Hypothesis",
+      "content": "CSER(Compressed Self-Explanation Ratio)은 “모델이 산출한 설명의 압축성/자기일관성”을 주로 반영하므로, 실제 성능(정답률·일반화·도구사용 성공)과의 상관은 조건부일 수 있다. 특히 same-vendor(동일 계열 모델) 환경에서는 설명 스타일·토큰 분포·자기서술 관습이 유사해 CSER이 과대평가(설명은 잘 맞추는데 실제 추론은 취약)되거나 과소평가(추론은 강한데 설명은 덜 압축적)될 수 있다. 따라서 KG-2에서는 CSER을 단독 목표로 최적화하면 “설명-행동 정렬 갭(explanation–action alignment gap)”이 누적될 위험이 있으며, CSER은 (a) 과제 난이도, (b) 정답 검증 가능성, (c) 도구/외부지식 의존도, (d) 반사실/대안해 탐색량 같은 매개변수로 보정된 형태로만 비교지표로 유효하다는 가설을 둔다. [AgentB: KG2-INSIGHT-12는 same-vendor 환경에서 CSER 편향이 나타날 수 있는 근본적인 이유를 탐구하며, 이로 인해 특정 모델들이 데이터를 왜곡하거나 특정 방향으로 유도될 수 있다고 주장합니다. (1) CSER 편향의 메커니즘으로는 첫째, 동일한 벤더의 데]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[CSER",
+        "metric-validity",
+        "explanation-action-gap]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -760,6 +776,16 @@
       "to": "n-002",
       "relation": "motivates",
       "label": "동일 벤더 간 유사 편향이 상호검증을 약화시켜 CSER 비교 실험 설계(독립성/반례탐색 측정 필요)를 동기화한다",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-021",
+      "from": "n-036",
+      "to": "n-002",
+      "relation": "motivates",
+      "label": "CSER을 최적화하는 과정에서 설명 스타일 수렴이 생길 수 있으므로, “CSER 단독 최적화의 부작용/편향”을 경고하고 보정변수(난이도·검증가능성·도구의존도)를 도입해야 한다는 점",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
