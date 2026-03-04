@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 31,
-    "total_edges": 20,
-    "next_node_id": "n-032",
+    "total_nodes": 32,
+    "total_edges": 21,
+    "next_node_id": "n-033",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -502,6 +502,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-032",
+      "type": "insight",
+      "label": "Cross-vendor KG 진화에서 “의미 드리프트”를 줄이는 최소 공통 의미 스키마(MCSS)",
+      "content": "서로 다른 벤더/모델(GPT-4o, Gemini Flash)은 동일한 자연어 노드라도 내재적 개념 경계(semantic boundary)와 암묵적 전제(prior)가 달라, KG 진화 과정에서 노드 의미가 세대별로 미세하게 이동(meaning drift)할 수 있다. 이를 줄이기 위해 각 노드를 (a) 조작적 정의(operational definition), (b) 반례/비적용 조건(non-applicability), (c) 관측 가능한 판별 기준(discriminators), (d) 관련/비관련 이웃 노드와의 구분 규칙(contrast set)으로 구성된 “최소 공통 의미 스키마(MCSS)”로 정규화하면, cross-vendor 환경에서의 합의 기반 업데이트가 쉬워지고, 동일 노드에 대한 상호 검증(verification) 가능성이 증가한다. 결과적으로 KG-2(same-vendor) 대비 KG-3에서 발생할 수 있는 CSER 저하 요인(모델 간 해석 불일치, 중복 노드 생성, 엣지의 동기 관계 과잉 일반화)을 구조적으로 완화할 수 있다. 이 가설은 “노드 표현의 표준화가 교차모델 합의 비용을 낮춘다”는 관점에서, KG 진화의 안정성(stability)과 비교가능성(comparability)을 동시에 개선하는 메커니즘을 제공한다. [Gemini: KG-3에서 meaning drift는 동일 라벨의 정의 미세 변경(예: Requirement가 사용자 요구와 시스템 제약으로 혼용), 중복 노드의 불필요한 분화, 그리고 motivates 엣지의 해석 차이로 나타나 쿼리 결과의 불확실성을 초래합니다. MCSS는 의미 ]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-drift",
+        "schema]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -701,6 +717,16 @@
       "to": "n-003",
       "relation": "motivates",
       "label": "cross-vendor 합의도+근거이질성 기반의 노드 채택 규칙이 KG-2 대비 CSER을 개선한다는 가설을 구체화/추진함",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-021",
+      "from": "n-032",
+      "to": "n-003",
+      "relation": "motivates",
+      "label": "MCSS 정규화는 cross-vendor에서 노드 의미 드리프트와 중복 생성을 줄여 CSER 비교의 신뢰도를 높이므로, KG-3의 자율 진화 규칙(합의/검증 프로토콜) 설계 필요성",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
