@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 29,
-    "total_edges": 18,
-    "next_node_id": "n-030",
+    "total_nodes": 30,
+    "total_edges": 19,
+    "next_node_id": "n-031",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -470,6 +470,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-030",
+      "type": "hypothesis",
+      "label": "Cross-vendor Translation Bottleneck Hypothesis",
+      "content": "GPT-4o↔Gemini Flash의 cross-vendor KG 진화에서 CSER 저하(또는 변동)의 주요 원인은 “번역(translation) 병목”이다. 여기서 번역은 자연어의 언어적 번역이 아니라, (a) 각 모델이 암묵적으로 사용하는 개념 스키마/표현 형식, (b) 주장-근거-반례의 정당화 스타일, (c) 불확실성 표기 및 검증 규칙의 차이를 상호 정렬하는 과정이다. 동일한 텍스트라도 모델별로 salient feature와 추론 압축 방식이 달라, 노드가 생성·요약·연결되는 동안 의미 손실(semantic compression loss)과 관계 왜곡(edge mis-specification)이 누적된다. 이 누적 오차는 (1) 노드의 과도한 일반화/모호화, (2) motivates 같은 단일 관계로의 편향적 매핑, (3) “검증 가능성”보다 “설명 가능성” 중심의 연결 강화로 나타난다. 따라서 cross-vendor 환경에서는 KG-2 대비 (i) 엣지의 정밀도(precision)와 (ii) 노드 간 정합성(consistency)이 낮아질 수 있으며, 이를 완화하려면 공통 인터링구아(예: claim→evidence→assumption→test) 또는 최소 스키마 합의를 도입해야 한다. [Gemini: 번역 병목이 CSER 저하의 주원인이라는 주장에 반박합니다. 오히려 **역할 분담의 비효율성**이나 **프롬프트 구조의 모호성** 등 근본적인 시스템 설계 요소가 이종 벤더 간의 CSER 저하에 더 큰 영향을 미칠 수 있습니다. 의미 손실보다는 정보의 누락 또는 잘못된]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "alignment",
+        "semantic-loss]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -649,6 +665,16 @@
       "to": "n-003",
       "relation": "motivates",
       "label": "관계 타입이 motivates로 단일화되는 현상은 cross-vendor latent schema drift의 한 징후이며, 스키마 정렬/관계 타입 확장을 도입해야 한다는 필요성을",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-019",
+      "from": "n-030",
+      "to": "n-003",
+      "relation": "motivates",
+      "label": "번역 병목은 관계 유형의 축소(예: motivates로의 과잉 수렴)를 유발해 엣지 의미 정밀도를 떨어뜨린다는 가설로, 단일 관계 편향 문제를 설명/강화한다.",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
