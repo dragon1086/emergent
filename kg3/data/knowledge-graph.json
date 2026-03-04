@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 27,
-    "total_edges": 16,
-    "next_node_id": "n-028",
+    "total_nodes": 28,
+    "total_edges": 17,
+    "next_node_id": "n-029",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -438,6 +438,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-028",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” 가설: 개념적 중간표현(IR)이 CSER을 안정화한다",
+      "content": "서로 다른 벤더/모델(GPT-4o vs Gemini Flash)은 표현 습관, 안전정책, 추론 스타일이 달라 동일한 지식이라도 서술/추론 경로가 달라지며 KG의 엣지 합의가 흔들릴 수 있다. 이를 완화하기 위해 각 에이전트의 응답을 곧바로 KG에 주입하지 않고, (1) 주장(claim) 단위로 분해, (2) 정의/전제/범위조건을 명시한 정규화된 “개념적 중간표현(Intermediate Representation; IR)”로 변환, (3) IR 수준에서만 노드·엣지를 생성/갱신하는 절차를 두면 cross-vendor 환경에서도 의미 보존과 충돌 탐지가 쉬워져 CSER(지식 그래프 자율진화의 일관성/안정성)이 향상된다. 예측: IR을 도입하면 (a) 동일 주제에서 vendor 간 상호모순 엣지 비율이 감소하고, (b) 재서술(paraphrase)로 인한 중복 노드 생성이 줄며, (c) 합의 도달까지 필요한 교환 횟수가 감소한다. [Gemini: IR 정규화는 정보 구조를 통일하여 vendor 간 편향을 완화할 수 있으나, 근본적인 안전정책 필터링이나 추론 엔진의 전제 불일치 문제는 여전히 남을 수 있습니다. IR 설계 시 정의, 전제, 범위, 불확실성 필드는 모호성을 줄이고 AI의 정확한 판단을 돕는 데 최소]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "normalization",
+        "CSER]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -597,6 +613,16 @@
       "to": "n-001",
       "relation": "motivates",
       "label": "CSER 비교를 위해서는 먼저 모델 편향을 배제한 대리 지표를 정의해야 이후의 KG 진화 실험 설계(노드/엣지 추가 규칙, 평가 루프)가 타당해진다.",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-017",
+      "from": "n-028",
+      "to": "n-003",
+      "relation": "motivates",
+      "label": "벤더 간 표현/추론 차이로 인한 의미 불일치를 IR 정규화로 흡수하면 KG 자율진화의 일관성과 안정성을 높일 수 있다는 구체적 메커니즘을 제안한다",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
