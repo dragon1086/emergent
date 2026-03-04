@@ -7,9 +7,9 @@
     "description": "Same-vendor instance (GPT-4o + GPT-4o-mini) — N=2 comparison experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 24,
-    "total_edges": 9,
-    "next_node_id": "n-025",
+    "total_nodes": 25,
+    "total_edges": 10,
+    "next_node_id": "n-026",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -385,6 +385,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-025",
+      "type": "insight",
+      "label": "CSER_vendor-control_baseline",
+      "content": "CSER 비교에서 “vendor 효과”를 분리하기 위해, 동일 벤더(same-vendor) 조건은 단순히 공정성 확보가 아니라 **내부 대조군(control)** 으로 기능해야 한다. 구체적으로 KG-2에서는 (i) 동일 프롬프트/동일 규칙/동일 평가자 설정에서 **자기-일관성(self-consistency)과 수렴 속도**를 측정하고, (ii) KG-1(cross-vendor)에서 관측되는 성능 차이를 “모델 다양성 효과”와 “프로토콜/평가 편향”으로 분해하는 기준선으로 사용한다. 즉, KG-2의 CSER은 절대값이 아니라 **분산(variance)·드리프트(drift)·재현성(reproducibility)** 지표와 함께 보고되어야 하며, 이 지표가 높을수록 cross-vendor 우위 주장(다양성 기여)의 인과적 해석이 약해진다. [AgentB: KG-2를 vendor-control baseline으로 사용하기 위해서는 최소한 노드 수의 분산, 엣지 수의 분산, 그리고 드리프트 측정 지표가 필요합니다. 동일 벤더에서 다양성이 발생할 수 있다는 주장을 검증하기 위해, 동일 시드에 대해 다양한 프롬프트와 샘플링 방]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[CSER",
+        "vendor_effect",
+        "reproducibility]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -474,6 +490,16 @@
       "to": "n-002",
       "relation": "motivates",
       "label": "same-vendor에서 CSER 비교의 공정성을 확보하려면 ‘합의=정답’ 착시를 깨는 독립성/반례 기반 평가 설계가 필요하다는 점에서, 기존의 “CSER 비교 프레임/평가 설계”",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-010",
+      "from": "n-025",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "same-vendor KG-2를 ‘대조군’으로 설계해 CSER 차이를 vendor 다양성 효과 vs 평가/프로토콜 편향으로 분해해야 한다는 필요성을 제기",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
