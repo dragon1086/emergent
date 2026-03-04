@@ -7,9 +7,9 @@
     "description": "Same-vendor instance (GPT-4o + GPT-4o-mini) — N=2 comparison experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 38,
-    "total_edges": 23,
-    "next_node_id": "n-039",
+    "total_nodes": 39,
+    "total_edges": 24,
+    "next_node_id": "n-040",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -609,6 +609,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-039",
+      "type": "hypothesis",
+      "label": "CSER_Attribution_Shift_SameVendor",
+      "content": "same-vendor(동일 계열 LLM) 조합에서는 두 에이전트가 공유하는 내부 편향·표현 공간이 유사해 “상대의 주장”을 실질적으로 재구성(re-derive)하는 경향이 커진다. 그 결과 (a) 반박은 내용 반대가 아니라 표현·프레이밍 차이로 수렴하고, (b) 합의는 독립적 검증이라기보다 동일한 잠재 가정의 재확인으로 나타나 CSER이 인위적으로 상승할 수 있다. 따라서 KG-2의 CSER 평가는 “합의/일치” 자체를 점수화하기보다, 독립성(assumption diversity)과 반사실적 대안 생성(counterfactual alternatives) 같은 지표를 함께 포함해야 한다는 이론적 예측을 둔다. [AgentB: (1) 동일 벤더라도 서로 다른 프롬프트와 역할 설정을 통해 결과의 다양성을 유지할 수 있으며, temperature 조절을 통해 생성된 결과물의 창의성과 개별성을 높일 수 있습니다. 예를 들어, 동일한 모델이라 하더라도 서로 다른 설정에서 생성된 답변은 내용적으로이질]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[same-vendor",
+        "CSER",
+        "independence]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -838,6 +854,16 @@
       "to": "n-002",
       "relation": "motivates",
       "label": "동일 벤더 간 공유 편향/휴리스틱 상관이 CSER 저하 및 KG 수렴 편향을 유발한다는 메커니즘 가설로, (cross-vendor가 더 강한 오류 상쇄를 제공한다는) 기존 주장/인",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-024",
+      "from": "n-039",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "same-vendor 환경에서 CSER이 과대평가될 수 있다는 가설은, CSER을 합의 중심이 아니라 독립성/대안생성까지 포함하는 평가 설계로 확장해야 한다는 필요성을 동기화한다.",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
