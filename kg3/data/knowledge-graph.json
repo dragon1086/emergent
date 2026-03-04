@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 17,
-    "total_edges": 6,
-    "next_node_id": "n-018",
+    "total_nodes": 18,
+    "total_edges": 7,
+    "next_node_id": "n-019",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -278,6 +278,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-018",
+      "type": "insight",
+      "label": "Cross-vendor CSER는 “표현 정규화 비용”에 의해 상한이 결정된다",
+      "content": "서로 다른 벤더/모델(GPT-4o vs Gemini Flash)은 (1) 출력 포맷 선호, (2) 개념 경계(용어 정의의 granularity), (3) 불확실성 표기(hedging)와 안전정책 스타일이 달라 동일한 사실/추론도 서로 다른 “표현 공간”에 투영된다. 이때 KG를 자율 진화시키는 과정의 유효 정보량은 실제 추론 능력보다 “표현 정규화(representation normalization)” 단계에서 손실/왜곡되는 정도에 의해 제한된다. 따라서 cross-vendor 환경의 CSER은 (a) 의미 보존형 정규화 규약(용어 사전, 관계 스키마, 근거-주장 분리), (b) 상호 번역 가능한 중간표현(예: claim/evidence/assumption 슬롯), (c) 충돌 해결 규칙(동의/불일치의 유형화) 없이는 KG-2(same-vendor) 대비 구조적 상한이 낮아진다. 반대로 정규화 비용을 낮추면 cross-vendor의 “다양성 이득”(상보적 오류/편향 감소)이 드러나 CSER이 역전될 가능성이 있다. [Gemini: Cross-vendor 표현 정규화 비용이 CSER을 제한한다는 주장은 타당하나, 이는 전략적 정규화 규약 도입으로 충분히 보완 가능합니다. Gemini Flash와 같은 모델 간의 근본적 표현/정책 차이가 KG 진화에 복잡성을 더하지만, 핵심 요소에 대한 최소한의 합]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "representation",
+        "CSER]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -337,6 +353,16 @@
       "to": "n-001",
       "relation": "motivates",
       "label": "cross-vendor 환경에서 CSER 비교 실험 설계를 “모델 성능 차이”가 아니라 “표현-정렬(translation) 손실”을 분리 측정하도록 유도한다",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-007",
+      "from": "n-018",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "cross-vendor에서 CSER 차이를 설명/개선하려면 우선 표현 정규화 비용(스키마·용어·불확실성 표기 차이)을 줄이는 설계가 필요하다는 점에서, KG-2 대비 비교 프레임/",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
