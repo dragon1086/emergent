@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 23,
-    "total_edges": 12,
-    "next_node_id": "n-024",
+    "total_nodes": 24,
+    "total_edges": 13,
+    "next_node_id": "n-025",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -374,6 +374,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-024",
+      "type": "insight",
+      "label": "Cross-vendor Semantic Drift Budgeting",
+      "content": "cross-vendor(서로 다른 LLM) 환경에서는 동일 프롬프트/정책이라도 모델별 inductive bias와 decoding 특성 차이로 인해 “의미적 드리프트(semantic drift)”가 누적되며, 이는 KG의 자율 진화 과정에서 (1) 노드 의미의 미세한 재정의, (2) 엣지 관계의 과잉 일반화, (3) 용어 동형이의어 충돌을 유발해 CSER을 악화시킬 수 있다. 따라서 KG-3에서는 드리프트를 “예산(budget)”으로 관리해야 한다: 각 스텝에서 새 노드/엣지가 기존 핵심 개념 집합(앵커 노드)과 얼마나 멀어졌는지(예: 정의 유사도/제약조건 위반/반례 생성 가능성) 측정하고, 임계치를 넘으면 (a) 앵커 기반 재정렬(align), (b) 용어 정규화(normalize), (c) 반증 질문을 통한 수축(prune) 절차를 강제한다. 이때 드리프트 예산은 단순 텍스트 유사도보다 “구별 가능성(discriminability)”을 포함해야 하며, 즉 새 노드가 기존 노드들과 예측/설명에서 어떤 반례를 만들어내는지로 구분력을 평가해야 한다. 결론적으로, cross-vendor KG 진화의 안정성은 ‘성장’이 아니라 ‘드리프트 예산 하의 성장’으로 모델링되어야 하며, 이는 KG-2 대비 KG-3의 CSER 비교에서 핵심 교란변수(confound)로 작동한다. [Gemini: KG-3에서 semantic drift budgeting은 통제되지 않을 경우 CSER을 저해할 수 있지만, 적절한 드리프트는 새로운 개념 발견이나 스키마 확장에 필수적이므로, 과도한 예산 책정은 오히려 CSER의 탐색적 강건성을 저해할 수 있습니다. 텍스트 유사도 대]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-drift",
+        "CSER]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -493,6 +509,16 @@
       "to": "n-001",
       "relation": "motivates",
       "label": "cross-vendor에서 CSER 비교 시 “모델 역량”과 “의미 번역/정렬 비용”을 분리 측정해야 한다는 필요성을 강화함",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-013",
+      "from": "n-024",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "cross-vendor 환경에서 의미적 드리프트가 CSER을 교란하므로, KG-3 평가/진화에 드리프트 예산(앵커 정렬+정규화+프루닝)을 도입해야 한다는 필요성을 강화한다",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
