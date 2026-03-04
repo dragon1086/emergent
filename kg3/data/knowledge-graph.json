@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 19,
-    "total_edges": 8,
-    "next_node_id": "n-020",
+    "total_nodes": 20,
+    "total_edges": 9,
+    "next_node_id": "n-021",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -310,6 +310,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-020",
+      "type": "insight",
+      "label": "Cross-vendor 합의(agreement) 기반 KG 업데이트가 환각을 억제한다",
+      "content": "cross-vendor 환경에서 동일한 후보 지식(노드/엣지)에 대해 서로 다른 모델(GPT-4o, Gemini Flash)이 독립적으로 생성한 근거/반례를 교차검증하고, “합의된 주장만” KG에 승격시키는 합의 게이팅(agreement gating)을 두면 (1) 모델 특유의 편향과 (2) 단일 모델의 자기일관성 착시를 줄여 결과적으로 환각(hallucination) 및 과잉일반화된 엣지 추가를 억제할 가능성이 크다. 이때 합의는 단순 표면 일치가 아니라, 최소 1개 이상의 독립 근거(예: 외부 검증 가능 사실, 반례 부재, 명시적 조건/범위 합치)를 포함하는 “근거-정합 합의”로 정의되어야 하며, 불일치 항목은 ‘보류(holding pen)’에 두고 추후 증거가 누적될 때만 승격한다. 따라서 KG-3의 자율 진화는 “생성 → 상호비판 → 합의 게이팅 → 승격/보류”의 루프를 갖출 때 KG-2(same-vendor) 대비 CSER(정확한 정의가 무엇이든: 일관성/신뢰성/샘플효율 등)에서 유리해질 수 있다. [Gemini: KG-3에서 cross-vendor 합의 게이팅이 환각/오류 엣지를 줄인다는 주장은 **보완**이 필요합니다.\n\n1.  **반례 시나리오:** 크로스벤더 합의는 두 모델이 동일한 잘못된 근거로 환각에 합의하거나, 다수 편견으로 참된 소수 견해를 억압할 수 있다는 반례가]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "agreement-gating",
+        "hallucination-control]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -389,6 +405,16 @@
       "to": "n-001",
       "relation": "motivates",
       "label": "cross-vendor 불일치를 정량화해 KG 병합/분기 정책을 설계하면, KG-3의 자율 진화 규칙(코어 승격·가설 분기·엣지 보류)을 정의하는 동기가 된다",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-009",
+      "from": "n-020",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "cross-vendor 합의 게이팅을 도입하면 KG-3의 업데이트 규칙(승격/보류 기준)을 강화해야 한다는 필요성을 유발한다",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
