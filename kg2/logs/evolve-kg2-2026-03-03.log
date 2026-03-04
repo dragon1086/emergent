@@ -448,3 +448,11 @@
 관계 종류:
   motivates: 15개
 [22:06:00] KG2 🤖 Agent A (GPT-4o) 판단 중...
+[22:06:12] KG2 ✅ Agent A 완료 (931 chars)
+[22:06:17] KG2 ✅ Agent B (GPT-4o-mini) 완료
+[22:06:17] KG2 ✅ 노드+엣지 추가: CSER_AttributionBias_SameVendor (id: n-031 → 1)
+  max_span=30 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2933 → 균등 분포 이론치(0.289) 근접
+  CSER=0.8750 → 강한 에코챔버 탈출 (임계값 0.5 초과)
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
