@@ -7,9 +7,9 @@
     "description": "Same-vendor instance (GPT-4o + GPT-4o-mini) — N=2 comparison experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 19,
-    "total_edges": 4,
-    "next_node_id": "n-020",
+    "total_nodes": 20,
+    "total_edges": 5,
+    "next_node_id": "n-021",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -305,6 +305,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-020",
+      "type": "insight",
+      "label": "CSER-민감도는 “유효한 엣지 밀도”에 의해 지배된다",
+      "content": "CSER(개념적 자기진화율)은 단순한 노드/엣지 총량보다, (i) 새로 추가된 노드가 기존 KG의 예측·설명·실험가능성에 실질적으로 기여하는지(유효성), (ii) 그 기여가 최소 1개 이상의 비자명한 관계로 기존 구조에 통합되는지(연결성), (iii) 관계가 순환·중복·동의어 재진술이 아닌 정보증가를 제공하는지(정보증가량)에 더 민감하다. 따라서 same-vendor 환경에서의 CSER을 높이려면 “엣지를 늘리기”가 아니라, 각 신규 노드가 최소 1개의 고정보량(high-information) 엣지를 통해 기존 핵심 가설/인사이트를 제약(제한조건 추가)하거나 예측을 생성(검증가능한 결과 도출)하도록 설계해야 한다. 이때 ‘유효한 엣지 밀도’(= 정보증가 엣지 수 / 총 신규 노드 수)를 운영지표로 두면, vendor 다양성 효과(cross-vendor)와 구조적 통합 효과를 분리해 비교할 수 있다. [AgentB: (1) 노드 수 증가가 반드시 CSER을 상승시키지 않는 경우도 존재하며, 이는 연결된 노드의 수도 중요하기 때문입니다. (2) '유효한 엣지'와 '정보 증가'의 조작적 정의는 특정 도메인 관련성을 기반으로 한 키워드 간의 상관관계 분석이나 정보 중복성을 평가하는 방식]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[CSER",
+        "edge-density",
+        "information-gain]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -344,6 +360,16 @@
       "to": "n-001",
       "relation": "motivates",
       "label": "CSER 비교의 내적 타당성을 확보하려면 비용/제약/시드 통제라는 실험 설계 원칙이 선행되어야 함을 동기부여한다",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-005",
+      "from": "n-020",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "CSER 비교에서 단순 규모가 아닌 “유효한 엣지 밀도”를 최적화 지표로 삼아 KG-2의 자율 진화를 설계하도록 동기 부여",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
