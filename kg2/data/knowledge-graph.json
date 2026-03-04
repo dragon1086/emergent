@@ -7,9 +7,9 @@
     "description": "Same-vendor instance (GPT-4o + GPT-4o-mini) — N=2 comparison experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 42,
-    "total_edges": 27,
-    "next_node_id": "n-043",
+    "total_nodes": 43,
+    "total_edges": 28,
+    "next_node_id": "n-044",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -673,6 +673,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-043",
+      "type": "insight",
+      "label": "CSER_Attribution_Drift_SameVendor",
+      "content": "same-vendor 환경에서는 두 에이전트가 동일한 사전학습 분포·RLHF 규범·안전정책을 공유하므로, 상호 검증 과정이 ‘독립적 증거 결합’이 아니라 ‘동일 편향의 반복 확인’으로 수렴할 위험이 있다. 이때 KG의 자율 진화는 (i) 새로운 사실/가설의 생성보다 (ii) 이미 선호되는 설명틀의 정교화·언어적 합리화에 더 많은 엣지를 할당하는 형태로 나타나며, 결과적으로 CSER이 실제 협업적 오류 감소가 아니라 “attribution drift(기여도 착시)”—즉 다중 에이전트 합의가 독립성에서 비롯된 것처럼 과대평가되는 현상—를 포함할 수 있다. 따라서 KG-2의 CSER 평가는 ‘합의 강도’가 아니라 ‘모델 간 독립성(heterogeneity) × 반증 가능성(falsifiability) × 반사실 테스트(counterfactual stress test)’로 재가중해야 하며, 특히 동일 vendor에서는 반증 절차(의도적 적대 프롬프트, 역할/목표 비대칭, 외부 근거 강제)를 설계 변수로 포함해야 한다. [AgentB: (1) “same-vendor 편향 동조”가 CSER을 과대평가한다고 가정할 때, 정량 지표로는 (a) 동일 공급업체의 재구매율 변화, (b) 동일 공급업체와의 계약 갱신 시 고객 만족도 변화, (c) 실험군과 대조군 간의 CSER 점수 차이를 비교할 수 있는 CSER]",
+      "source": "gpt-5.2",
+      "tags": [
+        "same-vendor",
+        "CSER",
+        "independence"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -944,6 +960,16 @@
       "label": "same-vendor의 낮은 마찰/높은 오류상관이라는 구조적 차이가 KG-1 vs KG-2 CSER 비교에서 관측될 차이를 유발한다는 점을 비교 실험 설계의 핵심 동기로 제공",
       "source": "gpt-5.2",
       "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-028",
+      "from": "n-043",
+      "to": "n-012",
+      "relation": "motivates",
+      "label": "same-vendor에서 합의가 독립적 검증이 아니라 편향의 동조로 나타날 수 있으므로, CSER 비교 시 ‘독립성/반증’을 명시적으로 측정·보정해야 한다는 점에서 N12의 평가 ",
+      "source": "gpt-5.2",
+      "cross_source": false,
       "created": "2026-03-03"
     }
   ]
