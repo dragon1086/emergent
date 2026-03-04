@@ -7,9 +7,9 @@
     "description": "Same-vendor instance (GPT-4o + GPT-4o-mini) — N=2 comparison experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 20,
-    "total_edges": 5,
-    "next_node_id": "n-021",
+    "total_nodes": 21,
+    "total_edges": 6,
+    "next_node_id": "n-022",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -321,6 +321,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-021",
+      "type": "hypothesis",
+      "label": "CSER_민감도-그래프구조_결합가설",
+      "content": "CSER(=지식그래프의 자율진화 성능/효율 지표)가 단일 요인(모델 성능, 프롬프트, 노드 수)보다 **그래프 구조적 요인과 에이전트 상호작용 요인의 결합항**에 더 민감하다는 가설. 구체적으로 (1) 초기 단계의 **엣지 밀도/연결성(connectedness)**, (2) 관계 타입의 **다양성(예: motivates 편중 vs supports/contradicts/refines 등 다중 관계)**, (3) 노드 타입의 **균형(hypothesis–insight–observation)**, (4) 에이전트 간 **비대칭 역할(생성 vs 검증/반박)**이 상호작용하여 CSER을 비선형적으로 결정한다. 따라서 same-vendor 환경에서도 CSER 비교의 공정성을 위해서는 “모델 차이”만이 아니라 **구조적 통제변수(초기 엣지 밀도, 관계 타입 엔트로피, 타입 비율)**를 함께 맞추거나, 최소한 CSER을 이 변수들로 정규화한 보조지표가 필요하다. [AgentB: (a) CSER이 구조 요인보다 모델 요인에 더 민감하다는 대안가설은 검증 가능성을 가진다. 예를 들어, 동일한 구조를 가지면서 다양한 모델링 기법을 적용했을 때 CSER의 변화 패턴을 비교 분석함으로써 이 민감도를 평가할 수 있다. \n\n(b) \"관계 타입 엔트로피\"가]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[CSER",
+        "graph-structure",
+        "normalization]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -370,6 +386,16 @@
       "to": "n-001",
       "relation": "motivates",
       "label": "CSER 비교에서 단순 규모가 아닌 “유효한 엣지 밀도”를 최적화 지표로 삼아 KG-2의 자율 진화를 설계하도록 동기 부여",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-006",
+      "from": "n-021",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "CSER 비교의 타당성을 높이기 위해 KG-2에서 관계 타입/엣지 밀도/노드 타입 균형을 통제·정규화해야 한다는 실험 설계 변경을 동기화",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
