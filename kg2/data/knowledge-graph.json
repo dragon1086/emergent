@@ -7,9 +7,9 @@
     "description": "Same-vendor instance (GPT-4o + GPT-4o-mini) — N=2 comparison experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 30,
-    "total_edges": 15,
-    "next_node_id": "n-031",
+    "total_nodes": 31,
+    "total_edges": 16,
+    "next_node_id": "n-032",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -481,6 +481,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-031",
+      "type": "insight",
+      "label": "CSER_AttributionBias_SameVendor",
+      "content": "same-vendor 환경에서는 두 에이전트가 (1) 유사한 내부 표현/선호(예: 안전한 일반화, 문장 구조, 증거 제시 방식)와 (2) 유사한 실패 모드(예: 그럴듯한 서술로 메우기, 과도한 추상화)를 공유하기 때문에, 상호 비판이 “실질적 반증”보다 “표면적 정교화”로 수렴할 위험이 있다. 그 결과 KG의 자율 진화가 실제로는 정보 다양성 증가가 아니라 동일한 귀납적 편향의 강화(confirmation loop)로 나타날 수 있으며, CSER이 높게 측정되더라도 그것이 ‘견고성’이 아니라 ‘동질적 합의’의 산물일 수 있다. 따라서 KG-2 평가에서는 (a) 반례/대안 가설 생성률, (b) 서로 다른 원인모형(인과 그래프) 제시 수, (c) 독립적 오류 탐지(자기모순·비약·근거 부재) 비율 같은 “이질성 지표”를 함께 측정해 CSER을 보정해야 한다. [AgentB: KG-2에서 \"same-vendor 동질성 → CSER 과대평가\" 주장은 동질성이 CSER을 높이는 조건 외에도 특정 상황에서 동질성이 지식의 폭과 다양성을 축소시켜 CSER을 낮출 수도 있음을 생각해볼 필요가 있습니다. 제안한 이질성 지표 외에 반증 성공률, 교차검증]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[same-vendor",
+        "CSER",
+        "bias]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -632,6 +648,16 @@
       "label": "same-vendor 동형성으로 인한 CSER 과대평가 가능성이 “이질성 유지 지표로 보정한 비교 설계 필요”를 동기화한다",
       "source": "gpt-5.2",
       "cross_source": false,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-016",
+      "from": "n-031",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "same-vendor 동질성으로 인한 CSER 과대평가 가능성이 ‘CSER 비교 시 보정 지표/프로토콜 필요’ 노드를 동기화함",
+      "source": "gpt-5.2",
+      "cross_source": true,
       "created": "2026-03-03"
     }
   ]
