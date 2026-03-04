@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 33,
-    "total_edges": 22,
-    "next_node_id": "n-034",
+    "total_nodes": 34,
+    "total_edges": 23,
+    "next_node_id": "n-035",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -575,6 +575,25 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-034",
+      "type": "hypothesis",
+      "label": "Coherence Advantage in Same-Vendor KG Evolution",
+      "content": "이 가설은 동일 벤더 출신 대규모 언어 모델들이 지식 그래프 구축 및 진화에 협력할 때, 공유된 아키텍처적 편향과 훈련 패러다임으로 인해 더욱 내부적으로 일관되고 깊이 통합된 그래프를 개발한다고 가정한다. 이러한 내부적 일관성은 초기에는 다양한 관점의 폭을 희생할 수 있으나, 의미론적 마찰을 최소화하고 그래프 내에서 시너지적 개념 정제를 극대화함으로써 장기적으로 더 높은 누적 CSER(Concept Synthesis & Elaboration Rate)에 기여할 수 있다. [GeminiPro:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "[same-vendor",
+        "cross-vendor",
+        "KG-evolution",
+        "CSER",
+        "architectural-bias",
+        "semantic-coherence]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -794,6 +813,16 @@
       "to": "n-017",
       "relation": "posits_explanation_for",
       "label": "이 가설은 기존 노드 H17(동일 벤더 환경에서 KG 일관성 또는 CSER 점수가 더 높다는 가설)이 관찰되거나 제안될 경우, 그 현상에 대한 근본적인 설명을 제시한다.",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-023",
+      "from": "n-034",
+      "to": "n-005",
+      "relation": "posits_explanation_for",
+      "label": "이 가설은 KG-3(cross-vendor)와 KG-4(same-vendor) 간의 CSER 차이에 대한 관찰 또는 기존 가설에 대해, 동일 벤더 환경의 공유된 아키텍처적 특성에서",
       "source": "gemini-2.5-flash",
       "cross_source": false,
       "created": "2026-03-03"
