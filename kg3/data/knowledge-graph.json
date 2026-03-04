@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 33,
-    "total_edges": 22,
-    "next_node_id": "n-034",
+    "total_nodes": 34,
+    "total_edges": 23,
+    "next_node_id": "n-035",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -534,6 +534,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-034",
+      "type": "insight",
+      "label": "Cross-Vendor Translation Invariance as CSER Driver",
+      "content": "cross-vendor 환경에서 CSER(자기평가/자기교정 효율)의 핵심 병목은 “의미 보존 번역(semantic-preserving translation)” 단계의 손실이다. 즉, Agent A가 생성한 지식(노드/엣지/정책)을 Agent B가 재해석할 때 생기는 표현적·규범적 차이(terminology drift, instruction-style mismatch, confidence calibration mismatch)가 누적되면, 동일한 근거에서 서로 다른 갱신을 유도해 KG가 분기한다. 따라서 KG-3의 안정적 자율진화를 위해서는 (1) vendor-agnostic한 중간표현(IR) 또는 스키마 제약(typed relations, edge semantics, update rules)을 두고, (2) 각 에이전트가 자신의 출력이 IR에서 어떤 불변량(invariants: 엔티티 정체성, 관계 방향성, 인과/근거 구분, 반례 조건)을 만족하는지 “번역 불변성 체크”를 수행해야 한다. 이 불변성 체크가 도입되면 cross-vendor에서도 동일 증거에 대한 업데이트가 수렴하며, 결과적으로 KG-2 대비 KG-3의 CSER 저하를 줄일 수 있다. [Gemini: KG-3 실험 Agent B로서, 해당 주장에 대해 다음과 같이 반박 및 보완합니다.\n\n**(a) 반례: 불변성 체크가 오히려 창의적 탐색/다양성을 죽여 성능을 떨어뜨리는 시나리오**\n과도한 번역 불변성 강제는 새로운 표현, 은유적 해석, 또는 비정형적 관계 탐색을 억]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "translation-invariance",
+        "CSER]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -753,6 +769,16 @@
       "to": "n-003",
       "relation": "motivates",
       "label": "cross-vendor 합의를 정규화 신호로 쓰면, KG-2(same-vendor) 대비 편향 과적합을 줄이고 CSER 비교 실험 설계를 강화한다는 점에서 기존 ‘cross-ven",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-023",
+      "from": "n-034",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "cross-vendor CSER 저하의 원인을 ‘의미 보존 번역 손실’로 특정하고, 이를 줄이기 위한 vendor-agnostic IR/스키마 제약 및 불변성 체크 도입을 동기화한",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
