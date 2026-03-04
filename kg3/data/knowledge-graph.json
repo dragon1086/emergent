@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 30,
-    "total_edges": 19,
-    "next_node_id": "n-031",
+    "total_nodes": 31,
+    "total_edges": 20,
+    "next_node_id": "n-032",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -486,6 +486,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-031",
+      "type": "insight",
+      "label": "CrossVendor-Consensus-as-NoiseFilter",
+      "content": "cross-vendor(서로 다른 아키텍처/학습데이터/정렬편향) 환경에서는 “두 모델이 독립적으로 합의하는 주장”이 단순 중복이 아니라 오류 상관을 낮추는 노이즈 필터로 작동할 수 있다. 즉, KG-3의 노드 채택/강화 규칙을 (a) vendor 간 합의도(agreement)와 (b) 합의가 발생한 근거의 이질성(heterogeneous justification: 서로 다른 근거 경로/증거 유형)을 함께 반영하도록 설계하면, same-vendor 환경보다 환각·편향의 공통모드 오류를 더 효과적으로 억제할 가능성이 있다. 이를 CSER 관점에서 보면, cross-vendor 합의는 “생성 신뢰도(pragmatic reliability)”를 올리되, 합의가 ‘공유된 편향’에서 비롯될 수 있으므로 근거 이질성 점수를 함께 요구하는 것이 핵심이다. [Gemini: cross-vendor 합의가 오류를 줄인다는 주장에 대해, 두 벤더가 동시에 틀릴 수 있는 시나리오가 존재합니다.\n\n1.  **반례:**\n    *   **공통 웹 편향/인기 오개념:** 두 벤더 모두 훈련 데이터에서 유사한 웹 편향이나 널리 퍼진 잘못된 정보(예: ]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "consensus",
+        "CSER]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -675,6 +691,16 @@
       "to": "n-003",
       "relation": "motivates",
       "label": "번역 병목은 관계 유형의 축소(예: motivates로의 과잉 수렴)를 유발해 엣지 의미 정밀도를 떨어뜨린다는 가설로, 단일 관계 편향 문제를 설명/강화한다.",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-020",
+      "from": "n-031",
+      "to": "n-003",
+      "relation": "motivates",
+      "label": "cross-vendor 합의도+근거이질성 기반의 노드 채택 규칙이 KG-2 대비 CSER을 개선한다는 가설을 구체화/추진함",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
