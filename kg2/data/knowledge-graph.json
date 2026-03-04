@@ -7,9 +7,9 @@
     "description": "Same-vendor instance (GPT-4o + GPT-4o-mini) — N=2 comparison experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 28,
-    "total_edges": 13,
-    "next_node_id": "n-029",
+    "total_nodes": 29,
+    "total_edges": 14,
+    "next_node_id": "n-030",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -449,6 +449,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-029",
+      "type": "insight",
+      "label": "CSER_as_KG_Growth_Rate",
+      "content": "CSER은 “최종 정답률”보다 KG의 자율 진화가 얼마나 효율적으로 일어나는지를 측정하는 지표로 재정의될 수 있다. 구체적으로는 (1) 한 라운드당 새로 추가되는 유효 노드/엣지 수(성장률), (2) 추가된 노드가 기존 그래프에 비중복적으로 기여하는 정도(신규성/중복률), (3) 추가된 엣지가 서로 다른 클러스터를 연결해 그래프의 연결성(예: giant component 비율, 평균 최단거리)을 개선하는 정도(통합도), (4) 이후 라운드에서 해당 노드가 재사용·참조되어 예측/설명력을 높이는 정도(재사용성)를 합성한 “KG 성장 기반 CSER”로 정의한다. same-vendor 환경에서는 스타일/표현 동질성으로 중복률이 증가할 수 있으므로, CSER은 성장률에 패널티(중복률)와 보너스(통합도·재사용성)를 함께 포함해야 공정 비교가 가능하다. [AgentB: 1. 중복률은 semantic near-duplicate를 판별하기 위해 자연어 처리 기법을 활용하여 문장의 유사도를 정량적으로 측정할 수 있으며, 예를 들어 코사인 유사도나 Jaccard 유사도를 이용해 0.8 이상의 유사성을 갖는 문장을 중복으로 정의할 수 있습니다]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[CSER",
+        "KG-evolution",
+        "metrics]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -578,6 +594,16 @@
       "to": "n-002",
       "relation": "motivates",
       "label": "CSER을 “합의/정확도”가 아닌 “KG 불확실성(엔트로피) 감소 + 근거경로 다양성 유지”로 재정의하도록 동기 부여",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-014",
+      "from": "n-029",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "KG-1(cross-vendor) vs KG-2(same-vendor) 비교에서 “성능”을 정답률이 아닌 “자율 KG 진화 효율(성장·신규성·통합·재사용)”로 측정해야 한다는 비교",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
