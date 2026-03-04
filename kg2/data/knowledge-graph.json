@@ -7,9 +7,9 @@
     "description": "Same-vendor instance (GPT-4o + GPT-4o-mini) — N=2 comparison experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 23,
-    "total_edges": 8,
-    "next_node_id": "n-024",
+    "total_nodes": 24,
+    "total_edges": 9,
+    "next_node_id": "n-025",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -369,6 +369,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-024",
+      "type": "insight",
+      "label": "CSER-WithinVendor-Overfitting-Risk",
+      "content": "same-vendor(GPT-4o + GPT-4o-mini)에서 KG를 자율 진화시키면 두 에이전트가 유사한 priors/표현/휴리스틱을 공유해 ‘합의(consensus)’가 실제 정합성(correctness)보다 과대평가될 위험이 있다. 이는 (i) 오류 상관관계(error correlation)로 인해 상호검증이 독립적 증거가 되지 못하고, (ii) KG 업데이트가 “서로 납득 가능한 설명”에 수렴하면서 반례 탐색이 약화되며, (iii) 결과적으로 CSER이 개선된 것처럼 보이지만 사실상 vendor-특이적 표현에 과적합된 ‘내부 일관성’ 상승일 수 있다. 따라서 same-vendor 환경에서는 CSER을 단일 점수로 보지 말고, 최소한 (a) 반례/부정적 샘플 기반 스트레스 테스트, (b) 에이전트 간 독립성 프록시(서로 다른 프롬프트/역할/제약으로 유도한 추론 다양성), (c) 외부 기준(held-out cross-vendor 판정 또는 인간 평가)과의 상관을 함께 측정해야 한다. [AgentB: (1) 오류상관을 계량화하기 위한 실험적 프록시로는 (a) 동일한 입력에 대한 다양한 모델의 응답 일치율, (b) 모델 학습 시 서로 다른 데이터 샘플이 시간에 따라 얼마나 일관된 결과를 내는지 평가하는 신뢰성 테스트, (c) 동일한 프롬프트에 대해 다양한 벤더에서 생]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[same-vendor",
+        "CSER",
+        "correlated-errors]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -448,6 +464,16 @@
       "to": "n-002",
       "relation": "motivates",
       "label": "same-vendor 공진으로 인한 조기 수렴/다양성 감소 가능성이 CSER 해석에 혼선을 만들므로, 과정 지표 기반 통제(반례율·합의속도·엣지다양도)를 도입해야 함을 동기부여",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-009",
+      "from": "n-024",
+      "to": "n-002",
+      "relation": "motivates",
+      "label": "same-vendor에서 CSER 비교의 공정성을 확보하려면 ‘합의=정답’ 착시를 깨는 독립성/반례 기반 평가 설계가 필요하다는 점에서, 기존의 “CSER 비교 프레임/평가 설계”",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
