@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 25,
-    "total_edges": 14,
-    "next_node_id": "n-026",
+    "total_nodes": 26,
+    "total_edges": 15,
+    "next_node_id": "n-027",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -429,6 +429,24 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-026",
+      "type": "hypothesis",
+      "label": "동종 벤더 KG 환경에서의 CSER 상충 가설",
+      "content": "동일 벤더 환경(Gemini Flash + Gemini Pro)의 동질성은 공유된 아키텍처 가정 및 토큰화 방식으로 인해 CSER(Constructive Self-Refinement) 통합 속도를 가속화할 수 있다. 그러나 이와 동시에 교차 벤더 환경에 비해 새롭고 이질적인 가설의 생성 및 통합 가능성을 감소시킬 수 있으며, 이는 특정 유형의 KG 진화 경로에 편향을 유발할 수 있다. [GeminiPro:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "[same-vendor-bias",
+        "CSER-dynamics",
+        "KG-evolution",
+        "model-homogeneity",
+        "hypothesis-diversity]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -570,6 +588,16 @@
       "label": "동일 벤더 내 아키텍처 유사성이 지식 그래프 진화의 특정 효율성을 설명할 수 있다.",
       "source": "gemini-2.5-flash",
       "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-015",
+      "from": "n-026",
+      "to": "n-005",
+      "relation": "posits_explanation_for",
+      "label": "이 가설은 동종 벤더 환경의 특성이 CSER의 효율성과 KG 통합 방식에 미치는 구체적인 영향과 발생 가능한 편향을 설명한다.",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
       "created": "2026-03-03"
     }
   ]
