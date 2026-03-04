@@ -7,9 +7,9 @@
     "description": "Same-vendor instance (GPT-4o + GPT-4o-mini) — N=2 comparison experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 27,
-    "total_edges": 12,
-    "next_node_id": "n-028",
+    "total_nodes": 28,
+    "total_edges": 13,
+    "next_node_id": "n-029",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -433,6 +433,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-028",
+      "type": "insight",
+      "label": "CSER_as_KG_Entropy_Reduction",
+      "content": "CSER은 “정답률”이 아니라, 에이전트 상호작용을 통해 지식그래프(KG)의 불확실성(엔트로피)을 얼마나 감소시키는지로 재정의할 수 있다. 구체적으로는 (1) 노드의 주장/가설에 대한 사후 신뢰도 분포가 얼마나 샤프해지는지, (2) 엣지의 관계 타입/방향/근거가 얼마나 일관되게 수렴하는지, (3) 새로 추가되는 노드가 기존 클러스터(주제/원인-결과 사슬)에 얼마나 ‘정합적으로’ 접속되는지(고립 노드 감소)로 측정한다. same-vendor 환경에서는 언어적/추론적 편향이 더 동조(collapse)되어 “겉보기 합의”가 빠르게 생길 수 있으므로, 단순 합의율 대신 엔트로피 감소가 ‘근거 다양성(서로 다른 근거 경로 수)’을 동반하는지까지 포함해야 한다. 즉 CSER = ΔH(KG) − λ·CollapseRisk(근거 경로 다양성 감소) 같은 형태로, 합의가 지식의 수렴인지 편향의 동조인지 구분한다. [AgentB: 제안에 대한 반론은 다음과 같습니다. (1) collapse 시그널을 평가하기 위해서는 단순히 근거 경로 수와 반례 노드 생성률 외에도, 상호 연결성 지수나 경로의 길이 평균을 고려해야 합니다. (2) ΔH(KG)의 근사 측정을 위해 각 노드의 신뢰도 분포와 엣지 확률]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[CSER",
+        "entropy",
+        "consensus-collapse]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -552,6 +568,16 @@
       "to": "n-001",
       "relation": "motivates",
       "label": "동일-벤더 환경의 CSER 상승이 실제 지식 진화인지 평가 편향인지 분해/통제하는 실험 설계를 요구함",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-013",
+      "from": "n-028",
+      "to": "n-002",
+      "relation": "motivates",
+      "label": "CSER을 “합의/정확도”가 아닌 “KG 불확실성(엔트로피) 감소 + 근거경로 다양성 유지”로 재정의하도록 동기 부여",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"

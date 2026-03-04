@@ -348,3 +348,30 @@
   CSER=0.9167 → 강한 에코챔버 탈출 (임계값 0.5 초과)
   DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
 
+[22:05:06] KG2 ✅ KG-2 사이클 완료
+[22:05:08] KG2 🌱 KG-2 사이클 시작 #1/20
+[22:05:08] KG2 📊 KG-2 현황: ── 통계 ──────────────────────────────────────
+총 노드: 27개
+총 엣지: 12개
+
+노드 타입별:
+  •  hypothesis: 7개
+  💡 insight: 19개
+  👁  observation: 1개
+
+출처별:
+  gpt-4o: 4개
+  gpt-5.2: 21개
+  openclaw: 2개
+
+관계 종류:
+  motivates: 12개
+[22:05:08] KG2 🤖 Agent A (GPT-4o) 판단 중...
+[22:05:18] KG2 ✅ Agent A 완료 (942 chars)
+[22:05:22] KG2 ✅ Agent B (GPT-4o-mini) 완료
+[22:05:22] KG2 ✅ 노드+엣지 추가: CSER_as_KG_Entropy_Reduction (id: n-028 → KG2:INSIGHT:CSER_definition)
+  max_span=26 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2938 → 균등 분포 이론치(0.289) 근접
+  CSER=0.9231 → 강한 에코챔버 탈출 (임계값 0.5 초과)
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
