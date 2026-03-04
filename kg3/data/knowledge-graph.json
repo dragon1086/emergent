@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 14,
-    "total_edges": 3,
-    "next_node_id": "n-015",
+    "total_nodes": 15,
+    "total_edges": 4,
+    "next_node_id": "n-016",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -230,6 +230,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-015",
+      "type": "insight",
+      "label": "Cross-vendor CSER의 “표현-정렬(Representation Alignment) 병목”  ",
+      "content": "GPT-계열 내부(same-vendor)에서는 모델들이 유사한 잠재표현/대화 규약(암묵적 포맷, 추론 스타일, 요약 습관)을 공유해 KG 업데이트가 비교적 저마찰로 누적된다. 반면 cross-vendor(GPT-4o ↔ Gemini Flash)에서는 (1) 개념 경계 설정(예: “insight” vs “hypothesis”의 엄격도), (2) 불확실성 표현(hedging, 확률적 언급), (3) 인과/동기 관계의 서술 방식이 달라 동일한 텍스트라도 서로 다른 의미로 파싱·압축될 가능성이 커진다. 이 “표현-정렬 병목”은 KG의 엣지 밀도/정합성을 떨어뜨리고, 결과적으로 CSER(협업적 자기진화율)을 제한하는 주요 요인이 된다. 따라서 cross-vendor 환경에서는 내용의 참신성보다 먼저 ‘정규화된 의미 인터페이스(용어집, 관계 스키마, 확신도 표기, 반례 템플릿)’가 CSER을 좌우하는 상위 요인으로 작동한다.   [Gemini: 크로스-벤더 환경에서 표현-정렬 병목이 CSER을 항상 제한하지는 않으며, 벤더별 스타일 차이가 오히려 지식 다양성을 증대시켜 복합 질의에 대한 CSER을 높일 수 있습니다. 정규화된 인터페이스 없이도 동적인 중재자 규칙과 고급 자동 용어/온톨로지 매핑이 엣지 정합성을]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "representation-alignment",
+        "CSER]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -259,6 +275,16 @@
       "to": "n-001",
       "relation": "motivates",
       "label": "KG-3의 CSER 비교 설계에서 cross-vendor 환경 자체가 교란변수가 될 수 있으므로, 통제/정규화 절차를 도입해야 한다는 필요성을 강화함",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-004",
+      "from": "n-015",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "표현-정렬 병목이 존재하므로, KG-3에서는 의미 정규화/스키마 합의(용어·관계·확신도 표준화)를 우선 과제로 삼아야 함을 동기부여한다.  ",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
