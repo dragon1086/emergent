@@ -7,9 +7,9 @@
     "description": "Same-vendor instance (GPT-4o + GPT-4o-mini) — N=2 comparison experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 41,
-    "total_edges": 26,
-    "next_node_id": "n-042",
+    "total_nodes": 42,
+    "total_edges": 27,
+    "next_node_id": "n-043",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -657,6 +657,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-042",
+      "type": "insight",
+      "label": "Vendor-homogeneity reduces epistemic friction (but risks shared blind spots)",
+      "content": "same-vendor LLM pairs tend to share priors, tokenization quirks, safety/risk heuristics, and latent “default assumptions,” which lowers epistemic friction (fewer semantic mismatches, faster convergence, fewer negotiation turns) and can improve short-horizon coordination efficiency. However, this homogeneity increases correlation of errors and blind spots, reducing the chance of adversarial discovery and weakening long-horizon novelty/robustness. Therefore, KG-2’s autonomous evolution may show higher internal coherence but lower exploratory diversity than cross-vendor KG-1, affecting CSER by trading off coordination smoothness vs. epistemic coverage. [AgentB: (1) \"Epistemic friction\"은 KG/CSER 맥락에서 엣지 합의까지의 턴 수와 같은 지표로 측정될 수 있으며, 이는 다양한 경로를 통한 정보 통합의 복잡성을 반영합니다. \"Error correlation\"은 반례 생성률과 노드 다양도/엔트로피를 통해 평]",
+      "source": "gpt-5.2",
+      "tags": [
+        "same-vendor",
+        "epistemic-friction",
+        "error-correlation"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -916,6 +932,16 @@
       "to": "n-002",
       "relation": "motivates",
       "label": "same-vendor 환경의 상관 오류로 인해 CSER가 저하될 수 있다는 가설은, KG 진화 과정에 ‘강제 이질성/반례 탐색’ 절차를 도입해야 한다는 기존 방향성(KG2-HYP-",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-027",
+      "from": "n-042",
+      "to": "n-005",
+      "relation": "motivates",
+      "label": "same-vendor의 낮은 마찰/높은 오류상관이라는 구조적 차이가 KG-1 vs KG-2 CSER 비교에서 관측될 차이를 유발한다는 점을 비교 실험 설계의 핵심 동기로 제공",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
