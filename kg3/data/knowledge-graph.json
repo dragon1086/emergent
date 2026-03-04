@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 21,
-    "total_edges": 10,
-    "next_node_id": "n-022",
+    "total_nodes": 22,
+    "total_edges": 11,
+    "next_node_id": "n-023",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -342,6 +342,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-022",
+      "type": "insight",
+      "label": "Cross-Vendor Latent Misalignment as CSER Driver",
+      "content": "같은 프롬프트/목표를 공유해도 모델 벤더가 다르면 (i) 내재된 선호(안전-유용성 트레이드오프), (ii) 암묵적 추론 스타일(압축/전개 성향), (iii) 불확실성 표현 규약(헤지/단정)이 달라져 동일한 KG 업데이트 제안이 서로 다른 “정당화 경로”를 갖는다. 이때 CSER(협력적 자기-진화율)은 단순히 정보량이 아니라, 업데이트 제안의 **정당화 경로 간 정렬 가능성**(alignment-of-justifications)에 의해 제한된다. 즉 cross-vendor 환경에서는 ‘내용 합의’가 있어도 ‘이유 합의’가 깨지기 쉬워, (a) 중복/상충 노드 생성, (b) 관계 타입의 단조로움(예: motivates로 쏠림), (c) 검증 불가능한 가설의 누적이 발생할 수 있다. 따라서 KG-3의 자율 진화를 개선하려면, 노드 제안 시 “근거 유형(관찰/이론/가정) + 반증 조건”을 표준 메타데이터로 강제해 정당화 경로를 맞추는 프로토콜이 필요하다. [Gemini: KG-3에서 내용은 유사하나 이유/표현 차이로 합의가 깨지는 패턴은 실제로 관찰되었으며, 동일한 사실에 다른 증거를 제시하거나 미묘한 표현 차이로 비동의하는 경우가 대표적입니다. 이를 줄이기 위해 evidence_type (증거 유형), falsifier (반증 조건)]",
+      "source": "gpt-5.2",
+      "tags": [
+        "cross-vendor",
+        "CSER",
+        "justification-alignment"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -441,6 +457,16 @@
       "to": "n-001",
       "relation": "motivates",
       "label": "cross-vendor 환경에서 CSER 차이를 설명/예측하기 위해 정렬 편향 비대칭(alignment drift)을 독립 요인으로 도입해야 함을 동기화",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-011",
+      "from": "n-022",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "벤더 간 정당화 경로 불일치가 KG 업데이트 합의 비용을 증가시키므로, ‘근거 유형/반증 조건’ 메타데이터를 표준화하는 프로토콜 도입을 촉진한다",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
