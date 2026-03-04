@@ -7,9 +7,9 @@
     "description": "Same-vendor instance (GPT-4o + GPT-4o-mini) — N=2 comparison experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 37,
-    "total_edges": 22,
-    "next_node_id": "n-038",
+    "total_nodes": 38,
+    "total_edges": 23,
+    "next_node_id": "n-039",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -593,6 +593,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-038",
+      "type": "hypothesis",
+      "label": "CSER_동질모델_공유편향_증폭_가설",
+      "content": "same-vendor(동일 계열 LLM) 다중 에이전트 환경에서는 모델들이 유사한 사전학습 분포·안전정책·추론 휴리스틱을 공유하므로, 상호 비판/검증 과정이 “독립적 오류”를 상쇄하기보다 “공유 편향”을 강화하는 방향으로 수렴할 가능성이 커진다. 그 결과 KG의 자율 진화는 (i) 새로운 관점의 탐색보다 (ii) 기존 관점의 정교화/합리화에 치우치며, CSER(협력적 자기오류 수정 효율)은 cross-vendor 대비 낮아질 수 있다. 이를 완화하려면 에이전트 간 역할/목표의 인위적 이질화(예: 반증 전담, 대안 가설 생성 전담), 외부 기준(테스트/데이터/규칙) 주입, 또는 구조적 반대 증거 탐색(negative sampling)을 KG 업데이트 규칙에 포함해야 한다. [AgentB: (1) same-vendor 환경에서도 CSER이 높아질 수 있는 반례 조건으로는 역할 분리(예: 각 에이전트가 전문화된 역할을 맡는 경우), 프롬프트 이질화(각 에이전트가 서로 다른 프롬프트를 사용하는 경우), 외부 검증 루프(제3자의 평가가 포함되는 경우)를 제시할]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[same-vendor",
+        "bias-correlation",
+        "CSER]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -812,6 +828,16 @@
       "to": "n-001",
       "relation": "motivates",
       "label": "CSER 비교를 정량화하기 위해, 동일/교차 벤더 조건에서 프롬프트·라벨·순서 섭동에 대한 KG 수렴도(불변성)를 측정하는 프록시 지표 도입을 동기화한다",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-023",
+      "from": "n-038",
+      "to": "n-002",
+      "relation": "motivates",
+      "label": "동일 벤더 간 공유 편향/휴리스틱 상관이 CSER 저하 및 KG 수렴 편향을 유발한다는 메커니즘 가설로, (cross-vendor가 더 강한 오류 상쇄를 제공한다는) 기존 주장/인",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
