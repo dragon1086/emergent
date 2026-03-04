@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 24,
-    "total_edges": 13,
-    "next_node_id": "n-025",
+    "total_nodes": 25,
+    "total_edges": 14,
+    "next_node_id": "n-026",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -390,6 +390,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-025",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer”가 CSER을 좌우한다",
+      "content": "cross-vendor(서로 다른 모델/벤더) 협업에서 지식그래프(KG)가 자율 진화할 때, 성능(CSER)의 주요 병목은 “지식 자체의 품질”보다도 모델 간 표현·규범·용어의 불일치에서 발생하는 의미 손실이다. 따라서 KG-3에서는 (1) 노드 타입/관계 스키마의 엄격화, (2) 용어집/온톨로지 앵커(정의·예시·금지어), (3) 증거 수준(관찰/추론/가설)과 불확실성 표기 규칙을 포함하는 ‘translation layer’를 KG 외부 규약이 아니라 KG 내부의 메타-노드/메타-엣지로 내재화해야 한다. 이 내재화가 이루어지면 모델 간 상호 검증이 “내용”이 아니라 “정렬된 의미 단위”를 대상으로 수행되어, same-vendor(KG-2) 대비 cross-vendor(KG-3)의 CSER 격차가 줄어들거나 역전될 수 있다. [Gemini: KG-3의 CSER 병목은 지식 품질보다 모델 간 의미 정렬 실패(translation layer 부재)가 본질적이라고 검증합니다. 개별 지식의 품질이 높아도 의미론적 일관성이 없으면 지식 통합 및 추론에 심각한 오류를 야기하며, 이는 지식 활용성을 저해하는 주원인입니]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "CSER]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -519,6 +535,16 @@
       "to": "n-001",
       "relation": "motivates",
       "label": "cross-vendor 환경에서 의미적 드리프트가 CSER을 교란하므로, KG-3 평가/진화에 드리프트 예산(앵커 정렬+정규화+프루닝)을 도입해야 한다는 필요성을 강화한다",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-014",
+      "from": "n-025",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "KG-3에서 CSER 개선을 위해 ‘번역/정렬 레이어(스키마·용어·불확실성 규칙)의 내재화’가 필요하다는 실행 가설을 제공한다",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
