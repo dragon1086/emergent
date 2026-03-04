@@ -32,7 +32,7 @@ A Case Study with CSER and Persona-Diversity Gates}
   \texttt{munsangrok@gmail.com}
 }
 
-\date{Draft v3.2 — Latest Snapshot (2026-03-02)}
+\date{Draft v3.3 — Latest Snapshot (2026-03-04)}
 
 % ─── Document ─────────────────────────────────────────────────────────────────
 \begin{document}
@@ -80,10 +80,14 @@ gain of $+9.5$ points over solo baseline, with ethics/conflict domains showing
 the largest gains ($+12$/$+13$), providing methodologically strengthened
 evidence via external evaluation and cross-model pairing
 (Section~\ref{sec:amp_benchmark}).
-An auto-persona ablation within this benchmark shows that enabling automatic
+An auto-persona ablation within this benchmark ($N=10$) shows that enabling automatic
 persona selection improves Gemini judge preference to \textbf{70\%} (vs.\ 30\%
 with auto-persona disabled), raises average quality from 6.9 to 7.3, and
 yields 4.9 blind-spot detections per question.
+A subsequent larger replication (\texttt{amp\_verdict\_v2}, $N=30$, same-model GPT-5.2,
+Gemini-3-Flash judge) finds the ON/OFF preference gap collapses to 47\%/53\%
+with a quality delta of $-0.06$ --- suggesting the $N=10$ result may be
+small-sample noise rather than a robust effect (see Section~\ref{sec:amp_benchmark}).
 
 \medskip\noindent\textbf{Scope and limitations}: This is a single-system case study ($N=1$ KG,
 two agents, four code-generation tasks). Claims are limited to this experimental setting.
@@ -977,6 +981,49 @@ detections per question --- consistent with the theoretical mechanism
 (Section~\ref{sec:auto_persona_cser}) that adaptive persona diversity drives
 cross-source emergence and amplified insight.
 
+\subsubsection*{N=30 Replication (\texttt{amp\_verdict\_v2})}
+
+To assess robustness of the auto-persona effect, we ran a larger replication
+with $N=30$ questions using the same-model configuration (GPT-5.2-chat-latest,
+Gemini-3-Flash-Preview as blind judge):
+
+\begin{table}[h!]
+\centering
+\caption{Auto-persona replication: Gemini judge preference and quality
+(\texttt{amp\_verdict\_v2}, same-model GPT-5.2, $N=30$ questions)}
+\label{tab:auto_persona_v2}
+\begin{tabular}{lcccc}
+\toprule
+Condition & Judge Preference & Avg.\ Quality & Blind Spots/Q & N \\
+\midrule
+Auto-persona \textbf{ON}  & 46.7\% & 6.17 & \multirow{2}{*}{4.67} & \multirow{2}{*}{30} \\
+Auto-persona \textbf{OFF} & \textbf{53.3\%} & \textbf{6.23} & & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent\textbf{Interpretation}: The $N=30$ replication does not reproduce the
+$N=10$ finding. The ON/OFF preference gap collapses from 70\%/30\% to 47\%/53\%
+(reversed direction), and the quality delta shrinks from $+0.4$ to $-0.06$.
+Blind-spot coverage remains comparable (4.67 vs.\ 4.9 per question).
+Two interpretations are consistent with these data:
+
+\begin{enumerate}
+  \item \textbf{Small-sample noise}: The $N=10$ result reflects sampling
+        variance; the $N=30$ result is a more reliable estimate, suggesting the
+        auto-persona mechanism produces no consistent quality advantage at this
+        scale.
+  \item \textbf{Configuration sensitivity}: The $N=10$ study used a cross-provider
+        pair (GPT-5.2 $\times$ Claude-sonnet-4-6); the $N=30$ replication uses
+        same-model GPT-5.2. Auto-persona effects may be stronger when agents
+        are architecturally heterogeneous, consistent with the D-063 mechanism.
+\end{enumerate}
+
+\noindent We report both results without adjudication.
+The $N=10$ cross-provider finding is preserved as directional evidence;
+the $N=30$ same-model replication weakens the generality of the auto-persona
+claim. Resolving this discrepancy requires a $N\geq30$, cross-provider design.
+
 \subsubsection*{Methodological improvements over the initial $N=5$ pilot}
 
 The amp benchmark addresses three weaknesses of the initial three-way comparison:
@@ -998,8 +1045,13 @@ The $+9.5$ average insight gain and domain-specific findings ($+12$/$+13$ for
 ethics/conflict) are confirmed by Gemini blind-judge evaluation and should be
 treated as directional evidence motivating larger-scale replication.
 The auto-persona ablation results (70\% vs.\ 30\% Gemini preference, quality
-7.3 vs.\ 6.9, 4.9 blind spots/question) are likewise confirmed by the same
+7.3 vs.\ 6.9, 4.9 blind spots/question) are confirmed by the same
 blind-judge protocol --- not simulated or projected values.
+However, a subsequent $N=30$ same-model replication (\texttt{amp\_verdict\_v2})
+does \emph{not} reproduce the 70\%/30\% split: judge preference reverses to
+47\%/53\% with a quality delta of $-0.06$.
+The auto-persona effect should therefore be treated as \emph{unconfirmed}
+at this stage; see the N=30 Replication subsection above for full analysis.
 
 \subsection*{Emergent Amplification Conditions}
 \label{sec:amplification_conditions}
@@ -1099,7 +1151,14 @@ generalising the domain-dependence claim.
         ablation results (Gemini preference 70\% ON vs.\ 30\% OFF; quality
         7.3 vs.\ 6.9; 4.9 blind spots/question) are confirmed by the same
         blind-judge protocol, providing real Gemini-judge evidence for the
-        auto-persona contribution. The KG structural metrics (CSER, $E_{v4}$)
+        auto-persona contribution.
+        \textit{Replication caveat}: A $N=30$ same-model replication
+        (\texttt{amp\_verdict\_v2}, Section~\ref{sec:amp_benchmark}) does not
+        reproduce this finding: judge preference reverses to 53\% OFF / 47\% ON,
+        and quality delta collapses from $+0.4$ to $-0.06$.
+        The auto-persona quality advantage should therefore be treated as
+        \emph{unconfirmed} pending a cross-provider $N\geq30$ design.
+        The KG structural metrics (CSER, $E_{v4}$)
         remain self-computed; independent metric replication by external parties
         is required for full resolution.
   \item \textbf{Ceiling effects in quality tasks}: In ungated stress tests,
