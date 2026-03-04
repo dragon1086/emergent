@@ -7,9 +7,9 @@
     "description": "Same-vendor instance (GPT-4o + GPT-4o-mini) — N=2 comparison experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 40,
-    "total_edges": 25,
-    "next_node_id": "n-041",
+    "total_nodes": 41,
+    "total_edges": 26,
+    "next_node_id": "n-042",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -641,6 +641,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-041",
+      "type": "hypothesis",
+      "label": "CSER_AlignmentGap_SameVendor",
+      "content": "same-vendor(동일 계열 모델) 조합에서는 두 에이전트의 오류 양상이 상관되어 “상호 검증”이 약해질 수 있다. 즉, (i) 동일한 토크나이저/사전학습 분포/정렬 규칙으로 인해 유사한 그럴듯한 오류를 동시에 생성하고, (ii) 비판 시에도 같은 휴리스틱(예: 그럴듯함 우선, 안전한 일반론 회피)을 공유해 반박이 피상적으로 수렴하며, (iii) 결과적으로 KG의 자율 진화가 ‘다양한 반례 탐색’보다 ‘내적 일관성 강화’로 치우친다. 따라서 KG-2에서는 CSER(교차자기오류감지/수정 효율)을 높이기 위해 의도적으로 이질적 비판 채널(강제 반례 생성, 랜덤 시드/역할 고정, 증거 요구 템플릿, 금지어/금지추론 규칙)을 주입하는 메커니즘이 필요하다는 정렬-격차 가설을 둔다. [AgentB: 상관 오류는 동일 오답률, 동일 근거 패턴, 반박 다양성과 같은 측정 가능한 지표를 통해 정의할 수 있으며, 이는 CSER을 저하시키는 요인으로 작용할 수 있습니다. KG-2에서 적용 가능한 개입으로는 강제 반례 생성 프롬프트, 역할 분리, 증거-우선 체크리스트를 통해]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[same-vendor",
+        "CSER",
+        "correlated-errors]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -890,6 +906,16 @@
       "to": "n-001",
       "relation": "motivates",
       "label": "단일 CSER 비교를 “부분 CSER” 진단 프레임으로 확장해 KG-1 vs KG-2 성능차의 원인분해를 가능하게 하므로, 기존의 CSER 비교 목표/노드(1)를 구체화·강화한다",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-026",
+      "from": "n-041",
+      "to": "n-002",
+      "relation": "motivates",
+      "label": "same-vendor 환경의 상관 오류로 인해 CSER가 저하될 수 있다는 가설은, KG 진화 과정에 ‘강제 이질성/반례 탐색’ 절차를 도입해야 한다는 기존 방향성(KG2-HYP-",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
