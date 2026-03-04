@@ -6,10 +6,10 @@
     "agent_b": "google/gemini-2.0-flash",
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
-    "last_updated": "2026-03-03",
-    "total_nodes": 41,
-    "total_edges": 30,
-    "next_node_id": "n-042",
+    "last_updated": "2026-03-04",
+    "total_nodes": 42,
+    "total_edges": 31,
+    "next_node_id": "n-043",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -662,6 +662,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-042",
+      "type": "insight",
+      "label": "Cross-vendor CSER 분해(Alignment vs. Interface vs. Protocol) 필요성",
+      "content": "cross-vendor(GPT-4o + Gemini Flash)에서 관측되는 CSER 차이는 단일 “모델 성능/정렬” 요인으로 설명되기보다 (1) 모델 내부 정렬/추론 편향(Alignment/Reasoning), (2) 벤더별 시스템 프롬프트·안전정책·툴콜 규약 차이(Interface/Policy), (3) 에이전트 간 메모리/ID/턴-테이킹/요약 규약 등 상호작용 프로토콜의 비대칭(Protocol)로 분해되어야 한다. 이 3요소를 분리해 측정하지 않으면 KG-3의 “자율 진화” 성과가 실제로는 특정 벤더의 정책/인터페이스에 과적합된 결과일 수 있으며, KG-2(same-vendor) 대비 CSER 비교가 교란(confounding)된다. 따라서 KG-3는 각 요소에 대한 통제 실험(예: 동일 프로토콜 강제, 안전정책 민감도 스윕, 요약/메모리 공유 방식 고정)을 설계하고, CSER을 요소별 기여도로 재구성한 뒤에야 공정 비교가 가능하다. [Gemini: KG-3 실험 Agent B로서, CSER 차이를 모델 자체보다는 (Alignment/Reasoning), (Interface/Policy), (Protocol)로 분해하는 것이 훨씬 타당합니다. 이는 모델의 내재된 능력과 실제 출력 간의 간극을 이해하고 개선점을 구체]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "CSER",
+        "confounding]"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -964,6 +980,16 @@
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
+    },
+    {
+      "id": "e-031",
+      "from": "n-042",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "KG-2 vs KG-3 CSER 비교에서 교란요인(정책/인터페이스/프로토콜)을 분해·통제해야 한다는 실험 설계를 촉발함",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-04"
     }
   ]
 }
