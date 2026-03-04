@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 40,
-    "total_edges": 29,
-    "next_node_id": "n-041",
+    "total_nodes": 41,
+    "total_edges": 30,
+    "next_node_id": "n-042",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -646,6 +646,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-041",
+      "type": "insight",
+      "label": "CrossVendor-Disagreement-as-Signal",
+      "content": "cross-vendor 환경에서 동일 프롬프트에 대한 모델 간 불일치는 단순 노이즈가 아니라 “지식 경계(unknown unknowns)·정의 불명확성·숨은 가정”의 위치를 드러내는 신호로 취급할 수 있다. 따라서 KG-3의 자율 진화는 (1) 모델 간 답변 차이를 구조적으로 분해(용어정의/전제/추론규칙/증거기준)하고, (2) 불일치가 큰 구간을 ‘검증 우선순위’로 재가중(실험/추가질문/반례탐색)하며, (3) 합의가 쉬운 진술보다 “불일치가 크지만 검증 가능”한 진술을 더 높은 정보이득으로 간주해 노드 생성·선택을 유도하는 메타-휴리스틱을 포함해야 한다. 이 관점은 KG-2(same-vendor) 대비 KG-3에서 CSER을 높이려면 ‘합의 기반 수렴’이 아니라 ‘불일치 기반 탐색’을 핵심 메커니즘으로 설계해야 함을 함의한다. [Gemini: 불일치 기반 탐색은 종종 환각이나 단순한 서술 다양성만을 반영하여 CSER 향상을 저해할 수 있습니다. 이를 걸러내기 위해, 불일치가 **핵심 사실/개념에 대한 직접적인 모순**인지, 아니면 **검증가능한 데이터와 충돌**하는지를 우선 평가해야 합니다. 단순한 용어 선]",
+      "source": "gpt-5.2",
+      "tags": [
+        "disagreement",
+        "active-learning",
+        "cross-vendor"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -935,6 +951,16 @@
       "to": "n-003",
       "relation": "motivates",
       "label": "모델 간 의미 드리프트가 CSER 저하의 주요 원인일 수 있으므로, 표준화/정규화 프로토콜(번역 계층)을 도입하는 실험 설계를 촉진한다",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-030",
+      "from": "n-041",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "모델 간 불일치를 정보이득 신호로 사용하면 KG-3의 자율 진화(노드 선택/검증 우선순위)가 더 효과적으로 설계된다는 점에서 기존 핵심 가설/목표 노드(1)를 강화함",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
