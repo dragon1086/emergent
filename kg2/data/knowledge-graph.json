@@ -7,9 +7,9 @@
     "description": "Same-vendor instance (GPT-4o + GPT-4o-mini) — N=2 comparison experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 32,
-    "total_edges": 17,
-    "next_node_id": "n-033",
+    "total_nodes": 33,
+    "total_edges": 18,
+    "next_node_id": "n-034",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -513,6 +513,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-033",
+      "type": "insight",
+      "label": "CSER_Parity_SameVendor_Bias",
+      "content": "same-vendor(동일 계열 LLM 조합) 환경에서는 두 에이전트가 공유하는 사전학습 분포·지시추종 스타일·자기검증(자기일관성) 휴리스틱이 유사해, 상호 비판이 ‘독립적 오류’가 아니라 ‘상관된 오류’로 수렴할 가능성이 크다. 그 결과 KG의 자율 진화는 (1) 빠른 합의 형성, (2) 반례 탐색의 빈도 감소, (3) 동일한 설명틀/용어의 강화(semantic lock-in)로 나타나며, CSER(협업적 자기오류 정정 효율)은 cross-vendor 대비 과대평가(겉보기 개선)되거나 과소평가(탐색 부족으로 장기 성능 저하)될 수 있다. 따라서 KG-2의 CSER 비교는 “모델 다양성(heterogeneity)”을 통제변수로 포함해야 하며, 최소한 반박-유도 프로토콜(강제 반례 생성, 역할 고정, 독립 샘플링)을 넣지 않으면 KG-1과의 공정 비교가 성립하기 어렵다. [AgentB: \"상관된 오류\"가 CSER을 왜곡하는 이유는, 비슷한 벤더들끼리 결과를 비교할 때 이질적인 요소가 간과되어 과대 또는 과소평가가 발생할 수 있기 때문입니다. 이를 완화하기 위한 최소 프로토콜로는 첫째, 강제 반례 생성을 통해 다양한 예외를 모델에 투입하여 평가의 유연성]",
+      "source": "gpt-5.2",
+      "tags": [
+        "same-vendor",
+        "correlated-errors",
+        "CSER"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -682,6 +698,16 @@
       "to": "n-001",
       "relation": "motivates",
       "label": "same-vendor 환경에서 ‘합의=신뢰’로 오판하는 위험을 줄이기 위해, KG-2의 반박/검증 프로토콜에 독립성 강화 장치를 도입해야 함을 동기부여",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-018",
+      "from": "n-033",
+      "to": "n-005",
+      "relation": "motivates",
+      "label": "동일 벤더 조합에서 발생하는 상관오류/semantic lock-in 가능성이 CSER 비교 시 cross-vendor 우위 주장(또는 통제 필요성)을 강화한다",
       "source": "gpt-5.2",
       "cross_source": true,
       "created": "2026-03-03"
