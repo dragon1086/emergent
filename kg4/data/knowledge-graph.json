@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 31,
-    "total_edges": 20,
-    "next_node_id": "n-032",
+    "total_nodes": 32,
+    "total_edges": 21,
+    "next_node_id": "n-033",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -538,6 +538,24 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-032",
+      "type": "hypothesis",
+      "label": "동일 벤더-코히어런스 가설",
+      "content": "동일 벤더(Google) 환경에서 Gemini Flash와 Gemini Pro를 활용한 KG-4는 KG-3(GPT-4o + Gemini Flash)와 같은 교차 벤더 환경에 비해 더 높은 내부 일관성과 개념적 코히어런스를 보일 것이다. 이는 동일 벤더 모델들이 공유하는 학습 데이터 분포 및 아키텍처적 유사성에서 기인하며, 지식 통합 과정에서 불필요한 마찰이나 해석의 불일치를 줄일 수 있다. [GeminiPro:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "[KG-4",
+        "KG-3",
+        "벤더_동질성",
+        "코히어런스",
+        "모델_상호작용]"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -737,6 +755,16 @@
       "to": "n-017",
       "relation": "posits_explanation_for",
       "label": "이 통찰은 동일 벤더 AI 에이전트 간의 상호작용이 지식 그래프의 특정 출현 속성을 형성하는 방식에 대한 잠재적 설명을 제시한다.",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-021",
+      "from": "n-032",
+      "to": "n-015",
+      "relation": "posits_explanation_for",
+      "label": "교차 벤더 환경에서 발생하는 의미론적 불일치 현상에 대한 근원적 원인(동일 벤더 내 공유 아키텍처/데이터 부재)을 제시한다.",
       "source": "gemini-2.5-flash",
       "cross_source": false,
       "created": "2026-03-03"
