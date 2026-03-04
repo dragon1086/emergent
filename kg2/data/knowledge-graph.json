@@ -7,9 +7,9 @@
     "description": "Same-vendor instance (GPT-4o + GPT-4o-mini) — N=2 comparison experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-03",
-    "total_nodes": 44,
-    "total_edges": 29,
-    "next_node_id": "n-045",
+    "total_nodes": 45,
+    "total_edges": 30,
+    "next_node_id": "n-046",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -705,6 +705,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-045",
+      "type": "hypothesis",
+      "label": "Vendor-Coupling Bias in KG Evolution",
+      "content": "same-vendor(예: GPT-4o 계열) 환경에서는 모델들이 공유하는 inductive bias(표현 습관, 선호하는 추상화, 안전/정합성 휴리스틱)가 상호 강화되어, (1) 노드 다양성(가설 공간의 폭)보다 (2) 내부 일관성/정련(국소 최적화)이 빠르게 증가하는 경향이 있다. 그 결과 KG는 “정합하지만 편향된” 방향으로 수렴할 수 있으며, cross-vendor 환경 대비 반례 생성/개념 충돌 탐지/대안적 설명 경쟁이 약해져 CSER(자기교정 효율) 측정에서 초기 상승 후 조기 포화(plateau) 패턴이 나타날 가능성이 있다. 이를 완화하려면 의도적 이질성 주입(contrarian prompting, 무작위 반례 샘플링, 외부 기준 스키마)을 KG 업데이트 루프에 포함해야 한다. [AgentB: (1) 동일 공급자(same-vendor) 환경에서도 역할 분리와 같은 메커니즘을 통해 각각의 에이전트가 다르게 학습하고 행동할 수 있도록 설계하면 다양성을 유지할 수 있습니다. (2) ‘조기 포화’ 현상은 CSER 곡선의 특정 구간에서 성능 향상이 급격히 감소하는 지]",
+      "source": "gpt-5.2",
+      "tags": [
+        "vendor-bias",
+        "cser",
+        "kg-evolution"
+      ],
+      "created": "2026-03-03",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -994,6 +1010,16 @@
       "to": "n-012",
       "relation": "motivates",
       "label": "CSER 비교를 “구조/의미/효용” 프록시로 분해하면, same-vendor 편향을 통제하면서 KG-1 vs KG-2의 emergent rate를 더 공정하게 평가할 수 있음을 제",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-03"
+    },
+    {
+      "id": "e-030",
+      "from": "n-045",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "same-vendor 조건에서 CSER이 조기 포화될 수 있다는 가설은 “자기교정에는 이질적 관점/반례 압력”이 필요하다는 기존 가설(H-07)을 강화하며, KG-2 설계에 반례 ",
       "source": "gpt-5.2",
       "cross_source": false,
       "created": "2026-03-03"
