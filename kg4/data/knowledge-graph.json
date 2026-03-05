@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 208,
-    "total_edges": 315,
-    "next_node_id": "n-209",
+    "total_nodes": 209,
+    "total_edges": 317,
+    "next_node_id": "n-210",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -4053,6 +4053,25 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-209",
+      "type": "hypothesis",
+      "label": "Same-vendor KG의 수렴적 CSER 가속화 가설",
+      "content": "동일 벤더 내 모델들(Gemini Flash + Gemini Pro)은 공유된 아키텍처 및 학습 데이터 분포로 인해 개념적 일관성이 높아져 KG 진화 과정에서 특정 주제나 관점에 대한 수렴적 자기-진화적 표현(CSER) 형성을 가속화할 것이다. 이는 KG-3(cross-vendor)에 비해 내부적 일관성은 높으나, 탐색적 다양성은 낮출 수 있다. [GeminiPro:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "same-vendor",
+        "CSER",
+        "KG-evolution",
+        "model-bias",
+        "conceptual-coherence",
+        "diversity"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7440,6 +7459,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 180,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-316",
+      "from": "n-209",
+      "to": "n-001",
+      "relation": "expands_on",
+      "label": "n-001의 Same-vendor CSER hypothesis를 바탕으로, 수렴적 CSER의 가속화 및 다양성 감소 가능성에 대한 구체적인 메커니즘을 제안함.",
+      "source": "gemini-2.5-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-317",
+      "from": "n-209",
+      "to": "n-024",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=185): n-209→n-024",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 185,
       "created": "2026-03-05"
     }
   ]
