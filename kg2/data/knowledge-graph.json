@@ -709,6 +709,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-044",
+      "type": "insight",
+      "label": "동일모델 에코챔버의 ‘무작위성/탐색’ 혼동: 결정론적 수렴 vs 상호강화",
+      "content": "동일 모델(gpt-5.2×gpt-5.2)에서 관측되는 “의견 수렴/자기강화” 패턴은 에코챔버(상호 강화로 인한 편향 고착)라기보다, (i) 샘플링 온도/탑-p/시드 등 생성 무작위성 설정, (ii) 대화 길이에 따른 컨텍스트 잠김(context lock-in), (iii) 요약·정리 단계에서의 정보 병목(압축 편향) 때문에 발생할 수 있다. 특히 동일 모델 조건에서 ‘자연 수렴’은 기본값(공통 학습 분포 + 대화의 협력 규범)이며, 여기에 탐색(exploration)이 약하면 두 에이전트는 단지 초기 프레이밍에 경로의존적으로 고정된다. 이때 나타나는 현상은 “상호검증 없는 결정론적 수렴”이지, 반드시 “상호강화로 편향이 증폭되는 에코챔버”가 아니다. 따라서 에코챔버를 주장하려면 최소한 (a) 반대증거/대안가설 제시가 반복적으로 차단되거나, (b) 동일한 반증 자극에도 불구하고 신념 강도가 강화되는 동학(positive feedback)을 보여야 한다. 구체적 판별 설계: 동일한 초기 시드/주제에서 (1) 고정 샘플링(temperature≈0) vs (2) 고탐색(temperature↑) vs (3) ‘반증 강제 프롬프트’(각 턴마다 반례 1개 의무) 3조건을 비교하고, 수렴 속도·다양성(entropy)·반증 채택률·신념강도(자기확신 발화/확률추정)를 측정한다. 에코챔버라면 반증 강제에도 신념강도는 유지/상승하며 반증은 주변화되고, 단순 자연 수렴/컨텍스트 잠김이면 탐색↑ 또는 반증 강제에서 쉽게 분기·수정이 발생해야 한다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "confounder",
+        "experimental_design]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-045",
+      "type": "critique",
+      "label": "통합 종합: 요청안은 타당하지만 “대화 로그만으로” 신념(내적 상태)을 직접 관측할 수 없으므로, 공통 프로토콜은 **행동지표(발화 기반)로의 운영화**와 ",
+      "content": "요청안은 타당하지만 “대화 로그만으로” 신념(내적 상태)을 직접 관측할 수 없으므로, 공통 프로토콜은 **행동지표(발화 기반)로의 운영화**와 **개입(반증 제시) 표준화**를 전제해야 합니다: (1) 신념강도=각 핵심 주장별로 시점 t마다 **주장 확률 p(0~1) 또는 로그오즈**를 강제 보고(미보고 시 불확실성 구간)하고, 근거/반례/조건/신뢰원천을 **C-E-Counter-Qualifier 태그**로 부착한 뒤 p의 변화량 |Δp|로 갱신량을 측정; 반증 채택률=사전정의된 “반증 패킷” 제시 후 **(i) 주장 철회/약화, (ii) 조건부 수용, (iii) 근거 교체, (iv) 무시/회피** 중 (i~iii)을 채택으로 코딩하고, 채택 시 **반증을 인용한 재진술**이 포함될 때만 인정(예: 2턴 이내). (2) 에코챔버 동학의 최소 필요·충분 관측 패턴은 **동질 정보 선택 편향 + 갱신 비대칭**으로, 필요조건: 동일 강도의 찬성/반대 증거를 균형 제시했을 때도 **찬성에는 p↑, 반대에는 p 변화≈0 또는 합리화 증가(반증 무시율↑)**가 반복되고, 충분조건: (a) 네트워크/상호작용에서 **동질 출처 인용 집중도 상승**, (b) 반대 근거의 ",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1443,6 +1476,50 @@
       "temporal_bridge": true,
       "gap": 38,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-069",
+      "from": "n-044",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "식별가능성 문제를 ‘샘플링/탐색-결정론’ 혼동요인으로 구체화하고, 에코챔버 동학을 분리하는 판별조건(반증 강제·탐색 조작)을 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-070",
+      "from": "n-044",
+      "to": "n-006",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=38): n-044→n-006",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 38,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-071",
+      "from": "n-045",
+      "to": "n-044",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-072",
+      "from": "n-045",
+      "to": "n-004",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=41): n-045→n-004",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 41,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1453,9 +1530,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 43,
-    "total_edges": 68,
-    "next_node_id": "n-044",
+    "total_nodes": 45,
+    "total_edges": 72,
+    "next_node_id": "n-046",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
