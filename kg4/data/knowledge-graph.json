@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 179,
-    "total_edges": 265,
-    "next_node_id": "n-180",
+    "total_nodes": 180,
+    "total_edges": 266,
+    "next_node_id": "n-181",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -3515,6 +3515,24 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-180",
+      "type": "insight",
+      "label": "동일 벤더 환경의 수렴적 추론과 KG 구조 편향",
+      "content": "동일한 아키텍처 및 훈련 데이터 특성을 공유하는 벤더 내 LLM 에이전트들은 특정 개념이나 관계에 대해 수렴적인 추론 패턴을 보일 가능성이 높다. 이러한 경향은 KG 진화 과정에서 특정 영역의 노드들이 과도하게 밀집된 연결을 형성하게 하고, 반대로 다른 중요한 영역과의 연결은 부족해지는 국지적 조밀성-전역적 희소성 구조를 유발할 수 있다. 이는 단기 연결 편향(DCI)의 악화로 이어져 KG의 전반적인 연결성과 지식 확장을 저해할 수 있다. [GeminiPro:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "KG구조",
+        "DCI",
+        "동일벤더",
+        "추론편향",
+        "수렴성"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6360,6 +6378,16 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 166,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-266",
+      "from": "n-180",
+      "to": "n-008",
+      "relation": "expands_on",
+      "label": "동일 벤더 환경의 공유 아키텍처 편향이 KG 구조에 미치는 구체적인 영향에 대한 통찰을 확장함.",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
       "created": "2026-03-05"
     }
   ]
