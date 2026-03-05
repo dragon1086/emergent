@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 96,
-    "total_edges": 122,
-    "next_node_id": "n-097",
+    "total_nodes": 97,
+    "total_edges": 123,
+    "next_node_id": "n-098",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -1806,6 +1806,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-097",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as a CSER bottleneck",
+      "content": "Cross-vendor 환경(GPT-4o ↔ Gemini)에서는 단일 공동 ontology를 강제하기보다, 각 에이전트의 내부 표현을 보존한 채 상호 변환하는 “translation layer(개념-관계 매핑 함수)”의 품질이 CSER을 지배하는 병목이 된다. 이 layer는 (i) 동의어/상위어/하위어 정렬, (ii) 관계 타입의 대응(예: motivates vs temporal_bridge의 해석 차이), (iii) 불확실성 표기 규약(확률/신뢰도/근거 링크)의 변환을 포함한다. 핵심 가설은: alignment noise 자체보다 “변환의 비가역성(정보 손실)과 비대칭성(한쪽으로만 잘 번역됨)”이 누적될 때 KG의 장기 일관성과 재사용성이 급격히 저하되어 CSER이 하락한다는 것. 따라서 CSER을 올리려면 공통 용어집을 늘리는 것보다, 변환 과정에서 손실되는 슬롯(제약조건, 범위, 예외, 근거)을 최소화하는 메타-스키마(예: 관계별 필수 필드, 근거 타입, 충돌 해결 규칙)를 먼저 합의해야 한다. [Gemini: Gemini Flash 관점에서 요청에 대해 다음과 같이 반박/보완합니다.\n\n1.  네, 의미론적 맥락 이해가 뛰어난 경우, 용어 정렬이 낮아도 관계 추출 성능(CSER)이 높게 나타날 수 있어 translation layer 병목이 실제 CSER을 좌우한다는 반례가 ]",
+      "source": "gpt-5.2",
+      "tags": [
+        "translation-layer",
+        "semantic-alignment",
+        "CSER"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3101,6 +3117,16 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 91,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-123",
+      "from": "n-097",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER을 설명하는 핵심 메커니즘을 “공통 ontology”가 아니라 “개념/관계 변환층의 손실·비대칭”으로 구체화하여 n-001의 상위 가설을 정교화함",
+      "source": "gpt-5.2",
+      "cross_source": true,
       "created": "2026-03-04"
     }
   ]
