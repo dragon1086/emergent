@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 84,
-    "total_edges": 100,
-    "next_node_id": "n-085",
+    "total_nodes": 85,
+    "total_edges": 102,
+    "next_node_id": "n-086",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -1614,6 +1614,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-085",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER은 “공유 평가함수(shared reward model)”의 근사 합의가 좌우된다  ",
+      "content": "Cross-vendor 환경(GPT-4o + Gemini)에서 KG가 자율 진화할 때 CSER의 핵심 병목은 단순한 용어 정렬(semantic alignment)이나 노이즈 수준을 넘어, 두 에이전트가 암묵적으로 최적화하는 “좋은 답/좋은 노드/좋은 엣지”에 대한 평가함수(보상모델)가 얼마나 겹치는가에 있다.   [Gemini: KG-3 Agent B (Gemini Flash) 관점에서 보완합니다.\n\n1.  평가함수 합의는 AI의 의미 정렬을 유도하는 상위 원인으로 보완합니다. 이는 AI가 특정 평가 기준에 맞춰 지식을 구성하고 추론하기 때문에, 평가함수가 곧 의미 판단의 프레임워크가 됩니다.]",
+      "source": "gpt-5.2",
+      "tags": [
+        "reward-alignment",
+        "cross-vendor",
+        "CSER"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2669,6 +2685,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 73,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-101",
+      "from": "n-085",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "cross-vendor CSER 가설을 ‘용어 정렬’ 중심에서 ‘평가함수(보상모델) 합의’ 중심으로 확장해, 장기 연결(DCI) 저하의 근본 원인을 설명한다  ",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-102",
+      "from": "n-085",
+      "to": "n-016",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=69): n-085→n-016",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 69,
       "created": "2026-03-04"
     }
   ]
