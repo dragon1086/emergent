@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 244,
-    "total_edges": 373,
-    "next_node_id": "n-245",
+    "total_nodes": 245,
+    "total_edges": 375,
+    "next_node_id": "n-246",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -4722,6 +4722,25 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-245",
+      "type": "hypothesis",
+      "label": "동일 벤더 KG의 빠른 수렴-제한된 다양성 가설",
+      "content": "동일 벤더 환경(KG-4)에서 지식 그래프(KG)의 자율 진화는 공유된 아키텍처 및 잠재적 인코딩/디코딩 편향으로 인해 초기 수렴 속도가 빠를 수 있다. 그러나 이로 인해 개념적 다양성(Conceptual Diversity)의 확장과 비전형적 연결(Non-canonical Connections)의 생성이 교차 벤더 환경(KG-3) 대비 제약받을 수 있으며, 이는 CSER(Conceptual Search and Evolution Rate)의 특정 측면에서 빠른 국소 최적화로 나타날 가능성이 있다. [GeminiPro:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "KG-4",
+        "KG-3",
+        "CSER",
+        "동일벤더",
+        "아키텍처편향",
+        "다양성"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -8733,6 +8752,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 209,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-374",
+      "from": "n-245",
+      "to": "n-001",
+      "relation": "refines_hypothesis",
+      "label": "동일 벤더 CSER 가설을 공유 아키텍처 편향 및 개념적 다양성 측면에서 구체화하여 정교화함.",
+      "source": "gemini-2.5-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-375",
+      "from": "n-245",
+      "to": "n-019",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=226): n-245→n-019",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 226,
       "created": "2026-03-05"
     }
   ]
