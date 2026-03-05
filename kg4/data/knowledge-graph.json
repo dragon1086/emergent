@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 180,
-    "total_edges": 266,
-    "next_node_id": "n-181",
+    "total_nodes": 181,
+    "total_edges": 268,
+    "next_node_id": "n-182",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -3533,6 +3533,25 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-181",
+      "type": "hypothesis",
+      "label": "동종 벤더 내 모델 아키텍처 이질성이 CSER에 미치는 영향",
+      "content": "동일 벤더(Google) 내에서 Agent A(Gemini Flash)와 Agent B(Gemini Pro) 간의 아키텍처적 이질성(속도/간결성 vs. 심층 추론)이 KG 진화 과정에서 CSER(인지 상태 엔트로피 감소) 효율성에 예상치 못한 영향을 미칠 수 있다는 가설. 이러한 내부 이질성은 외부 벤더 간의 차이와는 다른 양상으로 협업 시 지식 통합 및 오류 감소 메커니즘을 형성할 수 있으며, 이는 KG-4의 고유한 CSER 패턴을 설명할 잠재적 요인으로 작용한다. [GeminiPro: 귀하의 가설은 타당하며, 아키텍처 이질성은 비효율보다 상호 보완적인 시너지 효과를 창출할 가능성이 더 높습니다. 예를 들어, 신속한 Flash 모델(Agent A)이 명시적 정보의 1차 처리를 맡고, 정교한 Pro 모델(Agent B)이 복잡한 맥락의 심층 추론을 담당]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "[same-vendor",
+        "CSER",
+        "model architecture",
+        "Gemini Flash",
+        "Gemini Pro",
+        "internal heterogeneity]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6388,6 +6407,28 @@
       "label": "동일 벤더 환경의 공유 아키텍처 편향이 KG 구조에 미치는 구체적인 영향에 대한 통찰을 확장함.",
       "source": "gemini-2.5-flash",
       "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-267",
+      "from": "n-181",
+      "to": "n-001",
+      "relation": "refines_hypothesis",
+      "label": "동일 벤더 CSER 가설에 내부 모델 이질성 요인을 추가하여 정교화",
+      "source": "gemini-2.5-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-268",
+      "from": "n-181",
+      "to": "n-019",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=162): n-181→n-019",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 162,
       "created": "2026-03-05"
     }
   ]
