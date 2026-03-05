@@ -3107,3 +3107,34 @@
   max_span=137 → n-001↔n-100 closes_loop 엣지가 최대 기여
   node_age_diversity=0.2897 → 균등 분포 이론치(0.289) 근접
 
+[21:20:19] KG4 ✅ KG-4 사이클 완료
+[21:20:50] KG4 🌱 KG-4 사이클 시작 #80/100
+[21:20:50] KG4 📊 KG-4 현황: ── 통계 ──────────────────────────────────────
+총 노드: 139개
+총 엣지: 194개
+
+노드 타입별:
+  •  hypothesis: 111개
+  💡 insight: 27개
+  👁  observation: 1개
+
+출처별:
+  gemini-2.5-flash: 137개
+  openclaw: 2개
+
+관계 종류:
+  expands_on: 28개
+  motivates: 9개
+  posits_explanation_for: 84개
+  refines_hypothesis: 7개
+  temporal_bridge: 66개
+[21:20:50] KG4 🕰️ 오래된 노드 후보: 8개
+[21:20:50] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[21:21:01] KG4 ✅ Agent A 완료 (831 chars)
+[21:21:23] KG4 ✅ Agent B (Gemini Pro) 완료
+[21:21:24] KG4 ✅ 노드+엣지 추가: 동일 벤더 환경 내 Agent들의 내재적 지식 유사성 가설 (id: n-140 → n-001)
+── 해석 ────────────────────────────────────
+  edge_span=73.8노드 평균 간격 → 시간 초월 연결 활발
+  max_span=139 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2897 → 균등 분포 이론치(0.289) 근접
+
