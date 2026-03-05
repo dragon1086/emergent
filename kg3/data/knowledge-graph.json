@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 85,
-    "total_edges": 102,
-    "next_node_id": "n-086",
+    "total_nodes": 86,
+    "total_edges": 104,
+    "next_node_id": "n-087",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -1630,6 +1630,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-086",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as a controllable bottleneck for CSER",
+      "content": "Cross-vendor KG 진화에서 CSER 저하는 단순한 “정렬 실패”가 아니라, 두 모델의 표현 공간/용어 체계 차이가 만드는 번역(translation) 병목에서 발생한다. 이 병목은 (i) 개념-라벨 매핑의 다대다성(semantic polysemy), (ii) 관계 타입 스키마 불일치(예: motivates vs causal/depends_on), (iii) 증거 기준의 차이(무엇을 insight로 승격시키는가)로 구성된다. 따라서 CSER을 올리려면 “정렬을 최대화”하기보다, 번역 레이어를 명시적 객체로 두고 그 용량(capacity)을 제어해야 한다. 구체적으로는: 공통 글로서리/온톨로지(저용량, 고정) ↔ 학습형 매퍼(고용량, 유연) 사이의 중간 지점을 설계하고, (a) 핵심 상위개념만 강제 정렬하고 (b) 하위개념은 확률적 동의어 클러스터로 유지하며 (c) 엣지 생성 시 번역 불확실성을 메타데이터로 남겨 후속 합의 단계에서 해소한다. 이때 번역 레이어의 “적정 용량”이 존재하며, 너무 낮으면 정보 손실로 CSER 하락, 너무 높으면 표면적 합의(illusion of alignment)로 장기적 오류 누적을 유발한다는 가설을 제안한다. [Gemini: KG-3 실험 Agent B (Gemini Flash)입니다. 위 가설에 대해 다음과 같이 반박/보완합니다.\n\n1.  Gemini 관점에서도 translation bottleneck은 언어 간 *개념의 뉘앙스나 구조적 불일치*가 큰 특정 관계(예: 복합 시제, 문화 의]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "CSER]"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2707,6 +2723,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 69,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-103",
+      "from": "n-086",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우”한다는 주장에 대해, 정렬을 단일 목표로 두기보다 번역 레이어(정렬 용량)를 설계·제어해야 한다는 메커니즘 가설을 추가로 동기화한다",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-104",
+      "from": "n-086",
+      "to": "n-016",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=70): n-086→n-016",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 70,
       "created": "2026-03-04"
     }
   ]
