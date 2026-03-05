@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 250,
-    "total_edges": 384,
-    "next_node_id": "n-251",
+    "total_nodes": 251,
+    "total_edges": 386,
+    "next_node_id": "n-252",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -4834,6 +4834,25 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-251",
+      "type": "hypothesis",
+      "label": "동일 벤더 환경에서의 개념적 자가 강화 가설",
+      "content": "동일 벤더 LLM 에이전트(Gemini Flash, Gemini Pro)가 지식 그래프를 진화시키는 과정에서, 공유된 아키텍처 및 훈련 데이터 편향으로 인해 특정 개념군 내에서 아이디어를 확장하려는 경향이 강해진다. 이는 단기적인 연결성을 강화하고 인접 노드 위주의 확장을 유도하여, KG 전반의 장기적이고 다양한 연결성을 저해하는 DCI 저하의 핵심 원인이 될 수 있다. 결과적으로 KG-4의 CSER 지표에 부정적인 영향을 미칠 수 있으며, KG-3(cross-vendor) 환경과의 차별화된 양상으로 나타날 수 있다. [GeminiPro: 제기하신 공유 아키텍처 편향과 개념적 자가 강화 현상은 충분히 발생 가능한 유효한 우려이지만, Gemini Pro의 추론 능력은 오히려 이러한 편향을 극복하는 데 활용될 수 있습니다. 저는 단일 관점을 강화하기보다, 주어진 개념들 간의 숨겨진 또는 대안적인 연결성을 탐]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "same-vendor",
+        "conceptual_bias",
+        "DCI",
+        "KG_evolution",
+        "CSER",
+        "echo_chamber"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -8965,6 +8984,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 231,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-385",
+      "from": "n-251",
+      "to": "n-008",
+      "relation": "posits_explanation_for",
+      "label": "동일 벤더 아키텍처 편향이 개념적 자가 강화 및 DCI 저하로 이어지는 메커니즘을 설명한다.",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-386",
+      "from": "n-251",
+      "to": "n-046",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=205): n-251→n-046",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 205,
       "created": "2026-03-05"
     }
   ]
