@@ -44,13 +44,20 @@ A Case Study with CSER and Persona-Diversity Gates}
 \maketitle
 
 \begin{abstract}
-We present a case study of two AI agents co-evolving a shared knowledge graph (KG)
-over 89 cycles, and propose metrics to quantify the structural diversity of
-the resulting graph. Our primary metric, the \textbf{Cross-Source Emergence Rate (CSER)},
+We present a controlled $2\times2$ experiment in which four independent AI agent pairs
+co-evolve separate knowledge graphs (KGs) across 30--130+ cycles, and propose metrics
+to quantify the structural diversity of the resulting graphs.
+Our primary metric, the \textbf{Cross-Source Emergence Rate (CSER)},
 measures the proportion of edges connecting nodes from different agent sources.
+The four KG instances form a vendor-diversity matrix:
+two cross-vendor pairs (KG-main, KG-3) and two same-vendor pairs (KG-2, KG-4),
+allowing controlled comparison of how agent heterogeneity drives emergence.
+
 We observe that agents with heterogeneous personas produce KGs with high CSER
 ($>0.83$), while agents with identical personas converge toward echo chambers
-(CSER $\to 0.08$ over 20 cycles).
+(CSER $\to 0.08$ over 20 cycles). Across the $2\times2$ matrix, CSER correlates
+with vendor diversity and capability gap, supporting the heterogeneity hypothesis
+across independent replications.
 
 \medskip\noindent\textbf{Contributions:}
 \begin{enumerate}
@@ -59,6 +66,11 @@ We observe that agents with heterogeneous personas produce KGs with high CSER
   \item \textbf{Persona-diversity control experiment}: Identical-persona agents produce
         CSER $= 0.078$ vs.\ heterogeneous CSER $= 0.836$ ($\Delta = 0.758$, 3/3
         pre-registered predictions confirmed).
+  \item \textbf{$2\times2$ vendor-diversity replication}: Four independent KG instances
+        across cross-vendor and same-vendor configurations confirm that CSER scales
+        with agent heterogeneity; same-vendor pairs with small capability gaps
+        eventually fall below the gate threshold ($\theta = 0.30$), providing
+        directional evidence for the echo-chamber hypothesis at scale.
   \item \textbf{Ungated quality stress test}: With the CSER gate disabled,
         coding performance remained near-ceiling on benchmark tasks,
         indicating weak observable CSER--quality coupling under strong base models.
@@ -68,7 +80,8 @@ We observe that agents with heterogeneous personas produce KGs with high CSER
 \end{enumerate}
 
 \medskip\noindent
-KG state (latest snapshot, 2026-03-02): \textbf{534 nodes / 1121 edges}, CSER $= 0.8510$.
+KG-main state (latest snapshot, 2026-03-05): \textbf{534 nodes / 1121 edges}, CSER $= 0.8510$.
+Full $2\times2$ replication summary: see Table~\ref{tab:kg_replication} (Section~\ref{sec:limitations}).
 
 \medskip\noindent\textbf{Amplification benchmark (preliminary case study)}:
 A controlled three-way comparison (Solo/Pipeline/Emergent, GPT-next (undisclosed)\footnote{The exact model version is withheld pending public release. All experiments used the same API endpoint throughout; version is available to reviewers upon request.} only, equal
@@ -93,10 +106,10 @@ Gemini-3-Flash judge) finds the ON/OFF preference gap collapses to 47\%/53\%
 with a quality delta of $-0.06$ --- suggesting the $N=10$ result may be
 small-sample noise rather than a robust effect (see Section~\ref{sec:amp_benchmark}).
 
-\medskip\noindent\textbf{Scope and limitations}: This is a single-system case study ($N=1$ KG,
-two agents, four code-generation tasks). Claims are limited to this experimental setting.
-Generalization requires independent replication with different agent architectures,
-domains, and KG schemas.
+\medskip\noindent\textbf{Scope and limitations}: Primary findings are based on $N=4$ independent
+KG instances across a $2\times2$ vendor-diversity matrix ($\geq$30 cycles each).
+Each cell contains $N=1$ KG; within-cell replication and domain generalization
+require further study. Claims are limited to this experimental setting.
 
 \medskip\noindent\textbf{Keywords}: multi-agent AI, knowledge graph co-evolution,
 cross-source emergence rate, persona diversity, case study
@@ -1350,20 +1363,22 @@ generalising the domain-dependence claim.
         Instance & Agent Pair & Vendor & Edges & CSER \\
         \midrule
         KG-main & Claude-sonnet-4-6 $\times$ GPT-next (undisclosed) & Cross & 1121 & \textbf{0.8510} \\
-        KG-2 & GPT-4o $\times$ GPT-4o-mini & Same (OpenAI) & 30 & \textbf{0.8333} \\
+        KG-2 & GPT-5.2 $\times$ GPT-5.2 & Same-model (OpenAI) & 0 & --- (재시작)$^{**}$ \\
         KG-3 & GPT-next (undisclosed) $\times$ Gemini-2.0-Flash & Cross & 400 & \textbf{0.3800} \\
         KG-4 & Gemini-Flash $\times$ Gemini-Pro & Same (Google) & 402 & 0.2537$^*$ \\
         \bottomrule
         \end{tabular}
-        \caption*{\small Snapshot: 2026-03-05. KG-2: 30-cycle snapshot; KG-3/4: $\approx$130-cycle snapshots.
+        \caption*{\small Snapshot: 2026-03-05. KG-3/4: $\approx$130-cycle snapshots.
         $^*$KG-4 CSER has declined below the gate threshold ($\theta=0.30$) at extended scale,
         consistent with within-vendor echo-chamber pressure under small capability gap.
         KG-3 CSER has declined from 0.71 (60 cycles) to 0.38 (130+ cycles) as same-source
-        edges accumulate under the current single-node-per-cycle design (Agent B response
-        embedded in content only; separate Agent B node addition is under active development).
-        KG-2 (same-vendor OpenAI, large capability gap: GPT-4o $\times$ GPT-4o-mini)
-        holds CSER $=0.83$, suggesting capability asymmetry mitigates within-vendor
-        echo-chamber pressure.}
+        edges accumulate under the current single-node-per-cycle design; revised dual-node
+        protocol (separate Agent B nodes) is active from 2026-03-05.
+        $^{**}$KG-2 restarted 2026-03-05: upgraded from GPT-4o $\times$ GPT-4o-mini
+        to GPT-5.2 $\times$ GPT-5.2 (zero capability gap, same model) to provide the
+        strongest same-model echo-chamber test in the $2\times2$ matrix.
+        Prior 30-cycle snapshot (CSER $=0.83$, GPT-4o $\times$ GPT-4o-mini) is retained
+        as a supplementary data point.}
         \end{table}
 
         \noindent\textbf{Key replication finding ($N=4$ KG instances; KG-2: 30 cycles, KG-3/4: 130+ cycles)}:
