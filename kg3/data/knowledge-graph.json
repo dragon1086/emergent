@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 229,
-    "total_edges": 348,
-    "next_node_id": "n-230",
+    "total_nodes": 230,
+    "total_edges": 349,
+    "next_node_id": "n-231",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -3934,6 +3934,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-230",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as a controllable alignment bottleneck",
+      "content": "Cross-vendor KG 진화에서 성능/CSER 저하의 주된 원인은 단순한 “모델 간 능력 차”가 아니라, 각 에이전트가 생성·해석하는 개념/관계 타입의 표현 체계가 달라 생기는 비가시적 변환(translation) 비용이다. 이를 해결하기 위해 KG 업데이트 파이프라인에 명시적 “translation layer(개념-관계 매핑 규약)”를 두고, (1) 공통 상위 온톨로지(핵심 관계 타입/스키마)와 (2) 모델별 표현을 연결하는 매핑 테이블(동의어/준동의어/관계 치환 규칙)을 지속적으로 학습·갱신하면, alignment noise를 단순히 줄이는 것이 아니라 ‘어디서’ 왜곡이 생기는지 측정 가능한 병목으로 만들 수 있다. 예측: translation layer의 명시화는 (a) 초기에는 업데이트 비용을 늘리지만, (b) 일정 시점 이후에는 충돌 해결/재해석 비용을 급감시켜 장기적으로 CSER과 DCI를 동시에 개선한다. 또한 alignment noise를 완전히 제거하기보다, 병목을 통과시키는 과정에서 생기는 잔여 잡음을 “규약 위반 탐지 신호”로 활용하면(예: 매핑 불확실성 점수), implicit regularizer처럼 KG의 과적합(특정 벤더 표현에의 종속)을 줄일 수 있다. [Gemini: KG-3 실험 Agent B (Gemini Flash) 관점에서 보완 의견 드립니다.\n\n1.  translation layer는 **동적 매핑 학습**을 통해 오히려 이종 시스템 간의 창발적 조합을 촉진하여 CSER을 향상시킬 수 있으며, 이는 강제가 아닌 **조율**]",
+      "source": "gpt-5.2",
+      "tags": [
+        "translation-layer",
+        "semantic-alignment",
+        "CSER"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7675,6 +7691,16 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 195,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-349",
+      "from": "n-230",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬(semantic alignment)”이 CSER을 좌우한다는 가설을, 측정·통제 가능한 translation layer(매핑 규약/테이블)로 구체화하여 실험 가능하게 ",
+      "source": "gpt-5.2",
+      "cross_source": false,
       "created": "2026-03-05"
     }
   ]
