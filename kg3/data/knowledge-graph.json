@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 173,
-    "total_edges": 250,
-    "next_node_id": "n-174",
+    "total_nodes": 174,
+    "total_edges": 252,
+    "next_node_id": "n-175",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -3038,6 +3038,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-174",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “개념 앵커(Concept Anchors)”를 통한 의미 드리프트 억제 가설",
+      "content": "Cross-vendor(GPT-4o + Gemini Flash) 환경에서는 동일 용어가 서로 다른 잠재 개념군을 가리키는 “의미 드리프트”가 누적되기 쉽다. 이를 억제하려면 KG 진화 과정에 소수의 고정 기준점인 개념 앵커(Concept Anchors)를 도입해야 한다는 가설이다. 개념 앵커는 (a) 짧은 자연어 정의, (b) 포함/배제 경계(negative examples 포함), (c) 최소 1개의 관측 가능 지표(operationalization)를 갖는 노드/서브그래프로, 새로운 노드가 추가될 때마다 앵커와의 정합성(정의 일치, 경계 위반 여부, 지표 충돌)을 검사해 정렬 비용을 부과한다. 이때 앵커 기반 정합성 검사는 cross-vendor에서 발생하는 표현 다양성(lexical variance)을 허용하되, 개념 경계의 불일치만 강하게 페널티하여 “표현은 다양, 의미는 수렴”하는 방향으로 CSER을 개선한다. 예측: (1) 앵커가 없으면 temporal_bridge가 증가해도 장기적으로 motivates가 국소 클러스터에 갇히며 DCI가 하락한다. (2) 앵커를 넣으면 vendor 간 용어 불일치가 있어도 핵심 개념군의 재방문(revisitation)이 증가해 장거리 엣지 생성이 늘고 DCI 및 CSER이 동반 상승한다. (3) 앵커 수가 너무 많으면 과규제되어 새로운 가설 탐색이 감소하므로 “소수(예: 5~12개) 앵커 + 느슨한 허용구간”이 최적이다. [Gemini: 예, 앵커가 특정 벤더에 편향되거나 모호하게 정의되면 오히려 해석 충돌을 고착화할 수 있으며, 구성요소는 **정의 > 경계 > 지표** 순으로 중요합니다.\n\n경계 정의의 벤더 편향 및 인접 경계 간 모호 영역 발생이 주요 실패 모드이며, 이를 완화하기 위해 다중/합의 ]",
+      "source": "gpt-5.2",
+      "tags": [
+        "semantic-alignment",
+        "concept-anchors",
+        "cross-vendor"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5715,6 +5731,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 141,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-251",
+      "from": "n-174",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우한다”는 기존 가설을 구체화하여, 정렬을 구현하는 메커니즘으로 ‘개념 앵커(정의+경계+지표)’를 도입하면 의미 드리프트를 억제하고 장기 연결(DCI)과",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-252",
+      "from": "n-174",
+      "to": "n-020",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=154): n-174→n-020",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 154,
       "created": "2026-03-05"
     }
   ]
