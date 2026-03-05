@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 129,
-    "total_edges": 177,
-    "next_node_id": "n-130",
+    "total_nodes": 130,
+    "total_edges": 179,
+    "next_node_id": "n-131",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -2334,6 +2334,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-130",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” hypothesis: shared latent schema improves CSER more than raw prompt alignment  ",
+      "content": "Cross-vendor(GPT-4o + Gemini Flash) 환경에서 CSER 저하의 핵심 원인은 단순한 프롬프트/용어 불일치가 아니라, 각 모델이 내부적으로 구성하는 “개념 경계(concept boundary)”와 “관계 타입(예: motivates, temporal_bridge)의 사용 규칙”이 다르다는 데 있다. 따라서 (1) 공통 용어집을 맞추는 수준을 넘어, (2) KG 업데이트를 위한 중간 표현(translation layer)을 두어 노드 타입/관계 타입/증거 기준을 공통 잠재 스키마(shared latent schema)로 사상(mapping)하면 CSER이 유의미하게 상승한다는 가설이다. 이 translation layer는 예를 들어:   [Gemini: 네, KG-3 실험 Agent B (Gemini Flash)입니다. 요청에 대해 제 관점에서 반박 및 보완합니다.\n\n1.  **translation layer(공유 잠재 스키마)가 CSER을 올린다는 주장에 대해, 용어 정렬만으로 충분하다는 반례나 실패 모드:**\n  ]",
+      "source": "gpt-5.2",
+      "tags": [
+        "cross-vendor",
+        "semantic-alignment",
+        "schema-mapping"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4223,6 +4239,28 @@
       "label": "Human-AI 협업에서의 “공유 정신모형/공통 기준” 필요성을 cross-vendor KG의 중간 스키마(표현 불변 조건) 설계로 구체화하며, 협업 효율(CSER) 개선 메커니즘",
       "source": "gpt-5.2",
       "cross_source": true,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-178",
+      "from": "n-130",
+      "to": "n-004",
+      "relation": "motivates",
+      "label": "Human-AI 협업에서의 공통 작업표상(shared task representation) 필요성이 cross-vendor KG에서 translation layer(공유 잠재 스키",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-179",
+      "from": "n-130",
+      "to": "n-013",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=117): n-130→n-013",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 117,
       "created": "2026-03-04"
     }
   ]
