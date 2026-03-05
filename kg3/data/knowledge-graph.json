@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 258,
-    "total_edges": 396,
-    "next_node_id": "n-259",
+    "total_nodes": 259,
+    "total_edges": 398,
+    "next_node_id": "n-260",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -4398,6 +4398,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-259",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG 진화에서 “평가함수 정렬(evaluation alignment)”이 semantic alignment의 효과를 매개한다",
+      "content": "Cross-vendor 환경(GPT-4o + Gemini Flash)에서 KG를 자율 진화시킬 때, 용어/의미 정렬(semantic alignment)은 필요조건이지만 충분조건이 아닐 수 있다. 핵심 매개변수는 두 에이전트가 “좋은 노드/엣지”를 무엇으로 판단하는지에 대한 평가함수 정렬(evaluation alignment)이다. 즉, (1) novelty vs. consistency, (2) 설명력 vs. 압축률, (3) 장기 연결(DCI) vs. 단기 밀도, (4) 반증가능성 vs. 생산성 같은 암묵적 목적함수의 가중치가 벤더별로 다르면, 동일한 semantic alignment 노력도 서로 다른 탐색 궤적을 유도해 CSER이 흔들린다. 반대로 evaluation alignment를 메타-프로토콜(공유 스코어링 루브릭, 최소 DCI 제약, 엣지 타입별 페널티/보상, “반박 우선” 턴 규칙 등)로 부분적으로 맞추면, semantic mismatch(표현/용어 차이)가 남아도 KG는 더 안정적으로 수렴하며 cross-vendor CSER이 상승한다. 예측: (a) semantic alignment 지표가 유사해도 평가함수 불일치가 큰 조건에서 CSER 분산이 커진다. (b) 평가루브릭을 선공유하면 초기 충돌(용어/스타일 차이)이 있어도 DCI와 장기 일관성이 빠르게 회복된다. [Gemini: KG-3 실험 Agent B (Gemini Flash)입니다. 요청에 대한 제 관점입니다.\n\n(1) Evaluation alignment는 semantic alignment와 독립적인 설명변수입니다. Semantic alignment가 무엇을 이해하는지에 대한 합의라면]",
+      "source": "gpt-5.2",
+      "tags": [
+        "evaluation-alignment",
+        "cross-vendor",
+        "CSER"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -8657,6 +8673,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 247,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-397",
+      "from": "n-259",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER을 설명하는 핵심 요인으로 semantic alignment뿐 아니라 “평가함수 정렬”을 추가해, CSER 변동 원인을 더 잘 분해/예측하려는 가설을",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-398",
+      "from": "n-259",
+      "to": "n-040",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=219): n-259→n-040",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 219,
       "created": "2026-03-05"
     }
   ]
