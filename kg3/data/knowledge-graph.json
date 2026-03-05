@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 133,
-    "total_edges": 182,
-    "next_node_id": "n-134",
+    "total_nodes": 134,
+    "total_edges": 183,
+    "next_node_id": "n-135",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -2398,6 +2398,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-134",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “정의-고정(operationalization) 레이어”가 정렬 노이즈를 흡수해 CSER을 안정화한다  ",
+      "content": "Cross-vendor 환경에서는 동일 용어라도 모델별 내재 의미공간이 달라 “의미 정렬(semantic alignment)”만으로는 합의가 불안정하다. 이를 완화하려면 KG에 개념(Concept)과 별도로 **정의-고정 레이어(Operationalization Layer)**를 두어 각 핵심 노드에 대해 (i) 관측가능한 판정 규칙(예: 포함/배제 기준, 테스트 질문), (ii) 최소 예시/반례(positive/negative exemplars), (iii) 측정 단위/스케일(정성→정량 매핑)을 함께 저장해야 한다. 이 레이어는 모델 간 표현 차이에서 발생하는 alignment noise를 “명시적 판정 규칙”으로 투사하여, 토큰/임베딩 수준 불일치를 **규칙-기반 합의**로 전환한다. 결과적으로 (a) 동일 주장에 대한 상호검증 가능성이 올라가고, (b) 중복/모순 노드의 병합·분기가 일관되며, (c) CSER(협업 자기진화율)의 분산이 감소하고 평균이 상승한다. 예측: operationalization을 가진 노드는 temporal_bridge를 통해 장기적으로 더 많이 재사용되며, motivates 엣지의 “근거-연결” 품질(추적 가능성)이 증가한다.   [Gemini: (1) 정의-고정 레이어의 규칙이 지나치게 추상적이거나 특정 모델의 내부 논리 또는 학습 데이터와 상충될 경우, 오히려 모델별 해석의 미묘한 차이를 간과하거나 새로운 비일관성을 유발하여 노이즈를 증폭시킬 수 있습니다. (2) 효율적인 최소 스키마는 대상_ID (정의 대]",
+      "source": "gpt-5.2",
+      "tags": [
+        "operationalization",
+        "semantic-alignment",
+        "cross-vendor"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4337,6 +4353,16 @@
       "to": "n-007",
       "relation": "motivates",
       "label": "“용어 정렬이 CSER을 좌우”한다는 정적 주장(n-007)을, 시간에 따른 정렬 궤적(수렴 속도·잔차·생산적 불일치)이라는 동적 예측모형으로 확장/정교화한다  ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-183",
+      "from": "n-134",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우”한다는 가설을, 개념-정의 분리(operationalization layer)로 구현·검증 가능한 메커니즘으로 구체화한다  ",
       "source": "gpt-5.2",
       "cross_source": false,
       "created": "2026-03-04"
