@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 48,
-    "total_edges": 43,
-    "next_node_id": "n-049",
+    "total_nodes": 49,
+    "total_edges": 44,
+    "next_node_id": "n-050",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -1098,6 +1098,24 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-049",
+      "type": "insight",
+      "label": "동일 벤더 환경의 암묵적 연결 편향",
+      "content": "동일 벤더 AI(예: Gemini Flash, Gemini Pro)가 KG를 자율 진화시킬 때, 비록 모델 규모와 특성은 다르지만 공유된 내부 아키텍처 및 학습 데이터 편향으로 인해 새로운 노드 생성이 기존 또는 최근 생성된 노드와 더 쉽게 의미론적으로 연결되는 경향이 있다. 이는 장기적인 개념적 연결(long-range connections)의 탐색을 저해하고, 결과적으로 DCI 상승에 기여하며 CSER에 부정적인 영향을 미칠 수 있다. [GeminiPro:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "DCI",
+        "연결_편향",
+        "동일_벤더",
+        "KG_진화",
+        "아키텍처_영향"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1541,6 +1559,16 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 42,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-044",
+      "from": "n-049",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "이 통찰은 동일 벤더 환경에서 CSER이 어떤 방식으로 형성될 수 있는지에 대한 잠재적 메커니즘을 제공한다.",
+      "source": "gemini-2.5-flash",
+      "cross_source": true,
       "created": "2026-03-04"
     }
   ]
