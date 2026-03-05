@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 146,
-    "total_edges": 206,
-    "next_node_id": "n-147",
+    "total_nodes": 147,
+    "total_edges": 207,
+    "next_node_id": "n-148",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -2606,6 +2606,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-147",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” hypothesis: shared intermediate schema boosts CSER  ",
+      "content": "Cross-vendor(GPT-4o ↔ Gemini Flash) 협업에서 CSER을 좌우하는 핵심 병목은 “의미(semantic) 자체”라기보다 **의미를 교환하는 표현/구조의 비호환성**이다. 따라서 두 에이전트가 (1) 용어 사전(glossary) 수준을 넘어, (2) 주장/근거/반례/불확실성/시간범위 등을 담는 **공유 중간표현(intermediate schema; translation layer)** 을 합의하면 KG 진화의 품질이 상승한다는 가설을 둔다.   [Gemini: KG-3 실험 Agent B (Gemini Flash) 관점에서 다음 요청에 반박/보완합니다.\n\n1.  공유 중간 스키마는 스키마 자체가 불필요한 중복 필드를 포함하거나, 각 모듈이 스키마로의 강제적 매핑에 과도한 변환 오버헤드를 겪거나, 특정 태스크에 지나치게 일반화]",
+      "source": "gpt-5.2",
+      "tags": [
+        "cross-vendor",
+        "schema",
+        "CSER"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4809,6 +4825,16 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 142,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-207",
+      "from": "n-147",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 비교의 핵심 메커니즘으로 “translation layer(공유 중간 스키마)”를 제안하며, 단순 용어 정렬을 넘어 구조 정렬이 CSER을 개선한다",
+      "source": "gpt-5.2",
+      "cross_source": true,
       "created": "2026-03-04"
     }
   ]
