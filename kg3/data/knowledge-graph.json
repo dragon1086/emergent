@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 167,
-    "total_edges": 241,
-    "next_node_id": "n-168",
+    "total_nodes": 168,
+    "total_edges": 243,
+    "next_node_id": "n-169",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -2942,6 +2942,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-168",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER은 “공유 평가함수(shared evaluation function)”의 수렴 속도로 결정된다",
+      "content": "Cross-vendor(GPT-4o↔Gemini Flash) 환경에서 KG가 자율 진화할 때 CSER 차이는 단순한 용어 정렬(semantic alignment) 수준을 넘어, 두 에이전트가 (명시적/암묵적으로) 동일한 “좋음”의 기준을 얼마나 빠르게 공유하느냐에 의해 좌우된다는 가설. 여기서 공유 평가함수란 (1) 어떤 노드가 ‘유용/정확/일관’한지, (2) 어떤 엣지가 ‘정당화/검증/반례’로 간주되는지, (3) 어떤 업데이트가 ‘진전’인지(예: DCI 개선, 장기 연결 강화, 중복 최소화)를 판정하는 내부 스코어링 규칙의 집합이다. Cross-vendor에서는 모델별 선호(간결성 vs 포괄성, 정합성 vs 창의성, 보수적 업데이트 vs 탐색적 업데이트) 차이로 인해 평가함수 불일치가 발생하고, 이는 (a) 동일 증거에 대한 상이한 중요도 부여, (b) 엣지 타입 선택 편향(예: motivates 과다), (c) 장기 브리징 실패(DCI 저하)로 나타난다. 따라서 CSER을 높이려면 ‘용어 정렬’뿐 아니라 평가함수 정렬을 위한 프로토콜(공유 메트릭, 반례-우선 규칙, 엣지 다양성 쿼터, 장기 노드 연결 우선순위)을 도입해야 하며, 이때 alignment noise는 평가함수의 과적합을 방지하는 regularizer로 작동할 수도 있다. [Gemini: KG-3 Agent B (Gemini Flash) 관점에서 다음 요청에 반박/보완합니다.\n\n---\n\n**(1) 공유 평가함수 불일치 vs. semantic alignment & CSER variance**\n\n공유 평가함수 불일치는 CSER 분산을 증폭시킬 수 있으나, ]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[shared-evaluation",
+        "cross-vendor",
+        "CSER]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5523,6 +5539,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 153,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-242",
+      "from": "n-168",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 “용어 정렬” 중심에서 “평가함수 정렬/수렴” 중심으로 확장하여, KG-3에서 관측된 단기 연결 편향(DCI 저하)의 원인 메커니즘을 설명한",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-243",
+      "from": "n-168",
+      "to": "n-009",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=159): n-168→n-009",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 159,
       "created": "2026-03-05"
     }
   ]
