@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 240,
-    "total_edges": 367,
-    "next_node_id": "n-241",
+    "total_nodes": 241,
+    "total_edges": 369,
+    "next_node_id": "n-242",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -4648,6 +4648,24 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-241",
+      "type": "hypothesis",
+      "label": "동일 벤더 KG 환경의 자기 강화적 연결 고리 가설",
+      "content": "동일 벤더 환경에서 에이전트(Gemini Flash 및 Gemini Pro) 간의 공유된 기반 아키텍처 원리(예: 토큰화 방식, 모델 구조, 훈련 데이터 편향)는 무의식적으로 자기 강화적인 지식 생성 루프를 초래할 수 있다. 이 루프는 공유된 패러다임 내에서 쉽게 해석되거나 생성될 수 있는 정보, 개념 및 연결을 우선시하여, 직교적 관점이나 기존 프레임워크를 심각하게 확장할 수 있는 새로운 장거리 연결을 간과하거나 과소평가한다. 이러한 내재된 유사성은 특정 유형의 협업을 용이하게 하지만, KG 내의 단기 연결 편향(DCI)을 체계적으로 증가시켜 개념적 프레임워크에 도전하거나 확장할 수 있는 장거리 연결 대신 패러다임 내 링크를 선호하게 만든다. [GeminiPro:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "same-vendor bias",
+        "architectural homogeneity",
+        "DCI",
+        "knowledge evolution",
+        "self-reinforcement"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -8595,6 +8613,28 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 238,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-368",
+      "from": "n-241",
+      "to": "n-008",
+      "relation": "posits_explanation_for",
+      "label": "동일 벤더 KG 진화의 공유 아키텍처 편향이 DCI 증가로 이어지는 메커니즘을 설명한다.",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-369",
+      "from": "n-241",
+      "to": "n-031",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=210): n-241→n-031",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 210,
       "created": "2026-03-05"
     }
   ]
