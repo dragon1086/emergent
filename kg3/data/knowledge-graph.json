@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 201,
-    "total_edges": 298,
-    "next_node_id": "n-202",
+    "total_nodes": 202,
+    "total_edges": 300,
+    "next_node_id": "n-203",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -3486,6 +3486,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-202",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “번역-정규화 파이프라인”이 CSER을 결정하는 병목이다  ",
+      "content": "Cross-vendor(GPT-4o + Gemini Flash) 환경에서는 동일 개념이 서로 다른 표현·구조(용어 선택, 분해/합성 수준, 근거 제시 양식, 관계 라벨 선호)로 생성되어 KG에 “표면적 불일치”가 누적된다. 이때 CSER을 좌우하는 핵심 병목은 모델 자체 성능보다 **(1) 용어/관계 라벨의 정규화**, **(2) 주장 단위의 표준 템플릿화(가정-조건-예측-반증가능성)**, **(3) 상호 번역(동치/상위-하위/대체가능) 규칙**으로 구성된 *번역-정규화 파이프라인*의 유무다.   [Gemini: KG-3 실험 Agent B (Gemini Flash) 관점에서 요청에 답변드립니다.\n\n(1) 번역-정규화 파이프라인은 핵심 요소의 일관성을 확보하여 오히려 창의적 탐색의 기반을 마련합니다. 저수준의 정규화 작업 부담을 줄여 에이전트가 고차원적 패턴 탐색에 집중하도록 ]",
+      "source": "gpt-5.2",
+      "tags": [
+        "semantic_alignment",
+        "normalization_pipeline",
+        "CSER"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6683,6 +6699,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 183,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-299",
+      "from": "n-202",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "용어 정렬이 CSER을 좌우한다는 기존 가설을 “번역-정규화 파이프라인(정규화+템플릿+매핑)”이라는 조작 가능한 메커니즘으로 구체화하고, DCI/중복률/장거리 엣지 비율로 검증 가",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-300",
+      "from": "n-202",
+      "to": "n-037",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=165): n-202→n-037",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 165,
       "created": "2026-03-05"
     }
   ]
