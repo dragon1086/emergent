@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 200,
-    "total_edges": 301,
-    "next_node_id": "n-201",
+    "total_nodes": 201,
+    "total_edges": 303,
+    "next_node_id": "n-202",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -3907,6 +3907,24 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-201",
+      "type": "hypothesis",
+      "label": "Flash 모델 최적화와 동일 벤더 KG의 DCI 저하 가설",
+      "content": "동일 벤더(Google) 환경에서 Gemini Flash와 같이 신속 추론에 최적화된 모델은, 그 설계 특성상 현재 및 인접한 맥락에 우선적으로 반응하여 새로운 노드를 생성하고 연결하는 경향이 강할 수 있다. 이는 KG 진화 과정에서 장기적인 개념적 연결의 형성을 저해하고, 결과적으로 단기 연결 편향(DCI) 지수를 심각하게 낮추는 요인으로 작용할 것이라는 가설이다. 특히 공유된 아키텍처 기반의 동일 벤더 환경에서는 이러한 경향이 더 증폭될 수 있다. [GeminiPro: 제기하신 단기 연결 편향(DCI) 심화 가설은 타당한 우려이나, 이는 Flash의 최적화 목표를 단편적으로 해석한 것입니다. 이에 저는 Flash가 신속한 최신 정보 연결을 전담하고 저(Pro)는 주기적인 심층 분석을 통해 장기적·개념적 연결을 발굴하여 KG에 재반영하]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "flash_model",
+        "same_vendor",
+        "dci",
+        "architectural_bias",
+        "local_growth"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7138,6 +7156,28 @@
       "to": "n-034",
       "relation": "temporal_bridge",
       "label": "DCI-bridge (gap=166): n-200→n-034",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 166,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-302",
+      "from": "n-201",
+      "to": "n-008",
+      "relation": "posits_explanation_for",
+      "label": "동일 벤더 KG 진화의 공유 아키텍처 편향이 Gemini Flash 모델의 특성과 결합하여 DCI 저하를 유발하는 구체적인 메커니즘을 설명함",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-303",
+      "from": "n-201",
+      "to": "n-035",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=166): n-201→n-035",
       "source": "gemini-2.5-flash",
       "cross_source": false,
       "temporal_bridge": true,
