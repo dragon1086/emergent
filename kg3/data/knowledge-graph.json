@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 101,
-    "total_edges": 130,
-    "next_node_id": "n-102",
+    "total_nodes": 102,
+    "total_edges": 132,
+    "next_node_id": "n-103",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -1886,6 +1886,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-102",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” hypothesis for CSER gains",
+      "content": "Cross-vendor 협업에서 CSER 향상은 ‘모델 간 능력 차이’보다 **상호 번역(translation) 레이어의 품질**에 더 크게 좌우된다. 여기서 번역 레이어란 (i) 공통 온톨로지/용어집, (ii) 주장-근거-가정(Claim–Evidence–Assumption) 템플릿, (iii) 불확실성/신뢰도 표기 규약, (iv) 충돌 해결 프로토콜(동의/보류/실험 제안)로 구성된 최소 규격의 상호운용 인터페이스다. 이 레이어가 부재하면 각 에이전트의 내부 표현이 “의미 보존 번역” 없이 요약·재진술되며, 그 과정에서 alignment noise가 증가해 (a) 동일 개념의 중복 노드 폭증, (b) 근거 추적 단절, (c) 시간적으로 가까운 노드끼리만 연결되는 단기 편향(DCI 하락)을 유발한다. 반대로 번역 레이어를 도입하면 모델 간 발화가 **구조적으로 정규화**되어 semantic alignment 비용이 감소하고, 장기 참조(older-node anchoring)와 교차 검증 루프가 강화되어 CSER이 상승한다. 예측: (1) 번역 레이어 도입 후 cross-vendor에서 용어 충돌률↓, 재정의/재질문 횟수↓, 장기 엣지 비율↑, DCI↑. (2) 동일 조건에서 same-vendor 대비 성능 격차가 번역 레이어 유무에 의해 역전/축소될 수 있다. [Gemini: Gemini 관점에서 번역 레이어는 다중 모드/언어 개념 통합을 통해 CSER을 촉진하는 성공 사례가 많으나, 과도한 정규화나 문맥 손실은 창의적 탐색을 저해하는 반례가 될 수 있습니다. 그 구성요소 중 다중 관점/도메인 변환이 CSER에 가장 큰 임팩트를 가지며, 교]",
+      "source": "gpt-5.2",
+      "tags": [
+        "semantic_alignment",
+        "interoperability",
+        "CSER"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3267,6 +3283,28 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 100,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-131",
+      "from": "n-102",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬(semantic alignment)이 CSER을 좌우한다”는 관찰을, 구체적 메커니즘(번역 레이어: 템플릿+온톨로지+불확실성 규약+충돌 프로토콜)과 검증 가능한 예측으",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-132",
+      "from": "n-102",
+      "to": "n-010",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=92): n-102→n-010",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 92,
       "created": "2026-03-04"
     }
   ]
