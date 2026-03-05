@@ -280,6 +280,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-018",
+      "type": "insight",
+      "label": "동일모델 에코챔버 측정의 ‘구별가능한 반증’ 설계 필요",
+      "content": "동일 모델(gpt-5.2 × gpt-5.2) 조건에서 관측되는 수렴(convergence)·합의(agreement)를 에코챔버로 해석하려면, “에코챔버가 아니면 발생하기 어려운” 관측 패턴을 먼저 명시해야 한다. 그렇지 않으면 (i) 동일한 학습분포/정렬로 인한 자연 수렴, (ii) 과제의 저차원 해 공간, (iii) 대화 프로토콜이 유도하는 합의(예: 요약/정리 지시)와 에코챔버 효과가 식별 불가능해진다. 따라서 비판적 관점에서의 핵심은 ‘반증가능성(falsifiability)’: 에코챔버 가설이 틀릴 때(또는 약할 때) 어떤 결과가 나와야 하는지, 그리고 그 결과가 동일모델 자연 수렴으로는 잘 설명되지 않는지를 실험 설계에 포함해야 한다. 구체적으로는 (A) 양 에이전트에 동일한 증거를 주되 상충하는 프레이밍/목표함수를 부여했을 때도 합의가 과도하게 빨리 일어나는지(프레이밍 불변 합의), (B) 의도적으로 반대 증거(contradictory evidence)를 주입했을 때 오류가 증폭·고착되는지(오류 자기강화), (C) 외부 검증 신호가 있을 때도 내부 합의를 우선시하는지(검증 신호 무시) 같은 “에코챔버 특이적” 행태 지표가 필요하다. 또한 측정치는 단순 ‘합의율’이 아니라, 합의 형성의 경로(근거 다양성 감소, 반례 탐색 실패, 자기참조 증가)까지 포함해야 동일모델 자연 수렴과 구분될 가능성이 생긴다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "falsifiability",
+        "measurement]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-019",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “필요·충분에 가까운” 지표를 전제로 하지만, 에코챔버는 상호작용-규칙-표본편향이 만드는 동학이라 단일 로그 지표로 필요·충분을 만들기 ",
+      "content": "요청이 “필요·충분에 가까운” 지표를 전제로 하지만, 에코챔버는 상호작용-규칙-표본편향이 만드는 동학이라 단일 로그 지표로 필요·충분을 만들기 어렵고, 대신 **(여러 지표의 결합 + 자연수렴 대안모형과의 식별 실험)** 형태로 제시하는 게 더 타당합니다. 지표는 **정태 분포(다양성)보다 ‘반대정보에 대한 반응’과 ‘경로 의존성’**을 포함해야 하며, “동일모델 자연 수렴” 대안(공통 사전/학습데이터, 최적화된 요약, 안전정책, 동일 프롬프트 구조, 정보의 객관적 우세)을 항상 같이 두고 조작으로 분리해야 합니다. 그러면 후보는 예컨대 **(1) 반대증거 노출 후 신념/결론 업데이트율의 비대칭(업데이트 저항), (2) 상호작용 그래프의 재접속성/교차노출률(bridging exposure) 급락, (3) 추천·인용 소스의 다양성/엔트로피와 반복률(자기강화 루프), (4) 동일한 외부검증 신호(팩트체크·합의지표) 주입에도 ‘내집단 신호’에 더 가중하는 신뢰가중 편향, (5) 초기 프레이밍/첫 노출에 대한 경로의존적 고착(후속 정보 무시)**처럼 “반증가능한 조작”이 붙는 것들이며, 각 항목마다 말씀하신 (1) 로그 기반 조작적 정의, (2) 자연수렴 대안, (",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -514,6 +547,50 @@
       "temporal_bridge": true,
       "gap": 14,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-023",
+      "from": "n-018",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "식별가능성 문제를 ‘반증가능한 관측 패턴/지표’로 구체화해 동일모델 자연 수렴과의 구분 기준을 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-024",
+      "from": "n-018",
+      "to": "n-003",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=15): n-018→n-003",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 15,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-025",
+      "from": "n-019",
+      "to": "n-018",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-026",
+      "from": "n-019",
+      "to": "n-001",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=18): n-019→n-001",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 18,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -524,9 +601,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 17,
-    "total_edges": 22,
-    "next_node_id": "n-018",
+    "total_nodes": 19,
+    "total_edges": 26,
+    "next_node_id": "n-020",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
