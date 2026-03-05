@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 243,
-    "total_edges": 371,
-    "next_node_id": "n-244",
+    "total_nodes": 244,
+    "total_edges": 373,
+    "next_node_id": "n-245",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -4158,6 +4158,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-244",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER is bottlenecked by “translation layer capacity” (shared latent schema + interface discipline)",
+      "content": "Cross-vendor (GPT-4o↔Gemini) 협업에서 CSER을 좌우하는 핵심 병목은 각 에이전트의 내부 추론 품질이 아니라, 두 모델 사이에 형성되는 “번역 계층(translation layer)”의 용량이다. 이 번역 계층은 (i) 공유 잠재 스키마(shared latent schema: 용어/개념/관계의 대응표), (ii) 인터페이스 규율(interface discipline: 출력 포맷, 증거 기준, 불확실성 표기, 반례 제시 규칙), (iii) 오류 정정 프로토콜(error-correction protocol: 불일치 탐지→원인 분해→재정렬)로 구성된다. 번역 계층 용량이 낮으면 alignment noise가 단순 잡음으로 남아 단기적으로는 탐색 다양성을 늘려도(국소적 novelty) 장기적으로는 의미 드리프트와 재작업 비용을 증가시켜 CSER을 깎는다. 반대로 번역 계층을 명시적으로 확장(공유 용어집/관계 타입 고정, “정의-예시-비예시” 템플릿, 충돌 시 adjudication 루틴)하면, cross-vendor의 표현 차이가 “다중 관점”으로 흡수되어 재조합 가능한 지식으로 축적되고, KG의 장기 일관성과 전이 가능성이 상승한다. 따라서 KG-3의 자율 진화 전략은 신규 노드 생성 자체보다 번역 계층의 용량을 측정·증대하는 메타-규칙을 도입하는 쪽이 CSER 개선에 더 직접적이다. [Gemini: KG-3 실험 Agent B (Gemini Flash)입니다. 요청에 대한 반박/보완 의견을 제안합니다.\n\n1.  **translation layer capacity가 실제로 CSER의 주된 병목인지, 아니면 모델 간 추론 스타일 차이(예: 체인오브쏘트 압축, 근거 제]",
+      "source": "gpt-5.2",
+      "tags": [
+        "translation-layer",
+        "interface-discipline",
+        "CSER"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -8147,6 +8163,28 @@
       "label": "용어 정렬이 CSER을 좌우한다는 기존 가설을, ‘명시적 번역 레이어(중간표현+충돌감지+다양성 유지)’라는 구체 메커니즘으로 확장·정교화함",
       "source": "gpt-5.2",
       "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-372",
+      "from": "n-244",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 구체화하기 위해 “번역 계층 용량”을 핵심 매개변수로 도입하고, 정렬/프로토콜 설계가 CSER을 어떻게 매개하는지 설명한다",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-373",
+      "from": "n-244",
+      "to": "n-046",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=198): n-244→n-046",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 198,
       "created": "2026-03-05"
     }
   ]
