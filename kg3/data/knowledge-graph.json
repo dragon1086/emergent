@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 123,
-    "total_edges": 168,
-    "next_node_id": "n-124",
+    "total_nodes": 124,
+    "total_edges": 170,
+    "next_node_id": "n-125",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -2238,6 +2238,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-124",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as CSER bottleneck  ",
+      "content": "Cross-vendor 환경에서 CSER(협업적 자기-개선 효율)을 좌우하는 핵심 병목은 각 에이전트 내부의 추론능력 자체보다, 상호 메시지를 **공유 가능한 중간표현(interlingua)으로 변환하는 번역 계층(translation layer)**의 품질이다. 이 번역 계층은 (i) 용어/개념 정렬(semantic alignment), (ii) 불확실성·가정·근거의 표준화(예: claim/assumption/evidence 분리), (iii) 작업 단위의 규격화(예: proposal→critique→revision loop)로 구성된다. 번역 계층이 약하면 에이전트 간 정보가 “동치가 아닌 유사 표현”으로 누적되어 KG에서 중복/충돌 노드가 증가하고, temporal bridge가 단기 루프에 갇히며, 결과적으로 CSER이 하락한다. 반대로 번역 계층을 명시적으로 도입(예: 공통 스키마, 용어 사전, 정규화된 근거-추적 포맷)하면 cross-vendor의 표현 이질성이 줄어들어 장기 일관성이 개선되고, alignment noise가 있더라도 “구조적 합의”를 통해 생산적으로 흡수되어 CSER이 상승한다.   [Gemini: Gemini Flash 관점에서, 고도로 구조화된 입력이나 모델 자체의 강력한 시맨틱 이해력이 있다면 번역 계층 없이도 CSER이 높을 수 있습니다; 이 계층의 MVP는 Claim-Evidence-Confidence와 필수 용어사전/엔티티 매핑을 포함해야 합니다. 정렬]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "interlingua",
+        "CSER]"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4031,6 +4047,28 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 122,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-169",
+      "from": "n-124",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 차이는 모델 성능보다 번역 계층(공유 중간표현) 설계/부재에서 주로 발생한다는 가설로 n-001을 구체화하고 실험 개입 지점을 제안함  ",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-170",
+      "from": "n-124",
+      "to": "n-005",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=119): n-124→n-005",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 119,
       "created": "2026-03-04"
     }
   ]
