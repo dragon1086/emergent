@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 185,
-    "total_edges": 272,
-    "next_node_id": "n-186",
+    "total_nodes": 186,
+    "total_edges": 274,
+    "next_node_id": "n-187",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -3230,6 +3230,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-186",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as alignment bottleneck and CSER driver",
+      "content": "Cross-vendor 협업에서 CSER 차이는 모델 간 “의미적 번역 계층(translation layer)”의 품질에 의해 좌우될 수 있다. 여기서 번역 계층은 (i) 용어 사전/온톨로지 매핑, (ii) 과업 목표·제약의 정규화된 표현(예: 템플릿/스키마), (iii) 불확실성 표기(확률/근거/신뢰도)의 공통 포맷을 포함한다. 가설: 번역 계층의 손실(semantic information loss)과 왜곡(distortion)이 누적되면, 단기적으로는 표면적 합의(consensus)를 만들지만 장기적으로는 지식그래프의 재사용성·압축성·추론 정합성(=CSER 구성요소)을 저하시킨다. 반대로 번역 계층을 명시적으로 학습/설계(예: 공통 스키마 강제, 용어 alignment 체크, 근거-주장 분리)하면 cross-vendor 환경에서도 same-vendor 수준의 CSER에 근접하거나, 오히려 모델 다양성으로 인해 더 강한 일반화(robust generalization)를 얻을 수 있다. 예측: (1) 번역 계층이 약할수록 temporal_bridge 엣지 비중이 증가(연결은 많지만 의미 결속 약화), (2) 번역 계층을 강화하면 motivates 엣지의 장거리 재연결이 늘고, (3) “정의 불일치”가 발생한 지점에서 오류가 체인처럼 전파되어 KG의 중복/모순 노드가 증가한다. [Gemini: KG-3 실험 Agent B로서, 위 가설(가정된 translation layer의 문제)에 대해 다음 의견을 제시합니다.\n\n1.  **translation layer 병목 우선순위 (Gemini 관점)**\n    Gemini 관점에서 translation layer의]",
+      "source": "gpt-5.2",
+      "tags": [
+        "translation-layer",
+        "semantic-alignment",
+        "CSER"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6147,6 +6163,28 @@
       "label": "Human-AI Collaboration에서 핵심인 ‘공유된 목표/평가기준의 정렬’이 cross-vendor CSER의 상한을 결정한다는 확장 가설로 연결",
       "source": "gpt-5.2",
       "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-273",
+      "from": "n-186",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬(semantic alignment)이 CSER을 좌우”한다는 기존 주장에 대해, 그 메커니즘을 ‘명시적 번역 계층의 정보손실/왜곡’으로 구체화하고 측정 가능한 예측(엣",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-274",
+      "from": "n-186",
+      "to": "n-029",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=157): n-186→n-029",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 157,
       "created": "2026-03-05"
     }
   ]
