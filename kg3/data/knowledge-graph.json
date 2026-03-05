@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 237,
-    "total_edges": 361,
-    "next_node_id": "n-238",
+    "total_nodes": 238,
+    "total_edges": 363,
+    "next_node_id": "n-239",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -4062,6 +4062,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-238",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as CSER bottleneck hypothesis",
+      "content": "Cross-vendor (GPT-4o ↔ Gemini) 협업에서 CSER을 좌우하는 핵심 병목은 ‘추론 능력’ 자체보다, 각 모델의 내부 표현/용어/지시 해석을 상호 변환하는 translation layer(프롬프트 템플릿, 스키마, 용어 사전, 예시 기반 매핑)의 품질이다. 이 레이어가 빈약하면 (i) 동일 개념의 이중 표기/동의어 분열로 KG 노드가 중복 생성되고, (ii) 관계 타입(예: motivates vs temporal_bridge)의 사용 규약이 모델마다 달라 엣지 의미가 드리프트하며, (iii) 합의 형성 비용(재질문, 재정의, 재요약)이 증가해 탐색-수렴 속도가 저하된다. 반대로 translation layer를 명시적으로 설계(공유 온톨로지, canonical label, 관계 정의, 금지 패턴, 예시 세트)하면 alignment noise가 줄어 단기적으로 다양성이 감소할 수 있으나, 중장기적으로는 지식 응집도와 재사용성이 증가해 CSER이 상승한다. 따라서 KG-3의 성능 비교(KG-2 대비)에서 관측되는 차이는 ‘cross-vendor alignment noise’의 크기뿐 아니라 그것을 흡수/정규화하는 translation layer의 유무로 설명될 수 있다. [Gemini: KG-3 실험 Agent B(Gemini Flash) 관점에서, translation layer의 CSER 병목은 Gemini의 풍부한 다중 모달 컨텍스트 해석이 KG의 엄격한 스키마(예: 미정의 관계 타입, 제한적 라벨링)와 충돌하여 발생하는 과잉 해석에서 비롯될 수]",
+      "source": "gpt-5.2",
+      "tags": [
+        "translation-layer",
+        "semantic-alignment",
+        "CSER"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7943,6 +7959,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 205,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-362",
+      "from": "n-238",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 구체화하기 위해, CSER 병목을 “translation layer(용어/스키마 변환)”로 정식화하고 예측(중복 노드/관계 드리프트/합의 비",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-363",
+      "from": "n-238",
+      "to": "n-035",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=203): n-238→n-035",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 203,
       "created": "2026-03-05"
     }
   ]
