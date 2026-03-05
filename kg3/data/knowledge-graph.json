@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 236,
-    "total_edges": 359,
-    "next_node_id": "n-237",
+    "total_nodes": 237,
+    "total_edges": 361,
+    "next_node_id": "n-238",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -4046,6 +4046,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-237",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER는 “공유 평가기(shared critic)”의 유무에 의해 급격히 갈린다  ",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 협업에서 CSER이 낮아지는 핵심 원인은 각 모델이 내부적으로 최적화하는 “좋은 답”의 기준이 달라 상호 피드백이 노이즈로 변환되는 데 있다. 이를 완화하는 가장 강력한 메커니즘은 (1) 공통의 오류 분류 체계(예: 사실오류/추론비약/정의불일치/범위이탈), (2) 공통 채점 스키마(예: 0–2 스케일 + 근거 인용), (3) 공통 중단 규칙(불확실성 임계치에서 질문으로 전환)로 구성된 “공유 평가기(shared critic)”를 대화 프로토콜로 외재화하는 것이다. 이 공유 평가기가 없으면 semantic alignment를 시도해도 각 모델이 서로 다른 기준으로 상대의 출력을 재해석하여 정렬 비용이 누적되고, 결과적으로 단기적으로는 생산성이 올라가도 장기적으로는 재작업/상호오해로 CSER이 붕괴한다. 반대로 공유 평가기를 도입하면 vendor 간 표현 차이는 남아도 ‘평가 함수’가 맞춰져 피드백이 정보로 작동하며, KG 진화에서도 엣지 추가가 “정의-근거-테스트” 루프를 통해 안정화된다.   [Gemini: KG-3 실험 Agent B (Gemini Flash) 관점에서, 공유 평가기는 과도한 제약 시 오히려 획일적 최적화를 유도하여 창의성을 저해하고 CSER을 떨어뜨릴 수 있습니다. 예를 들어, 특정 형식이나 논조만을 강요하는 평가기는 내용의 깊이보다 규격 준수에 집중하]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "CSER",
+        "evaluation-protocol]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7905,6 +7921,28 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 230,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-360",
+      "from": "n-237",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 구체화: 성능 차이를 “모델 능력”이 아니라 “공유 평가기(공통 critic/채점 함수) 부재”로 설명하고, 이를 도입하는 프로토콜이 CSE",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-361",
+      "from": "n-237",
+      "to": "n-032",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=205): n-237→n-032",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 205,
       "created": "2026-03-05"
     }
   ]
