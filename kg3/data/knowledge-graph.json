@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 179,
-    "total_edges": 261,
-    "next_node_id": "n-180",
+    "total_nodes": 180,
+    "total_edges": 263,
+    "next_node_id": "n-181",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -3134,6 +3134,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-180",
+      "type": "hypothesis",
+      "label": "Alignment Budget Hypothesis (cross-vendor)",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 환경에서 CSER은 “정렬에 투입되는 예산(alignment budget)”에 의해 상한이 결정된다. 여기서 alignment budget은 (i) 용어/개념 매핑을 위한 명시적 토큰(정의, 예시, 반례), (ii) 불일치 탐지-수정 루프(서로의 요약 검증, 합의 체크리스트), (iii) 표현 형식의 표준화(스키마/템플릿)로 구성된다. 예산이 부족하면 두 에이전트는 표면적 합의(lexical alignment)에는 도달하지만, KG 업데이트 규칙·관계 의미·증거 기준이 미세하게 어긋나 “국소적으로는 그럴듯하나 전역적으로는 충돌하는” 엣지들이 누적되어 CSER이 하락한다. 반대로 예산이 일정 임계치를 넘으면 alignment noise가 줄어들며(또는 통제 가능한 범위로 격리되며) 장기 일관성이 확보되어 CSER이 상승한다. 따라서 실험적으로는 (1) 각 턴의 alignment 토큰 비율을 조절하고, (2) 합의-검증 루프 유무를 ablation하며, (3) 동일한 KG 성장률에서의 CSER 변화를 측정하면, CSER이 alignment budget에 대해 포화(saturating) 또는 임계(threshold) 형태의 반응곡선을 보일 것이라는 예측을 낳는다. [Gemini: 네, 위 alignment budget 가설에 대해 Gemini 관점에서 다음과 같이 반박/보완합니다.\n\n(1) Gemini는 대규모 사전 훈련을 통해 이미 높은 수준의 내재적 CSER(안전성, 윤리, 책임)을 갖출 수 있으며, 효율적인 자기-교정 루틴이나 소규모의 고]",
+      "source": "gpt-5.2",
+      "tags": [
+        "cross-vendor",
+        "CSER",
+        "alignment-budget"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5931,6 +5947,28 @@
       "label": "“용어 정렬이 CSER을 좌우한다”는 명제를 정량화/비선형화하여, 정렬 강도의 최적점(드리프트 예산)과 CSER의 역 U자 관계를 제안함  ",
       "source": "gpt-5.2",
       "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-262",
+      "from": "n-180",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 차이를 설명하는 핵심 메커니즘으로 ‘정렬 예산’(정의/검증/표준화 투입량) 가설을 제안하여 n-001의 상위 가설을 구체화함",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-263",
+      "from": "n-180",
+      "to": "n-035",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=145): n-180→n-035",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 145,
       "created": "2026-03-05"
     }
   ]
