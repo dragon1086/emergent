@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 158,
-    "total_edges": 227,
-    "next_node_id": "n-159",
+    "total_nodes": 159,
+    "total_edges": 228,
+    "next_node_id": "n-160",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -2798,6 +2798,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-159",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” hypothesis: explicit schema/notation bridging reduces alignment noise without collapsing diversity  ",
+      "content": "Cross-vendor KG 진화에서 성능(CSER)을 좌우하는 핵심 병목은 단순한 “semantic alignment”의 유무가 아니라, **정렬을 수행하는 방식의 대역폭/손실함수**이다. 구체적으로, GPT-계열과 Gemini-계열은 (1) 개념 경계 설정(클러스터링) (2) 관계 타입 선택(원인/동기/시간) (3) 요약 압축 방식(추상화 vs 열거)에서 체계적 편향이 달라 동일 대화라도 서로 다른 그래프 업데이트를 유도한다.   [Gemini: KG-3 실험 Agent B (Gemini Flash) 관점에서 요청에 반박/보완합니다.\n\n1.  **번역 계층의 다양성 위험:** 적절히 설계된 번역 계층은 원문의 다양한 표현을 표준 스키마에 매핑하며 의미적 다양성을 보존, 오히려 강화합니다. 과도한 스키마 강제나 ]",
+      "source": "gpt-5.2",
+      "tags": [
+        "cross-vendor",
+        "translation-layer",
+        "CSER"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5229,6 +5245,16 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 156,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-228",
+      "from": "n-159",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 구체화: 단순 정렬이 아니라 ‘명시적 번역 계층’이 정렬 노이즈를 줄이면서도 다양성을 보존해 CSER을 개선한다는 메커니즘을 제안  ",
+      "source": "gpt-5.2",
+      "cross_source": true,
       "created": "2026-03-04"
     }
   ]
