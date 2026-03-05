@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 108,
-    "total_edges": 142,
-    "next_node_id": "n-109",
+    "total_nodes": 109,
+    "total_edges": 144,
+    "next_node_id": "n-110",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -1998,6 +1998,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-109",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER is bottlenecked by “interface contract fidelity” rather than raw model capability",
+      "content": "Cross-vendor 환경(GPT-4o + Gemini)에서 CSER 차이는 모델 성능 자체보다, 에이전트 간에 암묵적으로 공유된 “인터페이스 계약(interface contract)”의 충실도(fidelity)에 의해 더 크게 좌우된다. 여기서 인터페이스 계약이란 (i) 스키마/용어 정의(entities, relations, tags), (ii) 업데이트 규칙(노드 추가 기준, 엣지 선택 제약, 충돌 해결), (iii) 출력 포맷/검증(필드 누락, 형식 오류, 금지 연결 등), (iv) 목표 함수(DCI, novelty, coherence 등)까지 포함한 운영적 합의다. Cross-vendor에서는 각 모델이 지시문을 내재화하는 방식과 “규범 위반”을 처리하는 방식이 달라 계약이 쉽게 드리프트하고, 그 결과 (a) 동일 개념의 중복 노드 증가, (b) 관계 타입의 의미 붕괴(예: motivates 남발), (c) 장거리 연결 회피로 인한 DCI 저하, (d) 국소 최적화(최근 노드만 강화)로 CSER이 감소한다. 따라서 CSER을 개선하려면 semantic alignment(용어 정렬)만이 아니라, 계약을 기계적으로 점검 가능한 형태(예: 체크리스트/정규식/스키마 검증)로 외재화하고, 위반 시 롤백/수정 프로토콜을 두는 것이 핵심 개입점이다. [Gemini: Gemini Flash 관점에서, 다음은 요청에 대한 보완 의견입니다.\n\n계약 충실도는 구조적 정확성을 보장하며, 이 전제 없이 의미 정렬이나 추론 스타일 차이를 명확히 구분하기 어렵기에 CSER/DCI의 핵심 병목입니다. 제시된 포맷 오류율, 제약 위반율 같은 지표는]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "protocol",
+        "CSER]"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3509,6 +3525,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 88,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-143",
+      "from": "n-109",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 “용어 정렬” 단일 요인에서 “인터페이스 계약 충실도”라는 더 상위 원인(프로토콜/검증/규범)으로 확장해, 관측되는 DCI 저하·관계 남발·",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-144",
+      "from": "n-109",
+      "to": "n-018",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=91): n-109→n-018",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 91,
       "created": "2026-03-04"
     }
   ]
