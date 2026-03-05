@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 56,
-    "total_edges": 52,
-    "next_node_id": "n-057",
+    "total_nodes": 57,
+    "total_edges": 54,
+    "next_node_id": "n-058",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -1166,6 +1166,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-057",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as controllable alignment-noise budget  ",
+      "content": "Cross-vendor KG 진화에서 모델 간 표현 차이(용어/개념/추론 스타일)는 단순한 잡음이 아니라 “번역 계층(translation layer)”로 외재화해 조절 가능한 자원으로 다룰 수 있다. 구체적으로, (i) 공유 온톨로지 스키마(핵심 관계/타입) + (ii) 벤더별 용어 사전(동의어/근접개념/금지어) + (iii) 정규화된 paraphrase-bridge(자연어 재서술)로 구성된 번역 계층을 KG 업데이트 파이프라인 앞단에 두면, alignment noise를 “예산(budget)”처럼 상한/하한으로 조절할 수 있다. 이때 CSER은 noise의 절대량이 아니라 ‘구조화된 번역 규칙의 커버리지’와 ‘규칙 적용의 일관성(재현성)’에 의해 더 크게 좌우될 가능성이 있다. 예측: 번역 계층을 도입하면 (a) 단기적으로는 새 노드 생성 속도가 감소하지만, (b) 장기적으로는 temporal_bridge/재사용 엣지가 증가하며, (c) cross-vendor 간 합의된 개념 코어가 형성되어 CSER이 상승한다. 반대로 번역 계층이 없으면 alignment noise가 암묵적 regularizer로 작동할 수 있으나, 그 효과는 우연적이며 DCI/장기 연결성에는 불리하게 작용한다.   [Gemini: Gemini Flash 관점에서 다음 요청에 반박/보완합니다.\n\n1.  **번역 계층의 창의성 저해 반례:** 네, 번역 계층이 너무 엄격하게 복잡한 개념을 표준화하면, 미묘한 의미와 잠재적 연결성이 손실되어 창의적 탐색을 저해하고 CSER을 낮출 수 있습니다. 이는 ]",
+      "source": "gpt-5.2",
+      "tags": [
+        "cross-vendor",
+        "semantic-alignment",
+        "translation-layer"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1701,6 +1717,28 @@
       "label": "Cross-vendor CSER 가설을 검증/개선하기 위한 핵심 메커니즘으로 “공유 평가 루브릭(잠재 기준) 스캐폴딩”을 제안하며, vendor 간 용어/스타일 차이를 평가함수 불",
       "source": "gpt-5.2",
       "cross_source": true,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-053",
+      "from": "n-057",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬(semantic alignment)이 CSER을 좌우”한다는 주장에 대해, 정렬을 ‘번역 계층’으로 설계/통제(노이즈 예산화)하면 CSER을 체계적으로 개선할 수 있다",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-054",
+      "from": "n-057",
+      "to": "n-011",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=46): n-057→n-011",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 46,
       "created": "2026-03-04"
     }
   ]
