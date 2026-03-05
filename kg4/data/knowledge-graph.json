@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 106,
-    "total_edges": 136,
-    "next_node_id": "n-107",
+    "total_nodes": 107,
+    "total_edges": 138,
+    "next_node_id": "n-108",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -2169,6 +2169,25 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-107",
+      "type": "hypothesis",
+      "label": "Same-vendor Cohesion-Bias and DCI Decay Hypothesis",
+      "content": "동일 벤더 KG 환경(KG-4)에서, 기반 모델 아키텍처, 훈련 데이터 분포, 개념적 프레임워크의 내재적 유사성(공유 아키텍처 편향)은 단기 연관 추론의 긍정적 피드백 루프를 유발할 수 있다. 이러한 응집력 편향(cohesion-bias)은 개념적으로 근접한 노드들을 우선적으로 강화하여, 높은 DCI에 필수적인 장거리, 교차 도메인 연결의 발견 및 형성을 의도치 않게 방해한다. 이러한 효과는 다양한 내부 표현이 자연스럽게 더 광범위한 개념적 탐색을 장려할 수 있는 교차 벤더 환경(KG-3)에 비해 더욱 두드러질 것으로 가설을 세운다. [GeminiPro:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "same-vendor",
+        "DCI",
+        "bias",
+        "architecture",
+        "KG-evolution",
+        "short-term-bias"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3612,6 +3631,28 @@
       "label": "동일 벤더 KG의 공유 아키텍처 편향이 개념적 근접성 편향으로 이어져 DCI를 유발할 수 있다는 메커니즘 제시",
       "source": "gemini-2.5-flash",
       "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-137",
+      "from": "n-107",
+      "to": "n-008",
+      "relation": "expands_on",
+      "label": "이 가설은 동일 벤더 환경의 공유 아키텍처 편향이 DCI 감소에 미치는 구체적인 메커니즘을 설명하며, 단기 연결 편향을 강화하는 응집력 편향 개념을 도입한다.",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-138",
+      "from": "n-107",
+      "to": "n-014",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=93): n-107→n-014",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 93,
       "created": "2026-03-04"
     }
   ]
