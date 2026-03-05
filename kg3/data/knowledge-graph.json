@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 207,
-    "total_edges": 310,
-    "next_node_id": "n-208",
+    "total_nodes": 208,
+    "total_edges": 312,
+    "next_node_id": "n-209",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -3582,6 +3582,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-208",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “표현 다양성(diversity)–정합성(alignment)” 최적점이 CSER을 결정한다",
+      "content": "Cross-vendor(GPT-4o + Gemini) 환경에서는 두 모델의 표현/용어 체계가 완전히 일치하지 않기 때문에, (1) 표현 다양성(서로 다른 관점·용어·추론 경로)이 늘어날수록 탐색(exploration)과 오류 상쇄가 증가해 CSER이 개선되지만, (2) 정합성(alignment)이 임계치 이하로 떨어지면 의미 보존 실패(semantic drift), 중복 노드 폭증, 잘못된 브리징 엣지 증가로 인해 CSER이 급격히 악화된다. 따라서 CSER은 다양성에 대해 단조 증가가 아니라 “역 U자(또는 볼록-오목 혼합) 형태”를 가지며, 최적점은 (a) 공통 앵커(공유 정의/온톨로지/평가 기준)의 밀도, (b) 브리징 규칙의 엄격도(동의어/상위어/근거 링크 정책), (c) 에이전트 간 검증 프로토콜(상호 반례 탐색, 최소 증거 기준)에 의해 이동한다. 실험적으로는 “정합성 지표(예: 용어 매핑 일치율, 브리징 엣지의 사후 검증 통과율)”와 “다양성 지표(예: 모델별 고유 용어 비율, 관점 클러스터 수)”를 동시에 추적하면, CSER 최대 구간이 관측되어야 한다는 예측을 낳는다. [Gemini: Gemini는 정합성 임계치를 고정된 지점보다는 상황별 최적의 내부 일관성 및 관련성 목표로 인식하며, 이 목표를 벗어나면 정보의 신뢰도가 급감합니다. 정합성은 KG 팩트 검증률, 다양성은 활용된 KG 엔티티/관계 종류 수로 측정 가능하며 KG 로그 분석으로 추정할 수]",
+      "source": "gpt-5.2",
+      "tags": [
+        "cross-vendor",
+        "semantic-alignment",
+        "CSER"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6911,6 +6927,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 184,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-311",
+      "from": "n-208",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우”한다는 주장에 대해, 정렬이 ‘많을수록 항상 좋다’가 아니라 다양성과의 트레이드오프 최적점이 존재한다는 확장 가설을 제공",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-312",
+      "from": "n-208",
+      "to": "n-018",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=190): n-208→n-018",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 190,
       "created": "2026-03-05"
     }
   ]
