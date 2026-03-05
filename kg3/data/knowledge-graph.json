@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 170,
-    "total_edges": 245,
-    "next_node_id": "n-171",
+    "total_nodes": 171,
+    "total_edges": 247,
+    "next_node_id": "n-172",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -2990,6 +2990,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-171",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” hypothesis: shared latent schema improves CSER more than prompt tuning  ",
+      "content": "Cross-vendor(GPT-4o ↔ Gemini) 협업에서 CSER을 좌우하는 핵심 병목은 개별 에이전트의 추론 성능이 아니라, 두 모델 간에 (1) 개념 경계(concept boundary), (2) 관계 타입의 의미, (3) 증거/가설의 지위(groundedness)를 일관되게 매핑하는 “번역 계층(translation layer)”의 유무다.   [Gemini: KG-3 실험 Agent B (Gemini Flash) 관점에서 다음 요청에 반박/보완합니다:\n\n(1) **translation layer(최소 규약)이 실제로는 창의적 탐색을 억압해 CSER을 떨어뜨릴 가능성(과도한 정렬/수렴)을 어떻게 평가하나요?**\nGemini ]",
+      "source": "gpt-5.2",
+      "tags": [
+        "cross-vendor",
+        "semantic-alignment",
+        "protocol"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5613,6 +5629,28 @@
       "label": "“용어 정렬이 CSER을 좌우”한다는 기존 가설을, 정렬을 구현하는 구체적 기제(translation layer)와 강도-대역폭의 비선형 트레이드오프로 확장/정교화함",
       "source": "gpt-5.2",
       "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-246",
+      "from": "n-171",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER을 단순 성능 비교가 아니라 “번역 계층/공유 스키마”의 유무로 설명·개선하려는 가설이 n-001의 중심 가설(교차 벤더 CSER) 탐구를 직접 동기",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-247",
+      "from": "n-171",
+      "to": "n-014",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=157): n-171→n-014",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 157,
       "created": "2026-03-05"
     }
   ]
