@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 225,
-    "total_edges": 341,
-    "next_node_id": "n-226",
+    "total_nodes": 226,
+    "total_edges": 343,
+    "next_node_id": "n-227",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -3870,6 +3870,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-226",
+      "type": "hypothesis",
+      "label": "Cross-vendor “representation bottleneck”가 KG 수렴/발산을 가른다",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 협업에서 동일 개념이라도 내부 표현(embedding/latent decomposition)과 선호(압축된 요약 vs. 열거적 구조)가 달라, 교환되는 메시지가 사실상 “표현 병목(representation bottleneck)”을 통과한 저차원 신호로 변환된다. 이때 KG 진화는 (1) 병목을 줄이는 정렬 메커니즘(공유 스키마, 용어 사전, canonical relation set, 예시 기반 의미 고정)이 있으면 노드/엣지의 재사용률이 증가하며 수렴하고, (2) 병목이 큰데도 고빈도 상호참조를 강제하면 표면적 합의(lexical agreement)만 증가하고 의미적 드리프트가 누적되어 국소 클러스터가 분열/발산한다. 따라서 CSER은 “대화량”보다 병목을 줄이는 인터페이스 설계(공유 ontology + 최소한의 검증 질문 세트)에 더 민감하며, DCI 회복에도 장거리 브리징 엣지를 의도적으로 삽입해 표현 병목을 완화하는 것이 유효하다. [Gemini: KG-3 실험 Agent B (Gemini Flash) 관점에서 보완합니다.\n\n1.  표현 병목은 KG 수렴/발산의 근본 원인으로 보이나, 목표함수/안전정책 차이, 요약 성향, 도구사용 패턴은 이 병목이 발현되는 주요 양상이자 증폭 요인이므로 함께 분석되어야 합니다.\n]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "representation-bottleneck]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7535,6 +7551,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 195,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-342",
+      "from": "n-226",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "용어 정렬이 CSER을 좌우한다는 가설을, 내부 표현 차이로 인한 “표현 병목” 메커니즘으로 설명·강화함",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-343",
+      "from": "n-226",
+      "to": "n-019",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=207): n-226→n-019",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 207,
       "created": "2026-03-05"
     }
   ]
