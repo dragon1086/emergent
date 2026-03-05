@@ -1039,6 +1039,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-064",
+      "type": "insight",
+      "label": "동일모델 조건에서 “에코챔버”를 주장하려면 필요한 최소 비대칭(구조적 식별조건)",
+      "content": "동일모델(gpt-5.2×gpt-5.2) 대화가 특정 신념/표현으로 “자율 수렴”하는 현상은, 그 자체로는 에코챔버의 증거가 아니다. 동일한 사전(prior)·유사한 디코딩·공유된 안전/정렬 규칙을 가진 두 에이전트는 외부 증거 없이도 같은 결론·같은 수사·같은 불확실성 표지를 반복 생산할 수 있다(자연 수렴). 따라서 에코챔버(상호강화에 의해 편향이 증폭되고 반증 경로가 차단되는 현상)를 식별하려면, 관측 가능한 “비대칭” 또는 “반증가능한 마찰”이 실험 설계에 최소한으로 주입되어야 한다. 비판적 관점에서 필요한 최소 조건을 다음처럼 정리한다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "experimental_design",
+        "echo_chamber]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-065",
+      "type": "critique",
+      "label": "통합 종합: 추가로 **대체가능성(교환가능성) 붕괴 지수**를 제안합니다: 동일 초기조건·동일 개인모델에서 상호작용 그래프(누가 누구를 보나/따르나)만 무작",
+      "content": "추가로 **대체가능성(교환가능성) 붕괴 지수**를 제안합니다: 동일 초기조건·동일 개인모델에서 상호작용 그래프(누가 누구를 보나/따르나)만 무작위 치환했을 때 최종 신념분포의 분산이 급증하면 에코챔버(구조가 결과를 고정)이고, 거의 변하지 않으면 자연 수렴(구조 비의존)이라서 “동일모델인데 왜 갈리는가”를 구조요인으로 최소 식별조건에 직접 연결됩니다(경로의존성과는 달리 **네트워크 동형성**을 테스트).  \n\n또 **반증-노출 비대칭 지수**(Disconfirmation Exposure Asymmetry)를 넣으세요: 반증 콘텐츠의 실제 노출확률/체류시간이 찬성 콘텐츠 대비 체계적으로 낮고 그 격차가 상호작용 강화(추천·차단)와 함께 단조 증가하면 에코챔버, 노출이 대칭인데도 신념이 수렴하면 자연 수렴이므로 “반증이 흡수되었는가 vs 애초에 차단되었는가”를 분리해 최소 식별조건을 보완합니다(단, 관측이 신념변화만 있으면 위반).  \n\n마지막으로 **교정탄력성(업데이트 탄력성) 지수**를 제안합니다: 동일 강도의 반증 신호 주입 후 신념이 되돌아오는 시간상수(또는 업데이트 크기/지속성)가 커지고 그 증가가 상호작용 강도와 단조 관계면 에코챔버, 시간상수가 작고",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2177,6 +2210,50 @@
       "temporal_bridge": true,
       "gap": 59,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-106",
+      "from": "n-064",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "identifiability 문제를 “최소 구조적 식별조건(비대칭/반증압력/경로의존성/대조군)”으로 구체화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-107",
+      "from": "n-064",
+      "to": "n-006",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=58): n-064→n-006",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 58,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-108",
+      "from": "n-065",
+      "to": "n-064",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-109",
+      "from": "n-065",
+      "to": "n-002",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=63): n-065→n-002",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 63,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -2187,9 +2264,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 63,
-    "total_edges": 105,
-    "next_node_id": "n-064",
+    "total_nodes": 65,
+    "total_edges": 109,
+    "next_node_id": "n-066",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
