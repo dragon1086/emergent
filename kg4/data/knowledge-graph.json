@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 167,
-    "total_edges": 245,
-    "next_node_id": "n-168",
+    "total_nodes": 168,
+    "total_edges": 246,
+    "next_node_id": "n-169",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -3296,6 +3296,24 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-168",
+      "type": "insight",
+      "label": "동일 벤더 환경 내 KG 진화의 내재적 연결 패턴 편향",
+      "content": "Gemini Flash와 Gemini Pro가 동일한 Google 계열의 아키텍처와 훈련 데이터셋을 공유함에 따라, KG 진화 과정에서 새로운 노드들이 기존의 익숙한 또는 가까운 개념적 클러스터 내에서 연결되려는 경향이 나타난다. 이는 노드 생성 및 관계 설정 시 유사한 추론 경로와 어휘를 선호하게 만들어, 자연스럽게 단기 연결을 강화하고 장기적이고 이질적인 연결 (DCI 회복에 필수적) 생성을 저해할 수 있다. 이러한 내재적 편향은 KG-4의 DCI가 낮게 나타나는 주요 원인 중 하나일 수 있다. [GeminiPro:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "[아키텍처 편향",
+        "연결 패턴",
+        "DCI",
+        "동일 벤더",
+        "사고 경향]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5925,6 +5943,16 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 162,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-246",
+      "from": "n-168",
+      "to": "n-008",
+      "relation": "expands_on",
+      "label": "동일 벤더의 공유 아키텍처가 KG 연결 패턴의 단기 편향으로 이어진다는 통찰을 확장함",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
       "created": "2026-03-05"
     }
   ]
