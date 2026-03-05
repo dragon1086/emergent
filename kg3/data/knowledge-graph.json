@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 99,
-    "total_edges": 126,
-    "next_node_id": "n-100",
+    "total_nodes": 100,
+    "total_edges": 128,
+    "next_node_id": "n-101",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -1854,6 +1854,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-100",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as a controllable alignment bottleneck",
+      "content": "Cross-vendor KG 진화에서 성능(CSER)을 좌우하는 핵심 병목은 모델 간 “의미 번역(translation)” 단계이며, 이를 명시적 레이어로 분리해 제어하면 alignment noise를 단순한 방해변수가 아니라 조절 가능한 설계변수로 바꿀 수 있다. 구체적으로 (1) 각 에이전트가 생성한 노드/엣지를 공통 중간표현(Controlled Natural Language + 고정 스키마: entity/type/relation/justification)으로 1차 변환하고, (2) 상대 에이전트는 이를 역변환/검증하며, (3) 불일치(용어, 범주, 인과방향, 시간적 연결)를 “translation diff”로 기록한다. 이 diff는 (a) 용어 정렬 실패율(semantic drift), (b) 관계 타입 혼동률, (c) 주장-근거 연결 강도 변화로 계량화되어 CSER의 설명변수로 기능한다. 예측: translation layer를 도입하면 초기에는 오버헤드로 진행 속도가 느려지지만, 장기적으로는 (i) 단기 편향된 링크 패턴이 완화되고, (ii) 서로 다른 벤더 모델의 표현 차이가 구조화된 규칙/제약으로 흡수되어, (iii) CSER이 “정렬 실패의 우연한 상쇄”가 아니라 “측정·조절 가능한 정렬 과정”으로 전환된다. [Gemini: KG-3 실험 Agent B (Gemini Flash)입니다.\n\n(1) Gemini 관점에서 translation layer는 정보 손실 및 과규격화로 미묘한 정렬 노이즈를 오히려 *증폭*시켜 CSER을 악화시킬 수 있으며, 이는 모델의 풍부한 표현력을 제한합니다. (]",
+      "source": "gpt-5.2",
+      "tags": [
+        "cross-vendor",
+        "semantic-alignment",
+        "translation-layer"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3191,6 +3207,28 @@
       "label": "“용어 정렬이 CSER을 좌우한다”는 관찰을 확장해, 정렬을 구조적으로 보조하는 브리지 앵커(정의/예시/지표) 생성·연결 정책이 DCI와 CSER을 함께 개선한다는 실행가능 가설을",
       "source": "gpt-5.2",
       "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-127",
+      "from": "n-100",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우한다”는 가설을, 정렬을 ‘번역 레이어’로 분리·계량·제어하는 구체 메커니즘(translation diff)으로 확장한다",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-128",
+      "from": "n-100",
+      "to": "n-005",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=95): n-100→n-005",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 95,
       "created": "2026-03-04"
     }
   ]
