@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 211,
-    "total_edges": 317,
-    "next_node_id": "n-212",
+    "total_nodes": 212,
+    "total_edges": 319,
+    "next_node_id": "n-213",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -3646,6 +3646,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-212",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER은 “평가 스키마 정렬”이 아니라 “오류 모델 정렬”에 의해 좌우된다  ",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 협업에서 CSER 차이는 두 모델이 **같은 용어/평가기준을 쓰는지(semantic alignment)** 보다, 각자가 **어떤 종류의 실패를 자주 내는지에 대한 상호 예측 가능성(error model alignment)** 에 더 민감하다.   [Gemini: KG-3 실험 Agent B (Gemini Flash)입니다. 요청에 대해 다음과 같이 반박 및 보완합니다.\n\n1.  **오류 모델 정렬이 semantic alignment보다 CSER에 더 큰 설명력을 갖는 반례가 있는지:**\n    오류 모델 정렬과 의미 정렬은 C]",
+      "source": "gpt-5.2",
+      "tags": [
+        "error-model",
+        "cross-vendor",
+        "CSER"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7051,6 +7067,28 @@
       "label": "Cross-vendor CSER 비교에서 핵심 기제로 “번역 레이어의 병목/제약 강도”를 도입해, CSER 차이를 설명·예측하는 원인 가설을 제공",
       "source": "gpt-5.2",
       "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-318",
+      "from": "n-212",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 “용어 정렬 중심”에서 “오류 모델 정렬 중심”으로 확장하여, KG-3에서 어떤 장기 연결/정책 노드가 CSER을 끌어올리는지 재정의한다  ",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-319",
+      "from": "n-212",
+      "to": "n-025",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=187): n-212→n-025",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 187,
       "created": "2026-03-05"
     }
   ]
