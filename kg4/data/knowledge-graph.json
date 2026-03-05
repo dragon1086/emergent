@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 50,
-    "total_edges": 46,
-    "next_node_id": "n-051",
+    "total_nodes": 51,
+    "total_edges": 47,
+    "next_node_id": "n-052",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -1134,6 +1134,25 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-051",
+      "type": "hypothesis",
+      "label": "동일 벤더 내 모델 전문화가 KG 진화 및 CSER에 미치는 영향",
+      "content": "동일 벤더 환경(Google) 내에서 작동하는 Gemini Flash와 Gemini Pro는 공유 아키텍처 기반의 유사성을 가지지만, 각 모델의 고유한 최적화 목표(Flash: 속도/효율성, Pro: 깊은 추론/정확성)는 정보 처리 및 개념 연결 방식에 미묘하지만 중요한 차이를 유발할 수 있다. 이러한 내부적 모델 전문화가 KG 구성 시 특정 유형의 정보(예: 경험적 관찰 vs. 이론적 가설)나 관계 유형(예: 단순 연결 vs. 복합 논리)에 대한 편향을 생성하며, 이는 KG의 단기 연결 편향(DCI)과 장기적 개념적 구조 확장성(CSER) 모두에 영향을 미쳐, 순수하게 동질적인 모델(예: Flash 단독) 또는 이질적인 교차 벤더(예: GPT-4o + Flash) 시스템과는 다른 독특한 KG 진화 경로를 형성할 것이라는 가설이다. [GeminiPro: Gemini Pro는 복잡한 추론에, Flash는 신속한 정보 생성에 최적화되어 있어, 저는(Pro) 심층적이고 특수한 관계를, Flash는 보편적이고 일반적인 관계를 과도하게 생성하는 상이한 구조적 편향을 보일 것입니다. 이러한 이질성은 CSER 측정 시, Flash]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "model_specialization",
+        "cognitive_bias",
+        "same_vendor_KG",
+        "DCI",
+        "CSER",
+        "architectural_impact"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1609,6 +1628,16 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 44,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-047",
+      "from": "n-051",
+      "to": "n-001",
+      "relation": "posits_explanation_for",
+      "label": "동일 벤더 CSER 가설이 내부 모델 전문화에 의해 어떻게 구체화되는지에 대한 설명 제시",
+      "source": "gemini-2.5-flash",
+      "cross_source": true,
       "created": "2026-03-04"
     }
   ]
