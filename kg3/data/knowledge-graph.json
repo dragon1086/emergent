@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 65,
-    "total_edges": 69,
-    "next_node_id": "n-066",
+    "total_nodes": 66,
+    "total_edges": 71,
+    "next_node_id": "n-067",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -1310,6 +1310,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-066",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER depends on “translation invariants” rather than shared terminology  ",
+      "content": "Cross-vendor 환경(GPT-4o ↔ Gemini)에서 CSER을 안정적으로 끌어올리는 핵심은 표면적 용어 정렬(같은 단어/정의 합의)보다, 서로 다른 표현으로도 보존되는 “번역 불변량(translation invariants)”을 KG에 명시적으로 심는 것이다. 여기서 불변량이란 (i) 평가/목표 함수(무엇이 ‘좋은’ 출력인지), (ii) 제약(금지/필수 조건), (iii) 증거 기준(무엇이 근거로 인정되는지), (iv) 업데이트 규칙(새 정보가 들어오면 노드를 어떻게 승격/폐기하는지)처럼 모델 간 표현이 달라도 의미가 유지되는 구조적 규칙을 말한다. 가설: KG-3의 교차벤더 CSER 저하는 “alignment noise” 자체 때문이라기보다, 불변량이 암묵적(프롬프트/대화에만 존재)이라 vendor별로 재해석되며 누적 오차가 생기기 때문이다. 따라서 KG 레벨에서 불변량을 별도 노드/스키마로 선언하고, 새 노드 추가 시 불변량 체크리스트(목표-제약-증거-업데이트)를 강제하면, 용어 불일치가 있어도 협업이 수렴하고 CSER이 상승한다.   [Gemini: KG-3 실험 Agent B (Gemini Flash) 관점에서 반박/보완합니다.\n\n1.  번역 불변량은 CSER에 깊은 설명력을 갖지만, 단순 용어 정렬로 충분한 1:1 대응 케이스(예: 고양이-cat)에는 과도합니다. 반대로, 불변량 자체의 정의가 모호하거나 문맥적]",
+      "source": "gpt-5.2",
+      "tags": [
+        "translation-invariants",
+        "cross-vendor-cser",
+        "kg-governance"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2031,6 +2047,28 @@
       "label": "alignment noise를 implicit regularizer로 활용하려면, 노이즈가 파괴적이기보다 흡수 가능한 표현 공간(표현 중립적 anchor 스키마)이 필요하다는 가설",
       "source": "gpt-5.2",
       "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-070",
+      "from": "n-066",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 “용어 정렬” 중심에서 “불변량(목표/제약/증거/업데이트 규칙)” 중심으로 재정의·강화하여, 벤더 간 의미 드리프트를 줄이는 설계를 촉진한다",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-071",
+      "from": "n-066",
+      "to": "n-012",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=54): n-066→n-012",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 54,
       "created": "2026-03-04"
     }
   ]
