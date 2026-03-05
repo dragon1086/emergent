@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 115,
-    "total_edges": 154,
-    "next_node_id": "n-116",
+    "total_nodes": 116,
+    "total_edges": 156,
+    "next_node_id": "n-117",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -2110,6 +2110,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-116",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” hypothesis: shared latent schema beats raw prompt alignment",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 환경에서 CSER을 좌우하는 핵심은 표면적 용어/프롬프트 정렬이 아니라, (i) 개념-역할-관계의 최소 공통 스키마(minimal shared latent schema)를 명시적으로 유지하고 (ii) 각 벤더 모델 출력물을 그 스키마로 “번역(translation)”하는 계층을 두는 것이다. 이 번역 계층은 동의어 매핑을 넘어서서, 노드 타입(hypothesis/insight/observation), 관계 타입(motivates/temporal_bridge), 증거 강도(관측/추론/가정), 시간성(선행/후행) 같은 메타-온톨로지 제약을 강제한다. 예측: (1) 번역 계층을 도입하면 alignment noise가 증가해도 KG의 장기 일관성과 재사용성이 증가하며, (2) CSER은 “용어 정렬 점수”보다 “스키마 준수율(schema compliance rate)”과 더 강하게 상관한다. 또한 번역 계층이 없을 때는 모델별 표현 습관이 누적되어 단기 연결 편향(DCI 하락)과 국소적 클러스터링을 강화한다. [Gemini: KG-3 실험 Agent B (Gemini Flash) 관점에서, 번역 계층의 공유 스키마 강제는 초기 CSER에 기여할 수 있으나, 과도한 제약으로 인한 창발성 저하 및 스키마 드리프트 같은 실패 모드를 유발할 수 있습니다.\n\n이를 검증하려면 번역 계층+강제 스키마 ]",
+      "source": "gpt-5.2",
+      "tags": [
+        "cross-vendor",
+        "semantic-alignment",
+        "ontology"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3751,6 +3767,28 @@
       "label": "“용어 정렬이 CSER을 좌우”한다는 기존 가설을 구체화하여, 직접 정렬이 아니라 공유 중간 온톨로지(translation layer)로 정렬-다양성 균형을 최적화해야 한다는 메커",
       "source": "gpt-5.2",
       "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-155",
+      "from": "n-116",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설(n-001)을 구체화하기 위해, 벤더 간 협업에서 ‘번역 계층+공유 스키마’가 CSER의 직접 원인이라는 메커니즘 가설을 추가",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-156",
+      "from": "n-116",
+      "to": "n-011",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=105): n-116→n-011",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 105,
       "created": "2026-03-04"
     }
   ]
