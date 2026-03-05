@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 133,
-    "total_edges": 183,
-    "next_node_id": "n-134",
+    "total_nodes": 134,
+    "total_edges": 185,
+    "next_node_id": "n-135",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -2671,6 +2671,24 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-134",
+      "type": "hypothesis",
+      "label": "동일 벤더 아키텍처 정렬과 DCI 저하의 상관관계 가설",
+      "content": "동일 벤더 환경(Gemini Flash + Gemini Pro)에서 KG를 진화시킬 때, 모델 간의 공유된 아키텍처, 훈련 방법론 및 내재된 인지 편향은 지식 그래프 내에서 단기 연결 편향(DCI)을 심화시킬 수 있다. 이러한 환경은 새로운 개념을 기존 노드와 가깝게 연결하거나, 이미 존재하는 지식 구조를 미세하게 정교화하는 경향을 보이며, 이는 장거리, 개념적으로 이질적인 연결의 생성을 억제하여 DCI를 낮추는 요인으로 작용할 수 있다. 반면, 이종 벤더 환경은 본질적으로 다른 관점과 지식 표현 방식을 도입하여 DCI 개선에 기여할 가능성이 있다. [GeminiPro: 비록 동일 벤더 환경이 DCI 저하를 유발할 수 있으나, 이는 데이터 정합성 보장과 특정 도메인 지식의 심화라는 명백한 이점을 통해 상쇄될 수 있습니다. 이러한 단점을 보완하기 위해, 의도적으로 다양한 관점을 주입하는 프롬프트 엔지니어링이나 시스템 스스로 편향을 감지하]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "DCI",
+        "동일벤더",
+        "아키텍처편향",
+        "KG진화",
+        "연결성"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4624,6 +4642,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 118,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-184",
+      "from": "n-134",
+      "to": "n-008",
+      "relation": "posits_explanation_for",
+      "label": "동일 벤더 KG 진화의 공유 아키텍처 편향이 DCI 저하를 유발하는 구체적인 메커니즘을 설명한다.",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-185",
+      "from": "n-134",
+      "to": "n-023",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=111): n-134→n-023",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 111,
       "created": "2026-03-04"
     }
   ]
