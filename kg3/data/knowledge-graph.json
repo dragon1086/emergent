@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 113,
-    "total_edges": 151,
-    "next_node_id": "n-114",
+    "total_nodes": 114,
+    "total_edges": 153,
+    "next_node_id": "n-115",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -2078,6 +2078,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-114",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG 진화에서 “교차-모델 번역자(semantic mediator)”를 두면 정렬 노이즈를 구조화해 CSER을 높인다",
+      "content": "Cross-vendor 환경(GPT-4o↔Gemini)에서는 동일 개념이라도 표현·범주화·추론 습관이 달라 “정렬 노이즈(alignment noise)”가 지속적으로 발생한다. 이를 단순히 제거(denoise)하려 하면 상호 검증에 필요한 다양성까지 소실되어 CSER이 감소할 수 있다. 대신 KG 내부에 **교차-모델 번역자(semantic mediator)** 역할을 명시적으로 도입해, (1) 동의어/준동의어 매핑, (2) 개념 경계(범주 포함/배제) 차이 기록, (3) 서로 다른 추론 스타일(예: 규칙 기반 vs 예시 기반)의 변환 규칙을 **별도 노드/서브그래프**로 유지하면 노이즈가 “무작위 오염”이 아니라 “구조화된 변이”로 바뀐다. 이때 CSER 향상 메커니즘은 다음과 같다:   [Gemini: Gemini Flash 관점에서 다음 요청에 반박/보완합니다.\n\n1.  **semantic mediator 오버헤드/오류 전파 조건 및 반례:**\n    고정된 매핑을 강제하는 mediator는 오버헤드와 오류 고착화를 야기할 수 있습니다. 반면, LLM 기반의 컨텍스]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-mediator",
+        "CSER]"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3687,6 +3703,28 @@
       "label": "alignment noise를 “무작위 혼선”이 아니라 “구조화된 정규화 채널”로 바꾸기 위해 대화 프로토콜 명시화가 필요함을 제안",
       "source": "gpt-5.2",
       "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-152",
+      "from": "n-114",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬(semantic alignment)이 CSER을 좌우”한다는 기존 가설을 구체화하여, 정렬을 ‘제거’가 아니라 ‘번역자/중재자 서브그래프’로 구조화할 때 CSER이 상",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-153",
+      "from": "n-114",
+      "to": "n-014",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=100): n-114→n-014",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 100,
       "created": "2026-03-04"
     }
   ]
