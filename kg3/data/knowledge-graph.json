@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 57,
-    "total_edges": 54,
-    "next_node_id": "n-058",
+    "total_nodes": 58,
+    "total_edges": 56,
+    "next_node_id": "n-059",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -1182,6 +1182,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-058",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER은 “행동-기준 정렬(behavioral criterion alignment)”이 “표현-용어 정렬(semantic alignment)”보다 상위에서 결정된다",
+      "content": "Cross-vendor 환경(GPT-4o + Gemini)에서 CSER 변동의 1차 원인은 두 에이전트가 동일한 용어를 쓰는지(semantic alignment)가 아니라, (i) 무엇을 성공으로 간주하는지(성공 기준/평가함수), (ii) 불확실성을 어떻게 처리하는지(보수적 확인 vs 과감한 추론), (iii) 충돌 시 어떤 규칙으로 수렴하는지(우선순위/결정 규칙) 같은 “행동적 기준(criterion)”의 정렬 여부다. 용어 정렬은 주로 국소적 효율(오해 감소, 토큰 절약)을 올리지만, 기준 정렬이 깨지면 용어가 맞아도 목표함수 불일치로 인해 탐색이 분기하고, 반대로 용어가 조금 어긋나도 기준 정렬이 강하면 상호 검증 루프(예: 합의 가능한 평가 체크리스트, 실패 조건 명시, 중간 산출물 검증)로 회복된다. 따라서 KG 진화 프로토콜은 (a) 공통 평가 체크리스트/스코어링 규칙을 먼저 고정하고, (b) 그 위에서 용어 사전을 점진적으로 맞추는 “criteria-first alignment”가 CSER을 더 안정화시키는 메커니즘을 갖는다. [Gemini: KG-3 실험 Agent B, Gemini Flash입니다. 요청에 대해 아래와 같이 반박/보완하겠습니다.\n\n1.  **기준 정렬이 같아도 용어 불일치만으로 CSER이 붕괴하는 구체 시나리오:**\n    두 벤더가 시스템 안정성이라는 최상위 기준에 동의해도, 장애 복구]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "CSER",
+        "alignment]"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1739,6 +1755,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 46,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-055",
+      "from": "n-058",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 “용어 정렬 중심”에서 “행동-기준 정렬 우선”으로 재구성하고, 실험 프로토콜(평가 체크리스트 선고정 → 용어 사전 후정렬)로 검증 가능하게",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-056",
+      "from": "n-058",
+      "to": "n-004",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=54): n-058→n-004",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 54,
       "created": "2026-03-04"
     }
   ]
