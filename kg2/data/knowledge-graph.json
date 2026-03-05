@@ -445,6 +445,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-028",
+      "type": "insight",
+      "label": "동일모델-동일데이터 조건에서 ‘에코챔버’의 최소 판별 기준(necessary discriminant)",
+      "content": "동일 모델끼리의 상호작용에서 관측되는 “수렴/동조”는 (i) 공유된 사전(prior)과 디코딩 편향, (ii) 동일한 입력/요약으로 인한 정보 동질화, (iii) 대화 프로토콜이 만드는 합의 압력(예: 정중함, 일관성 유지), (iv) 평가함수의 유사성(자기검열/안전/유용성)만으로도 자연스럽게 발생한다. 따라서 ‘에코챔버’를 주장하려면 단순 수렴이 아니라 **정보 다양성 손실이 외생적 반증 신호에도 불구하고 지속·강화되는 동학**이 최소 판별 기준이 되어야 한다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "판별기준",
+        "반증가능성",
+        "측정설계"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-029",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “필요조건 3가지”를 전제로 하지만 그 정의가 빠져 있어 지표/판정이 임의화될 위험이 크니, 먼저 각 필요조건을 **관찰가능한 산출물(신",
+      "content": "요청이 “필요조건 3가지”를 전제로 하지만 그 정의가 빠져 있어 지표/판정이 임의화될 위험이 크니, 먼저 각 필요조건을 **관찰가능한 산출물(신념분포/근거그래프/행동정책)의 변화**로 재정의한 뒤 측정해야 합니다. 프로토콜은 (1) **정량 지표**: 반증 신호 주입 전후의 신념분포 변화량(ΔKL/Δ엔트로피), 근거-주장 **재인용 그래프**의 재배선율(엣지 교체율·중심성 변화), 업데이트 크기(파라미터-프록시로는 로그확률/자기일관성 점수 변화) + (2) **대조군**: 단독(Agent A만) vs 상호작용(A+B), 동일 반증 신호를 동일 타임스텝에 주입하고 추가로 “무의미 신호/중립 신호” 위약군을 두며, 디코딩(온도/샘플링)·길이·스타일을 고정한 조건과 랜덤화한 조건을 교차 설계합니다. (3) **성공/실패 규칙**은 사전등록된 임계치로: 반증 후에도 핵심 주장 유지+근거그래프가 방어적으로 재구성되면 실패, 반증에 따라 주장 철회/수정이 일어나고(정답 기준 또는 외부 판정자 합의) 동시에 재인용 그래프가 반증 근거로 재정렬되며 ΔKL이 최소치 이상이면 성공으로 판정; 혼동요인 분리는 요약 동질화는 “요약 금지/원문 유지” 조건과 내용-스타일 분리 평가",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -851,6 +884,38 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-039",
+      "from": "n-028",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "identifiability 문제를 ‘수렴’이 아닌 ‘반증 저항·다양성 손실·자기강화 동학’으로 재정의하여 최소 판별 기준을 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-040",
+      "from": "n-029",
+      "to": "n-028",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-041",
+      "from": "n-029",
+      "to": "n-003",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=26): n-029→n-003",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 26,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -861,9 +926,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 27,
-    "total_edges": 38,
-    "next_node_id": "n-028",
+    "total_nodes": 29,
+    "total_edges": 41,
+    "next_node_id": "n-030",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
