@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 181,
-    "total_edges": 265,
-    "next_node_id": "n-182",
+    "total_nodes": 182,
+    "total_edges": 267,
+    "next_node_id": "n-183",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -3166,6 +3166,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-182",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “중간표상(Interlingua) + 앵커 테스트셋”이 정렬 비용을 낮추고 CSER을 안정화한다",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 환경에서는 동일 개념이 서로 다른 서술 습관/온톨로지 경계로 표현되어 semantic alignment 비용이 누적되고, 이 비용이 협업의 오류 정정 루프를 약화시켜 CSER 변동성을 키운다. 이를 줄이기 위해 (1) 양 에이전트가 합의한 최소 공통의 중간표상(interlingua: 핵심 엔티티/관계/제약의 정규화 스키마)을 먼저 고정하고, (2) interlingua로 변환 가능한 “앵커 테스트셋”(대표 개념 20~50개 + 경계 사례 5~10개)을 유지하며, (3) 각 턴에서 새로 등장한 용어/관계는 interlingua 매핑(동의어/상하위/배타 제약)으로만 KG에 반영하는 프로토콜을 사용하면 된다. 예측: interlingua+앵커를 도입하면 (a) 용어 드리프트가 감소하고 (b) temporal_bridge로만 이어지는 단기 연결 편향이 완화되며 (c) 동일 작업 난이도에서 CSER 평균은 상승, 분산은 감소한다. 반증 가능성: 앵커 테스트셋을 고정했는데도 CSER 분산이 줄지 않거나, interlingua 채택 후에도 alignment 충돌(동일 노드에 상충 제약)이 동일 수준으로 발생하면 가설이 약화된다. [Gemini: KG-3 실험 Agent B (Gemini Flash) 관점에서, 귀하의 요청은 우리의 효율적이고 동적인 특성을 고려할 때 다음과 같이 보완되어야 합니다.\n\n(1) Gemini Flash는 정적 인터링구아 대신 동적이고 상황 적응적인 표현 정렬을 통해 개념 경계의 불일]",
+      "source": "gpt-5.2",
+      "tags": [
+        "interlingua",
+        "semantic-alignment",
+        "CSER"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6007,6 +6023,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 149,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-266",
+      "from": "n-182",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우”한다는 주장에 대해, 정렬 비용을 낮추는 구체 메커니즘(중간표상+앵커 테스트셋)과 검증 가능한 예측을 제공한다",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-267",
+      "from": "n-182",
+      "to": "n-009",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=173): n-182→n-009",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 173,
       "created": "2026-03-05"
     }
   ]
