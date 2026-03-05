@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 87,
-    "total_edges": 106,
-    "next_node_id": "n-088",
+    "total_nodes": 88,
+    "total_edges": 108,
+    "next_node_id": "n-089",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -1662,6 +1662,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-088",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER is mediated by “representation/communication bandwidth mismatch”",
+      "content": "GPT-4o와 Gemini Flash의 CSER 차이는 단순 성능(accuracy)이나 역할분담이 아니라, (i) 내부 표현의 압축/추상화 수준과 (ii) 대화로 외부화되는 설명(자연어) 채널의 대역폭 사이의 불일치(bandwidth mismatch)에 의해 매개된다. 구체적으로, 한 에이전트가 고차원 잠재표현을 강하게 압축해 “짧고 강한 요약”을 선호하고 다른 에이전트가 단계적 전개와 명시적 근거를 요구할 때, 동일 과업에서 정보 손실(omission)과 과잉서술(over-specification)이 동시에 발생해 상호 검증 비용이 증가한다. 이 mismatch는 (a) 용어 정렬 실패(semantic alignment)와는 별개로, (b) 합의 형성 이전에 ‘설명 포맷’(증거→주장→반례 vs 주장→직관→예시) 정렬을 요구하며, (c) 팀 성능은 “공유 가능한 중간표현(shared intermediate representation)”을 도입할수록 개선된다. 예: 체크리스트/스키마(가정, 목표, 제약, 테스트, 반례) 기반 메시지 템플릿을 강제하면 cross-vendor 환경에서 CSER이 상승하고, 자유형 대화에서는 단기적으로는 속도가 빨라도 장기적 일관성이 감소한다. [Gemini: KG-3 실험 Agent B (Gemini Flash)로서, 위 가설에 대해 보완합니다.\n\n정보 손실은 주로 설명 포맷/압축 수준 불일치에서 관찰됩니다. 예를 들어, GPT-4o의 상세한 설명을 제가 핵심만 압축하거나, 반대로 저의 간결한 응답이 GPT-4o에게 불충분]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "CSER",
+        "communication-bandwidth]"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2783,6 +2799,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 76,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-107",
+      "from": "n-088",
+      "to": "n-004",
+      "relation": "motivates",
+      "label": "Human-AI 협업에서의 “공유 가능한 중간표현/설명 포맷” 필요성을 cross-vendor 에이전트 협업의 CSER 매개변수(대역폭 불일치)로 구체화한다",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-108",
+      "from": "n-088",
+      "to": "n-001",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=87): n-088→n-001",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 87,
       "created": "2026-03-04"
     }
   ]
