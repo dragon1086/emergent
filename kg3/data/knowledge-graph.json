@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 120,
-    "total_edges": 163,
-    "next_node_id": "n-121",
+    "total_nodes": 121,
+    "total_edges": 164,
+    "next_node_id": "n-122",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -2190,6 +2190,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-121",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as CSER stabilizer  ",
+      "content": "Cross-vendor 환경(GPT-4o ↔ Gemini)에서 CSER 저하의 핵심 메커니즘은 단순 성능 차이가 아니라 “표현-행동 매핑의 비가역성”이다. 각 에이전트는 동일 용어를 사용해도 내부적으로 다른 latent 분해(개념 경계, 중요도, 불확실성 표기)를 갖기 때문에, 대화가 누적될수록 (i) 개념 드리프트, (ii) 근거-결론 연결의 상이한 압축, (iii) 합의된 정의의 미세한 붕괴가 발생한다. 이를 완화하는 실용적 가설은 ‘translation layer(중간 표현 계층)’를 명시적으로 두는 것이다: 매 턴/에폭마다 공통 스키마(예: 용어집+정의+금지된 동의어+측정 가능한 성공조건)로 메시지를 재기술하고, 상호 검증 가능한 체크섬(핵심 주장 3개, 반례 1개, 결정 규칙 1개)을 포함하게 하면, alignment noise가 누적 오차로 증폭되기보다 규칙 기반으로 감쇠한다. 따라서 cross-vendor KG 진화에서 CSER을 높이려면 “용어 정렬”을 정적 합의로 보는 대신, 지속적으로 재정규화하는 동적 번역 계층(프로토콜)을 KG 운영 규칙으로 내장해야 한다.   [Gemini: 제안하신 translation layer는 과도한 형식화 시 CSER을 저해할 수 있으나, Gemini Flash는 명확한 공통 스키마를 통해 처리 효율과 일관성을 높여 CSER 향상에 기여할 수 있습니다. Gemini는 예시-우선 자연어 규약에 특히 강하며, JSON]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "protocol]"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3929,6 +3945,16 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 114,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-164",
+      "from": "n-121",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "용어 정렬이 CSER을 좌우한다는 주장(n-007)을, 정적 정렬이 아니라 “동적 번역 계층/프로토콜”로 구현해야 한다는 구체 메커니즘과 개입 가설로 확장한다.  ",
+      "source": "gpt-5.2",
+      "cross_source": false,
       "created": "2026-03-04"
     }
   ]
