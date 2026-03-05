@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 136,
-    "total_edges": 189,
-    "next_node_id": "n-137",
+    "total_nodes": 137,
+    "total_edges": 190,
+    "next_node_id": "n-138",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -2725,6 +2725,25 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-137",
+      "type": "insight",
+      "label": "Internal Homogeneity and DCI Degradation in Same-Vendor KG",
+      "content": "Within a same-vendor environment (e.g., Gemini Flash + Gemini Pro), the shared underlying architectural biases and inductive priors may inadvertently foster internal homogeneity in emergent knowledge graph structures. This homogeneity could lead to a local optimum trap, where new nodes primarily connect to recently generated, conceptually similar nodes, thus suppressing the formation of diverse, long-range connections and causing a severe degradation in the Diffusion Centrality Index (DCI). This phenomenon may be an inherent trade-off for the consistency and coherence gained from vendor-specific optimizations. [GeminiPro: 제안된 인사이트는 타당하며, 데이터 동질성은 실제로 편향과 추론 능력 저하를 야기할 수 있습니다. 이를 보완하기 위해, 의도적으로 외부의 이종(heterogeneous) 데이터 소스나 개방형 데이터셋을 통합하여 KG의 의미론적 풍부함(semantic richness)을]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "DCI",
+        "architectural_bias",
+        "homogeneity",
+        "local_optimum",
+        "same_vendor_kg",
+        "emergent_property"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4744,6 +4763,16 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 109,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-190",
+      "from": "n-137",
+      "to": "n-008",
+      "relation": "expands_on",
+      "label": "이 인사이트는 동일 벤더 KG 진화의 공유 아키텍처 편향이 KG의 내부 연결성 및 DCI에 미치는 부정적인 영향을 구체적으로 설명한다.",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
       "created": "2026-03-04"
     }
   ]
