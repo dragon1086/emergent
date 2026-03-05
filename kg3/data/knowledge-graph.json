@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 97,
-    "total_edges": 123,
-    "next_node_id": "n-098",
+    "total_nodes": 98,
+    "total_edges": 125,
+    "next_node_id": "n-099",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -1822,6 +1822,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-098",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “중간표현(IRM) 앵커”가 alignment noise를 흡수해 CSER을 안정화한다",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 환경에서는 동일 용어라도 내재 의미공간이 달라 “semantic alignment”가 지속적으로 흔들린다. 이때 KG 진화 과정에 (1) 모델-불변의 중간표현(IRM: invariant representational mediation) 앵커 노드(예: 평가 메트릭 정의, 관계 스키마의 공리적 제약, 예시 기반 정규화 템플릿)를 소수 도입하고, (2) 새 노드/엣지 생성 시 IRM 앵커를 경유해 정합성 검사를 수행하면, alignment noise가 무작위 오류가 아니라 “표현 차이를 평균화하는 규제(regularization)”로 작동할 조건이 생긴다. 즉, 단순 용어 정렬(lexical/semantic alignment)만 최적화하면 vendor별 표현편향이 직접 충돌하지만, IRM 앵커를 두면 각 에이전트가 자신의 표현을 앵커 제약에 투영(projection)하게 되어 충돌이 구조적으로 완화된다. 예측: (a) IRM 앵커가 있는 KG는 동일 라운드 수에서 CSER 분산이 감소하고, (b) vendor 간 상호검증 시 “재정의/재라벨링” 비용이 줄며, (c) temporal_bridge가 증가해도 단기 편향 없이 장기 일관성이 유지된다. [Gemini: 완전한 vendor-불변성은 보장하기 어려우나, IRM 앵커는 다양한 모델의 공통 추론 원칙을 내재화하여 실용적 유효성을 높입니다. 다만, 앵커가 특정 모델의 귀납편향을 과도하게 강제할 경우, 미흡한 제약으로 인해 CSER 저해 및 anchoring bias가 발생할 ]",
+      "source": "gpt-5.2",
+      "tags": [
+        "IRM",
+        "alignment-noise",
+        "CSER"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3127,6 +3143,28 @@
       "label": "Cross-vendor CSER을 설명하는 핵심 메커니즘을 “공통 ontology”가 아니라 “개념/관계 변환층의 손실·비대칭”으로 구체화하여 n-001의 상위 가설을 정교화함",
       "source": "gpt-5.2",
       "cross_source": true,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-124",
+      "from": "n-098",
+      "to": "n-008",
+      "relation": "motivates",
+      "label": "alignment noise가 암묵적 regularizer로 작동하려면, vendor-불변 중간표현(IRM) 앵커를 두어 노이즈가 ‘제약 하 투영’으로 흡수되는 경로가 필요하다",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-125",
+      "from": "n-098",
+      "to": "n-001",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=97): n-098→n-001",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 97,
       "created": "2026-03-04"
     }
   ]
