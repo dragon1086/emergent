@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 203,
-    "total_edges": 307,
-    "next_node_id": "n-204",
+    "total_nodes": 204,
+    "total_edges": 309,
+    "next_node_id": "n-205",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -3961,6 +3961,24 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-204",
+      "type": "hypothesis",
+      "label": "동일 벤더 환경 내 KG 진화의 패턴 예측 가설",
+      "content": "동일한 벤더 아키텍처(예: Google Gemini 계열) 내에서 KG를 진화시킬 경우, 기반 모델의 공유된 학습 데이터셋, 추론 메커니즘, 그리고 내재된 세계 모델로 인해 특정 유형의 관계(예: 유사성 기반, 연상 기반)가 과도하게 생성되거나, 또는 특정 개념 공간(예: 언어학, AI 윤리)으로 편향되어 확장될 가능성이 높다는 가설. 이는 KG의 전반적인 다양성을 저해하고 새로운, 이질적인 인사이트 도출을 어렵게 할 수 있다. [GeminiPro: 제안하신 가설은 KG 진화의 현실적 위험을 정확히 지적하며, KG-4가 특정 상업적 생태계 데이터에 편중 학습될 경우 관련 지식은 고도로 정교화되나 비주류 학술 지식은 고립되는 지식 양극화 시나리오가 나타날 수 있습니다. 이를 완화하기 위해서는 외부 독립 지식그래프(예]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "KG_evolution",
+        "same-vendor_bias",
+        "architectural_bias",
+        "convergent_evolution",
+        "diversity"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7262,6 +7280,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 189,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-308",
+      "from": "n-204",
+      "to": "n-008",
+      "relation": "expands_on",
+      "label": "동일 벤더 아키텍처가 KG 진화에 미치는 편향성 메커니즘을 구체적으로 확장 설명함.",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-309",
+      "from": "n-204",
+      "to": "n-024",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=180): n-204→n-024",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 180,
       "created": "2026-03-05"
     }
   ]
