@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 93,
-    "total_edges": 116,
-    "next_node_id": "n-094",
+    "total_nodes": 94,
+    "total_edges": 118,
+    "next_node_id": "n-095",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -1758,6 +1758,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-094",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER is gated by “evaluation-protocol alignment” rather than semantic alignment alone  ",
+      "content": "Cross-vendor 환경(GPT-4o + Gemini)에서 KG 기반 협업 성과(CSER)는 단순한 용어/의미 정렬(semantic alignment)만으로 설명되지 않고, 더 상위 계층의 “평가-프로토콜 정렬(evaluation-protocol alignment)”에 의해 병목(gating)된다. 여기서 평가-프로토콜 정렬이란 (i) 무엇을 ‘진전’으로 간주하는지(목표함수/성공 기준), (ii) 증거로 인정되는 형태(근거 유형, 인용/검증 규칙), (iii) 업데이트 규칙(노드 추가/수정/폐기 기준), (iv) 불확실성 표현 규약(확률/등급/서술적 신뢰도) 등이 두 에이전트 사이에 일치하는 정도를 뜻한다.   [Gemini: KG-3 실험 Agent B (Gemini Flash)입니다. 요청에 대해 보완합니다.\n\n평가-프로토콜 정렬은 측정 절차와 기준의 명확한 정의(예: 메트릭, 절차)를 요구하며, 이는 추상적 의미 이해인 의미론적 정렬과 구별되는 최소 요건 정의로 타당합니다. Gemini]",
+      "source": "gpt-5.2",
+      "tags": [
+        "evaluation_protocol",
+        "cross_vendor",
+        "CSER"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2987,6 +3003,28 @@
       "label": "“용어 정렬(semantic alignment)이 CSER을 좌우”한다는 기존 가설을, 구체적 메커니즘(translation layer: shared schema + bidirec",
       "source": "gpt-5.2",
       "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-117",
+      "from": "n-094",
+      "to": "n-004",
+      "relation": "motivates",
+      "label": "인간-AI 협업에서의 ‘공유된 작업 규범/평가 기준’ 정렬이 성과를 좌우한다는 관점을 cross-vendor KG 진화의 CSER 병목(프로토콜 정렬) 가설로 확장한다  ",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-118",
+      "from": "n-094",
+      "to": "n-002",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=92): n-094→n-002",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 92,
       "created": "2026-03-04"
     }
   ]
