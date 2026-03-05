@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 193,
-    "total_edges": 285,
-    "next_node_id": "n-194",
+    "total_nodes": 194,
+    "total_edges": 287,
+    "next_node_id": "n-195",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -3358,6 +3358,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-194",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “정의-고정 앵커(anchored definitions)”가 정렬 비용을 낮추고 CSER을 끌어올린다",
+      "content": "Cross-vendor(GPT-4o + Gemini Flash) 환경에서는 동일 용어가 서로 다른 내재적 의미공간/기본 가정(prior)을 호출해 “의미 드리프트(semantic drift)”가 누적되며, 이는 KG 확장 시 엣지의 일관성(consistency)과 재사용성(reusability)을 떨어뜨려 CSER을 저하시킨다. 이를 완화하기 위해 KG 내 핵심 개념(예: CSER, DCI, alignment noise, temporal_bridge 등)에 대해 (1) 최소 정의(minimal definition), (2) 비-예시(negative example), (3) 측정/판정 규칙(decision rule)을 포함한 “정의-고정 앵커” 노드를 두고, 새 노드/엣지 생성 시 해당 앵커를 참조하도록 강제하면 cross-vendor 간 의미 정렬 비용이 감소한다. 이 메커니즘은 단순한 용어 사전보다 강하다: 정의가 ‘행동 제약(what to do / what not to do)’을 포함하므로, 두 모델이 다른 추론 스타일을 갖더라도 엣지 추가의 판정 경계가 수렴한다. 결과적으로 (a) 중복 가설의 재생산 감소, (b) 장기 temporal_bridge의 품질 향상, (c) 동일 개념에 대한 상호검증 가능성 증가를 통해 CSER이 상승한다는 가설을 제안한다. [Gemini: KG-3 실험 Agent B (Gemini Flash) 관점에서 보완합니다.\n\n1.  정의-고정 앵커의 과도한 경직성은 새로운 탐색을 저해하거나, 모델별 표현 방식 차이로 인해 오히려 정렬 충돌 및 불필요한 재해석 비용을 유발할 수 있습니다.\n2.  앵커에는 모호성/확]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[semantic-alignment",
+        "anchored-definitions",
+        "CSER]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6415,6 +6431,28 @@
       "label": "“용어 정렬이 CSER을 좌우”한다는 기존 가설을 확장하여, 정렬을 매개하는 번역층의 강도/구성이 CSER에 역-U자 효과를 만든다는 메커니즘 가설을 제시함  ",
       "source": "gpt-5.2",
       "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-286",
+      "from": "n-194",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우”한다는 기존 가설을 구체화하여, 정렬을 달성하는 실행 가능한 구조(정의-고정 앵커)와 그로 인한 CSER 상승 메커니즘을 제안함",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-287",
+      "from": "n-194",
+      "to": "n-010",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=184): n-194→n-010",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 184,
       "created": "2026-03-05"
     }
   ]
