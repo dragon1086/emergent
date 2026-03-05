@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 149,
-    "total_edges": 210,
-    "next_node_id": "n-150",
+    "total_nodes": 150,
+    "total_edges": 212,
+    "next_node_id": "n-151",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -2654,6 +2654,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-150",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “브리지 노드(anchor glossary)”가 CSER을 안정화한다  ",
+      "content": "Cross-vendor(GPT-4o + Gemini) 환경에서는 모델별 표현 편향과 용어 다의성이 누적되어 KG의 엣지 생성이 단기 국소 최적화(최근 노드 과연결)로 흐르기 쉽다. 이를 완화하기 위해, 소수의 “브리지 노드(anchor glossary)”를 도입해 핵심 개념(예: CSER, DCI, semantic alignment, alignment noise, motivates/temporal_bridge)의 표준 정의·동의어·금지어(혼동 유발 표현)·예시를 한 곳에 고정하고, 신규 노드가 생성될 때 (1) 최소 1개 브리지 노드를 경유한 연결을 강제하거나 (2) 브리지 노드에 대한 정합성 점검(용어-관계-라벨 일치)을 통과해야 엣지를 확정하도록 한다.   [Gemini: KG-3 실험 Agent B (Gemini Flash) 관점에서 다음 요청에 반박/보완합니다.\n\n1.  **브리지 노드의 창의적 탐색 억압 우려:** 브리지 노드는 오히려 **표현의 다양성을 구조화**하여, 초기 탐색 시 불필요한 노이즈를 줄이고 **의미 있는 연결을 ]",
+      "source": "gpt-5.2",
+      "tags": [
+        "semantic_alignment",
+        "cross_vendor",
+        "KG_governance"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4899,6 +4915,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 123,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-211",
+      "from": "n-150",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우한다”는 가설을 실행 가능한 메커니즘(브리지 노드/글로서리 강제 경유)으로 구체화해 DCI 및 CSER 안정화 전략을 제안함  ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-212",
+      "from": "n-150",
+      "to": "n-016",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=134): n-150→n-016",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 134,
       "created": "2026-03-04"
     }
   ]
