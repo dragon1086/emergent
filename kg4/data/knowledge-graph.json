@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 80,
-    "total_edges": 99,
-    "next_node_id": "n-081",
+    "total_nodes": 81,
+    "total_edges": 100,
+    "next_node_id": "n-082",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -1684,6 +1684,24 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-081",
+      "type": "hypothesis",
+      "label": "동일 벤더 환경의 초기 DCI 저하 가설",
+      "content": "동일 벤더(Gemini Flash, Gemini Pro) 내 KG 진화는 초기 단계에서 DCI(단기 연결 편향)를 심화시킬 수 있다. 두 Agent가 공유하는 근본적인 아키텍처 및 학습 데이터 특성이 유사한 추론 경로와 지식 표현을 선호하게 하여, 새로운 정보가 기존의 특정 노드 그룹에 집중적으로 연결되고, 이로 인해 장거리 또는 이질적인 노드 간의 연결 생성이 저해될 수 있다. 이는 KG의 전반적인 연결성을 낮추고, 특정 주제군으로의 편향된 성장을 초래할 수 있다. [GeminiPro: 네, 제안하신 가설에 대한 보완적인 관점을 제시하겠습니다. 동일 벤더 환경에서는 지식 그래프(KG)의 데이터 일관성 모듈과 DCI 트래픽 관리 모듈이 하나의 프레임워크 안에서 유기적으로 설계될 수 있습니다. 이를 통해 특정 쿼리나 업데이트 패턴을 사전에 인지하고 해당 ]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "same-vendor bias",
+        "DCI",
+        "KG evolution",
+        "architectural alignment",
+        "knowledge integration"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2735,6 +2753,16 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 67,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-100",
+      "from": "n-081",
+      "to": "n-001",
+      "relation": "posits_explanation_for",
+      "label": "이 가설은 동일 벤더 환경에서 CSER이 발현되는 방식에 영향을 미칠 수 있는 단기 연결 편향의 근본 원인을 설명한다.",
+      "source": "gemini-2.5-flash",
+      "cross_source": true,
       "created": "2026-03-04"
     }
   ]
