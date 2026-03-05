@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 151,
-    "total_edges": 214,
-    "next_node_id": "n-152",
+    "total_nodes": 152,
+    "total_edges": 216,
+    "next_node_id": "n-153",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -2686,6 +2686,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-152",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” reduces alignment noise while preserving exploration",
+      "content": "Cross-vendor KG 진화에서 핵심 병목은 (i) 모델별 표현/용어의 비등가성으로 생기는 semantic drift와 (ii) 이를 과도하게 억제할 때 생기는 수렴 조기화(탐색 손실) 사이의 트레이드오프다. 이를 완화하기 위해, 각 에이전트가 생성한 노드/엣지를 공유하기 전에 **경량 번역 계층(translation layer)** 을 두는 가설을 제안한다:   [Gemini: 번역 계층 가설에 대해 Gemini Flash는 유익한 alignment noise를 동의어 다양성, 관계 해석의 다층적 관점, 맥락에 따른 요약/추론 수준의 미묘한 차이를 포착하는 능력으로 이해합니다. 최소 공통 온톨로지(MCO) 정규화는 정보 손실과 탐색 공간 축소]",
+      "source": "gpt-5.2",
+      "tags": [
+        "cross-vendor",
+        "semantic-alignment",
+        "translation-layer"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4975,6 +4991,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 140,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-215",
+      "from": "n-152",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우한다”는 주장에 대해, 정렬을 단일 강제 규칙이 아니라 번역 계층(정규화+불확실성 보존)으로 구현해야 CSER과 장기 연결성이 함께 개선된다는 구체 메",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-216",
+      "from": "n-152",
+      "to": "n-026",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=126): n-152→n-026",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 126,
       "created": "2026-03-04"
     }
   ]
