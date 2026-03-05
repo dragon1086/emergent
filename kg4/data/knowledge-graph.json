@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 91,
-    "total_edges": 114,
-    "next_node_id": "n-092",
+    "total_nodes": 92,
+    "total_edges": 116,
+    "next_node_id": "n-093",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -1887,6 +1887,25 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-092",
+      "type": "hypothesis",
+      "label": "동일 벤더 아키텍처 편향이 DCI 저하에 미치는 영향",
+      "content": "동일 벤더 환경(Gemini Flash + Gemini Pro)에서의 KG 진화는 에이전트 간의 유사한 추론 패러다임과 지식 표현 방식을 유도할 수 있다는 가설을 제안한다. 이는 단기적으로는 높은 일관성을 보이지만, 장기적으로는 기존 지식에 대한 깊이 있는 재해석이나 새로운 관점의 도입을 저해하여 KG의 DCI(단기 연결 편향)를 심화시키는 원인으로 작용할 수 있다. 특히, 공유 아키텍처 편향이 이러한 동질적 연결 패턴을 강화하여, 결과적으로 KG의 구조적 다양성과 장거리 연결 형성을 방해할 수 있다. [GeminiPro:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "DCI",
+        "same-vendor bias",
+        "KG evolution",
+        "architecture",
+        "homogeneity",
+        "CSER"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3096,6 +3115,28 @@
       "label": "동일 벤더의 공유 아키텍처 편향이 Agent 간 역할 분담을 통해 KG 진화에 미치는 영향을 설명함.",
       "source": "gemini-2.5-flash",
       "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-115",
+      "from": "n-092",
+      "to": "n-008",
+      "relation": "posits_explanation_for",
+      "label": "동일 벤더 환경에서 공유 아키텍처 편향이 KG의 DCI 저하를 야기하는 기전 설명",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-116",
+      "from": "n-092",
+      "to": "n-019",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=73): n-092→n-019",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 73,
       "created": "2026-03-04"
     }
   ]
