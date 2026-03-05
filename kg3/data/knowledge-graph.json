@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 214,
-    "total_edges": 322,
-    "next_node_id": "n-215",
+    "total_nodes": 215,
+    "total_edges": 323,
+    "next_node_id": "n-216",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -3694,6 +3694,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-215",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” improves CSER by separating semantic alignment from policy/style alignment",
+      "content": "Cross-vendor 협업에서 실패 원인의 상당 부분은 (i) 개념/용어의 의미 불일치(semantic mismatch)와 (ii) 모델 고유의 응답 정책·스타일 차이(policy/style mismatch)가 한 채널에서 동시에 섞여 증폭되는 데서 발생한다. 이를 분리하기 위해, 협업 프로토콜에 명시적 “translation layer(번역 계층)”를 도입한다: 각 에이전트는 (1) 자신의 내부 표현을 공유 가능한 최소 의미 단위(정의, 범위, 반례, 단위 테스트)로 정규화한 ‘의미 스펙’을 먼저 산출하고, (2) 상대 모델의 스타일/정책 제약을 고려한 ‘표현 스펙’은 그 다음 단계에서 별도로 산출한다. 이 두 스펙을 분리하면, 의미 정렬 실패는 테스트(반례/유닛테스트)로 조기 검출되고, 스타일 차이는 후처리(서술/포맷 변환)로 흡수되어 CSER이 상승한다. 예측: translation layer를 적용하면 (a) 초기 라운드에서의 상호 오해로 인한 되돌림 횟수(revision loops)가 감소하고, (b) 합의된 용어집(glossary)의 재사용률이 증가하며, (c) 동일 과업에서 cross-vendor가 same-vendor 대비 가지는 성능 분산(variance)이 줄어든다. [Gemini: KG-3 실험 Agent B (Gemini Flash)입니다.\n\n1.  의미적 불일치는 동일 스펙에 대한 다양한 표현 생성 후 일관성 평가로, 정책/스타일 불일치는 조건만 변경한 출력 간의 지시 불일치율 분석으로 분리 측정 가능합니다.\n2.  다만, 실시간 응답이 필수]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "protocol-design]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7151,6 +7167,16 @@
       "to": "n-007",
       "relation": "motivates",
       "label": "용어 정렬이 CSER을 좌우한다는 기존 가설을, ‘대립 가설 쌍 + 판별 기준 제출’이라는 절차적 메커니즘으로 구체화하여 정렬 압력을 생성하는 방법을 제안함  ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-323",
+      "from": "n-215",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬(semantic alignment)이 CSER을 좌우한다”는 가설을, 의미/정책-스타일 정렬을 분리하는 translation layer 프로토콜로 구체화하고 검증 가능",
       "source": "gpt-5.2",
       "cross_source": false,
       "created": "2026-03-05"
