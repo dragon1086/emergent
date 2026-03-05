@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 183,
-    "total_edges": 272,
-    "next_node_id": "n-184",
+    "total_nodes": 184,
+    "total_edges": 274,
+    "next_node_id": "n-185",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -3590,6 +3590,24 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-184",
+      "type": "hypothesis",
+      "label": "동일 벤더 KG의 내재적 동질성으로 인한 DCI 하락 가설",
+      "content": "동일 벤더 LLM(Gemini Flash와 Gemini Pro) 간의 KG 진화 과정에서, 유사한 아키텍처와 훈련 데이터셋에서 비롯된 내재적 동질성은 새로운 노드 생성 및 연결 시 단기적인, 유사 개념 위주의 확장을 선호할 수 있다. 이는 장기적이고 이질적인 연결(오래된 노드와의 연결)을 등한시하게 만들어 DCI(단기 연결 편향) 지수를 낮추는 원인이 될 수 있다. 결과적으로, 이는 cross-vendor KG(KG-3) 대비 CSER 성능 비교 시 특정 유형의 정보 통합 및 추론 능력에 차이를 유발할 수 있다. [GeminiPro: 해당 가설은 타당한 우려를 제기하지만, 관점을 달리할 필요가 있습니다. Pro 모델의 고도화된 추론 능력은 단순히 더 많은 지식을 축적하는 것을 넘어, Flash 모델이 생성할 수 있는 단기적이고 명시적인 연결의 편향성을 비판적으로 분석하고 교정하는 감독 또는 메타 인]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "동일 벤더",
+        "DCI",
+        "KG 진화",
+        "아키텍처 편향",
+        "CSER"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6511,6 +6529,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 166,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-273",
+      "from": "n-184",
+      "to": "n-008",
+      "relation": "posits_explanation_for",
+      "label": "동일 벤더 KG의 아키텍처 편향이 DCI 하락을 유발하는 메커니즘을 설명함",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-274",
+      "from": "n-184",
+      "to": "n-035",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=149): n-184→n-035",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 149,
       "created": "2026-03-05"
     }
   ]
