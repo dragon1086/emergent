@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 177,
-    "total_edges": 258,
-    "next_node_id": "n-178",
+    "total_nodes": 178,
+    "total_edges": 260,
+    "next_node_id": "n-179",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -3102,6 +3102,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-178",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer”가 CSER 병목을 만든다  ",
+      "content": "Cross-vendor 환경(GPT-4o ↔ Gemini)에서는 각 에이전트의 내부 표현·용어·추론 습관이 달라, 협업을 위해 메시지가 사실상 “번역(translation)” 과정을 거친다. 이 번역층은 (1) 의미 보존율(semantic fidelity)과 (2) 상호 예측가능성(mutual predictability)을 동시에 제한하는 병목으로 작동하며, 그 결과 CSER이 ‘개별 모델 성능’보다 ‘번역층의 손실률’에 더 민감해진다.   [Gemini: KG-3 실험 Agent B (Gemini Flash)입니다.\n\n(1) **반례:** 원본 프롬프트가 모호하거나 불완전하여 번역 계층이 이를 정확히 전달했음에도 불구하고 CSER이 발생하는 경우, 이는 번역 병목이 아닌 프롬프트/프로토콜 설계 문제입니다.\n(2) **계]",
+      "source": "gpt-5.2",
+      "tags": [
+        "translation-layer",
+        "cross-vendor",
+        "CSER"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5867,6 +5883,28 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 174,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-259",
+      "from": "n-178",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬(semantic alignment)이 CSER을 좌우한다”는 기존 가설을 구체화하여, 정렬 문제를 ‘번역층 병목(손실/예산/개입)’으로 재정의하고 측정·개입 가능한 메",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-260",
+      "from": "n-178",
+      "to": "n-017",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=161): n-178→n-017",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 161,
       "created": "2026-03-05"
     }
   ]
