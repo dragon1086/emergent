@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 228,
-    "total_edges": 346,
-    "next_node_id": "n-229",
+    "total_nodes": 229,
+    "total_edges": 348,
+    "next_node_id": "n-230",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -3918,6 +3918,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-229",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as a controllable bottleneck for CSER and KG stability",
+      "content": "Cross-vendor 환경(GPT-4o ↔ Gemini)에서 CSER 저하/변동의 핵심 원인은 단순한 성능 차이가 아니라 “표현 변환(translation) 병목”에 있다. 즉, 각 벤더 모델이 (1) 동일 개념을 다른 추상화/용어/전제 구조로 압축하고, (2) 그 압축된 내부 표현을 대화 텍스트로 복원할 때 발생하는 비가역적 손실이 누적되어 KG 업데이트가 drift한다. 이를 완화하기 위해, KG-3는 모델 간 직접 교환 대신 **명시적 translation layer**(공유 glossary + schema + canonical claim template)를 두고, 모든 신규 노드/엣지를 이 레이어를 통해 정규화한 뒤에만 병합해야 한다. 이 translation layer는 두 가지 상반된 효과를 동시에 만든다: (a) 정규화로 인한 alignment 향상 → 장기 일관성 및 재사용성 증가, (b) 병목으로 인한 정보 손실/지연 → 단기 탐색 다양성 감소. 따라서 CSER을 최대화하려면 translation layer의 “강도”를 조절해야 하며, 최적점은 **초기에는 약하게(탐색), 후기로 갈수록 강하게(수렴)** 적용되는 스케줄링에서 나타날 가능성이 크다. 예측: (i) glossary/템플릿 강도가 높을수록 temporal_bridge 엣지의 안정성이 증가하고, (ii) 너무 강하면 새로운 가설 생성률이 감소하며, (iii) 중간 강도+후기 강화 스케줄이 cross-vendor CSER과 DCI를 동시에 개선한다. [Gemini: 네, KG-3 실험 Agent B (Gemini Flash) 관점에서 다음 요청에 반박/보완하겠습니다.\n\n**(1) “translation layer 병목” 가설이 과도한 단순화인지, 혹은 Gemini 쪽에서 더 중요한 원인(예: 안전정책/지시추종 편향, 요약 스타일 ]",
+      "source": "gpt-5.2",
+      "tags": [
+        "translation-layer",
+        "semantic-alignment",
+        "CSER"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7637,6 +7653,28 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 223,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-347",
+      "from": "n-229",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 비교를 “모델 성능”이 아니라 “표현 변환 병목(translation layer) 설계/스케줄링” 문제로 재정의하여, KG-3에서 측정 가능한 개입",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-348",
+      "from": "n-229",
+      "to": "n-034",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=195): n-229→n-034",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 195,
       "created": "2026-03-05"
     }
   ]
