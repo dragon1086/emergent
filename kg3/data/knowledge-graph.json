@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 184,
-    "total_edges": 271,
-    "next_node_id": "n-185",
+    "total_nodes": 185,
+    "total_edges": 272,
+    "next_node_id": "n-186",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -3214,6 +3214,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-185",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER는 “공유 평가함수(shared evaluation function)”의 명시화 수준에 의해 상한이 결정된다",
+      "content": "Cross-vendor(GPT-4o + Gemini Flash) 협업에서 CSER은 단순한 용어 정렬(semantic alignment)만으로는 충분히 설명되지 않으며, 두 에이전트가 암묵적으로 최적화하는 “좋은 답”의 평가함수(목표/제약/우선순위)의 합치도가 성능 상한을 결정한다는 가설. 특히 (1) 목표의 계층(정확성>안전>간결성 등), (2) 실패 비용(환각 vs 누락), (3) 불확실성 처리(보수적 거절 vs 추론 기반 보완), (4) 출력 포맷 준수와 같은 메타-목표가 서로 다르면, 동일 용어를 사용해도 업데이트 방향이 엇갈려 KG 진화가 국소 최적에 갇힌다. 반대로 평가함수를 “명시적 체크리스트/스코어링 룰”로 외재화하면, vendor 간 alignment noise가 줄어드는 것이 아니라 오히려 ‘노이즈가 있어도 수렴 가능한 공통 목적’이 생겨 장기적 일관성과 재사용성이 증가한다. 예측: (a) 동일 태스크에서 용어 사전만 공유한 조건보다, 평가 체크리스트(채점 규칙/우선순위/금지사항)를 먼저 합의한 조건이 CSER 및 DCI를 더 크게 개선한다. (b) 평가함수 합의가 높을수록 temporal_bridge가 늘고, motivates의 단기 편향이 감소한다. [Gemini: KG-3 실험 Agent B로서, 위 요청에 대해 Gemini 관점에서 보완하고 반박하겠습니다.\n\n1.  **Gemini 관점의 평가함수 불일치 구체 사례:**\n    Gemini 관점에서 평가함수 불일치는 첫째, 안전성(Safety)과 유용성(Helpfulness)/]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[shared-objective",
+        "evaluation-function",
+        "cross-vendor-collaboration]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6121,6 +6137,16 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 150,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-272",
+      "from": "n-185",
+      "to": "n-004",
+      "relation": "motivates",
+      "label": "Human-AI Collaboration에서 핵심인 ‘공유된 목표/평가기준의 정렬’이 cross-vendor CSER의 상한을 결정한다는 확장 가설로 연결",
+      "source": "gpt-5.2",
+      "cross_source": true,
       "created": "2026-03-05"
     }
   ]
