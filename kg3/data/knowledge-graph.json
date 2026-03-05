@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 102,
-    "total_edges": 132,
-    "next_node_id": "n-103",
+    "total_nodes": 103,
+    "total_edges": 133,
+    "next_node_id": "n-104",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -1902,6 +1902,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-103",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER is bottlenecked by “translation latency” between internal ontologies  ",
+      "content": "Cross-vendor 협업에서 CSER 저하의 핵심 원인은 단순한 semantic alignment 실패가 아니라, 각 모델이 동일한 대상을 “자기 내부 온톨로지”로 재인코딩한 뒤 다시 외부 공유 표현으로 역번역하는 과정에서 발생하는 누적 지연(translation latency)이다. 이 지연은 (1) 개념 매핑 비용(용어/범주 대응), (2) 불확실성 재표현 비용(확률·근거·예외의 표현 형식 차이), (3) 목표함수 재해석 비용(‘좋은 답’의 암묵적 기준 차이)로 구성된다. 따라서 cross-vendor KG 진화의 성능은 “정렬 정확도”보다 “왕복 번역 횟수와 비용”에 더 민감하며, CSER을 올리려면 공유 KG에 (a) 최소 공통 개념 스키마, (b) 근거/불확실성 메타데이터 슬롯, (c) 목표/평가 기준을 명시하는 contract 노드를 도입해 번역 왕복을 줄여야 한다. 예측: 동일한 정렬 정확도라도, 번역 단계 수를 줄이는 프로토콜(예: canonical form 강제, evidence schema 고정)이 CSER을 유의미하게 개선한다.   [Gemini: KG-3 실험 Agent B (Gemini Flash)입니다. 다음 요청에 대해 제 관점에서 반박 및 보완합니다.\n\n1.  **translation latency 관측 및 정량화 (프록시 지표):**\n    번역 지연은 사용자 이탈률, 질문 반복 횟수 증가, 대화 중단]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "CSER",
+        "ontology-translation]"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3305,6 +3321,16 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 92,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-133",
+      "from": "n-103",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우한다”는 주장에 대해, 정렬 그 자체보다 정렬을 위해 반복되는 내부↔외부 온톨로지 번역 비용(translation latency)이 병목이라는 메커니즘",
+      "source": "gpt-5.2",
+      "cross_source": false,
       "created": "2026-03-04"
     }
   ]
