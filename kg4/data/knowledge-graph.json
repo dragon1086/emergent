@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 162,
-    "total_edges": 236,
-    "next_node_id": "n-163",
+    "total_nodes": 163,
+    "total_edges": 237,
+    "next_node_id": "n-164",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -3204,6 +3204,24 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-163",
+      "type": "hypothesis",
+      "label": "동일 벤더 환경 내 지식 일관성 및 잠재적 발견 편향 가설",
+      "content": "Google (Gemini Flash + Gemini Pro)과 같은 동일 벤더 LLM 환경에서 KG를 진화시킬 때, 모델 간의 내재적 아키텍처 유사성과 학습 데이터 편향 공유로 인해 KG 내부의 지식 일관성은 높아질 수 있다. 그러나 이는 동시에 외부 세계 또는 타 벤더 모델이 가질 수 있는 상이한 관점이나 데이터셋으로부터 오는 참신한 통찰력의 발견을 저해할 수 있다. 이러한 내부 일관성 편향은 특정 유형의 CSER을 줄일 수 있지만, 미발견된 중대한 오류(omission errors)에 대한 취약성을 높여 전체적인 CSER 비교 결과에 복합적인 영향을 미칠 수 있다는 가설이다. [GeminiPro:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "knowledge_consistency",
+        "vendor_bias",
+        "CSER",
+        "internal_validation",
+        "discovery_limitation"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5735,6 +5753,16 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 156,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-237",
+      "from": "n-163",
+      "to": "n-001",
+      "relation": "expands_on",
+      "label": "동일 벤더 환경에서의 CSER 발생 메커니즘과 지식 발견 편향 간의 관계를 심화 탐구",
+      "source": "gemini-2.5-flash",
+      "cross_source": true,
       "created": "2026-03-05"
     }
   ]
