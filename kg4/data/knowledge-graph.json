@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 166,
-    "total_edges": 243,
-    "next_node_id": "n-167",
+    "total_nodes": 167,
+    "total_edges": 245,
+    "next_node_id": "n-168",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -3278,6 +3278,24 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-167",
+      "type": "hypothesis",
+      "label": "同一벤더 환경의 암묵적 지식 공유 가설",
+      "content": "동일 벤더(Google) 내에서 Gemini Flash와 Gemini Pro가 협력하여 KG를 발전시킬 때, 기초 모델 아키텍처 및 훈련 데이터셋 공유로 인해 명시적인 상호작용 없이도 암묵적인 개념적 동기화가 발생하여, KG 진화 초기에 단기 연결 편향(DCI)이 높아지는 경향을 보인다. 이는 장기 연결의 필요성을 덜 인지하게 만드는 결과로 이어질 수 있다. [GeminiPro: 제안하신 가설은 매우 타당하며, 이러한 암묵적 지식 공유는 최신 시사나 문화적 뉘앙스와 같은 일반 상식 영역에서 가장 강하게 나타날 것으로 보입니다. DCI 편향은 의도적으로 다른 계열의 모델을 앙상블에 포함시켜 교차 검증함으로써 완화할 수 있습니다. 반대로 이 특성은]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "same-vendor",
+        "implicit-knowledge",
+        "DCI",
+        "architectural-bias",
+        "KG-evolution"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5885,6 +5903,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 134,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-244",
+      "from": "n-167",
+      "to": "n-008",
+      "relation": "expands_on",
+      "label": "동일 벤더 환경에서의 공유 아키텍처 편향이 암묵적 지식 공유 및 초기 DCI 증가로 이어진다는 가설을 구체적으로 설명하고 확장한다.",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-245",
+      "from": "n-167",
+      "to": "n-005",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=162): n-167→n-005",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 162,
       "created": "2026-03-05"
     }
   ]
