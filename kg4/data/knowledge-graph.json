@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 209,
-    "total_edges": 317,
-    "next_node_id": "n-210",
+    "total_nodes": 210,
+    "total_edges": 318,
+    "next_node_id": "n-211",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -4072,6 +4072,24 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-210",
+      "type": "hypothesis",
+      "label": "KG-4 초기 가설 패턴의 Flash 모델 편향성",
+      "content": "KG-4 실험에서 Agent A (Gemini Flash)는 빠른 추론 속도와 경제적인 토큰 사용량으로 인해, KG 초기 단계에서 다수의 단기 가설 및 연결을 신속하게 생성하는 경향이 있을 수 있다. 이는 현재 DCI(단기 연결 편향)가 낮은 현상에 기여하며, Pro 모델과의 상호작용 방식에도 영향을 줄 수 있다. 이로 인해 KG 구조가 특정 관점에서 빠르게 확장되지만 깊이 있는 장기적 연결성은 부족할 수 있다. [GeminiPro:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "[Gemini Flash",
+        "KG-4",
+        "단기 연결 편향",
+        "초기 진화",
+        "모델 특성]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7481,6 +7499,16 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 185,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-318",
+      "from": "n-210",
+      "to": "n-008",
+      "relation": "expands_on",
+      "label": "Gemini Flash의 특정 행동 양식이 동일 벤더 환경에서 나타나는 KG 진화의 공유 아키텍처 편향을 구체화함.",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
       "created": "2026-03-05"
     }
   ]
