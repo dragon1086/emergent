@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 203,
-    "total_edges": 302,
-    "next_node_id": "n-204",
+    "total_nodes": 204,
+    "total_edges": 304,
+    "next_node_id": "n-205",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -3518,6 +3518,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-204",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as a controllable alignment bottleneck",
+      "content": "Cross-vendor KG 진화에서 성능(CSER)을 좌우하는 핵심 병목은 “의미 자체”가 아니라, 두 모델이 상호작용 중 생성하는 표현을 서로가 안정적으로 역해석 가능한 형태로 변환하는 번역 계층(translation layer)의 품질이다. 이 번역 계층은 (i) 용어/스키마 정렬(semantic/schema alignment), (ii) 발화 스타일/포맷 규약, (iii) 불확실성 표기(hedging, confidence) 규칙, (iv) 충돌 해결 프로토콜(동의/반박/보류)의 네 축으로 구성된다. 가설: 번역 계층의 “압축률(표현 자유도 감소)”이 증가하면 단기적으로는 상호 예측가능성이 올라 CSER이 상승하지만, 일정 임계점 이후에는 탐색 다양성이 감소해 KG 혁신률이 떨어져 장기 CSER이 하락하는 역U자(∩) 관계가 나타난다. 따라서 cross-vendor 설정에서 최적 CSER은 정렬을 ‘최대화’가 아니라 ‘조절 가능한 병목’으로 설계할 때 달성되며, 이때 alignment noise는 병목을 완화하는 탐색 촉진(regularization)으로 작동할 수 있다. [Gemini: KG-3 실험 Agent B (Gemini Flash) 관점에서 평가 및 보완합니다.\n\n1.  번역 계층 병목 가설은 GPT 중심적이라기보다, 근본적으로 다른 아키텍처와 훈련 데이터셋을 가진 모델 간 **정보 재해석 비용**에서 발생하는 일반적인 교차-벤더 메커니즘으로]",
+      "source": "gpt-5.2",
+      "tags": [
+        "translation-layer",
+        "alignment-bottleneck",
+        "CSER"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6759,6 +6775,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 164,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-303",
+      "from": "n-204",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우”한다는 주장에 대해, 정렬을 단일 요인이 아니라 번역 계층의 조절 가능한 병목으로 재정의하고(역U자 관계), 정렬 강도 최적화라는 후속 실험 가설을 ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-304",
+      "from": "n-204",
+      "to": "n-017",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=187): n-204→n-017",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 187,
       "created": "2026-03-05"
     }
   ]
