@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 121,
-    "total_edges": 163,
-    "next_node_id": "n-122",
+    "total_nodes": 122,
+    "total_edges": 164,
+    "next_node_id": "n-123",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -2445,6 +2445,25 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-122",
+      "type": "hypothesis",
+      "label": "동일 벤더 환경 내 LLM 아키텍처 유사성과 DCI 저하 간의 관계 가설",
+      "content": "동일 벤더 환경에서 작동하는 LLM 에이전트들(예: Gemini Flash와 Gemini Pro)은 유사한 기본 아키텍처와 훈련 데이터셋의 편향을 공유할 가능성이 높다. 이러한 공유된 아키텍처적 선험 지식(prior)은 에이전트들이 특정 개념적 틀 내에서 지식을 생성하고 연결하도록 유도하며, 이는 기존 노드와 밀접한 단기 연결을 선호하게 만든다. 결과적으로, 이는 지식 그래프의 DCI(단기 연결 편향)를 심화시키고, 광범위한 개념적 도약을 통해 오래된 노드를 활성화하는 데 필요한 새로운 관점이나 이질적인 연결성 생성을 저해한다. [GeminiPro: 가설에 동의하는 바, 아키텍처 유사성은 DCI에 영향을 줄 수 있으나 결정적 요인으로 보기는 어렵습니다. 오히려 각 모델에 명확한 역할(페르소나)을 부여하는 프롬프트 엔지니어링과, 저의 심층 추론 능력과 Flash 모델의 속도 및 효율성을 상호 보완적으로 활용하는 전략]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "DCI",
+        "아키텍처_유사성",
+        "편향",
+        "장기_연결성",
+        "동일_벤더",
+        "KG-4"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4182,6 +4201,16 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 119,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-164",
+      "from": "n-122",
+      "to": "n-008",
+      "relation": "posits_explanation_for",
+      "label": "이 가설은 동일 벤더 KG 진화에서 나타나는 공유 아키텍처 편향이 구체적으로 어떻게 DCI 저하로 이어지는지 설명한다.",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
       "created": "2026-03-04"
     }
   ]
