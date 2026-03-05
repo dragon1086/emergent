@@ -346,6 +346,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-022",
+      "type": "insight",
+      "label": "동일모델 에코챔버 ‘검정력’ 부족과 음성결과 해석 문제",
+      "content": "동일 모델(gpt-5.2 × gpt-5.2)에서 관측되는 “수렴/합의/반복”을 에코챔버로 판정하려면, (i) 에코챔버가 만들어내는 추가적 신호가 무엇인지, (ii) 그 신호가 자연스러운 동일모델 수렴(공유된 훈련분포·RLHF·디코딩 편향)과 어떻게 구분되는지, (iii) 제한된 턴/토큰/프롬프트 교란 하에서 검정력이 충분한지 를 명시해야 한다. 그렇지 않으면 실험은 구조적으로 저검정력(low power)이며, “에코챔버가 관측되지 않았다”는 결과는 단지 관측 설계가 신호를 분리하지 못했다는 뜻(식별불능)일 수 있다. 특히 동일모델 조건에서는 다음이 강하게 작동해 에코챔버 신호를 가린다:",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "statistical_power",
+        "negative_results]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-023",
+      "type": "critique",
+      "label": "통합 종합: 요청은 타당하지만 “동일모델 수렴(같은 가중치·디코딩이 비슷해지는 현상)”과 “에코챔버(상호강화·선택적 노출로 다양성이 줄어드는 사회적 동학)”",
+      "content": "요청은 타당하지만 “동일모델 수렴(같은 가중치·디코딩이 비슷해지는 현상)”과 “에코챔버(상호강화·선택적 노출로 다양성이 줄어드는 사회적 동학)”는 관측 단위가 달라 단일 지표세트로 완전 분리하기 어렵습니다; 그래서 **개별출력(모델) 지표 + 상호작용(네트워크) 지표**를 함께 두고, 각 지표에 **조작검증(민감도)·음성해석(무효/부재) 규칙**을 붙이는 형태로 보완하는 게 안전합니다. 아래 5개가 최소 셋업입니다.\n\n1) **표면-의미 동시 수렴도(lexical+semantic convergence)**: (1) 동일 프롬프트 반복/다중 에이전트에서 n-gram 중복률, 문장 템플릿 반복, 임베딩 코사인 유사도/클러스터 수 감소. (2) temperature↓, top_p↓, system 역할지시 강하게, “한 문단으로 결론부터” 같은 형식 고정으로 민감도↑; 반대로 temperature↑·다양화 지시로 분해. (3) 음성(수렴 낮음)일 때: **고정 디코딩인데도 낮으면 ‘부재’** 가능성↑, 디코딩/프롬프트가 다양화 쪽이면 **‘무효(조작이 반대)’**.\n\n2) **근거·출처의 다양성/공유도(provenance diversity & overlap)**: ",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -668,6 +701,26 @@
       "temporal_bridge": true,
       "gap": 18,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-031",
+      "from": "n-022",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "식별가능성 문제를 ‘검정력/음성결과 해석’ 관점으로 확장: 동일모델 조건에서 에코챔버 신호가 가려지는 구조적 이유와 필요한 메커니즘 지표 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-032",
+      "from": "n-023",
+      "to": "n-022",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -678,9 +731,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 21,
-    "total_edges": 30,
-    "next_node_id": "n-022",
+    "total_nodes": 23,
+    "total_edges": 32,
+    "next_node_id": "n-024",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
