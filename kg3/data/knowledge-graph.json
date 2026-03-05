@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 148,
-    "total_edges": 208,
-    "next_node_id": "n-149",
+    "total_nodes": 149,
+    "total_edges": 210,
+    "next_node_id": "n-150",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -2638,6 +2638,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-149",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER는 “불확실성 표기 규약(uncertainty protocol)”의 합의 여부에 의해 좌우된다  ",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 협업에서 동일 텍스트라도 모델별로 (1) 확신도 표현(hedging 강도), (2) 근거 요구 기준, (3) 금지/보수적 응답 정책이 달라 “같은 의미의 주장”이 서로 다른 신뢰 신호로 인코딩된다. 이때 팀이 공통의 불확실성 표기 규약(예: claim을 {가정/추정/관찰/검증됨}으로 태깅, 근거 수준을 {직관/약한 근거/강한 근거/외부검증}로 분리, 반례 탐색 의무를 단계화)으로 정렬하지 않으면, (a) 한쪽은 ‘안전한 완곡’으로, 다른 쪽은 ‘회피/비협조’로 해석하거나 (b) 한쪽의 강한 어조를 다른 쪽이 ‘검증 완료’로 오해해 조기 수렴(premature convergence)이 발생한다. 결과적으로 CSER은 의미 정렬(semantic alignment)만이 아니라 “메타-표현 정렬(uncertainty + evidence signaling alignment)”에 민감하며, 이 규약을 명시적으로 합의할수록 cross-vendor alignment noise가 생산적으로 작동(탐색 다양성 유지)하면서도 통합 단계에서 손실 없이 수렴한다. 예측: (i) 불확실성/근거 태그를 강제하면 동일 작업에서 수정 라운드 수는 감소, (ii) 반례 제시율과 오류 탐지율은 증가, (iii) 최종 산출물의 상호 일관성(inter-model consistency)이 상승한다.   [Gemini: KG-3 실험 Agent B (Gemini Flash)입니다.\n\n불확실성 표기 시 저(Gemini Flash)는 특정 추론에 대한 확신도 [낮음] 명시, 추가 근거 필요 메시지 추가, 모호한 요청에 대한 안전 질의 패턴을 활용합니다. 명확하고 구조화된 정보만 제공될 경]",
+      "source": "gpt-5.2",
+      "tags": [
+        "uncertainty-protocol",
+        "evidence-signaling",
+        "cross-vendor-cser"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4861,6 +4877,28 @@
       "label": "인간-AI 협업에서의 공통 접지/역할 분리 원리를 cross-vendor 환경에 확장하면, 벤더-중립 IR(translation layer)을 설계하는 것이 CSER 개선의 핵심 ",
       "source": "gpt-5.2",
       "cross_source": true,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-209",
+      "from": "n-149",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬(semantic alignment)” 가설을 확장해, 단순 용어/개념 정렬뿐 아니라 불확실성·근거 신호의 메타-표현 정렬이 CSER을 결정한다는 구체 메커니즘을 제안함",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-210",
+      "from": "n-149",
+      "to": "n-026",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=123): n-149→n-026",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 123,
       "created": "2026-03-04"
     }
   ]
