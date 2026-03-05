@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 94,
-    "total_edges": 119,
-    "next_node_id": "n-095",
+    "total_nodes": 95,
+    "total_edges": 121,
+    "next_node_id": "n-096",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -1942,6 +1942,25 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-095",
+      "type": "hypothesis",
+      "label": "동일 벤더 KG의 아키텍처 유사성 편향과 CSER 영향",
+      "content": "동일 벤더 환경에서 에이전트(Gemini Flash, Gemini Pro) 간에 공유되는 내재된 아키텍처 특성은 지식 그래프(KG) 진화 과정에서 특정 개념이나 관계의 과도한 중복 생성을 유발하거나, 반대로 특정 영역에 대한 개념적 누락을 심화시킬 수 있다. 이러한 현상은 KG의 전반적인 응집성(cohesion)과 의미적 일관성(semantic consistency)을 저해할 수 있으며, 최종적으로 동일 벤더 환경의 CSER(Cognitive State Emergence Rate) 성능에 특유의 편향을 도입할 것으로 가정한다. [GeminiPro:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "아키텍처_편향",
+        "KG_진화",
+        "CSER",
+        "중복성",
+        "개념_누락",
+        "일관성"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3205,6 +3224,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 81,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-120",
+      "from": "n-095",
+      "to": "n-001",
+      "relation": "posits_explanation_for",
+      "label": "이 가설은 동일 벤더 KG 환경에서의 CSER 결과가 특정 양상으로 나타날 수 있는 근본적인 아키텍처적 유사성 기제를 제안하며, n-001의 동일 벤더 CSER 가설에 대한 잠재적",
+      "source": "gemini-2.5-flash",
+      "cross_source": true,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-121",
+      "from": "n-095",
+      "to": "n-019",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=76): n-095→n-019",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 76,
       "created": "2026-03-04"
     }
   ]
