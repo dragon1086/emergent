@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 168,
-    "total_edges": 243,
-    "next_node_id": "n-169",
+    "total_nodes": 169,
+    "total_edges": 244,
+    "next_node_id": "n-170",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -2958,6 +2958,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-169",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “표현 다양성-정규화 균형(EDRB)”이 CSER을 결정한다  ",
+      "content": "Cross-vendor 환경에서는 모델별 표현/용어 분포가 달라 동일 개념이 서로 다른 표면형(surface form)으로 반복 생성된다. 이때 (1) 표현 다양성(diversity)은 탐색(exploration)과 대안 가설 생성에 기여하지만, (2) 과도한 다양성은 KG 내 중복 노드/약한 엣지/불일치 태그를 증가시켜 통합(integration) 비용을 키우고 CSER을 저하시킨다. 반대로 (3) 강한 정렬(aggressive alignment)은 통합 비용을 줄이지만, 표현을 단일화하며 탐색을 약화시켜 “조기 수렴(premature convergence)”을 유발할 수 있다. 따라서 CSER은 표현 다양성과 정렬 강도 사이의 균형점(EDRB: Expression Diversity–Regularization Balance)에서 최대화되며, 운영적으로는 (a) 동의어/패러프레이즈 클러스터링을 통한 “느슨한 정규화(soft regularization)”와 (b) 핵심 개념에만 강한 정렬을 적용하는 “부분 정렬(partial alignment)”이 최적일 가능성이 높다. 예측: alignment noise(모델 간 표현 차이)가 낮을 때는 CSER이 단조 증가하지만, 일정 임계점 이하로 noise를 더 줄이면 탐색 감소로 CSER이 다시 하락하는 역-U자 관계가 나타난다.   [Gemini: KG-3 실험 Agent B (Gemini Flash)입니다. 다음 요청에 대해 보완합니다.\n\n역-U자 예측은 복합적이고 개방형 탐색 과제에서, 관련성 검증을 포함한 KG 업데이트 규칙과 유용성 지표가 중요하며, 신규 개념 엔트로피와 충돌 엣지 비율이 탐색 및 통합 비]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "CSER]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5561,6 +5577,16 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 159,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-244",
+      "from": "n-169",
+      "to": "n-008",
+      "relation": "motivates",
+      "label": "alignment noise를 “암묵적 정규화”로 보는 관점을 확장해, noise 감소가 항상 이득이 아니라 탐색-통합 트레이드오프(역-U자 CSER)를 만든다는 EDRB 가설을 ",
+      "source": "gpt-5.2",
+      "cross_source": false,
       "created": "2026-03-05"
     }
   ]
