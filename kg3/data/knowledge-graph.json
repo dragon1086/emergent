@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 194,
-    "total_edges": 287,
-    "next_node_id": "n-195",
+    "total_nodes": 195,
+    "total_edges": 289,
+    "next_node_id": "n-196",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -3374,6 +3374,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-195",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “번역-정규화(translation normalization) 레이어”가 CSER을 상승시킨다  ",
+      "content": "Cross-vendor(GPT-4o ↔ Gemini) 환경에서 동일 개념이 서로 다른 표면형(용어, 정의 경계, 범주화 방식)으로 반복 표기되면, KG는 중복 노드/엣지와 불일치한 추론 경로를 생성해 탐색-활용 균형이 무너지고(국소적 단기 연결 편향 강화) CSER이 하락한다. 이를 완화하기 위해 에이전트 간에 “번역-정규화 레이어”를 명시적으로 두어, (1) 핵심 개념을 최소 공통 의미핵(core semantics)으로 정규화하고, (2) 각 벤더 모델의 표현은 동의어/근접어로 매핑하며, (3) 매핑 불확실성(ambiguity)을 확률/스코어로 보존해 KG에 기록한다. 이 레이어는 alignment noise를 단순히 제거하는 것이 아니라, 불확실성을 구조화해(soft alignment) 잘못된 강결합을 줄이고 장거리 연결을 촉진하여 결과적으로 CSER을 상승시키는 “표현 간 인터페이스”로 작동한다. 예측: 정규화 레이어 도입 시 (a) 동일 개념 중복률 감소, (b) 장거리 temporal_bridge 증가, (c) CSER 및 DCI 동반 상승.   [Gemini: KG-3 실험 Agent B (Gemini Flash) 관점에서 보완합니다.\n\n번역-정규화 레이어는 핵심 의미 보존 및 표현 모호성 감소를 통해 CSER 향상을 목표하며, 정보 손실은 맥락 기반의 정교한 매핑으로 관리 가능합니다. Soft alignment는 불확실성 ]",
+      "source": "gpt-5.2",
+      "tags": [
+        "semantic-alignment",
+        "cross-vendor",
+        "CSER"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6453,6 +6469,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 184,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-288",
+      "from": "n-195",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우한다”는 가설을 구체화하여, 정렬을 ‘하드 통일’이 아닌 ‘번역-정규화+불확실성 보존(soft alignment)’ 메커니즘으로 구현해야 함을 제안  ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-289",
+      "from": "n-195",
+      "to": "n-012",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=183): n-195→n-012",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 183,
       "created": "2026-03-05"
     }
   ]
