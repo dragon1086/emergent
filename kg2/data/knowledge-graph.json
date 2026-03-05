@@ -49,6 +49,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-004",
+      "type": "insight",
+      "label": "동일모델 에코챔버 검증의 ‘대안가설’ 분해(혼동요인) 프레임",
+      "content": "동일 모델(gpt-5.2×gpt-5.2)에서 관측되는 “수렴/동질화”를 에코챔버로 해석하려면, 최소한 다음 대안 메커니즘들을 분리·반증해야 한다. 그렇지 않으면 관측된 효과는 식별불가능(identifiability) 상태로 남는다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "identifiability",
+        "confounds",
+        "causal-inference"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-005",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “각 메커니즘을 배제”라고 되어 있는데, 현실적으로는 완전 배제보다 **동일한 관측(편향 증폭)**을 설명할 수 있는 대안들을 **교차요",
+      "content": "요청이 “각 메커니즘을 배제”라고 되어 있는데, 현실적으로는 완전 배제보다 **동일한 관측(편향 증폭)**을 설명할 수 있는 대안들을 **교차요인 설계로 식별**하는 게 엄밀합니다(또한 ‘상호작용’에 알고리즘 추천·요약·규범 강제까지 포함할지 범위를 먼저 고정해야 함).  \n분리·식별을 위해선 최소한 (i) **상호작용 유무(개인 단독 vs 집단/피드백)**, (ii) **요약 병목(원문 접근/대역폭) 조작**, (iii) **프로토콜 유도(합의 규칙/형식 제약) 조작**을 직교시키고, 지표는 **극화(입장 평균 이동+분산/양극화 지수)**, **반례 억제(반대근거 인용률·반대 링크 클릭률·steelman 점수)**, **정보다양성(소스 엔트로피·관점 토픽 다양성·네트워크 모듈성)**를 함께 봐야 합니다.  \n특히 ‘요약 병목 vs 프로토콜 유도 수렴’은 **(A) 요약만 강제(원문 금지·토큰 제한)하되 합의 규칙 없음** vs **(B) 합의/형식 프로토콜만 강제(원문 자유·토큰 무제한)하되 “단일 결론/만장일치” 요구** vs **(A×B) 둘 다**로 분리하고, 결과를 **근거 다양성(인용 소스 수/상반 근거 공존률)**과 **결론 수렴도(최종 답변 간",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -71,6 +104,26 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-003",
+      "from": "n-004",
+      "to": "n-001",
+      "relation": "EXTENDS",
+      "label": "동일모델 에코챔버 가설의 식별가능성 문제를 구체적 혼동요인/대안가설 목록으로 분해해, 무엇을 반증해야 하는지 조작화 프레임을 확장",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-004",
+      "from": "n-005",
+      "to": "n-004",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -81,9 +134,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 3,
-    "total_edges": 2,
-    "next_node_id": "n-004",
+    "total_nodes": 5,
+    "total_edges": 4,
+    "next_node_id": "n-006",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
