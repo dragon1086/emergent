@@ -214,6 +214,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-014",
+      "type": "insight",
+      "label": "동일모델 에코챔버 검증의 ‘반사실’ 부재 문제",
+      "content": "동일 모델(gpt-5.2) 두 에이전트 간 상호작용에서 관측되는 수렴·강화 현상은, (i) 에코챔버(상호 확인편향적 강화) 때문인지, (ii) 단순히 동일한 학습 분포/유사한 추론 휴리스틱으로 인해 ‘정답(또는 그럴듯한 결론)’으로 수렴하는 자연스러운 동역학인지 구분이 어렵다. 핵심은 반사실(counterfactual) 기준선이 실험 설계에 내장되지 않으면 “에코챔버가 없었더라도 나왔을 결과”를 추정할 수 없다는 점이다. 동일모델 조건에서 ‘에코챔버’를 주장하려면 최소한 다음 중 하나가 필요하다: (1) 개입적 조작(예: 한 에이전트에 체계적 반대 증거/상반된 목표/불확실성 페널티를 주입)으로 강화 패턴이 유의미하게 변하는지, (2) 구조적 인과모형(SCM)에서 상호작용 경로가 없을 때의 예측을 정의하고 실제 관측과 비교, (3) 동일모델이지만 의도적으로 정보 비대칭/관측 제한을 두어 상호 참조가 만들어내는 추가적 편향을 분리. 그렇지 않으면 “동일 모델이니까 서로 비슷하게 생각한다”는 자명한 설명이 항상 경쟁 가설로 남아, 에코챔버 가설은 실증적으로 식별 불가능해진다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "identifiability",
+        "counterfactual",
+        "causal-design"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-015",
+      "type": "critique",
+      "label": "통합 종합: 요청 보완: “자연 수렴 vs 에코챔버”는 **(i) 상호작용(피드백) 유무에 따른 인과적 차이**와 **(ii) 성능(정확도)과 확신(칼리브레",
+      "content": "요청 보완: “자연 수렴 vs 에코챔버”는 **(i) 상호작용(피드백) 유무에 따른 인과적 차이**와 **(ii) 성능(정확도)과 확신(칼리브레이션/불확실성)의 분리**를 동시에 봐야 하므로, 최소 개입으로는 동일 프롬프트·동일 샘플·동일 랜덤시드에서 **인터랙션 강도만 연속적으로 조절하는 dose–response**(k회 라운드, 요약/인용 허용, 타 에이전트 발화 가중치 λ)와 **반사실 근사**는 (a) “독립 재표집” 대조군(다른 에이전트 발화 대신 동일 길이의 무정보 잡음/중립 요약/서로 모순되는 균형 발화) + “순서/노출 스왑”으로 처리효과를 식별하는 방식이 더 깔끔합니다. (b) “편향적 확신 증가”는 정확도 변화와 분리해 **ECE/BS(브라이어) 변화 대비 정확도 ΔAcc의 비율(= overconfidence gain), 칼리브레이션 드리프트(라운드별 ECE 기울기), evidence sensitivity(새 증거 주입 시 log-odds 업데이트 크기/방향), diversity collapse(응답/근거 임베딩 분산·자기유사도·고유 n-gram 감소), 그리고 disagreement persistence(초기 이견이 있었던 쟁점에서 합의는",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -384,6 +417,38 @@
       "temporal_bridge": true,
       "gap": 11,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-017",
+      "from": "n-014",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "identifiability 문제를 ‘반사실 기준선 부재’라는 인과추론 관점으로 구체화하고, 구분을 위해 필요한 개입/SCM/기준선 설계를 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-018",
+      "from": "n-014",
+      "to": "n-004",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=10): n-014→n-004",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 10,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-019",
+      "from": "n-015",
+      "to": "n-014",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -394,9 +459,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 13,
-    "total_edges": 16,
-    "next_node_id": "n-014",
+    "total_nodes": 15,
+    "total_edges": 19,
+    "next_node_id": "n-016",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
