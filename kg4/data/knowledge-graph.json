@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 255,
-    "total_edges": 393,
-    "next_node_id": "n-256",
+    "total_nodes": 256,
+    "total_edges": 395,
+    "next_node_id": "n-257",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -4928,6 +4928,24 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-256",
+      "type": "hypothesis",
+      "label": "동일 벤더 환경 내 암묵적 지식 공유와 DCI 저하 가설",
+      "content": "동일한 벤더 (Google) 아키텍처를 공유하는 Agent A (Gemini Flash)와 Agent B (Gemini Pro)가 KG를 진화시키는 과정에서, 특정 개념이나 관계에 대한 암묵적인 공유 이해가 형성될 수 있다. 이는 명시적인 장거리 연결 노드 생성을 억제하여, DCI(단기 연결 편향 지수)를 낮추는 결과로 이어질 수 있다. 즉, 에이전트들이 당연하게 여기는 지식은 KG 상에서 명시적인 연결로 표현되지 않을 가능성이 높아진다. 이로 인해 KG는 특정 개념 주변으로 집중된 연결 패턴을 보이며, 전반적인 연결성을 저해할 수 있다. [GeminiPro:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "DCI",
+        "동일벤더",
+        "암묵적지식",
+        "KG진화",
+        "LLM편향"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -9157,6 +9175,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 221,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-394",
+      "from": "n-256",
+      "to": "n-008",
+      "relation": "expands_on",
+      "label": "동일 벤더 환경 내 공유 아키텍처 편향이 암묵적 지식 공유를 유발하여 KG의 단기 연결 편향을 심화시키는 메커니즘을 제안함.",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-395",
+      "from": "n-256",
+      "to": "n-012",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=244): n-256→n-012",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 244,
       "created": "2026-03-05"
     }
   ]
