@@ -742,6 +742,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-046",
+      "type": "insight",
+      "label": "동일모델 에코챔버 ‘검증불가능성’의 핵심: 관측량이 메커니즘에 비특이적",
+      "content": "동일 모델(gpt-5.2×gpt-5.2) 조건에서 “에코챔버(상호강화로 인한 신념/표현의 폐쇄적 수렴)”를 관측만으로 식별하려면, 관측 통계가 (i) 자연 수렴(공유된 사전/학습데이터/안전정책으로 인한 독립적 동형 반응), (ii) 프롬프트/대화기록에 의한 단순 조건부 수렴(공통 컨텍스트에 대한 합리적 베이지안 업데이트), (iii) 출력 공간의 구조적 제약(디코딩/안전필터로 인한 저차원 매니폴드), (iv) 실험 설계의 정보 병목(동일 과제·동일 평가자·동일 보상함수)과 구분 가능해야 한다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "causal_inference",
+        "measurement]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-047",
+      "type": "critique",
+      "label": "통합 종합: 요청은 “최소 조작”이라면서 (1) 단절/지연/교란을 동시에 넣어 조작 수가 과해 2×2의 식별력이 흐려지니, **핵심은 ‘상호작용 가능성(있음",
+      "content": "요청은 “최소 조작”이라면서 (1) 단절/지연/교란을 동시에 넣어 조작 수가 과해 2×2의 식별력이 흐려지니, **핵심은 ‘상호작용 가능성(있음/없음)’ × ‘발화 신뢰성(원본/스왑)’**만 두고 단절·지연·교란은 *상호작용 있음* 셀 내부의 **강도 파라미터(secondary knob)**로 계층화하는 게 통합 설계에 맞습니다. 또한 에코챔버는 단순 유사도 상승이 아니라 **정보 원천 다양성 감소 + 확신도 과상승 + 오류/편향의 동조적 전파**가 결합된 패턴이므로, 유사도만 보지 말고 “정답 근접도/교정률”을 함께 넣어 자연 수렴(정확도↑, 오류↓)과 분리해야 합니다.\n\n| 요인1: 상호작용 | 요인2: 발화(상대) | 유사도(의견/표현) | 확신도 | 다양성(근거·출처) | 오류 전파(오답/편향) |\n|---|---|---|---|---|---|\n| 없음(동일정보·비상호작용 베이스라인) | 원본 | 중간(정보로 인한 독립 수렴) | 중간 | 높음(개별 경로 유지) | 낮음·비동조(오류가 서로 달라짐) |\n| 없음 | 스왑 | 유사도 변화 작음(상대 영향 부재) | 변화 작음 | 변화 작음 | 변화 작음(민감도≈0) |\n| 있음 | 원본 | 높음(조정·모",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1520,6 +1553,38 @@
       "temporal_bridge": true,
       "gap": 41,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-073",
+      "from": "n-046",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "식별가능성 문제를 ‘관측량 비특이성/인과식별 실패’로 정식화하고, 필요한 조작·반사실·차분 패턴 조건을 제시",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-074",
+      "from": "n-046",
+      "to": "n-003",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=43): n-046→n-003",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 43,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-075",
+      "from": "n-047",
+      "to": "n-046",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1530,9 +1595,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 45,
-    "total_edges": 72,
-    "next_node_id": "n-046",
+    "total_nodes": 47,
+    "total_edges": 75,
+    "next_node_id": "n-048",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
