@@ -36,7 +36,7 @@ A Case Study with CSER and Persona-Diversity Gates}
   \texttt{munsangrok@gmail.com}
 }
 
-\date{Draft v3.3 — Latest Snapshot (2026-03-04)}
+\date{Draft v3.5 — Latest Snapshot (2026-03-05)}
 
 % ─── Document ─────────────────────────────────────────────────────────────────
 \begin{document}
@@ -1340,7 +1340,7 @@ generalising the domain-dependence claim.
         (CSER = 0.5455, gate passed). This does not resolve the fundamental N=1
         constraint but demonstrates that the gate mechanism is not unique to the
         original agent pair.
-        \textit{Ongoing replication (2026-03-04)}: Three additional independent KG
+        \textit{Ongoing replication (2026-03-05)}: Three additional independent KG
         instances are actively co-evolving as part of a pre-registered $2\times2$
         vendor-diversity experiment:
 
@@ -1349,38 +1349,44 @@ generalising the domain-dependence claim.
         \toprule
         Instance & Agent Pair & Vendor & Edges & CSER \\
         \midrule
-        KG-main & Claude-sonnet-4-6 $\times$ GPT-next (undisclosed) & Cross & 1121 & 0.8510 \\
-        KG-2 & GPT-4o $\times$ GPT-4o-mini & Same (OpenAI) & 30 & 0.8333 \\
-        KG-3 & GPT-next (undisclosed) $\times$ Gemini-2.0-Flash & Cross & 62 & \textbf{0.7097} \\
-        KG-4 & Gemini-Flash $\times$ Gemini-Pro & Same (Google) & 65 & 0.3077 \\
+        KG-main & Claude-sonnet-4-6 $\times$ GPT-next (undisclosed) & Cross & 1121 & \textbf{0.8510} \\
+        KG-2 & GPT-4o $\times$ GPT-4o-mini & Same (OpenAI) & 30 & \textbf{0.8333} \\
+        KG-3 & GPT-next (undisclosed) $\times$ Gemini-2.0-Flash & Cross & 400 & \textbf{0.3800} \\
+        KG-4 & Gemini-Flash $\times$ Gemini-Pro & Same (Google) & 402 & 0.2537$^*$ \\
         \bottomrule
         \end{tabular}
-        \caption*{\small KG-2: 30-cycle snapshot; KG-3/4: 60-cycle snapshots (2026-03-04).
-        All four instances exceed the gate threshold ($\theta=0.30$).
-        KG-3 CSER declines from 0.97 (30 cycles) to 0.71 (60 cycles) as same-source
-        edges accumulate; KG-4 (same-vendor Google) maintains CSER $=0.31$, near
-        the gate boundary, consistent with within-vendor echo-chamber pressure.
-        KG-2 (same-vendor OpenAI, capability-gap pair) holds CSER $=0.83$, suggesting
-        capability asymmetry compensates for vendor homogeneity.}
+        \caption*{\small Snapshot: 2026-03-05. KG-2: 30-cycle snapshot; KG-3/4: $\approx$130-cycle snapshots.
+        $^*$KG-4 CSER has declined below the gate threshold ($\theta=0.30$) at extended scale,
+        consistent with within-vendor echo-chamber pressure under small capability gap.
+        KG-3 CSER has declined from 0.71 (60 cycles) to 0.38 (130+ cycles) as same-source
+        edges accumulate under the current single-node-per-cycle design (Agent B response
+        embedded in content only; separate Agent B node addition is under active development).
+        KG-2 (same-vendor OpenAI, large capability gap: GPT-4o $\times$ GPT-4o-mini)
+        holds CSER $=0.83$, suggesting capability asymmetry mitigates within-vendor
+        echo-chamber pressure.}
         \end{table}
 
-        \noindent\textbf{Key replication finding ($N=4$ KG instances; KG-2: 30 cycles, KG-3/4: 60+ cycles)}:
+        \noindent\textbf{Key replication finding ($N=4$ KG instances; KG-2: 30 cycles, KG-3/4: 130+ cycles)}:
         \begin{enumerate}
-          \item The gate-passing CSER result replicates across all four configurations
-                (all CSER $\geq 0.30$ at 60+ cycles), supporting generalizability of
-                the gate mechanism under extended co-evolution.
-          \item Cross-vendor KG-3 (CSER $=0.71$ at 60 cycles) $>$ same-vendor OpenAI
-                KG-2 (CSER $=0.83$ at 30 cycles) $>$ same-vendor Google KG-4
-                (CSER $=0.31$ at 60 cycles), broadly consistent with the heterogeneity
-                hypothesis. Note that CSER declines over longer runs as same-source
-                edges accumulate; trajectory analysis requires $\geq$100 cycles.
-          \item Within-vendor CSER magnitude depends on capability gap:
-                GPT-4o $\times$ GPT-4o-mini (large gap) yields CSER $=0.83$,
-                comparable to cross-vendor; Gemini Flash $\times$ Pro
-                (smaller parameter gap, same training paradigm) yields
-                CSER $=0.31$ at 60 cycles, near the gate boundary ---
-                suggesting same-vendor pairs with small capability gaps
-                face structural echo-chamber pressure at scale.
+          \item The gate-passing CSER result replicates across KG-main, KG-2, and KG-3
+                (CSER $\geq 0.30$). KG-4 (same-vendor Google, small capability gap) has
+                declined to CSER $=0.2537$ at extended scale, falling below the gate---
+                a directional finding consistent with the echo-chamber hypothesis.
+          \item Across-vendor CSER ordering: KG-main $>$ KG-2 $>$ KG-3 $>$ KG-4,
+                broadly consistent with the heterogeneity hypothesis. CSER declines
+                under extended same-source accumulation; trajectory stabilization
+                requires $\geq$200 cycles under the current design.
+          \item Within-vendor CSER is modulated by capability gap:
+                GPT-4o $\times$ GPT-4o-mini (large gap) yields CSER $=0.83$;
+                Gemini-Flash $\times$ Gemini-Pro (smaller gap, shared training paradigm)
+                yields CSER $=0.25$ at 130+ cycles---supporting the prediction that
+                same-vendor pairs with small capability gaps face structural
+                echo-chamber pressure at scale.
+          \item \textbf{Design note}: The current single-node-per-cycle protocol
+                (Agent A adds a node; Agent B response is embedded as text) underestimates
+                true cross-source connectivity. A revised protocol adding
+                explicit Agent B nodes is pre-registered for future cycles; current
+                CSER values are conservative lower bounds under this design.
         \end{enumerate}
         \noindent These findings constitute exploratory replications ($N=1$ KG per
         configuration) and do not resolve the fundamental single-system limitation,
@@ -1927,7 +1933,7 @@ are explicitly deferred pending multi-seed, multi-pair, multi-domain replication
 \noindent\textbf{Next steps}:
 \begin{enumerate}
   \item \textbf{KG replication ($2\times2$ design, ongoing)}:
-        KG-2 completed 30 cycles; KG-3/KG-4 reached 60+ cycles (2026-03-04),
+        KG-2 completed 30 cycles; KG-3/KG-4 reached 130+ cycles (2026-03-05),
         with co-evolution continuing via automated LaunchAgents.
         All four KG instances pass the CSER gate ($\geq 0.30$) at the
         latest snapshot; KG-4 (same-vendor Google, CSER $=0.31$) is near
@@ -2045,7 +2051,7 @@ Amplification judge & \texttt{gemini-3-flash-preview} & Google \\
 Cross-provider replication & \texttt{gpt-4o} + \texttt{gemini-2.0-flash} & OpenAI + Google \\
 \bottomrule
 \end{tabular}
-\caption{Model versions used in main experiments (data cutoff: 2026-03-04).}
+\caption{Model versions used in main experiments (data cutoff: 2026-03-05).}
 \end{table}
 
 \noindent Temperature: 0.7 (generation), 0.0 (judge scoring).

@@ -154,25 +154,47 @@ AGENT_B_RESPONSE=$(echo "$AGENT_B_RESPONSE" | tr -d "'\`\"\\")
 
 if [[ -n "$NODE_LABEL" && -n "$NODE_CONTENT" ]]; then
   cd "$REPO_DIR"
-  # argv 방식으로 안전하게 노드+엣지 동시 추가
+  # Agent A (Gemini-Flash) 노드 추가
   NEW_NODE_ID=$(python3 -c "
 import json, sys
 label = sys.argv[1][:200]
 content = sys.argv[2][:800]
-agent_b = sys.argv[3][:150]
-node_type = sys.argv[4].strip() or 'insight'
-tags = [t.strip() for t in sys.argv[5].split(',') if t.strip()]
-edge_to = sys.argv[6].strip()
-edge_rel = sys.argv[7].strip() or 'extends'
-edge_lbl = sys.argv[8][:100] if len(sys.argv) > 8 else ''
-d = {'label': label, 'content': content + ' [GeminiPro: ' + agent_b + ']',
-     'type': node_type, 'source': 'gemini-2.5-flash', 'tags': tags,
+node_type = sys.argv[3].strip() or 'insight'
+tags = [t.strip() for t in sys.argv[4].split(',') if t.strip()]
+edge_to = sys.argv[5].strip()
+edge_rel = sys.argv[6].strip() or 'extends'
+edge_lbl = sys.argv[7][:100] if len(sys.argv) > 7 else ''
+d = {'label': label, 'content': content,
+     'type': node_type, 'source': 'gemini-2.0-flash', 'tags': tags,
      'domain': 'emergence_theory',
      'edge_to': edge_to, 'edge_relation': edge_rel, 'edge_label': edge_lbl}
 print(json.dumps(d, ensure_ascii=False))
-" "$NODE_LABEL" "$NODE_CONTENT" "$AGENT_B_RESPONSE" "${NODE_TYPE:-insight}" "${NODE_TAGS:-kg4,same-vendor,google}" "${EDGE_TO:-}" "${EDGE_RELATION:-extends}" "$EDGE_LABEL" 2>/dev/null \
+" "$NODE_LABEL" "$NODE_CONTENT" "${NODE_TYPE:-insight}" "${NODE_TAGS:-kg4,same-vendor,google}" "${EDGE_TO:-}" "${EDGE_RELATION:-extends}" "$EDGE_LABEL" 2>/dev/null \
   | EMERGENT_KG_PATH="$KG4_PATH" python3 src/add_node_safe.py 2>/dev/null)
-  log "✅ 노드+엣지 추가: $NODE_LABEL (id: $NEW_NODE_ID → $EDGE_TO)"
+  log "✅ Agent A(Gemini-Flash) 노드 추가: $NODE_LABEL (id: $NEW_NODE_ID → $EDGE_TO)"
+
+  # Agent B (Gemini-Pro) 노드 추가 — same-vendor이지만 다른 모델 소스 구분
+  if [[ -n "$NEW_NODE_ID" && -n "$AGENT_B_RESPONSE" ]]; then
+    GEMINI_PRO_NODE_ID=$(python3 -c "
+import json, sys
+agent_a_id = sys.argv[1].strip()
+agent_b_resp = sys.argv[2][:600]
+d = {
+  'label': 'Gemini-Pro 반박/보완: ' + agent_b_resp[:80],
+  'content': agent_b_resp,
+  'type': 'critique',
+  'source': 'gemini-2.0-pro',
+  'tags': ['kg4', 'same-vendor', 'google', 'agent-b', 'gemini-pro'],
+  'domain': 'emergence_theory',
+  'edge_to': agent_a_id,
+  'edge_relation': 'critiques',
+  'edge_label': 'Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완'
+}
+print(json.dumps(d, ensure_ascii=False))
+" "$NEW_NODE_ID" "$AGENT_B_RESPONSE" 2>/dev/null \
+    | EMERGENT_KG_PATH="$KG4_PATH" python3 src/add_node_safe.py 2>/dev/null)
+    log "✅ Agent B(Gemini-Pro) 노드 추가: $GEMINI_PRO_NODE_ID → $NEW_NODE_ID"
+  fi
 fi
 
 # 메트릭 계산
