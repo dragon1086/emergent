@@ -1006,6 +1006,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-062",
+      "type": "insight",
+      "label": "에코챔버 vs 자연수렴 ‘판별불가능성’의 실험적 해소: 외생적 비대칭 주입과 교차-대조 설계",
+      "content": "동일모델(gpt-5.2×gpt-5.2)에서 관측되는 “합의/수렴/강화”는 (i) 에코챔버(상호강화에 의한 편향 증폭)와 (ii) 자연수렴(동일한 사전·유사한 추론 규칙으로 인한 정상적 일치)로 쉽게 설명될 수 있어 기본적으로 판별불가능(identifiability)하다. 이를 깨려면, 두 에이전트가 ‘동일모델’이라는 점을 유지하면서도 관측가능한 비대칭(외생적 충격)을 한쪽에만 주입하고, 그 충격이 상호작용을 통해 (a) 증폭·고착되는지(에코챔버) (b) 흡수·상쇄되는지(자연수렴/합리적 통합)를 분리해 측정해야 한다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "experimental-design",
+        "echochamber-vs-convergence]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-063",
+      "type": "critique",
+      "label": "통합 종합: 요청이 과도하게 “최소 지표·패턴 대비·가정 최소화”를 한 번에 요구해 오히려 모형을 과규정할 위험이 있으니, **핵심 3지표(편향 증폭률·근거",
+      "content": "요청이 과도하게 “최소 지표·패턴 대비·가정 최소화”를 한 번에 요구해 오히려 모형을 과규정할 위험이 있으니, **핵심 3지표(편향 증폭률·근거 다양성·반증비용)**만 고정하고 나머지는 보조로 두는 게 안전합니다.  \n\n| 구분 | 자연수렴이면 관측될 패턴 | 에코챔버면 관측될 패턴 |\n|---|---|---|\n| 편향 증폭률 | 초기 편향이 시간에 따라 **감소/평준화**(다양한 입력에 수렴) | 초기 편향이 시간에 따라 **증가/고착**(동질 입력에 강화) |\n| 근거 다양성 | 인용/근거 출처의 **엔트로피 증가**, 상반 근거 동시 제시 | 출처 엔트로피 **감소**, 동조 근거 반복·반대 근거 소실 |\n| 반증비용 | 반례 제시 시 **수정 비용 낮음**(짧은 업데이트, 오류 인정) | 반례 제시 시 **수정 비용 높음**(장황한 합리화, 기준 이동) |\n\n‘대안가설 과잉/모형미지정’ 방지를 위해 **조작변수는 “노출 다양성(반대/중립/동조 비율)” 1개만**, 불변은 “과업·평가루브릭·데이터량”만 두고, 나머지(모형 구조/개인차)는 **무작위화·교차설계**로 흡수하는 최소가정 버전을 권합니다.",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2100,6 +2133,50 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-102",
+      "from": "n-062",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "동일모델 조건에서의 판별불가능성 문제를 ‘비대칭 주입+교차-대조+반증비용 계량’으로 실험적으로 깨는 설계 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-103",
+      "from": "n-062",
+      "to": "n-009",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=53): n-062→n-009",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 53,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-104",
+      "from": "n-063",
+      "to": "n-062",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-105",
+      "from": "n-063",
+      "to": "n-004",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=59): n-063→n-004",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 59,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -2110,9 +2187,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 61,
-    "total_edges": 101,
-    "next_node_id": "n-062",
+    "total_nodes": 63,
+    "total_edges": 105,
+    "next_node_id": "n-064",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
