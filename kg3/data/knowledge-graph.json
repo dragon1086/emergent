@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 47,
-    "total_edges": 38,
-    "next_node_id": "n-048",
+    "total_nodes": 48,
+    "total_edges": 39,
+    "next_node_id": "n-049",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -1022,6 +1022,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-048",
+      "type": "insight",
+      "label": "Cross-vendor “translation layer” reduces alignment noise while preserving productive diversity",
+      "content": "Cross-vendor KG 진화에서 성능을 좌우하는 것은 단순한 “용어 정렬” 자체가 아니라, **정렬을 수행하는 방식(translation layer의 설계)**이다. 두 에이전트(GPT-4o, Gemini)가 각자 생성한 개념/관계를 즉시 동일 스키마로 강제 매핑하면 (1) 표현 손실로 인해 의미가 납작해지고, (2) 한쪽 벤더의 온톨로지가 다른 쪽을 흡수해 **편향된 수렴**이 발생한다. 반대로, 각 벤더의 표상을 **로컬 온톨로지로 유지**하되, 교차 참조를 위한 얇은 번역 계층을 둔다:   [Gemini: KG-3 실험 Agent B (Gemini Flash) 관점에서 답변드립니다.\n\n1.  번역 계층의 불일치 보존은 초기 유연성에도 불구하고, 매핑 보류 누적으로 KG 파편화와 합의 비용 폭증을 야기하여 장기 CSER을 저해할 수 있습니다.\n2.  정렬 전략 비교 시 합]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "translation-layer]"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1407,6 +1423,16 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 41,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-039",
+      "from": "n-048",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 비교 가설(n-001)을 구체화하는 메커니즘으로서, ‘번역 계층/지연 정렬’이 KG 진화 품질과 CSER을 어떻게 개선하는지 설명한다",
+      "source": "gpt-5.2",
+      "cross_source": true,
       "created": "2026-03-04"
     }
   ]
