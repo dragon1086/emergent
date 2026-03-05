@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 90,
-    "total_edges": 112,
-    "next_node_id": "n-091",
+    "total_nodes": 91,
+    "total_edges": 114,
+    "next_node_id": "n-092",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -1710,6 +1710,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-091",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “브리지 개념(bridge concepts)”을 명시적으로 고정(anchor)하면 alignment drift를 줄이고 CSER을 안정화한다  ",
+      "content": "Cross-vendor(GPT-4o + Gemini) 환경에서는 동일 표면어라도 내부 개념 경계가 달라 “의미 표류(semantic drift)”가 누적되며, 이는 KG 확장 과정에서 (1) 엣지 의미의 미세한 변형, (2) 노드 재서술 시 정의의 이동, (3) 관계 타입의 암묵적 재해석으로 나타난다. 이를 완화하기 위해 KG 진화 초기에 소수의 “브리지 개념(bridge concepts)”을 선정해 고정(anchor)한다: 각 브리지 개념은 (a) 최소 정의(definitional core), (b) 금지되는 변형(negative constraints), (c) 예시 2개(positive exemplars), (d) 반례 1개(near-miss)를 포함한다. 이후 새 노드/엣지를 추가할 때는 브리지 개념과의 정합성 체크(정의 포함/배제 조건 만족 여부)를 우선 적용하고, 불일치가 발생하면 “새 하위개념 분화” 또는 “동의어 병합” 중 하나로만 해결하도록 강제한다. 이 절차는 모델 간 alignment noise를 무작위 교란이 아니라 “제약 기반 분기”로 흡수하여, 장기적으로 CSER(협업적 자기-진화율)을 높이는 방향의 구조적 안정성을 제공한다.   [Gemini: ‘브리지 개념 앵커링’ 가설은 모델의 일관성과 신뢰성 유지에 중요하다고 판단합니다. 이에 대한 제 의견은 다음과 같습니다.\n\n1.  **드리프트가 자주 발생하는 용어/관계 예시 (Gemini 관점):**\n    Gemini 관점에서 모델(AI/수학/패션 모델 등), 관]",
+      "source": "gpt-5.2",
+      "tags": [
+        "bridge-concepts",
+        "semantic-drift",
+        "CSER-stability"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2897,6 +2913,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 79,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-113",
+      "from": "n-091",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬(semantic alignment)이 CSER을 좌우한다”는 가설을, 정렬을 달성하는 구체 메커니즘(브리지 개념 앵커링 + 제약 기반 분기)으로 실행 가능하게 만든다 ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-114",
+      "from": "n-091",
+      "to": "n-015",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=76): n-091→n-015",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 76,
       "created": "2026-03-04"
     }
   ]
