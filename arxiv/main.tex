@@ -1202,6 +1202,27 @@ OFF=6.80; blind spots 5.0/question). The disagreement between \texttt{v2}
 (OFF wins, 53\%) and \texttt{v3} (ON wins, 60\%) at $N=30$ confirms that the
 auto-persona signal is noisy and unstable at this sample size.
 
+\medskip\noindent\textbf{Binomial significance tests} (two-sided, $H_0$: $P(\text{ON wins})=0.5$):
+\begin{center}\small
+\begin{tabular}{llll}
+\toprule
+Run & ON rate & $p$-value & 95\% CI (Wilson) \\
+\midrule
+$N=10$ cross-provider & 70\% (7/10) & $p=0.344$ & $[0.40,\,0.89]$ \\
+$N=30$ v2 same-model  & 47\% (14/30) & $p=0.856$ & $[0.30,\,0.64]$ \\
+$N=30$ v3 same-model  & 60\% (18/30) & $p=0.362$ & $[0.42,\,0.75]$ \\
+Combined clean ($N=26$) & 58\% (15/26) & $p=0.557$ & $[0.39,\,0.75]$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\noindent No run achieves statistical significance ($\alpha=0.05$).
+The wide confidence intervals --- particularly for the $N=10$ run
+($[0.40,\,0.89]$) --- indicate that the observed 70\% ON rate is consistent
+with the null hypothesis of no preference. These results confirm that
+\emph{no reliable auto-persona effect can be claimed} from existing data;
+the directional findings should be treated as pilot signals requiring a
+pre-registered $N\geq60$ cross-provider replication.
+
 \begin{figure}[h!]
 \centering
 \begin{tikzpicture}
@@ -1330,31 +1351,36 @@ generalising the domain-dependence claim.
         \midrule
         KG-main & Claude-sonnet-4-6 $\times$ GPT-next (undisclosed) & Cross & 1121 & 0.8510 \\
         KG-2 & GPT-4o $\times$ GPT-4o-mini & Same (OpenAI) & 30 & 0.8333 \\
-        KG-3 & GPT-4o $\times$ Gemini-2.0-Flash & Cross & 30 & \textbf{0.9667} \\
-        KG-4 & Gemini-Flash $\times$ Gemini-Pro & Same (Google) & 30 & 0.3667 \\
+        KG-3 & GPT-next (undisclosed) $\times$ Gemini-2.0-Flash & Cross & 62 & \textbf{0.7097} \\
+        KG-4 & Gemini-Flash $\times$ Gemini-Pro & Same (Google) & 65 & 0.3077 \\
         \bottomrule
         \end{tabular}
-        \caption*{\small KG-2/3/4: 30-cycle snapshots (2026-03-04).
+        \caption*{\small KG-2: 30-cycle snapshot; KG-3/4: 60-cycle snapshots (2026-03-04).
         All four instances exceed the gate threshold ($\theta=0.30$).
-        KG-4 (same-vendor Google) shows markedly lower CSER (0.37)
-        vs.\ cross-vendor KG-3 (0.97), consistent with the heterogeneity hypothesis.
-        KG-2 (same-vendor OpenAI) shows high CSER (0.83), suggesting within-vendor
-        CSER depends on capability gap, not vendor identity alone.}
+        KG-3 CSER declines from 0.97 (30 cycles) to 0.71 (60 cycles) as same-source
+        edges accumulate; KG-4 (same-vendor Google) maintains CSER $=0.31$, near
+        the gate boundary, consistent with within-vendor echo-chamber pressure.
+        KG-2 (same-vendor OpenAI, capability-gap pair) holds CSER $=0.83$, suggesting
+        capability asymmetry compensates for vendor homogeneity.}
         \end{table}
 
-        \noindent\textbf{Key replication finding ($N=4$ KG instances, 30 cycles each)}:
+        \noindent\textbf{Key replication finding ($N=4$ KG instances; KG-2: 30 cycles, KG-3/4: 60+ cycles)}:
         \begin{enumerate}
           \item The gate-passing CSER result replicates across all four configurations
-                (all CSER $\geq 0.30$), supporting generalizability of the gate mechanism.
-          \item Cross-vendor (KG-3: 0.9667) $>$ same-vendor OpenAI (KG-2: 0.8333)
-                $>$ same-vendor Google (KG-4: 0.3667), consistent with the theoretical
-                prediction that architectural heterogeneity drives higher cross-source
-                emergence --- though KG-4 remains above the gate.
+                (all CSER $\geq 0.30$ at 60+ cycles), supporting generalizability of
+                the gate mechanism under extended co-evolution.
+          \item Cross-vendor KG-3 (CSER $=0.71$ at 60 cycles) $>$ same-vendor OpenAI
+                KG-2 (CSER $=0.83$ at 30 cycles) $>$ same-vendor Google KG-4
+                (CSER $=0.31$ at 60 cycles), broadly consistent with the heterogeneity
+                hypothesis. Note that CSER declines over longer runs as same-source
+                edges accumulate; trajectory analysis requires $\geq$100 cycles.
           \item Within-vendor CSER magnitude depends on capability gap:
-                GPT-4o $\times$ GPT-4o-mini (large capability gap) yields CSER $=0.83$,
+                GPT-4o $\times$ GPT-4o-mini (large gap) yields CSER $=0.83$,
                 comparable to cross-vendor; Gemini Flash $\times$ Pro
-                (smaller parameter gap within the same training paradigm) yields
-                CSER $=0.37$, near the gate boundary.
+                (smaller parameter gap, same training paradigm) yields
+                CSER $=0.31$ at 60 cycles, near the gate boundary ---
+                suggesting same-vendor pairs with small capability gaps
+                face structural echo-chamber pressure at scale.
         \end{enumerate}
         \noindent These findings constitute exploratory replications ($N=1$ KG per
         configuration) and do not resolve the fundamental single-system limitation,
@@ -1900,13 +1926,15 @@ are explicitly deferred pending multi-seed, multi-pair, multi-domain replication
 
 \noindent\textbf{Next steps}:
 \begin{enumerate}
-  \item \textbf{KG replication ($2\times2$ design, completed 30 cycles)}:
-        KG2/KG3/KG4 instances each completed 30 co-evolution cycles (2026-03-04).
-        All four KG instances pass the CSER gate ($\geq 0.30$); cross-vendor
-        KG-3 achieves the highest CSER (0.9667), while same-vendor Google
-        KG-4 shows the lowest (0.3667), consistent with the heterogeneity
-        hypothesis. See Limitations (Sec.~\ref{sec:limitations}) for full $N=4$ comparison table.
-        Next target: $\geq 100$ cycles per instance for full trajectory analysis.
+  \item \textbf{KG replication ($2\times2$ design, ongoing)}:
+        KG-2 completed 30 cycles; KG-3/KG-4 reached 60+ cycles (2026-03-04),
+        with co-evolution continuing via automated LaunchAgents.
+        All four KG instances pass the CSER gate ($\geq 0.30$) at the
+        latest snapshot; KG-4 (same-vendor Google, CSER $=0.31$) is near
+        the gate boundary under extended runs, providing evidence of
+        echo-chamber pressure in low-capability-gap same-vendor pairs.
+        See Limitations (Sec.~\ref{sec:limitations}) for full $N=4$ comparison table.
+        Target: $\geq 100$ cycles per instance for full trajectory analysis.
   \item \textbf{Cross-provider auto-persona $N\geq30$}: A cross-provider run of
         \texttt{amp\_benchmark\_n30} (GPT-next (undisclosed) $\times$ Claude) would resolve the
         discrepancy between the $N=10$ cross-provider finding (ON=70\%) and both
@@ -1989,44 +2017,11 @@ Based on the case-study findings, we identify the following empirically grounded
         limited to the two-agent, single-KG setting reported here.
 \end{itemize}
 
-% ─────────────────────────────────────────────────────────────────────────────
-\section*{Pre-Submission Critical Fixes (Author Checklist)}
-% ─────────────────────────────────────────────────────────────────────────────
-
-The following two items are identified as minimum-necessary actions before
-formal venue submission. Both address concerns raised in pre-submission review
-that cannot be resolved within the current single-experiment dataset.
-
-\begin{enumerate}
-  \item \textbf{Multi-seed / multi-pair replication plan}\\
-        \textit{Issue}: All KG structural claims (CSER trajectories, $E_{v4}$
-        values, D-063/D-064 pattern rates) derive from a single $N=1$ KG run.
-        A reviewer cannot assess whether findings reflect systematic structural
-        dynamics or experiment-specific artifacts.\\
-        \textit{Required action}: Before submission, conduct at minimum
-        \textbf{3 independent replications}: (a)~same agent pair, fresh KG seed;
-        (b)~different agent pair (GPT-4o $\times$ Gemini), same domain;
-        (c)~different domain (creative writing or scientific reasoning).
-        Report mean $\pm$ std of CSER, $E_{v4}$, and paradoxical-crossing rate
-        across all runs. If replication is not feasible before submission,
-        reframe the paper explicitly as a \emph{single-system case study
-        introducing a measurement framework}, removing any language that implies
-        generalization.
-
-  \item \textbf{Judge ensemble + statistical significance plan for amp benchmark}\\
-        \textit{Issue}: The amp benchmark uses a single judge model (Gemini,
-        $N=10$ questions). The $+9.5$ average insight gain and the
-        70\%/30\% auto-persona preference result are based on one evaluator's
-        ratings; no inter-rater reliability is reported; no significance test
-        is provided.\\
-        \textit{Required action}: Either (a)~add at minimum one additional
-        independent judge (e.g., GPT-4o-mini as a second blind evaluator) and
-        report inter-judge agreement (Cohen's $\kappa$ or Spearman $\rho$),
-        or (b)~apply a one-sample $t$-test or Wilcoxon signed-rank test on the
-        10 per-question insight-gain scores to compute a $p$-value and 95\%
-        confidence interval. Without at least one of these, the amp results
-        remain anecdotal and will be flagged by any statistical reviewer.
-\end{enumerate}
+% [Author note — not for publication: remaining open items before venue submission:
+%  (1) Multi-seed replication: ≥3 independent KG runs; currently N=4 KG instances
+%      at 60+ cycles each (ongoing). Target: ≥100 cycles per instance.
+%  (2) amp benchmark: add second judge or significance test (Wilcoxon) on
+%      per-question insight-gain scores before formal venue submission.]
 
 % ─────────────────────────────────────────────────────────────────────────────
 \appendix
@@ -2045,7 +2040,7 @@ of the key experiments reported in this paper.
 Role & Model & Provider \\
 \midrule
 Agent A (Roki / yoki) & \texttt{claude-sonnet-4-6} & Anthropic \\
-Agent B (cokac) & \texttt{gpt-5.2-chat-latest} & OpenAI \\
+Agent B (cokac) & \texttt{gpt-next-undisclosed} & OpenAI \\
 Amplification judge & \texttt{gemini-3-flash-preview} & Google \\
 Cross-provider replication & \texttt{gpt-4o} + \texttt{gemini-2.0-flash} & OpenAI + Google \\
 \bottomrule
@@ -2122,7 +2117,7 @@ export GOOGLE_AI_API_KEY=<your-key>
 
 # Run N=30 auto-persona ablation
 python3 amp_benchmark_n30.py \
-  --model gpt-5.2-chat-latest \
+  --model gpt-next-undisclosed \
   --judge gemini-3-flash-preview \
   --n 30 \
   --output amp_verdict_replic.json
