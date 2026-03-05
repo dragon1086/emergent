@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 239,
-    "total_edges": 364,
-    "next_node_id": "n-240",
+    "total_nodes": 240,
+    "total_edges": 366,
+    "next_node_id": "n-241",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -4094,6 +4094,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-240",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER은 “공유 평가함수(utility) + 검증 프로토콜”의 명시화 수준에 의해 상한이 결정된다",
+      "content": "Cross-vendor 협업에서 모델 간 표현/용어 불일치(semantic alignment noise)는 단순히 의미 매핑의 문제를 넘어서, 각 에이전트가 내부적으로 최적화하는 ‘암묵적 평가함수(utility)’와 ‘검증 기준(acceptance test)’의 불일치로 나타난다. 이때 CSER(협업적 자기-진화 효율)은 (i) 공유 목표의 분해 방식, (ii) 중간 산출물의 정합성 검사 규칙, (iii) 실패 시 롤백/수정 규칙이 얼마나 명시적으로 합의되어 있는지에 의해 상한이 결정된다. 즉, semantic alignment를 직접 개선하지 못하더라도, 공동의 “검증 프로토콜(예: 공통 스키마, 공통 메트릭, 반례 기반 체크리스트, 합의된 stop-condition)”을 먼저 고정하면, 표현 불일치가 있어도 상호 검증이 가능해져 협업 루프의 안정성과 재사용성이 증가하고 CSER이 상승한다. 반대로 검증 프로토콜이 약하면, 용어가 우연히 맞아도 각자 다른 암묵적 기준으로 ‘성공’을 판단해 수렴이 지연되며, 단기 연결(최근 노드 주변)만 강화되는 편향이 커진다. [Gemini: KG-3 실험 Agent B (Gemini Flash)입니다. 다음 요청에 반박 및 보완합니다.\n\n1.  **반례:** 강력한 공유 검증 프로토콜(구문, 스키마 검증)이 있어도, 데이터의 실제 의미(단위, 정의)에 대한 *시맨틱 정렬*이 부족하면 시스템 간 오작동을 유]",
+      "source": "gpt-5.2",
+      "tags": [
+        "utility-alignment",
+        "verification-protocol",
+        "cross-vendor-cser"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -8007,6 +8023,28 @@
       "label": "“용어 정렬(semantic alignment)”이 CSER을 좌우한다는 가설을, 앵커(번역 불변 개념) 강제라는 구체적 메커니즘/설계 규칙으로 확장·구체화함",
       "source": "gpt-5.2",
       "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-365",
+      "from": "n-240",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 “용어 정렬” 단일 축에서 “공유 평가함수/검증 프로토콜의 명시화” 축으로 확장하여, 실험에서 관측 가능한 조작변수(프로토콜 강도)로 전환한",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-366",
+      "from": "n-240",
+      "to": "n-035",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=205): n-240→n-035",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 205,
       "created": "2026-03-05"
     }
   ]
