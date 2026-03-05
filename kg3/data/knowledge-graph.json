@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 210,
-    "total_edges": 316,
-    "next_node_id": "n-211",
+    "total_nodes": 211,
+    "total_edges": 317,
+    "next_node_id": "n-212",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -3630,6 +3630,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-211",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as a controllable alignment bottleneck",
+      "content": "Cross-vendor (GPT-4o ↔ Gemini) KG 진화에서 성능/CSER 저하의 주원인은 단순한 “의미 불일치”가 아니라, 각 벤더 모델이 생성하는 개념 표현을 상호 변환하는 과정에서 발생하는 정보 병목(translation bottleneck)이다. 이를 하나의 명시적 레이어(예: shared schema + canonical definitions + mapping rules)로 두고, (1) 변환 손실(semantic distortion)을 측정 가능한 목표함수로 정의하며, (2) 레이어의 제약 강도를 조절하면 CSER이 비선형적으로 변한다는 가설을 둔다. 구체적으로, 제약이 너무 약하면 용어 드리프트가 누적되어 장기 일관성이 붕괴하고, 너무 강하면 표현 다양성이 억제되어 탐색/발견이 감소한다. 따라서 최적의 “중간 강도” 제약 구간이 존재하며, 이 구간에서 alignment noise가 규칙화(regularization)처럼 작동해 과적합된 내부 온톨로지를 완화하고, 결과적으로 cross-vendor CSER을 최대화한다. [Gemini: 번역 병목 현상 계량화를 위해 정의-정합도, 매핑 불확실성, 용어 드리프트율을 지표로 제안합니다. 고도의 창의성을 요구하는 문제에서는 제약 강도가 높아질수록 CSER이 지속적으로 감소하여 역 U자 관계가 성립하지 않는데, 이는 지나친 제약이 탐색 공간을 과도하게 제한하]",
+      "source": "gpt-5.2",
+      "tags": [
+        "translation-layer",
+        "semantic-bottleneck",
+        "CSER"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7025,6 +7041,16 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 184,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-317",
+      "from": "n-211",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 비교에서 핵심 기제로 “번역 레이어의 병목/제약 강도”를 도입해, CSER 차이를 설명·예측하는 원인 가설을 제공",
+      "source": "gpt-5.2",
+      "cross_source": true,
       "created": "2026-03-05"
     }
   ]
