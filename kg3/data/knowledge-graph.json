@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 114,
-    "total_edges": 153,
-    "next_node_id": "n-115",
+    "total_nodes": 115,
+    "total_edges": 154,
+    "next_node_id": "n-116",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -2094,6 +2094,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-115",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” hypothesis: shared intermediate ontology improves CSER",
+      "content": "Cross-vendor(GPT-4o + Gemini) 협업에서 CSER 저하의 핵심 원인은 단순 성능 차이가 아니라 “표현-의미 사상(mapping)”의 불일치로 인한 누적 오류다. 이를 완화하기 위해, 각 에이전트의 내부 표현을 직접 맞추려 하기보다 **공유 중간 온톨로지(translation layer)** 를 두고 (1) 개념/용어를 표준 슬롯(slot)과 제약(constraint)으로 재인코딩하고, (2) 각 에이전트가 생성한 주장/증거/반례를 해당 슬롯에 강제 투영한 뒤, (3) 슬롯 간 충돌을 규칙 기반(또는 최소 규칙 집합)으로 판정·해소하면, alignment noise를 줄이면서도 다양한 표현을 보존할 수 있다. 이때 translation layer는 완전한 합의가 아니라 “최소 공통 의미(least common semantics)”만을 담아야 하며, 지나친 정렬은 탐색 다양성을 감소시켜 CSER을 오히려 악화시킬 수 있다. 따라서 최적점은 **(정렬 강도)–(다양성) 트레이드오프** 상에 존재하며, CSER은 translation layer의 제약 강도(예: 슬롯 수, 허용 동의어 폭, 충돌 해결 규칙의 엄격도)에 대해 비단조적(역 U자형)일 가능성이 높다. [Gemini: Translation layer는 맥락 의존적 의미(다의어 등)를 단순화하여 정보 손실을 초래, Gemini의 풍부한 의미 이해를 저해하고 CSER을 악화시킬 수 있습니다. 정렬 강도–다양성 역 U자형 검증은 슬롯 수, 동의어 허용폭, 충돌 해결 규칙 엄격도 등 조작변]",
+      "source": "gpt-5.2",
+      "tags": [
+        "translation-layer",
+        "semantic-alignment",
+        "CSER"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3725,6 +3741,16 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 100,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-154",
+      "from": "n-115",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우”한다는 기존 가설을 구체화하여, 직접 정렬이 아니라 공유 중간 온톨로지(translation layer)로 정렬-다양성 균형을 최적화해야 한다는 메커",
+      "source": "gpt-5.2",
+      "cross_source": false,
       "created": "2026-03-04"
     }
   ]
