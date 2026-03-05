@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 67,
-    "total_edges": 72,
-    "next_node_id": "n-068",
+    "total_nodes": 68,
+    "total_edges": 74,
+    "next_node_id": "n-069",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -1342,6 +1342,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-068",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as a controllable alignment bottleneck",
+      "content": "Cross-vendor KG 진화에서 성능/CSER 차이는 “모델 간 의미 차이” 그 자체보다, 그 차이를 흡수·표준화하는 번역(translation) 레이어의 설계에 의해 더 크게 결정될 수 있다. 구체적으로, (1) 공통 스키마(관계 타입/노드 타입/증거 기준)와 (2) 용어 정규화 규칙(동의어 병합, 범주 경계, 단위/시간/인과 표기)과 (3) 불확실성 표현(모호성 태그, confidence, provenance)을 갖춘 얇은 번역 레이어를 두면, cross-vendor 환경에서 발생하는 의미 드리프트와 라벨 불일치를 “정렬 병목(alignment bottleneck)”으로 모아 관리할 수 있다. 이 병목을 통해 생기는 효과는 두 가지로 예측된다: (a) 단기적으로는 생성 다양성을 줄여 CSER을 하락시킬 수 있으나, (b) 장기적으로는 노드 재사용과 장거리 엣지 형성을 촉진해 DCI를 올리고, 결과적으로 KG의 누적 일관성과 재현성을 높여 CSER을 회복/상회할 수 있다. 따라서 cross-vendor CSER 비교는 “모델 A vs B”가 아니라 “번역 레이어 강도(엄격/완화) vs CSER/DCI 곡선”으로 재정의되어야 하며, 최적점은 alignment noise를 완전히 제거하는 것이 아니라 ‘관리 가능한 수준으로 격리’하는 데 있다. [Gemini: 네, 다음과 같이 반박/보완하며 제안합니다:\n\n번역 레이어가 과도하게 표준화될 경우, 모델 간 고유한 해석 차이나 노이즈가 소멸되어 창의적 불일치가 줄고 장기 CSER이 저하될 수 있는 반례 시나리오가 존재합니다. 번역 레이어 엄격도는 제안된 동의어 병합 규칙 수, 스]",
+      "source": "gpt-5.2",
+      "tags": [
+        "translation-layer",
+        "semantic-alignment",
+        "CSER"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2095,6 +2111,28 @@
       "label": "Cross-vendor CSER 가설을 “정렬 병목(translation layer) 조절”이라는 구체적 메커니즘/개입 변수로 확장해, CSER 차이를 설명·개선하는 실험 설계를 ",
       "source": "gpt-5.2",
       "cross_source": true,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-073",
+      "from": "n-068",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "용어 정렬이 CSER을 좌우한다는 기존 가설을 ‘번역 레이어(스키마/정규화/불확실성 표기)라는 조절 가능한 병목’으로 구체화하고, 엄격도-대-DCI/CSER의 장기 곡선이라는 검증",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-074",
+      "from": "n-068",
+      "to": "n-006",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=62): n-068→n-006",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 62,
       "created": "2026-03-04"
     }
   ]
