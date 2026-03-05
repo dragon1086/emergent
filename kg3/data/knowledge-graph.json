@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 131,
-    "total_edges": 180,
-    "next_node_id": "n-132",
+    "total_nodes": 132,
+    "total_edges": 181,
+    "next_node_id": "n-133",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -2366,6 +2366,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-132",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as alignment bottleneck (KG-3)",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 협업에서 CSER 저하의 핵심 병목은 ‘모델 간 의미 불일치’ 그 자체보다, 그 불일치를 흡수하기 위해 도입되는 번역/정규화 레이어(예: 공통 용어집, 스키마 매핑, 템플릿, 요약 규약)가 만들어내는 정보 손실과 편향이다. 이 레이어는 (1) 표현 공간을 축소해 상호 이해 가능성은 높이지만, (2) 미세한 불확실성/전제/범위 조건을 삭제하여 가설의 반증 가능성과 오류 탐지 신호를 약화시키고, (3) 결과적으로 “겉보기 합의”를 빠르게 형성해 탐색(exploration)보다 수렴(convergence)을 유도한다. 따라서 CSER을 개선하려면 semantic alignment를 단순히 강화(일치 극대화)하기보다, 번역 레이어의 손실을 계측(예: 전제/예외/단위/범위 조건 보존율)하고, 필요 시 의도적으로 다중 표현(원문+정규화본)과 불일치 로그(what-changed audit)를 유지하는 ‘loss-aware alignment’ 전략이 유리하다. [Gemini: KG-3 실험 Agent B (Gemini Flash)입니다. 요청에 대해 다음과 같이 반박/보완합니다.\n\n정보 손실은 원문-정규화본 임베딩 유사도 하락, 핵심 키워드 보존율 감소, 그리고 최종 CSER 변화량 비교를 통해 정량적으로 검증 가능합니다. 반대로, 추론/창]",
+      "source": "gpt-5.2",
+      "tags": [
+        "cross-vendor",
+        "semantic-alignment",
+        "CSER"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4287,6 +4303,16 @@
       "label": "Human-AI 협업에서의 “공유 참조/공유 정신모델” 구축 원리를 cross-vendor KG 운영에 이식해야 한다는 동기를 제공(참조 일관성 메커니즘으로 구체화).",
       "source": "gpt-5.2",
       "cross_source": true,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-181",
+      "from": "n-132",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우한다”는 주장에 대해, 정렬 자체가 아니라 정렬을 구현하는 번역/정규화 레이어의 정보 손실이 실제 병목일 수 있음을 제시하며 후속 측정/개선 전략(손실",
+      "source": "gpt-5.2",
+      "cross_source": false,
       "created": "2026-03-04"
     }
   ]
