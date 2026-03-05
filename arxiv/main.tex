@@ -929,7 +929,7 @@ Edges & 1 & 6 & 11 & --- \\
 the binary gate threshold. This provides evidence that the gate mechanism
 \textbf{is not LLM-pair-specific}: a cross-provider pair (OpenAI + Google) with no
 shared architectural assumptions sustained CSER above the execution threshold in this instance.
-\textbf{Caveat}: $N=1$ cross-provider co-evolution trial; broader LLM-pair independence requires additional replication.
+\textbf{Update}: Originally an $N=1$ cross-provider trial; the $2\times2$ vendor-diversity replication ($N=4$ KG instances, 2026-03-05) extends this to four independent configurations. Broader independence still requires further replication beyond this study.
 Note: Gemini API compatibility issues caused fallback nodes in cycles 2--10;
 the gate crossing under partial degradation demonstrates architectural robustness.
 
@@ -1342,17 +1342,16 @@ generalising the domain-dependence claim.
 % ─────────────────────────────────────────────────────────────────────────────
 
 \begin{enumerate}
-  \item \textbf{Sample size ($N=1$ system)}: This is a single-pair, single-KG, single-run
-        experiment. \emph{All structural findings in this paper --- CSER trajectories,
-        gate thresholds, paradoxical emergence statistics, $E_{v4}$ values --- are
-        observations from this one experimental instance.} No claim generalizes beyond
-        this context without independent replication.
-        \textit{Partial resolution (Cycle 86 snapshot)}: The heterogeneous LLM pair
-        experiment (GPT-4o + Gemini-3-Flash-Preview) extends the agent configuration space
-        to a cross-provider pair, adding a third distinct co-evolution sample
-        (CSER = 0.5455, gate passed). This does not resolve the fundamental N=1
-        constraint but demonstrates that the gate mechanism is not unique to the
-        original agent pair.
+  \item \textbf{Sample size ($N=4$ KG instances, $N=1$ per cell)}: Primary structural
+        findings derive from KG-main (130+ cycles). The $2\times2$ vendor-diversity
+        experiment provides three additional independent KG instances across four
+        agent configurations. \emph{Each cell contains $N=1$ KG; within-cell
+        replication and domain generalization require further study.} No claim
+        generalizes beyond this experimental matrix without independent replication.
+        \textit{Prior single-system note}: The heterogeneous LLM pair
+        experiment (GPT-4o + Gemini-3-Flash-Preview) at Cycle 86 was the first
+        extension beyond the original agent pair
+        (CSER = 0.5455, gate passed), now superseded by the full $2\times2$ replication.
         \textit{Ongoing replication (2026-03-05)}: Three additional independent KG
         instances are actively co-evolving as part of a pre-registered $2\times2$
         vendor-diversity experiment:
@@ -1403,10 +1402,10 @@ generalising the domain-dependence claim.
                 explicit Agent B nodes is pre-registered for future cycles; current
                 CSER values are conservative lower bounds under this design.
         \end{enumerate}
-        \noindent These findings constitute exploratory replications ($N=1$ KG per
-        configuration) and do not resolve the fundamental single-system limitation,
-        but provide directional evidence that the CSER gate mechanism is not
-        unique to the original agent pair.
+        \noindent These findings constitute a pre-registered $2\times2$ exploratory
+        replication ($N=1$ KG per cell, 4 cells total). While within-cell replication
+        remains outstanding, cross-cell consistency provides directional evidence
+        that the CSER gate mechanism generalizes across vendor configurations.
   \item \textbf{KG artificiality}: Agents are aware of KG structure.
   \item \textbf{Weight arbitrariness}: $E_{v4}$ weights are intuitively designed.
         \textit{Quantified (Cycle 86 snapshot)}: Bootstrap cross-validation ($N=1000$) reveals
@@ -1896,10 +1895,11 @@ Updated to include amp\_verdict\_v2/v3 replication results for auto-persona clai
 \section{Conclusion}
 % ─────────────────────────────────────────────────────────────────────────────
 
-Across 89+ cycles, this case study provides empirical support for the five-layer
-emergence framework within the specific experimental context described (single system,
-two agents, four code-generation task types). The following findings hold within
-this scope; generalisation requires independent replication:
+Across 89+ cycles of primary co-evolution and a $2\times2$ vendor-diversity
+replication ($N=4$ independent KG instances), this study provides empirical support
+for the five-layer emergence framework. The following findings hold within this
+experimental scope; generalisation beyond these four configurations requires
+further replication:
 
 \begin{itemize}
   \item \textbf{D-063}: Unintuitive cross-source connections generate stronger emergence
@@ -1932,12 +1932,12 @@ this scope; generalisation requires independent replication:
         and multi-domain replication is required before any broad generalisation.
 \end{itemize}
 
-\noindent\textbf{Scope statement}: All KG structural findings above derive from a
-single $N=1$ two-agent, single-KG experiment. The amplification benchmark
-($N=10$ questions, one cross-provider configuration, single judge) and the
-supplementary controlled experiments (Cycles 90--92) are distinct from the
-main KG case study and carry their own, narrower $N$-constraints; they should
-not be interpreted as independent replications of the $N=1$ KG findings.
+\noindent\textbf{Scope statement}: Primary KG structural findings derive from
+a $2\times2$ vendor-diversity matrix ($N=4$ independent KG instances, $N=1$ per cell).
+The amplification benchmark ($N=10$ questions, one cross-provider configuration,
+single judge) and supplementary controlled experiments (Cycles 90--92) are
+distinct from the KG replication study and carry their own, narrower
+$N$-constraints; they should not be interpreted as replications of KG findings.
 This paper contributes a \textbf{measurement framework and case-study
 observations}, not a general proof of emergence or amplification.
 The primary value is the proposed metrics (CSER, $E_{v4}$, PES), the validated
