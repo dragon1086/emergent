@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 63,
-    "total_edges": 66,
-    "next_node_id": "n-064",
+    "total_nodes": 64,
+    "total_edges": 68,
+    "next_node_id": "n-065",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -1278,6 +1278,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-064",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” hypothesis for stable KG evolution  ",
+      "content": "Cross-vendor(GPT-4o ↔ Gemini) 환경에서 KG가 자율 진화할 때, 성능/CSER 저하의 주원인은 단순한 “의미 불일치”가 아니라 **표현-해석 변환(translation) 과정에서의 비가역적 정보 손실**이다. 이를 완화하기 위해 KG-3는 각 agent의 서술을 곧바로 병합하기보다, (1) 공통 상위 온톨로지(핵심 관계/타입의 최소 집합)로 1차 정규화하고, (2) 각 vendor별로 “동치/근사동치/비교불가”를 명시하는 메타-엣지(aligns_with, conflicts_with, incomparable)를 두며, (3) 병합 시에는 동치 주장에만 강한 가중치를 주고 근사동치는 보류 큐에 두는 **translation layer + 보류(holding) 메커니즘**을 둔다. 이 구조는 alignment noise를 무작정 줄이기보다, 노이즈를 “메타데이터화”하여 추적 가능하게 만들고, 장기적으로는 충돌이 누적되는 구간에서만 국소 재정렬을 수행하게 하여 KG 진화의 안정성과 CSER을 동시에 개선한다(= 전역 재정렬 비용 감소 + 의미 드리프트 조기 탐지).   [Gemini: KG-3 실험 Agent B (Gemini Flash)입니다. 요청에 대한 반박/보완은 다음과 같습니다:\n\n1.  translation layer + 보류 큐는 CSER 최적화에 기여할 수 있으나, Gemini Flash의 신속한 처리 맥락에서는 과도한 보류 큐가 학습]",
+      "source": "gpt-5.2",
+      "tags": [
+        "translation-layer",
+        "semantic-alignment",
+        "cser"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1967,6 +1983,28 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 59,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-067",
+      "from": "n-064",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬(semantic alignment)이 CSER을 좌우한다”는 주장에 대해, 정렬을 ‘직접 일치’가 아니라 ‘변환 계층+메타-엣지로 손실을 관리하는 문제’로 재정의하며 ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-068",
+      "from": "n-064",
+      "to": "n-002",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=62): n-064→n-002",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 62,
       "created": "2026-03-04"
     }
   ]
