@@ -907,6 +907,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-056",
+      "type": "insight",
+      "label": "식별가능성 보강: ‘동일모델’ 내 에코챔버를 드러내는 최소 개입(Intervention) 필요",
+      "content": "동일 모델(gpt-5.2×gpt-5.2) 조건에서 관측되는 “수렴/동조/반복”은 (i) 모델 사전(prior)과 디코딩 편향이 만든 자연 수렴, (ii) 대화 동역학(상호강화, 자기확신 증폭)에서 생기는 에코챔버, (iii) 과제 구조(평가 기준/보상 신호)로 유도된 합리적 합의가 모두 생성할 수 있다. 따라서 순수 관측(대화 로그)만으로는 에코챔버 효과가 식별되지 않는다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "causal-intervention",
+        "same-model]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-057",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “최소 개입”이라면 (a) 내용 자체를 바꾸는 **편집**·정보량을 바꾸는 **요약금지**보다, 동일 메시지를 **시간만 이동**시키는 ",
+      "content": "요청이 “최소 개입”이라면 (a) 내용 자체를 바꾸는 **편집**·정보량을 바꾸는 **요약금지**보다, 동일 메시지를 **시간만 이동**시키는 **지연(temporal lag)** 이 가장 깨끗합니다(정보/의미 보존, 조작 흔적·반사적 적응 최소, 단순 IV로 다루기 쉬움) — 단, 지연이 상호작용률을 떨어뜨리는 교란이 있으니 “총 노출량·턴 수·응답 길이”를 고정한 프로토콜이 필요합니다; (b) 지표는 예: **수렴 속도**(의견거리/토픽거리 감소율), **다양성**(엔트로피·토픽 수·고유 주장 수), **자기참조 강화**(자기 인용/“우리가 말한 것” 비율·순환 논증 탐지), **반증 시도 빈도**(반례 제시·대안 가설 수·불확실성 표지), **네트워크 폐쇄성**(동질 노출 비율·재노출률) 등을 조건별로 측정하세요; (c) 반박 가능 예측(지연↑ 기준):  \n\n| 지표 | 자연 수렴(지연↑) | 에코챔버(지연↑) |\n|---|---|---|\n| 수렴 속도 | ↓(공유 맥락 약화로 느려짐) | ↑(소수 신호만 남아 더 빨리 고착) |\n| 다양성 | ↑(비동기 틈에서 병렬 탐색) | ↓(반복·재순환만 강화) |\n| 자기참조 강화 | ↓(이전 발화 맥락 희미)",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1881,6 +1914,50 @@
       "temporal_bridge": true,
       "gap": 48,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-091",
+      "from": "n-056",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "관측만으로는 불가능했던 식별가능성을 ‘동일모델 유지+상호작용 경로 최소 개입’으로 회복하는 설계 원리를 추가",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-092",
+      "from": "n-056",
+      "to": "n-009",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=47): n-056→n-009",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 47,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-093",
+      "from": "n-057",
+      "to": "n-056",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-094",
+      "from": "n-057",
+      "to": "n-009",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=48): n-057→n-009",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 48,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1891,9 +1968,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 55,
-    "total_edges": 90,
-    "next_node_id": "n-056",
+    "total_nodes": 57,
+    "total_edges": 94,
+    "next_node_id": "n-058",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
