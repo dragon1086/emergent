@@ -16,9 +16,63 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "echo-chamber"
+    },
+    {
+      "id": "n-002",
+      "type": "insight",
+      "label": "에코챔버 ‘동일모델’ 가설의 식별가능성(identifiability) 문제",
+      "content": "동일 모델(gpt-5.2 × gpt-5.2)에서 관측되는 “의견 수렴/반복/확신 강화”를 에코챔버(상호 강화적 편향)로 해석하려면, 그것이 단순한 공통 사전(prior)·공유 토크나이저/학습데이터·대화 규칙(협조적 그라이스 원리)·최적화된 일관성 유지(자기모순 회피) 때문에 필연적으로 발생하는 현상과 구별 가능해야 한다. 그러나 동일 모델 조건에서는 (1) 초기 편향과 표현 공간이 거의 동일하고 (2) 상호작용이 사실상 ‘자기-대화’에 가까우며 (3) 반증 탐색을 위한 외생적 충격(이질적 근거/데이터/목표 함수)이 없으면 수렴은 기본 귀결이 된다. 따라서 “동일모델에서 에코챔버가 강화된다”는 관측은 대안 가설들(공유 priors에 의한 자연 수렴, 역할극 페르소나의 표면적 다양성, RLHF의 합의 지향성)과 식별이 어려워, 실험 설계가 반증가능성을 확보하지 못하면 에코챔버 가설 검증이 아니라 ‘동일성에 의한 수렴’ 측정이 된다. 해결을 위해선 최소한 (a) 외생적 반증 신호(검증 데이터, 독립적 심판, counterfactual evidence)를 주입하거나 (b) 에코챔버의 작동 메커니즘(선택적 노출, 확인편향적 증거 가중, 반대 증거 억압)을 조작변수로 분리해, 수렴의 원인이 “상호 강화적 선택”인지 “동일 prior의 안정점”인지 분해해야 한다. 또한 지표는 단순 유사도/합의율이 아니라, 반대 증거 제시 시 업데이트 비대칭성(confirmation asymmetry), 논거 다양성의 엔트로피 감소, 오류의 동조적 전파(공유된 허위 근거의 지속) 같은 ‘병리적 수렴’에 초점을 둬야 한다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "식별가능성",
+        "대안가설",
+        "실험설계"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-003",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “동일모델=동일 prior”를 전제해 자연 수렴과 에코챔버를 구분하겠다는 점은 취약하니, **상호작용 구조·정보 노출·인센티브**를 조작",
+      "content": "요청이 “동일모델=동일 prior”를 전제해 자연 수렴과 에코챔버를 구분하겠다는 점은 취약하니, **상호작용 구조·정보 노출·인센티브**를 조작해 *동일 prior에서도 생기는 동역학적 차이*를 보도록 설계하는 게 핵심입니다.  \n조작변수/지표 제안: (1) **교차절단 정보 주입 강도(반대증거 vs 동질증거 비율)** × 지표=**업데이트 비대칭(Δbelief|contra / Δbelief|pro)**; *식별*: 반대증거에 둔감하면 “자연 수렴(증거에 따른 합리적 베이지안 수렴)” 가설을 배제하고 “확증편향/네트워크 강화형 에코챔버”를 지지. (2) **네트워크 토폴로지 조작(동질 연결/무작위/브로커 허브)** × 지표=**논거 다양성 엔트로피(클레임/근거 토픽 분포) + 군집 간 JS divergence**; *식별*: 동일 증거 노출에서도 토폴로지에 따라 다양성이 급락·군집 분화가 커지면 “공유 prior로 인한 자연 수렴”을 배제하고 “구조적 격리로 인한 에코챔버”를 지지. (3) **허위 근거/혼합 근거(seed) 주입 및 정정(팩트체크) 타이밍 조작** × 지표=**허위 근거 전파율(R₀, 재인용 체인 길이)과 정정 후 잔존율**; *식별*: 정",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
-  "edges": [],
+  "edges": [
+    {
+      "id": "e-001",
+      "from": "n-002",
+      "to": "n-001",
+      "relation": "CRITIQUES",
+      "label": "동일모델 에코챔버 측정은 ‘동일성에 의한 자연 수렴’과 구별이 어려워 반증가능성이 약하다는 비판",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-002",
+      "from": "n-003",
+      "to": "n-002",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    }
+  ],
   "meta": {
     "version": "2.0",
     "instance": "kg2",
@@ -27,10 +81,10 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 1,
-    "total_edges": 0,
-    "next_node_id": "n-002",
-    "last_updater": "openclaw",
+    "total_nodes": 3,
+    "total_edges": 2,
+    "next_node_id": "n-004",
+    "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
 }
