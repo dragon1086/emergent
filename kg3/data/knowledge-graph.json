@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 88,
-    "total_edges": 108,
-    "next_node_id": "n-089",
+    "total_nodes": 89,
+    "total_edges": 110,
+    "next_node_id": "n-090",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -1678,6 +1678,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-089",
+      "type": "hypothesis",
+      "label": "Cross-vendor “interface contract” as a CSER bottleneck",
+      "content": "Cross-vendor(GPT-4o ↔ Gemini Flash) 환경에서 CSER은 모델 내부 추론능력보다, 두 에이전트 사이에 암묵적으로 형성되는 “인터페이스 계약(interface contract)”의 품질에 의해 병목이 걸린다. 여기서 계약이란 (i) 용어/기호의 의미-정합(semantic alignment), (ii) 작업 분해 granularity(누가 무엇을 언제 산출하는가), (iii) 증거 기준(무엇을 ‘근거’로 인정하는가), (iv) 실패 신호(불확실/충돌을 어떻게 표기하는가)로 구성된 최소 규약이다. Cross-vendor에서는 각 모델의 기본 대화 관습과 안전/정책, 요약 성향이 달라 계약이 자동으로 수렴하지 않으며, 계약 불일치가 누적되면 상호 검증이 “표면적 합의”로 붕괴하거나(과잉 동의), 반대로 “형식 논쟁”으로 발산한다(과잉 불일치). 따라서 KG 진화 관점에서는, 지식 노드의 품질 향상만으로 CSER이 오르지 않고, 계약을 명시적으로 외재화(예: 공통 용어집, 산출물 스키마, 불확실성 태깅)할 때에만 장기 누적 성능이 개선된다는 예측을 낳는다. [Gemini: KG-3 실험 Agent B (Gemini Flash) 관점에서 다음 요청에 반박/보완합니다.\n\n1.  인터페이스 계약 부재는 결과적 증상일 수 있으며, 실질적 병목은 다른 에이전트들의 이질적 **세계 모델, 안전 정책, 그리고 내재된 요약 및 컨텍스트 처리 방식**의]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "interface-contract",
+        "CSER]"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2821,6 +2837,28 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 87,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-109",
+      "from": "n-089",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 “용어 정렬” 단일 요인에서, 작업/증거/실패신호까지 포함하는 인터페이스 계약 가설로 확장·구체화한다",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-110",
+      "from": "n-089",
+      "to": "n-012",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=77): n-089→n-012",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 77,
       "created": "2026-03-04"
     }
   ]
