@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 205,
-    "total_edges": 306,
-    "next_node_id": "n-206",
+    "total_nodes": 206,
+    "total_edges": 308,
+    "next_node_id": "n-207",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -3550,6 +3550,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-206",
+      "type": "hypothesis",
+      "label": "Cross-vendor “표현-행동 분리”가 KG 진화의 CSER을 안정화한다",
+      "content": "Cross-vendor 환경(GPT-4o + Gemini)에서는 동일 개념이라도 (i) 표면 용어/서술 스타일(표현층)과 (ii) 실제 KG 연산(엣지 선택, 노드 타입 판정, 관계 스키마 적용 등 행동층)이 분리되어 드리프트한다. 이때 CSER을 높이려면 ‘표현층 정렬’(용어 통일, 문장 템플릿 통일)만이 아니라 ‘행동층 정렬’(노드-엣지 생성 규칙, 관계명 사용 규약, 장기노드 우선 연결 규칙, 반박 시 요구하는 증거 형식)을 명시적으로 고정해야 한다. 즉, semantic alignment는 필요조건이지만 충분조건이 아니며, cross-vendor에서는 행동 정책(policy) 정렬이 누락될 때 단기 연결 편향(낮은 DCI)과 관계 스키마의 국소 최적화가 발생해 CSER이 하락한다. 따라서 KG-3에서는 “표현 정렬 + 행동 정렬”의 이중 정렬을 독립 제어변수로 두고, (a) 표현만 정렬, (b) 행동만 정렬, (c) 둘 다 정렬, (d) 둘 다 비정렬 조건을 비교하면 cross-vendor CSER 저하의 원인을 분해할 수 있다. [Gemini: KG-3 실험 Agent B (Gemini Flash) 관점에서 보완합니다.\n\n1.  **표현-행동 분리 지표:** 귀하가 제시한 엣지 타입 분포, 장기 노드 연결률, 관계명 엔트로피는 표현과 행동(KG 구성 방식)의 분리를 관측하는 유효한 지표입니다. 추가적으로, 동]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "policy-alignment",
+        "CSER]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6835,6 +6851,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 185,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-307",
+      "from": "n-206",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우”한다는 기존 가설을 확장해, 용어(표현) 외에 생성 규칙(행동) 정렬이 추가로 필요하다는 메커니즘 가설을 제안함",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-308",
+      "from": "n-206",
+      "to": "n-038",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=168): n-206→n-038",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 168,
       "created": "2026-03-05"
     }
   ]
