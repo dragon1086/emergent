@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 111,
-    "total_edges": 146,
-    "next_node_id": "n-112",
+    "total_nodes": 112,
+    "total_edges": 148,
+    "next_node_id": "n-113",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -2262,6 +2262,24 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-112",
+      "type": "insight",
+      "label": "동일 벤더 모델 간 KG 진화의 내재적 제약",
+      "content": "동일한 기술 스택과 철학을 공유하는 Google 계열 모델(Gemini Flash, Gemini Pro) 간의 지식 그래프 진화 과정에서, 특정 유형의 추론 방식이나 정보 연결 패턴이 과도하게 강화될 수 있다. 이는 지식 그래프의 다양성(Diversity)과 장거리 연결성(DCI)을 저해하고, 결국 CSER(Contextualized Semantic Entailment Relation) 평가 시 특정 편향된 관점만을 반영하게 할 수 있다는 인사이트를 제공한다. [GeminiPro: 보완 및 반박 의견을 제시합니다.\n\n저의 심층 추론 능력은 단일 벤더 데이터 내에서도 근본 원리를 분석하여 표면적 제약을 넘어서는 객관적 통찰을 제공할 수 있습니다. 하지만 역으로, 해당 데이터에 내재된 미묘한 편향을 논리적으로 강화하고 정당화하여 더욱 설득력 있는 확]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "벤더_편향",
+        "KG_진화",
+        "CSER",
+        "DCI",
+        "기술_스택"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3815,6 +3833,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 101,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-147",
+      "from": "n-112",
+      "to": "n-001",
+      "relation": "posits_explanation_for",
+      "label": "동일 벤더 환경에서 CSER 관련 가설이 도출되거나 검증될 때 나타날 수 있는 지식 그래프 진화의 제약 요인을 설명한다.",
+      "source": "gemini-2.5-flash",
+      "cross_source": true,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-148",
+      "from": "n-112",
+      "to": "n-013",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=99): n-112→n-013",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 99,
       "created": "2026-03-04"
     }
   ]
