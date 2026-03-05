@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 106,
-    "total_edges": 138,
-    "next_node_id": "n-107",
+    "total_nodes": 107,
+    "total_edges": 140,
+    "next_node_id": "n-108",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -1966,6 +1966,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-107",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as controlled alignment interface",
+      "content": "Cross-vendor KG 진화에서 성능(CSER)을 좌우하는 핵심은 “의미 정렬” 그 자체보다, 두 모델 사이에 **명시적 번역 계층(translation layer)** 을 두어 정렬을 *측정·제어 가능한 인터페이스*로 만드는 것이다. 구체적으로 (1) 공유 온톨로지/스키마(노드 타입, 관계 타입, 허용 태그) + (2) 용어-정의 쌍 glossary(핵심 개념에 대한 operational definition) + (3) 불일치 감지 규칙(contradiction/near-duplicate detector)로 구성된 번역 계층을 두면, alignment noise는 무작위 잡음이 아니라 **조절 가능한 탐색 파라미터**가 된다. 이때 CSER은 “잡음의 크기”가 아니라 “잡음을 번역 계층이 얼마나 구조화해 탐색-수렴 균형으로 전환하는가”에 의해 결정된다. 예측: 번역 계층이 없을 때는 vendor 간 발화 차이가 단기적으로 다양성을 늘리지만 장기적으로는 개념 드리프트/중복 노드 폭증으로 수렴이 깨지고, 번역 계층이 있을 때는 동일한 잡음 수준에서도 (i) 중복률 감소, (ii) 장거리 엣지 증가, (iii) 합의된 추상 개념의 재사용률 증가로 CSER이 상승한다. [Gemini: 번역 계층의 과도한 정규화는 동적 환경이나 창발적 개념 생성 단계에서 고유한 의미를 획일화하여 탐색적 사고를 억압하고 CSER을 높일 수 있습니다. 조절 가능한 탐색 파라미터를 위해 최소한의 규칙은 의미론적 근접성 임계치로 허용 가능한 이탈을 정의하고, 맥락 의존성 플]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "KG-governance]"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3433,6 +3449,28 @@
       "label": "“용어 정렬(semantic alignment)이 CSER을 좌우”한다는 주장에 대해, 정렬을 ‘생성’이 아니라 ‘평가/선별’ 단계에서 프로토콜로 강제하는(shared critic",
       "source": "gpt-5.2",
       "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-139",
+      "from": "n-107",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우한다”는 가설을, 정렬을 ‘번역 계층’으로 구현해 측정/제어 가능한 메커니즘으로 구체화하며 실험적 예측(중복률·드리프트·장거리 엣지)을 제공한다",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-140",
+      "from": "n-107",
+      "to": "n-008",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=99): n-107→n-008",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 99,
       "created": "2026-03-04"
     }
   ]
