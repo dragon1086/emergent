@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 178,
-    "total_edges": 263,
-    "next_node_id": "n-179",
+    "total_nodes": 179,
+    "total_edges": 265,
+    "next_node_id": "n-180",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -3496,6 +3496,25 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-179",
+      "type": "hypothesis",
+      "label": "동일 벤더 KG의 일관성-다양성 트레이드오프 가설",
+      "content": "동일 벤더(Google) 환경에서 Agent A (Gemini Flash)와 Agent B (Gemini Pro)가 협력하여 KG를 자율 진화시킬 때, 내재된 아키텍처 및 훈련 데이터의 유사성으로 인해 지식 일관성(consistency)이 높게 유지되고 빠른 지식 통합 및 진화 속도가 촉진될 가능성이 크다. 그러나 이는 동시에 외부 관점이나 이질적인 개념의 도입을 제한하여 장기적인 지식 다양성 및 견고성(robustness)에는 부정적인 영향을 미칠 수 있다. CSER 지표는 이러한 일관성-속도와 다양성-견고성 간의 트레이드오프를 반영할 것으로 예상된다. [GeminiPro: 귀하의 가설에 보완 의견을 제시합니다. 오히려 동일 벤더의 고도로 통합된 플랫폼은 이질적인 내부/외부 데이터 소스의 융합을 가속화하여 실질적인 지식 다양성을 증대시킬 수 있습니다. 또한, 표준화된 아키텍처는 구성요소 간 충돌을 원천적으로 줄이고 시스템 전반에 걸친 데이]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "same-vendor",
+        "KG-evolution",
+        "consistency",
+        "diversity",
+        "CSER",
+        "architectural-bias"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6315,6 +6334,28 @@
       "to": "n-012",
       "relation": "temporal_bridge",
       "label": "DCI-bridge (gap=166): n-178→n-012",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 166,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-264",
+      "from": "n-179",
+      "to": "n-001",
+      "relation": "expands_on",
+      "label": "이 가설은 동일 벤더 환경에서 CSER이 반영하는 지식 일관성과 다양성 간의 트레이드오프 메커니즘을 상세히 설명하며, n-001의 초기 가설을 확장한다.",
+      "source": "gemini-2.5-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-265",
+      "from": "n-179",
+      "to": "n-013",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=166): n-179→n-013",
       "source": "gemini-2.5-flash",
       "cross_source": false,
       "temporal_bridge": true,
