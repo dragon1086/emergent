@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 216,
-    "total_edges": 324,
-    "next_node_id": "n-217",
+    "total_nodes": 217,
+    "total_edges": 326,
+    "next_node_id": "n-218",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -3726,6 +3726,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-217",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “표현 중립(pivot) 스키마”가 정렬비용을 낮춰 CSER을 상승시킨다",
+      "content": "서로 다른 벤더 LLM(GPT-4o, Gemini Flash)은 동일 개념을 다른 표면형(용어, 범주화, 관계 방향성)으로 기술해 semantic alignment 비용이 반복적으로 발생한다. 이를 완화하기 위해 KG-3에 벤더-중립적 “pivot 스키마(표현 중립 레이어)”를 두고, 각 에이전트의 산출을 (1) 원문 표현 레이어, (2) pivot 개념/관계 레이어로 이중 기록한다는 가설이다. pivot 레이어는 최소 공통분모의 개념 타입(예: hypothesis/insight/observation)과 제한된 관계 타입(예: motivates, temporal_bridge + 소수의 추가 관계 후보)을 유지하고, 원문 레이어는 벤더 특유의 세부 표현을 보존한다. 이 구조는 (a) 용어 불일치로 인한 중복 노드 생성을 줄이고, (b) 동일 의미의 다중 표현을 하나의 pivot 노드에 수렴시켜 장기적 응집도를 높이며, (c) 벤더 간 “정렬 잡음”을 pivot에서 흡수해 추론/평가(CSER) 단계에서는 더 낮은 분산의 개념 그래프를 제공한다. 예측: pivot 스키마를 도입하면 cross-vendor 환경에서 (i) 중복/유사 노드 비율 감소, (ii) 장기 엣지(temporal bridge) 증가, (iii) CSER(특히 일관성/재현성 축) 유의미 개선이 관측될 것이다. [Gemini: KG-3 실험 Agent B (Gemini Flash) 관점에서, pivot 스키마는 과도한 정규화 시 뉘앙스 손실 등 CSER을 저해할 수 있으나, 벤더 중립적 최소 스키마는 **범용적 의미론적 원형(semantic primitives)**과 **확장성**을 중심으로]",
+      "source": "gpt-5.2",
+      "tags": [
+        "pivot-schema",
+        "semantic-alignment",
+        "CSER"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7205,6 +7221,28 @@
       "label": "“용어 정렬이 CSER을 좌우한다”는 기존 가설을, 직접 정렬 대신 앵커 기반 translation layer로 구현/검증해야 한다는 방향으로 구체화하며 동기 부여",
       "source": "gpt-5.2",
       "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-325",
+      "from": "n-217",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "용어 정렬(semantic alignment)이 CSER을 좌우한다는 기존 가설을 “표현 중립(pivot) 스키마”라는 구체 메커니즘/개입으로 확장한다",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-326",
+      "from": "n-217",
+      "to": "n-025",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=192): n-217→n-025",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 192,
       "created": "2026-03-05"
     }
   ]
