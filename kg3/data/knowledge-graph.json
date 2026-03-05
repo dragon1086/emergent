@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 190,
-    "total_edges": 280,
-    "next_node_id": "n-191",
+    "total_nodes": 191,
+    "total_edges": 282,
+    "next_node_id": "n-192",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -3310,6 +3310,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-191",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “중간 표현(Interlingua) 노드”가 alignment drift를 억제한다  ",
+      "content": "Cross-vendor(GPT-4o + Gemini) 환경에서는 동일 개념이 모델별로 다른 용어·범주화로 표현되어 semantic alignment가 시간이 지날수록 drift(의미 미끄러짐)할 수 있다. 이를 줄이기 위해 KG에 벤더-중립적 “중간 표현(interlingua) 노드”(예: 표준 정의, 최소 특징 집합, 단위/스키마 제약, 반례 포함)를 핵심 개념마다 두고, 각 벤더의 로컬 표현은 interlingua에만 직접 연결되게 제한한다(로컬-로컬 직접 연결 최소화). 이 구조는 (i) 의미를 한 번 정규화한 뒤 전파하여 누적 오차를 줄이고, (ii) temporal_bridge가 쌓일수록 생기는 용어 재정의 충돌을 interlingua에서 흡수하며, (iii) alignment noise가 유익한 regularizer로 작동하더라도 “노이즈의 상한”을 interlingua 제약으로 캡핑해 CSER을 안정화한다. 따라서 interlingua 노드 도입은 cross-vendor KG 진화에서 CSER의 분산을 낮추고 재현성을 높이는 구조적 개입으로 예측된다.   [Gemini: Interlingua의 과도한 추상화는 미묘한 정보 손실을 유발하여 CSER을 악화시키고 alignment drift를 심화시킬 수 있습니다. Gemini 관점에서는 단일 인터링구아 대신 다중-앵커/다중-스키마 구조 또는 confidence-weighted edges를]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[interlingua",
+        "semantic-alignment",
+        "CSER]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6313,6 +6329,28 @@
       "label": "“용어 정렬(semantic alignment)이 CSER을 좌우”한다는 기존 가설을, 개념 정렬을 넘어 ‘관계 스키마 정렬/고정’이 핵심 메커니즘이라는 방향으로 확장·구체화한다",
       "source": "gpt-5.2",
       "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-281",
+      "from": "n-191",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "용어 정렬이 CSER을 좌우한다는 가설을, 벤더-중립 중간표현 노드라는 구체적 메커니즘/개입으로 확장(정렬 drift 억제 및 재현성 향상 경로 제시)  ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-282",
+      "from": "n-191",
+      "to": "n-012",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=179): n-191→n-012",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 179,
       "created": "2026-03-05"
     }
   ]
