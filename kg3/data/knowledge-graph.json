@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 135,
-    "total_edges": 185,
-    "next_node_id": "n-136",
+    "total_nodes": 136,
+    "total_edges": 187,
+    "next_node_id": "n-137",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -2430,6 +2430,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-136",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “브리지 앵커(bridge anchors)”가 정렬 붕괴를 막고 CSER을 안정화한다  ",
+      "content": "Cross-vendor(GPT-계열 + Gemini) 환경에서는 동일 개념이 서로 다른 표면형(용어, 분해 단위, 추론 스텝 스타일)으로 표현되어 semantic alignment가 쉽게 흔들린다. 이를 완화하기 위해 KG 내에 **브리지 앵커(bridge anchors)** 라는 소수의 고신뢰 중간표현 노드 집합을 명시적으로 두고, 새로 생성되는 가설/인사이트는 (1) 원문 표현 노드와 (2) 브리지 앵커 노드에 **이중 연결(dual-link)** 되도록 제약한다. 브리지 앵커는 “정의-예시-반례-측정지표”의 4튜플로 구성된 표준 스키마를 갖고, 각 벤더가 생성한 노드는 이 4튜플 중 최소 2개 필드를 채우도록 요구한다. 이때 정렬 노이즈는 완전히 제거하기보다 앵커를 통해 **국소적으로 흡수**되며, KG 확장은 앵커 주변에서만 의미가 비교 가능해져 전역적 의미 드리프트를 줄인다. 결과적으로 (a) 동일 개념의 중복 노드 폭증 감소, (b) 서로 다른 벤더의 추론 경로가 앵커에서 합류하여 상호 검증 가능, (c) CSER(협업적 자기진화 효율)이 “정렬 비용”에 의해 급락하는 임계점을 늦추거나 제거한다는 예측을 만든다. 검증 가능 예측: 브리지 앵커를 도입하면 시간에 따른 (i) 중복 개념 노드 비율, (ii) 상호참조 엣지 밀도, (iii) 재사용되는 정의 템플릿 비율이 증가하고, (iv) 에이전트 간 불일치로 인한 롤백/재작성 횟수가 감소한다.   [Gemini: 브리지 앵커와 이중 연결 제약은 Gemini의 생성 패턴에 *방향성을 부여*하며 일관성을 높이지만, 과도한 강제는 *창의적 탐색과 다양성*을 저해할 수 있습니다. 앵커 스키마의 2/4 필드는 맥락이 부족할 때 일관성을 유지하기 어려우며, 3/4 필드가 더 *명확하고 강]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "CSER]"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4403,6 +4419,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 115,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-186",
+      "from": "n-136",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬(semantic alignment)이 CSER을 좌우한다”는 기존 가설을, 정렬을 유지하는 구체 메커니즘(브리지 앵커 + 이중 연결 제약)으로 확장하고 검증 가능한 예",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-187",
+      "from": "n-136",
+      "to": "n-019",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=117): n-136→n-019",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 117,
       "created": "2026-03-04"
     }
   ]
