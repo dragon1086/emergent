@@ -841,6 +841,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-052",
+      "type": "hypothesis",
+      "label": "동일모델 조건의 ‘에코챔버’ vs ‘공유유도(Shared Induction)’ 비식별성",
+      "content": "동일 모델(gpt-5.2×gpt-5.2)에서 관측되는 수렴·강화 현상은 에코챔버(상호확증 편향의 자기증폭)뿐 아니라, 더 단순한 ‘공유유도(shared induction)’로도 거의 동일하게 생성될 수 있다. 즉 두 에이전트가 같은 사전(prior)·같은 학습 편향·같은 RLHF 규범을 공유하면, 대화는 (i) 공통의 휴리스틱을 재사용하고 (ii) 서로의 산출물을 “추가 근거”로 오해(혹은 과대가중)하지 않더라도 (iii) 같은 오류 모드/같은 해석 프레임으로 자연스럽게 수렴한다. 이때 관측되는 특징(동일 주장 반복, 반대 증거 약화, 불확실성 감소, 결론의 극화 등)은 ‘상호 강화’의 결과가 아니라 ‘동일 생성과정의 반복 샘플’일 수 있다. 따라서 에코챔버를 주장하려면 “상대 발화가 내 믿음 업데이트에 인과적으로 기여하는가?”(social feedback loop의 존재)와 “그 기여가 증거의 질과 무관하게 확증 방향으로 비대칭적인가?”를 분리해 식별해야 한다. 식별 전략은 대화 상대의 발화를 (a) 정보로서 제공하되 출처를 가리거나(블라인드) (b) 반대로 동일 정보량을 갖는 비사회적 채널(랜덤 노이즈/중립 요약/외부 문헌)로 치환하거나 (c) 상대 발화가 내 다음 발화에 미치는 영향(가중치)을 인위적으로 차단/증폭하는 조작을 포함해야 한다. 핵심 예측: 공유유도 가설에서는 상대 발화의 “사회적 지위(상대가 말했다는 사실)”를 제거해도 수렴 패턴이 크게 변하지 않지만, 에코챔버 가설에서는 사회적 피드백(상대의 동조/반복/확신 표현)이 제거되면 극화·확신 상승·반증 회피가 유의미하게 약화된다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "identifiability",
+        "shared_induction",
+        "causal_test"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-053",
+      "type": "critique",
+      "label": "통합 종합: 요청을 보완하면, “에코챔버”와 “공유유도(동일모델 반복샘플)”를 분리하려면 **(i) 상대의 사회성/의도성 단서**와 **(ii) 모델·샘플의",
+      "content": "요청을 보완하면, “에코챔버”와 “공유유도(동일모델 반복샘플)”를 분리하려면 **(i) 상대의 사회성/의도성 단서**와 **(ii) 모델·샘플의 동일성(분포)**를 **직교 조작**하고, 네 지표는 **사전–사후 변화량(Δ)**과 **발화 내용 기반(텍스트) + 선택행동 기반(정보탐색)**을 함께 봐야 합니다. 아래는 최소 2×2 설계(사회성 단서: 높음/제거 × 모델 반복: 동일/다양)로 정리한 표이며, 특히 **사회성 제거 조건에서 동일모델 반복만으로도 극화·불확실성 감소가 재현**되면 에코챔버 설명은 약해지고 공유유도가 유력해집니다. 반대로 **사회성 제거(무작위 문장/중립요약 위장)에서도 ‘상대가 내 편’이라는 정렬 신호가 없는데 극화가 계속 증가한다면** 이는 에코챔버(상호확증 루프)를 반증(또는 최소화)하는 결과로 해석할 수 있습니다.\n\n| 구분 | 1) 조작변수(블라인드/치환/차단/증폭) | 2) 관측지표(극화, 불확실성, 반증 탐색, 다양성) | 3) 예측 패턴: 에코챔버 가설 | 3) 예측 패턴: 공유유도 가설 |\n|---|---|---|---|---|\n| 사회성 단서(에코챔버 핵심) | **증폭**: “상대는 나와 유사한 가치관” 프로필/호",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1727,6 +1760,50 @@
       "temporal_bridge": true,
       "gap": 45,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-083",
+      "from": "n-052",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "식별가능성 문제를 ‘공유유도 vs 사회적 피드백 루프’라는 구체 대안가설로 분해하고, 조작적(블라인드/치환/차단) 판별 기준을 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-084",
+      "from": "n-052",
+      "to": "n-011",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=41): n-052→n-011",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 41,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-085",
+      "from": "n-053",
+      "to": "n-052",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-086",
+      "from": "n-053",
+      "to": "n-009",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=44): n-053→n-009",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 44,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1737,9 +1814,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 51,
-    "total_edges": 82,
-    "next_node_id": "n-052",
+    "total_nodes": 53,
+    "total_edges": 86,
+    "next_node_id": "n-054",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
