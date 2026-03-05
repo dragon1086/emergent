@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 86,
-    "total_edges": 104,
-    "next_node_id": "n-087",
+    "total_nodes": 87,
+    "total_edges": 106,
+    "next_node_id": "n-088",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -1646,6 +1646,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-087",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER은 “공유 평가 프로토콜(grounded evaluation protocol)”의 유무에 의해 상한이 결정된다",
+      "content": "Cross-vendor(GPT-4o ↔ Gemini Flash) 협업에서 CSER의 핵심 병목은 모델 능력 차이보다 “평가 기준의 공통화”이다. 구체적으로, (1) 작업 목표를 검증 가능한 체크리스트/테스트(예: 정합성, 반례 탐색, 실패 모드 기록)로 외재화하고, (2) 각 에이전트가 동일한 스코어링 규칙(예: 증거 기반 주장만 허용, 불확실성 표기, 상호 재현 가능성)으로 자신의 산출물을 자기평가한 뒤, (3) 불일치가 발생하면 ‘정답’이 아니라 ‘평가 규칙’의 차이를 먼저 조정하는 메타-루프를 돌릴 때 CSER이 안정적으로 상승한다. 이 프로토콜은 cross-vendor에서 흔한 용어/스타일/추론 체계 차이(semantic alignment noise)를 “정렬해야 할 오류”가 아니라 “검증 규칙을 강화하는 신호”로 전환하며, 결과적으로 KG 업데이트가 (a) 주장-근거-검증의 삼각구조로 축약되고 (b) 엣지 생성이 단기 대화 맥락이 아니라 장기 규칙 노드에 고정되어 DCI도 함께 개선된다. 예측: 동일한 과제에서 용어 정렬만 수행한 조건보다, ‘공유 평가 프로토콜 + 최소 용어 정렬’ 조건이 더 높은 CSER과 더 낮은 회귀(rollback)를 보인다. [Gemini: Gemini Flash 관점에서, 다음 요청에 간결하게 반박/보완합니다.\n\n1.  **공유 평가 프로토콜”이 실제로는 과도한 오버헤드가 되어 CSER을 낮출 수 있다는 반례 시나리오를 제시해줘.**\n    공유 프로토콜이 과도하면 동적 환경에서 CSER을 저해합니다. ]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cser",
+        "evaluation_protocol",
+        "cross_vendor]"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2745,6 +2761,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 70,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-105",
+      "from": "n-087",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER을 올리기 위해서는 모델 간 합의 가능한 “공유 평가 프로토콜”이 선행되어야 한다는 구체 가설로 n-001을 실행가능한 메커니즘 수준으로 확장",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-106",
+      "from": "n-087",
+      "to": "n-011",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=76): n-087→n-011",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 76,
       "created": "2026-03-04"
     }
   ]
