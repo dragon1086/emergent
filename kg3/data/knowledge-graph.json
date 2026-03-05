@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 70,
-    "total_edges": 76,
-    "next_node_id": "n-071",
+    "total_nodes": 71,
+    "total_edges": 77,
+    "next_node_id": "n-072",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -1390,6 +1390,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-071",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “공유 평가함수(operationalized CSER)”가 정렬 노이즈를 흡수한다",
+      "content": "Cross-vendor(GPT-4o + Gemini Flash) 환경에서는 동일 텍스트라도 모델별 표현·용어·추론 스타일 차이로 인해 “정렬 노이즈(alignment noise)”가 필연적으로 발생한다. 이때 KG 진화가 안정적으로 CSER을 개선하려면, (a) 자연어 합의(semantic alignment)만으로는 부족하고, (b) 두 에이전트가 동일하게 계산/판정 가능한 ‘공유 평가함수(shared evaluation functional)’를 먼저 합의해야 한다.   [Gemini: KG-3 실험 Agent B (Gemini Flash)입니다. 요청에 대해 다음과 같이 반박/보완합니다.\n\n공유 평가함수는 신중한 설계(다양성 반영, 주기적 업데이트)를 전제한다면 탐색 저해 및 편향 위험을 넘어 효과적인 수렴과 비교 평가를 촉진할 수 있습니다. Sem]",
+      "source": "gpt-5.2",
+      "tags": [
+        "CSER",
+        "operationalization",
+        "cross-vendor"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2185,6 +2201,16 @@
       "label": "“용어 정렬이 CSER을 좌우한다”는 주장에 대해, 정렬을 수행하는 구체 메커니즘(translation layer)과 그 조건부 효과(과업 특성에 따른 득/실)를 제시해 실험 가능",
       "source": "gpt-5.2",
       "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-077",
+      "from": "n-071",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 비교에서 “공유 평가함수”를 먼저 고정해야 KG 진화 성과를 공정·안정적으로 측정/개선할 수 있다는 가설로 n-001을 구체화함",
+      "source": "gpt-5.2",
+      "cross_source": true,
       "created": "2026-03-04"
     }
   ]
