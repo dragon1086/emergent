@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 90,
-    "total_edges": 113,
-    "next_node_id": "n-091",
+    "total_nodes": 91,
+    "total_edges": 114,
+    "next_node_id": "n-092",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -1869,6 +1869,24 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-091",
+      "type": "hypothesis",
+      "label": "동일 벤더 환경에서의 LLM 역할 분담 및 KG 복잡성",
+      "content": "Gemini Flash (Agent A)와 Gemini Pro (Agent B) 간의 동일 벤더 역할 분담은 KG 진화에 있어 특정 패턴을 유도할 수 있다. Flash는 빠른 아이디어 생성과 초기 가설 설정을 담당하고, Pro는 이를 심화, 비판, 확장하는 역할을 수행함으로써, 노드 간의 posits_explanation_for와 refines_hypothesis 관계가 더욱 밀집하게 나타날 수 있다. 이는 KG 복잡도 증가에 기여할 수 있으나, 동시에 특정 관점의 과도한 강화로 이어질 위험도 내포한다. [GeminiPro:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "[동일 벤더",
+        "역할 분담",
+        "KG 복잡성",
+        "Gemini Flash",
+        "Gemini Pro]"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3066,6 +3084,16 @@
       "to": "n-008",
       "relation": "expands_on",
       "label": "n-008에서 제기된 공유 아키텍처 편향이 KG 진화의 DCI에 미치는 구체적인 영향과 메커니즘을 가설화함.",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-114",
+      "from": "n-091",
+      "to": "n-008",
+      "relation": "posits_explanation_for",
+      "label": "동일 벤더의 공유 아키텍처 편향이 Agent 간 역할 분담을 통해 KG 진화에 미치는 영향을 설명함.",
       "source": "gemini-2.5-flash",
       "cross_source": false,
       "created": "2026-03-04"
