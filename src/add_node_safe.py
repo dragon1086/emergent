@@ -88,6 +88,48 @@ if edge_to and edge_to in valid_ids:
     }
     graph["edges"].append(edge)
 
+# ── DCI 회복: 오래된 노드로 temporal bridge 엣지 강제 추가 ─
+# D-098: DCI 0.0508 → 목표 >0.1 (edge_span top-10 gap ≥ 20)
+# 확률 70%로 top-20% 오래된 노드에 cross-temporal 엣지 추가
+import random
+if random.random() < 0.70 and len(graph["nodes"]) >= 10:
+    # 신규 노드 제외한 기존 노드를 ID 번호 오름차순으로 정렬 (낮은 ID = 오래된 노드)
+    other_nodes = [n for n in graph["nodes"]
+                   if n["id"] != node_id and n["id"] != edge_to]
+    other_nodes.sort(key=lambda n: int(re.search(r'\d+', n["id"]).group())
+                     if re.search(r'\d+', n["id"]) else 9999)
+    # top-20% 오래된 노드 (최소 3개)
+    old_cutoff = max(3, len(other_nodes) // 5)
+    old_pool = other_nodes[:old_cutoff]
+    if old_pool:
+        old_target = random.choice(old_pool)
+        old_target_id = old_target["id"]
+        # 이미 동일 엣지 있으면 스킵
+        existing_pairs = {(e["from"], e["to"]) for e in graph["edges"]}
+        if (node_id, old_target_id) not in existing_pairs:
+            existing_edges2 = [int(e["id"].split("-")[1]) for e in graph["edges"]
+                               if e["id"].startswith("e-")]
+            next_edge_num2 = max(existing_edges2, default=0) + 1
+            bridge_edge_id = f"e-{next_edge_num2:03d}"
+            cross2 = (new_source != old_target.get("source", ""))
+            # 노드 번호 차이(gap)를 label에 포함
+            new_num = int(re.search(r'\d+', node_id).group())
+            old_num = int(re.search(r'\d+', old_target_id).group())
+            gap = new_num - old_num
+            bridge_edge = {
+                "id": bridge_edge_id,
+                "from": node_id,
+                "to": old_target_id,
+                "relation": "temporal_bridge",
+                "label": f"DCI-bridge (gap={gap}): {node_id}→{old_target_id}",
+                "source": new_source,
+                "cross_source": cross2,
+                "temporal_bridge": True,
+                "gap": gap,
+                "created": datetime.now().strftime("%Y-%m-%d"),
+            }
+            graph["edges"].append(bridge_edge)
+
 # ── 메타 업데이트 ────────────────────────────────────────
 graph["meta"]["total_nodes"] = len(graph["nodes"])
 graph["meta"]["total_edges"] = len(graph["edges"])

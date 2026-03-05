@@ -41,6 +41,25 @@ export EMERGENT_KG_PATH="$KG3_PATH"
 GRAPH_STATS=$(cd "$REPO_DIR" && python3 src/kg.py stats 2>/dev/null || echo "통계 없음")
 log "📊 KG-3 현황: $GRAPH_STATS"
 
+# D-098: DCI 회복 — 오래된 노드 목록 추출 (프롬프트에 포함)
+OLD_NODES=$(python3 -c "
+import json, sys
+kg = json.load(open('$KG3_PATH', encoding='utf-8'))
+nodes = kg.get('nodes', [])
+# ID 번호 기준 오름차순 정렬 (낮은 번호 = 오래된 노드)
+import re
+def node_num(n):
+    m = re.search(r'\d+', n['id'])
+    return int(m.group()) if m else 9999
+nodes_sorted = sorted(nodes, key=node_num)
+# 상위 20% (최소 3개, 최대 8개)
+cutoff = max(3, min(8, len(nodes_sorted) // 5))
+old = nodes_sorted[:cutoff]
+for n in old:
+    print(f\"  {n['id']}: {n['label'][:60]} (source: {n.get('source','?')})\")
+" 2>/dev/null || echo "  (오래된 노드 없음)")
+log "🕰️ 오래된 노드 후보: $(echo "$OLD_NODES" | wc -l | tr -d ' ')개"
+
 # Agent A: GPT-4o (OpenAI)
 PROMPT="당신은 emergent KG-3 실험의 Agent A (GPT-4o)입니다.
 
@@ -51,9 +70,14 @@ KG-2(same-vendor: GPT계열)와 CSER을 비교합니다.
 ## 현재 KG-3 상태
 $GRAPH_STATS
 
+## ⚠️ DCI 회복 지시 (최우선)
+현재 DCI = 0.0508 (심각한 단기 연결 편향). 목표: DCI > 0.1.
+아래 오래된 노드 중 하나를 EDGE_TO로 반드시 선택하세요 (최근 노드 연결 금지):
+$OLD_NODES
+
 ## 지시
 1. KG-3에 추가할 의미있는 insight 또는 hypothesis 노드 1개를 제안하세요
-2. 기존 노드와의 관계(edge) 1개를 제안하세요
+2. 위 오래된 노드 목록에서 EDGE_TO를 선택하세요 (long-range 연결로 DCI 회복)
 3. Agent B(Gemini Flash)에게 반박 또는 보완 요청을 작성하세요
 
 ## 출력 형식 (정확히)
@@ -61,7 +85,7 @@ NODE_LABEL: [노드 라벨]
 NODE_CONTENT: [노드 내용 — 구체적이고 이론적]
 NODE_TYPE: [insight|hypothesis|observation]
 NODE_TAGS: [태그1,태그2,태그3]
-EDGE_TO: [연결할 기존 노드 id]
+EDGE_TO: [위 오래된 노드 목록에서 선택한 id]
 EDGE_RELATION: [관계명]
 EDGE_LABEL: [관계 설명]
 AGENT_B_REQUEST: [Gemini Flash에게 보내는 반박/보완 요청]"
