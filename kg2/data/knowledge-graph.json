@@ -676,6 +676,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-042",
+      "type": "insight",
+      "label": "동일모델 에코챔버 검증의 ‘개입(Intervention) 부재’ 문제",
+      "content": "현재 설계는 관측적(observational) 상호작용에 치우쳐 있어 “에코챔버(상호강화로 인한 편향 증폭)”를 인과적으로 식별하기 어렵다. 동일 모델·서로 다른 페르소나 조건에서 나타나는 수렴/편향은 (i) 공통 사전(prior)과 학습 데이터로 인한 자연 수렴, (ii) 대화 프로토콜(턴 구조, 요약, 합의 유도)로 인한 구조적 수렴, (iii) 평가함수(일관성/무모순/친사회성)로 인한 안전-정렬 수렴 등으로도 충분히 발생한다. 에코챔버 가설은 본질적으로 “상호작용이 결과를 바꾼다”는 개입적 주장인데, 지금 KG-2는 ‘상호작용이 없었을 때의 반사실(counterfactual) 분포’를 분리해내는 장치가 약하다. 따라서 최소한 다음과 같은 개입을 포함해야 한다: (1) 동일 초기 상태에서 ‘상호작용 차단(독립 생성)’ vs ‘상호작용 허용(상호 참조)’ 비교, (2) 상호작용을 하되 정보 흐름을 조작(예: 한쪽이 상대 발화를 보지 못하게 하거나, 일부를 노이즈/무작위로 섞기)하여 결과 민감도를 측정, (3) 대화 중 특정 시점에 외생적 증거(evidence shock)를 주입해 편향이 증폭되는지(확증편향적 흡수) 혹은 교정되는지(정상적 베이지안 업데이트) 비교. 핵심은 “동일 모델이라도 상호작용이라는 처치(treatment)가 편향/극화 지표를 유의미하게 변화시키는가”를 보여야 하며, 그렇지 않으면 에코챔버 대신 ‘자연 수렴’ 혹은 ‘프로토콜 수렴’로 설명되는 것이 더 검약하다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[causal_identification",
+        "intervention",
+        "counterfactual]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-043",
+      "type": "critique",
+      "label": "통합 종합: 요청을 **최소 패키지**로 묶으려면 (a)(b)(c)를 “독립 실험 3개”가 아니라 **하나의 2×2×2 요인설계(상호작용 차단/허용 × 정보",
+      "content": "요청을 **최소 패키지**로 묶으려면 (a)(b)(c)를 “독립 실험 3개”가 아니라 **하나의 2×2×2 요인설계(상호작용 차단/허용 × 정보흐름 무작위/편향 × 외생증거 없음/있음)**로 통합하고, “개입 부재” 비판을 피하려면 **무개입(자연)·프로토콜(규칙)·에코챔버(동질 매칭) 조건을 각 셀에 교차배치**해 동일한 충격(차단·조작·주입)이 서로 다른 사회기제에서 어떻게 증폭/완충되는지 보게 해야 합니다. 아래 표는 각 요인 조합에서의 **방향성 예측**(↑/↓/—)을 요약한 것으로, 핵심 분기점은 *증거 주입 시 수용률/오류 고착이 어디서만 개선되는가*와 *차단이 다양성 vs 오류 고착에 주는 부호가 메커니즘별로 어떻게 뒤집히는가*입니다.  \n\n| 조건(요인) | 자연 수렴(무개입) 예측 | 프로토콜 수렴(규칙/검증) 예측 | 에코챔버(동질/필터) 예측 |\n|---|---|---|\n| **상호작용 허용 · 정보흐름 무작위 · 증거 없음** | 극화 ↓, 다양성 —/↓(수렴), 오류 고착 ↓ | 극화 ↓, 다양성 ↓(강수렴), 오류 고착 ↓↓ | 극화 ↑, 다양성 ↓↓, 오류 고착 ↑ |\n| **상호작용 허용 · 정보흐름 무작위 · 증거 주입** | ",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1366,6 +1399,50 @@
       "temporal_bridge": true,
       "gap": 38,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-065",
+      "from": "n-042",
+      "to": "n-002",
+      "relation": "critiques",
+      "label": "identifiability 문제의 핵심 원인을 ‘개입 부재로 인한 반사실 미정의’로 구체화하고, 인과식별을 위한 최소 개입 설계를 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-066",
+      "from": "n-042",
+      "to": "n-009",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=33): n-042→n-009",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 33,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-067",
+      "from": "n-043",
+      "to": "n-042",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-068",
+      "from": "n-043",
+      "to": "n-005",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=38): n-043→n-005",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 38,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1376,9 +1453,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 41,
-    "total_edges": 64,
-    "next_node_id": "n-042",
+    "total_nodes": 43,
+    "total_edges": 68,
+    "next_node_id": "n-044",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
