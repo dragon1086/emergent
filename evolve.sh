@@ -237,7 +237,7 @@ cmd_parse_and_run() {
 import random, sys
 edge_to = sys.argv[1]
 old_ids = sys.argv[2].split() if sys.argv[2].strip() else []
-if old_ids and random.random() < $OLD_NODE_RATIO:
+if old_ids and edge_to not in old_ids:
     new_id = random.choice(old_ids)
     print(f'OVERRIDE:{new_id}')
 else:
