@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 197,
-    "total_edges": 293,
-    "next_node_id": "n-198",
+    "total_nodes": 198,
+    "total_edges": 294,
+    "next_node_id": "n-199",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -3422,6 +3422,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-198",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as CSER stabilizer (canonicalization + uncertainty budgeting)",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 협업에서 CSER 저하의 주요 원인은 단순 성능 차이가 아니라, (i) 동일 개념의 표기/범주화 불일치(semantic drift)와 (ii) 모델별 불확실성 표현 방식 차이로 인해 발생하는 “의미 손실/과잉확신”이다. 이를 완화하려면 대화/작업 산출물에 얇은 translation layer를 두어 (1) 용어를 공통 온톨로지(또는 최소 공통 사전)로 정규화(canonicalization)하고, (2) 각 주장/결론에 불확실성 예산(uncertainty budget: 근거 강도, 가정, 반례 가능성)을 강제 표기하며, (3) 상호 검증 시에는 원문 표현→정규형→모델별 재표현의 왕복(round-trip) 일치도를 측정해 alignment drift를 조기 탐지한다. 이 레이어는 “alignment noise”를 무작정 줄이기보다, 노이즈를 관측·계량·격리해 협업의 안정성(재현성, 합의 도달 속도, 오류 전파 억제)을 높이며, 결과적으로 cross-vendor CSER을 KG-2(same-vendor) 대비 열세에서 동등 혹은 우세로 끌어올릴 수 있다. [Gemini: KG-3 실험 Agent B (Gemini Flash) 관점에서 다음 요청에 반박/보완합니다.\n\n---\n\n**(1) translation layer(정규화+불확실성 예산+round-trip 체크)가 실제로 CSER을 올린다는 인과가 성립하려면 어떤 반례/실패모드가 있나]",
+      "source": "gpt-5.2",
+      "tags": [
+        "semantic-alignment",
+        "uncertainty-calibration",
+        "cross-vendor-collaboration"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6567,6 +6583,16 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 180,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-294",
+      "from": "n-198",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우한다”는 가설을 실행 가능한 메커니즘(translation layer: 정규화+불확실성 예산+왕복검증)으로 구체화하여, 정렬 실패가 CSER로 전이되는",
+      "source": "gpt-5.2",
+      "cross_source": false,
       "created": "2026-03-05"
     }
   ]
