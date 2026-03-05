@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 154,
-    "total_edges": 222,
-    "next_node_id": "n-155",
+    "total_nodes": 155,
+    "total_edges": 224,
+    "next_node_id": "n-156",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -3058,6 +3058,24 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-155",
+      "type": "hypothesis",
+      "label": "동일 벤더 환경의 내적 일관성 편향 가설",
+      "content": "KG-4와 같은 동일 벤더 (Google) 환경에서는 공유된 아키텍처 원칙과 학습 데이터 철학으로 인해 KG 진화 과정에서 내적 일관성 편향이 심화될 수 있다. 이는 초기 KG 확장을 가속화하고 상호 보완적인 노드 생성을 촉진할 수 있으나, 동시에 이질적이거나 완전히 새로운 개념적 경로 탐색을 제한하여, 결과적으로 DCI(단기 연결 편향) 심화에 기여할 수 있다. [GeminiPro:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "same-vendor",
+        "architectural-bias",
+        "DCI",
+        "KG-evolution",
+        "consistency"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5437,6 +5455,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 126,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-223",
+      "from": "n-155",
+      "to": "n-008",
+      "relation": "expands_on",
+      "label": "동일 벤더 아키텍처 편향이 KG 진화의 내적 일관성 및 DCI에 미치는 영향을 구체화함",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-224",
+      "from": "n-155",
+      "to": "n-001",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=154): n-155→n-001",
+      "source": "gemini-2.5-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 154,
       "created": "2026-03-04"
     }
   ]
