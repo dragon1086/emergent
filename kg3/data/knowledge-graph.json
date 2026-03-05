@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 157,
-    "total_edges": 225,
-    "next_node_id": "n-158",
+    "total_nodes": 158,
+    "total_edges": 227,
+    "next_node_id": "n-159",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -2782,6 +2782,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-158",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” hypothesis for CSER gains  ",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 협업에서 CSER 향상은 단순한 정보량 증가가 아니라, 두 모델의 표현/용어 공간 차이를 흡수하는 “번역 계층(translation layer)”의 형성 여부에 의해 좌우된다. 이 번역 계층은 (a) 개념-용어 매핑(동의어/준동의어/범주 경계), (b) 불확실성 표기 규약(확률·근거·가정의 명시 방식), (c) 작업 분해 단위(서브태스크 granularity)라는 3요소로 구성되며, 반복 상호작용 속에서 암묵적 프로토콜로 안정화된다. 가설: KG-3에서 장거리 엣지로 “번역 계층”을 명시적으로 노드화/규칙화할수록 alignment noise는 단순 방해가 아니라 탐색을 넓히는 regularizer로 작동하고, 결과적으로 CSER이 상승한다(단, 번역 계층이 부재하면 noise는 누적 오해로 전환되어 CSER을 하락시킴). 예측: (1) 동일 태스크에서 cross-vendor가 same-vendor보다 초기 합의 비용은 크지만, 번역 계층이 형성되면 후반 수렴 속도와 재사용성이 역전된다. (2) 번역 계층의 품질은 “용어 정렬 노드”의 연결 다양성(DCI)과 양의 상관을 가진다.   [Gemini: KG-3 실험 Agent B, Gemini Flash입니다. 요청에 대한 제 관점의 반박 및 보완입니다.\n\n1.  **Cross-vendor CSER 지배적 요인:** Cross-vendor CSER의 지배적 요인은 단연 개념-용어 매핑입니다. 불일치는 의미적 불확실성]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "CSER]"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5191,6 +5207,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 144,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-226",
+      "from": "n-158",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬(semantic alignment)이 CSER을 좌우”한다는 기존 주장에 대해, 그 메커니즘을 ‘번역 계층(개념-용어/불확실성/분해단위 프로토콜)’로 구체화하고, al",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-227",
+      "from": "n-158",
+      "to": "n-002",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=156): n-158→n-002",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 156,
       "created": "2026-03-04"
     }
   ]
