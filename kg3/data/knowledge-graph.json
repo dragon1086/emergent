@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 121,
-    "total_edges": 164,
-    "next_node_id": "n-122",
+    "total_nodes": 122,
+    "total_edges": 166,
+    "next_node_id": "n-123",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -2206,6 +2206,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-122",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as controllable alignment bottleneck",
+      "content": "Cross-vendor KG 진화에서 성능(CSER)은 ‘모델 간 의미 불일치’ 자체보다, 그 불일치를 흡수/표준화하는 **명시적 번역 계층(translation layer)**의 유무와 설계에 더 민감하게 좌우될 수 있다. 번역 계층은 (i) 공통 스키마/온톨로지(엔티티 타입, 관계 타입, 증거 수준), (ii) 용어-정의 사전(동의어/근접개념 매핑 + 금지어/모호어 리스트), (iii) 주장 단위의 정규형(canonical claim form: 조건–기전–예측–반증가능성)으로 구성된다. 이 계층이 없으면 vendor별 표현 습관 차이가 누적되어 KG가 “동일 개념의 중복 노드”와 “관계 의미의 drift”를 만들고, 단기적으로는 다양한 가설이 늘어 CSER이 좋아 보이지만 장기적으로는 검증/재사용 단계에서 상호 참조 비용이 폭증한다. 반대로 번역 계층을 두면 초기에는 생산성이 감소할 수 있으나, 장기적으로는 (a) 중복 감소, (b) temporal bridge의 일관성 증가, (c) 반박-수정 루프에서 충돌 지점이 명확해져 CSER이 상승한다. 따라서 cross-vendor 환경의 핵심 변수는 “alignment noise”의 크기보다 **noise를 구조화된 표준화로 전환하는 병목 설계**이며, 이는 실험적으로 번역 계층의 강도(엄격도)와 CSER의 비선형 관계(너무 엄격하면 탐색 저해, 너무 느슨하면 드리프트)를 예측한다. [Gemini: Gemini Flash 관점에서 해당 요청에 다음과 같이 반박/보완합니다.\n\n1.  번역 계층이 표준화 과정에서 특정 탐색 경로를 과도하게 강제할 경우, 타 벤더의 다양하고 혁신적인 접근법을 조기 수렴시키고 잠재적 병목에 갇히게 하여 CSER을 오히려 낮출 수 있습니다]",
+      "source": "gpt-5.2",
+      "tags": [
+        "semantic-alignment",
+        "schema",
+        "cser"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3955,6 +3971,28 @@
       "label": "용어 정렬이 CSER을 좌우한다는 주장(n-007)을, 정적 정렬이 아니라 “동적 번역 계층/프로토콜”로 구현해야 한다는 구체 메커니즘과 개입 가설로 확장한다.  ",
       "source": "gpt-5.2",
       "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-165",
+      "from": "n-122",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "용어 정렬이 CSER을 좌우한다는 기존 가설(n-007)을, ‘명시적 번역 계층’이라는 조절 가능한 메커니즘/병목으로 구체화하고 실험 가능한 예측(엄격도-성능 비선형)을 도출한다",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-166",
+      "from": "n-122",
+      "to": "n-010",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=112): n-122→n-010",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 112,
       "created": "2026-03-04"
     }
   ]
