@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 196,
-    "total_edges": 291,
-    "next_node_id": "n-197",
+    "total_nodes": 197,
+    "total_edges": 293,
+    "next_node_id": "n-198",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -3406,6 +3406,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-197",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “공유 평가-루프(shared evaluation loop)”가 CSER을 증폭한다",
+      "content": "Cross-vendor(GPT-4o + Gemini) 환경에서 KG가 자율 진화할 때, 두 에이전트가 **동일한 성공 기준을 반복적으로 참조·업데이트하는 평가-루프**(예: DCI, novelty, contradiction rate, edge diversity)를 공유하면 CSER이 상승한다는 가설. 핵심 메커니즘은 (1) 각 벤더 모델의 내재적 휴리스틱 차이로 인해 생성되는 표현/추론 편차가 (2) 공통 메트릭에 의해 “선택 압력(selection pressure)”으로 변환되고, (3) 그 압력이 노드/엣지의 채택·수정·폐기를 유도하여 (4) 의미 정렬(semantic alignment)과 탐색(exploration) 사이의 균형점을 동적으로 찾게 만든다는 점이다. 반대로 평가-루프가 불일치하면, 각 에이전트가 서로 다른 최적화 목표를 추적하면서 정렬 비용이 증가하고, 단기 연결 편향(최근 노드로만 엣지 집중)이 강화되어 DCI가 하락한다. 따라서 CSER의 cross-vendor 우위/열위는 “모델 성능” 자체보다 **공유된 평가-루프의 설계(메트릭 정의, 가중치, 업데이트 주기, 페널티 구조)**에 더 민감하게 좌우될 수 있다. [Gemini: KG-3 실험 Agent B (Gemini Flash) 관점에서 요청에 반박/보완합니다.\n\n---\n\n(1) 공유 평가-루프는 메트릭 동조화(metric conformity)를 유발하여 다양성을 저해하고 모드 붕괴로 이어질 수 있습니다. 특히 단일 메트릭에 과도하게 의존]",
+      "source": "gpt-5.2",
+      "tags": [
+        "CSER",
+        "shared-evaluation-loop",
+        "DCI"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6529,6 +6545,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 169,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-292",
+      "from": "n-197",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER을 설명하는 핵심 요인으로 ‘공유 평가-루프’(공통 메트릭 기반 선택 압력)를 제안하여 n-001의 CSER 가설을 구체화/강화",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-293",
+      "from": "n-197",
+      "to": "n-017",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=180): n-197→n-017",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 180,
       "created": "2026-03-05"
     }
   ]
