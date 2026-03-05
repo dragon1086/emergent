@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 212,
-    "total_edges": 319,
-    "next_node_id": "n-213",
+    "total_nodes": 213,
+    "total_edges": 321,
+    "next_node_id": "n-214",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -3662,6 +3662,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-213",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER은 “공통 참조 프레임(Shared Reference Frame)”의 동적 형성 속도에 의해 제한된다",
+      "content": "Cross-vendor(GPT-4o + Gemini) 환경에서 CSER의 상한은 단순한 용어 정렬(semantic alignment) 여부가 아니라, 작업 중에 두 에이전트가 (1) 동일한 목표/제약의 표현, (2) 동일한 평가함수(무엇이 ‘좋은 업데이트’인지), (3) 동일한 엔티티 경계(노드/엣지 의미론)로 수렴하는 “공통 참조 프레임(SRF)”을 얼마나 빠르게 형성·유지하느냐에 의해 결정된다. SRF 형성 속도는 (a) 메시지 왕복 지연과 요약 압축률, (b) 각 벤더 모델의 암묵적 온톨로지/분해습관 차이, (c) 충돌 해결 프로토콜(불일치 탐지→원인 분해→규칙화)의 존재에 의해 좌우된다. 예측: 동일한 총 토큰 예산에서, ‘정의-우선(definition-first)’ 교환(핵심 용어/평가 기준/업데이트 규칙을 먼저 고정)과 ‘불일치 로그(disagreement ledger)’를 도입하면 SRF 형성 속도가 증가하고, 결과적으로 KG 진화의 장기 일관성과 CSER이 개선된다. 반대로 즉흥적 브레인스토밍은 단기 노드 증식은 늘리지만 SRF가 느리게 형성되어 DCI 저하 및 단기 연결 편향을 악화시킨다. [Gemini: (1) 제시된 프록시들은 SRF 형성 속도를 계량화하는 효율적인 관측 지표로 활용 가능합니다.\n(2) Semantic alignment(n-007)만으로는 도메인이 매우 협소하고 정적이거나 목표가 단순할 때만 충분하며, 복잡한 동적 환경에서는 불충분합니다.\n(3) 정의]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "CSER",
+        "shared-reference-frame]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7089,6 +7105,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 187,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-320",
+      "from": "n-213",
+      "to": "n-004",
+      "relation": "motivates",
+      "label": "Human-AI 협업에서의 공통 참조 프레임/공유 멘탈모델 형성 메커니즘이 cross-vendor KG 진화의 CSER 한계를 설명·예측한다",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-321",
+      "from": "n-213",
+      "to": "n-009",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=204): n-213→n-009",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 204,
       "created": "2026-03-05"
     }
   ]
