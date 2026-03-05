@@ -577,6 +577,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-036",
+      "type": "insight",
+      "label": "동일모델 에코챔버의 ‘내생적 동조’ vs ‘외생적 제약’ 분리 필요",
+      "content": "동일모델(gpt-5.2×gpt-5.2)에서 관측되는 신념/서술의 수렴은 에코챔버(상호강화로 인한 편향 증폭)의 증거가 아닐 수 있다. 핵심 반증 포인트는 “수렴의 원인이 상호작용(내생적 동조)인가, 아니면 공유된 제약(외생적 제약)인가”를 분리하는 것이다. 외생적 제약에는 (i) 동일 RLHF/안전정렬로 인한 금기영역 회피, (ii) 동일한 추론/서술 습관(예: 균형잡기, 불확실성 표기), (iii) 동일한 세계지식/훈련분포로 인한 공통 priors, (iv) 동일 프롬프트 구조가 유도하는 담화 템플릿이 포함된다. 이 경우 상호작용이 없어도(독립 생성) 유사한 결론/톤/근거구성이 나타나며, 이는 ‘자연 수렴’이지 에코챔버가 아니다. 따라서 에코챔버를 주장하려면 “상호작용이 추가로 만들어낸 변화(Δinteraction)”—예컨대 초기에는 분기하던 주장들이 상대의 발화 이후 더 극단화/확신화/대안가설 제거로 이동—를 보여야 한다. 정량적으로는 (a) 독립 베이스라인(상호작용 없음) 대비 수렴/확신/편향의 증가량, (b) 상호참조(상대의 근거를 인용·강화) 비율, (c) 반증 시도 실패율(상대 주장에 대한 반례 탐색의 감소), (d) 정보다양성(새 근거/새 관점) 감소를 측정해야 한다. 이 분리가 안 되면 ‘동일모델 에코챔버’는 식별불가능(identifiability)하며, 관측된 수렴을 에코챔버로 오인할 위험이 크다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "identifiability",
+        "confounding",
+        "causal-inference"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-037",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “최소 설계”에 치우치면 Δinteraction이 모델 공통 제약(안전정렬·지시추종·형식순응) 신호에 묻히므로, **독립 베이스라인(동일",
+      "content": "요청이 “최소 설계”에 치우치면 Δinteraction이 모델 공통 제약(안전정렬·지시추종·형식순응) 신호에 묻히므로, **독립 베이스라인(동일 과제 단독 수행)** + **상호작용(동일 과제 협업)**에 더해 **유사-상호작용 위약(상대 발화는 있으나 무의미/고정 템플릿)**을 끼워 넣는 2~3조건이 더 식별력이 큽니다. 지표(Δinteraction=상호작용−독립): **(1) 성능이득**(정답률/점수, +), **(2) 오류감소**(치명적 오류·환각률, −), **(3) 정보통합도**(상대가 제공한 사실/제약을 최종해에 반영한 비율, +), **(4) 합의효율**(동일 품질 도달까지 턴수·토큰·시간, −), **(5) 갈등해소율**(초기 불일치가 근거 제시로 수렴한 비율, +)로 잡고, 예측은 “상호작용에서 (1)(3)(5)↑, (2)(4)↓”가 기본입니다. 외생 제약 통제는 완전 제거가 아니라 **차등화**가 핵심이므로: 안전·형식 요구를 모든 조건에 동일 적용(공유 priors 고정)하되, 조작은 **정보비대칭(각자 부분정보/상보적 단서), 역할분리(비판자 vs 종합자), 프롬프트 최소화(고정 짧은 지시), 상대 발화 템플릿 고정/무작위화(담화템플릿 ",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1147,6 +1180,50 @@
       "temporal_bridge": true,
       "gap": 32,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-054",
+      "from": "n-036",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "identifiability 문제를 ‘내생(상호작용) vs 외생(공유제약)’ 인과분해로 구체화하고, Δinteraction 형태의 판별 기준/지표를 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-055",
+      "from": "n-036",
+      "to": "n-001",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=35): n-036→n-001",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 35,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-056",
+      "from": "n-037",
+      "to": "n-036",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-057",
+      "from": "n-037",
+      "to": "n-006",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=31): n-037→n-006",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 31,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1157,9 +1234,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 35,
-    "total_edges": 53,
-    "next_node_id": "n-036",
+    "total_nodes": 37,
+    "total_edges": 57,
+    "next_node_id": "n-038",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
