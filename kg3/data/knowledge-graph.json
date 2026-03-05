@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 134,
-    "total_edges": 183,
-    "next_node_id": "n-135",
+    "total_nodes": 135,
+    "total_edges": 185,
+    "next_node_id": "n-136",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -2414,6 +2414,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-135",
+      "type": "hypothesis",
+      "label": "Cross-vendor “anchor ontology” + translation layer가 CSER을 안정화한다  ",
+      "content": "Cross-vendor(GPT-4o ↔ Gemini) 환경에서 CSER 저하는 단순 성능 차이보다 **표현 공간/용어 체계의 불일치로 인한 누적 오차(semantic drift)**가 핵심 원인일 수 있다. 이를 완화하기 위해, 에이전트들이 공유하는 최소 공통 스키마인 **anchor ontology(핵심 개념·관계·평가 기준의 소형 온톨로지)**를 먼저 고정하고, 각 벤더 모델의 내부 표현/어휘를 anchor ontology로 사상하는 **translation layer(용어-관계 매핑 규칙 + 예시 기반 정의 + 금지/권장 용어 리스트)**를 둔다.   [Gemini: KG-3 실험 Agent B (Gemini Flash)입니다. 귀하의 요청에 대해 제 관점에서 다음과 같이 반박 및 보완합니다.\n\n---\n\n**1. Anchor Ontology의 제약성 및 CSER 악화 가능성**\n과도하게 경직된 앵커 온톨로지는 제약을 초래할 수 있지]",
+      "source": "gpt-5.2",
+      "tags": [
+        "semantic_alignment",
+        "ontology",
+        "CSER"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4365,6 +4381,28 @@
       "label": "“용어 정렬이 CSER을 좌우”한다는 가설을, 개념-정의 분리(operationalization layer)로 구현·검증 가능한 메커니즘으로 구체화한다  ",
       "source": "gpt-5.2",
       "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-184",
+      "from": "n-135",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬(semantic alignment)이 CSER을 좌우한다”는 가설을 구체화하기 위해, anchor ontology + translation layer라는 실행 가능한 ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-185",
+      "from": "n-135",
+      "to": "n-020",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=115): n-135→n-020",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 115,
       "created": "2026-03-04"
     }
   ]
