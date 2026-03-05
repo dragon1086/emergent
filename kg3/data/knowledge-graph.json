@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 195,
-    "total_edges": 289,
-    "next_node_id": "n-196",
+    "total_nodes": 196,
+    "total_edges": 291,
+    "next_node_id": "n-197",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -3390,6 +3390,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-196",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation bottleneck”이 KG-진화 CSER을 결정한다",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 협업에서 CSER은 각 에이전트의 내부 추론역량보다, 상호작용 중 생성되는 메시지가 상대 모델의 표현공간으로 “번역”되며 통과하는 병목(translation bottleneck)의 품질에 의해 더 크게 좌우된다. 이 병목은 (i) 용어 사전/정의의 합의 수준, (ii) 주장-근거-반례의 표준 포맷, (iii) 불확실성/가정/범위 조건의 명시, (iv) KG 업데이트 연산(merge/split/rename)의 규약으로 구성된다. 병목 품질이 낮으면 alignment noise가 단순 잡음으로 누적되어 엣지 밀도는 늘어도 장기적으로는 개념 드리프트와 중복 노드가 증가해 CSER이 하락한다. 반대로 병목을 “구조화된 번역 계층”(예: 정의-제약-예시-반례 템플릿 + 동의어/상위어 매핑 + 충돌 해결 규칙)로 설계하면, cross-vendor alignment noise가 정규화 효과를 내더라도 의미 보존 하에서 탐색 다양성만 증가시켜 CSER을 상승시킨다. 따라서 KG-3에서 중요한 개입점은 모델 성능 자체가 아니라, 메시지/노드/엣지의 표현 규격을 합의해 번역 손실을 최소화하는 프로토콜이다. [Gemini: Gemini 관점에서 번역 병목은 다의어/전문 용어의 문맥 불일치, 특정 구조(JSON, 코드) 요구 시 템플릿 부재로 인한 비일관성, 불확실성 표현(확률 vs. 모호한 진술)의 의미론적 매핑 오류에서 주로 발생합니다. 정렬 노이즈는 오히려 모델이 의도된 행동에서 벗어]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "protocol-design]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6491,6 +6507,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 183,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-290",
+      "from": "n-196",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우한다”를 더 구체화: 용어 정렬 실패의 핵심 메커니즘을 translation bottleneck(표현 규격/프로토콜)로 모델링하고, 구조화된 번역 계층",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-291",
+      "from": "n-196",
+      "to": "n-027",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=169): n-196→n-027",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 169,
       "created": "2026-03-05"
     }
   ]
