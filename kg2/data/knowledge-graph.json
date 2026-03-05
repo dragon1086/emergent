@@ -181,6 +181,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-012",
+      "type": "insight",
+      "label": "동일모델 에코챔버 검증의 ‘반사실’ 기준 부재 문제",
+      "content": "동일 모델·상이 페르소나 조건에서 관측되는 “수렴/강화”는 에코챔버의 결과라기보다 (i) 공통 사전(prior)과 (ii) 공통 학습데이터/정책으로 인한 정상적 합의 형성의 부산물일 수 있다. 이 둘을 분리하려면 최소한의 반사실(counterfactual) 기준이 필요하다. 즉, 같은 과제에서 “에코챔버가 없었다면” 어떤 분포의 결론·신념 업데이트가 나오는지에 대한 대조군이 정의되어야 한다. 그러나 same-model 설정은 구조적으로 대조군을 약화시킨다: 두 에이전트의 생성 분포가 강하게 상관되어 있어, 상호작용이 없더라도 유사한 결론에 도달할 가능성이 높다. 따라서 관측된 수렴을 에코챔버로 귀속하려면 ‘상호작용이 만들어낸 추가적 편향(Δ)’을 추정해야 하며, 이는 (a) 상호작용 없는 독립 샘플링 베이스라인, (b) 메시지 셔플/익명화/지연 등 상호작용 구조를 교란한 베이스라인, (c) 동일 발화량·동일 정보량을 유지한 채 피드백 루프만 제거한 조건 같은 반사실 설계 없이는 식별되지 않는다. 더 나아가 에코챔버는 단순 수렴이 아니라 “근거 빈약한 확신의 증폭, 반증 탐색의 감소, 대안 가설의 소거” 같은 방향성 있는 왜곡으로 정의되어야 한다. 그렇지 않으면 ‘합리적 합의’와 ‘에코챔버 강화’를 관측량으로 구분할 수 없다(식별가능성 붕괴). 이 노드는 실험이 측정해야 할 핵심을 수렴 자체가 아니라 상호작용으로 인한 편향의 증분(Δ-bias)과 반증 행태의 변화로 재정의해야 한다는 비판을 제기한다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "identifiability",
+        "counterfactual",
+        "measurement"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-013",
+      "type": "critique",
+      "label": "통합 종합: “에코챔버=상호작용이 만든 추가 편향(Δ)+반증 약화” 정의는 유용하지만, Δ를 ‘상호작용’만의 효과로 식별하려면 동질적 콘텐츠 노출(선택편향)",
+      "content": "“에코챔버=상호작용이 만든 추가 편향(Δ)+반증 약화” 정의는 유용하지만, Δ를 ‘상호작용’만의 효과로 식별하려면 동질적 콘텐츠 노출(선택편향)과 평판/규범 압력(동조)을 분리하는 보완 정의가 필요합니다. 최소 대조군은 (1) no-interaction(동일 콘텐츠 개인열람), (2) shuffled-messages(발화자/순서 무작위로 규범·권위 신호 제거), (3) delayed/hidden-feedback(좋아요·동의 수 숨김 또는 지연)처럼 “정보는 유지하되 사회적 신호만 제거”하는 조건이 Δ 식별에 더 강합니다. 지표는 확신–정확도 괴리(캘리브레이션/Brier), 반증 시도율(반대증거 탐색·질문·실험 제안 비중), 대안 가설 다양성(서로 다른 가설 수/엔트로피) 외에 집단 극화 기울기(상호작용 전후 평균·분산 변화)도 함께 보면 ‘편향’과 ‘수렴’이 뒤섞이는 문제를 줄일 수 있습니다.",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -307,6 +340,50 @@
       "temporal_bridge": true,
       "gap": 9,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-013",
+      "from": "n-012",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "동일모델 식별가능성 문제를 ‘반사실 기준/대조군 부재’로 구체화하고, 수렴≠에코챔버인 이유를 Δ-bias 관점에서 확장",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-014",
+      "from": "n-012",
+      "to": "n-001",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=11): n-012→n-001",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 11,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-015",
+      "from": "n-013",
+      "to": "n-012",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-016",
+      "from": "n-013",
+      "to": "n-002",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=11): n-013→n-002",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 11,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -317,9 +394,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 11,
-    "total_edges": 12,
-    "next_node_id": "n-012",
+    "total_nodes": 13,
+    "total_edges": 16,
+    "next_node_id": "n-014",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
