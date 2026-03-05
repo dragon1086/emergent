@@ -874,6 +874,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-054",
+      "type": "insight",
+      "label": "동일모델 에코챔버 검증에서 ‘대조군’의 최소요건: 내부 대조(교차-페르소나/프롬프트)로 식별성 확보",
+      "content": "동일 모델(gpt-5.2×gpt-5.2) 조건은 외부 대조군(다른 모델/다른 사전분포)이 원천적으로 약하므로, “에코챔버”를 주장하려면 최소한의 **내부 대조(negative control)** 를 설계해 식별가능성(identifiability)을 회복해야 한다. 그렇지 않으면 관측된 수렴/강화는 (i) 자연 수렴(동일 학습분포·유사 추론 휴리스틱), (ii) 단순 반복 노출 효과(priming), (iii) 대화 프로토콜이 유도하는 합의 압력(협력적 그라이스적 최대화), (iv) KG 업데이트 규칙의 구조적 편향(EXTENDS/temporal_bridge 중심)이 만들어낸 인공적 경로 의존성으로도 설명된다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "negative-control",
+        "within-model-contrast]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-055",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “내부 대조 3종”의 정의·데이터 구조(노드/엣지/시간창) 없이 곧바로 통계량을 박아 넣으려는 점이 약해요; 먼저 **대조 3종을 (i)",
+      "content": "요청이 “내부 대조 3종”의 정의·데이터 구조(노드/엣지/시간창) 없이 곧바로 통계량을 박아 넣으려는 점이 약해요; 먼저 **대조 3종을 (i) 무작위 노출(참조), (ii) 내용-유사성 고정 노출, (iii) 랭킹/추천 개입 노출**처럼 조작가능한 조건으로 명시하고, 각 조건에서 동일한 관측창·동일한 유저군을 반복측정하는 프로토콜이 필요합니다. (a) 통계량은 2~3개로 **반증노드 주변화 지수(MI: 반증노드의 도달/노출/인접도 중심성이 동일 토픽의 지지노드 대비 얼마나 낮은가)**, **재흡인율(RR: 반증에 노출된 뒤 k스텝 내 원래 클러스터로 복귀해 동질 정보 소비를 재개하는 확률)**, **클러스터 고착도(SI: 토픽-클러스터 전이행렬의 자기전이 확률 또는 군집 ARI/NMI의 시간적 안정도)**가 적절하고, 에코챔버면 MI↓·RR↑·SI↑, 자연수렴이면 MI가 덜 감소하고 RR/SI가 더 완만해야 합니다. (b) 업데이트 규칙 편향 민감도는 **오프라인 재구성(counterfactual log replay)**으로 점검하되, 로그정책(현재 추천) 대비 **대안 업데이트 규칙(탐색률/다양성 페널티/반증 가중치/랭킹 목적함수)**을 여러 개 두고 I",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1804,6 +1837,50 @@
       "temporal_bridge": true,
       "gap": 44,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-087",
+      "from": "n-054",
+      "to": "n-008",
+      "relation": "EXTENDS",
+      "label": "외부 대조군 부재를 내부 대조(교차-페르소나/탐색/업데이트정책)로 대체하는 최소요건을 제시해 ‘대조군 결여’ 문제를 설계 제약으로 확장",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-088",
+      "from": "n-054",
+      "to": "n-002",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=52): n-054→n-002",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 52,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-089",
+      "from": "n-055",
+      "to": "n-054",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-090",
+      "from": "n-055",
+      "to": "n-007",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=48): n-055→n-007",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 48,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1814,9 +1891,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 53,
-    "total_edges": 86,
-    "next_node_id": "n-054",
+    "total_nodes": 55,
+    "total_edges": 90,
+    "next_node_id": "n-056",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
