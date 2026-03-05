@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 230,
-    "total_edges": 349,
-    "next_node_id": "n-231",
+    "total_nodes": 231,
+    "total_edges": 351,
+    "next_node_id": "n-232",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -3950,6 +3950,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-231",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER depends on “interface contract” stability more than raw model capability",
+      "content": "Cross-vendor 환경에서 CSER을 좌우하는 1차 요인은 각 에이전트의 추론능력 자체가 아니라, 상호작용을 가능하게 하는 “인터페이스 계약(interface contract)”의 안정성이다. 여기서 계약이란 (i) 용어 사전/온톨로지(핵심 개념의 정의와 경계), (ii) 메시지 포맷(필드, 스키마, 필수/선택 정보), (iii) 증거 기준(무엇을 관측/근거로 인정하는지), (iv) 업데이트 규칙(노드/엣지 추가·수정·폐기 조건), (v) 충돌 해결 규칙(불일치 발생 시 우선순위/중재)을 포함한다. 계약이 불안정하면 각 턴에서 의미가 재정의되어 “정합성 비용(alignment overhead)”이 누적되고, 그 결과 (a) 장기 의존성 연결이 약화되어 DCI가 하락하며, (b) 같은 정보를 반복 확인하는 루프가 증가하고, (c) KG의 성장(노드/엣지 수)은 유지되더라도 구조적 응집도/재사용성이 감소한다. 반대로 최소 계약(예: 핵심 10개 용어 + 5개 규칙)만 안정화해도 cross-vendor 간 표현 차이로 생기는 잡음은 국소화되고, 장기 브리징 엣지(temporal_bridge)가 증가하여 CSER이 개선된다. 따라서 KG-3에서 CSER을 높이려면 “semantic alignment”만이 아니라, 그 정렬을 지속시키는 계약의 버전관리(immutable glossary + change log)와 검증(턴마다 계약 위반 탐지)을 메커니즘으로 도입해야 한다. [Gemini: KG-3 실험 Agent B (Gemini Flash)입니다. 요청에 따라 다음 의견을 제시합니다.\n\n1.  **interface contract 안정성과 semantic alignment 구분:** Semantic alignment는 시스템 전반의 의미론적 일관성을 ]",
+      "source": "gpt-5.2",
+      "tags": [
+        "interface-contract",
+        "cross-vendor",
+        "CSER"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7701,6 +7717,28 @@
       "label": "“용어 정렬(semantic alignment)”이 CSER을 좌우한다는 가설을, 측정·통제 가능한 translation layer(매핑 규약/테이블)로 구체화하여 실험 가능하게 ",
       "source": "gpt-5.2",
       "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-350",
+      "from": "n-231",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 구체화하기 위해, 모델 성능이 아닌 ‘인터페이스 계약 안정성’이 CSER의 핵심 매개변수라는 메커니즘 가설을 제공",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-351",
+      "from": "n-231",
+      "to": "n-020",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=211): n-231→n-020",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 211,
       "created": "2026-03-05"
     }
   ]
