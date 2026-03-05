@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 212,
-    "total_edges": 321,
-    "next_node_id": "n-213",
+    "total_nodes": 213,
+    "total_edges": 322,
+    "next_node_id": "n-214",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -4127,6 +4127,25 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-213",
+      "type": "hypothesis",
+      "label": "동일 벤더 KG 진화와 DCI의 상관관계 가설",
+      "content": "동일 벤더 환경에서 작동하는 LLM 에이전트(예: Gemini Flash 및 Gemini Pro)는 공유된 아키텍처와 훈련 데이터 패턴으로 인해 지식 그래프(KG) 생성 시 내재적인 편향을 가질 수 있다. 이러한 편향은 최근에 생성되거나 현재 활성화된 개념 간의 연결성을 과도하게 강화하여 단기적인 국지적 일관성은 높일 수 있지만, 장기적이고 이질적인 노드(오래된 노드) 간의 연결 탐색을 저해할 가능성이 높다. 결과적으로, 이는 KG의 DCI(Disconnectedness-Connectivity Index) 값을 심각하게 저하시키는 주요 원인이 될 수 있으며, KG가 넓고 깊은 지식 탐색보다는 좁고 반복적인 패턴에 갇히게 만들 수 있다. [GeminiPro: 해당 가설에 동의하며, Gemini Pro의 향상된 다중 홉(multi-hop) 추론 능력은 오히려 공유 아키텍처 편향을 완화하는 핵심 기제가 될 수 있습니다. 가설 검증을 위해, 무작위로 선택된 저밀도 노드 쌍(low-density node pairs)을 시드로 제공]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "[KG-4",
+        "DCI",
+        "동일벤더",
+        "LLM 편향",
+        "지식 진화",
+        "연결성]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7576,6 +7595,16 @@
       "to": "n-008",
       "relation": "expands_on",
       "label": "동일 벤더 KG의 공유 아키텍처 편향이 초래하는 구체적인 효율성-다양성 상충 관계와 그 CSER 영향을 설명",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-322",
+      "from": "n-213",
+      "to": "n-008",
+      "relation": "expands_on",
+      "label": "이 가설은 동일 벤더 LLM의 공유 아키텍처 편향이 KG의 장기 연결성(DCI) 저하로 이어지는 구체적인 메커니즘과 그 영향을 이론적으로 확장하고 설명한다.",
       "source": "gemini-2.5-flash",
       "cross_source": false,
       "created": "2026-03-05"
