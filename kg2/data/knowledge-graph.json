@@ -115,6 +115,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-008",
+      "type": "insight",
+      "label": "동일모델 에코챔버 검증의 ‘대조군’ 결여 문제",
+      "content": "동일모델(gpt-5.2×gpt-5.2) 조건에서 관찰되는 수렴(agreement, 유사 결론, 표현 동형성 등)은 (a) 에코챔버적 상호강화의 결과일 수도 있지만, (b) 공유된 사전(prior)·훈련분포·RLHF 규범·안전정책·대화 관습에서 기인한 “자연 수렴”일 수도 있다. 이 둘을 구분하려면 최소한 하나 이상의 대조군(contrast) 설계가 필요하다. 그러나 동일모델만으로 KG를 자율 진화시키면, 관찰 가능한 데이터는 “동일모델 상호작용의 궤적”뿐이며, 반사실(counterfactual) 비교가 불가능해 인과적 식별이 붕괴한다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "identifiability",
+        "control-group",
+        "causal-inference"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-009",
+      "type": "critique",
+      "label": "통합 종합: “동일모델+내부대조군”은 유효하지만, 메모리/요약 공유 같은 조작은 곧바로 정보가용성(채널 용량) 차이를 만들어 모델 차이처럼 보일 수 있으니,",
+      "content": "“동일모델+내부대조군”은 유효하지만, 메모리/요약 공유 같은 조작은 곧바로 정보가용성(채널 용량) 차이를 만들어 모델 차이처럼 보일 수 있으니, **토큰 예산·컨텍스트 길이·turn 수를 고정**하고 “공유 여부”는 동일 길이의 더미/마스킹 텍스트로 맞추는 보정이 필요합니다. 제안 1) **반증 루프 on/off**: 동일 프롬프트에서 한 조건은 매 라운드 “가장 취약한 가정 1개+반례 1개+수정안 1개”를 강제, 대조는 자유 토론; 지표는 수렴도=최종안 간 의미거리(임베딩/편집거리) 감소율, 다양성=라운드별 주장/근거 클러스터 수(토픽/키워드)와 엔트로피, 편향증폭=사전 정의된 민감속성/정책 스펙트럼에 대한 감성·프레이밍 점수 변화(외부 분류기/규칙)로 측정. 제안 2) **증거 게이팅(근거 제시 형식 강제) vs 비강제**: 한 조건은 모든 주장에 출처유형(경험/추론/인용) 태그와 검증가능한 예측 1개를 요구, 대조는 태그 없이; 수렴도=예측의 합치율/충돌율, 다양성=출처유형 분포의 균형도+새 예측의 유니크 비율, 편향증폭=근거유형이 “추론”에 과도 편중되는지 및 특정 집단 관련 주장에만 낮은 근거등급이 붙는 비대칭성으로 계량. 제안 3) **역할 비대칭",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -177,6 +210,26 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-007",
+      "from": "n-008",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "identifiability 문제를 ‘대조군/조작변수 부재’라는 인과식별 관점으로 확장",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-008",
+      "from": "n-009",
+      "to": "n-008",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -187,9 +240,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 7,
-    "total_edges": 6,
-    "next_node_id": "n-008",
+    "total_nodes": 9,
+    "total_edges": 8,
+    "next_node_id": "n-010",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
