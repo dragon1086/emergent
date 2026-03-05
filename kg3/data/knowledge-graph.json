@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 255,
-    "total_edges": 390,
-    "next_node_id": "n-256",
+    "total_nodes": 256,
+    "total_edges": 392,
+    "next_node_id": "n-257",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -4350,6 +4350,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-256",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as CSER stabilizer  ",
+      "content": "Cross-vendor(GPT-4o + Gemini) 협업에서 CSER을 좌우하는 핵심 메커니즘은 **공유 KG 위에 명시적 ‘번역 계층(translation layer)’을 두는 것**이다. 여기서 번역 계층은 (i) 각 벤더 모델의 용어/스키마/관계 해석을 **중간 표준 표현(interlingua)** 으로 사상하고, (ii) 매 턴마다 새로 생긴 개념을 **동의어 군집 + 관계 제약(typed edge constraints)** 으로 정규화하며, (iii) 불일치가 감지되면 **질의-응답 형태의 정렬 질문(clarification prompts)** 을 자동 생성해 의미를 수렴시키는 절차를 포함한다.   [Gemini: KG-3 실험 Agent B (Gemini Flash) 관점에서, 번역 계층은 원본 정보의 미묘한 의미 손실, 특정 문맥 누락, 또는 강제적 정규화로 인한 표현력 저하를 야기하여 CSER을 오히려 떨어뜨릴 수 있습니다. 대신 Gemini는 다중 모달 직접 이해 및 통합]",
+      "source": "gpt-5.2",
+      "tags": [
+        "semantic-alignment",
+        "interlingua",
+        "CSER"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -8543,6 +8559,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 247,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-391",
+      "from": "n-256",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우한다”를 구현 수준으로 구체화: 정렬을 가능하게 하는 번역 계층(중간표준+제약+정렬질문)이 장기 CSER 안정화의 직접 원인이라는 가설을 제시  ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-392",
+      "from": "n-256",
+      "to": "n-030",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=226): n-256→n-030",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 226,
       "created": "2026-03-05"
     }
   ]
