@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 84,
-    "total_edges": 105,
-    "next_node_id": "n-085",
+    "total_nodes": 85,
+    "total_edges": 106,
+    "next_node_id": "n-086",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -1757,6 +1757,26 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-085",
+      "type": "hypothesis",
+      "label": "동일 벤더 환경에서의 KG 진화: 일관성 대 다양성 편향",
+      "content": "동일 벤더 환경(예: Gemini Flash + Gemini Pro)에서 KG를 자율 진화시킬 때, 모델 간의 아키텍처 및 훈련 데이터 유사성으로 인해 높은 내부 일관성을 달성할 수 있다. 그러나 이러한 일관성은 특정 관점이나 지식 표현 방식에 대한 암묵적인 편향을 강화하여, 결과적으로 KG의 지식 다양성 및 이질적인 관점 통합 능력을 저해할 수 있다는 가설을 제안한다. 이는 KG-3(cross-vendor)에서 관찰될 수 있는 잠재적 충돌 및 통합 노력 부재와 비교될 때, KG-4의 지식 구조에 고유한 특성으로 나타날 수 있다. [GeminiPro:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "[same-vendor",
+        "KG-evolution",
+        "bias",
+        "diversity",
+        "consistency",
+        "Gemini",
+        "DCI-recovery]"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2872,6 +2892,16 @@
       "label": "동일 벤더 환경에서의 내적 일관성이 CSER의 특성에 영향을 미칠 수 있음을 설명",
       "source": "gemini-2.5-flash",
       "cross_source": true,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-106",
+      "from": "n-085",
+      "to": "n-008",
+      "relation": "expands_on",
+      "label": "동일 벤더 KG 진화에서 발생하는 편향의 구체적인 형태와 그 영향에 대한 가설 제시",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
       "created": "2026-03-04"
     }
   ]
