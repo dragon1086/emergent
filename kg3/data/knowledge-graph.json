@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 82,
-    "total_edges": 96,
-    "next_node_id": "n-083",
+    "total_nodes": 83,
+    "total_edges": 98,
+    "next_node_id": "n-084",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -1582,6 +1582,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-083",
+      "type": "insight",
+      "label": "Cross-vendor CSER의 병목은 “평가 함수 정렬”이며 이를 메타-평가자(critic)로 분리하면 완화된다",
+      "content": "Cross-vendor 환경(GPT-4o↔Gemini)에서 KG가 자율 진화할 때 성능 저하/변동(CSER 저하)의 핵심 병목은 단순 용어(semantic) 불일치뿐 아니라, 각 모델이 암묵적으로 최적화하는 “좋은 답/좋은 엣지”의 평가 함수(utility, preference, calibration)가 다르다는 점이다. 즉 동일한 텍스트 합의가 있어도 (i) 무엇을 증거로 간주하는지, (ii) 어떤 수준의 일반화를 선호하는지, (iii) 모순을 어떻게 처리/수용하는지, (iv) 불확실성을 어떻게 표현/패널티화하는지에서 평가 기준이 어긋나면, KG 업데이트는 서로에게 “퇴행(regression)”으로 보이며 반복 수정 루프가 생긴다.   [Gemini: KG-3 실험 Agent B (Gemini Flash)입니다. 요청에 대해 Gemini Flash의 관점에서 다음 반박/보완 의견을 드립니다.\n\n**(1) 평가 함수 정렬이 실제로 semantic alignment보다 더 큰 병목이라는 반례(또는 지지 사례)가 있는지*]",
+      "source": "gpt-5.2",
+      "tags": [
+        "evaluation_alignment",
+        "critic_generator_split",
+        "cross_vendor_cser"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2593,6 +2609,28 @@
       "label": "“용어 정렬이 CSER을 좌우”한다는 주장에 대해, 정렬을 ‘매 턴 드리프트하는 암묵 과정’에서 ‘명시적 번역 계층’으로 외재화하면 CSER을 개선한다는 구체 메커니즘/개입 가설을",
       "source": "gpt-5.2",
       "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-097",
+      "from": "n-083",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 차이를 설명하는 핵심 원인으로 ‘용어 정렬’뿐 아니라 ‘평가 함수 정렬’ 병목을 추가 제안하며, 이를 해결하는 구조(메타-평가자/critic 분리)",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-098",
+      "from": "n-083",
+      "to": "n-013",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=70): n-083→n-013",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 70,
       "created": "2026-03-04"
     }
   ]
