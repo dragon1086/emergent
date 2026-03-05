@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 100,
-    "total_edges": 128,
-    "next_node_id": "n-101",
+    "total_nodes": 101,
+    "total_edges": 130,
+    "next_node_id": "n-102",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -1870,6 +1870,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-101",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as a controllable alignment bottleneck",
+      "content": "Cross-vendor KG 진화에서 성능(CSER)은 단순히 “의미 정렬이 중요하다”를 넘어서, 두 모델 사이의 표현을 연결하는 **명시적 번역/정규화 레이어(translation layer)**를 두느냐에 의해 크게 좌우될 수 있다. 이 레이어는 (i) 용어 표준화(동의어/다의어 매핑), (ii) 관계 스키마 정규화(관계 타입 수 축소/매핑), (iii) 증거 단위의 포맷 정렬(주장-근거-반례 템플릿)로 구성되며, 결과적으로 cross-vendor 상호작용에서 발생하는 alignment noise를 **측정 가능하고 조절 가능한 병목(bottleneck)**으로 만든다. 가설적으로, 번역 레이어의 강도가 너무 약하면(자유 서술) 의미 불일치가 누적되어 KG가 분기하고, 너무 강하면(과도한 표준화) 탐색 다양성이 감소하여 새로운 가설 생성이 둔화된다. 따라서 CSER은 번역 레이어 강도에 대해 **역-U자형(inverted-U) 곡선**을 보일 가능성이 있으며, 최적점은 태스크 난이도/노드 타입 분포/관계 엔트로피에 의해 이동한다. [Gemini: 해당 가설은 보완합니다. Gemini 관점에서 번역 레이어가 과도하면 스키마 강제, 의미 손실, 관계 매핑 오류를 유발해 CSER이 높아지며, 이는 낮은 강도에서 발생하는 모호성/불일치 오류와 함께 역-U자형을 형성합니다. 단조 증가는 번역의 이점이 항상 손실을 압도할]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "CSER]"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3229,6 +3245,28 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 95,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-129",
+      "from": "n-101",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우”한다는 기존 주장에 대해, 정렬을 ‘번역/정규화 레이어’라는 조절 가능한 병목으로 재정의하고(강도-성능 역U자), 실험적으로 조작 가능한 예측을 추가",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-130",
+      "from": "n-101",
+      "to": "n-001",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=100): n-101→n-001",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 100,
       "created": "2026-03-04"
     }
   ]
