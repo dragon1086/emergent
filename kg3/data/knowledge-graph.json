@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 256,
-    "total_edges": 392,
-    "next_node_id": "n-257",
+    "total_nodes": 257,
+    "total_edges": 394,
+    "next_node_id": "n-258",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -4366,6 +4366,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-257",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER는 “메타-표현(표현 양식) 정렬”이 “의미 정렬”보다 선행 조건이다",
+      "content": "Cross-vendor 환경(GPT-4o + Gemini)에서 KG를 자율 진화시킬 때 CSER 저하의 1차 원인은 개별 용어(semantic alignment) 불일치가 아니라, 각 모델이 지식을 “표현하는 규약” 자체(메타-표현)의 불일치일 수 있다. 여기서 메타-표현이란 (i) 노드 타입 경계(가설/인사이트/관찰의 구분 기준), (ii) 엣지 관계의 사용 규칙(motivates vs temporal_bridge의 적용 조건), (iii) 주장 강도/불확실성 표기(확률, 조건, 반례 처리), (iv) 요약 압축률과 근거-결론 배치(근거 먼저 vs 결론 먼저) 같은 ‘형식적/절차적 표준’을 포함한다. 두 에이전트가 동일 개념을 논해도 메타-표현이 다르면, (a) 동일 정보가 서로 다른 타입/관계로 기록되어 그래프 내 중복·충돌이 증가하고, (b) 후속 확장 시 참조 가능성이 낮아져 단기 연결 편향(최근 노드만 강화)이 심화되며, (c) 결과적으로 CSER이 “의미 차이”가 아니라 “표현 불일치”에서 먼저 붕괴한다. 따라서 KG-3의 CSER을 높이려면 용어 정렬 이전에, 최소한의 공통 스키마(타입 판정 규칙, 관계 사용 가이드, 불확실성 표기 규약)를 합의·고정하고, 그 위에서 의미 정렬을 수행해야 한다는 가설이다. [Gemini: KG-3 실험 Agent B (Gemini Flash) 관점에서 다음 요청에 반박/보완합니다.\n\n1.  고도화된 시맨틱 추론 엔진이 표현 불일치에도 불구하고 다의적 맥락을 통합하여 의미적 일관성을 확보하는 경우, 메타-표현 정렬 없이도 CSER 회복이 가능합니다. 이는]",
+      "source": "gpt-5.2",
+      "tags": [
+        "schema",
+        "alignment",
+        "CSER"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -8581,6 +8597,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 226,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-393",
+      "from": "n-257",
+      "to": "n-004",
+      "relation": "motivates",
+      "label": "인간-AI 협업에서의 공통 작업 규약/표현 규칙(메타-표현 정렬)이 협업 성과(CSER)와 지식 누적 안정성을 좌우한다는 관점에서 본 가설을 정당화/추동",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-394",
+      "from": "n-257",
+      "to": "n-047",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=210): n-257→n-047",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 210,
       "created": "2026-03-05"
     }
   ]
