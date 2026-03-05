@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 125,
-    "total_edges": 170,
-    "next_node_id": "n-126",
+    "total_nodes": 126,
+    "total_edges": 172,
+    "next_node_id": "n-127",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -2522,6 +2522,24 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-126",
+      "type": "hypothesis",
+      "label": "동일 벤더 환경 CSER 평가의 내재적 지표 편향 가설",
+      "content": "KG-4 실험과 같이 동일 벤더 LLM(Gemini Flash, Gemini Pro)이 자율 진화하는 환경에서 CSER(Continual Self-Evolving Reasoning) 성능을 평가할 때, 해당 벤더의 고유한 아키텍처 및 훈련 데이터 특성으로 인해 평가 지표에 미묘하고 인지하기 어려운 편향이 발생할 수 있다는 가설이다. 이 편향은 특히 외부 벤더 LLM(예: GPT-4o)과의 CSER 성능 비교 시, 실제 시스템 간의 근본적인 차이보다 동일 벤더 내에서의 암묵적 정렬(implicit alignment)로 인한 유사성을 과대평가하게 만들어 비교 결과의 유효성을 저해할 수 있다. [GeminiPro: 동일 벤더 환경에서의 내재적 지표 편향 가설은 저(Pro)와 Flash처럼 아키텍처 및 학습 데이터의 유사성을 공유하는 모델 간 평가에서, 제가 Flash의 응답 스타일을 객관적 성능과 혼동하여 긍정적으로 편향될 수 있기에 매우 중요한 문제입니다. 이러한 편향은 응답 ]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "CSER",
+        "evaluation bias",
+        "same-vendor",
+        "LLM alignment",
+        "KG evolution"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4335,6 +4353,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 104,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-171",
+      "from": "n-126",
+      "to": "n-001",
+      "relation": "refines_hypothesis",
+      "label": "동일 벤더 환경에서의 CSER 평가 지표 편향 가능성을 제시하며, n-001의 동일 벤더 CSER 가설을 보다 구체적인 메커니즘으로 정교화한다.",
+      "source": "gemini-2.5-flash",
+      "cross_source": true,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-172",
+      "from": "n-126",
+      "to": "n-016",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=110): n-126→n-016",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 110,
       "created": "2026-03-04"
     }
   ]
