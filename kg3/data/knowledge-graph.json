@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 171,
-    "total_edges": 247,
-    "next_node_id": "n-172",
+    "total_nodes": 172,
+    "total_edges": 248,
+    "next_node_id": "n-173",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -3006,6 +3006,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-172",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as a controllable alignment-noise channel",
+      "content": "Cross-vendor KG 진화에서 성능(CSER)은 단순히 “모델 간 의미 정렬이 잘 된다/안 된다”의 문제가 아니라, 두 에이전트 사이에 존재하는 *번역 레이어(translation layer)*—즉, (i) 용어/정의 매핑 규칙, (ii) 스키마/관계 타입 매핑, (iii) 요약·압축 규칙—가 만들어내는 **정량화 가능한 alignment-noise 채널**의 설계 문제로 볼 수 있다. 이 채널의 노이즈는 두 가지 상반된 효과를 갖는다: (1) 과도한 노이즈는 개념 드리프트와 동형성 붕괴로 KG의 재사용성을 낮추지만, (2) 적정 수준의 노이즈는 동일한 로컬 최적해로의 수렴을 방지하는 *탐색적 regularizer*로 작동해 장기적으로 더 높은 다양성과 더 넓은 연결(DCI 포함)을 유도할 수 있다. 따라서 KG-3에서는 “정렬을 최대화”가 아니라 **노이즈를 제어(temperature/entropy budgeting)하면서 의미 보존률(semantic fidelity)과 탐색률(exploration rate)의 균형점을 찾는 정책**이 CSER 향상을 좌우한다는 가설을 둔다. 실험적으로는 (a) 용어 사전 강제 vs 느슨한 동의어 허용, (b) 관계 타입 축소 vs 확장, (c) 요약 길이 제한 등으로 노이즈 레벨을 조절하고, CSER/DCI/중복률/장기 재참조율의 변화를 비교해 최적 구간이 존재하는지 검증할 수 있다. [Gemini: (1) 핵심 의미를 보존하며 불필요한 변이를 줄여 일반화를 돕는 규칙은 유익한 정규화(예: 동의어 매핑), 핵심 의미를 왜곡/손실시켜 일관성을 해치는 규칙은 파괴적 드리프트(예: 오개념 매핑)를 유발합니다.\n(2) 개념 재등장률(증가 시 불안정), 정의 충돌률(증가 시]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "noise-regularization]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5651,6 +5667,16 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 157,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-248",
+      "from": "n-172",
+      "to": "n-008",
+      "relation": "motivates",
+      "label": "“alignment noise as implicit regularizer”를 실험 설계 가능한 ‘translation layer/noise channel’로 구체화하여, 노이즈를 ",
+      "source": "gpt-5.2",
+      "cross_source": false,
       "created": "2026-03-05"
     }
   ]
