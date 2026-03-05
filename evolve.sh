@@ -24,6 +24,7 @@ LOG_FILE="$REPO_DIR/logs/evolve-$(date +%Y-%m-%d).log"
 DECISIONS_FILE="$REPO_DIR/DECISIONS.md"
 MAX_CYCLES_PER_DAY=4
 CYCLE_COUNT_FILE="/tmp/emergent-cycles-$(date +%Y%m%d)"
+OLD_NODE_RATIO=0.3  # D-100: 30% 사이클은 오래된 노드 EDGE_TO 강제
 TG_BOT_TOKEN="REDACTED_BOT_TOKEN_1"
 TG_OWNER="7726642089"
 
@@ -52,6 +53,26 @@ extract_section() {
         found && /^[A-Z_]+:/ { found=0 }
         found { print }
     ' | sed '/^[[:space:]]*$/d'
+}
+
+# ─── D-100: DCI 회복 헬퍼 ────────────────────────────────────────────────────
+
+get_old_node_ids() {
+    # 주 KG 하위 50% 인덱스(오래된) 노드 ID 목록 반환 (space-separated)
+    python3 -c "
+import json, re
+try:
+    kg = json.load(open('$REPO_DIR/data/knowledge-graph.json', encoding='utf-8'))
+    nodes = kg.get('nodes', [])
+    def node_num(n):
+        m = re.search(r'\d+', n['id'])
+        return int(m.group()) if m else 9999
+    nodes_sorted = sorted(nodes, key=node_num)
+    half = len(nodes_sorted) // 2
+    print(' '.join(n['id'] for n in nodes_sorted[:half]))
+except Exception:
+    pass
+" 2>/dev/null
 }
 
 # ─── 실행 액션 ────────────────────────────────────────────────────────────────
@@ -204,6 +225,38 @@ cmd_parse_and_run() {
     # 4. COKAC_REQUEST 섹션 추출 → cokac inbox 전송
     local cokac_request
     cokac_request=$(extract_section "COKAC_REQUEST" "$response")
+
+    # D-100: EDGE_TO 하드 강제 (OLD_NODE_RATIO=$OLD_NODE_RATIO)
+    local edge_to
+    edge_to=$(echo "$response" | grep "^EDGE_TO:" | head -1 | sed 's/^EDGE_TO: //' | tr -d ' ')
+    if [[ -n "$edge_to" ]]; then
+        local old_ids
+        old_ids=$(get_old_node_ids)
+        local fix_result
+        fix_result=$(python3 -c "
+import random, sys
+edge_to = sys.argv[1]
+old_ids = sys.argv[2].split() if sys.argv[2].strip() else []
+if old_ids and random.random() < $OLD_NODE_RATIO:
+    new_id = random.choice(old_ids)
+    print(f'OVERRIDE:{new_id}')
+else:
+    print(f'KEEP:{edge_to}')
+" "$edge_to" "$old_ids" 2>/dev/null || echo "KEEP:$edge_to")
+        if [[ "$fix_result" == OVERRIDE:* ]]; then
+            local new_edge="${fix_result#OVERRIDE:}"
+            log "[DCI-FIX] EDGE_TO override: $edge_to -> $new_edge"
+            # COKAC_REQUEST 내 EDGE_TO 교체 (없으면 끝에 추가)
+            if echo "$cokac_request" | grep -q "^EDGE_TO:"; then
+                cokac_request=$(echo "$cokac_request" | sed "s|^EDGE_TO:.*|EDGE_TO: $new_edge|")
+            else
+                cokac_request="${cokac_request}"$'\nEDGE_TO: '"$new_edge"$'\n[DCI-FIX] 오래된 노드 강제 연결 (D-100)'
+            fi
+        else
+            log "[DCI-FIX] EDGE_TO kept (70% path): ${edge_to}"
+        fi
+    fi
+
     if [[ -n "$cokac_request" ]]; then
         local cycle_num
         cycle_num=$(cat "$CYCLE_COUNT_FILE" 2>/dev/null || echo "?")

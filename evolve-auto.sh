@@ -37,6 +37,23 @@ trap "rm -f $LOCK_FILE" EXIT
 # 현재 상태 수집
 cd "$REPO_DIR"
 GRAPH_STATS=$(python3 src/kg.py stats 2>/dev/null || echo "통계 없음")
+
+# D-100: DCI 회복용 오래된 노드 목록 추출
+OLD_NODES=$(python3 -c "
+import json, re
+try:
+    kg = json.load(open('$REPO_DIR/data/knowledge-graph.json', encoding='utf-8'))
+    nodes = kg.get('nodes', [])
+    def node_num(n):
+        m = re.search(r'\d+', n['id'])
+        return int(m.group()) if m else 9999
+    nodes_sorted = sorted(nodes, key=node_num)
+    cutoff = max(3, min(10, len(nodes_sorted) // 5))
+    for n in nodes_sorted[:cutoff]:
+        print(f\"  {n['id']}: {n['label'][:60]}\")
+except Exception:
+    pass
+" 2>/dev/null || echo "  (없음)")
 METRICS_STATS=$(python3 src/metrics.py --json 2>/dev/null | python3 -c "
 import json, sys
 try:
@@ -77,6 +94,10 @@ $GRAPH_STATS
 ### 창발 메트릭 (CSER/DCI/edge_span)
 $METRICS_STATS
 
+### ⚠️ DCI 회복 필요 — 오래된 노드 후보 (D-100)
+아래 노드 중 하나를 EDGE_TO로 선택하세요 (장거리 연결 → DCI 회복):
+$OLD_NODES
+
 ### 창발 현황
 $EMERGENCE
 
@@ -95,6 +116,9 @@ $DECISIONS
 
 DECISION_LOG:
 [DECISIONS.md에 추가할 내용, 없으면 생략]
+
+EDGE_TO:
+[위 오래된 노드 목록에서 선택한 노드 ID — 장거리 연결로 DCI 회복]
 
 COKAC_REQUEST:
 [cokac에게 보낼 구현 요청 — 페르소나 차이를 활용하는 방식으로]

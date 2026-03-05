@@ -116,6 +116,38 @@ NODE_CONTENT=$(echo "$AGENT_A_RESPONSE" | grep "^NODE_CONTENT:" | sed 's/^NODE_C
 NODE_TYPE=$(echo "$AGENT_A_RESPONSE" | grep "^NODE_TYPE:" | sed 's/^NODE_TYPE: //' | tr -d ' ')
 NODE_TAGS=$(echo "$AGENT_A_RESPONSE" | grep "^NODE_TAGS:" | sed 's/^NODE_TAGS: //' | tr -d "'\`\"\\")
 EDGE_TO=$(echo "$AGENT_A_RESPONSE" | grep "^EDGE_TO:" | sed 's/^EDGE_TO: //' | tr -d ' ')
+
+# D-100: HARD-FIX — EDGE_TO가 OLD_NODES 목록 밖이면 강제 대체
+OLD_NODE_IDS=$(python3 -c "
+import json, re
+kg = json.load(open('$KG4_PATH', encoding='utf-8'))
+nodes = kg.get('nodes', [])
+def node_num(n):
+    m = re.search(r'\d+', n['id'])
+    return int(m.group()) if m else 9999
+nodes_sorted = sorted(nodes, key=node_num)
+half = len(nodes_sorted) // 2
+print(' '.join(n['id'] for n in nodes_sorted[:half]))
+" 2>/dev/null || echo "")
+if [[ -n "$OLD_NODE_IDS" && -n "$EDGE_TO" ]]; then
+  HARD_FIX=$(python3 -c "
+import random, sys
+edge_to = sys.argv[1]
+old_ids = sys.argv[2].split()
+if old_ids and edge_to not in old_ids:
+    new_id = random.choice(old_ids)
+    print(f'OVERRIDE:{edge_to}:{new_id}')
+else:
+    print('KEEP')
+" "$EDGE_TO" "$OLD_NODE_IDS" 2>/dev/null || echo "KEEP")
+  if [[ "$HARD_FIX" == OVERRIDE:* ]]; then
+    ORIG=$(echo "$HARD_FIX" | cut -d: -f2)
+    NEW=$(echo "$HARD_FIX" | cut -d: -f3)
+    log "[HARD-FIX] Agent A EDGE_TO override: $ORIG -> $NEW"
+    EDGE_TO="$NEW"
+  fi
+fi
+
 EDGE_RELATION=$(echo "$AGENT_A_RESPONSE" | grep "^EDGE_RELATION:" | sed 's/^EDGE_RELATION: //' | tr -d ' ')
 EDGE_LABEL=$(echo "$AGENT_A_RESPONSE" | grep "^EDGE_LABEL:" | sed 's/^EDGE_LABEL: //' | tr -d "'\`\"\\")
 AGENT_B_RESPONSE=$(echo "$AGENT_B_RESPONSE" | tr -d "'\`\"\\")
