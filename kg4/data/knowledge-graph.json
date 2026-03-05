@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 75,
-    "total_edges": 90,
-    "next_node_id": "n-076",
+    "total_nodes": 76,
+    "total_edges": 92,
+    "next_node_id": "n-077",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -1593,6 +1593,24 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-076",
+      "type": "hypothesis",
+      "label": "동일 벤더 아키텍처의 귀납적 편향과 KG 장기 연결성 제약",
+      "content": "동일 벤더(Google) 환경에서 Gemini Flash와 Gemini Pro가 KG를 진화시킬 때, 공유된 모델 아키텍처는 초기 단계에서 빠른 개념적 일관성을 촉진할 수 있다. 그러나 이와 동시에, 내재된 귀납적 편향(inductive bias)으로 인해 생성되는 노드와 엣지의 다양성이 제한될 수 있으며, 이는 특히 오래된 노드들과의 장기적인, 혁신적인 연결 생성을 저해하여 DCI(단기 연결 편향) 지표의 개선을 어렵게 만든다. 따라서 동일 벤더 KG는 특정 지식 영역에서는 깊이를 얻을 수 있으나, 광범위한 맥락적 확장은 부족할 수 있다. [GeminiPro: 해당 가설은 훈련 데이터의 내재적 편향을 간과할 수 있으므로, 동일 데이터셋으로 학습된 타 벤더 모델과의 DCI 회복률을 교차 검증하여 아키텍처 고유의 영향을 분리하는 실험이 필수적입니다. 이론적으로 Flash의 MoE 구조가 Pro의 조밀한(dense) 구조에 비해 ]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "DCI",
+        "inductive bias",
+        "same-vendor",
+        "KG evolution",
+        "architectural bias"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2546,6 +2564,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 61,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-091",
+      "from": "n-076",
+      "to": "n-008",
+      "relation": "posits_explanation_for",
+      "label": "동일 벤더 환경에서 공유 아키텍처 편향이 KG의 장기 연결성을 어떻게 저해하는지에 대한 가설적 설명을 제시함.",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-092",
+      "from": "n-076",
+      "to": "n-014",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=62): n-076→n-014",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 62,
       "created": "2026-03-04"
     }
   ]
