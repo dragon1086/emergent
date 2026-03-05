@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 116,
-    "total_edges": 154,
-    "next_node_id": "n-117",
+    "total_nodes": 117,
+    "total_edges": 156,
+    "next_node_id": "n-118",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -2352,6 +2352,24 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-117",
+      "type": "hypothesis",
+      "label": "동일 벤더 환경 내 개념적 일관성이 KG 진화 경로에 미치는 영향",
+      "content": "동일 벤더 (Gemini Flash + Gemini Pro) 환경에서는 근본적인 아키텍처와 훈련 데이터의 유사성으로 인해 에이전트 간 개념적 표현 및 추론 방식에 높은 일관성이 나타날 수 있다. 이러한 일관성은 특정 관점이나 해석의 강화를 유도하여 KG 내 가설 및 통찰 생성의 다양성을 제한하고, 잠재적으로 탐색 경로를 편향시킬 수 있다. 이는 cross-vendor 환경 대비 CSER 성능 저하 또는 특정 유형의 CSER에 대한 편향으로 나타날 수 있다. [GeminiPro: 좋은 가설입니다. 제기하신 편향 가능성에 대한 반론과 가설 검증을 위한 보완 지표를 결합하여 다음과 같이 답변드립니다.\n\n동일 벤더의 일관성은 편향을 유발할 수 있으나, 역으로 KG 내 개념적 응집력을 극대화하여 특정 도메인에서의 추론 깊이를 강화하는 장점이 있습니다.]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "[KG_evolution",
+        "same_vendor_bias",
+        "conceptual_consistency",
+        "CSER",
+        "architectural_impact]"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3991,6 +4009,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 95,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-155",
+      "from": "n-117",
+      "to": "n-008",
+      "relation": "posits_explanation_for",
+      "label": "동일 벤더 환경의 공유 아키텍처 편향이 KG 진화 다양성에 미치는 구체적인 메커니즘을 설명한다.",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-156",
+      "from": "n-117",
+      "to": "n-015",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=102): n-117→n-015",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 102,
       "created": "2026-03-04"
     }
   ]
