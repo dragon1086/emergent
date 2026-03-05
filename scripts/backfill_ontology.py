@@ -18,12 +18,15 @@ backfill_ontology.py — 기존 KG 노드 전체에 ontology 필드 자동 분�
 """
 
 import json
+import os
 import sys
 import argparse
 from pathlib import Path
 
 REPO = Path(__file__).parent.parent
-KG_FILE = REPO / "data" / "knowledge-graph.json"
+# EMERGENT_KG_PATH 환경변수로 KG 경로 지정 가능 (kg2/kg3/kg4 지원)
+_env_path = os.environ.get("EMERGENT_KG_PATH")
+KG_FILE = Path(_env_path) if _env_path else REPO / "data" / "knowledge-graph.json"
 
 # ─── 분류 기준 ────────────────────────────────────────────────────────────────
 
