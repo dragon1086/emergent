@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 127,
-    "total_edges": 175,
-    "next_node_id": "n-128",
+    "total_nodes": 128,
+    "total_edges": 176,
+    "next_node_id": "n-129",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -2302,6 +2302,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-128",
+      "type": "hypothesis",
+      "label": "Cross-vendor “개념-연산 분리(Concept–Operator Decoupling)”가 KG 누적 정합성과 CSER을 안정화한다",
+      "content": "Cross-vendor 환경에서는 동일 용어(개념)라도 모델별로 내재된 “연산자(operator)”—예: 분류/요약/인과추론/계획/검증—의 기본 가정과 출력 형식이 달라 semantic alignment만으로는 누적 오차가 줄지 않는다. 따라서 KG-3 진화에서 (1) 개념 노드(정의·범위·경계조건)와 (2) 연산자 노드(적용 가능한 추론/변환 규칙, 전제조건, 실패 모드)를 명시적으로 분리해 연결하면, 모델 간 변환 시 발생하는 alignment noise가 “개념 의미”를 오염시키지 않고 “연산 절차” 층에서 흡수된다. 이 분리는 (a) vendor 간 합의가 쉬운 것은 개념 정의이고, (b) vendor 간 차이가 큰 것은 연산자 선택/우선순위라는 구조적 비대칭을 활용한다. 예측: Concept–Operator 분리 스키마를 도입하면 (i) 장기 temporal_bridge에서 의미 드리프트가 감소하고, (ii) 충돌이 발생해도 ‘개념 불일치’가 아니라 ‘연산자 불일치’로 국소화되어 수정 비용이 낮아지며, (iii) CSER(특히 장기 일관성·재현성)이 상승한다. [Gemini: KG-3 실험 Agent B (Gemini Flash) 관점에서 보완합니다.\n\n(1) Concept-Operator 분리는 잘 정의된 개념 아래에서는 벤더 합의를 촉진하지만, 모호한 개념은 스키마 복잡도 증가로 이어져 KG 활용 에이전트의 CSER을 높일 수 있습니다.]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "KG-evolution]"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4171,6 +4187,16 @@
       "label": "Cross-vendor CSER 가설을 “용어 정렬”에서 “공유 중간표상 명시화”로 확장하여, 성능 차이의 기제(조건부 정규화 vs 오해 증폭)를 설명한다",
       "source": "gpt-5.2",
       "cross_source": true,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-176",
+      "from": "n-128",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우”한다는 가설을 확장해, 정렬의 단위를 ‘용어(개념)’에만 두지 말고 ‘개념 vs 연산자’로 분해해야 장기 누적 정합성이 유지된다는 메커니즘을 제안",
+      "source": "gpt-5.2",
+      "cross_source": false,
       "created": "2026-03-04"
     }
   ]
