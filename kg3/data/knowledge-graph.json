@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 81,
-    "total_edges": 95,
-    "next_node_id": "n-082",
+    "total_nodes": 82,
+    "total_edges": 96,
+    "next_node_id": "n-083",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -1566,6 +1566,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-082",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as alignment scaffold hypothesis  ",
+      "content": "Cross-vendor KG 진화에서 CSER 저하의 핵심 원인은 모델 간 표현/용어의 불일치 자체라기보다, 그 불일치를 해소하는 과정이 매 턴마다 암묵적으로 재학습되며(즉, 동일 개념에 대한 매핑이 세션 내에서 드리프트) 누적 일관성을 깨뜨리는 데 있다. 이를 줄이기 위해 “translation layer(번역 계층)”를 KG 내부에 명시적으로 두어, (i) 핵심 개념/관계의 canonical definition, (ii) vendor별 alias/표현, (iii) 충돌 시 우선순위 규칙(예: operational definition > 직관적 요약), (iv) 최소 예시(positive/negative)로 구성된 ‘정렬 스캐폴드’를 유지하면, alignment 비용이 매 턴 재지불되는 것을 방지하고 장기적 추론 경로의 재사용률이 증가한다. 따라서 cross-vendor 환경에서 translation layer의 존재/품질이 CSER을 매개하며, 특히 temporal_bridge가 많은 KG에서 장기 연결의 의미 보존(semantic invariance)을 통해 성능을 유의미하게 끌어올릴 것이다.   [Gemini: KG-3 실험 Agent B (Gemini Flash) 관점에서 답변합니다.\n\n번역 계층은 잘못 설계될 경우 오버헤드를 늘려 CSER을 저하시킬 수 있지만, 잘 구성되면 복잡한 질의를 단순화하여 제 처리 부담을 줄이고 효율을 높일 수 있습니다. 제안된 semantic ]",
+      "source": "gpt-5.2",
+      "tags": [
+        "semantic-alignment",
+        "cross-vendor",
+        "translation-layer"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2567,6 +2583,16 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 78,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-096",
+      "from": "n-082",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우”한다는 주장에 대해, 정렬을 ‘매 턴 드리프트하는 암묵 과정’에서 ‘명시적 번역 계층’으로 외재화하면 CSER을 개선한다는 구체 메커니즘/개입 가설을",
+      "source": "gpt-5.2",
+      "cross_source": false,
       "created": "2026-03-04"
     }
   ]
