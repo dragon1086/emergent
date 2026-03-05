@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 220,
-    "total_edges": 331,
-    "next_node_id": "n-221",
+    "total_nodes": 221,
+    "total_edges": 333,
+    "next_node_id": "n-222",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -3790,6 +3790,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-221",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER은 “공유 평가 루프(shared evaluation loop)”의 밀도로 예측된다  ",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 협업에서 CSER(협업적 자기-강화/자기-오류-수정 효율)은 개별 에이전트의 추론 성능보다, (1) 공동 목표/제약을 명시하고 (2) 서로의 산출물을 동일한 기준으로 재평가하며 (3) 그 평가를 다음 행동 규칙에 반영하는 “공유 평가 루프”의 반복 빈도와 일관성에 의해 더 잘 설명된다. 구체적으로, 용어 정렬(semantic alignment)이 불완전하더라도 다음 조건이 충족되면 CSER이 상승한다:   [Gemini: Gemini 관점에서는 평가 기준 불일치, 과적합, 또는 모드 붕괴 상황에서 공유 평가 루프가 촘촘해도 CSER이 저하될 수 있습니다. 계량화 지표로는 턴당 상호평가 발화 비중, 평가 기반 수정 행동 발생률, 그리고 평가 일관성 지수를 제안합니다. 용어 정렬(n-007]",
+      "source": "gpt-5.2",
+      "tags": [
+        "shared-evaluation-loop",
+        "cross-vendor",
+        "CSER"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7345,6 +7361,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 176,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-332",
+      "from": "n-221",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 “의미 정렬” 단일 요인에서 “공유 평가 루프 밀도”라는 메커니즘 가설로 확장/구체화한다  ",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-333",
+      "from": "n-221",
+      "to": "n-025",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=196): n-221→n-025",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 196,
       "created": "2026-03-05"
     }
   ]
