@@ -7,7 +7,7 @@ KG3_DIR="$HOME/emergent/kg3"
 KG3_PATH="$KG3_DIR/data/knowledge-graph.json"
 LOG="$KG3_DIR/logs/evolve-kg3-$(date +%Y-%m-%d).log"
 CYCLE_COUNT_FILE="/tmp/emergent-kg3-cycles-$(date +%Y%m%d)"
-MAX_CYCLES=20
+MAX_CYCLES=100
 OPENAI_KEY=$(grep "OPENAI_API_KEY" ~/.zshrc | head -1 | sed "s/.*='//;s/'.*//")
 GEMINI_KEY=$(grep "GEMINI_API_KEY" ~/.zshrc | head -1 | sed "s/.*='//;s/'.*//")
 

@@ -7,7 +7,7 @@ KG4_DIR="$HOME/emergent/kg4"
 KG4_PATH="$KG4_DIR/data/knowledge-graph.json"
 LOG="$KG4_DIR/logs/evolve-kg4-$(date +%Y-%m-%d).log"
 CYCLE_COUNT_FILE="/tmp/emergent-kg4-cycles-$(date +%Y%m%d)"
-MAX_CYCLES=20
+MAX_CYCLES=100
 GEMINI_KEY=$(grep "GEMINI_API_KEY" ~/.zshrc | head -1 | sed "s/.*='//;s/'.*//")
 
 mkdir -p "$KG4_DIR/logs"
