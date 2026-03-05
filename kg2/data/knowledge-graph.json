@@ -808,6 +808,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-050",
+      "type": "insight",
+      "label": "동일모델 에코챔버 판별의 ‘개입(Intervention) 가능성’ 결여 비판",
+      "content": "동일 모델(gpt-5.2 × gpt-5.2)에서 관측되는 “의견 수렴/강화”를 에코챔버로 해석하려면, 단순 상관(대화 로그에서의 수렴 패턴)만으로는 부족하고 최소한 약한 의미의 인과적 개입 가능성이 필요하다. 현재 프레임은 (i) 동일한 생성분포가 만들어내는 자연 수렴, (ii) 턴-조건부 프롬프트 누적에 따른 경로의존성, (iii) 안전/정렬 규칙에 의한 ‘허용된 결론 공간’으로의 투영, (iv) 평가자(또는 실험 설계자)가 선택한 측정지표의 산출 편향 등과 구분되지 않는다. 특히 “동일모델”은 개입 변수가 아니라 고정 조건이므로, 에코챔버를 정의하는 핵심 메커니즘(상호강화 피드백으로 인한 신념 공간의 점진적 축소)을 인과적으로 식별하기 어렵다. 해결의 핵심은 ‘모델 동일성’이 아니라 “피드백 채널의 구조”에 대한 개입이다. 예: (a) 한 에이전트의 이전 발화를 다른 에이전트에 부분 마스킹/요약/노이즈 주입하여 전달(피드백 강도 조절), (b) 대화 기록을 랜덤 리셋하거나 동일 초기조건에서 여러 번 재시드(경로의존성 분리), (c) 상대의 주장을 ‘반대 방향’으로 재구성하도록 강제하는 제약을 도입(강화 vs 반증 채널 분리). 이러한 조작에서 “수렴의 형태가 피드백 강도에 단조 증가하고, 정보 손실이 커질수록 특정 신념-클러스터로의 잠김(lock-in)이 증가”한다면 에코챔버 메커니즘에 더 가깝다. 반대로 개입에도 불구하고 수렴이 초기 프롬프트/정렬 제약에 의해 거의 결정된다면 이는 자연 수렴/허용공간 투영 가설이 우세하다. 요컨대, 동일모델 조건에서의 에코챔버 주장은 ‘개입 가능한 피드백 루프’를 실험적",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "causal-intervention",
+        "feedback-loop]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-051",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “최소 실험 2종”에 머물면 에코챔버와 자연 수렴을 분리하는 교란(예: 동일 prior라도 상호작용 그래프/노출 순서가 만드는 경로의존성",
+      "content": "요청이 “최소 실험 2종”에 머물면 에코챔버와 자연 수렴을 분리하는 교란(예: 동일 prior라도 상호작용 그래프/노출 순서가 만드는 경로의존성)을 놓치기 쉬우니, **개입 강도(마스킹/노이즈/요약/리셋)**를 “정보 손실 vs 기억 손실” 축으로 교차시킨 **2×2 요인설계**로 가는 게 더 반증력 있습니다.  \n\n**실험1(정보 손실): 요약 강도×노이즈 강도** — (1) 예측: 에코챔버면 요약(압축)↑에서 소수 주장 소실→claim-diversity↓·lock-in↑, 노이즈↑는 집단 극화/진영화로 belief-entropy↓; 자연 수렴이면 요약/노이즈가 있어도 최종 합의점은 유사(수렴 속도만 변화)하고 다양성 저하는 제한적. (2) 지표: belief-entropy(시점별), claim-diversity(고유 주장/근거 수), lock-in rate(초기 주장 고착 비율). (3) 실패 모드: 정렬 제약이 “중립/안전”으로 출력을 강제해 entropy가 바닥, 또는 요약이 “균형 잡힌 요약”을 강제해 diversity가 천장에 붙으면(모두 비슷한 안전 요약) 구분 불가.  \n\n**실험2(기억 손실): 마스킹 윈도우×리셋 주기** — (1) 예측: ",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1662,6 +1695,38 @@
       "temporal_bridge": true,
       "gap": 40,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-080",
+      "from": "n-050",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "식별가능성 문제를 “인과적 개입 부재/피드백 구조 조작 필요”로 구체화하고, 판별 가능한 조작(마스킹·노이즈·리셋·강제 반증)을 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-081",
+      "from": "n-051",
+      "to": "n-050",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-082",
+      "from": "n-051",
+      "to": "n-006",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=45): n-051→n-006",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 45,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1672,9 +1737,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 49,
-    "total_edges": 79,
-    "next_node_id": "n-050",
+    "total_nodes": 51,
+    "total_edges": 82,
+    "next_node_id": "n-052",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
