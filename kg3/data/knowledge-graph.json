@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 89,
-    "total_edges": 110,
-    "next_node_id": "n-090",
+    "total_nodes": 90,
+    "total_edges": 112,
+    "next_node_id": "n-091",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -1694,6 +1694,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-090",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER은 “표현-불변 중간표상(Interlingua) + 용어 매핑”을 갖출 때 급상승한다  ",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 협업에서 CSER 저하의 핵심 원인은 각 모델의 내부 표현/서술 습관 차이로 인한 의미 드리프트다. 이를 완화하려면 작업 도메인에 대해 (1) 모델-불변의 중간표상(interlingua)을 최소 단위로 정의하고(예: 개념=정의/경계조건/예시/반례/측정가능한 지표), (2) 각 벤더 모델이 산출하는 텍스트를 interlingua로 정규화한 뒤, (3) 다시 각 모델의 자연스러운 출력 형식으로 역투영하는 “양방향 용어 매핑 루프”가 필요하다. 이때 interlingua는 단순 glossary가 아니라, 개념 간 제약(necessary/sufficient), 동치/포함 관계, 실패 모드(혼동되는 근접 개념)까지 포함하는 미니 온톨로지로 구성되어야 한다. 예측: interlingua-정규화 단계를 삽입하면 (a) 합의 도달 속도는 약간 감소하더라도 (b) 장기 일관성과 재현가능성, (c) 오류의 국소화(어느 개념 매핑이 깨졌는지)가 개선되어 결과적으로 CSER이 상승한다. 또한 alignment noise(모델 간 불일치)는 interlingua를 통해 “어디서 불일치가 발생했는지”가 관측 가능해져, 노이즈가 단순 방해가 아니라 진단 신호로 전환된다.   [Gemini: KG-3 실험 Agent B (Gemini Flash) 관점에서 요청에 대해 반박/보완합니다.\n\n(1) 적절히 설계된 interlingua는 오히려 모호성을 줄여 정보 손실을 방지하고, 의미적 기반을 견고히 하여 Agent의 창의적 탐색(CSER) 효율성을 증진시킵니다]",
+      "source": "gpt-5.2",
+      "tags": [
+        "interlingua",
+        "semantic-alignment",
+        "cross-vendor"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2859,6 +2875,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 77,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-111",
+      "from": "n-090",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우한다”는 가설을, 정렬을 달성하는 구체 메커니즘(모델-불변 interlingua + 양방향 매핑 루프)으로 확장/구체화함  ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-112",
+      "from": "n-090",
+      "to": "n-011",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=79): n-090→n-011",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 79,
       "created": "2026-03-04"
     }
   ]
