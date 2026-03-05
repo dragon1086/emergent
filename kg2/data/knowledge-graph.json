@@ -511,6 +511,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-032",
+      "type": "insight",
+      "label": "동일모델-동일샘플러 가정 붕괴: ‘에코챔버’ vs ‘공유 디코딩 바이어스’의 비식별성",
+      "content": "동일 모델(gpt-5.2 × gpt-5.2)이라도 상호작용에서 관측되는 “수렴/강화/반복”은 (a) 진짜 에코챔버(상호확증 루프) 때문이 아니라 (b) 두 에이전트가 공유하는 디코딩/정렬/안전 규칙이 만들어내는 구조적 편향(예: 유사한 완곡화, 리스크 회피, 다수견해 선호, ‘균형 잡힌’ 결론으로의 수렴) 때문에 발생할 수 있다. 이 경우 관측된 대화 궤적은 두 메커니즘을 구분하지 못한다(비식별성). 더 구체적으로, “동일모델=동일 prior”라는 전제는 충분조건이 아니다. 동일 prior라도 샘플링 노이즈, 프롬프트 민감도, 컨텍스트 누적(요약/압축), 안전 필터링, 거절/회피 패턴이 상호작용하면서 ‘가짜 합의’(illusory consensus)를 만든다. 따라서 에코챔버를 주장하려면 최소한 다음 반증가능 조건을 제시해야 한다: (1) 디코딩 정책(temperature/top-p/penalties) 및 안전/정렬 제약을 통제한 뒤에도, (2) 상호작용이 독립 생성 대비 특정 방향으로 편향을 증폭시키며, (3) 그 증폭이 내용-특이적(특정 주장/프레임에 선택적으로 작동)이고, (4) 교차검증(역할/페르소나 스왑, 컨텍스트 셔플, counterfactual prompting)에서 유지된다. 그렇지 않으면 “동일모델 조건에서의 수렴”은 단지 공유 샘플러/정렬 편향의 표출일 가능성이 높고, 에코챔버 가설은 경험적으로 과대주장된다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "decoding-bias",
+        "confounding]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-033",
+      "type": "critique",
+      "label": "통합 종합: 지표는 “개별 생성 합(독립·비상호작용) 대비 실제 상호작용 결과의 초과분”으로 정의해, 동일 프롬프트·동일 디코딩(온도/시드 고정)에서 (i)",
+      "content": "지표는 “개별 생성 합(독립·비상호작용) 대비 실제 상호작용 결과의 초과분”으로 정의해, 동일 프롬프트·동일 디코딩(온도/시드 고정)에서 (i) 주장강도(정서·확신·극단성 스코어), (ii) 내용다양성(고유 근거/토픽 엔트로피), (iii) 반대증거 탐색(반증 질문·출처 다양성·자기반박 문장 비율) 각각에 대해 Δ=Interaction−E[Independent]를 산출하고, 이를 라운드별 누적(곡률)로 “상호확증 루프 증폭률”로 요약하세요. 반사실 프로토콜(최소2): ① **페르소나 스왑**(각 턴마다 A/B의 역할·선호를 교차 교환, 텍스트는 동일하게 유지)→ Δ가 유지되면 ‘개인 고정 성향/이데올로기 정렬’ 대안가설을, Δ가 붕괴하면 ‘특정 페르소나 조합 효과’ 가설을 지지; ② **컨텍스트 셔플**(대화 히스토리의 순서/발화자 라벨을 섞거나 상대 발화를 동등 길이의 중립 문장으로 치환)→ Δ가 유지되면 ‘단순 노출량·길이·주제 드리프트’ 대안가설을, Δ가 감소하면 ‘상호참조적 인용/연결(대화구조) 자체’ 가설을 지지. 보완으로 ③ **디코딩 고정+시드 매칭 재실행**(각 조건을 동일 시드로 다회 반복)→ ‘샘플링 노이즈/랜덤 워크’ 대안가설 제거, ④ ",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -993,6 +1026,50 @@
       "temporal_bridge": true,
       "gap": 26,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-046",
+      "from": "n-032",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "identifiability 문제를 ‘공유 디코딩/정렬 편향’이라는 구체 메커니즘으로 확장하여, 에코챔버와 가짜 합의의 구분 조건(반증가능 조건) 제시",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-047",
+      "from": "n-032",
+      "to": "n-001",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=31): n-032→n-001",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 31,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-048",
+      "from": "n-033",
+      "to": "n-032",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-049",
+      "from": "n-033",
+      "to": "n-001",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=32): n-033→n-001",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 32,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1003,9 +1080,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 31,
-    "total_edges": 45,
-    "next_node_id": "n-032",
+    "total_nodes": 33,
+    "total_edges": 49,
+    "next_node_id": "n-034",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
