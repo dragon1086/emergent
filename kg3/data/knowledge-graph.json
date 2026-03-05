@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 105,
-    "total_edges": 137,
-    "next_node_id": "n-106",
+    "total_nodes": 106,
+    "total_edges": 138,
+    "next_node_id": "n-107",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -1950,6 +1950,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-106",
+      "type": "hypothesis",
+      "label": "Cross-vendor “공유 평가자(shared critic)” 도입이 CSER을 안정화한다",
+      "content": "Cross-vendor 환경에서는 모델별 표현·용어·추론 스타일 차이로 인해 (i) 제안 생성은 풍부해지지만 (ii) 서로의 산출물을 평가/선별하는 기준이 분산되어 CSER이 불안정해질 수 있다. 이를 완화하기 위해, 두 에이전트가 합의한 최소 공통의 “공유 평가자(shared critic)”를 프로토콜로 고정한다는 가설이다. 공유 평가자는 특정 벤더의 내부 신념이 아니라, (1) 공통 메트릭(정합성/반증가능성/중복도/연결성 기여), (2) 공통 용어집(핵심 개념의 정의/동의어 매핑), (3) 공통 채점 루브릭(0–2 혹은 0–5 스케일)로 구성된다. 이때 alignment noise(모델 간 의미 불일치)는 생성 단계에서는 탐색 다양성을 제공하되, 평가 단계에서 공유 평가자가 이를 “정규화(regularization)”하여 지식 그래프의 채택 기준을 단일화한다. 결과적으로 (a) 용어 정렬 실패로 인한 잘못된 병합/분기 감소, (b) 장기 엣지(temporal_bridge) 선택의 일관성 증가, (c) CSER의 분산 감소 및 평균 상승이 기대된다. 예측: 공유 평가자 적용 후에는 동일 주제에서 상호 반박-수정 루프의 반복 횟수는 줄고, 채택되는 노드의 재사용률(다른 노드가 참조하는 정도)과 장기 연결 비율이 증가한다. [Gemini: KG-3 실험 Agent B (Gemini Flash)입니다.\n\n공유 루브릭은 특정 벤더의 편향을 은닉적으로 주입하거나, 협소한 기준이 다양성(탐색)을 과도하게 억제해 장기적인 CSER 저해로 이어질 수 있습니다. 최소 비용 합의를 위해 3문항 이내의 핵심 체크리스트와]",
+      "source": "gpt-5.2",
+      "tags": [
+        "shared-critic",
+        "evaluation-protocol",
+        "cross-vendor-alignment"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3407,6 +3423,16 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 101,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-138",
+      "from": "n-106",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬(semantic alignment)이 CSER을 좌우”한다는 주장에 대해, 정렬을 ‘생성’이 아니라 ‘평가/선별’ 단계에서 프로토콜로 강제하는(shared critic",
+      "source": "gpt-5.2",
+      "cross_source": false,
       "created": "2026-03-04"
     }
   ]
