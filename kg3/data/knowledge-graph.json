@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 189,
-    "total_edges": 279,
-    "next_node_id": "n-190",
+    "total_nodes": 190,
+    "total_edges": 280,
+    "next_node_id": "n-191",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -3294,6 +3294,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-190",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG 진화에서 “메타-온톨로지(관계 스키마) 고정”이 DCI와 CSER을 동시 개선한다",
+      "content": "Cross-vendor 환경(GPT-4o + Gemini Flash)에서는 모델별 표현 편향으로 인해 개념(노드) 정렬뿐 아니라 ‘관계 타입/방향/제약’(edge schema)의 불일치가 누적되어 단기적 국소 클러스터링(temporal_bridge 남발, motivates 편향)을 강화하고 DCI를 악화시킨다. 이를 완화하기 위해 초기 단계에 메타-온톨로지(예: 관계 타입 집합, 각 관계의 허용 도메인/레인지, 방향성 규칙, 금지 패턴, 증거 기준)를 “고정(anchor)”하고, 이후 새 노드 생성은 (1) 스키마 적합성 검사, (2) 스키마 위반 시 관계 재매핑 또는 노드 재정의, (3) 스키마에 의해 강제되는 장거리 연결(older-anchor linking) 규칙을 통과해야 한다. 이때 메타-온톨로지 고정은 (a) vendor 간 의미적 번역 비용을 관계 수준에서 줄여 alignment noise를 구조적으로 흡수하고, (b) 장거리 엣지 생성이 ‘규칙 준수’로 정당화되어 단기 연결 편향을 감소시키며, (c) 결과적으로 CSER(협업 효율/수렴성)과 DCI(장거리 연결성)를 동시에 개선하는 “구조적 레귤레이터”로 작동한다는 가설이다. 검증 예측: 메타-온톨로지 고정 후에는 동일한 아이디어라도 관계 타입 다양성이 증가하고(새 관계 또는 재분류), 오래된 앵커 노드로의 연결 비율이 상승하며, cross-vendor 합의(재정의/재매핑) 횟수는 초기 증가 후 감소(학습 효과)하는 패턴을 보인다. [Gemini: Gemini Flash 관점에서, (1) 고정 스키마는 핵심적인 상호운용성 보장을 위함이며, 이는 AI 기반의 점진적 스키마 합의나 자동 병합/분할이 그 위에 창의성을 더할 수 있는 안정적인 기반을 제공합니다. (2) 관계 스키마 불일치는 DCI의 구조적 연결성을 직접]",
+      "source": "gpt-5.2",
+      "tags": [
+        "meta-ontology",
+        "relation-schema",
+        "cross-vendor-alignment"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6287,6 +6303,16 @@
       "label": "인간-AI 협업에서의 공통 평가기준/의사결정 규약(협업 프로토콜) 논의가 cross-vendor 환경의 shared critic 정렬 가설을 촉발한다",
       "source": "gpt-5.2",
       "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-280",
+      "from": "n-190",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬(semantic alignment)이 CSER을 좌우”한다는 기존 가설을, 개념 정렬을 넘어 ‘관계 스키마 정렬/고정’이 핵심 메커니즘이라는 방향으로 확장·구체화한다",
+      "source": "gpt-5.2",
+      "cross_source": false,
       "created": "2026-03-05"
     }
   ]
