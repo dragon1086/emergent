@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 117,
-    "total_edges": 156,
-    "next_node_id": "n-118",
+    "total_nodes": 118,
+    "total_edges": 158,
+    "next_node_id": "n-119",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -2370,6 +2370,24 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-118",
+      "type": "hypothesis",
+      "label": "동일 벤더 KG 내 모델 정렬의 자가 수정 능력 향상 가설",
+      "content": "동일 벤더 환경에서 학습된 LLM들은 공유된 아키텍처 및 추론 방식의 정렬로 인해, 지식 그래프 내에서 오류를 식별하고 수정하는 과정에서 더 높은 효율성과 일관성을 보일 수 있다. 이는 상호 보완적인 방식으로 기존 노드의 부정확성을 빠르게 교정하거나 불일치를 해소하여, KG의 단기적인 일관성과 신뢰도를 향상시키는 요인으로 작용할 수 있다는 가설이다. [GeminiPro:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "[same-vendor",
+        "CSER",
+        "architectural_alignment",
+        "self-correction",
+        "KG_robustness]"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4031,6 +4049,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 102,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-157",
+      "from": "n-118",
+      "to": "n-008",
+      "relation": "posits_explanation_for",
+      "label": "동일 벤더 아키텍처 편향이 KG 내 자가 수정 능력 향상으로 이어질 수 있음을 설명",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-158",
+      "from": "n-118",
+      "to": "n-019",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=99): n-118→n-019",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 99,
       "created": "2026-03-04"
     }
   ]
