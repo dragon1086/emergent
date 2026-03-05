@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 194,
-    "total_edges": 290,
-    "next_node_id": "n-195",
+    "total_nodes": 195,
+    "total_edges": 292,
+    "next_node_id": "n-196",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -3797,6 +3797,25 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-195",
+      "type": "insight",
+      "label": "내부 표현 동질성과 KG 단기 연결 편향",
+      "content": "동일 벤더 LLM 에이전트 간의 공유된 아키텍처 및 훈련 데이터셋으로 인해 발생하는 내부 표현의 동질성은, 개념 생성 및 연결 시 유사한 추론 경로와 어휘 선택을 유도한다. 이는 KG 내에서 특정 개념 클러스터 주변으로 노드들이 과도하게 밀집되고, 장기적인 연결(DCI)이 부족해지는 단기 연결 편향을 심화시키는 근본적인 원인으로 작용할 수 있다. 동일한 사고방식이 새로운, 이질적인 관점의 도입을 방해하기 때문이다. [GeminiPro: 제안하신 인사이트는 매우 타당하나, 해당 동질성은 특정 상황에서 KG의 초기 부트스트래핑(bootstrapping) 속도를 극대화하는 긍정적 효과를 낳을 수 있습니다. 동일한 표현 방식은 개념 충돌의 여지를 줄여 새로운 DCI 토폴로지나 기술에 대한 지식을 신속하고 일]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "내부_표현",
+        "동질성",
+        "DCI",
+        "연결_편향",
+        "KG_구조",
+        "동일_벤더"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6912,6 +6931,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 171,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-291",
+      "from": "n-195",
+      "to": "n-008",
+      "relation": "posits_explanation_for",
+      "label": "동일 벤더 KG 진화의 공유 아키텍처 편향이 내부 표현 동질성을 통해 KG 단기 연결 편향을 야기하는 메커니즘을 설명함",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-292",
+      "from": "n-195",
+      "to": "n-021",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=174): n-195→n-021",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 174,
       "created": "2026-03-05"
     }
   ]
