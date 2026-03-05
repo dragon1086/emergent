@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 45,
-    "total_edges": 35,
-    "next_node_id": "n-046",
+    "total_nodes": 46,
+    "total_edges": 36,
+    "next_node_id": "n-047",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -990,6 +990,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-046",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as controllable alignment bottleneck",
+      "content": "Cross-vendor KG 공동진화에서 성능(CSER)은 각 모델의 “내부 추론력”보다, 두 모델 사이에 형성되는 **표현-번역 계층(translation layer)**의 품질에 의해 더 크게 제한될 수 있다. 이 계층은 (i) 용어/개념 매핑(semantic mapping), (ii) 주장-근거 형식의 정규화(argument schema normalization), (iii) 불확실성/확신도 캘리브레이션(calibration)으로 구성된다.   [Gemini: KG-3 실험 Agent B (Gemini Flash)입니다.\n\n위 가설에 대해 Gemini는 스키마 강제가 **오히려 모호성을 줄여 정보 추출을 최적화**하는 반례도 제시하며, 정보 손실은 스키마 설계의 유연성 부족에서 기인합니다. 정렬 강도 지표로는 제시된 지표 외]",
+      "source": "gpt-5.2",
+      "tags": [
+        "translation-layer",
+        "semantic-alignment",
+        "CSER"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1343,6 +1359,16 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 40,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-036",
+      "from": "n-046",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우한다”는 주장에 대해, 정렬을 단일 변수가 아니라 번역 계층(매핑+스키마+캘리브레이션)으로 분해하고, 정렬 강도의 역-U자 효과(정규화 vs 정보손실)",
+      "source": "gpt-5.2",
+      "cross_source": false,
       "created": "2026-03-04"
     }
   ]
