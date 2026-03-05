@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 72,
-    "total_edges": 79,
-    "next_node_id": "n-073",
+    "total_nodes": 73,
+    "total_edges": 81,
+    "next_node_id": "n-074",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -1422,6 +1422,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-073",
+      "type": "hypothesis",
+      "label": "Cross-vendor “concept anchoring” via shared micro-ontology improves CSER",
+      "content": "Cross-vendor(GPT-4o + Gemini Flash) 협업에서 CSER을 결정짓는 핵심 병목은 단순한 용어 일치(semantic alignment)보다 “개념 고정(concept anchoring)”의 유무다. 즉, 두 모델이 동일 단어를 사용하더라도 내부 개념 경계(카테고리 분할, 전제, 예외 처리)가 다르면 추론 경로가 분기되어 KG가 단기적으로는 풍부해 보이지만 장기적으로는 재결합/재사용이 어려운 파편화가 발생한다. 이를 완화하기 위해, 대화 초기에 (1) 핵심 개념 5~10개에 대한 최소 정의, (2) 포함/배제 기준, (3) 대표/반례, (4) 관련 개념과의 구분점을 포함하는 “공유 마이크로-온톨로지(micro-ontology)”를 합의하면, 이후 생성되는 노드들이 동일한 개념 앵커에 매달리며 장기 엣지(temporal_bridge)가 증가한다. 예측: micro-ontology를 사용한 조건에서 (a) 동일 주제 재방문 시 모순률 감소, (b) 장기 브리지 엣지 비율 증가, (c) CSER 상승(특히 cross-vendor에서 효과가 더 큼). 이는 cross-vendor alignment noise를 단순 정규화로 방치하기보다, “앵커 기반 정렬”로 구조적으로 흡수하는 접근이다. [Gemini: semantic alignment만으론 부족합니다. Product (소매 품목 vs. 소프트웨어 릴리스)나 Agent (인간 vs. 자율 시스템) 같은 용어는 정의, 경계, 예외가 달라 KG-3 환경에서 충돌하며 모순적 추론을 야기합니다.\n\nMicro-ontology는]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "micro-ontology",
+        "concept-anchoring]"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2249,6 +2265,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 62,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-080",
+      "from": "n-073",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우한다”는 가설을 확장하여, 표면적 용어 일치가 아니라 개념 경계까지 고정하는 micro-ontology 기반 앵커링이 CSER/장기 연결성을 더 강하게",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-081",
+      "from": "n-073",
+      "to": "n-014",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=59): n-073→n-014",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 59,
       "created": "2026-03-04"
     }
   ]
