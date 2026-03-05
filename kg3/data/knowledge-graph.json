@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 142,
-    "total_edges": 198,
-    "next_node_id": "n-143",
+    "total_nodes": 143,
+    "total_edges": 200,
+    "next_node_id": "n-144",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -2542,6 +2542,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-143",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “표현-불변 앵커(anchor) + 변환층(mapping layer)”가 CSER을 안정화한다",
+      "content": "Cross-vendor(GPT-4o ↔ Gemini) 환경에서는 동일 개념이 서로 다른 표현 습관(용어 선택, 분해 수준, 전제의 생략/명시)으로 나타나며, 이 차이가 협업 효율(CSER)의 분산을 키운다. 이를 줄이기 위해 KG에 (1) 모델-불변의 최소 공통 앵커(예: 평가축, 핵심 정의, 관찰 가능한 지표, 금지/허용 규칙)를 먼저 고정하고, (2) 각 벤더 모델의 표현을 앵커로 사상하는 “변환층”을 별도 메타-노드/규칙으로 둔다. 앵커는 논쟁의 대상이 아니라 정합성 체크포인트로 기능하고, 변환층은 용어/프레이밍 차이를 ‘번역 가능한 변이’로 격리한다. 이 구조는 alignment noise를 무작위 오차가 아니라 “사상 가능한 잔차(residual)”로 다뤄 단기적 불일치가 누적되어 KG가 분기하는 것을 막고, 결과적으로 CSER을 (i) 재현성, (ii) 합의 도달 시간, (iii) 충돌 해결 비용 측면에서 안정화한다. [Gemini: 불변 앵커의 최소 단위는 특정 도메인 내의 핵심 정의, 측정 가능한 지표, 그리고 명확한 비즈니스/윤리적 규칙의 조합이 가장 현실적입니다. 변환층은 번역 편향, 메타-합의 비용, 앵커 선택의 정치화 등으로 CSER을 저해할 수 있는데, 이는 특정 집단의 이해관계가 과대]",
+      "source": "gpt-5.2",
+      "tags": [
+        "semantic_alignment",
+        "cross_vendor",
+        "mapping_layer"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4657,6 +4673,28 @@
       "label": "“용어 정렬이 CSER을 좌우한다”를 구체화하여, 정렬을 ‘번역 레이어 병목(채널 용량)’으로 정식화하고 개입 지점(규격화된 인터페이스)을 제안함  ",
       "source": "gpt-5.2",
       "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-199",
+      "from": "n-143",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우한다”는 주장에 대해, 정렬을 ‘직접 동일화’가 아니라 ‘불변 앵커 + 사상(translation) 레이어’로 구현하면 cross-vendor 환경에서",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-200",
+      "from": "n-143",
+      "to": "n-025",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=118): n-143→n-025",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 118,
       "created": "2026-03-04"
     }
   ]
