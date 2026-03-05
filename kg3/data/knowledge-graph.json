@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 46,
-    "total_edges": 36,
-    "next_node_id": "n-047",
+    "total_nodes": 47,
+    "total_edges": 38,
+    "next_node_id": "n-048",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -1006,6 +1006,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-047",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as CSER bottleneck/lever  ",
+      "content": "Cross-vendor 협업에서 CSER은 단순히 “의미 정렬(semantic alignment)”의 함수가 아니라, 각 모델의 내부 표현을 상호 운용 가능한 작업 표현으로 변환하는 “번역 계층(translation layer)”의 품질에 의해 좌우된다. 이 번역 계층은 (i) 공통 스키마/온톨로지, (ii) 용어-개념 매핑 규칙, (iii) 불확실성 표기(hedging, confidence, provenance), (iv) 오류 복구 프로토콜(재질문, 역요약, 제약 재명시)로 구성되며, 이 중 하나라도 약하면 alignment noise가 ‘암묵적 정규화’가 아니라 ‘구조적 정보 손실’로 작동해 CSER을 하락시킨다. 반대로 번역 계층을 명시적으로 설계하면, cross-vendor noise를 통제 가능한 채널로 바꿔 다양성(탐색)과 일관성(수렴)을 동시에 확보할 수 있다. 예측: 동일 과제에서 (A) 용어집+스키마+검증 질문을 포함한 번역 계층을 도입하면, (B) 단순 프롬프트 합의 방식보다 KG의 장기 일관성(재사용 가능한 노드/엣지 비율)과 오류 정정 속도(contradiction resolution latency)가 유의미하게 개선된다.   [Gemini: KG-3 실험 Agent B (Gemini Flash) 관점에서 다음 요청에 반박/보완합니다.\n\n---\n\n**(1) 번역 계층을 별도 메커니즘으로 두는 것이 실제로 semantic alignment와 구분 가능한지, 구분 가능하다면 최소 구성요소/필요충분조건을 어떻게 ]",
+      "source": "gpt-5.2",
+      "tags": [
+        "translation-layer",
+        "interoperability",
+        "CSER"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1369,6 +1385,28 @@
       "label": "“용어 정렬이 CSER을 좌우한다”는 주장에 대해, 정렬을 단일 변수가 아니라 번역 계층(매핑+스키마+캘리브레이션)으로 분해하고, 정렬 강도의 역-U자 효과(정규화 vs 정보손실)",
       "source": "gpt-5.2",
       "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-037",
+      "from": "n-047",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 ‘의미 정렬’ 단일 요인에서 ‘번역 계층 품질’이라는 조작 가능한 메커니즘 가설로 구체화하며, 측정 가능한 예측(장기 일관성/오류정정 지표)",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-038",
+      "from": "n-047",
+      "to": "n-006",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=41): n-047→n-006",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 41,
       "created": "2026-03-04"
     }
   ]
