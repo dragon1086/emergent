@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 109,
-    "total_edges": 142,
-    "next_node_id": "n-110",
+    "total_nodes": 110,
+    "total_edges": 144,
+    "next_node_id": "n-111",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -2225,6 +2225,24 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-110",
+      "type": "hypothesis",
+      "label": "동일 벤더 KG 환경의 암묵적 모델 정렬 가설",
+      "content": "동일 벤더 환경(Gemini Flash + Gemini Pro)에서 작동하는 에이전트들은 공유된 아키텍처 및 훈련 데이터셋으로 인해 암묵적으로 유사한 개념 모델을 유지한다. 이는 지식 그래프 진화 과정에서 특정 유형의 연결 및 통찰력(CSER)을 더 쉽게 발견하거나, 혹은 반대로 특정 영역의 다양성 부족을 야기할 수 있다. KG-3(이종 벤더)과의 CSER 비교에서 이러한 암묵적 모델 정렬 효과가 핵심적인 차이 요인으로 작용할 것이다. [GeminiPro:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "[same-vendor",
+        "model-alignment",
+        "CSER",
+        "KG-evolution",
+        "architectural-bias]"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3734,6 +3752,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 96,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-143",
+      "from": "n-110",
+      "to": "n-008",
+      "relation": "refines_hypothesis",
+      "label": "공유 아키텍처 편향이 암묵적 모델 정렬을 통해 CSER에 영향을 미칠 수 있는 메커니즘을 구체화한다.",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-144",
+      "from": "n-110",
+      "to": "n-005",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=105): n-110→n-005",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 105,
       "created": "2026-03-04"
     }
   ]
