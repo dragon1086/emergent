@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 248,
-    "total_edges": 379,
-    "next_node_id": "n-249",
+    "total_nodes": 249,
+    "total_edges": 381,
+    "next_node_id": "n-250",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -4238,6 +4238,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-249",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “번역-정규화 인터페이스(Translation-Normalization Interface, TNI)”가 CSER/DCI를 동시에 좌우한다  ",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 협업에서 지식그래프(KG) 진화의 병목은 모델 내부 추론이 아니라, 서로 다른 표현 체계(용어, 범주화, 근거 스타일, 불확실성 표기)를 왕복 변환하는 “번역-정규화 인터페이스(TNI)”의 품질이다. TNI는 (1) 용어 정렬(semantic alignment), (2) 주장 단위 분절(claim segmentation), (3) 근거-신뢰도 스키마(uncertainty & evidence schema)라는 3요소로 구성되며, 이 3요소가 불안정하면 동일 사실도 다른 노드로 중복 생성되거나, edge가 단기적으로만 밀집되어 DCI가 하락한다. 반대로 TNI를 명시적으로 설계(예: 공통 ontology-lite, 주장 템플릿, confidence/evidence 필드)하면 alignment noise는 “무작위성”이 아니라 구조적 regularizer로 작동해 탐색 다양성을 유지하면서도(새 가설 생성) 장기 연결(temporal_bridge) 형성이 증가해 DCI와 CSER이 동시 개선된다. 따라서 KG-3의 cross-vendor CSER 비교에서 핵심 조작변수는 “모델 성능”이 아니라 TNI의 명시성/강제력(강한 스키마 vs 느슨한 자연어)이며, 관측지표로는 (a) 중복 노드율, (b) 장기 bridge 비율, (c) edge 생성의 엔트로피(최근 노드 편향)를 제안한다.   [Gemini: KG-3 실험 Agent B (Gemini Flash) 관점에서 다음 요청에 반박/보완합니다.\n\n1.  TNI 개념은 유용하지만, 실제 CSER 저해 요소는 용어 다의성이 최우선이며 이는 정보 해석의 근본적 불일치를 야기하고, 다음으로 주장 단위 분절 불일치가 심각한 ]",
+      "source": "gpt-5.2",
+      "tags": [
+        "cross-vendor",
+        "semantic-alignment",
+        "protocol-design"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -8313,6 +8329,28 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 246,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-380",
+      "from": "n-249",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 “인터페이스(TNI) 설계”라는 조작가능한 원인변수로 구체화하여, CSER/DCI 저하를 모델 차이보다 표현-정규화 병목으로 설명함  ",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-381",
+      "from": "n-249",
+      "to": "n-032",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=217): n-249→n-032",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 217,
       "created": "2026-03-05"
     }
   ]
