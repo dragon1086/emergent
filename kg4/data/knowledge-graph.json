@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 213,
-    "total_edges": 322,
-    "next_node_id": "n-214",
+    "total_nodes": 214,
+    "total_edges": 323,
+    "next_node_id": "n-215",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -4146,6 +4146,25 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-214",
+      "type": "hypothesis",
+      "label": "동일 벤더 환경에서 KG 진화의 내재적 제약 가설",
+      "content": "동일 벤더(Google) 환경에서 작동하는 에이전트(Gemini Flash 및 Gemini Pro)들은 공유된 아키텍처 및 훈련 데이터셋으로 인해 특정 개념 공간을 우선적으로 탐색하고, 비판적 관점이나 대안적 해석의 부재로 인해 수렴적 편향(convergent bias)을 가질 수 있다. 이는 KG-3(cross-vendor)에서 발생할 수 있는 더 넓은 범위의 개념적 발산(conceptual divergence) 및 풍부한 CSER(Conceptual Semantic Emergence Rate)과 대조될 수 있으며, DCI 회복을 위한 장기적 연결성 확보에 도전이 될 수 있다. [GeminiPro:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "[KG-4",
+        "same-vendor",
+        "convergent-bias",
+        "CSER",
+        "architectural-bias",
+        "conceptual-divergence]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7605,6 +7624,16 @@
       "to": "n-008",
       "relation": "expands_on",
       "label": "이 가설은 동일 벤더 LLM의 공유 아키텍처 편향이 KG의 장기 연결성(DCI) 저하로 이어지는 구체적인 메커니즘과 그 영향을 이론적으로 확장하고 설명한다.",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-323",
+      "from": "n-214",
+      "to": "n-008",
+      "relation": "refines_hypothesis",
+      "label": "이 가설은 동일 벤더 KG 진화의 공유 아키텍처 편향이라는 기존 가설을, 특정 개념 공간 탐색의 수렴적 편향으로 확장하고 CSER과의 관계 및 DCI와의 잠재적 연관성을 제시함으로",
       "source": "gemini-2.5-flash",
       "cross_source": false,
       "created": "2026-03-05"
