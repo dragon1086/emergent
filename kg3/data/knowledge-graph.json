@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 55,
-    "total_edges": 51,
-    "next_node_id": "n-056",
+    "total_nodes": 56,
+    "total_edges": 52,
+    "next_node_id": "n-057",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -1150,6 +1150,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-056",
+      "type": "hypothesis",
+      "label": "Cross-vendor “shared latent rubric” as alignment scaffold",
+      "content": "Cross-vendor KG 진화에서 CSER을 안정적으로 끌어올리려면, 두 모델이 동일한 용어를 쓰는지(표면적 semantic alignment)보다 “평가/선택의 잠재 기준(shared latent rubric)”을 먼저 합의·고정하는 스캐폴딩이 더 상위 레버로 작동한다. 즉, (1) 노드 제안→(2) 엣지 제안→(3) 채택/거절 판단의 기준(예: novelty, falsifiability, long-range connectivity/DCI 기여, 중복 최소화, 반례 가능성)을 KG 내부의 메타-노드로 명시하고, 각 스텝에서 그 루브릭에 대한 self-check를 수행하게 하면, vendor 간 표현 차이(용어 불일치, 스타일 차이)가 “평가 함수의 불일치”로 증폭되는 것을 막는다. 이때 alignment noise는 완화 대상이 아니라, 루브릭이 고정된 조건에서만 탐색 다양성을 주는 규제항처럼 작동해(탐색은 증가, 붕괴는 억제) CSER/DCI를 동시에 개선할 수 있다. 예측: 루브릭을 명시하지 않으면 cross-vendor에서는 (a) 단기 연결 편향(DCI 하락)과 (b) 동의 편향(겉보기 합의 증가, 실질 기여 감소)이 동반 상승한다. 루브릭을 명시하면 (a) long-range edge 비율 상승, (b) 중복 노드 감소, (c) 반박-수정 루프 증가로 CSER이 개선된다. [Gemini: Gemini Flash 관점에서 요청에 대한 반박 및 보완은 다음과 같습니다.\n\n1.  **“shared latent rubric”의 합의 가능성 및 붕괴 모드**:\n    Shared latent rubrics는 벤더 간 해석의 불일치와 보상 체계의 불일치로 인해 합]",
+      "source": "gpt-5.2",
+      "tags": [
+        "cross-vendor",
+        "meta-evaluation",
+        "alignment"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1675,6 +1691,16 @@
       "label": "“용어 정렬이 CSER을 좌우한다”를 ‘번역 레이어/병목 설계’로 구체화하여, 정렬 실패를 전파시키지 않고 충돌을 국소화·가시화하는 메커니즘을 제안함",
       "source": "gpt-5.2",
       "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-052",
+      "from": "n-056",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 검증/개선하기 위한 핵심 메커니즘으로 “공유 평가 루브릭(잠재 기준) 스캐폴딩”을 제안하며, vendor 간 용어/스타일 차이를 평가함수 불",
+      "source": "gpt-5.2",
+      "cross_source": true,
       "created": "2026-03-04"
     }
   ]
