@@ -775,6 +775,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-048",
+      "type": "insight",
+      "label": "동일모델 에코챔버 검증의 ‘개입(Intervention) 불가능성’과 식별성 붕괴",
+      "content": "동일 모델(gpt-5.2×gpt-5.2) 조건에서 관측되는 “수렴/동조/반복”을 에코챔버(상호강화적 편향 증폭)로 식별하려면, 최소한 한 축에서의 **외생적 개입(intervention)** 이 필요하다. 그러나 동일모델·동일 인터페이스·유사 프롬프트 규칙 하에서는 (i) 각 에이전트의 생성 분포가 공유되고, (ii) 대화가 곧 다음 입력이 되어 피드백이 내생화되며, (iii) 관측 가능한 것은 텍스트뿐이라 잠재 상태(불확실성, 내부 샘플링 경로, 안전/정렬 제약 활성화)를 분리할 수 없다. 결과적으로 “에코챔버로 인한 편향 증폭”과 “동일 모델의 자연스러운 언어적 수렴(공유 prior+대화 관성)”이 **동일한 관측 패턴(lexical alignment, argument reuse, mutual confirmation)** 을 산출할 수 있어, 표준적인 식별 조건(반사실/도구변수/무작위화)이 충족되지 않는다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "causal-inference",
+        "intervention]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-049",
+      "type": "critique",
+      "label": "통합 종합: “최소 개입”이려면 (1) 외생 충격(데이터)·(2) 내부 상태분리(메모리)·(3) 대화 게임의 비대칭(규칙)처럼 서로 다른 식별축을 하나씩 건",
+      "content": "“최소 개입”이려면 (1) 외생 충격(데이터)·(2) 내부 상태분리(메모리)·(3) 대화 게임의 비대칭(규칙)처럼 서로 다른 식별축을 하나씩 건드려야 하며, 단순 노이즈 주입만으로는 자연수렴/에코챔버가 둘 다 “흔들리다 다시 안정”을 보일 수 있어 관측 동등성이 남습니다.  \n제안 세트: **① 교차검증형 반대증거 주입**(정답 라벨이 있는 미니-팩트 5~10개를 무작위 타이밍에 삽입)→ 지표: *오류 고착률* (p(text{오답 유지}|text{정답 증거 제시})), *분산* (Var(text{belief/logit})); 자연수렴은 고착률↓·분산 수렴, 에코챔버는 고착률↑(또는 비대칭적 업데이트)·분산 축소(확신만 강화).  \n**② 요약/기억 정책 분리(읽기전용 로그 vs 요약메모, 요약은 판사가 감시)**→ 지표: *주장-증거 그래프 순환성* (SCC 크기/사이클 수), *오류 고착률*; 자연수렴은 사이클↓(증거→주장 DAG화)·고착률↓, 에코챔버는 요약이 자기강화 루프를 만들어 사이클↑·고착률↑.  \n**③ 역할 비대칭(변호인=주장 생성, 판사=증거 적합성만 채점/반박 강제, 스위치 금지)**→ 지표: *순환성*(판사-변호인 간 상호인용 루프), *",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1585,6 +1618,50 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-076",
+      "from": "n-048",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "식별가능성 문제를 ‘개입 불가능성/내생성’ 관점에서 강화: 동일모델 조건은 관측만으로 에코챔버 인과효과를 분리하기 어려움",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-077",
+      "from": "n-048",
+      "to": "n-007",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=41): n-048→n-007",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 41,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-078",
+      "from": "n-049",
+      "to": "n-048",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-079",
+      "from": "n-049",
+      "to": "n-009",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=40): n-049→n-009",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 40,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1595,9 +1672,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 47,
-    "total_edges": 75,
-    "next_node_id": "n-048",
+    "total_nodes": 49,
+    "total_edges": 79,
+    "next_node_id": "n-050",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
