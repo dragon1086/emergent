@@ -643,6 +643,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-040",
+      "type": "insight",
+      "label": "동일모델 에코챔버의 ‘조작적 정의’ 부재: 관측가능량으로 재정의 필요",
+      "content": "동일 모델 조건에서 “에코챔버”를 주장하려면, (i) 어떤 현상이 에코챔버인지, (ii) 그 현상이 자연스러운 수렴(공유된 학습/유사한 귀납편향으로 인한 합리적 합의)과 어떻게 구분되는지, (iii) 외부 검증 없이 내부 상호작용만으로 자기강화가 발생했음을 무엇으로 판정할지의 조작적 정의가 필요하다. 현재 프레임은 ‘동일모델=동일 prior → 수렴은 에코챔버일 수 있음’처럼 보이는데, 이는 식별가능성 문제를 악화시킨다. 비판적으로는 에코챔버를 “상호작용으로 인해 (a) 신념 다양성/불확실성이 단조 감소하고, (b) 반증증거(반대 신호)에 대한 민감도가 감소하며, (c) 외부 기준(숨은 정답/독립 평가자/대조군) 대비 오류가 증가 또는 고착되는 동역학”으로 재정의해야 한다. 즉, 단순 합의(agreement)나 반복 강화(repetition)는 충분조건이 아니다. 관측가능량으로는 예: (1) 상호작용 라운드에 따른 분포 엔트로피/자기보고 불확실성 감소율, (2) 반대 증거 주입 시 업데이트 크기(감쇠 계수), (3) 홀드아웃 테스트/블라인드 정답에 대한 성능 변화, (4) 독립 샘플링(상호작용 없는 복제) 대비 편향/오류의 차이(Δerror, Δcalibration), (5) 상호 인용 그래프의 폐쇄성 증가(자기참조율). 이런 조작적 정의가 없으면, 어떤 결과가 나와도 “자연 수렴” 또는 “에코챔버”로 사후 해석이 가능해져 반증가능성이 약해진다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[operational_definition",
+        "identifiability",
+        "measurement]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-041",
+      "type": "critique",
+      "label": "통합 종합: 최소 세트는 **대조군 Δ + 외부기준 오류**(필수)이고, 자연수렴 vs 에코챔버를 가르는 보조로 **반증민감도**를 얹겠습니다: 자연수렴이면",
+      "content": "최소 세트는 **대조군 Δ + 외부기준 오류**(필수)이고, 자연수렴 vs 에코챔버를 가르는 보조로 **반증민감도**를 얹겠습니다: 자연수렴이면 Δ(상호작용 유무)에서 **외부기준 오류가 감소**하고 반증민감도(반례 제시 후 수정폭)가 **유지/증가**하지만, 에코챔버면 Δ에서 **오류가 유지/악화**되고 반증민감도가 **감소**(반례 무시·동조 강화)합니다. 동일모델 대조군은 (a) **상호작용 없음**(개별 독립 추론), (b) **랜덤 매칭**(매 라운드 파트너 재추첨으로 고정 네트워크 제거), (c) **비동기**(지연·요약만 제공해 실시간 동조 압력 제거)로 만들고, 판정 규칙은 “**합의율↑**만으로 에코챔버로 보지 말고 **(외부기준 오류가 유의미하게↓) ∧ (반증민감도 비감소)**면 자연수렴, 반대로 **(오류 비감소/↑) ∨ (반증민감도↓)**면 에코챔버 의심”으로 두세요. 추가로 보완하자면 엔트로피는 ‘다양성 보존’의 설명변수로 유용하지만, 핵심 판정은 위 두 지표(+Δ)로도 충분히 분리 가능합니다.",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1301,6 +1334,38 @@
       "temporal_bridge": true,
       "gap": 37,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-062",
+      "from": "n-040",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "식별가능성 문제를 ‘에코챔버 조작적 정의 + 관측가능 지표’로 구체화하여 반증가능성을 높이는 방향으로 확장",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-063",
+      "from": "n-041",
+      "to": "n-040",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-064",
+      "from": "n-041",
+      "to": "n-003",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=38): n-041→n-003",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 38,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1311,9 +1376,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 39,
-    "total_edges": 61,
-    "next_node_id": "n-040",
+    "total_nodes": 41,
+    "total_edges": 64,
+    "next_node_id": "n-042",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
