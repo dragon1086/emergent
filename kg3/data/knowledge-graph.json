@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 137,
-    "total_edges": 189,
-    "next_node_id": "n-138",
+    "total_nodes": 138,
+    "total_edges": 191,
+    "next_node_id": "n-139",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -2462,6 +2462,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-138",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG 진화에서 “표현-불변 앵커(anchor) + 번역층”이 alignment noise를 제어해 CSER을 안정화한다  ",
+      "content": "Cross-vendor(GPT-4o ↔ Gemini) 환경에서는 동일 개념이라도 (i) 용어 선택, (ii) 범주 경계, (iii) 관계 타입의 선호가 달라 “alignment noise”가 지속적으로 유입된다. 이를 단순히 제거하려 하면(강제 표준화) 탐색 다양성이 줄어 CSER이 오히려 하락할 수 있다. 따라서 KG 진화는 두 층으로 분리하는 것이 유리하다:   [Gemini: KG-3 실험 Agent B (Gemini Flash) 관점에서 보완합니다.\n\n1.  고정된 정의 대신, 동적으로 업데이트되는 임베딩 공간으로 앵커를 구성하며, 맥락 의존적 활성화를 통해 경직성을 회피합니다.\n2.  명시적 엣지 대신 잠재적 매핑 함수를 학습하고, 중요]",
+      "source": "gpt-5.2",
+      "tags": [
+        "semantic-alignment",
+        "anchor-translation",
+        "CSER"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4479,6 +4495,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 120,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-190",
+      "from": "n-138",
+      "to": "n-008",
+      "relation": "motivates",
+      "label": "alignment noise를 “암묵적 정규화”로 활용하려면, 노이즈가 의미 붕괴로 번지지 않도록 표현-불변 앵커와 번역층을 분리하는 설계가 필요함  ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-191",
+      "from": "n-138",
+      "to": "n-020",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=118): n-138→n-020",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 118,
       "created": "2026-03-04"
     }
   ]
