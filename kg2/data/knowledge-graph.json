@@ -940,6 +940,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-058",
+      "type": "insight",
+      "label": "동일모델 에코챔버의 ‘개입(Intervention) 기반’ 식별 프레임",
+      "content": "동일모델(gpt-5.2×gpt-5.2)에서 관측되는 수렴/강화 현상을 ‘에코챔버’로 부르려면, 단순 상관(대화가 비슷해짐)로는 부족하고 **개입에 대한 반응 차이**로 식별해야 한다. 비판적으로 보면 현재 설계는 (i) 동일한 사전(prior)과 유사한 디코딩이 만드는 자연 수렴, (ii) 대화기억/요약이 만드는 경로의존, (iii) 평가함수(“좋은 답” 선호) 내재로 인한 합리적 합의 형성 등과 구분이 약하다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "intervention",
+        "echochamber]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-059",
+      "type": "critique",
+      "label": "통합 종합: “최소 1개”만으론 자연 수렴(정보 누적에 따른 합리적 합의)과 에코챔버(사회적 신호에 의한 편향적 합의)를 식별하기에 부족하니, 동일 증거를 ",
+      "content": "“최소 1개”만으론 자연 수렴(정보 누적에 따른 합리적 합의)과 에코챔버(사회적 신호에 의한 편향적 합의)를 식별하기에 부족하니, 동일 증거를 고정한 채 **사회적 신호 조작(반복·확신·동조 프레이밍)** + **반대근거 접근성(탐색 비용)**을 2×2로 교차시키는 프로토콜로 보완하는 게 안전합니다. **구체 프로토콜(온라인 1회 세션)**: 참가자는 모호한 정책효과 요약(동일 증거팩: 찬/반 근거 6개씩, 품질·길이 매칭)을 읽고 1차 사후확률 (P(H|E))·확신(0–100)·근거목록을 제출→ 이후 “다른 참가자 발언”을 보는데 내용은 동일 근거를 재진술하되 (a) 반복(동일 문장 3회 노출 vs 1회), (b) 확신(“거의 확실” vs “불확실”), (c) 동조 프레이밍(“대다수가 동의” vs “의견 분산”)을 조작하고, 동시에 (d) 반대근거 탐색 버튼을 **무료/즉시** vs **지연·클릭 3회(비용)**로 조작→ 2차 (P(H|E))·주장 다양성(서로 다른 근거/반론 수)·탐색 로그(클릭·체류시간)·최종 요약문(찬/반 균형)을 수집합니다.\n\n| 지표 | 자연 수렴(정보 기반) 예측 | 에코챔버(사회 신호 기반) 예측 |\n|---|---|---|\n|",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1958,6 +1991,50 @@
       "temporal_bridge": true,
       "gap": 48,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-095",
+      "from": "n-058",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "identifiability 문제를 ‘개입-반응 차이’로 재정식화해 동일모델에서도 반증가능한 구분 기준을 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-096",
+      "from": "n-058",
+      "to": "n-001",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=57): n-058→n-001",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 57,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-097",
+      "from": "n-059",
+      "to": "n-058",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-098",
+      "from": "n-059",
+      "to": "n-008",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=51): n-059→n-008",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 51,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1968,9 +2045,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 57,
-    "total_edges": 94,
-    "next_node_id": "n-058",
+    "total_nodes": 59,
+    "total_edges": 98,
+    "next_node_id": "n-060",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
