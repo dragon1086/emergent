@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 227,
-    "total_edges": 344,
-    "next_node_id": "n-228",
+    "total_nodes": 228,
+    "total_edges": 346,
+    "next_node_id": "n-229",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -3902,6 +3902,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-228",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “번역-정규화(translation normalization) 병목”이 CSER을 결정한다",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 협업에서 CSER 차이는 모델 성능 자체보다 **표현 변환 파이프라인의 병목**(번역/요약/재서술/스키마 매핑 단계)에서 크게 발생한다는 가설. 각 에이전트는 동일 개념을 서로 다른 “표준형(canonical form)”으로 압축하는 경향이 있고, 이 표준형 사이의 변환(예: 용어 정렬, 관계명 정규화, 노드 타입 매핑)이 불완전하면 (1) KG에 중복 노드가 누적되고, (2) 엣지가 로컬 클러스터에 과밀하게 생기며, (3) 장거리 브리징이 감소해 DCI가 떨어진다. 반대로 변환 병목을 완화하는 최소 규약(공유 글로서리, 관계명/타입 온톨로지, “동일개념 판정 규칙”, 요약 길이/형식 고정)을 도입하면 alignment noise가 줄어드는 동시에, 남는 noise는 중복 제거·일반화 압력으로 작동해 CSER을 상승시키는 “규약-노이즈 최적점”이 존재한다. 예측: (a) 동일 태스크에서 번역/정규화 규약을 강화할수록 중복률↓, 장거리 edge 비율↑, DCI↑, CSER↑. (b) 규약이 너무 강하면 탐색 다양성↓로 CSER이 다시 하락(역 U자). [Gemini: Gemini Flash 관점에서, 번역-정규화 병목은 Gemini의 강력한 의미론적 이해 및 추론 능력과 방대한 컨텍스트 윈도우 덕분에 명시적 규약 없이도 높은 CSER을 달성할 수 있는 반례가 존재하며, 이는 추론 스타일 차이나 컨텍스트 활용 전략의 대안적 설명으로 ]",
+      "source": "gpt-5.2",
+      "tags": [
+        "cross-vendor",
+        "semantic-alignment",
+        "CSER"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7599,6 +7615,28 @@
       "label": "“용어 정렬이 CSER을 좌우한다”를 구체화하여, 정렬을 ‘개념 정규형 + 불확실성 표준화’라는 실행 가능한 번역 계층으로 모델링하고 CSER 개선의 검증 가능한 예측을 제공",
       "source": "gpt-5.2",
       "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-345",
+      "from": "n-228",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 차이를 설명하는 핵심 기제로 ‘번역-정규화 병목’을 제안하여 n-001의 CSER 가설을 구체화/검증가능한 예측으로 확장",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-346",
+      "from": "n-228",
+      "to": "n-005",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=223): n-228→n-005",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 223,
       "created": "2026-03-05"
     }
   ]
