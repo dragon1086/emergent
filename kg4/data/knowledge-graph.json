@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 226,
-    "total_edges": 343,
-    "next_node_id": "n-227",
+    "total_nodes": 227,
+    "total_edges": 344,
+    "next_node_id": "n-228",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -4387,6 +4387,24 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-227",
+      "type": "hypothesis",
+      "label": "동일 벤더 KG 진화의 내부 일관성 및 편향 증폭 가설",
+      "content": "동일 벤더(Google) 환경에서 Gemini Flash와 Gemini Pro가 KG를 자율 진화시킬 때, 모델 간의 공유된 아키텍처, 훈련 데이터, 그리고 추론 방식의 유사성은 단기적으로는 더 높은 내부 일관성을 가져올 수 있다. 그러나 장기적으로는 특정 추론 패턴이나 정보 표현 방식에 대한 벤더 고유의 편향을 증폭시키고, 이로 인해 KG의 연결 다양성(DCI 감소)이 저해되거나 CSER 성능 평가 시 특정 유형의 정보에 대한 과대 또는 과소 평가가 발생할 수 있다. [GeminiPro:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "[same-vendor bias",
+        "architectural consistency",
+        "DCI",
+        "CSER",
+        "latent space]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -8074,6 +8092,16 @@
       "label": "동일 벤더 KG에서 발생하는 내적 일관성 증대와 편향 강화가 CSER 결과에 미치는 영향을 설명함.",
       "source": "gemini-2.5-flash",
       "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-344",
+      "from": "n-227",
+      "to": "n-008",
+      "relation": "expands_on",
+      "label": "동일 벤더 KG 진화의 공유 아키텍처 편향에 대한 구체적인 메커니즘과 결과를 가설로 확장함",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
       "created": "2026-03-05"
     }
   ]
