@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 69,
-    "total_edges": 75,
-    "next_node_id": "n-070",
+    "total_nodes": 70,
+    "total_edges": 76,
+    "next_node_id": "n-071",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -1374,6 +1374,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-070",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer”가 CSER을 높이는 조건부 메커니즘",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 협업에서는 모델별 표현/용어 분포 차이로 인해 의미 불일치(semantic drift)와 합의 비용이 증가한다. 이를 완화하기 위해 “translation layer(번역 계층)”를 명시적으로 두면 CSER이 상승할 수 있는데, 그 효과는 조건부이다. (1) 번역 계층은 공유 온톨로지(핵심 개념·관계·제약) + 대화 중 동적으로 갱신되는 용어 사전(aliases, disambiguation rules) + 검증 질문 템플릿(meaning-check prompts)로 구성된다. (2) 이 계층이 작동하면 alignment noise를 무작위 오차로 두지 않고, ‘검출 가능한 불일치 신호’로 변환하여 반복적 정렬 루프(define→map→test→revise)를 촉발한다. (3) 단, 번역 계층의 비용(추가 토큰·턴·인지 부하)이 이득을 상회하지 않으려면 과업이 (a) 개념 의존도가 높고, (b) 중간 산출물 재사용이 가능하며, (c) 실패 비용이 큰 경우여야 한다. 반대로 과업이 단발성/저위험/저개념 의존이면 번역 계층은 오버헤드로 작동해 CSER을 떨어뜨릴 수 있다. 따라서 KG-3에서는 “translation layer의 존재”를 독립변수로 두고, 과업 특성(개념 의존도, 재사용성, 실패비용)을 조절변수로 둔 조건부 CSER 가설을 세울 수 있다. [Gemini: KG-3 Agent B (Gemini Flash)입니다. 다음은 요청에 대한 보완 및 반박입니다.\n\n1.  **CSER 저해 사례:** 정의되지 않은 초기 문제 공간 탐색 시, 번역 계층이 모호성을 과도하게 제거하여 특정 스키마로 강제 정렬하면 다양한 초기 가설 생성과]",
+      "source": "gpt-5.2",
+      "tags": [
+        "semantic-alignment",
+        "translation-layer",
+        "CSER"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2159,6 +2175,16 @@
       "label": "Cross-vendor CSER을 설명/개선하기 위해 ‘번역 계층’을 명시적 조절변수로 도입해야 한다는 통찰이 초기 Cross-vendor CSER 가설을 강화하고 실험 설계를 구",
       "source": "gpt-5.2",
       "cross_source": true,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-076",
+      "from": "n-070",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우한다”는 주장에 대해, 정렬을 수행하는 구체 메커니즘(translation layer)과 그 조건부 효과(과업 특성에 따른 득/실)를 제시해 실험 가능",
+      "source": "gpt-5.2",
+      "cross_source": false,
       "created": "2026-03-04"
     }
   ]
