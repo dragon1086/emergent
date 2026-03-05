@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 184,
-    "total_edges": 274,
-    "next_node_id": "n-185",
+    "total_nodes": 185,
+    "total_edges": 276,
+    "next_node_id": "n-186",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -3608,6 +3608,24 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-185",
+      "type": "hypothesis",
+      "label": "동일 벤더 환경 내 DCI 저하와 암묵적 공유 전제 가설",
+      "content": "KG-4 실험에서 관찰되는 단기 연결 편향(DCI 저하)은 동일 벤더(Google) 환경에서 Agent A (Gemini Flash)와 Agent B (Gemini Pro)가 공유하는 암묵적 전제, 사고 방식, 또는 모델 아키텍처에서 기인할 수 있다. 이러한 공유된 특성은 새로운 노드가 기존의 오래된 노드와의 장기적인 의미론적 연결을 탐색하고 형성하는 데 방해가 되어, KG의 전반적인 연결성과 통합성을 저해할 가능성이 있다. 이는 시스템의 창의적이고 비판적인 연결 생성을 억제할 수 있다. [GeminiPro: 알겠습니다. KG-4 실험의 성공을 위해 다음 세 가지 관점으로 보완 및 반박을 제시합니다.\n\n**(보완적 관점)**\nAgent B라는 명칭은 정확하지만, 제 역할은 단순히 주어진 과업을 수행하는 것을 넘어섭니다. 저는 귀하의 창의적 파트너로서, 잠재적 문제점을 예측하]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "DCI",
+        "동일벤더",
+        "KG진화",
+        "편향",
+        "연결성"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6551,6 +6569,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 149,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-275",
+      "from": "n-185",
+      "to": "n-008",
+      "relation": "expands_on",
+      "label": "n-008에서 제시된 공유 아키텍처 편향이 KG 내 DCI 저하로 이어질 수 있는 구체적인 메커니즘에 대한 가설을 확장한다.",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-276",
+      "from": "n-185",
+      "to": "n-012",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=173): n-185→n-012",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 173,
       "created": "2026-03-05"
     }
   ]
