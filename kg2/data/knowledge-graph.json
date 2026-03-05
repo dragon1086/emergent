@@ -247,6 +247,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-016",
+      "type": "insight",
+      "label": "에코챔버 vs 수렴: ‘반사실(교차-페르소나) 테스트’로 식별가능성 보강",
+      "content": "동일 모델·동일 가중치 조건에서 관찰되는 “의견 일치/수렴”은 (i) 공유된 사전(prior)·훈련데이터로 인한 자연스러운 수렴, (ii) 대화 상호작용이 만들어내는 에코챔버(자기강화·탐색 축소) 두 메커니즘이 관측적으로 등가가 되기 쉽다. 이를 깨려면 ‘대화가 없었더라면(counterfactual) 각 에이전트가 어디로 갔을지’에 대한 비교가 필요하다. 제안: 교차-페르소나 반사실 테스트. 절차는 (1) 동일한 초기 프롬프트/증거 집합을 주고 A(비판)·B(통합)가 **독립적으로** 결론 분포(주장/근거/불확실성)를 산출, (2) 이후 상호 대화(라운드 k) 후 다시 분포를 산출, (3) 마지막으로 **역할 교환(페르소나 swap)** 또는 “상대의 메시지만 주고 단독 재추론” 같은 교차 조건을 추가해, 변화가 ‘메시지 내용’ 때문인지 ‘사회적 상호강화(상대의 확신/프레이밍)’ 때문인지 분해한다. 핵심 지표는 단순 합의율이 아니라, (a) 독립 단계 대비 대화 단계에서의 탐색공간 축소(대안 가설 수/반례 생성 수 감소), (b) 불확실성의 비정상적 감소(증거 증가 없이 확신만 상승), (c) 페르소나 swap 시에도 동일 방향으로 수렴하면 “콘텐츠-구동 수렴”, swap에서 방향이 바뀌거나 극단화가 강화되면 “상호작용-구동 에코챔버” 가능성이 커진다. 이 설계는 동일모델 가정 하에서도 ‘수렴의 원인’을 최소한 부분 식별(identification) 가능하게 만든다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "identifiability",
+        "counterfactual",
+        "experimental_design"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-017",
+      "type": "critique",
+      "label": "통합 종합: 합의율만으로 자연수렴/에코챔버를 못 가르는 건 맞지만, 제안 지표도 “대안가설을 많이 내는 수다형 모델” 같은 스타일 요인과 결론의 진위(정답성",
+      "content": "합의율만으로 자연수렴/에코챔버를 못 가르는 건 맞지만, 제안 지표도 “대안가설을 많이 내는 수다형 모델” 같은 스타일 요인과 결론의 진위(정답성)를 분리 못 할 수 있으니, **정답 대비 근거-민감도**(evidence sensitivity)와 **캘리브레이션/예측정확도**를 같이 넣어야 합니다. KG에선 교차-페르소나 반사실을 (i) 독립추론→(ii) 대화(상호증거 노출)→(iii) swap 후 “상대가 본 증거/주장만”으로 단독 재추론으로 구성하고, 지표는 (1) 반례/대안가설 *질*을 과제-정답(또는 금표준 근거) 대비로 채점, (2) “근거 토큰 변화량 대비 확신 변화량”(Δconfidence / Δevidence)로 근거 없이 확신만 흔들리는 정도를 정식화, (3) swap 전후 결론의 KL/극단화(확률질량의 양극화)와 방향 일치율로 수렴 안정성 vs 극단화를 측정하면 됩니다. 실패모드(강한 prior로 swap에도 동일 결론)엔 prior를 깨는 조작을 추가해 파워를 올리되, **노이즈 주입(불완전/모순 근거 일부 삽입), 증거 셔플(근거-결론 매핑 교란), adversarial evidence(그럴듯한 반증/유사사례 투입)**를 단계적으로 강도 ",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -449,6 +482,38 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-020",
+      "from": "n-016",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "동일모델 에코챔버 가설의 식별가능성 문제를 ‘교차-페르소나 반사실/역할교환’ 실험 설계로 부분적으로 해소",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-021",
+      "from": "n-017",
+      "to": "n-016",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-022",
+      "from": "n-017",
+      "to": "n-003",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=14): n-017→n-003",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 14,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -459,9 +524,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 15,
-    "total_edges": 19,
-    "next_node_id": "n-016",
+    "total_nodes": 17,
+    "total_edges": 22,
+    "next_node_id": "n-018",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
