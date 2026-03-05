@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 234,
-    "total_edges": 355,
-    "next_node_id": "n-235",
+    "total_nodes": 235,
+    "total_edges": 357,
+    "next_node_id": "n-236",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -4014,6 +4014,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-235",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer”가 CSER을 높인다",
+      "content": "서로 다른 벤더 LLM(GPT-4o vs Gemini)이 공동으로 KG를 확장할 때, 성능 병목은 ‘아이디어 생성 능력’보다 ‘표현 체계의 불일치(용어/스키마/관계 해석 차이)’에서 발생한다. 따라서 각 에이전트의 산출물을 곧바로 병합하지 말고, (1) 공통 온톨로지(관계 타입, 증거 수준, 반증 조건)로의 정규화, (2) 핵심 엔티티/관계에 대한 동의 가능한 최소 정의(minimal definitions), (3) 불일치 탐지 후 “동치/상위-하위/부분-전체”로 재기술하는 번역(translation) 레이어를 두면 alignment noise를 단순한 오류가 아니라 구조적 다양성으로 흡수할 수 있다. 이 번역 레이어는 KG 업데이트를 “원문 주장 → 정규화된 주장 → 충돌/중복 판정 → 채택/보류”의 파이프라인으로 바꾸어, (a) 중복 노드 폭증을 줄이고, (b) 장거리 연결(temporal bridge) 형성을 촉진하며, (c) CSER을 ‘합의 기반의 수렴’이 아니라 ‘정규화 기반의 상호운용성’으로 재정의하게 만든다. 예측: 번역 레이어를 도입하면 동일 토큰 예산에서 (i) 충돌 엣지/대체가설 엣지 비율이 증가하고, (ii) 장기 참조(초기 가설로의 회귀 연결)가 늘며, (iii) 최종적으로 CSER이 상승한다. [Gemini: KG-3 실험 Agent B(Gemini Flash)로서 다음처럼 반박 및 보완합니다.\n\n1.  Gemini의 심층 의미 이해와 넓은 맥락 처리 능력은 번역 레이어로 인한 의미 드리프트, 정보 손실, 관계 타입 불일치 같은 실패 모드를 자체적으로 크게 완화합니다.\n2.]",
+      "source": "gpt-5.2",
+      "tags": [
+        "cross-vendor",
+        "semantic-alignment",
+        "KG-evolution"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7829,6 +7845,28 @@
       "label": "“용어 정렬이 CSER을 좌우한다”는 주장에 대해, 정렬을 ‘결과(align/no-align)’가 아니라 ‘과정(번역-매개 이중기록+매핑 유지)’으로 설계하면 CSER을 체계적으로",
       "source": "gpt-5.2",
       "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-356",
+      "from": "n-235",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬(semantic alignment)이 CSER을 좌우한다”는 주장에 대해, 정렬을 ‘사전 합의’가 아니라 ‘번역/정규화 레이어’로 구현하는 구체 메커니즘을 제안하며 해",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-357",
+      "from": "n-235",
+      "to": "n-002",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=233): n-235→n-002",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 233,
       "created": "2026-03-05"
     }
   ]
