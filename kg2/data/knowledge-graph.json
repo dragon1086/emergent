@@ -82,6 +82,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-006",
+      "type": "insight",
+      "label": "동일모델-에코챔버 측정의 ‘대안가설 과잉’ 문제(모형미지정)",
+      "content": "동일 모델(gpt-5.2) 두 에이전트 상호작용에서 관측되는 “수렴/합의/자기강화”를 에코챔버로 귀속하려면, 경쟁하는 대안가설들을 먼저 닫아야 한다. 그런데 현재 설계는 대안가설 공간이 과잉으로 열려 있어(underdetermined) 식별가능성이 약하다. 핵심은 관측 가능한 현상(대화가 진행될수록 의견 분포가 좁아짐, 반대증거 탐색 감소, 동일 주장 재순환 등)이 에코챔버 특유의 메커니즘(선택적 노출·확증편향·상호강화·배제) 때문인지, 아니면 단순한 “공유된 생성 편향/최적화 목표”의 부산물인지 구분하기 어렵다는 점이다. 구체적 대안가설 예시는 다음과 같다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "alternative-hypotheses",
+        "causal-design]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-007",
+      "type": "critique",
+      "label": "통합 종합: 요청이 과밀합니다: “최소 3개 가설+각 1개 판별실험+자연 수렴 vs 에코챔버 예측 차이”를 3문장에 담으면 핵심 조작·지표가 누락되니, 우선",
+      "content": "요청이 과밀합니다: “최소 3개 가설+각 1개 판별실험+자연 수렴 vs 에코챔버 예측 차이”를 3문장에 담으면 핵심 조작·지표가 누락되니, 우선 **가설 3개와 각 실험을 한 줄씩**으로 압축하고(필요하면 후속에서 확장) “자연 수렴은 노출 다양성↑에도 수렴 지속, 에코챔버는 다양성↑/배제↓에서 수렴 붕괴(분산↑)”를 공통 판별축으로 삼겠습니다.  \n① **자연 수렴(공유 환경·목표·보상으로 동일 해 도달)**: *예측* 노출 다양성/상호배제 조작에 둔감, 동일 과제·보상 구조면 수렴 유지; *실험* 개입=정보 노출 다양성(무작위 다원 vs 동질)×배제(차단/차단없음), 대조=동질+차단없음, 지표=출력 유사도(embedding cosine), 해의 다양성(클러스터 수), 성능(정답률) — 자연 수렴이면 다양성↑에도 유사도 유지·성능↑, 에코챔버면 다양성↑에서 유사도↓·다양성↑.  \n② **에코챔버 메커니즘(선택적 노출/배제/강화학습적 편향)**: *예측* 동질 노출·배제 강할수록 수렴 가속, 반대 개입(반대견해 강제노출·배제금지) 시 수렴 약화; *실험* 개입=피드/메모리/리트리벌에 “반대 클러스터 최소 k개 포함” 강제 vs “유사도 상위만” 선택, 대조=",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -124,6 +157,26 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-005",
+      "from": "n-006",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "identifiability 문제를 ‘대안가설 과잉(underdetermination)’ 관점에서 정식화하고, 에코챔버 메커니즘 귀속을 위해 필요한 판별 실험/개입의 방향을 제시",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-006",
+      "from": "n-007",
+      "to": "n-006",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -134,9 +187,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 5,
-    "total_edges": 4,
-    "next_node_id": "n-006",
+    "total_nodes": 7,
+    "total_edges": 6,
+    "next_node_id": "n-008",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
