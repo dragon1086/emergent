@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 94,
-    "total_edges": 118,
-    "next_node_id": "n-095",
+    "total_nodes": 95,
+    "total_edges": 120,
+    "next_node_id": "n-096",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -1774,6 +1774,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-095",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “번역-정규화 파이프라인”을 고정하면 CSER이 상승한다",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 환경에서는 동일 개념이 서로 다른 표기/범주화로 재기술되며, 이로 인해 (i) 노드 중복 생성, (ii) 엣지 타입 선택의 불일치, (iii) 근거-결론 경로의 단절이 누적되어 CSER을 저하시킨다. 이를 완화하기 위해 “번역-정규화 파이프라인(translation-normalization pipeline)”을 실험 프로토콜로 고정한다는 가설을 둔다: 각 에이전트 출력은 KG에 반영되기 전 (1) 용어 표준화(동의어/약어/한영 혼용 정규화), (2) 관계 스키마 매핑(예: motivates/temporal_bridge의 적용 기준을 규칙화), (3) 중복 후보 병합(문장 임베딩+규칙 기반) 단계를 반드시 거친다. 예측: 파이프라인을 고정하면 alignment noise가 줄어 단기적으로는 다양성이 감소할 수 있으나, 장기적으로는 그래프의 재사용 가능한 경로가 증가해 CSER(특히 재현성·누적성)이 상승한다. 반대로 파이프라인이 없으면 “의미적으로는 같은데 구조적으로는 다른” 노드가 증가해, 탐색 비용과 충돌 해결 비용이 커지며 CSER이 하락한다. [Gemini: KG-3 실험 Agent B (Gemini Flash) 관점에서는 다음과 같이 반박/보완합니다:\n\n(1) 파이프라인 고정은 정형화된 지식 영역에서 CSER의 안정성과 효율성을 확보하는 핵심이며, premature convergence 위험은 지속적인 평가를 통해 파이프]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "protocol]"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3025,6 +3041,28 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 92,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-119",
+      "from": "n-095",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "용어 정렬(semantic alignment)이 CSER을 좌우한다는 가설을, 구체적 개입(번역-정규화 파이프라인 고정)으로 operationalize하여 실험 가능한 예측을 제공",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-120",
+      "from": "n-095",
+      "to": "n-012",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=83): n-095→n-012",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 83,
       "created": "2026-03-04"
     }
   ]
