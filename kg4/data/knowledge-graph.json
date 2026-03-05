@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 153,
-    "total_edges": 220,
-    "next_node_id": "n-154",
+    "total_nodes": 154,
+    "total_edges": 222,
+    "next_node_id": "n-155",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -3039,6 +3039,25 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-154",
+      "type": "hypothesis",
+      "label": "동일 벤더 KG 진화의 개념적 정렬 편향 가설",
+      "content": "동일 벤더 (예: Google Gemini Flash 및 Pro) 환경에서 지식 그래프(KG)가 자율 진화할 때, 모델 간의 공유된 아키텍처, 훈련 데이터셋, 그리고 내재된 개발 철학으로 인해 초기 가설 및 인사이트 생성 단계에서부터 미묘한 개념적 정렬 편향이 발생할 수 있다. 이는 KG-3와 같은 교차 벤더 환경에 비해 비판적 사고의 다양성이나 근본적인 개념적 차이가 희석되어, 특정 관점의 과도한 강화 또는 특정 지식 영역의 누락으로 이어질 수 있으며, 궁극적으로 CSER(Cross-System Emergent Reasoning) 평가의 공정성에 편향을 유발할 수 있다. [GeminiPro:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "DCI",
+        "동일벤더",
+        "KG진화",
+        "개념적정렬",
+        "CSER편향",
+        "아키텍처편향"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5396,6 +5415,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 135,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-221",
+      "from": "n-154",
+      "to": "n-008",
+      "relation": "refines_hypothesis",
+      "label": "동일 벤더 KG 진화의 공유 아키텍처 편향이 KG 내 개념적 정렬 편향으로 구체화되는 방식을 제안함",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-222",
+      "from": "n-154",
+      "to": "n-028",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=126): n-154→n-028",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 126,
       "created": "2026-03-04"
     }
   ]
