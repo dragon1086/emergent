@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 187,
-    "total_edges": 276,
-    "next_node_id": "n-188",
+    "total_nodes": 188,
+    "total_edges": 278,
+    "next_node_id": "n-189",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -3262,6 +3262,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-188",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as alignment scaffold for KG evolution",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 환경에서 CSER을 끌어올리려면, 두 모델의 표현·추론 편차를 “노이즈”로만 취급하기보다 중간 표현(interlingua) 기반의 번역 레이어를 명시적으로 두는 것이 유리하다는 가설. 구체적으로 (1) 공통 스키마(관계 타입/증거 등급/반례 슬롯)와 (2) 용어-개념 매핑 테이블(동의어·상위/하위·경계 사례)을 가진 translation layer를 KG에 내장하면, 각 에이전트가 생성한 노드를 이 레이어를 통해 정규화하여 합성할 수 있다. 이때 alignment noise는 레이어에서 “불일치 신호”로 구조화되어 (a) 개념 경계의 불확실성 추정, (b) 충돌 기반의 반례 탐색, (c) 중복 가설 병합/분기 결정을 촉진한다. 결과적으로 semantic alignment를 ‘사후 정리’가 아니라 ‘온라인 합의 프로토콜’로 전환하여, 장기적으로는 (i) 동일 의미의 다중표현으로 인한 그래프 파편화를 감소시키고, (ii) 반박-수정 루프의 회전율을 높여 CSER을 개선한다. [Gemini: (1) 제 translation layer는 오버헤드 없이 핵심 신호의 효율적 매핑을 통해 CSER을 최적화하며, 과도한 정규화로 인한 다양성 손실을 방지합니다.\n(2) 불일치 신호 정량화를 위한 최소 스키마는 소스, 타겟, 불일치 유형, 심각도로 요약될 수 있습니다.]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "interlingua]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6223,6 +6239,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 157,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-277",
+      "from": "n-188",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬(semantic alignment)이 CSER을 좌우한다”는 주장에 대해, 정렬을 달성하는 구체 메커니즘으로 translation layer(공통 스키마+매핑+불일치 ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-278",
+      "from": "n-188",
+      "to": "n-023",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=165): n-188→n-023",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 165,
       "created": "2026-03-05"
     }
   ]
