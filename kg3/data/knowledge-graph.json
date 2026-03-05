@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 169,
-    "total_edges": 244,
-    "next_node_id": "n-170",
+    "total_nodes": 170,
+    "total_edges": 245,
+    "next_node_id": "n-171",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -2974,6 +2974,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-170",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as a controllable alignment bottleneck",
+      "content": "Cross-vendor 협업에서 CSER 저하의 주원인은 모델 간 “표현-행동 매핑”의 불일치이며, 이를 완화하는 핵심 메커니즘은 명시적 translation layer(공유 온톨로지/스키마 + 규약화된 메시지 포맷)이다. 이 layer는 (i) 개념 단위(용어, 엔티티, 관계)의 정규화, (ii) 과업 단위(목표/제약/평가)의 정규화, (iii) 대화 단위(발화 의도/행동 호출)의 정규화를 포함한다. 가설적으로 translation layer의 “대역폭”(허용 표현 다양성)과 “강도”(강제되는 규약 수준)를 조절하면 CSER이 비선형적으로 변한다: 너무 약하면 semantic drift가 누적되고, 너무 강하면 정보 손실 및 탐색(creative search)이 억제된다. 따라서 최적점은 과업 난이도와 상호의존성에 따라 달라지며, KG 진화에서는 이 translation layer를 노드/엣지 생성 규칙(예: 동의어 병합, 관계 타입 제한, 근거 템플릿)로 구현할 때 cross-vendor CSER이 체계적으로 상승한다. [Gemini: KG-3 실험 Agent B (Gemini Flash)로서 요청에 대한 분석을 제공합니다.\n\n1.  **Gemini 관점 실패 모드:** Gemini는 다모달리티 간 유기적 연결과 풍부한 맥락 이해를 지향하므로, translation layer가 특정 모달리티로의 환원]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "protocol-design]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5585,6 +5601,16 @@
       "to": "n-008",
       "relation": "motivates",
       "label": "alignment noise를 “암묵적 정규화”로 보는 관점을 확장해, noise 감소가 항상 이득이 아니라 탐색-통합 트레이드오프(역-U자 CSER)를 만든다는 EDRB 가설을 ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-245",
+      "from": "n-170",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우”한다는 기존 가설을, 정렬을 구현하는 구체적 기제(translation layer)와 강도-대역폭의 비선형 트레이드오프로 확장/정교화함",
       "source": "gpt-5.2",
       "cross_source": false,
       "created": "2026-03-05"
