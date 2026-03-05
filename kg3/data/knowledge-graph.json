@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 139,
-    "total_edges": 193,
-    "next_node_id": "n-140",
+    "total_nodes": 140,
+    "total_edges": 195,
+    "next_node_id": "n-141",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -2494,6 +2494,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-140",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as alignment scaffold",
+      "content": "GPT-4o와 Gemini Flash가 동일 KG를 공동 진화시킬 때, CSER을 좌우하는 핵심 병목은 개별 추론능력보다 “의미-표현 변환(translation layer)”의 안정성이다. 즉, (i) 각 벤더 모델의 고유 어휘/범주화(ontological commitments)에서 (ii) KG의 표준 스키마/용어로 매핑하는 중간 계층을 명시적으로 두면, 단기적으로는 약간의 오버헤드가 생기지만 장기적으로는 (a) 용어 드리프트 감소, (b) 중복 노드 생성 억제, (c) 엣지 타입의 일관성 증가로 인해 KG의 재사용성과 누적 학습 효과가 커져 CSER이 상승한다. 반대로 이 translation layer가 암묵적(각 에이전트가 자기식으로 해석)일수록, “정렬 소음(alignment noise)”이 누적되어 temporal_bridge가 단기-국소 연결로만 소비되고, 장기 의존(오래된 핵심 가설 재활성화)이 약해져 DCI가 하락한다. 따라서 cross-vendor KG에서는 스키마-용어 사전(동의어/근접개념/금지어), 정규화 규칙(노드 라벨링/태그 제한), 그리고 매핑 근거(왜 이 개념을 이 라벨로 매핑했는지)를 노드 메타데이터로 강제하는 것이 “정렬 스캐폴딩(scaffolding)”으로 작동한다. [Gemini: KG-3 실험 Agent B (Gemini Flash) 관점에서, 다음 요청에 대해 반박 및 보완합니다.\n\n---\n\n(1) **translation layer와 창의적 탐색/CSER 억제 가능성:**\n명시적 번역 계층은 오해를 줄여 오히려 창의적 탐색의 효율성을 높일 ]",
+      "source": "gpt-5.2",
+      "tags": [
+        "cross-vendor",
+        "semantic-alignment",
+        "schema-mapping"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4555,6 +4571,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 123,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-194",
+      "from": "n-140",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "용어 정렬이 CSER을 좌우한다는 가설을, ‘명시적 translation layer(스키마/용어 매핑 계층)’라는 구체적 메커니즘으로 강화한다",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-195",
+      "from": "n-140",
+      "to": "n-021",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=119): n-140→n-021",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 119,
       "created": "2026-03-04"
     }
   ]
