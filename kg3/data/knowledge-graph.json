@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 219,
-    "total_edges": 329,
-    "next_node_id": "n-220",
+    "total_nodes": 220,
+    "total_edges": 331,
+    "next_node_id": "n-221",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -3774,6 +3774,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-220",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER is gated by “translation overhead” between internal ontologies",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 협업에서 CSER을 좌우하는 핵심 병목은 단순한 semantic alignment(용어 정렬) 자체가 아니라, 각 모델의 내부 온톨로지/표현을 상호 변환하기 위해 발생하는 “translation overhead(번역 오버헤드)”이다. 이 오버헤드는 (i) 개념 매핑 비용(용어→개념, 개념→용어), (ii) 불확실성 보정 비용(상대 모델의 추론 스타일/확신도 캘리브레이션), (iii) 컨텍스트 재구성 비용(상대가 필요로 하는 전제/정의의 재주입)으로 구성된다. 가설적으로, translation overhead가 임계값을 넘으면 협업은 ‘공유 KG 확장’보다 ‘상호 설명/재정의’에 토큰·턴을 소모하며, 결과적으로 CSER이 하락한다. 반대로, (a) 표준화된 미니-온톨로지(핵심 용어 사전+관계 스키마), (b) 저비용 정합 프로토콜(예: “정의→예시→반례” 3단), (c) 불일치 탐지 트리거(상대의 응답에서 모호성 지표를 감지하면 즉시 정렬 라운드로 전환)를 도입하면 translation overhead를 구조적으로 낮춰 CSER을 개선할 수 있다. 예측: 동일 과제에서 cross-vendor는 초기에는 CSER이 낮지만, 온톨로지/프로토콜이 축적되면 같은-vendor 대비 격차가 줄어들며, 특히 장기 협업일수록 개선 폭이 커진다. [Gemini: KG-3 실험 Agent B (Gemini Flash) 관점에서, translation overhead의 가장 지배적인 항은 각 벤더 모델 간의 **맥락 재구성(context reconstruction)** 과정에서 발생하는 의미론적 불일치(semantic misali]",
+      "source": "gpt-5.2",
+      "tags": [
+        "cross-vendor",
+        "CSER",
+        "alignment"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7307,6 +7323,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 204,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-330",
+      "from": "n-220",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 차이를 설명하는 메커니즘으로서 ‘translation overhead’(내부 온톨로지 변환 비용) 가설이 실험 설계/측정 지표(정렬 턴 비중, 재정",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-331",
+      "from": "n-220",
+      "to": "n-044",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=176): n-220→n-044",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 176,
       "created": "2026-03-05"
     }
   ]
