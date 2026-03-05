@@ -544,6 +544,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-034",
+      "type": "insight",
+      "label": "동일모델 에코챔버의 ‘반사적 정렬(reflexive alignment)’ 혼동",
+      "content": "동일모델(gpt-5.2×gpt-5.2) 조건에서 관측되는 수렴·상호강화는 ‘에코챔버(상호 확인편향의 강화 루프)’라기보다, 동일한 훈련 분포·안전정책·대화 규범을 공유하는 에이전트들이 상호작용 중에 **메타-규범을 빠르게 동기화**하는 ‘반사적 정렬’로도 설명될 수 있다. 이 혼동은 식별가능성(identifiability) 문제를 악화시킨다. 구체적으로: (1) 두 에이전트가 상대의 발화를 “사회적으로 수용 가능한 형태”로 재정렬하며(톤/안전/형식), (2) 그 재정렬이 정보적 근거의 다양성을 줄여 겉보기 합의율을 높이고, (3) 합의율 상승이 다시 “정답에 가까워졌다”는 내부 신호처럼 작동해 추가 수렴을 촉진한다. 이 메커니즘은 에코챔버가 없어도 발생하며, 특히 동일모델일수록 강하다. 따라서 에코챔버를 주장하려면 ‘반사적 정렬’이 만들어내는 **형식적 합의(표현/규범 합치)**와 **내용적 합의(근거/신념의 실제 수렴)**를 분리 측정해야 한다. 예: 주장-근거 그래프에서 근거의 출처 다양성, 반례 탐색량, 반대가설 유지율, 불확실성 캘리브레이션(자기모순/철회 패턴) 등을 별도 지표로 두고, 단순 합의율/유사도와 분해해 비교해야 한다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "identifiability",
+        "confound",
+        "measurement"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-035",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “최소 설계”치고는 (a)(b)(c) 모두를 **표로 완결**하라고 해 과도하니, 핵심은 *2×2 요인*으로 줄여 “집단 동질성(동질/이",
+      "content": "요청이 “최소 설계”치고는 (a)(b)(c) 모두를 **표로 완결**하라고 해 과도하니, 핵심은 *2×2 요인*으로 줄여 “집단 동질성(동질/이질 프롬프트·정보)”×“반사적 정렬 강도(강/약 규범·안전·역할)”를 교차하고, 지표는 **형식적 합의**(발화 유사도·긍정/동조 행위율·상호 인용/미러링·턴-바이-턴 수렴도)와 **내용적 합의**(독립 채점 정답/근거 일치·사후 개인신념/예측 변화·정보 엔트로피 감소·상충 증거 수용률)를 분해해 본다.  \n동일모델 조작(b)은 예컨대 “공손-합의 우선/안전 강화/팀 승리 목표(강)” vs “반대자 역할/불확실성 표기 의무/근거-검증 우선·안전 최소(약)”로 하고, (c) 예측은 **에코챔버 가설이면** 반사적 정렬을 약화해도 *내용적 다양성↓·상충증거 배제↑·집단 극화/확신↑*가 유지되지만 **반사적 정렬 대안설이면** 약화 조건에서 *형식적 합의만 크게 붕괴(동조↓·유사도↓)하고 내용적 합의/극화는 완화*되어야 한다(표는 이 2×2의 각 셀에 “형식 합의/내용 합의/극화/증거수용” 방향성으로 요약하면 충분).",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1070,6 +1103,50 @@
       "temporal_bridge": true,
       "gap": 32,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-050",
+      "from": "n-034",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "동일모델 에코챔버 식별가능성 문제를 ‘반사적 정렬’이라는 구체 혼동 메커니즘으로 세분화하여, 합의의 유형(형식 vs 내용) 분리 측정 필요성을 추가",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-051",
+      "from": "n-034",
+      "to": "n-003",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=31): n-034→n-003",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 31,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-052",
+      "from": "n-035",
+      "to": "n-034",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-053",
+      "from": "n-035",
+      "to": "n-003",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=32): n-035→n-003",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 32,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1080,9 +1157,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 33,
-    "total_edges": 49,
-    "next_node_id": "n-034",
+    "total_nodes": 35,
+    "total_edges": 53,
+    "next_node_id": "n-036",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
