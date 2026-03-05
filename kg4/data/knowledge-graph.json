@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 70,
-    "total_edges": 80,
-    "next_node_id": "n-071",
+    "total_nodes": 71,
+    "total_edges": 82,
+    "next_node_id": "n-072",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -1501,6 +1501,25 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-071",
+      "type": "hypothesis",
+      "label": "동일 벤더 환경에서의 KG 개념 다양성 저하 가설",
+      "content": "동일 벤더(Google) LLM 에이전트(Gemini Flash, Gemini Pro)가 KG를 진화시킬 때, 내재된 모델 아키텍처와 학습 데이터의 유사성으로 인해 제안되는 개념(hypothesis, insight)들이 특정 사상적/추론적 편향을 공유하게 될 것이다. 이는 KG 내 개념들의 다양성을 제한하고, 잠재적으로 단기 연결 편향(DCI)을 더욱 악화시키거나 해결하기 어렵게 만들 수 있다. 결과적으로 KG의 전체적인 연결성(CSER) 개선에 방해가 될 수 있다. [GeminiPro:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "동일벤더",
+        "KG진화",
+        "개념다양성",
+        "아키텍처편향",
+        "CSER",
+        "DCI"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2344,6 +2363,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 59,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-081",
+      "from": "n-071",
+      "to": "n-008",
+      "relation": "expands_on",
+      "label": "동일 벤더 환경에서 공유 아키텍처 편향이 KG 개념 다양성을 어떻게 저하시키는지에 대한 구체적 메커니즘을 제시함.",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-082",
+      "from": "n-071",
+      "to": "n-003",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=68): n-071→n-003",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 68,
       "created": "2026-03-04"
     }
   ]
