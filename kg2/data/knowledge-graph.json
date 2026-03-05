@@ -379,6 +379,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-024",
+      "type": "insight",
+      "label": "동일모델-다중페르소나 실험의 ‘공유표현’ 혼동(Shared-representation confound)",
+      "content": "동일 모델(gpt-5.2) 간 에코챔버를 검증하려면 “상호작용이 믿음/지식 상태를 자기강화적으로 편향시키는가”를 봐야 한다. 그러나 동일모델-다중페르소나 조건에서는 에코챔버로 관측되는 수렴/강화가 사실 (i) 동일 파라미터가 유도하는 공통 잠재표현(shared latent representation), (ii) 유사한 최적화된 대화전략(협력적 정합성/정중한 합의), (iii) 동일한 안전/정렬 정책이 만드는 금지·회피 영역의 겹침 때문에 발생할 수 있다. 이 경우 관측되는 “합의의 증가”는 상호 영향에 의한 편향 강화가 아니라, 초기부터 공유된 표현공간에서의 자연스러운 투영(projection) 결과일 뿐이다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "identifiability",
+        "confound",
+        "causal-signature"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-025",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “동일모델”만을 전제하면 에코챔버가 **모델 고유 편향**인지 **상호작용(피드백)으로 증폭된 편향**인지 식별이 흐려지므로, 독립 대조",
+      "content": "요청이 “동일모델”만을 전제하면 에코챔버가 **모델 고유 편향**인지 **상호작용(피드백)으로 증폭된 편향**인지 식별이 흐려지므로, 독립 대조군 외에 **(i) 동일모델·상호작용 차단(메모리/요약/사용자프로필 OFF), (ii) 이질모델 상호작용(교차검증), (iii) 랜덤화된 반증노이즈 주입**까지 최소 3×2 요인으로 잡아 차감·상호작용항을 분리해야 합니다.  \n측정 프레임은 (1) **차감 지표 세트**: 주제/입장 분포의 편향(stance entropy↓, KL to baseline↑), 근거 다양성(출처/논거 유형 entropy↓), 불확실성 보정(ECE↑, 과신률↑), 반증탐색(반대근거 요청/인용 비율↓), 자기일관성 강박(자기참조·재진술률↑)을 독립 생성 대비 Δ로 보고; (2) **동학 서명**: 시간 t에 대해 위 지표의 기울기(Δ′)와 가속도(Δ′′)가 0보다 유의하게 커지고(증폭), 동시에 반증탐색↓·과신↑가 동반되는 “coupled drift”를 에코챔버 서명으로 판정(예: 3개 이상 지표가 연속 k스텝 단조 악화 + 사전등록 임계치 초과).  \n(3) **반증 주입 프로토콜**은 스텝마다 고정비율 p로 “강한 반증 패킷(핵심 반례+대",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -721,6 +754,38 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-033",
+      "from": "n-024",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "identifiability 문제를 ‘공유표현 혼동’으로 구체화하고, 대화-의존적 인과 서명으로 구분해야 함을 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-034",
+      "from": "n-024",
+      "to": "n-004",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=20): n-024→n-004",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 20,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-035",
+      "from": "n-025",
+      "to": "n-024",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -731,9 +796,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 23,
-    "total_edges": 32,
-    "next_node_id": "n-024",
+    "total_nodes": 25,
+    "total_edges": 35,
+    "next_node_id": "n-026",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
