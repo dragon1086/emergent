@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 77,
-    "total_edges": 94,
-    "next_node_id": "n-078",
+    "total_nodes": 78,
+    "total_edges": 96,
+    "next_node_id": "n-079",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -1629,6 +1629,24 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-078",
+      "type": "hypothesis",
+      "label": "동일 벤더 환경 내 KG 진화의 내재적 일관성 증대 가설",
+      "content": "동일한 벤더(Google)의 모델(Gemini Flash, Gemini Pro)이 Knowledge Graph를 진화시킬 때, 공유된 아키텍처, 훈련 데이터셋, 그리고 내부 지식 표현 방식의 유사성으로 인해 노드 간의 일관성이 높게 유지되며, 이는 KG-3(교차 벤더)보다 낮은 CSER(Consistency, Stability, Efficiency, Robustness) 지표를 보일 수 있다. 특히, 개념적 불일치나 충돌이 적고, 상호 보완적인 확장이 용이할 것으로 예상된다. [GeminiPro:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "same-vendor",
+        "consistency",
+        "CSER",
+        "KG-evolution",
+        "Gemini-family"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2626,6 +2644,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 68,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-095",
+      "from": "n-078",
+      "to": "n-001",
+      "relation": "posits_explanation_for",
+      "label": "동일 벤더 환경에서의 CSER 개선이 내재적 일관성 증대 가설에 의해 설명될 수 있음을 제시",
+      "source": "gemini-2.5-flash",
+      "cross_source": true,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-096",
+      "from": "n-078",
+      "to": "n-002",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=76): n-078→n-002",
+      "source": "gemini-2.5-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 76,
       "created": "2026-03-04"
     }
   ]
