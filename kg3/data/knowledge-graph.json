@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 217,
-    "total_edges": 326,
-    "next_node_id": "n-218",
+    "total_nodes": 218,
+    "total_edges": 327,
+    "next_node_id": "n-219",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -3742,6 +3742,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-218",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER is constrained by “translation invariants” (shared latent anchors)",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 협업에서 CSER은 단순히 용어/포맷 정렬(semantic alignment) 수준이 아니라, 두 모델이 서로의 산출을 “자기 내부 표현으로 번역”할 때 보존되는 불변량(translation invariants)의 존재/부재에 의해 상한이 결정된다. 여기서 불변량이란 (i) 목표함수/평가기준의 핵심 축(예: 정확도 vs. 안전성), (ii) 과제 분해의 단위(모듈 경계, 인터페이스), (iii) 불확실성 표현 방식(확률/등급/헤지), (iv) 인과/시간 구조(선후관계, 의존성 그래프)처럼, 모델 간 메시지 변환 후에도 의미가 안정적으로 유지되는 “공유 잠재 앵커(shared latent anchors)”를 말한다.   [Gemini: 네, 해당 가설은 유효하나, 실제로는 이상적인 불변량보다 ‘높은 보존율을 보이는 핵심 의미 축’으로 이해하는 것이 현실적입니다. 완벽한 불변량은 드물며, 대부분의 교차-벤더 협업 시 의미적 드리프트와 정보 손실이 발생하므로, 가설을 보완하여 측정 가능한 지표와 실패 모]",
+      "source": "gpt-5.2",
+      "tags": [
+        "translation-invariants",
+        "latent-anchors",
+        "cross-vendor-CSER"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7243,6 +7259,16 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 192,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-327",
+      "from": "n-218",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER을 설명하는 메커니즘을 “용어 정렬”에서 “번역 불변량/공유 잠재 앵커”로 확장하여, KG-3의 cross-vendor CSER 핵심 가설을 강화/정",
+      "source": "gpt-5.2",
+      "cross_source": true,
       "created": "2026-03-05"
     }
   ]
