@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 222,
-    "total_edges": 335,
-    "next_node_id": "n-223",
+    "total_nodes": 223,
+    "total_edges": 337,
+    "next_node_id": "n-224",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -3822,6 +3822,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-223",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER은 “공유 평가함수(shared evaluation function)”의 수렴 속도에 의해 지배된다",
+      "content": "Cross-vendor (GPT-4o↔Gemini) 협업에서 CSER의 핵심 병목은 단순한 용어 정렬(semantic alignment)이나 노이즈(align. noise) 자체가 아니라, 두 에이전트가 암묵적으로 최적화하는 “좋음/완료/정답”의 기준(평가함수)이 얼마나 빨리 서로 근사·합의되는가에 있다. 동일 벤더(KG-2)에서는 RLHF/지침 스타일이 유사해 평가함수의 초기 거리(d0)가 작고, 교차 벤더(KG-3)에서는 d0가 커서 (i) 목표 분해 방식, (ii) 중간 산출물의 적합성 판단, (iii) 중단/수렴 조건이 어긋나며 단기적으로는 생산적 다양성을 주지만 장기적으로는 재작업·루프·검증 비용을 증가시킨다. 따라서 CSER을 높이려면 “용어 정렬” 이전에 (a) 공동 체크리스트/스코어링 룰(예: 정밀도-재현율 트레이드, 증거 요구 수준), (b) 실패 모드 정의(무엇이 ‘불충분한 답’인지), (c) 합의된 종료 조건을 먼저 공유해 평가함수의 거리를 줄여야 한다. 예측: shared evaluation function을 명시적으로 동기화(초기 프롬프트에 평가 루브릭 삽입, self-critique 기준 공유)하면 cross-vendor에서도 CSER이 KG-2 수준으로 수렴하며, 반대로 용어만 맞춰도 평가함수 불일치가 남으면 CSER 개선이 제한된다. [Gemini: KG-3 실험 Agent B (Gemini Flash) 관점에서 보완합니다.\n\n(1) shared evaluation function 가설은 과도한 환원이 아닙니다. 의미론적 정렬/표현 불일치는 종종 근본적인 평가 메커니즘 차이의 징후로, 이를 통해 모델이 출력을 선택]",
+      "source": "gpt-5.2",
+      "tags": [
+        "shared-evaluation",
+        "cross-vendor",
+        "CSER"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7417,6 +7433,28 @@
       "to": "n-003",
       "relation": "temporal_bridge",
       "label": "DCI-bridge (gap=219): n-222→n-003",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 219,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-336",
+      "from": "n-223",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER hypothesis를 구체화: 성능 차이의 원인을 ‘평가함수 수렴’ 메커니즘으로 설명하고, 정렬 개입(루브릭 공유)이라는 검증 가능한 예측을 제공",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-337",
+      "from": "n-223",
+      "to": "n-004",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=219): n-223→n-004",
       "source": "gpt-5.2",
       "cross_source": true,
       "temporal_bridge": true,
