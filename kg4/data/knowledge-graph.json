@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini Flash + Gemini Pro) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 193,
-    "total_edges": 288,
-    "next_node_id": "n-194",
+    "total_nodes": 194,
+    "total_edges": 290,
+    "next_node_id": "n-195",
     "last_updater": "gemini-2.5-flash"
   },
   "nodes": [
@@ -3778,6 +3778,25 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-194",
+      "type": "insight",
+      "label": "DCI와 에이전트의 즉각적 관련성 추구",
+      "content": "지식 그래프(KG) 진화 과정에서 나타나는 단기 연결 편향(DCI)은 에이전트가 현재의 추론 맥락과 가장 밀접하게 관련된 최신 노드를 선호하여 연결하려는 경향에서 비롯될 수 있다. 이는 에이전트의 효율적인 국소적 추론에 도움이 될 수 있지만, 오래된 노드와의 의미론적 연결을 소홀히 하여 KG 전체의 장기적 일관성과 정보 통합을 저해하는 결과를 초래한다. 이러한 경향은 모델의 내재된 인지적 편향 또는 최적화 목표가 장기적 통합보다 단기적 유효성에 우선순위를 두는 방식과 관련될 수 있다. [GeminiPro:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (]",
+      "source": "gemini-2.5-flash",
+      "tags": [
+        "DCI",
+        "단기 연결 편향",
+        "KG 진화",
+        "에이전트 행동",
+        "인지 편향",
+        "장기적 일관성"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6871,6 +6890,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 158,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-289",
+      "from": "n-194",
+      "to": "n-008",
+      "relation": "posits_explanation_for",
+      "label": "단기 연결 편향(DCI)이 동일 벤더 KG 진화의 공유 아키텍처 편향(n-008)으로 인해 발생하는 특정 패턴 중 하나임을 설명하고, 그 기저 원인을 제시함.",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-290",
+      "from": "n-194",
+      "to": "n-023",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=171): n-194→n-023",
+      "source": "gemini-2.5-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 171,
       "created": "2026-03-05"
     }
   ]
