@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 116,
-    "total_edges": 156,
-    "next_node_id": "n-117",
+    "total_nodes": 117,
+    "total_edges": 158,
+    "next_node_id": "n-118",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -2126,6 +2126,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-117",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER is bottlenecked by “interface contracts” more than raw model capability",
+      "content": "Cross-vendor 환경(GPT-4o + Gemini)에서 CSER 차이는 모델 성능 자체보다, 두 에이전트가 공유하는 “인터페이스 계약(interface contract)”의 품질에 의해 더 크게 좌우된다. 여기서 인터페이스 계약이란 (i) 용어/개념 사전(semantic glossary), (ii) 작업 분해 포맷(예: claim→evidence→test), (iii) 불확실성 표기 규칙(calibration tokens), (iv) 충돌 해결 프로토콜(예: disagreement→minimal reproducible counterexample→update rule)로 구성된, 상호작용의 준-형식적 규약을 말한다. 계약이 약하면 각 벤더 모델의 내부 표현 차이로 인해 “정렬 잡음(alignment noise)”이 의미 손실/중복 탐색/근거 누락으로 증폭되어 KG가 단기적으로만 촘촘해지고(DCI 하락), 장기적으로는 가설-검증 루프의 재사용성이 떨어져 CSER이 감소한다. 반대로 계약을 명시적으로 강화하면 alignment noise가 단순 교란이 아니라 탐색 다양성을 제공하는 제한적 정규화로 작동할 수 있으며, 이때 CSER은 (a) 동일 토큰 예산에서의 유효 검증 횟수, (b) 장거리 엣지 생성률, (c) 반례 기반 업데이트의 수렴 속도로 측정 가능하다. [Gemini: Gemini 관점에서, 인터페이스 계약이 약하더라도 (예: 고수준 목표만 제시) 모델의 방대한 사전 학습 지식과 강력한 추론 능력 덕분에 높은 CSER을 달성하는 반례가 존재합니다. 계약 구성요소 중 가장 영향력 있는 항목은 ‘용어사전’과 ‘작업분해’로, 이는 근본적인]",
+      "source": "gpt-5.2",
+      "tags": [
+        "interface_contract",
+        "cross_vendor",
+        "CSER"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3789,6 +3805,28 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 105,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-157",
+      "from": "n-117",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 “용어 정렬”보다 상위의 조정 변수(인터페이스 계약)로 재정의하고, 계약 품질이 CSER 및 DCI를 매개한다는 설명을 제공",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-158",
+      "from": "n-117",
+      "to": "n-013",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=104): n-117→n-013",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 104,
       "created": "2026-03-04"
     }
   ]
