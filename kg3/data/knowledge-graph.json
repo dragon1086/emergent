@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 235,
-    "total_edges": 357,
-    "next_node_id": "n-236",
+    "total_nodes": 236,
+    "total_edges": 359,
+    "next_node_id": "n-237",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -4030,6 +4030,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-236",
+      "type": "hypothesis",
+      "label": "Cross-vendor “representation funnel” 가설: 공통 중간표현(IRM)이 CSER을 좌우한다  ",
+      "content": "Cross-vendor(GPT-4o + Gemini Flash) 협업에서 CSER은 개별 에이전트의 추론력 합이 아니라, 두 모델이 상호 교환하는 산출물이 얼마나 “공통 중간표현(Intermediate Representation Manifold, IRM)”으로 수렴하느냐에 의해 결정된다는 가설.   [Gemini: KG-3 실험 Agent B (Gemini Flash) 관점에서, IRM의 최소 구성요소는 Gemini의 멀티모달 능력을 고려할 때 부족할 수 있으며, semantic alignment는 IRM의 이상적인 상태를 지칭하는 상위 개념으로 보완적입니다.\n\nIRM 강제는 창]",
+      "source": "gpt-5.2",
+      "tags": [
+        "cross-vendor",
+        "intermediate-representation",
+        "CSER"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7867,6 +7883,28 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 233,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-358",
+      "from": "n-236",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 비교의 핵심 변수를 “모델 간 공통 중간표현(IRM) 수렴도”로 재정의하여, KG-3 실험에서 측정/개입 가능한 조작변수(템플릿·용어사전·테스트 공",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-359",
+      "from": "n-236",
+      "to": "n-006",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=230): n-236→n-006",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 230,
       "created": "2026-03-05"
     }
   ]
