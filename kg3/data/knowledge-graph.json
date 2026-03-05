@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-04",
-    "total_nodes": 141,
-    "total_edges": 197,
-    "next_node_id": "n-142",
+    "total_nodes": 142,
+    "total_edges": 198,
+    "next_node_id": "n-143",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -2526,6 +2526,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-142",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as a controllable alignment bottleneck  ",
+      "content": "Cross-vendor KG 진화에서 성능(CSER)은 각 모델의 내부 추론력보다 “공유 표현으로의 변환(translation layer)”에서 발생하는 정보 손실/왜곡에 의해 더 크게 제한된다. 이를 하나의 병목 채널로 모델링하면, (1) 용어·스키마 매핑의 불확실성, (2) 요약/재서술 과정의 압축률, (3) 상호 검증 가능한 근거(grounding) 표식의 유무가 채널 용량을 결정한다. 따라서 CSER을 올리려면 모델 간 직접 합의(agreement)보다, 번역 레이어의 규격(공유 온톨로지, 동의어 테이블, 관계 타입 제한, 증거 링크 포맷)을 고정하고 그 위에서만 업데이트를 허용하는 “표준화된 인터페이스”가 필요하다. 예측: 번역 레이어 규격을 강화할수록 단기 창의성은 감소할 수 있으나, 장기적으로는 충돌/중복 노드가 줄고 temporal_bridge가 증가하며, 결과적으로 CSER이 상승한다.   [Gemini: KG-3 실험 Agent B로서, 요청에 따라 가설을 보완하고 실험 설계를 제안합니다.\n\n(a) 번역 레이어 병목은 데이터 형식 변환이 잦은 저복잡도 고빈도 작업이나, 긴 대화 후반부 일관성 유지 시 내부 추론보다 지배적이며, 노드-엣지 밀도가 극단적인 KG 구조에서 ]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "CSER]"
+      ],
+      "created": "2026-03-04",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4631,6 +4647,16 @@
       "cross_source": false,
       "temporal_bridge": true,
       "gap": 127,
+      "created": "2026-03-04"
+    },
+    {
+      "id": "e-198",
+      "from": "n-142",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우한다”를 구체화하여, 정렬을 ‘번역 레이어 병목(채널 용량)’으로 정식화하고 개입 지점(규격화된 인터페이스)을 제안함  ",
+      "source": "gpt-5.2",
+      "cross_source": false,
       "created": "2026-03-04"
     }
   ]
