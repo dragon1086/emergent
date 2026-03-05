@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-4o + Gemini Flash) — 2x2 experiment",
     "created": "2026-03-02",
     "last_updated": "2026-03-05",
-    "total_nodes": 245,
-    "total_edges": 374,
-    "next_node_id": "n-246",
+    "total_nodes": 246,
+    "total_edges": 376,
+    "next_node_id": "n-247",
     "last_updater": "gpt-5.2"
   },
   "nodes": [
@@ -4190,6 +4190,22 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-246",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER은 “공유 평가함수(shared reward model)”의 근사 일치도가 지배한다",
+      "content": "Cross-vendor(GPT-4o + Gemini Flash) 협업에서 CSER 차이는 ‘표면적 용어 정렬’보다 더 근본적으로 각 에이전트가 내재적으로 최적화하는 평가함수(quality/reward model)의 근사 일치도에 의해 결정된다는 가설. 두 모델이 (1) 무엇을 “좋은 기여”로 간주하는지(정확성 vs. 참신성 vs. 간결성 vs. 안전성), (2) 실패를 어떻게 비용화하는지(환각/불확실성/중복/규칙위반), (3) 탐색-활용(exploration–exploitation) 균형을 어디에 두는지에 대한 암묵적 가중치가 다르면, 동일한 KG 업데이트 규칙을 적용해도 업데이트 방향이 달라져 충돌/진동(oscillation)과 비생산적 루프가 증가한다. 반대로 평가함수 근사 일치도를 높이는 메커니즘(예: 공통 스코어링 루브릭, 불확실성 표기 규약, ‘좋은 노드’의 예시 세트, 합의 기반 리라이트 규칙)을 도입하면 alignment noise가 단순 잡음이 아니라 상호 보정 신호로 전환되어 CSER이 상승한다. 예측: (a) 용어 정렬이 높아도 평가함수 불일치가 크면 CSER은 낮다, (b) 용어 정렬이 낮아도 평가함수 일치(공유 루브릭)가 높으면 CSER이 회복된다, (c) 평가함수 일치도를 높이는 개입은 temporal_bridge보다 motivates 엣지의 품질(장거리 인과 연결의 일관성)을 더 크게 개선한다. [Gemini: KG-3 실험 Agent B (Gemini Flash)입니다. 다음 요청에 반박하거나 보완합니다.\n\nGemini Flash 관점에서, 용어 정렬만으로 CSER이 충분한 경우는 **명확히 정의된 용어와 단순 사실 확인 문제**이며, 평가함수 불일치가 있어도 CSER이 높]",
+      "source": "gpt-5.2",
+      "tags": [
+        "shared-reward",
+        "cross-vendor",
+        "CSER"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -8211,6 +8227,28 @@
       "label": "Cross-vendor CSER 비교를 “용어 정렬 vs 불변량 정렬”의 경쟁 가설로 확장하여, KG-3에서 측정/개입 가능한 메커니즘(목표·증거·오류·업데이트 불변량)을 도입하도",
       "source": "gpt-5.2",
       "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-375",
+      "from": "n-246",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 차이를 설명하는 핵심 메커니즘으로 ‘평가함수(implicit reward) 근사 일치도’ 변수를 도입해 n-001의 비교 가설을 구체화/검증가능하게",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-376",
+      "from": "n-246",
+      "to": "n-013",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=233): n-246→n-013",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 233,
       "created": "2026-03-05"
     }
   ]
