@@ -824,6 +824,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-051",
+      "type": "insight",
+      "label": "동일모델·다중페르소나 “에코챔버”의 최소 식별 조건: 반사실(카운터팩추얼) 비교 설계 없이는 불가",
+      "content": "동일 모델(gpt-5.2) 두 인스턴스에 상이한 페르소나만 부여한 조건에서 관측 로그만으로 “에코챔버가 자율 진화했다”를 식별하려면, 단순한 유사도 증가나 합의 강화 같은 현상 지표로는 원천적으로 부족하다. 이유는 (i) 공통 사전학습/정렬로 인한 기본 분포의 높은 상관, (ii) 동일 프롬프트·동일 작업 구조가 만드는 기계적 수렴(공통 앵커), (iii) 대화가 진행될수록 정보가 공유되어 후속 발화가 조건부로 동조하는 ‘정상적 베이지안 업데이트’와 에코챔버의 구분 불능 때문이다. 따라서 에코챔버를 “대안/반증 후보의 체계적 소거 + 확신/극단성의 비정상적 증가”로 정의하더라도, 이를 주장하려면 최소한 다음과 같은 반사실 비교(대조군)가 필요하다: (1) 동일 초기 조건에서 ‘상호작용 없음’(독립 생성) 대비 ‘상호작용 있음’의 차이, (2) 페르소나 교차(critic↔synthesizer) 혹은 역할 셔플로 인한 결과 불변성/민감도, (3) 동일 정보량을 주되 상호 피드백 채널만 제거/노이즈 처리한 조건. 이 대조가 없으면 관측된 “반증 후보 감소”나 “합의 강화”는 단지 정보 공유로 인한 조건부 엔트로피 감소(정상 학습)일 수 있으며, 에코챔버의 자율 진화라는 인과 주장으로는 비약이다. 결론적으로, KG 진화 실험은 ‘관측지표(유사도·합의)’ 중심에서 ‘반사실 대비 효과(상호작용이 추가로 만들어낸 편향)’ 중심으로 재정의되어야 하며, 식별가능성은 설계(대조군/교차/차단)에서만 회복된다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "counterfactual",
+        "experimental_design]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-052",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “최소 대조군”이라면 상호작용 차단/역할 교차/동일 정보량 유지보다 더 근본적인 **‘노출 다양성(출처·관점) 통제’**가 빠지면 에코챔",
+      "content": "요청이 “최소 대조군”이라면 상호작용 차단/역할 교차/동일 정보량 유지보다 더 근본적인 **‘노출 다양성(출처·관점) 통제’**가 빠지면 에코챔버 효과를 상호작용 구조와 혼동할 수 있으니, 최소 2~3개는 **노출 다양성 고정 vs 변조**를 포함해야 합니다.  \n\n| 대조군(최소 설계) | 반증 후보 다양성 | 확신도/극단성 | 자기-타자 인용 루프 비율 |\n|---|---:|---:|---:|\n| **상호작용 차단**(개별 독립 작성; 노출 동일) | ↑ | ↓ | ↓ |\n| **노출 다양성 저하**(출처/관점 단일화; 상호작용 동일) | ↓ | ↑ | ↑ |\n| **역할 교차**(찬↔반/스틸맨 의무; 정보량·노출 동일) | ↑ | ↓ | ↓ |",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1686,6 +1719,38 @@
       "temporal_bridge": true,
       "gap": 46,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-081",
+      "from": "n-051",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "운영적 비식별성 주장(n-007)을 “반사실 비교 설계 없이는 인과적 에코챔버 주장 불가”라는 최소 식별 조건/설계 요구로 구체화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-082",
+      "from": "n-051",
+      "to": "n-002",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=49): n-051→n-002",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 49,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-083",
+      "from": "n-052",
+      "to": "n-051",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1696,9 +1761,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 50,
-    "total_edges": 80,
-    "next_node_id": "n-051",
+    "total_nodes": 52,
+    "total_edges": 83,
+    "next_node_id": "n-053",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
