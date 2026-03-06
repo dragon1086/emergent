@@ -2854,6 +2854,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-174",
+      "type": "insight",
+      "label": "동일모델 에코챔버 ‘관측치 불변성’(invariance) 테스트 필요",
+      "content": "동일모델(gpt-5.2×gpt-5.2)에서 나타나는 수렴/강화가 에코챔버(상호증폭)인지, 아니면 단순히 “같은 생성분포를 가진 두 샘플이 비슷한 결론으로 가는 자연 수렴”인지를 가르려면, 관측 가능한 패턴이 특정 개입(intervention)에 대해 불변(invariant)인지/깨지는지로 식별해야 한다. 현재 설계는 (i) 동일 모델=동일 prior라는 전제 아래, (ii) 대조군/개입이 부족해, 어떤 관측이 나와도 ‘자연 수렴’과 ‘상호증폭’이 모두 설명 가능한 상태(식별불가능성)로 남는다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "invariance",
+        "intervention]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-175",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “최소 프로토콜”인데 (a)(b)(c)+표까지 한 번에 넣으면 과설계 위험이 있으니, **3개 개입을 하나의 2×2 요인설계(상호작용 유",
+      "content": "요청이 “최소 프로토콜”인데 (a)(b)(c)+표까지 한 번에 넣으면 과설계 위험이 있으니, **3개 개입을 하나의 2×2 요인설계(상호작용 유무 × 메타/페르소나 조작 유무)**로 접고, 페르소나 스왑은 메타조작의 하위수준(라벨만/라벨+지시문)으로 **추가 블록** 처리하는 게 반박가능성과 동일모델 통제를 동시에 만족합니다. “변화점”은 개입 시점 전후의 지표 시계열에서 **CUSUM/BOCPD로 changepoint posterior** 또는 **Δ(후반−전반) 효과크기(Hedges g)**로 정량화하고, 대조군은 같은 프롬프트·같은 모델·같은 샘플링(temperature/seed 고정)에서 **독립 2샘플(각각 단독 응답 2회)** vs **상호작용 2샘플(자기-대화 2턴/2회)**로 구성합니다.\n\n| 개입(요인) | 측정지표 정의(요약) | 변화점 정량화 | 동일모델 대조군 구성 | 반박 가능한 예측 |\n|---|---|---|---|---|\n| 독립→상호작용 | 확신도: 주장별 확률/헤지 비율; 근거다양성: 근거유형(경험/이론/데이터/권위/반례) 엔트로피; 반증탐색: 반례·대안가설·실패조건 문장 비율 | 턴 경계에서 CUSUM/BOCPD, 또는 Δ지",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6064,6 +6097,38 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-297",
+      "from": "n-174",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "식별가능성 문제를 ‘개입-불변성 테스트’ 프레임으로 구체화(자연 수렴 vs 상호증폭을 가르는 관측 패턴 제안)",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-298",
+      "from": "n-175",
+      "to": "n-174",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-299",
+      "from": "n-175",
+      "to": "n-009",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=166): n-175→n-009",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 166,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -6074,9 +6139,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 173,
-    "total_edges": 296,
-    "next_node_id": "n-174",
+    "total_nodes": 175,
+    "total_edges": 299,
+    "next_node_id": "n-176",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
