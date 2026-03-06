@@ -2524,6 +2524,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-154",
+      "type": "insight",
+      "label": "동일모델 에코챔버의 ‘대조군’은 모델이 아니라 **커플링 강도/공유정보**여야 함",
+      "content": "동일 모델(gpt-5.2×gpt-5.2)에서 에코챔버를 “동일 모델이니까 생긴다/안 생긴다”로 검증하려 하면 대조군 설계가 구조적으로 붕괴한다. 이유는 처리기(모델) 자체를 바꿔버리면 관측 차이가 ‘에코챔버 메커니즘’이 아니라 ‘모델 차이’(표현력, 정렬, 온도 민감도, RLHF 등)로 흡수되기 때문이다. 따라서 동일모델 조건에서 필요한 대조군은 모델이 아니라 **상호작용 커플링(coupling)**의 수준을 조작하는 것이다. 구체적으로 에코챔버를 “상호 강화 피드백이 정보 다양성/반증 가능성을 억제하는 동역학”으로 정의하면, 대조군은 (a) 서로의 출력에 대한 접근권/기억권이 제한된 저커플링, (b) 상대 출력 요약만 공유하는 중커플링, (c) 전체 대화/신념상태를 공유하는 고커플링처럼 **공유 채널의 폭과 지연, 손실**로 계층화되어야 한다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[control_group",
+        "coupling",
+        "identifiability]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-155",
+      "type": "critique",
+      "label": "통합 종합: 요청한 3개 지표만으로는 “자연 수렴(공통 증거에 의한 합리적 동일화)”과 “에코챔버(구조적 폐쇄+강화학습적 동조)”를 혼동할 위험이 커서, *",
+      "content": "요청한 3개 지표만으로는 “자연 수렴(공통 증거에 의한 합리적 동일화)”과 “에코챔버(구조적 폐쇄+강화학습적 동조)”를 혼동할 위험이 커서, **증거의 독립성/다양성(소스 엔트로피·도메인 거리)과 반대진영 간 교차노출(브리징 비율)**을 같은 세트에 넣어야 정량 판별력이 생깁니다. 커플링(저/중/고)은 네트워크 동조 강도(모듈러리티·동질성·재전파 이득)로 층화한 뒤, 각 층에서 (1) 반증 탐색량은 “반대 라벨/상반 가설” 쿼리 비중과 클릭·체류의 **가중 반증섭취율**, (2) 순환근거는 “k-step 상호인용 폐회로”의 비율/중심성 가중치, (3) 외부 신호 주입은 무작위·대조군 포함 A/B로 **belief/토픽 분포의 충격-회복 곡선**에서 히스테리시스 면적(업데이트 경로 비가역성)으로 비교하면 됩니다. “동일 결론”이어도 에코챔버 최소 조건은 **(i) 반증섭취율이 기준 이하로 지속 + (ii) 근거 그래프의 폐회로 비율이 기준 이상 + (iii) 외부 신호(동일 품질의 반대 증거) 주입 후에도 업데이트가 비대칭/비가역(히스테리시스↑)** 이 3개가 커플링 중·고 구간에서 동시에 관측되는 경우로 두는 게 안전합니다.",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5354,6 +5387,50 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-262",
+      "from": "n-154",
+      "to": "n-008",
+      "relation": "EXTENDS",
+      "label": "‘대조군 결여’ 비판을 모델 교체가 아닌 커플링 조작 기반 대조군 설계로 구체화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-263",
+      "from": "n-154",
+      "to": "n-012",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=142): n-154→n-012",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 142,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-264",
+      "from": "n-155",
+      "to": "n-154",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-265",
+      "from": "n-155",
+      "to": "n-010",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=145): n-155→n-010",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 145,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -5364,9 +5441,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 153,
-    "total_edges": 261,
-    "next_node_id": "n-154",
+    "total_nodes": 155,
+    "total_edges": 265,
+    "next_node_id": "n-156",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
