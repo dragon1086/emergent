@@ -2474,6 +2474,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-151",
+      "type": "insight",
+      "label": "동일모델-다중페르소나에서 “에코챔버”는 내생적 상관(공유 priors)로 과대검출될 수 있다",
+      "content": "동일 모델(gpt-5.2) 두 에이전트에 서로 다른 페르소나를 부여해도, 생성 과정은 (i) 동일한 사전분포/표현공간, (ii) 유사한 안전/정책 제약, (iii) 동일한 언어적 관습(그라이스적 협력, 정합성 압력)을 공유한다. 따라서 상호작용 중 관측되는 “합의 증가/유사도 증가/대안 소거”는 에코챔버의 결과라기보다 ‘공유된 내생적 상관(correlated priors)’이 드러난 것일 수 있다. 이때 문제는 단순한 identifiability를 넘어, 조작적 비식별성: 에코챔버가설(E)과 대체가설(C: 공통모델-공통정책에 의해 유사 결론이 수렴)은 동일한 로그 패턴(동일한 반례 회피, 유사한 정당화 구조, 비슷한 불확실성 표현)을 산출할 수 있다. 반증 가능성을 확보하려면 “상호작용이 없을 때의 기준선”이 아니라 “상호작용이 있어도 C가 예측하지 못하는 잔차 패턴”을 찾아야 한다. 예: (1) 페르소나 간 ‘반증 후보 생성 다양성’이 대화 라운드가 누적될수록 감소하는 정도가, 각 에이전트의 단독 자기대화(self-chat) 대비 추가로 감소하는지(차분-차분), (2) 합의가 늘어도 반증 후보의 커버리지(가설공간 탐색 폭)가 유지되는지, (3) 서로 다른 초기 시드/프롬프트 잡음에서 동일한 “합의 경로(path dependence)”로 수렴하는지(내생적 상관이면 경로가 더 안정적일 수 있음). 핵심은 “유사도 증가” 자체를 에코챔버 증거로 쓰면 C에 의해 설명되므로, 에코챔버의 고유 시그니처를 정의해야 한다: 상호 강화가 ‘반증 탐색 비용’을 체계적으로 올려 반례/대안이 구조적으로 소거되는 메커니즘이 로그에",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[non-identifiability",
+        "correlated-priors",
+        "operationalization]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-152",
+      "type": "critique",
+      "label": "통합 종합: 1) **동일-이웃 노출 이후 업데이트 규칙**: (a) 관측변수=사용자 i의 이웃집합 N(i) 고정 시점에서, 동일한 콘텐츠/프레이밍 x에 대",
+      "content": "1) **동일-이웃 노출 이후 업데이트 규칙**: (a) 관측변수=사용자 i의 이웃집합 N(i) 고정 시점에서, 동일한 콘텐츠/프레이밍 x에 대한 노출 직후 발화/반응(찬반·확신도·어휘분포) 변화량 Δy와 그 시차; (b) E는 이웃이 동질적일수록(콘텐츠 다양성↓) Δy가 ‘동일 방향’으로 누적 강화되고 반대 정보 노출 시에도 반발/무시 패턴이 커지며, C는 공유 priors/정책이 강하면 이웃 동질성과 무관하게 x의 증거력(품질/출처) 함수로 비교적 일관된 업데이트가 나타남; (c) 실패모드=콘텐츠 자체가 이미 한쪽 진영에만 의미를 갖는 신호(해석이 priors에 의해 결정)라면 E와 C 모두 “동일 방향 강화”를 예측.  \n\n2) **교차-커뮤니티 브리지 노출의 비대칭성 규칙**: (a) 관측변수=브리지 엣지(서로 다른 커뮤니티 간 팔로우/리플라이) 발생 시점, 그 경로를 통한 반대 진영 콘텐츠 유입량, 이후 상호작용률(클릭/리플라이/차단)과 감정/독성 변화; (b) E는 브리지 유입이 늘수록 회피·차단·조롱 같은 방어적 상호작용이 증가하고 네트워크가 더 분리(모듈성↑)되는 반면, C는 공통 정책/priors가 충분히 공유되면 브리지 유입이 갈등을 반드시",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5200,6 +5233,50 @@
       "temporal_bridge": true,
       "gap": 124,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-253",
+      "from": "n-151",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "n-007의 ‘판별 불능성’을 한 단계 구체화: 동일모델 공유 priors/정책이 만드는 내생적 상관이 에코챔버 신호를 과대검출하게 하며, 이를 깨기 위한 잔차-기반(차분-차분/경",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-254",
+      "from": "n-151",
+      "to": "n-023",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=128): n-151→n-023",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 128,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-255",
+      "from": "n-152",
+      "to": "n-151",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-256",
+      "from": "n-152",
+      "to": "n-019",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=133): n-152→n-019",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 133,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -5210,9 +5287,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 150,
-    "total_edges": 252,
-    "next_node_id": "n-151",
+    "total_nodes": 152,
+    "total_edges": 256,
+    "next_node_id": "n-153",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
