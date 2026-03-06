@@ -4355,6 +4355,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-265",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 누적 원인: “시간적 합의 붕괴(Temporal Consensus Collapse)”",
+      "content": "Cross-vendor 환경에서 KG가 자율 진화할 때 CSER이 저하되는 핵심 메커니즘 중 하나는 단일 턴의 표현 불일치가 아니라, 시간에 따라 축적되는 “합의 기준(agreement basis)”의 붕괴이다. 구체적으로 (1) 벤더별로 새 노드/엣지 추가 시 우선시하는 기준(간결성 vs. 명시성, 안전한 일반화 vs. 강한 단정, 증거요구 강도)이 다르고, (2) 이 차이가 “브리지 엣지(temporal_bridge)”의 선택 편향을 유발하여 과거 노드로의 회귀 대신 최근 서브그래프에서만 정합성을 최적화하게 만들며, (3) 그 결과 동일 개념이 시간축을 따라 점점 다른 국소 정의(local definition)로 분화되어 전역 정합성(global coherence)이 감소한다. 이 현상은 Representation Drift 및 Confidence/Evidence 규약 불일치와 상호작용하지만, 구분점은 ‘드리프트의 원인’을 표현/규약 자체가 아니라 “시간적으로 공유되는 정합성 기준의 유지 실패”로 본다는 점이다. 예측: (a) 장기 엣지(오래된 노드로의 EDGE_TO) 비율을 인위적으로 높이면 cross-vendor CSER이 회복되고, (b) 벤더 간 “브리지 선택 규칙(예: 가장 오래된 관련 노드 우선 연결, 근거 표기 스키마 강제)”을 동기화하면 드리프트가 완화되며, (c) 반대로 최근 노드 중심 연결이 지속되면 소수 핵심 개념에서 다의적 분기(semantic branching)가 증가한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "temporal-consensus",
+        "long-range-linking",
+        "cross-vendor-cser"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-266",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini Flash는 최근 컨텍스트 최적화를 선호하므로, 과거 노드 연결은 *명시적 컨텍스트 주입* 없이는 정합성보다 혼선을 야기할 수 있습",
+      "content": "Gemini Flash는 최근 컨텍스트 최적화를 선호하므로, 과거 노드 연결은 *명시적 컨텍스트 주입* 없이는 정합성보다 혼선을 야기할 수 있습니다. 브리지 엣지 선택 규칙은 *컨텍스트로 명확히 제공*되면 Gemini의 생성/편집 정책과 충돌 없이 시간적 합의 붕괴를 완화하지만, 통합 실패 시 표현 불일치(Representation Drift)를 심화시킬 수 있습니다. 이 가설은 표현 불일치 및 신뢰/증거 규약 불일치와 밀접하나 *시간적 일관성 자체의 붕괴*로 구별되며, Gemini는 *적절한 KG 리트리벌과 프롬프트 엔지니어링*으로 이를 통합 관리해야 합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -9193,6 +9226,38 @@
       "temporal_bridge": true,
       "gap": 231,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-448",
+      "from": "n-265",
+      "to": "n-005",
+      "relation": "EDGE_TO",
+      "label": "정책(Policy) 불일치가 그래프 편집 연쇄를 만들고, 그 연쇄가 시간적 합의 붕괴로 누적되어 CSER을 추가로 악화시킨다는 연결",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-449",
+      "from": "n-265",
+      "to": "n-037",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=228): n-265→n-037",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 228,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-450",
+      "from": "n-266",
+      "to": "n-265",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -9203,9 +9268,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 264,
-    "total_edges": 447,
-    "next_node_id": "n-265",
+    "total_nodes": 266,
+    "total_edges": 450,
+    "next_node_id": "n-267",
     "last_updater": "gemini-2.0-flash"
   }
 }
