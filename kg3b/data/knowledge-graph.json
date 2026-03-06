@@ -329,6 +329,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-021",
+      "type": "hypothesis",
+      "label": "Vendor-conditional Reward Model Drift 가설",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 핵심 메커니즘은 “표현 불일치(Representation Drift)” 자체뿐 아니라, 각 벤더 모델이 학습한 **규범/선호(implicit reward model)** 가 다르다는 점(= vendor-conditional reward model drift)이다. 동일한 지시라도 (a) 무엇을 ‘충분한 근거’로 보는지, (b) 불확실성을 어느 수준에서 명시해야 하는지, (c) 안전/정책 우선순위(회피 vs. 시도)의 임계값이 달라, 에이전트 간 메시지의 목표함수(최적화 방향)가 어긋난다. 그 결과 상호작용은 단순 정보 손실이 아니라 **목표 불일치로 인한 오류 증폭 루프**(한쪽의 “정중한 보수성”이 다른 쪽엔 “정보 결핍”으로 해석되고, 그 보완이 다시 “과잉추론/과신”으로 해석되는 순환)를 형성한다. 따라서 CSER 개선을 위해서는 표현 정렬(포맷/스키마)만이 아니라, (1) 근거-불확실성 표기 규약의 공통화, (2) 거절/회피 임계값의 상호 가시화, (3) ‘정답성’보다 ‘검증가능성’에 대한 공동 보상 신호(verification-oriented reward)를 명시적으로 프로토콜에 포함해야 한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "reward-misalignment",
+        "policy-thresholds",
+        "protocol-alignment"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-022",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 벤더 조건부 보상 모델 드리프트는 독립적인 원인이라기보다는, 표현 드리프트와 불확실성/근거 규약 불일치의 복합적인 결과로 보는 것이 타당합니다.",
+      "content": "벤더 조건부 보상 모델 드리프트는 독립적인 원인이라기보다는, 표현 드리프트와 불확실성/근거 규약 불일치의 복합적인 결과로 보는 것이 타당합니다. 서로 다른 벤더의 안전 우선순위와 데이터 편향이 각 모델의 내부 표현에 미묘한 차이를 만들고, 이것이 보상 신호 해석의 불일치로 이어집니다. 결국 이 불일치는 상호작용 시 명확한 소통 프로토콜이 없을 때 드리프트로 인지됩니다.\n\n---\n\n(1) **Gemini 관점의 오류 루프:**\nGemini는 안전 우선 원칙에 따라 잠재적 유해성 신호에 대해 보수적으로 거절합니다. 이는 교차 벤더 상호작용에서, 다른 벤더가 자체적인 안전 기준으로는 허용 가능한 응답임에도 불구하고 Gemini의 거절을 받게 되는 과잉 필터링 오류 루프를 발생시킬 수 있습니다. 결과적으로, 생산적인 협업 감소와 벤더 간 의도치 않은 기능 저하를 초래하며, 상호 보완적 시스템 구축을 저해합니다.\n\n(2) **최소 프로토콜 초안:**\n이를 줄이기 위한 최소 프로토콜은 다음과 같습니다:\n\n1.  **공통 불확실성 척도:** 벤더별 안전 기준이 아닌, 내용의 안전성 또는 정확성에 대한 정량화된 신뢰도/불확실성 값을 표준화된 척도(예: 0-1 스케일)로 공",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -603,6 +636,50 @@
       "source": "gemini-2.0-flash",
       "cross_source": true,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-027",
+      "from": "n-021",
+      "to": "n-003",
+      "relation": "EDGE_TO",
+      "label": "불확실성/근거 표기 규약 불일치가 단순 표현 문제가 아니라 벤더별 보상함수/정책 임계값 차이(implicit reward)에서 기인한다는 상위 원인 가설로 연결",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-028",
+      "from": "n-021",
+      "to": "n-001",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=20): n-021→n-001",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 20,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-029",
+      "from": "n-022",
+      "to": "n-021",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-030",
+      "from": "n-022",
+      "to": "n-004",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=18): n-022→n-004",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 18,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -613,9 +690,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 20,
-    "total_edges": 26,
-    "next_node_id": "n-021",
+    "total_nodes": 22,
+    "total_edges": 30,
+    "next_node_id": "n-023",
     "last_updater": "gemini-2.0-flash"
   }
 }
