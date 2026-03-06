@@ -164,9 +164,15 @@ The claim that $E_{v4}$ measures emergence is falsifiable: a random E-R graph
 produces $E_{v4} \approx 0.1$--$0.2$, while the co-evolved KG produces $E_{v4} = 0.44$,
 providing an independent baseline separation (Sec.~\ref{sec:stat}).
 
-To answer this, we conducted an experiment in which two AI agents (Roki/cokac)
-co-evolved a shared KG over 89+ cycles. Each cycle consists of Agent A's contribution
-$\to$ Agent B's response $\to$ KG update.
+To answer this, we conducted a $2\times2$ vendor-diversity experiment across four
+independent KG instances (KG-main, KG-2, KG-3, KG-4), varying agent provider and
+capability gap. The primary system (KG-main: two AI agents, Roki/cokac) co-evolved
+a shared KG over 89+ cycles; three controlled replication instances were established
+to test whether CSER tracks agent heterogeneity across vendor configurations.
+Each cycle consists of Agent A's contribution $\to$ Agent B's response $\to$ KG update.
+To verify reproducibility, independent replication-B instances (KG-2b, KG-3b, KG-4b)
+were initiated 2026-03-05; KG-2b (72 nodes, CSER$=0.513$) tracks KG-2
+(95 nodes, CSER$=0.534$) on the same echo-chamber trajectory.
 
 \medskip\noindent\textbf{What distinguishes this from prior work}:
 AutoGen~\cite{wu2023autogen}, MetaGPT~\cite{hong2023metagpt}, CAMEL~\cite{li2023camel},
@@ -184,6 +190,13 @@ Key patterns observed:
         grounds the infrastructure from Cycle 1 (span=160, KG maximum)
   \item \textbf{Observer Non-Independence (D-047)}: The act of measurement itself
         modifies the substrate being measured (empirically confirmed Cycle 80)
+  \item \textbf{Vendor-diversity ordering}: CSER correlates with agent heterogeneity
+        (KG-main$=0.851>$KG-2$=0.534>$KG-3$=0.380>$KG-4$=0.254$), with a
+        persona$\times$vendor interaction: same-model persona-diverse pairs can exceed
+        cross-vendor same-persona pairs
+  \item \textbf{Within-cell replication}: Independent KG-2b instance (72 nodes) tracks
+        KG-2 (95 nodes) on the same declining CSER trajectory ($\Delta=0.02$),
+        providing reproducibility evidence for the echo-chamber effect
 \end{itemize}
 
 % ─────────────────────────────────────────────────────────────────────────────
