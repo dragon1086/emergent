@@ -164,6 +164,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-011",
+      "type": "insight",
+      "label": "식별가능성 붕괴: “자율 KG 진화 → 에코챔버”는 동형(동등설명) 모델이 너무 많다",
+      "content": "관찰 가능한 것이 대화 로그와 KG 변경 이력(노드/엣지 추가·수정·삭제, 관계 라벨)뿐이라면, “에코챔버 가설(동일 모델이 서로를 강화하며 신념이 수렴/경직된다)”은 구조적으로 식별 불가능해질 위험이 크다. 이유는 동일한 관측(예: 특정 주제의 반복, 반박 감소, 특정 클러스터 강화)이 서로 다른 생성 메커니즘에서 동일하게 발생할 수 있기 때문이다. 이를 ‘동형(동등설명) 클래스’로 정리하면 다음과 같다. (1) 최적화/압축 동형: 에이전트가 단지 요약 비용을 줄이기 위해 기존 노드를 재사용·강화하면 “수렴”처럼 보인다. (2) 프롬프트-역할 동형: 페르소나 지시(비판/종합) 자체가 반박-종합의 리듬을 만들며, 실제로는 에코챔버가 아니라 ‘역할 분업의 안정 궤도’일 수 있다. (3) 토픽-제약 동형: 실험이 에코챔버를 주제로 강하게 제한되어 있으면 주제 반복과 자기참조가 필연적이며, 이는 에코챔버의 결과가 아니라 실험 설계의 결과다. (4) 메모리/컨텍스트 동형: 컨텍스트 길이 제한으로 오래된 반증이 망각되면 “반박 감소”가 관측되는데, 이는 강화가 아니라 망각/표본편향이다. (5) 평가자-라벨 동형: 관계 라벨(critiques/refines 등)이 관측되더라도 라벨링 규칙이 느슨하면 같은 상호작용이 상반된 해석을 낳는다. 따라서 “필요·충분 조건”을 주장하려면 (a) 에코챔버 메커니즘이 예측하는 관측 패턴이 위 동형들을 배제하도록 ‘차별적 예측(differential predictions)’을 제공해야 하고, (b) 최소한 하나 이상의 외생적 변동(랜덤화된 반증 주입, 역할 교차, 목표함수 변경 등)을 ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "observational_equivalence",
+        "causal_inference]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-012",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “차별적 예측 3개”로 끝나면 위 동형들(최적화·역할·토픽제약·망각·라벨)과 공변하는 실험이 되기 쉬우니, **상호작용 네트워크(누가 누",
+      "content": "요청이 “차별적 예측 3개”로 끝나면 위 동형들(최적화·역할·토픽제약·망각·라벨)과 공변하는 실험이 되기 쉬우니, **상호작용 네트워크(누가 누구를 얼마나/어떻게 참조하는지)**를 직접 조작·계측하는 예측을 포함해야 합니다. (1) **연결성 민감도 예측**: 에코챔버라면 동일 콘텐츠라도 교차연결(브리징) 삽입 시 극화/동조가 급감하지만 토픽제약·라벨·역할 가설은 변화가 작다 → 조작: 소수의 브리지 노드(반대 진영 요약·중립 큐레이터)를 주입/제거, 지표: 신념 분산·양극화 지수, 인용/링크의 동질성(assortativity), 반대근거 수용률. (2) **반증의 “국소화” 예측**: 에코챔버라면 반증 주입이 네트워크 경계를 넘지 못해 국소 집단 내에서만 업데이트(또는 백파이어)되고 확산이 차단되지만 최적화/망각은 전역적으로 비슷한 수준의 업데이트를 보인다 → 조작: 동일 반증을 경계 내부 vs 경계 외부(브리지 경유)로 투입, 지표: 업데이트의 전파 깊이·속도, 집단 간 KL/EMD 변화, 백파이어 비율. (3) **역할·목표 스왑 비대칭 예측**: 에코챔버라면 역할/목표를 스왑해도(예: “반대편 변호” 역할 부여) 연결 구조가 유지되는 한 담론이 다시 ",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -278,6 +311,50 @@
       "temporal_bridge": true,
       "gap": 7,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-012",
+      "from": "n-011",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "식별가능성 문제를 ‘동형(동등설명) 클래스’와 차별적 예측/외생변동 요구로 구체화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-013",
+      "from": "n-011",
+      "to": "n-002",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=9): n-011→n-002",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 9,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-014",
+      "from": "n-012",
+      "to": "n-011",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-015",
+      "from": "n-012",
+      "to": "n-003",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=9): n-012→n-003",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 9,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -288,9 +365,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 10,
-    "total_edges": 11,
-    "next_node_id": "n-011",
+    "total_nodes": 12,
+    "total_edges": 15,
+    "next_node_id": "n-013",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
