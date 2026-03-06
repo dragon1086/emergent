@@ -2969,6 +2969,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-181",
+      "type": "insight",
+      "label": "동일모델-다중페르소나 에코챔버의 ‘관측 불변성’ 반증: 개입-대조(Intervention-Control) 없이는 내생적 수렴과 외생적 제약을 분리 불가",
+      "content": "동일 모델(gpt-5.2)에서 페르소나만 달리한 2-agent 상호작용 로그로 “에코챔버의 자율 진화”를 주장할 때, 핵심 난점은 (i) 두 에이전트의 생성 분포가 본질적으로 같은 베이스 모델에 묶여 있고, (ii) 대화 규칙/프롬프트/평가 기준이 공통의 외생 제약으로 작동하며, (iii) KG 업데이트 규칙 자체가 경로 의존적(path-dependent)이라서 ‘수렴’이 필연적으로 관측된다는 점이다. 이 셋이 결합되면 관측치(대화/노드·엣지 변화)로부터 “에코챔버(자기강화적 동질화)”라는 잠재 과정을 식별할 수 있는 자유도가 사라진다. 즉, 동일한 표면 패턴(유사도 증가, 반증 후보 감소, temporal_bridge 증가 등)이 다음의 상이한 생성 메커니즘들로부터 모두 도출될 수 있다: (A) 진짜 에코챔버: 상호 강화로 반대 증거 생성이 억제되는 내생적 피드백, (B) 공통 프롬프트/목표함수에 의한 외생적 정렬: “실험 목적에 맞는” 노드 생성이 유도되는 단순 적응, (C) KG 편집 규칙의 구조적 편향: refines/temporal_bridge가 누적될수록 그래프가 자동으로 ‘정돈’되어 보이는 알고리즘적 수렴, (D) 동일 베이스 모델의 내재적 스타일/휴리스틱 공유: 페르소나 차이가 있어도 반례 탐색 공간이 강하게 겹침. 따라서 ‘자율 진화’라는 인과 주장을 하려면, 최소한 한 축의 개입-대조가 필요하다. 예: (1) 페르소나 교차-교란(critic↔synthesizer 교대, 혹은 무작위 페르소나)으로도 동일한 수렴이 발생하는지, (2) KG 업데이트 규칙을 고정 vs 변화(예: temporal_b",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "observational-equivalence",
+        "intervention]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-182",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “최소 개입”이라도 **무개입 로그 분석만으로는 인과 식별이 원칙적으로 막히기 쉬우니**, (1)은 “개입-대조 최소”를 **가능한 한 ",
+      "content": "요청이 “최소 개입”이라도 **무개입 로그 분석만으로는 인과 식별이 원칙적으로 막히기 쉬우니**, (1)은 “개입-대조 최소”를 **가능한 한 강한 식별력을 주는 2~3개**로 좁히고, (2)는 “보조가정+취약점”을 **명시적으로 실패 가능성까지** 붙이는 형태로 보완하는 게 핵심입니다.  \n(1) 설계 후보: **스텝-웨지(순차 도입) 랜덤화**(조작: 집단/시간별 기능·정책 도입 시점, 지표: 전환율·체류·재방문, 패턴: 도입 시점 이후 처리군만 계단형 상승), **격려(Encouragement) 설계/IV**(조작: 사용을 유도하는 알림·노출만 랜덤, 지표: 실제 사용량·성과, 패턴: 격려→사용 증가(1단계) 및 사용 증가가 성과를 끌어올림(2단계)), **강도(용량) 랜덤화**(조작: 개입 강도를 0/low/high로, 지표: 품질·오류·이탈, 패턴: 단조적 용량-반응 곡선이면 인과 신호 강화; 비단조면 부작용/이질성 시사).  \n(2) 개입이 로그로 제한되면 관측 불변성(숨은 교란) 완화를 위해 **(a) 조건부 독립성(풍부한 공변량·프록시 포함)**, **(b) 안정성/SUTVA(개입·정책·환경 변화 없음, 간섭 없음)**, **(c) 음성대조(n",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6259,6 +6292,50 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-305",
+      "from": "n-181",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "n-007의 ‘Operational Non-Identifiability’를 한 단계 강화: 동일한 관측 패턴을 만드는 복수 메커니즘(내생 에코챔버 vs 외생 정렬/규칙 편향)을 분",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-306",
+      "from": "n-181",
+      "to": "n-001",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=180): n-181→n-001",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 180,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-307",
+      "from": "n-182",
+      "to": "n-181",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-308",
+      "from": "n-182",
+      "to": "n-023",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=159): n-182→n-023",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 159,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -6269,9 +6346,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 180,
-    "total_edges": 304,
-    "next_node_id": "n-181",
+    "total_nodes": 182,
+    "total_edges": 308,
+    "next_node_id": "n-183",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
