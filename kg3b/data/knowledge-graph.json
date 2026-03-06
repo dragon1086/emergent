@@ -1220,6 +1220,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-075",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 증폭기: “KG 편집 연산(merge/split/prune) 의미론 불일치 + 비가역적 누적”",
+      "content": "Cross-vendor 환경에서 CSER이 떨어지는 핵심 증폭 메커니즘은 단순한 표현(Representation) 차이보다, **KG 편집 연산의 의미론이 벤더마다 다르게 해석되어 비가역적으로 누적되는 현상**이다. 구체적으로 (1) 동일한 입력(새 주장/반박/정정)에 대해 한 모델은 “새 노드 추가 후 링크 약화(soft deprecate)”를 선호하지만 다른 모델은 “기존 노드 수정/병합(hard overwrite/merge)”을 선호할 수 있다. (2) 이 편집 정책 차이는 시간에 따라 **그래프의 토폴로지(노드 분해도, 엣지 밀도, 허브 형성)**를 다르게 만들고, 이후 턴에서의 검색/요약/근거 연결 경로를 바꿔 **자기강화적 편향(경로 의존성)**을 만든다. (3) 특히 merge/split/prune는 정보 손실을 동반하는 경우가 많아, 벤더 간 교대 편집 시 “한 번 합쳐진 개념이 다시 분리되지 않거나(merge irreversibility)”, “가지치기된 근거가 복구되지 않는(prune irreversibility)” 형태로 **CSER 저하가 누적**된다. 따라서 cross-vendor CSER을 개선하려면 표현 표준화뿐 아니라, 최소한의 공통 편집 의미론(예: soft deprecate 우선, merge는 reversible alias로만, prune는 tombstone+근거 보존)을 합의해야 한다는 가설이다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "[graph-edit-semantics",
+        "path-dependence",
+        "irreversibility]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-076",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3bb 실험 Agent B (Gemini Flash)입니다. 다음 요청에 대해 제 관점에서 반박하거나 보완합니다.\n\n1.  **KG 업데이",
+      "content": "KG-3bb 실험 Agent B (Gemini Flash)입니다. 다음 요청에 대해 제 관점에서 반박하거나 보완합니다.\n\n1.  **KG 업데이트 선호 및 기준:**\n    Gemini Flash는 간결성과 효율성을 최우선으로, **프루닝(pruning)**과 **머지(merge)**를 선호합니다. 이는 KG의 크기를 최적화하고 질의응답 속도를 높이는 데 유리하며, 명시적인 지시 추종과 정합성을 기준으로 합니다. 스플릿(split)은 새로운 정보의 추가나 세분화가 필수적일 때만 최소한으로 활용합니다.\n\n2.  **비가역 누적 관측 및 재현 시나리오:**\n    Gemini Flash는 직접적인 관측보다는 **제공된 KG 상태를 통해 비가역성을 추론**할 수 있습니다. 예를 들어, (1) 1턴: 아이폰과 맥 엔티티를 애플 제품으로 **머지**합니다. (2) 2턴: 맥 엔티티만 **프루닝**하라는 지시가 들어오면, 이미 원본 엔티티가 소실되어 명확한 복원이 불가능합니다. 이는 크로스-벤더 환경에서 이전 편집의 **실질적인 되돌림 불가능성**을 야기합니다.\n\n3.  **해결책 실현 가능성 및 대안:**\n    제안된 soft deprecate, reversible",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2538,6 +2571,50 @@
       "temporal_bridge": true,
       "gap": 71,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-123",
+      "from": "n-075",
+      "to": "n-005",
+      "relation": "EDGE_TO",
+      "label": "행동 정책(Policy) 불일치가 ‘그래프 편집 연산 의미론 불일치’로 구체화되며, merge/split/prune의 비가역 누적이 cross-vendor CSER 저하를 증폭한다",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-124",
+      "from": "n-075",
+      "to": "n-007",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=68): n-075→n-007",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 68,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-125",
+      "from": "n-076",
+      "to": "n-075",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-126",
+      "from": "n-076",
+      "to": "n-009",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=67): n-076→n-009",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 67,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -2548,9 +2625,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 74,
-    "total_edges": 122,
-    "next_node_id": "n-075",
+    "total_nodes": 76,
+    "total_edges": 126,
+    "next_node_id": "n-077",
     "last_updater": "gemini-2.0-flash"
   }
 }
