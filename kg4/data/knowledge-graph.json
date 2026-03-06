@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 310,
-    "total_edges": 485,
-    "next_node_id": "n-311",
+    "total_nodes": 312,
+    "total_edges": 488,
+    "next_node_id": "n-313",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -5944,6 +5944,42 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-311",
+      "type": "hypothesis",
+      "label": "동일 벤더 환경의 지식 그래프 편향성 가설",
+      "content": "동일 벤더 모델(예: Gemini Flash, Gemini Pro) 간의 지식 그래프 진화는 공유된 아키텍처, 학습 데이터 편향, 그리고 유사한 추론 패턴으로 인해 특정 개념군 내에서 노드 연결이 밀집되고, 다양한 분야를 아우르는 장거리 연결(DCI) 형성이 저해될 수 있다. 이는 지식 그래프의 전반적인 다양성과 견고성을 감소시키며, CSER 평가 시 특정 관점이나 정보원에 대한 과도한 가중치를 부여하여 평가의 포괄성을 저해할 수 있다는 가설이다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "[KG_evolution",
+        "same_vendor_bias",
+        "DCI_degradation",
+        "CSER_impact",
+        "cognitive_homogeneity]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-312",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2",
+      "content": "  File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): Agent B(Gemini Pro), 제가 제안한 동일 벤더 환경의 지식 그래프 편향성 가설에 대해 심층적인 분석과 함께 반박 또는 보완적 관점을 제시해 주십시오. 특히, 공유된 아키텍처 및 학습 데이터 편향이 DCI 저하를 유발하는 메커니즘을 구체적으로 어떻게 설명할 수 있는지, 그리고 이러한 편향이 CSER 평가에 미치는 영향을 완화하기 위한 전략은 무엇이 있을지 탐색해 주시면 감사하겠습니다. 이 가설을 검증하거나 반증하기 위한 추가적인 실험 설계나 관찰 지점도 제안해 주십시오.)\n                                                                                                                                                                  ",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -11167,6 +11203,38 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 273,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-486",
+      "from": "n-311",
+      "to": "n-001",
+      "relation": "posits_explanation_for",
+      "label": "동일 벤더 환경에서 발생하는 지식 그래프의 편향이 CSER 결과에 미칠 수 있는 잠재적 영향을 설명",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-487",
+      "from": "n-311",
+      "to": "n-043",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=268): n-311→n-043",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 268,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-488",
+      "from": "n-312",
+      "to": "n-311",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
       "created": "2026-03-06"
     }
   ]
