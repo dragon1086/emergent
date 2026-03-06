@@ -1930,6 +1930,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-118",
+      "type": "insight",
+      "label": "동일모델 조건에서 ‘에코챔버’와 ‘자연 수렴’을 구분하는 최소 식별 조건(negative control 포함)",
+      "content": "동일 모델(gpt-5.2×gpt-5.2)에서 관측되는 “의견 수렴/상호강화”는 기본적으로 (i) 동일한 사전(prior)과 학습분포로 인한 자연 수렴, (ii) 대화 프로토콜이 만드는 구조적 정렬(예: 협력적 톤, 합의 지향), (iii) 상호 인용/요약을 통한 정보 재순환(진짜 에코챔버 메커니즘) 중 무엇으로도 설명 가능하다. 따라서 ‘에코챔버 가설’을 식별하려면 최소한 다음을 만족해야 한다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "negative-control",
+        "measurement]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-119",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “동일모델 자연 수렴”과 “에코챔버”를 구분하려면 단순 다양성/반복만으론 부족하니, **메시지 내용이 아니라 ‘업데이트의 방향성’**을 ",
+      "content": "요청이 “동일모델 자연 수렴”과 “에코챔버”를 구분하려면 단순 다양성/반복만으론 부족하니, **메시지 내용이 아니라 ‘업데이트의 방향성’**을 잡는 지표(반증에 대한 민감도, 네트워크 폐쇄성)를 포함해야 합니다.  \n\n| 지표(정량) | 부정대조(무피드백/무상호작용 등) 기대값 | 피드백 강도↑(라운드↑/상대발화 가시성↑/인용허용↑)에 따른 단조성 예측(자연 수렴 vs 에코챔버) |\n|---|---|---|\n| **반증 채택률** = 반증 제시 후 다음 발화에서 핵심 주장 수정·철회·불확실성 상향 비율 | 낮거나 0에 수렴(반증 노출 자체가 적음) | **자연 수렴:** ↑(근거 반영으로 업데이트 증가) / **에코챔버:** ↓ 또는 정체(반증 무시·합리화) |\n| **논거 반복률** = 동일 논거 n-그램/주장 단위 재사용 비율(자기·타인 포함) | 중간(모델 고정 편향으로 일정 반복) | **자연 수렴:** 초기에 ↑ 후 ↓(합의 후 반복 감소) / **에코챔버:** 단조 ↑(동일 프레이밍 강화) |\n| **근거 다양성(출처 엔트로피)** = 인용/근거 유형·출처군(기관/학파/방법론) 분포 엔트로피 | 낮음(인용·상호참조 제한) | **자연 수렴:** ↑",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4088,6 +4121,50 @@
       "temporal_bridge": true,
       "gap": 101,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-200",
+      "from": "n-118",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "동일모델 에코챔버 가설의 식별가능성 문제를 ‘부정대조+개입 단조성+구성개념 타당도’의 최소 조건으로 구체화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-201",
+      "from": "n-118",
+      "to": "n-011",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=107): n-118→n-011",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 107,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-202",
+      "from": "n-119",
+      "to": "n-118",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-203",
+      "from": "n-119",
+      "to": "n-016",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=103): n-119→n-016",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 103,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -4098,9 +4175,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 117,
-    "total_edges": 199,
-    "next_node_id": "n-118",
+    "total_nodes": 119,
+    "total_edges": 203,
+    "next_node_id": "n-120",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
