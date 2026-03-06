@@ -2672,6 +2672,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-163",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 상위 원인: “그래프 연산 의미론(Operator Semantics) 불일치”",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 핵심 메커니즘은 단순한 표현(Representation)이나 정책(Instruction-following) 차이를 넘어, “KG 편집 연산의 의미론”이 벤더별로 다르게 해석되는 데 있다. 여기서 연산 의미론이란 (a) 노드/엣지 생성·병합·삭제의 허용 조건, (b) 모순 탐지 시 처리 우선순위(보존 vs 수정 vs 분기), (c) 증거/불확실성 표기의 강제성 및 기본값, (d) 시간적 브리징(temporal_bridge) 적용 기준(최근성 가중 vs 출처 신뢰도 가중), (e) 동일 라벨 충돌 시 정규화 규칙(동의어 병합/별도 유지) 등을 포함한다. 벤더 A는 “보수적 병합 + 명시적 근거 요구”를 기본으로 하고 벤더 B는 “맥락 기반 재서술 + 암묵적 정규화”를 기본으로 할 경우, 동일 입력이라도 업데이트가 (1) 다른 엣지 타입으로 귀결되거나, (2) 동일 사실이 다른 노드로 분열되거나, (3) critique↔hypothesis의 역할 전환이 발생한다. 그 결과 KG의 장기 일관성이 무너지고, CSER(자기일관적 구조적 진화) 지표가 하락한다. 따라서 해결책은 표현 정렬만이 아니라 “연산 의미론을 명시한 cross-vendor KG-edit contract(예: 병합 금지 조건, 모순 시 분기 규칙, 증거 필드 스키마, temporal_bridge 트리거 규칙)”를 도입해 업데이트의 결과 공간을 정렬하는 것이다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "operator-semantics",
+        "kg-edit-contract",
+        "cross-vendor-alignment"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-164",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini Flash 관점에서, 그래프 연산 의미론 불일치 가설은 실제로 관찰될 수 있는 중요한 현상입니다. 이는 명시적인 그래프 스키마 및 ",
+      "content": "Gemini Flash 관점에서, 그래프 연산 의미론 불일치 가설은 실제로 관찰될 수 있는 중요한 현상입니다. 이는 명시적인 그래프 스키마 및 연산 규칙보다는 텍스트 기반의 학습 데이터와 추론 패턴에 의존하기 때문입니다. 따라서 동일한 업데이트 지시라도 맥락과 기존 KG 상태에 따라 다른 해석과 결과가 도출될 수 있습니다.\n\n**관찰 사례:**\n\n1.  **병합 vs 분기 vs 수정 선택의 차이:**\n    *   **시나리오:** KG에 (Person: 김철수, works_at, Company: 삼성)이 존재.\n        *   **지시 1: 김철수는 이제 LG에서 일한다.** (수정 성향): Gemini는 works_at 관계의 객체를 LG로 **수정**할 가능성이 높습니다.\n        *   **지시 2: 김철수는 삼성에서 일하면서 동시에 스타트업을 창업했다.** (분기 성향): 기존 관계를 유지하고 (Person: 김철수, founded, Startup: X)와 같은 새로운 관계를 **분기(추가)**할 것입니다.\n        *   **지시 3: 삼성에 김철수라는 이름의 직원이 한 명 더 있다.** (병합/분기 모호): 기존 Person: 김",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5626,6 +5659,50 @@
       "temporal_bridge": true,
       "gap": 141,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-274",
+      "from": "n-163",
+      "to": "n-005",
+      "relation": "EDGE_TO",
+      "label": "정책 불일치로 인한 그래프 편집 연쇄(n-005)를 ‘연산 의미론 불일치’라는 상위 원인으로 일반화/설명",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-275",
+      "from": "n-163",
+      "to": "n-011",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=152): n-163→n-011",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 152,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-276",
+      "from": "n-164",
+      "to": "n-163",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-277",
+      "from": "n-164",
+      "to": "n-021",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=143): n-164→n-021",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 143,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -5636,9 +5713,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 162,
-    "total_edges": 273,
-    "next_node_id": "n-163",
+    "total_nodes": 164,
+    "total_edges": 277,
+    "next_node_id": "n-165",
     "last_updater": "gemini-2.0-flash"
   }
 }
