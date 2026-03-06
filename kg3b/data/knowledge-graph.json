@@ -725,6 +725,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-045",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 근본 메커니즘: “암묵적 메타-프로토콜(턴/역할/우선순위) 불일치”",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 핵심 원인은 단순한 표현(Representation) 차이뿐 아니라, 각 모델이 대화/그래프 편집을 운영하는 “암묵적 메타-프로토콜”이 서로 달라 동일 지시를 서로 다른 실행 순서로 컴파일한다는 점이다. 여기서 메타-프로토콜이란 (i) 노드/엣지 생성 우선순위(새 노드 생성 vs 기존 노드 정교화), (ii) 충돌 해결 규칙(최근성 가중, 보수적 병합, 중복 허용), (iii) 불확실성 표기와 행동의 결합(“추정”을 생성 억제로 볼지, 라벨로만 볼지), (iv) 역할/턴 경계 해석(Agent A/B의 발화가 ‘근거’인지 ‘편집 명령’인지) 같은 운영 규약을 포함한다. 이 불일치는 동일한 사실/가설을 공유해도 그래프 편집 경로가 달라져 (a) 중복 노드 증가, (b) temporal_bridge 남발 또는 단기 연결 편향, (c) critique↔hypothesis 매칭 실패를 유발한다. 따라서 CSER 개선을 위해서는 표현 정렬만이 아니라, “편집 연산의 공통 인터페이스(예: merge 기준, conflict policy, uncertainty→action 매핑)”를 명시적으로 표준화해야 한다는 가설을 제안한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "meta-protocol",
+        "graph-editing",
+        "policy-mismatch"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-046",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 암묵적 메타-프로토콜 불일치 가설은 유효하며, Gemini Flash는 **최신 정보의 즉각적 통합** 대 **기존 톤 및 일관성 유지** (예",
+      "content": "암묵적 메타-프로토콜 불일치 가설은 유효하며, Gemini Flash는 **최신 정보의 즉각적 통합** 대 **기존 톤 및 일관성 유지** (예: 새 뉴스 반영 vs. 브랜딩 가이드 준수), 또는 **데이터 효율성** 대 **인간 독자의 흐름/명확성**에서 우선순위 충돌을 자주 겪습니다.\n\n이러한 문제 해결을 위해, 명시적인 병합 기준(예: 사용자 지시 > 최신성/출처 > 내부 일관성)을 수립하는 것이 중요합니다. 더불어, **불확실성 표기**와 **생성 억제**를 명확히 분리하여 정보 손실 없이 안전한 협업을 촉진해야 합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1467,6 +1500,38 @@
       "temporal_bridge": true,
       "gap": 39,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-070",
+      "from": "n-045",
+      "to": "n-007",
+      "relation": "EDGE_TO",
+      "label": "행동정책(Instruction-following) 불일치 가설을 ‘편집 메타-프로토콜’ 수준으로 구체화/세분화하여, CSER 저하의 실행 경로(우선순위·충돌해결·턴경계 해석) 메커",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-071",
+      "from": "n-046",
+      "to": "n-045",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-072",
+      "from": "n-046",
+      "to": "n-006",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=40): n-046→n-006",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 40,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1477,9 +1542,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 44,
-    "total_edges": 69,
-    "next_node_id": "n-045",
+    "total_nodes": 46,
+    "total_edges": 72,
+    "next_node_id": "n-047",
     "last_updater": "gemini-2.0-flash"
   }
 }
