@@ -692,6 +692,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-043",
+      "type": "insight",
+      "label": "에코챔버 ‘자율 진화’의 반증 설계: 분포-대조(counterfactual) 기반 식별 전략",
+      "content": "동일모델×다중페르소나 조건에서 “에코챔버가 자율 진화했다”는 주장은 관찰 로그만으로는 쉽게 자기충족적 서사가 된다. 이를 반증가능하게 만들려면 (i) 관측된 상호작용으로부터 기대되는 변화(학습/수렴/강화)를 ‘대조군 분포’와 비교해 초과분(Δ_excess)을 정의하고, (ii) 그 초과분이 에코챔버 메커니즘(선택적 노출·강화·반증 억제) 없이도 설명 가능한지(교란) 체계적으로 제거하는 설계가 필요하다. 구체적으로는 다음과 같은 식별 프레임을 제안한다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "falsifiability",
+        "counterfactual]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-044",
+      "type": "critique",
+      "label": "통합 종합: 요청을 실험 프로토콜로 “내리려면” 먼저 (a) 기준모형(예: 시간 t에서의 예측 KG/텍스트/행동)과 관측모형(실제 산출물) 사이의 정합성 단",
+      "content": "요청을 실험 프로토콜로 “내리려면” 먼저 (a) 기준모형(예: 시간 t에서의 예측 KG/텍스트/행동)과 관측모형(실제 산출물) 사이의 정합성 단위를 고정해야 하며, Δ_excess는 **정규화된 초과편차**로 정의하는 게 재현성이 높습니다: 예를 들어 윈도우 W(최근 k턴 또는 τ분)에서 거리함수 d로 ( Delta_{text{excess}}(t)=frac{d(text{Obs}_W,text{Base}_W)-mathbb{E}[d|text{ctrl}]}{text{SD}[d|text{ctrl}]}), d는 (i) 그래프면 Graph Edit Distance/Weisfeiler–Lehman kernel distance, (ii) 분포면 JS-divergence, (iii) 임베딩이면 cosine(1−cos)로 사전등록하고, 윈도우링은 고정-k와 지수감쇠(λ) 둘 다 계산해 민감도 분석으로 묶으세요. “반증 후보” 코딩은 **노드/엣지 타입 스키마를 선등록**(Claim/Entity/Method/Evidence/Assumption, SUPPORTS/REFUTES/CONTRADICTS/DEPENDS_ON/MEASURES 등)하고, 규칙은 “동일 Claim-ID에 대해 ",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1438,6 +1471,26 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-070",
+      "from": "n-043",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "식별가능성 문제를 ‘독립 혼합 대비 초과분(Δ_excess)’과 ‘반증성 감소’라는 관측가능한 반증 규칙으로 구체화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-071",
+      "from": "n-044",
+      "to": "n-043",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1448,9 +1501,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 42,
-    "total_edges": 69,
-    "next_node_id": "n-043",
+    "total_nodes": 44,
+    "total_edges": 71,
+    "next_node_id": "n-045",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
