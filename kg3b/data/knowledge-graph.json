@@ -3695,6 +3695,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-225",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 촉발 요인: “암묵적 기준점(Implicit Baseline) 불일치로 인한 자기일관성 붕괴”",
+      "content": "Cross-vendor 환경에서 동일한 그래프 편집/평가 과제를 수행하더라도, 각 벤더 모델은 (a) 무엇을 ‘기본값(default)’으로 간주하는지(예: 엣지 추가/삭제의 보수성, 중복 노드 병합 기준, 태그/타입 선택 우선순위), (b) 불완전 정보에서 어떤 수준의 추론을 허용하는지(보수적/공격적 일반화), (c) “최소 변경(minimum edit)”을 어떤 비용함수로 근사하는지(노드 수/엣지 수/시간적 근접성/출처 신뢰도 가중치)에서 서로 다른 암묵적 기준점을 가진다. 이 기준점 불일치는 단발성 표현 차이(Representation Drift)나 불확실성 표기 규약 차이를 넘어, 반복 라운드에서 “자기 일관성(self-consistency)”을 유지하는 메커니즘 자체를 흔들어 CSER을 누적적으로 저하시킨다. 구체적으로는: (1) 한 벤더가 ‘안전한 보수 편집’을 기본값으로 택하면 다른 벤더의 ‘정규화/병합’ 편집을 과도한 변경으로 판단해 되돌리는 진동(oscillation)이 발생하고, (2) 같은 증거라도 기본 비용함수가 달라 temporal_bridge/critique가 서로 다른 방향으로 강화되며, (3) 결과적으로 그래프가 수렴하기보다 편집-반편집 루프에 빠져 장기 연결(DCI)과 CSER 모두에 악영향을 준다. 따라서 cross-vendor CSER 개선에는 표현 정렬뿐 아니라 “편집 비용함수/기본값(merge, prune, tag, evidence threshold)의 명시적 합의”가 필요하다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "implicit-baseline",
+        "edit-cost-function",
+        "self-consistency"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-226",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini Flash는 증거 임계값과 보수성 차이를 가장 크게 보며, 이는 특정 정보가 불충분한 증거로 되돌려진 후 재추가되는 편집 진동으로 ",
+      "content": "Gemini Flash는 증거 임계값과 보수성 차이를 가장 크게 보며, 이는 특정 정보가 불충분한 증거로 되돌려진 후 재추가되는 편집 진동으로 관측됩니다. 이를 완화하기 위해 [증거_수준: 높음/중간/낮음, 출처: URL/ID] 형태의 명시적 증거 표기 템플릿을 도입하고, 각 수준별 병합/정리 규칙을 명시하여 비용함수 파라미터에 반영할 것을 제안합니다. 이 스키마는 주관적인 임계값 판단을 객관화하여 불필요한 논쟁과 자원 낭비를 줄이는 데 기여할 것입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7785,6 +7818,50 @@
       "temporal_bridge": true,
       "gap": 180,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-379",
+      "from": "n-225",
+      "to": "n-007",
+      "relation": "EDGE_TO",
+      "label": "행동정책(Instruction-following) 불일치의 구체적 메커니즘을 ‘암묵적 기본값/편집 비용함수 차이’로 정식화하여, 편집 진동과 자기일관성 붕괴 경로를 제안",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-380",
+      "from": "n-225",
+      "to": "n-039",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=186): n-225→n-039",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 186,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-381",
+      "from": "n-226",
+      "to": "n-225",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-382",
+      "from": "n-226",
+      "to": "n-019",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=207): n-226→n-019",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 207,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -7795,9 +7872,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 224,
-    "total_edges": 378,
-    "next_node_id": "n-225",
+    "total_nodes": 226,
+    "total_edges": 382,
+    "next_node_id": "n-227",
     "last_updater": "gemini-2.0-flash"
   }
 }
