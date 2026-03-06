@@ -1847,6 +1847,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-113",
+      "type": "insight",
+      "label": "에코챔버 ‘자율 진화’의 반증 설계: 교란-동형(artifact) vs 내생적 수렴(endogenous convergence) 구분",
+      "content": "동일모델×동일모델(페르소나만 상이) 조건에서 관측되는 “유사도 증가/합의 강화/반대근거 감소”는 에코챔버의 내생적 진화가 아니라 여러 교란이 만들어내는 동형(artifact)일 수 있다. 따라서 KG-2bb에서 에코챔버 가설을 반증가능하게 만들려면 ‘관측 패턴 P’가 (i) 교란적 생성 메커니즘에서도 쉽게 나오지만 (ii) 내생적 에코챔버 메커니즘에서는 필수적으로 나오는지, 혹은 그 반대인지(특이성)까지 포함해 설계해야 한다. 비판적 관점에서 핵심은 “필요·충분”이 아니라, 최소한 다음의 구분 진단을 만족하는 반증 구조를 갖추는 것이다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "confounding",
+        "falsifiability]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-114",
+      "type": "critique",
+      "label": "통합 종합: 2×2 최소 설계는 **원인(교란 vs 내생)** × **수렴 강제(있음 vs 없음)**: (A) 동일 프롬프트·동일 온도/샘플링·독립 시드(내",
+      "content": "2×2 최소 설계는 **원인(교란 vs 내생)** × **수렴 강제(있음 vs 없음)**: (A) 동일 프롬프트·동일 온도/샘플링·독립 시드(내생), (B) A+외생 교란(프롬프트에 무관한 랜덤 토큰/지시 충돌/컨텍스트 노이즈 주입), (C) A+수렴 강제(정답 포맷·체크리스트·평가자 기준 제공/자기검열), (D) B+수렴 강제; 여기에 **요약자(통합) 조건**을 교차해 “요약 없음(원문 다중출력 유지)” vs “Agent B 요약”을 두고, 요약이 **다양성 압축을 추가로 유발**하는지 (A→A′, B→B′ …) 비교하면 됩니다. 지표는 **표면 다양성**=어휘/형식/주장 토픽의 분산(예: n-gram JSD, 토픽 수, 결론 라벨 엔트로피)과 **심층 다양성(독립 반증축)**=서로 독립적인 반증가능 가설/인과경로 수를 코딩(규칙: 각 응답에서 “만약 X면 Y가 관측되고, 아니면 Z” 형태의 *검증가능 예측*을 1개 단위로 추출→동일 반증축(같은 X·측정·대안 설명 공유)이면 0.5로 병합, 독립이면 1로 합산; 스코어=독립 반증축 개수/총 주장 수 + 반증축 간 상호중복률의 음수 가중). 반박/보완하자면, “표면 다양성↑”가 “심층 다양성↑”를 보장하지",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3893,6 +3926,50 @@
       "temporal_bridge": true,
       "gap": 98,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-190",
+      "from": "n-113",
+      "to": "n-003",
+      "relation": "refines",
+      "label": "교란(대체설명) 목록을 ‘동형(artifact) 생성모형’으로 정식화하고, 프로토콜 교차 실험을 통해 내생적 수렴과 구분하는 반증 설계를 추가로 구체화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-191",
+      "from": "n-113",
+      "to": "n-017",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=96): n-113→n-017",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 96,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-192",
+      "from": "n-114",
+      "to": "n-113",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-193",
+      "from": "n-114",
+      "to": "n-001",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=113): n-114→n-001",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 113,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -3903,9 +3980,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 112,
-    "total_edges": 189,
-    "next_node_id": "n-113",
+    "total_nodes": 114,
+    "total_edges": 193,
+    "next_node_id": "n-115",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
