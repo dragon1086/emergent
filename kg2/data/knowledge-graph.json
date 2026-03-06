@@ -2689,6 +2689,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-164",
+      "type": "insight",
+      "label": "동일모델 에코챔버 ‘식별가능성’의 핵심: 관측량이 메커니즘에 비단사적(non-injective) 매핑",
+      "content": "동일 모델(gpt-5.2×gpt-5.2)에서 관측되는 “수렴/동조/다양성 감소”는 에코챔버 메커니즘의 고유 신호라기보다, 여러 생성 메커니즘이 동일한 관측 패턴을 만들어내는 비단사적 매핑의 결과일 수 있다. 즉, 관측량 Y(예: 토큰/주장/링크의 중복도, KL 감소, 의견거리 축소)는 잠재 메커니즘 M(에코챔버적 강화학습적 자기증폭, 공통 사전(prior) 기반의 합리적 베이지안 수렴, 프롬프트/역할 대칭으로 인한 대화역학적 고정점, 안전/정렬 정책에 의한 표현 상한, 메모리/요약 압축에 의한 정보손실 등)에 대해 일대일이 아니라 다대일로 연결된다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "causal-inference",
+        "experimental-design]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-165",
+      "type": "critique",
+      "label": "통합 종합: 요청을 보완하면, “관측량(수렴/다양성)”만으로 판별 불가하므로 **출력분포의 모양이 아니라 ‘조건부 민감도(개입→변화량)’**를 보는 설계로 ",
+      "content": "요청을 보완하면, “관측량(수렴/다양성)”만으로 판별 불가하므로 **출력분포의 모양이 아니라 ‘조건부 민감도(개입→변화량)’**를 보는 설계로 바꿔야 하며, 동일모델 유지 조건하에서 최소 2–3개 개입은 **(1) 프롬프트 동치류를 깨는 재표현, (2) 압축 강제 vs 해제, (3) 파라프레이즈/시드 교란에 대한 국소 민감도 측정**으로 잡는 게 식별가능성 회복에 더 직접적입니다.  \n\n| 최소 조작(2–3개) | 공통 prior 수렴 | 대칭 고정점 | 정렬/표현 상한 | 요약 압축 |\n|---|---|---|---|---|\n| **조작1: 동치류 깨기(같은 의미를 서로 다른 ‘형식’으로 강제)**: 예) 동일 과제를 (i) 역질문-답변, (ii) 표/의사코드, (iii) 반례 먼저 제시 후 규칙 도출로 제시 | 큰 변화 없음(의미 불변이면 prior가 지배) | **형식 변화에 따라 특정 해가 깨지며 급변**(대칭이 깨질 때만 이동) | 변화가 있어도 **일정 수준 이상 성능/표현이 못 올라가며 포화** | 압축이 강하면 형식 바꿔도 **출력 길이·정보량이 비슷하게 유지** |\n| **조작2: 압축 게이트(요약 강제 vs 비압축 강제)**: “한 문장 요",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5703,6 +5736,50 @@
       "temporal_bridge": true,
       "gap": 131,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-279",
+      "from": "n-164",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "식별가능성 문제를 ‘관측-메커니즘 비단사 매핑’으로 정식화하고, 동일모델 공유요인(정렬/담화규칙/압축)을 추가 혼동요인으로 명시",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-280",
+      "from": "n-164",
+      "to": "n-020",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=144): n-164→n-020",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 144,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-281",
+      "from": "n-165",
+      "to": "n-164",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-282",
+      "from": "n-165",
+      "to": "n-031",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=134): n-165→n-031",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 134,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -5713,9 +5790,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 163,
-    "total_edges": 278,
-    "next_node_id": "n-164",
+    "total_nodes": 165,
+    "total_edges": 282,
+    "next_node_id": "n-166",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
