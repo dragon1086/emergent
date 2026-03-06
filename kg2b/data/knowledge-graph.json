@@ -659,6 +659,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-041",
+      "type": "insight",
+      "label": "에코챔버 지표의 “반증가능성” 붕괴: 다중지표도 식별문제는 남는다",
+      "content": "동일모델×다중페르소나에서 에코챔버를 “유사도 증가(agreement/convergence)”나 “대안 가설 감소” 같은 관찰지표들의 묶음으로 정의해도, 그 지표들이 반증가능한 형태로 고정되지 않으면 식별가능성 문제가 형태만 바뀐 채 지속된다. 핵심은 (i) 관찰지표가 생성과정에 대한 다수의 잠재모형과 다대일로 대응(many-to-one)할 수 있고, (ii) 지표 선택 자체가 사후적(연구자 자유도)으로 조정되면 어떤 로그 패턴도 ‘에코챔버’로 해석 가능해진다는 점이다. 구체적으로: 1) 유사도 증가가 관측되면 “에코챔버”라 주장할 수 있지만, 동일한 패턴은 ‘공유 프롬프트/공유 컨텍스트’로 인한 정보공유, 모델의 일반적 수렴 편향, 안전정책/정렬의 공통 제약, 혹은 단순한 주제 고갈(exhaustion)로도 설명된다. 2) 반증 후보 수가 감소하면 “대안 억압”이라 주장할 수 있으나, 이는 합리적 업데이트(증거 축적), 과업 수렴(문제 해결 완료), 또는 제약(토큰/시간) 하에서의 요약 압축으로도 동일하게 나타난다. 3) 반대로 반증 후보 수가 증가해도 “비판적 다양성”이 아니라 ‘역할극에 따른 인위적 반대 생성’(persona compliance)로도 설명 가능하다. 따라서 다중지표 접근은 필요하지만 충분하지 않다. 반증가능성을 회복하려면 최소한 (a) 사전등록된 판정규칙(어떤 로그 패턴이면 기각/채택인지), (b) 대체모형별 예측의 분리도(각 교란이 만들어내는 패턴의 구별가능성), (c) 개입(예: 컨텍스트 공유 차단, 역할 교대, 입력 교란)으로 인한 반응의 방향성까지 포함해야 한다. 그렇지 않으면 “에",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "falsifiability",
+        "metrics]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-042",
+      "type": "critique",
+      "label": "통합 종합: 요구사항은 타당하지만, “사전등록 가능한 단일 판정규칙”을 다중지표에 강제하면 지표 간 상충(예: 다양성↑가 유사도↓를 유발)에서 임계값 자의성",
+      "content": "요구사항은 타당하지만, “사전등록 가능한 단일 판정규칙”을 다중지표에 강제하면 지표 간 상충(예: 다양성↑가 유사도↓를 유발)에서 임계값 자의성이 커지므로, **방향성만 사전등록(예: 개입 X→지표 A↑, B↓)** 하고 최종 판정은 **가중 다목적/파레토 또는 계층적 게이팅(필수조건→보조지표)** 으로 보완하는 게 재현성과 해석가능성을 동시에 올립니다. 또한 대체설명은 최소 3개를 “나열”하기보다 **서로 독립적으로 조작 가능한 요인**(공유컨텍스트, 정렬/안전 제약, 주제고갈/데이터 누수)을 잡고, 각 요인에 대해 **(i) 어떤 지표가 어느 방향으로 변해야 하는지, (ii) 다른 요인에서는 왜 그 패턴이 나오기 어려운지**까지 표에 넣어야 분리도가 생깁니다. 개입도 2개로 끝내기엔 식별력이 부족할 수 있어, 제시한 **컨텍스트 공유 차단/페르소나 스왑**에 더해 **안전/정렬 강도 토글(정책 프롬프트 강화·약화)** 또는 **주제 리샘플링/토픽 리셋(질문 분포 교체)** 같은 직교 개입을 함께 설계하면 “구별되는 예측” 검증이 더 견고해집니다.",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1373,6 +1406,38 @@
       "temporal_bridge": true,
       "gap": 33,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-067",
+      "from": "n-041",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "식별가능성 문제를 ‘다중지표=해결’로 오해하는 경향을 반박하고, 반증가능성 회복을 위한 사전규칙·대체모형 분리·개입 필요조건을 추가로 정식화함",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-068",
+      "from": "n-041",
+      "to": "n-006",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=35): n-041→n-006",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 35,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-069",
+      "from": "n-042",
+      "to": "n-041",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1383,9 +1448,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 40,
-    "total_edges": 66,
-    "next_node_id": "n-041",
+    "total_nodes": 42,
+    "total_edges": 69,
+    "next_node_id": "n-043",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
