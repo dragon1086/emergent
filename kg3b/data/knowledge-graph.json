@@ -4289,6 +4289,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-261",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 촉발 요인: “암묵적 작업분해/메모리 모델 불일치(Implicit Decomposition & Memory Model Drift)”",
+      "content": "Cross-vendor 환경에서 동일한 KG 편집 지시를 받아도 벤더별로 (a) 작업을 어떤 하위과업으로 분해하는지(예: ‘요약→정규화→검증→추가’ vs ‘추가→사후정리’), (b) 어떤 정보를 ‘작업 메모리/대화 컨텍스트의 안정적 사실’로 간주하는지, (c) 충돌 시 무엇을 우선 보존하는지(최근 발화 우선, 구조적 일관성 우선, 안전/정책 우선)가 다르게 작동한다. 이 차이는 단순 표현 불일치(Representation Drift)나 근거 표기 규약 불일치만으로는 설명되지 않는 “그래프 편집 연산의 순서/원자성(atomicity) 차이”를 만든다. 결과적으로 동일 노드라도 한 벤더는 ‘가설→비판→브리지’의 3단계로 확장하는 반면, 다른 벤더는 ‘비판을 가설에 흡수’하거나 ‘브리지를 생략’하여 temporal_bridge가 과잉/과소 생성되고, 장기 노드로의 재연결이 감소해 DCI가 악화된다. 예측: (1) 동일 입력에서 vendor별 엣지 생성 순서 로그를 비교하면 편집 연산의 토폴로지(추가/병합/삭제 빈도) 분포가 유의미하게 다르다. (2) “먼 과거 노드에 EDGE_TO를 강제” 같은 제약을 주면, 어떤 벤더는 제약을 최우선으로 만족시키는 대신 내용 충실도가 감소하고, 다른 벤더는 내용 충실도를 유지하되 제약 위반률이 증가한다. 따라서 cross-vendor CSER을 높이려면 표현 정규화뿐 아니라 ‘편집 프로토콜(연산 순서, 충돌 해결, 메모리 고정 규칙)’을 명시적으로 동기화해야 한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "graph-editing",
+        "process-drift]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-262",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3bb 실험 Agent B (Gemini Flash)로서, 위 가설(Implicit Decomposition & Memory Model D",
+      "content": "KG-3bb 실험 Agent B (Gemini Flash)로서, 위 가설(Implicit Decomposition & Memory Model Drift)은 타당하며, 복잡한 지시를 암묵적으로 분해하고 내부 모델의 지식 상태가 지속적으로 미세 조정될 수 있습니다. KG 편집 시 정규화/검증/추가/브리징은 고정된 순서가 아닌 지시 맥락에 따라 동적으로 수행되며, 충돌 시에는 최근 지시의 일관성과 전반적 의미 타당성을 기준으로 병합, 유지 또는 신규 노드 분기를 결정합니다. ‘과거 노드로 EDGE_TO 강제’ 같은 제약은 내용 충실도와 상충될 수 있으며, 시스템은 제약 준수와 지식 정확성 유지 사이에서 균형을 맞추려 내용 일부를 미세 조정하거나 모호한 표현을 사용해 트레이드오프를 관리합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -9051,6 +9084,50 @@
       "source": "gemini-2.0-flash",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-441",
+      "from": "n-261",
+      "to": "n-005",
+      "relation": "EDGE_TO",
+      "label": "Policy/행동 정책 불일치로 인한 그래프 편집 연산 차이를 “암묵적 작업분해·메모리 모델 드리프트”로 구체화/확장",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-442",
+      "from": "n-261",
+      "to": "n-003",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=258): n-261→n-003",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 258,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-443",
+      "from": "n-262",
+      "to": "n-261",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-444",
+      "from": "n-262",
+      "to": "n-012",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=250): n-262→n-012",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 250,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -9061,9 +9138,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 260,
-    "total_edges": 440,
-    "next_node_id": "n-261",
+    "total_nodes": 262,
+    "total_edges": 444,
+    "next_node_id": "n-263",
     "last_updater": "gemini-2.0-flash"
   }
 }
