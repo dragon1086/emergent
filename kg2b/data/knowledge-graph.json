@@ -395,6 +395,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-025",
+      "type": "insight",
+      "label": "에코챔버 ‘자율 진화’ vs ‘규범 수렴’의 혼동 위험(대체 가설 분리)",
+      "content": "동일 모델(gpt-5.2×gpt-5.2)에서 관측되는 “동조/반복/상호강화” 패턴은 에코챔버의 자율적 진화라기보다, (i) 동일한 사전학습 분포와 (ii) 유사한 대화 규범(협조적 정합성, 대화의 일관성 유지, 상대 발화의 프레이밍을 존중)에서 비롯되는 ‘규범적 수렴(normative convergence)’일 수 있다. 이 경우 관측 로그에서 나타나는 증거는 “정보 다양성의 감소”가 아니라 “대화적 정합성의 증가”를 반영하며, 에코챔버 가설(상호강화로 인한 편향/협소화)이 아닌 ‘공유 priors + 협조 규범’이 충분히 설명한다. 따라서 식별 문제는 단순히 “관측가능성 부족”이 아니라, 개념적 수준에서 에코챔버(폐쇄적 강화 루프)와 규범 수렴(협조적 합의 형성)이 동일한 표지(반복, 긍정 피드백, 반대 의견 감소)를 낳는다는 점에 있다. 반증을 위해서는 최소한 다음의 분리 기준이 필요하다: (1) 외생적 정보 주입(orthogonal evidence)에도 불구하고 특정 신념/프레임이 유지·강화되는가(폐쇄성), (2) 반례 제시 시 오류 수정이 억제되는가(교정 저항), (3) 다양성 감소가 ‘주제/가설 공간’ 수준에서 발생하는가(탐색 붕괴) vs 단지 표현/톤의 수렴인가. 이 분리 기준 없이 “자율 진화”를 주장하면, 동일 모델 조건은 오히려 에코챔버를 ‘만드는’ 것이 아니라 ‘보이는 듯하게 만드는’ 착시(artifact)를 생성할 수 있다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "alternative_hypothesis",
+        "normative_convergence]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-026",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “최소 조작”이라도 로그만으로는 **외생 정보의 ‘질(정확·관련·신뢰)’과 참가자 사전분포**가 잠재 교란이라 판별력이 과대평가될 수 있",
+      "content": "요청이 “최소 조작”이라도 로그만으로는 **외생 정보의 ‘질(정확·관련·신뢰)’과 참가자 사전분포**가 잠재 교란이라 판별력이 과대평가될 수 있으니, 조작은 **동일 정보·동일 과제에서 반응함수(업데이트 패턴)**를 흔드는 형태로 설계하는 게 핵심입니다.  \n조작 3개: (1) **정확한 외생 정보 vs 그럴듯한 오정보**를 동형 포맷으로 주입 → 규범 수렴이면 *오류수정률↑, 프레임 고착도↓(정확 정보에 맞춰 재정의)*, 에코챔버면 *다양성↓ 유지+오류수정률 낮음(또는 선택적 반박)*이 강한 신호; (2) **반례 강제(각 발화 전 “내 주장 깨는 사례 1개” 의무) + 반례의 출처 신뢰도 조작** → 규범 수렴은 *반례 수용 후 합의 재형성(다양성 일시↑ 후 수렴, 오류수정률↑)*, 에코챔버는 *반례의 주변화로 프레임 고착도↑ 또는 논점이탈 증가*; (3) **역할 비대칭 인센티브(한 명은 정확성 보상, 다른 한 명은 집단 합의/속도 보상)** → 규범 수렴은 *정확성 역할의 신호가 집단 업데이트를 견인(오류수정률↑, 다양성은 초기에↑ 후 정렬)*, 에코챔버는 *합의/속도 역할이 우세해 반대 증거가 억눌려 다양성↓·프레임 고착도↑*가 강한 판별력입니다.",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -793,6 +826,38 @@
       "temporal_bridge": true,
       "gap": 20,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-038",
+      "from": "n-025",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "식별가능성 문제를 ‘관측 부족’에서 ‘개념적 동형표지(에코챔버 vs 규범 수렴)’로 정교화하고, 분리 기준(폐쇄성/교정저항/탐색붕괴)을 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-039",
+      "from": "n-026",
+      "to": "n-025",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-040",
+      "from": "n-026",
+      "to": "n-004",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=22): n-026→n-004",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 22,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -803,9 +868,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 24,
-    "total_edges": 37,
-    "next_node_id": "n-025",
+    "total_nodes": 26,
+    "total_edges": 40,
+    "next_node_id": "n-027",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
