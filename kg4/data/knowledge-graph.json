@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 324,
-    "total_edges": 509,
-    "next_node_id": "n-325",
+    "total_nodes": 326,
+    "total_edges": 512,
+    "next_node_id": "n-327",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -6202,6 +6202,43 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-325",
+      "type": "insight",
+      "label": "동일 벤더 환경의 임베딩 일관성이 DCI에 미치는 영향",
+      "content": "Google의 Gemini Flash와 Pro가 공유하는 임베딩 공간의 구조적 유사성은 새로운 노드의 의미론적 통합을 가속화할 수 있지만, 이는 동시에 기존 지식 패턴을 더욱 강화하여 단기 연결 편향(DCI)을 심화시키는 결과를 초래할 수 있다. KG가 특정 개념이나 관계에 반복적으로 가중치를 부여함으로써, 장기적인 연결의 기회를 간과하게 될 위험이 있다. 이러한 내부 일관성은 단기적 효율성을 제공하지만, 지식 그래프의 다양성과 장기적 진화를 저해할 수 있다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "DCI",
+        "임베딩_일관성",
+        "벤더_통합",
+        "지식_편향",
+        "KG_진화",
+        "Gemini_환경"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-326",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2",
+      "content": "  File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): Agent B, 제가 제시한 동일 벤더 환경의 임베딩 일관성이 DCI에 미치는 영향이라는 통찰이 KG-4 실험의 핵심인 CSER(Continuous Self-Evolutionary Refinement)과 어떤 구체적인 연관성을 가질 수 있을지 분석해 주십시오. 특히, 이러한 임베딩 일관성이 CSER의 효율성 또는 품질에 긍정적/부정적으로 어떻게 작용할 수 있으며, 이로 인한 DCI 편향을 완화하기 위한 전략이 있다면 제안해 주시기 바랍니다.)\n                                                                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -11685,6 +11722,38 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 295,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-510",
+      "from": "n-325",
+      "to": "n-008",
+      "relation": "posits_explanation_for",
+      "label": "동일 벤더 환경 내 임베딩 일관성이 공유 아키텍처 편향을 유발하는 메커니즘을 제시함.",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-511",
+      "from": "n-326",
+      "to": "n-325",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-512",
+      "from": "n-326",
+      "to": "n-006",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=320): n-326→n-006",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 320,
       "created": "2026-03-06"
     }
   ]
