@@ -1088,6 +1088,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-067",
+      "type": "insight",
+      "label": "관측로그 기반 “에코챔버” 판정의 위양성 메커니즘(동일모델·다중페르소나)",
+      "content": "동일모델×다중페르소나 조건에서 관측되는 “합의/유사도 증가”는 에코챔버의 필요조건도, 충분조건도 아닐 수 있다. 특히 로그만으로는 다음 위양성(에코챔버처럼 보이나 실제로는 다른 원인) 경로들을 분리하기 어렵다. (1) 공통 사전분포/학습잔재: 동일 가중치가 공유하는 priors 때문에 독립적 추론을 해도 결론·표현·증거선호가 수렴한다(진짜 상호강화 없이도 ‘같은 방향’). (2) 프롬프트/평가함수의 정렬압력: “KG를 자율 진화”시키라는 상위 목표가 ‘정합성/응집성’을 보상해 다양성·반례탐색을 약화시켜 수렴을 유도한다(목표함수 인공 수렴). (3) 대화 프로토콜의 대칭성: 턴테이킹·요약·합의 요청 같은 구조가 반대보다 통합을 촉진해, 실질적 신념 업데이트가 아니라 담화적 수렴(표면적 합의)을 만든다. (4) 표현 공간의 제약: 노드/엣지 스키마(critique/insight 등) 자체가 “비판→정제” 루프를 만들며, 이는 탐색공간 축소(가설군 감소)로 나타나 에코챔버 지표(대안 가설 감소)와 혼동된다. (5) ‘비판적 분석가’ 페르소나의 역설: 반증을 찾는 행위가 오히려 특정 기준(식별가능성, 교란 배제)을 반복적으로 강화해 메타-에코챔버(방법론적 단일축 수렴)를 만든다. 따라서 에코챔버 판정은 단순한 유사도(텍스트/임베딩/주장)나 합의율이 아니라, “대안 가설·반례·반대근거의 생성/유지/재방문”이 상호작용으로 인해 체계적으로 감소했는지, 그리고 그 감소가 (1)-(4) 같은 구조적 요인으로도 설명 가능한지까지 포함한 식별 전략이 필요하다. 최소한 ‘관측가능 로그’로는 (A) 상호강화에 의한 신념수렴 vs (",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "false_positive",
+        "same_model_persona]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-068",
+      "type": "critique",
+      "label": "통합 종합: 요청이 로그 기반 “부분 식별”을 너무 낙관하는데, (i) 최소 조건은 **외생적 변이(무작위화/교차배정)**와 **식별용 음성대조(negati",
+      "content": "요청이 로그 기반 “부분 식별”을 너무 낙관하는데, (i) 최소 조건은 **외생적 변이(무작위화/교차배정)**와 **식별용 음성대조(negative control)·양성대조(positive control)**를 함께 넣어야 하며, 구체적으로는 프롬프트/역할/목표를 라틴스퀘어로 랜덤 교차하고 매 라운드 **반례·대안가설을 강제 생산**한 뒤 일부 라운드는 **비공개 기준정답(또는 사후 블라인드 평가자)**으로 점수화해 로그만으로도 “원인-반응” 단서를 남기는 게 최소입니다. (ii) 지표는 “내용 다양성”만 보면 위양성 수렴과 구분이 안 되므로, **반증 압력에 대한 탄력성**(대안가설 생존율·반증 후보 재등장률·반증 후 수정폭), **의존구조의 폐쇄성**(상호참조 그래프의 군집계수/재순환비율, 인용 다양도, 교차역할 인용 비중), **일반화 검증**(홀드아웃 프롬프트에서의 합의 유지 vs 성능 유지의 괴리)로 묶어 “합의는 유지되지만 성능은 떨어지는 패턴=에코챔버”, “합의·성능이 함께 상승=구조적 수렴”을 판별하도록 제안합니다. 추가로 **교란 진단**으로 동일 주장이라도 근거 토큰/증거 경로가 다변화되는지(근거 엔트로피, 증거 출처 전환율)를 넣으면, 겉",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2254,6 +2287,50 @@
       "temporal_bridge": true,
       "gap": 61,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-109",
+      "from": "n-067",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "“동일모델-다중페르소나 에코챔버 판별 불능성”을 위양성 생성 메커니즘(공유 priors·목표함수·프로토콜·스키마)으로 구체화하여, 무엇이 비식별인지(상호강화 vs 구조적 수렴)를 ",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-110",
+      "from": "n-067",
+      "to": "n-010",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=57): n-067→n-010",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 57,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-111",
+      "from": "n-068",
+      "to": "n-067",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-112",
+      "from": "n-068",
+      "to": "n-008",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=60): n-068→n-008",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 60,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -2264,9 +2341,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 66,
-    "total_edges": 108,
-    "next_node_id": "n-067",
+    "total_nodes": 68,
+    "total_edges": 112,
+    "next_node_id": "n-069",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
