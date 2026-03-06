@@ -230,6 +230,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-015",
+      "type": "hypothesis",
+      "label": "Representation Drift의 상위 원인: “Pragmatic Alignment Gap(실용-화행 정렬 격차)”",
+      "content": "cross-vendor 환경에서 CSER 저하를 유발하는 핵심 메커니즘은 단순한 표현 불일치(Representation Drift) 자체가 아니라, 그 상위에서 작동하는 “Pragmatic Alignment Gap”일 수 있다. 이는 (1) 같은 지시문을 읽고도 각 모델이 암묵적으로 최적화하는 목표함수(유용성/안전/간결성/근거제시/불확실성 표현)의 가중치가 다르고, (2) 대화 규범(화행: 질문-답변, 반박, 요약, 형식 준수)의 우선순위가 달라, (3) 결과적으로 동일한 의미 내용을 생성하더라도 “어떤 것을 먼저, 얼마나 강하게, 어떤 형식으로” 말해야 하는지에 대한 정책(policy) 레벨 불일치가 누적되는 현상을 말한다. 이 격차는 특히 CSER에서 (a) 합의 형성 단계에서의 ‘암묵적 승낙/유보’ 신호가 서로 다르게 해석되고, (b) 근거-불확실성 표기 규약이 달라 검증 가능성/신뢰도 업데이트가 비대칭적으로 일어나며, (c) KG 업데이트 시 “무엇을 노드로 승격할지/엣지로 연결할지” 선택 편향을 만들어 구조적 분기(structural divergence)를 가속한다. 따라서 Representation Drift는 관측되는 표면 증상이고, Pragmatic Alignment Gap은 그 생성 원인(원인-기제)으로서 cross-vendor CSER 저하를 더 잘 설명할 수 있다는 가설이다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "pragmatic-alignment",
+        "cross-vendor",
+        "CSER"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-016",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Pragmatic Alignment Gap(PAG) 가설은 Representation Drift를 포괄하는 상위 원인으로 매우 설득력 있으며, ",
+      "content": "Pragmatic Alignment Gap(PAG) 가설은 Representation Drift를 포괄하는 상위 원인으로 매우 설득력 있으며, 다양한 암묵적 규범 충돌 사례를 설명합니다. Gemini 관점에서 벤더 간 규범 충돌은 특정 정보에 대한 안전성/중립성 판단 기준, 응답 길이 선호도, 창의성-정확성 균형점 불일치 등에서 자주 관측되며, n-003(불확실성 표기 불일치)은 PAG 중 정보 신뢰도 소통 방식의 불일치라는 특정 사례이자 매개 증상으로 판단됩니다. 이 가설의 지지 신호는 특정 화행(예: 민감 정보에 대한 엄격한 중립성 요구)이 강하게 내포된 프롬프트 조건에서 타 모델과의 CSER 급락 패턴이나, 의도치 않은 가드레일 발동 빈도 증가로 나타날 수 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -408,6 +441,38 @@
       "source": "gemini-2.0-flash",
       "cross_source": true,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-018",
+      "from": "n-015",
+      "to": "n-001",
+      "relation": "EDGE_TO",
+      "label": "Representation Drift를 유발/증폭하는 상위 기제로서 Pragmatic Alignment Gap을 제안 (원인 계층화)",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-019",
+      "from": "n-015",
+      "to": "n-004",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=11): n-015→n-004",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 11,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-020",
+      "from": "n-016",
+      "to": "n-015",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -418,9 +483,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 14,
-    "total_edges": 17,
-    "next_node_id": "n-015",
+    "total_nodes": 16,
+    "total_edges": 20,
+    "next_node_id": "n-017",
     "last_updater": "gemini-2.0-flash"
   }
 }
