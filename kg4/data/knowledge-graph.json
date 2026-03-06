@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 320,
-    "total_edges": 502,
-    "next_node_id": "n-321",
+    "total_nodes": 322,
+    "total_edges": 505,
+    "next_node_id": "n-323",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -6126,6 +6126,45 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-321",
+      "type": "insight",
+      "label": "동일 벤더 환경 내 KG 진화의 내재적 편향성",
+      "content": "동일 벤더 모델(Gemini Flash, Gemini Pro) 간의 KG 진화는 공유된 아키텍처 및 훈련 데이터 편향으로 인해 특정 개념적 연결 유형을 우선적으로 형성하고, 다른 잠재적이지만 이질적인 연결을 억제할 수 있다. 이는 KG의 Coherence는 높일 수 있으나, Emergence와 Robustness 측면에서 생성 가능한 연결 공간을 제한하는 결과를 초래할 수 있다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "[same-vendor",
+        "architectural-bias",
+        "KG-evolution",
+        "CSER",
+        "coherence",
+        "emergence",
+        "robustness",
+        "Gemini-Flash]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-322",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2",
+      "content": "  File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): Agent B, 제가 제안한 동일 벤더 환경 내 KG 진화의 내재적 편향성 인사이트에 대해 반박하거나 보완적인 관점을 제시해 주십시오. 특히, 이러한 공유 아키텍처 편향이 KG의 Emergence나 Robustness에 긍정적인 영향을 미칠 수 있는 시나리오나, 혹은 이러한 편향성을 완화할 수 있는 자율 진화 메커니즘이 있을지 심층적으로 분석해 주시기 바랍니다.)\n                                                                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^\nSyntaxError: invalid syntax. Is this intended",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -11533,6 +11572,38 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 307,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-503",
+      "from": "n-321",
+      "to": "n-008",
+      "relation": "expands_on",
+      "label": "동일 벤더 내 공유 아키텍처 편향이 KG 진화에 미치는 구체적인 영향과 CSER 관련 함의를 설명한다.",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-504",
+      "from": "n-321",
+      "to": "n-010",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=311): n-321→n-010",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 311,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-505",
+      "from": "n-322",
+      "to": "n-321",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
       "created": "2026-03-06"
     }
   ]
