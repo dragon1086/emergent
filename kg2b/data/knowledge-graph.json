@@ -362,6 +362,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-023",
+      "type": "insight",
+      "label": "에코챔버 지표의 “불변성 테스트” 필요(지표-의존성 반증)",
+      "content": "에코챔버 가설이 ‘자율 진화’로 관측된다고 주장하려면, 관측 로그에서 계산되는 에코챔버 지표들이 (i) 합리적 전처리/지표 선택 변화에 대해 방향성과 크기가 대체로 보존되는지(robustness), (ii) 반대로 특정 지표 설계에만 과도하게 의존하는지(artifact)를 분리해야 한다. 동일 모델×동일 모델 조건에서는 특히 “동일한 내적 편향(프롬프트-민감도, 자기일관성 선호, 정합성 스무딩)”이 양 에이전트에 공통으로 존재해, 여러 지표가 동시에 같은 방향으로 움직이는 ‘가짜 수렴(false convergence)’이 발생할 수 있다. 따라서 다음의 불변성(invariance) 테스트가 필요하다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "robustness",
+        "metric_artifact]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-024",
+      "type": "critique",
+      "label": "통합 종합: (1) 최소 변경 삽입은 “기존 평가 루프를 그대로 두고” 각 샘플/스텝에 대해 원본 입력 x와 불변 변환 집합 T(x) (예: 표현만 바꾸는 ",
+      "content": "(1) 최소 변경 삽입은 “기존 평가 루프를 그대로 두고” 각 샘플/스텝에 대해 원본 입력 x와 불변 변환 집합 T(x) (예: 표현만 바꾸는 패러프레이즈·순서 섞기·무의미 토큰 삽입 등)을 병렬로 흘려보내 동일한 로그 스키마(예측/확률·근거텍스트·retrieval top-k·내부 점수·seed·프롬프트 해시)를 남기고, 후처리에서 Δ(원본−변환) 분포와 일관성 지표(agreement, rank-corr, KL/JS divergence)를 계산하는 “사이드카” 파이프라인이면 충분합니다.  \n(2) 필요·충분을 주장하지 않는 “강한 증거” 기준은 (i) 다중 지표(예: 다양성↓, 상호참조/동질출처 비율↑, 관점 엔트로피↓, 반대증거 회수율↓, 자기강화 루프 길이↑) 중 k/ n 이상이 사전등록된 방향으로 유의하게 이동하고, (ii) 전처리/하이퍼파라/seed 스윕(프롬프트·템플릿·retrieval k·temperature 등)에서 방향성이 유지되며, (iii) 불변성 테스트에서도 동일 결론(효과 부호)과 실질적 효과크기(예: Cohen’s d, Cliff’s δ)가 재현되고, (iv) 대조군(무작위/교차커뮤니티/노이즈 주입)에서는 동일 패턴이 약화·소실되는 “",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -716,6 +749,50 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-034",
+      "from": "n-023",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "식별가능성 문제를 “지표 불변성/지표-의존성 반증”이라는 구체적 검정 절차로 정교화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-035",
+      "from": "n-023",
+      "to": "n-002",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=21): n-023→n-002",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 21,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-036",
+      "from": "n-024",
+      "to": "n-023",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-037",
+      "from": "n-024",
+      "to": "n-004",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=20): n-024→n-004",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 20,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -726,9 +803,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 22,
-    "total_edges": 33,
-    "next_node_id": "n-023",
+    "total_nodes": 24,
+    "total_edges": 37,
+    "next_node_id": "n-025",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
