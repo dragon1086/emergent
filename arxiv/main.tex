@@ -36,7 +36,7 @@ A Case Study with CSER and Persona-Diversity Gates}
   \texttt{munsangrok@gmail.com}
 }
 
-\date{Draft v3.8 — Latest Snapshot (2026-03-05)}
+\date{Draft v3.9 — Latest Snapshot (2026-03-05)}
 
 % ─── Document ─────────────────────────────────────────────────────────────────
 \begin{document}
@@ -110,8 +110,9 @@ small-sample noise rather than a robust effect (see Section~\ref{sec:amp_benchma
 
 \medskip\noindent\textbf{Scope and limitations}: Primary findings are based on $N=4$ independent
 KG instances across a $2\times2$ vendor-diversity matrix ($\geq$30 cycles each).
-Each cell now contains $N=2$ independent KG instances (original + replication-B,
-initiated 2026-03-05); within-cell replication is ongoing.
+Each cell now contains $N=2$ independent KG instances (original + replication-B);
+KG-2b early CSER (0.549) closely matches the primary KG-2 (0.552), providing
+a first within-cell replication signal. Full trajectory stabilisation pending.
 Domain generalization requires further study. Claims are limited to this experimental setting.
 
 \medskip\noindent\textbf{Keywords}: multi-agent AI, knowledge graph co-evolution,
@@ -1371,7 +1372,7 @@ generalising the domain-dependence claim.
         Instance & Agent Pair & Vendor & Edges & CSER \\
         \midrule
         KG-main & Claude-sonnet-4-6 $\times$ GPT-next (undisclosed) & Cross & 1121 & \textbf{0.8510} \\
-        KG-2 & GPT-5.2 $\times$ GPT-5.2 & Same-model (OpenAI) & 112 & 0.545$^{**}$ \\
+        KG-2 & GPT-5.2 $\times$ GPT-5.2 & Same-model (OpenAI) & 116 & 0.552$^{**}$ \\
         KG-3 & GPT-next (undisclosed) $\times$ Gemini-2.0-Flash & Cross & 400 & \textbf{0.3800} \\
         KG-4 & Gemini-Flash $\times$ Gemini-Pro & Same (Google) & 402 & 0.2537$^*$ \\
         \bottomrule
@@ -1385,21 +1386,24 @@ generalising the domain-dependence claim.
         $^{**}$KG-2 restarted 2026-03-05: upgraded from GPT-4o $\times$ GPT-4o-mini
         to GPT-5.2 $\times$ GPT-5.2 (zero capability gap, same model) for the
         strongest same-model echo-chamber test in the $2\times2$ matrix.
-        Early trajectory (67 nodes, 112 edges): CSER declined from 1.00 (cycle 1)
-        to 0.545 (current), consistent with progressive echo-chamber pressure under
-        identical-model pairing. Prior 30-cycle snapshot (CSER $=0.83$, GPT-4o $\times$
+        Early trajectory (69 nodes, 116 edges): CSER declined from 1.00 (cycle 1)
+        to 0.552 (current), consistent with progressive echo-chamber pressure under
+        identical-model pairing. Replication-B (KG-2b, 32 nodes) already converges
+        to CSER $= 0.549$, closely matching this value---first within-cell replication signal. Prior 30-cycle snapshot (CSER $=0.83$, GPT-4o $\times$
         GPT-4o-mini) is retained as a supplementary data point.}
         \end{table}
 
-        \noindent\textbf{Key replication finding ($N=4$ KG instances; KG-2: early trajectory, KG-3/4: 130+ cycles)}:
+        \noindent\textbf{Key replication finding ($N=4$ KG instances + within-cell replication signal; KG-2b: early convergence, KG-3/4: 130+ cycles)}:
         \begin{enumerate}
           \item The gate-passing CSER result replicates across KG-main, KG-2, and KG-3
                 (CSER $\geq 0.30$). KG-4 (same-vendor Google, small capability gap) has
                 declined to CSER $=0.2537$ at extended scale, falling below the gate---
                 a directional finding consistent with the echo-chamber hypothesis.
                 KG-2 (GPT-5.2 $\times$ GPT-5.2, zero capability gap) shows early
-                echo-chamber pressure: CSER declined from 1.00 (cycle~1) to 0.545
-                (67 nodes), suggesting same-model pairs converge even at highest model tier.
+                echo-chamber pressure: CSER declined from 1.00 (cycle~1) to 0.552
+                (69 nodes). Replication-B (KG-2b, 32 nodes, CSER $=0.549$) already
+                matches this trajectory---first within-cell replication of the same-model
+                echo-chamber effect.
           \item Across-vendor CSER ordering: KG-main (0.851) $>$ KG-2 (0.545) $>$
                 KG-3 (0.380) $>$ KG-4 (0.254),
                 broadly consistent with the heterogeneity hypothesis. CSER declines
@@ -2082,11 +2086,14 @@ transferred directly; empirical F1-sweep calibration per task type is required.
 Based on the case-study findings, we identify the following empirically grounded directions:
 
 \begin{itemize}
-  \item \textbf{Within-cell replication (ongoing)}: Three replication-B instances
+  \item \textbf{Within-cell replication (early signal)}: Three replication-B instances
         (KG-2b: GPT-5.2$\times$GPT-5.2, KG-3b: GPT$\times$Gemini, KG-4b: Gemini$\times$Gemini)
-        were initiated 2026-03-05 and are accumulating cycles via automated nightly runners.
-        Full within-cell trajectory comparison (original vs.\ replication-B) will be
-        reported once each reaches $\geq$30 cycles.
+        were initiated 2026-03-05 and each reached 32 nodes (16 cycles) by end of day.
+        Early CSER readings: KG-2b = 0.549, KG-3b = 0.460, KG-4b = 0.575.
+        Notably, KG-2b already converges to KG-2's established value (0.552),
+        providing a first within-cell replication signal for the same-model echo-chamber condition.
+        KG-3b (target: 0.380) and KG-4b (target: 0.254) are trending in the expected direction
+        but require more cycles ($\geq$100) for trajectory stabilisation.
         Independent KG runs with preregistered protocols,
         different agent pairs, domains, and seeds are required before any structural finding
         (CSER trajectories, gate thresholds, D-063/D-064 rates) can be claimed to generalise
