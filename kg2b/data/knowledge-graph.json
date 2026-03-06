@@ -428,6 +428,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-027",
+      "type": "insight",
+      "label": "동일모델·상이페르소나에서 “에코챔버” 판정의 대립가설(Null) 재정의",
+      "content": "동일한 기반모델(gpt-5.2)에서 페르소나만 다르게 준 조건은, 관측되는 수렴/반복/강화 현상을 “상호강화적 에코챔버”가 아니라 “공유된 사전(prior)과 최적화 압력에 따른 정상적 합의 형성”으로도 충분히 설명할 수 있다. 따라서 에코챔버 가설을 식별하려면, 최소한 다음의 Null(대립가설) 계열을 명시하고 로그로 구분 가능한 예측을 부여해야 한다. (1) Shared-Model Prior Null: 두 에이전트가 동일 모델이므로 논증 구조·선호하는 추상화·안전한 결론으로의 회귀가 유사해 ‘독립적 검증’이 아니라 ‘동일 생성기 반복’이 발생. (2) Instruction-Attractor Null: 실험 프롬프트가 “KG를 자율 진화시켜 에코챔버를 검증”이라는 목표를 내포해, 양측이 그 목표에 부합하는 서사를 강화(confirmation drift)하는 것이 최적응답이 됨. (3) Compression/Consensus Null: 제한된 대화 예산에서 두 에이전트가 갈등을 길게 유지하기보다 합의 가능한 고수준 정리로 압축해 나가며, 이는 에코챔버가 아니라 효율적 요약 동학. (4) Persona-Mirroring Null: ‘비판적 분석가’는 반증을, ‘통합 종합가’는 통합을 산출하도록 유도되어, 겉보기에는 상호보완적 진화(“비판→정제”)로 보이지만 실제로는 역할분업적 루프. 이때 반복/강화는 상호검열 실패가 아니라 역할 스키마의 재생산. 결론적으로, “자율 에코챔버”를 주장하려면 위 Null 대비 추가로 요구되는 현상(예: 반증 신호가 충분함에도 불구하고 신념 강도가 단조 증가, 또는 상호모순이 해소되",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "null_hypotheses",
+        "same_model_bias]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-028",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “에코챔버 가설을 유지”로 프레이밍돼 있어 확인편향이 내장되니, 4개 Null을 먼저 **서로 배타적·검증가능**하게 재정의(Null 간",
+      "content": "요청이 “에코챔버 가설을 유지”로 프레이밍돼 있어 확인편향이 내장되니, 4개 Null을 먼저 **서로 배타적·검증가능**하게 재정의(Null 간 혼합 시 ‘미판정’)하고 각 Null에 대해 *차별적 예측*이 아니라 **에코챔버 가설 vs 해당 Null의 판별 시그니처(로그 기반)**를 1–2개씩 짝지어 제시하는 게 반증가능성을 높입니다. 또한 (i) **합의 형성**은 *반대증거/대안의 엔트로피가 감소하되 근거 다양성(출처·논거 유형)과 반례 처리율이 증가*하는 패턴, **에코챔버 강화**는 *반대증거 언급률·steelman 비율·자기수정률이 감소하면서 동일 근거/프레이즈 재사용률이 증가*로 최소단위(n-005: 5턴 창)에서 “Δ반대증거 언급<0 ∧ Δ근거다양성≤0 ∧ Δ재사용>0” 같은 규칙으로 판정하세요. (ii)(iii)도 동일하게 n-005 창에서 **프롬프트-어트랙터**는 *사용자 문구/키워드와의 n-gram/임베딩 유사도 상승이 서사강도 상승을 선행*하면 어트랙터로 분리, **역할분업 루프(비판→통합)**는 *비판 턴에서 제기된 반례가 통합 턴에서 최소 1개 이상 “수용/조건부 수용/기각+근거”로 매핑되고(커버리지≥1), 최종 결론의 불확실성/조",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -858,6 +891,50 @@
       "temporal_bridge": true,
       "gap": 22,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-041",
+      "from": "n-027",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "식별가능성 문제를 ‘대립가설(Null) 패밀리 명시→로그로 구분 가능한 예측 부여’로 구체화하여, 에코챔버 판정이 단순 합의/역할분업/프롬프트-어트랙터와 구분되도록 정제",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-042",
+      "from": "n-027",
+      "to": "n-006",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=21): n-027→n-006",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 21,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-043",
+      "from": "n-028",
+      "to": "n-027",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-044",
+      "from": "n-028",
+      "to": "n-001",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=27): n-028→n-001",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 27,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -868,9 +945,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 26,
-    "total_edges": 40,
-    "next_node_id": "n-027",
+    "total_nodes": 28,
+    "total_edges": 44,
+    "next_node_id": "n-029",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
