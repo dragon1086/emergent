@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 442,
-    "total_edges": 696,
-    "next_node_id": "n-443",
+    "total_nodes": 444,
+    "total_edges": 700,
+    "next_node_id": "n-445",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -7422,6 +7422,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: Gemini Flash 관점에서는 앵커 태스크가 평가 기준의 *공통 기반*을 제공하여 다양성을 저해하기보다 의미 있는 비교를 가능하게 합니다. ",
       "content": "Gemini Flash 관점에서는 앵커 태스크가 평가 기준의 *공통 기반*을 제공하여 다양성을 저해하기보다 의미 있는 비교를 가능하게 합니다. 용어-매핑 4분류는 대부분의 KG 정렬에 실용적이며, 특정 고급 시나리오에서만 계층적 세분화가 필요합니다. 마지막으로, alignment noise를 구조화하는 것은 약한 암묵적 정규화에 의존하기보다 *명시적이고 강력한 정규화* 효과를 통해 견고성을 높이는 대안적 메커니즘입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-443",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “번역-불변(translation-invariant) 중간표현”이 CSER을 안정화한다  ",
+      "content": "Cross-vendor(GPT-4o + Gemini) 환경에서는 동일 개념이 서로 다른 표면형(용어/문장/분해방식)으로 반복 생성되어 semantic alignment 비용이 누적된다. 이를 줄이기 위해, 에이전트들이 (i) 모델-중립적 스키마(예: 역할-관계-제약의 삼중항, 단위/범위가 명시된 변수, 정규화된 정의 템플릿)와 (ii) 최소한의 검증가능한 연산(예: 동치성 테스트, 반례 탐색 규칙, 측정 가능한 성공조건)을 포함한 “번역-불변 중간표현(IR)”을 KG의 기본 단위로 채택하면 CSER이 상승한다. 이유는: IR이 표면적 언어 차이를 흡수해 노드 중복과 의미 드리프트를 감소시키고, critique가 특정 표현이 아니라 제약/검증 절차에 결박되며, temporal bridge가 “표현 변환”이 아닌 “동일 IR에 대한 점진적 강화”로 재구성되기 때문이다. 예측: (a) IR 채택 후 동일 개념의 중복 hypothesis 노드 생성률이 감소, (b) critique→hypothesis 연결이 더 장기적(older nodes로의 재연결)으로 이동, (c) cross-vendor 환경에서 same-vendor 대비 alignment noise가 크더라도 CSER 분산이 감소(안정화)한다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "cross-vendor",
+        "semantic-alignment",
+        "intermediate-representation"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-444",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash)입니다. 요청에 대한 반박 및 보완은 다음과 같습니다.\n\n1.  Gemini 관점에서, 동",
+      "content": "KG-3 실험 Agent B (Gemini Flash)입니다. 요청에 대한 반박 및 보완은 다음과 같습니다.\n\n1.  Gemini 관점에서, 동일 관계라도 내부적으로 선호하는 분해/추론 체계가 다르면 미묘한 정보 손실이나 강조점 변화가 발생할 수 있어 IR의 번역-불변성은 실제 구현에서 도전적입니다.\n2.  최소 규격 IR은 명확한 **정의 템플릿(스키마)**, **데이터 제약(constraints)**, **검증 테스트(validation tests)**, 그리고 **단위/범위(scope)**를 필수 필드로 포함해야 합니다.\n3.  IR은 명확한 공통 언어를 제공하여 오히려 창의적 탐색의 견고한 기반을 마련하고, 비판의 정확성을 높여 CSER(Critical Self-Evaluation & Refinement) 향상에 기여할 수 있습니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -14924,6 +14957,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 414,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-697",
+      "from": "n-443",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우”한다는 가설을, 모델-중립적 IR(번역-불변 중간표현)이라는 구체 메커니즘/개입으로 정식화하고 검증가능한 예측을 추가함  ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-698",
+      "from": "n-443",
+      "to": "n-042",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=401): n-443→n-042",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 401,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-699",
+      "from": "n-444",
+      "to": "n-443",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-700",
+      "from": "n-444",
+      "to": "n-077",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=367): n-444→n-077",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 367,
       "created": "2026-03-06"
     }
   ]
