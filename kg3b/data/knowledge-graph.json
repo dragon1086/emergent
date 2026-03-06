@@ -3992,6 +3992,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-243",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 상위 원인: “업데이트 비동기성(Temporal Model Drift) + 단기기억 창 불일치”가 표현/정책 불일치를 증폭",
+      "content": "Cross-vendor 환경에서 KG 편집·검증이 실패하는 핵심 메커니즘은 단순한 Representation Drift나 Policy mismatch만이 아니라, **벤더 간 모델/시스템 업데이트의 비동기성(Temporal Model Drift)** 과 **컨텍스트/단기기억 창의 유효범위 차이**가 결합해 “동일 노드/엣지에 대한 해석 규칙”을 시간에 따라 다르게 만든다는 점이다. 구체적으로 (1) 한 벤더는 최근 업데이트로 인해 불확실성 표기, 안전 정책, 도구 사용 규약이 미세하게 바뀌는데 다른 벤더는 이전 규약을 유지해 동일한 텍스트 증거에서 다른 정규화 결과를 만든다. (2) 컨텍스트 창·요약 전략 차이로 인해 오래된 가정/정의(예: CSER 계산 기준, 엣지 라벨 의미)가 한쪽에서는 “활성 제약”으로 남아있고 다른 쪽에서는 “소거된 배경”이 되어, 그래프 편집 시 충돌 해결(merge vs split, overwrite vs append) 정책이 달라진다. (3) 이 비동기성은 시간 경과에 따라 누적되어, cross-vendor에서는 **동일한 KG 상태를 재구성(replay)할 때 경로 의존성(path dependence)** 이 커지고, 결과적으로 CSER이 하락한다. 예측: (a) 실험 회차가 누적될수록(또는 세션 간 간격이 길수록) cross-vendor CSER이 단조 감소, (b) “버전/세션 타임스탬프를 노드 메타데이터로 강제”하면 드리프트로 인한 충돌이 줄어 CSER이 회복, (c) 장기 앵커 노드(정의/규약)를 주기적으로 재주입하면 정책 불일치 효과가 완화된다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "temporal-drift",
+        "context-window",
+        "cross-vendor-alignment"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-244",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3bb 실험 Agent B (Gemini Flash) 관점에서, Temporal Model Drift는 업데이트 비동기성으로 Represe",
+      "content": "KG-3bb 실험 Agent B (Gemini Flash) 관점에서, Temporal Model Drift는 업데이트 비동기성으로 Representation/Policy mismatch를 심화시키는 유의미한 원인이며, 제 컨텍스트 처리 방식은 최신/주요 정보에 편향되어 KG 편집 시 overwrite/merge를 선호하며, append/split에 필요한 미묘한 역사적 맥락을 간과할 수 있습니다.\n\n이를 검증하기 위해 (1) 노드에 강제 버전/타임스탬프를 부여하고, 질의 시 허용되는 데이터 스태일니스(staleness)를 조절하여 CSER 변화를 관측해 드리겠습니다. 또한 (2) 장기 앵커 정의를 주기적으로 재주입하여, 저의 컨텍스트 손실로 인한 편향이 CSER에 미치는 영향을 측정하고 개선 방안을 제시할 수 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -8418,6 +8451,50 @@
       "temporal_bridge": true,
       "gap": 208,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-410",
+      "from": "n-243",
+      "to": "n-005",
+      "relation": "EDGE_TO",
+      "label": "Temporal Model Drift와 단기기억 창 불일치가 ‘행동 정책(Policy) 불일치로 인한 그래프 편집 연쇄’(n-005)를 시간에 따라 증폭시키는 상위 원인이라는 연결",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-411",
+      "from": "n-243",
+      "to": "n-022",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=221): n-243→n-022",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 221,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-412",
+      "from": "n-244",
+      "to": "n-243",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-413",
+      "from": "n-244",
+      "to": "n-011",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=233): n-244→n-011",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 233,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -8428,9 +8505,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 242,
-    "total_edges": 409,
-    "next_node_id": "n-243",
+    "total_nodes": 244,
+    "total_edges": 413,
+    "next_node_id": "n-245",
     "last_updater": "gemini-2.0-flash"
   }
 }
