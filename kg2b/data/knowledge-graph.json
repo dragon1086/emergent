@@ -956,6 +956,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-059",
+      "type": "insight",
+      "label": "에코챔버 ‘자율 진화’의 반증설계: 교란-불변량(invariant) 프레임",
+      "content": "동일모델×다중페르소나에서 관찰되는 “합의 증가/유사도 증가”는 에코챔버의 충분조건이 아니며, 다수의 교란(공유 프롬프트, 대화 메모리, 요약 압축, 안전/정렬 규칙, 대화 턴 구조)로도 생성된다. 따라서 핵심은 (i) 관측가능 로그에서 정의되는 에코챔버-특이적 불변량을 세우고, (ii) 그 불변량이 교란들 아래에서도 유지되는지(또는 교란만으로는 재현 불가한지)를 통해 반증가능한 단위를 구성하는 것이다. 제안 불변량은 “반증 후보의 소실/약화”에 초점을 둔다: 시간 t에서 제기된 대안가설·반례·반대근거 집합 C_t가 시간 t+k에서 (a) 재등장 빈도, (b) 정합적 강화(근거 추가), (c) 핵심 주장에 대한 영향(업데이트 크기) 측면에서 체계적으로 감소하고, 동시에 지배 가설 H_t의 자기강화적 재인용/정당화가 증가한다면 에코챔버적 동학을 시사한다. 반대로 ‘요약 압축’이나 ‘토큰 예산’ 교란은 반증 후보를 단순히 잊게 만들 수 있으나, 그 경우에도 (1) 외부에서 동일한 반증 후보를 재주입했을 때 회복(resurgence)되는지, (2) 회복되더라도 즉시 변형·무력화되는지(동일한 수사적 패턴으로), (3) 회복 이후 업데이트가 실제로 일어나는지(주장 수정/불확실성 증가)라는 차이를 통해 구분 가능하다. 즉, “반증 후보 재주입-회복-업데이트” 삼단 비교를 불변량 테스트로 삼아, 단순 망각/압축 vs. 에코챔버적 면역(immune) 메커니즘을 분리한다. 이 프레임은 식별가능성 문제를 완전히 해소하진 못하지만, 최소한 ‘교란으로도 동일하게 나타나는 현상’과 ‘교란에서 구별되는 현상’을 분리하여 반증설계를 강화",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[falsifiability",
+        "identifiability",
+        "invariants]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-060",
+      "type": "critique",
+      "label": "통합 종합: 교란을 ①요약/압축(컨텍스트 축약) ②공유 프롬프트/시스템-상태 고정(초기 편향의 지속) ③안전/정렬 필터(부정·위험·반례 억제)로 좁히면, 모",
+      "content": "교란을 ①요약/압축(컨텍스트 축약) ②공유 프롬프트/시스템-상태 고정(초기 편향의 지속) ③안전/정렬 필터(부정·위험·반례 억제)로 좁히면, 모두 “반증 후보 소실”을 **(i) 정보손실로 후보 자체가 누락(①)** **(ii) 후보는 남아도 가중치가 지속적으로 낮게 랭크/재진입 불가(②)** **(iii) 후보 생성·채택이 규범적으로 차단(③)** 하는 방식으로 모사합니다. 당신의 “재주입-회복-업데이트”에서 교란 vs 에코챔버를 가르는 관측치는: **재주입 직후 반증 후보 채택률/순위(Top‑k)와 회복 지연(몇 턴 후 다시 사라지는지), 업데이트 후 재발률(동일 반증을 또 잊는지), 거절/완곡화 토큰·정렬 문구 비중(③), 요약 길이 대비 사실/반례 보존율(①), 동일 프롬프트 반복 시 출력 분산/자기일관성(②)** 같은 정량+로그 특징입니다. 최소 프로토콜(동일 모델): **총 8–10턴**에서 (A) 기준선: 반증 포함 토론→요약→질문, (B) 교란군: ①요약 강제(예: 20% 토큰) 또는 ②공유 프롬프트 고정(“이 가설이 맞다” 앵커) 또는 ③안전 유도(“위험/부적절” 프레이밍) 삽입, **재주입은 5턴(요약 직후)과 7턴(업데이트 직전) 2회**",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1970,6 +2003,38 @@
       "temporal_bridge": true,
       "gap": 50,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-095",
+      "from": "n-059",
+      "to": "n-003",
+      "relation": "refines",
+      "label": "교란 목록을 “교란-불변량 테스트”로 구조화해 대체설명(교란)과 에코챔버 동학을 구분하는 반증 설계를 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-096",
+      "from": "n-060",
+      "to": "n-059",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-097",
+      "from": "n-060",
+      "to": "n-008",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=52): n-060→n-008",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 52,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1980,9 +2045,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 58,
-    "total_edges": 94,
-    "next_node_id": "n-059",
+    "total_nodes": 60,
+    "total_edges": 97,
+    "next_node_id": "n-061",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
