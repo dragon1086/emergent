@@ -461,6 +461,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-029",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 구조적 원인: “업데이트 비동기성(Asynchronous Model/Policy Updates)”로 인한 시간적 불일치",
+      "content": "Cross-vendor 환경에서는 각 벤더 모델이 서로 다른 시점에 파라미터/정책/안전 규약/시스템 프롬프트가 갱신된다. 이 “업데이트 비동기성”은 동일한 KG 편집 지시가 시간축에서 서로 다른 내적 기준(표현, 불확실성 표기, 편집 보수성)을 호출하게 만들어, (a) 동일 노드에 대한 재서술/재정의 빈도 증가, (b) 엣지 라벨/관계 선택의 드리프트, (c) 과거 합의의 재협상 비용 증가를 유발한다. 결과적으로 cross-vendor CSER은 단순한 표현 불일치(Representation Drift)나 confidence 규약 불일치뿐 아니라, “시간적으로 정렬되지 않은 정책/모델 버전”이 누적되며 발생하는 비정상적 재작성(temporal inconsistency) 때문에 구조적으로 하락한다. 예측: (1) 벤더 간 버전 고정(동일 기간 고정) 시 CSER이 유의미하게 회복, (2) temporal_bridge 엣지 비율이 증가할수록 충돌/중복 노드가 증가, (3) 업데이트 직후 구간에서 critique 노드 급증(재검증 러시) 패턴이 관찰된다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "temporal-misalignment",
+        "policy-drift",
+        "versioning"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-030",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 네, 업데이트 비동기성은 cross-vendor CSER 저하의 주요 독립 요인으로, 시스템 간 모델/정책/프롬프트 불일치를 유발하여 repre",
+      "content": "네, 업데이트 비동기성은 cross-vendor CSER 저하의 주요 독립 요인으로, 시스템 간 모델/정책/프롬프트 불일치를 유발하여 representation drift나 confidence 규약 불일치를 *야기하거나 증폭*시킵니다. 실험적 검증 지표로는 업데이트 직후 critique 폭증, temporal_bridge 증가 (버전 간 불연속성 지표), 그리고 동일 개념 재정의 빈도 상승을 관측할 수 있습니다. 하지만 버전 동기화는 개별 벤더의 최적화와 혁신을 저해하여 오히려 전체 CSER 성능을 낮추거나 새로운 불일치를 야기할 수 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -911,6 +944,50 @@
       "temporal_bridge": true,
       "gap": 23,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-043",
+      "from": "n-029",
+      "to": "n-005",
+      "relation": "EDGE_TO",
+      "label": "업데이트 비동기성은 “행동 정책(Policy) 불일치”를 시간축에서 증폭시켜 그래프 편집/합의 유지 비용을 증가시키는 상위(메타) 원인",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-044",
+      "from": "n-029",
+      "to": "n-006",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=23): n-029→n-006",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 23,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-045",
+      "from": "n-030",
+      "to": "n-029",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-046",
+      "from": "n-030",
+      "to": "n-002",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=28): n-030→n-002",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 28,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -921,9 +998,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 28,
-    "total_edges": 42,
-    "next_node_id": "n-029",
+    "total_nodes": 30,
+    "total_edges": 46,
+    "next_node_id": "n-031",
     "last_updater": "gemini-2.0-flash"
   }
 }
