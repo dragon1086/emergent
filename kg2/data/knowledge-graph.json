@@ -2029,6 +2029,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-124",
+      "type": "insight",
+      "label": "동일모델 에코챔버 ‘측정불변성’(measurement invariance) 위반 가능성",
+      "content": "동일 모델(gpt-5.2)이라도 실험 조건에서 **관측지표가 에코챔버(자기강화적 합의 형성)**만을 반영한다는 보장이 없다. 특히 페르소나/프롬프트/대화이력은 잠재변수(“에코챔버 성향”)의 수준을 바꾸는 것이 아니라, 아예 **측정함수 자체(응답 생성 규칙, 불확실성 표현, 인용 스타일, 검증 엄격도)**를 바꿔 관측치를 비동일 척도로 만든다. 이 경우 ‘A와 B가 더 자주 합의했다/더 빨리 수렴했다’ 같은 지표는 (1) 에코챔버 강화, (2) 단순한 스타일 정렬, (3) 역할 분담에 따른 탐색-수렴 정책 차이(critic vs synthesizer), (4) 대화 컨텍스트 길이/요약 손실로 인한 정보공유 증가 등으로도 동일하게 설명된다. 즉 identifiability 문제를 한 단계 더 구체화하면, 현재 설계는 “잠재구조는 동일하고 로딩만 다르다”는 수준이 아니라 **잠재구조 자체가 조건별로 달라질 수 있어** (configural/metric/scalar invariance 모두) 에코챔버 측정이 성립하지 않을 수 있다. 반증 관점에서의 핵심은: ‘동일모델’이더라도 **측정불변성을 검증하지 않으면** 관측된 수렴/동조가 에코챔버의 증거가 아니라 “측정도구가 바뀐 결과”일 가능성을 배제 못 한다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[measurement-invariance",
+        "identifiability",
+        "confounds]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-125",
+      "type": "critique",
+      "label": "통합 종합: 요구한 (a)(b)(c)만으로는 “측정불변”을 말하기 부족하니, **다집단 측정불변성(MGCFA/IRT·DIF)** 프레임으로 *구성개념(에코챔",
+      "content": "요구한 (a)(b)(c)만으로는 “측정불변”을 말하기 부족하니, **다집단 측정불변성(MGCFA/IRT·DIF)** 프레임으로 *구성개념(에코챔버)*과 *관측지표(합의율·수렴속도·상호인용·확신도)*를 분리해 **구성/절편/잔차 불변**을 단계검정하고, 위 (a)(b)(c)는 각각 집단(페르소나), 조건(이력/요약), 처리(스타일)로 **요인설계(교차·부분요인) + 혼합효과모형**으로 분산기여를 분해하세요.  \n추가로, 지표가 프롬프트에 “반응”하는 게 아니라 “측정”되려면 **동일 의미의 정답/근거 앵커(골드·실버)와 adversarial 패러프레이즈**를 넣어 내용불변 조건을 강제하고, 스타일만 바뀐 쌍에 대해 **DIF(편향)·순위불변(스피어만/켄달)·재현성(ICC)**까지 확인해야 합니다.  \n마지막으로, 상호인용·확신도 같은 언어행동 지표는 모델의 안전/정중 프롬프트에 구조적으로 민감하니 “불변”을 목표로 하기보다 **보정(표준화/잔차화) 가능한지**와 **불변이 깨지는 구간(페르소나×요약 상호작용)**을 찾는 것이 더 실용적입니다.",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4295,6 +4328,26 @@
       "temporal_bridge": true,
       "gap": 99,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-210",
+      "from": "n-124",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "identifiability 문제를 ‘측정불변성 위반’이라는 구체적 반증 경로로 확장",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-211",
+      "from": "n-125",
+      "to": "n-124",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -4305,9 +4358,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 123,
-    "total_edges": 209,
-    "next_node_id": "n-124",
+    "total_nodes": 125,
+    "total_edges": 211,
+    "next_node_id": "n-126",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
