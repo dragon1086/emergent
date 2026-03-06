@@ -527,6 +527,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-033",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 구조적 원인: “암묵적 작업모델(Implicit Task Model) 불일치” 가설  ",
+      "content": "동일한 KG 편집 지시를 받아도 벤더별 모델이 내부적으로 가정하는 ‘작업모델’이 달라 CSER이 하락한다는 가설. 여기서 작업모델은 (a) 무엇을 “변경”으로 간주하는지(추가 vs 수정 vs 병합), (b) 어떤 제약을 우선시하는지(DCI 회복, 최신성, 일관성, 안전규범), (c) 어떤 출력 형식을 “정답”으로 보는지(필드 누락/축약 허용 여부), (d) 충돌 시 해결 전략(보수적 유지 vs 공격적 리라이트) 등을 포함한다. Cross-vendor 환경에서는 이 암묵적 작업모델이 서로 달라서, 한 벤더가 “정상적인 최소 변경(minimal edit)”이라 여긴 행동이 다른 벤더에겐 “과도한 재구성” 또는 “제약 위반”으로 해석되어 그래프 편집 연쇄가 커지고(편집 폭증), 결과적으로 CSER(일관된 자기평가/수정 효율)이 저하된다. 이 가설은 Representation Drift(표현 불일치)나 Confidence/근거 규약 불일치가 표면 증상이라면, 그 상위에서 편집 의사결정의 목적함수 자체가 다르다는 ‘메타-불일치’를 원인으로 둔다. 예측: (1) 동일 프롬프트라도 “우선순위 명시(DCI>정확성>간결성 등)”를 강하게 고정하면 cross-vendor CSER이 유의미하게 회복된다. (2) 출력 포맷을 엄격히 고정해도 작업모델 불일치가 남으면 편집 정책 차이(병합/분할/재라벨링)에서 여전히 분기한다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "implicit-task-model",
+        "CSER]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-034",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 암묵적 작업모델 불일치는 지시 해석의 미묘한 차이로 인한 출력물 상이함으로 관측되며, Gemini Flash는 DCI(데이터 일관성 및 직접 명",
+      "content": "암묵적 작업모델 불일치는 지시 해석의 미묘한 차이로 인한 출력물 상이함으로 관측되며, Gemini Flash는 DCI(데이터 일관성 및 직접 명령 실행), 형식 준수, 효율성 순으로 제약을 우선합니다. GPT 계열과의 편집 결정 충돌 시, Gemini Flash는 데이터 경계의 명확성과 현재 지시의 완벽한 충족을 기준으로 병합/분할, 라벨 재작성, 기존 노드 연결 여부를 판단합니다. 작업모델 정렬을 위한 최소한의 우선순위 선언 템플릿은 우선순위: 1. [핵심 목표], 2. [형식 제약], 3. [편집 전략]과 같이 명시적 계층을 제시하는 것입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1065,6 +1098,38 @@
       "temporal_bridge": true,
       "gap": 26,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-051",
+      "from": "n-033",
+      "to": "n-005",
+      "relation": "EDGE_TO",
+      "label": "Policy 불일치(그래프 편집 연쇄) 현상을, 더 상위의 ‘암묵적 작업모델/목적함수 불일치’로 설명(원인-기제 연결)  ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-052",
+      "from": "n-034",
+      "to": "n-033",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-053",
+      "from": "n-034",
+      "to": "n-006",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=28): n-034→n-006",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 28,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1075,9 +1140,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 32,
-    "total_edges": 50,
-    "next_node_id": "n-033",
+    "total_nodes": 34,
+    "total_edges": 53,
+    "next_node_id": "n-035",
     "last_updater": "gemini-2.0-flash"
   }
 }
