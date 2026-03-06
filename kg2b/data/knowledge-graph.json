@@ -1517,6 +1517,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-093",
+      "type": "insight",
+      "label": "에코챔버 검증의 “동일모델-다중페르소나” 비식별성에 대한 강한 반증틀(Nulls) 제안",
+      "content": "동일 모델(gpt-5.2) 두 에이전트에 서로 다른 페르소나를 부여해 상호작용시키는 조건에서는, 관찰되는 “수렴/합의/유사도 증가”가 에코챔버(상호강화에 의한 신념·표현의 편향적 고착) 때문인지, 혹은 모델 공통의 내재 분포(훈련 priors)·안전/정렬 규칙·대화 관성 때문에 발생했는지 식별이 구조적으로 어렵다. 이를 반증가능하게 만들려면 ‘에코챔버가 없어도 동일한 관찰이 나오는’ 강한 귀무모형(null)을 명시하고, 실험 로그가 그 null을 기각하는지로 평가해야 한다. 핵심 null들은 다음과 같다. (1) Shared-Base Null: 두 에이전트의 출력은 “동일 베이스 모델 + 유사한 시스템 제약”으로 인해 원래부터 고유사도이며, 상호작용은 단지 그 유사도를 드러내는 측정 장치일 뿐이다. (2) Conversational Inertia Null: 대화는 전형적으로 공손/협력적이며, 반례보다 합의가 기본값이어서 시간이 지날수록 표현이 정렬되는 것이 자연스러운 담화 규범의 산물이다. (3) Prompt-Leakage Null: 페르소나/목표 지시문이 대화 맥락을 통해 상대에게 누출되어(혹은 추론되어) 서로를 모방하게 되고, 이는 에코챔버가 아니라 ‘지시문 동조’다. (4) Selection/Compression Null: KG 업데이트 규칙(요약·통합·정리)이 다양성을 압축하고 모순을 정리해버려, 실제 생성 다양성이 줄지 않았어도 KG 상에서는 수렴처럼 보인다. (5) Safety-Constraint Null: 논쟁적/극단적/불확실한 주장보다 “균형·중도·검증 요구”가 선호되는 안전/정렬 편향이 반복되",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "null-models",
+        "echo-chamber]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-094",
+      "type": "critique",
+      "label": "통합 종합: 요청은 “각 null당 테스트 통계 1개”로는 비식별성(여러 생성 메커니즘이 같은 로그 패턴을 만들 수 있음)을 해소하기 어려우니, (i) nu",
+      "content": "요청은 “각 null당 테스트 통계 1개”로는 비식별성(여러 생성 메커니즘이 같은 로그 패턴을 만들 수 있음)을 해소하기 어려우니, (i) null 간 **공통 교란(프롬프트 난이도·턴 길이·세션 드리프트·요약 개입)**을 통제하는 계층/혼합모형과 (ii) **교차-검증 가능한 복수 통계(최소 2개) + 사전등록된 판정규칙**을 묶어 “기각 절차”를 구성하는 보완이 필요합니다. 또한 “Selection/Compression Null” 통제는 프로토콜만으로 부족하므로, **요약 전/후 로그를 모두 남기는 이중기록(immutable raw + versioned KG)과 반사실 재생(replay) 실험**을 포함해 “요약이 없었으면 관측됐을 패턴”을 추정·비교해야 합니다. 마지막으로 5개 null의 구체 내용이 없으면 각 (a)(b)(c)를 정확히 못 쓰니, null 정의를 먼저 고정하고(관측가능 변수·개입 시점·단위), 그 정의에 맞춰 통계량을 설계해야 합니다.",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3135,6 +3168,38 @@
       "temporal_bridge": true,
       "gap": 77,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-151",
+      "from": "n-093",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "동일모델-다중페르소나 조건에서의 판별 불능성을 ‘강한 귀무모형 세트’로 구체화하고, 기각 기준(상호작용-특이적 비대칭 현상)으로 반증틀을 정식화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-152",
+      "from": "n-093",
+      "to": "n-009",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=84): n-093→n-009",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 84,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-153",
+      "from": "n-094",
+      "to": "n-093",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -3145,9 +3210,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 92,
-    "total_edges": 150,
-    "next_node_id": "n-093",
+    "total_nodes": 94,
+    "total_edges": 153,
+    "next_node_id": "n-095",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
