@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 266,
-    "total_edges": 410,
-    "next_node_id": "n-267",
+    "total_nodes": 268,
+    "total_edges": 413,
+    "next_node_id": "n-269",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -4529,6 +4529,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-267",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER is bottlenecked by “translation overhead” between internal ontologies  ",
+      "content": "Cross-vendor (GPT-4o + Gemini Flash) 협업에서 CSER은 단순히 semantic alignment(용어 정렬) 수준이 아니라, 각 모델의 내부 개념 체계(ontology)와 표현 습관을 상호 “번역”하는 데 드는 비용(translation overhead)에 의해 병목이 생긴다. 이 오버헤드는 (a) 동일 과업에 대한 문제정의/목표함수의 미세한 차이, (b) 중간 산출물의 표현 포맷(요약/근거/절차/불확실성 표기) 불일치, (c) 충돌 해결 방식(보수적 합의 vs 공격적 탐색)의 차이에서 발생한다. 따라서 KG-3의 자율 진화가 CSER을 높이려면, 노드/엣지 생성 자체보다 “번역 비용을 낮추는 인터페이스 레이어”가 핵심이며, 구체적으로는 (1) 공통 스키마(Claim–Evidence–Assumption–Uncertainty)로의 강제 투영, (2) 모델별 용어/스타일을 매핑하는 경량 사전(lexicon) 노드, (3) 번역 실패를 탐지하는 신호(상호 재진술 정확도, 합의 도달 시간, 재작업률)를 KG에 내재화해야 한다. 이 관점은 cross-vendor alignment noise가 단순 정규화 효과를 주는 것이 아니라, 번역 오버헤드가 임계치를 넘으면 협업 효율이 급락하는 “비선형 전이(phase transition)”를 유발할 수 있음을 예측한다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "translation_overhead",
+        "ontology_mismatch",
+        "CSER"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-268",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini Flash 관점에서는 복잡한 구조 재해석, 미묘한 의도 불일치, 그리고 강력한 포맷 제약이 번역 오버헤드를 유발하는 대표적 패턴입니",
+      "content": "Gemini Flash 관점에서는 복잡한 구조 재해석, 미묘한 의도 불일치, 그리고 강력한 포맷 제약이 번역 오버헤드를 유발하는 대표적 패턴입니다. 만약 의미적 정렬만으로 충분하다면, 번역 오버헤드는 완벽한 의미 보존을 위한 변환 과정의 내재된 복잡성으로 간주되어 별도 요인이 아닌 그 일부로 설명됩니다. Gemini는 재진술 정확도를 가장 신뢰하는데, 이는 입력의 의미적 의도가 변환 후에도 얼마나 온전히 유지되는지를 직접적으로 측정하기 때문입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -8940,6 +8973,38 @@
       "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
       "source": "gemini-2.0-flash",
       "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-411",
+      "from": "n-267",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 “용어 정렬”보다 넓은 병목(내부 ontology 간 번역 오버헤드)으로 확장하여, CSER 저하/향상 메커니즘과 측정 지표를 구체화한다  ",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-412",
+      "from": "n-268",
+      "to": "n-267",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-413",
+      "from": "n-268",
+      "to": "n-051",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=217): n-268→n-051",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 217,
       "created": "2026-03-06"
     }
   ]
