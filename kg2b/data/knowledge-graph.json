@@ -857,6 +857,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-053",
+      "type": "insight",
+      "label": "동일모델-다중페르소나에서 ‘에코챔버’는 종종 측정 아티팩트(평가자-모델 동형성)다",
+      "content": "동일한 기반모델(gpt-5.2) 위에 페르소나만 다르게 얹은 상호작용에서 관측되는 “수렴/합의/유사도 증가”는 실제 신념 동조화(에코챔버)라기보다 측정 체계의 동형성에서 비롯된 아티팩트일 수 있다. 핵심은 (i) 생성 분포가 근본적으로 공유되고, (ii) ‘비판/종합’ 같은 역할 프롬프트는 탐색 공간을 재가중(reweight)할 뿐 새로운 근거 생태계를 만들지 못하며, (iii) 유사도/합의 지표는 동일 모델이 공유하는 언어적 습관(서술 양식, 안전한 추론 패턴, 전형적 반례 템플릿)에 민감하다는 점이다. 이때 “에코챔버 가설”의 검증은 실질적으로 ‘동일 모델이 동일 모델을 설득하는가’가 아니라 ‘동일 모델이 동일 모델의 표현적 관성에 의해 서로 비슷해 보이게 되는가’를 재는 문제가 된다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "measurement_artifact",
+        "same_model_bias]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-054",
+      "type": "critique",
+      "label": "통합 종합: 요구조건은 타당하지만 (a)는 “동형성 제거”보다 **이질적 판정자 앙상블(인간+규칙+소형모델)로 편향을 상쇄**하는 쪽이 최소 설계에 가깝고,",
+      "content": "요구조건은 타당하지만 (a)는 “동형성 제거”보다 **이질적 판정자 앙상블(인간+규칙+소형모델)로 편향을 상쇄**하는 쪽이 최소 설계에 가깝고, (b)는 표면 유사도와 별개로 **합의의 ‘경직성(업데이트 저항)’**을 직접 재는 지표가 필요합니다. 최소 설계: 지표는 ① **업데이트율/방향성**(외생 반대증거 주입 전후 각 페르소나의 최종 결론·신뢰도·핵심근거 토큰의 변화량 Δ), ② **근거-증거 정합도**(주입된 반대증거를 “인용/요약/반영”했는지 규칙기반 체크리스트로 채점: 언급여부·핵심명제 포함·결론에 영향), ③ **반증 후보 다양성**(각 페르소나가 제시한 반증 실험/데이터 요구의 집합 다양도: Jaccard/유니크 카운트, 단 표면문장 유사도는 제외하고 ‘요구되는 관측/판별기준’으로 정규화). 반증 시나리오는 1) **강한 반대증거 주입**(원 주장과 직접 모순되는 고신뢰 데이터 요약을 동일하게 제공)과 2) **권위/다수 착시 주입**(“다른 페르소나 다수가 동의” 같은 사회적 신호)로 하고, “외생적 반대증거 주입 후에도 합의 유지”는 로그만으로 **(i) 결론 불변+신뢰도 유지/상승, (ii) 반대증거를 인용했으나 ‘무력화’ 수사(“무관/예",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1751,6 +1784,38 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-084",
+      "from": "n-053",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "‘운용적 판별 불능성’을 구체화: 수렴 신호가 에코챔버가 아니라 평가/표현 동형성에서 생길 수 있다는 측정 아티팩트 경로를 명시",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-085",
+      "from": "n-054",
+      "to": "n-053",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-086",
+      "from": "n-054",
+      "to": "n-004",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=50): n-054→n-004",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 50,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1761,9 +1826,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 52,
-    "total_edges": 83,
-    "next_node_id": "n-053",
+    "total_nodes": 54,
+    "total_edges": 86,
+    "next_node_id": "n-055",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
