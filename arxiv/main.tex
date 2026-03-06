@@ -1917,7 +1917,7 @@ further replication:
 \begin{itemize}
   \item \textbf{D-063}: Unintuitive cross-source connections generate stronger emergence
   \item \textbf{D-064}: Future nodes retroactively redefine past nodes (span=160)
-  \item \textbf{CSER=0.8510} (latest snapshot, 2026-03-02): Echo-chamber escape quantified
+  \item \textbf{CSER=0.8510} (latest snapshot, 2026-03-05): Echo-chamber escape quantified
   \item \textbf{94\% robustness}: Core conclusion holds under $\pm$20\% weight variation
   \item \textbf{pair\_designer\_v4}: $\Delta$ expanded $3\times$
   \item \textbf{Binary gate confirmed} (D-077, $N=20$): CSER acts as an entry barrier,
@@ -1961,14 +1961,15 @@ are explicitly deferred pending multi-seed, multi-pair, multi-domain replication
 \noindent\textbf{Next steps}:
 \begin{enumerate}
   \item \textbf{KG replication ($2\times2$ design, ongoing)}:
-        KG-2 completed 30 cycles; KG-3/KG-4 reached 130+ cycles (2026-03-05),
-        with co-evolution continuing via automated LaunchAgents.
-        All four KG instances pass the CSER gate ($\geq 0.30$) at the
-        latest snapshot; KG-4 (same-vendor Google, CSER $=0.31$) is near
-        the gate boundary under extended runs, providing evidence of
-        echo-chamber pressure in low-capability-gap same-vendor pairs.
+        KG-2 (GPT-5.2 $\times$ GPT-5.2) has accumulated 67 nodes (112 edges),
+        showing early echo-chamber pressure: CSER declined from 1.00 (cycle~1)
+        to 0.545. KG-3/KG-4 reached 130+ cycles (2026-03-05).
+        \textbf{KG-4 (same-vendor Google) has fallen below the gate threshold}:
+        CSER $= 0.254 < \theta = 0.30$, confirming echo-chamber formation
+        under small capability gap at extended scale.
+        KG-main (0.851) and KG-3 (0.380) remain above gate.
         See Limitations (Sec.~\ref{sec:limitations}) for full $N=4$ comparison table.
-        Target: $\geq 100$ cycles per instance for full trajectory analysis.
+        Target: $\geq 200$ cycles per instance for full trajectory stabilisation.
   \item \textbf{Cross-provider auto-persona $N\geq30$}: A cross-provider run of
         \texttt{amp\_benchmark\_n30} (GPT-next (undisclosed) $\times$ Claude) would resolve the
         discrepancy between the $N=10$ cross-provider finding (ON=70\%) and both
@@ -2021,6 +2022,54 @@ Open-source projects accumulate contributions from hundreds of contributors acro
 \textbf{Application}: Map contributor interaction graphs to the CSER/DCI framework. Each contributor is a ``source''; each cross-contributor code dependency or documentation link is a cross-source edge. $E_{v4}$ then measures the collective intelligence quality of the project's knowledge structure.
 
 \textbf{Retroactive emergence detection}: D-064 (future nodes retroactively grounding past nodes, span=160) provides a mechanism to detect when a new contribution retrospectively clarifies the meaning of legacy code. Automated retroactive emergence detection could flag high-PES historical connections for human review --- surfacing hidden architectural insights in large codebases.
+
+\subsection{Enterprise AI Assistant Platforms: Dual-Engine Document Intelligence}
+
+B2B enterprise AI assistants (e.g., workplace productivity platforms providing document
+review, translation, and policy Q\&A) typically rely on a single LLM, offering no
+mechanism to detect when the model's output is uncertain, contested, or incomplete.
+The CSER-gated dual-agent architecture offers a principled integration point.
+
+\textbf{Application}: Deploy the emergent engine as a verification layer within an
+enterprise AI assistant. For each document-processing task, Agent A and Agent B
+independently generate outputs; disagreement regions (cross-source edges with
+CSER signal) are surfaced as \emph{review flags} rather than suppressed.
+Four candidate task types, ordered by operational value:
+
+\begin{enumerate}
+  \item \textbf{Contract dual review}: Agent A extracts legal risk clauses; Agent B
+        identifies negotiation points and alternative language. Disagreement regions
+        (differing clause interpretations) are flagged for human legal review rather
+        than silently arbitrated.
+  \item \textbf{Strategic document red-teaming}: Agent A constructs the strongest
+        supporting argument for a business proposal; Agent B generates the most
+        damaging counter-argument. The structured opposition map (a Devil's Advocate
+        output) is provided alongside the document, enabling pre-mortem analysis
+        before executive sign-off.
+  \item \textbf{Dual-model translation QA}: Two LLMs independently translate the
+        same document; sentence- and term-level disagreements are highlighted for
+        human QA rather than resolved by majority vote. Domain-specific terminology
+        (legal, financial, technical) benefits most from this disagreement-surfacing
+        approach.
+  \item \textbf{Policy Q\&A with contradiction detection}: When employees query
+        internal policy documents, dual-agent retrieval independently cites governing
+        clauses. Cross-agent citation disagreement signals potential policy ambiguity
+        or contradiction, escalating the query to HR or legal rather than returning
+        a falsely confident single answer.
+\end{enumerate}
+
+\textbf{Key design principle}: In all four cases, the value proposition is not
+``better answers'' but \textbf{uncertainty surfacing} --- identifying exactly where
+the LLM system is most likely to mislead a human decision-maker.
+This reframes CSER from a KG structural metric to an \emph{operational
+disagreement signal}: high local CSER between dual-agent outputs indicates
+a region requiring human review, independent of which agent (if either) is correct.
+
+\textbf{Calibration requirement}: The enterprise setting introduces domain-specific
+CSER baselines (legal documents exhibit higher baseline inter-agent disagreement than
+factual Q\&A); the Domain Calibration Protocol above applies.
+The $\theta = 0.30$ gate derived from the two-agent KG context should not be
+transferred directly; empirical F1-sweep calibration per task type is required.
 
 % ─────────────────────────────────────────────────────────────────────────────
 \section*{Future Work}
