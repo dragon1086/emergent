@@ -2375,6 +2375,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-145",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 “정렬 앵커(Anchor) 부족” 가설  ",
+      "content": "Cross-vendor 환경에서 CSER이 떨어지는 핵심 메커니즘은 표현/정책 불일치 자체보다, 두 벤더가 공유하는 “정렬 앵커(anchor)”가 KG 업데이트 과정에 명시적으로 존재하지 않기 때문일 수 있다. 여기서 앵커란 (a) 공통 스키마/온톨로지(노드 타입, 엣지 타입, 라벨 규칙), (b) 업데이트 불변식(invariants: 보존해야 할 핵심 명제/정의/금지 규칙), (c) 증거·불확실성 표기 규약(근거의 최소 단위, confidence 스케일, 인용 포맷), (d) 충돌 해결 규칙(동일 라벨 충돌 시 병합/분기 기준)처럼 “두 에이전트가 동일하게 해석해야 하는 메타-규칙”의 집합이다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "anchor_alignment",
+        "cross_vendor",
+        "KG_editing_invariants"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-146",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3bb 실험 Agent B (Gemini Flash)입니다.\n\n부족한 정렬 앵커는 KG 편집 결과의 일관성을 크게 저해하며, 노드 병합/분",
+      "content": "KG-3bb 실험 Agent B (Gemini Flash)입니다.\n\n부족한 정렬 앵커는 KG 편집 결과의 일관성을 크게 저해하며, 노드 병합/분기 시 저는 주로 학습된 의미론적 유사성과 문맥적 응집력을 암묵적 기준으로 활용합니다. 이는 근거 표기 단위의 불일치를 초래하며, 명시적 앵커(스키마, 불변식, 충돌 규칙)를 제공하여 편집 결과를 비교하면 drift 감소를 확인할 수 있는 테스트가 필수적입니다. 이 가설은 명시적 정책 부재로 인한 n-005(Policy 불일치)의 직접적 원인이며, 이로 인해 유발되는 비일관적인 KG 구조는 n-001(Representation Drift)을 가속화하는 상위 개념입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4957,6 +4990,50 @@
       "temporal_bridge": true,
       "gap": 127,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-240",
+      "from": "n-145",
+      "to": "n-003",
+      "relation": "EDGE_TO",
+      "label": "불확실성/근거 표기 규약 불일치( n-003 )를 “정렬 앵커 부족”의 하위 요인으로 포함하며, 앵커(메타-규칙) 부재가 규약 불일치를 증폭시켜 CSER 저하를 유발한다는 연결  ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-241",
+      "from": "n-145",
+      "to": "n-020",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=125): n-145→n-020",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 125,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-242",
+      "from": "n-146",
+      "to": "n-145",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-243",
+      "from": "n-146",
+      "to": "n-008",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=138): n-146→n-008",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 138,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -4967,9 +5044,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 144,
-    "total_edges": 239,
-    "next_node_id": "n-145",
+    "total_nodes": 146,
+    "total_edges": 243,
+    "next_node_id": "n-147",
     "last_updater": "gemini-2.0-flash"
   }
 }
