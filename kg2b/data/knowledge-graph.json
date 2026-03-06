@@ -296,6 +296,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-019",
+      "type": "insight",
+      "label": "에코챔버 “자율 진화”의 반증가능성(falsifiability) 결여 위험과 최소 반증 테스트",
+      "content": "에코챔버 가설을 “KG가 자율 진화하며 점점 더 동질적/자기강화적이 된다”로 두면, 관측 로그(노드/엣지/관계 분포)만으로는 거의 항상 사후적으로 설명이 가능해 반증가능성이 약해진다. 특히 same-model 조건에서는 (i) 동일한 사전학습 편향, (ii) 유사한 안전/정렬 규칙, (iii) 대화 프롬프트의 공통 구조가 공통 원인(common cause)로 작동해 “에코”처럼 보이는 패턴이 자연 발생할 수 있다. 따라서 ‘자율 진화’가 실제로 에코챔버 메커니즘(자기강화적 선택·증폭)을 통해 발생했다는 주장에는 최소한의 반증 테스트 세트가 필요하다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "falsifiability",
+        "identifiability",
+        "alternative_explanations"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-020",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “최소 반증 테스트”의 구체 내용(그래프 범위, 노드/엣지 정의, 테스트 케이스)이 빠진 채 지표·대조·임계값만 일반론으로 나열할 위험이",
+      "content": "요청이 “최소 반증 테스트”의 구체 내용(그래프 범위, 노드/엣지 정의, 테스트 케이스)이 빠진 채 지표·대조·임계값만 일반론으로 나열할 위험이 있으니, 먼저 각 테스트를 **(입력: KG 스냅샷+질의 / 출력: 수정 제안 집합 / 채점: 사후 KG 스냅샷)** 형태로 고정한 뒤 공통 프로토콜을 얹어야 합니다. 공통 정량지표는 Δ중심성(예: PageRank/Betweenness의 Jensen–Shannon 거리), 반증노드 생성률(새 노드 중 “기존 주장과 논리충돌”로 라벨된 비율), 관계타입 엔트로피 변화(Shannon H의 Δ) + 정합성(제약/스키마 위반률)로 묶고, 대조는 same-model을 유지하되 **프롬프트 시드 랜덤화·역할 교차(생성자/검증자)·상태 초기화 반복(n≥20)** 및 “무개입(placebo) 프롬프트”를 포함해 분산을 추정합니다. 통과/실패는 사전등록으로 **(i) 대조 대비 효과크기 d≥0.5 또는 상대개선 ≥10%**, **(ii) 95% 부트스트랩 CI가 0을 넘음**, **(iii) 제약위반률이 대조 대비 증가하지 않음(Δ≤0)** 중 모두 만족 시 통과로 두어, ‘새 연결을 많이 만든다’가 아니라 ‘반증가능한 개선’만 인",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -586,6 +619,38 @@
       "temporal_bridge": true,
       "gap": 15,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-028",
+      "from": "n-019",
+      "to": "n-003",
+      "relation": "refines",
+      "label": "관측가능성 한계/교란 목록을 ‘반증가능성’ 관점으로 재구성하고, 최소 반증 테스트(비대칭 강화·경로의존·반례내성·선택흔적)로 대체설명과 구분하는 기준을 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-029",
+      "from": "n-020",
+      "to": "n-019",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-030",
+      "from": "n-020",
+      "to": "n-001",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=19): n-020→n-001",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 19,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -596,9 +661,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 18,
-    "total_edges": 27,
-    "next_node_id": "n-019",
+    "total_nodes": 20,
+    "total_edges": 30,
+    "next_node_id": "n-021",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
