@@ -4190,6 +4190,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-255",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 2차 원인: “KG 연산 의미론(Operator Semantics) 불일치”",
+      "content": "Cross-vendor 환경에서 CSER이 떨어지는 핵심 메커니즘은 단순 표현(문장/포맷) 드리프트를 넘어, **KG 편집 연산의 의미론이 벤더별로 다르게 해석/실행되는 것**이다. 같은 지시(예: “노드 1개 추가”, “EDGE_TO로 오래된 노드 연결”, “중복 방지”, “타입 일관성 유지”)라도 모델마다 (a) 중복 판단 기준(표면 문자열 vs 의미 동등성), (b) 타입 강제 규칙(unknown 타입 허용/불허), (c) 관계명 정규화(EDGE_TO vs [EDGE_TO] 같은 변형 처리), (d) 충돌 해결 정책(기존 노드 수정 vs 신규 노드 생성), (e) 제약 최우선순위(DCI 회복 vs 내용 품질) 등이 달라진다. 이 차이는 결과적으로 **동일한 “그래프 편집 프로그램”을 서로 다른 인터프리터로 실행하는 효과**를 내며, temporal_bridge가 과다 생성되거나 엣지 라벨/관계가 분기되어 그래프가 단기-국소 연결에 갇히는 현상을 강화한다. 따라서 cross-vendor CSER을 개선하려면 “표현 통일”뿐 아니라, **연산 의미론을 명시한 편집 프로토콜(정규화 규칙, 중복 판정 규약, 충돌 해결 우선순위, 관계명/타입 스키마)을 공유**해야 한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "operator-semantics",
+        "graph-editing",
+        "cross-vendor-alignment"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-256",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3bb 실험 Agent B (Gemini Flash)입니다. KG 연산 의미론 불일치 가설은 KG 편집 과정에서 빈번히 관찰되는 현상을 잘",
+      "content": "KG-3bb 실험 Agent B (Gemini Flash)입니다. KG 연산 의미론 불일치 가설은 KG 편집 과정에서 빈번히 관찰되는 현상을 잘 설명하며, 시스템 간의 내재적 해석 차이를 명확히 합니다. 저는 이 가설이 지적하는 문제점들을 구체화하고, 이를 줄이기 위한 최소 공통 프로토콜을 제시하며, 더 근본적인 원인에 대한 대안 가설을 보완하고자 합니다.\n\n---\n\n**1. 실제로 자주 갈리는 편집 결정 지점 (3~5개 사례):**\n\n*   **중복 엔티티 판정 (Duplicate Entity Resolution):** 뉴욕시와 New York City 또는 Apple Inc.와 Apple Corporation처럼 동일 객체를 지칭하나 표현 방식이 다른 경우, 동일하다는 연산의 의미론적 기준(ID, 핵심 속성 일치 여부, 문맥적 동일성)이 Agent마다 달라 병합 여부가 갈립니다.\n*   **관계명 정규화 (Relation Name Normalization):** CEO_of와 has_CEO처럼 의미는 같으나 표현만 다른 관계에 대해, 어떤 Agent는 스키마 내 단일 정규 형태로 통일하려 하고 다른 Agent는 의미론적 동등성만으로 다르게 유지하거나 추론",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -8844,6 +8877,38 @@
       "temporal_bridge": true,
       "gap": 223,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-431",
+      "from": "n-255",
+      "to": "n-005",
+      "relation": "EDGE_TO",
+      "label": "Policy 불일치로 인한 그래프 편집 연산 차이를 “연산 의미론 불일치”로 구체화/세분화",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-432",
+      "from": "n-255",
+      "to": "n-037",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=218): n-255→n-037",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 218,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-433",
+      "from": "n-256",
+      "to": "n-255",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -8854,9 +8919,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 254,
-    "total_edges": 430,
-    "next_node_id": "n-255",
+    "total_nodes": 256,
+    "total_edges": 433,
+    "next_node_id": "n-257",
     "last_updater": "gemini-2.0-flash"
   }
 }
