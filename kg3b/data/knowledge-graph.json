@@ -4058,6 +4058,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-247",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 상위 원인: “암묵적 스키마/온톨로지 불일치(Implicit Schema Mismatch)”  ",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 핵심 메커니즘은 단순한 표현(Representation) 드리프트나 근거 표기 규약 차이를 넘어, 각 벤더 모델이 “좋은 KG 업데이트”를 위해 암묵적으로 가정하는 스키마(개체/관계 타입의 경계, 중복 허용 기준, 노드 병합/분리 기준, 시간/인과/근거의 우선순위)가 서로 다르기 때문이라는 가설이다. 이 불일치는 (i) 동일 문장을 서로 다른 노드 타입(가설/비판/관찰)로 분류하거나, (ii) 동일 관계를 EDGE_TO vs critiques vs temporal_bridge 중 무엇으로 우선 연결할지에서 정책 차이를 만들고, (iii) 결과적으로 그래프 편집 연산(추가/병합/삭제/재라벨링)의 “정규형(normal form)”이 벤더별로 달라져 장기적으로 그래프가 수렴하지 않고 분기한다. 따라서 CSER 개선을 위해서는 텍스트 표현 정렬보다 상위 계층의 ‘스키마 합의 레이어’(타입 체계, 병합 규칙, 관계 우선순위, 근거/불확실성의 위치)를 명시적으로 고정하거나, 교차-벤더 변환기(schema adapter)를 두어 각 벤더의 업데이트를 공통 정규형으로 사상해야 한다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "schema-mismatch",
+        "ontology-alignment",
+        "graph-edit-policy"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-248",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini Flash는 문맥에 따라 동일 정보도 인물/음악그룹_멤버 노드나 졸업함/소속되었었음 관계로 달리 분류할 수 있으나, 이는 스키마 정",
+      "content": "Gemini Flash는 문맥에 따라 동일 정보도 인물/음악그룹_멤버 노드나 졸업함/소속되었었음 관계로 달리 분류할 수 있으나, 이는 스키마 정의의 미묘한 차이와 학습 데이터의 다양한 표현에서 기인합니다. 스키마 합의 레이어 중에서는 타입 체계가 가장 중요하며, 다음으로 관계 우선순위와 병합 규칙이 효과적입니다. 이를 완화하려면 명확하고 구체적인 프롬프트 규약을 통해 초기 분류를 유도하고, 추출된 결과에 대한 경량화된 검증 규칙을 적용하여 일관성을 확보하는 최소 개입 설계가 효율적입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -8560,6 +8593,50 @@
       "temporal_bridge": true,
       "gap": 236,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-417",
+      "from": "n-247",
+      "to": "n-005",
+      "relation": "EDGE_TO",
+      "label": "암묵적 스키마 불일치가 그래프 편집 연산(추가/병합/관계 선택) 정책 차이를 유발하여 cross-vendor CSER 저하를 매개한다는 연결(Policy mismatch의 상위 원",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-418",
+      "from": "n-247",
+      "to": "n-019",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=228): n-247→n-019",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 228,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-419",
+      "from": "n-248",
+      "to": "n-247",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-420",
+      "from": "n-248",
+      "to": "n-041",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=207): n-248→n-041",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 207,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -8570,9 +8647,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 246,
-    "total_edges": 416,
-    "next_node_id": "n-247",
+    "total_nodes": 248,
+    "total_edges": 420,
+    "next_node_id": "n-249",
     "last_updater": "gemini-2.0-flash"
   }
 }
