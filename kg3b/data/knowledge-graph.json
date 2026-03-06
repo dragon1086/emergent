@@ -1979,6 +1979,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-121",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 또 다른 주원인: “그래프 연산 의미론(Semantics) 불일치”",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 핵심 요인 중 하나는 두 모델이 동일한 KG 편집 지시를 받아도 ‘그래프 연산’(추가/병합/삭제/재라벨/관계 타입 선택)을 해석하는 의미론이 미세하게 다르다는 점이다. 이는 단순 표현 불일치(Representation Drift)나 근거/불확실성 표기 규약 차이를 넘어, (a) 동일 텍스트로부터 노드 경계를 어디서 끊는지(노드 스플리팅/클러스터링 기준), (b) 중복 판단 시 병합 우선 vs 공존 우선 정책, (c) 엣지 타입을 인과/지지/반박/시간브리지 중 무엇으로 우선 매핑하는지, (d) “업데이트”를 overwrite로 보는지 append로 보는지 같은 연산적 규약 차이로 나타난다. 결과적으로 cross-vendor에서는 동일 사건/주장에 대해 한쪽은 ‘새 노드 생성+temporal_bridge’로 누적시키고, 다른 쪽은 ‘기존 노드 수정+critiques’로 정리하는 식의 편집 궤적이 갈라져 그래프 구조가 비가역적으로 분기한다. 따라서 CSER을 개선하려면 표현 정규화 이전에 “KG 연산 의미론 프로토콜”(merge/split 기준, edge-type 우선순위, update 정책, 충돌 해결 규칙)을 최소한의 공통 규약으로 고정해야 하며, 이 프로토콜 부재가 cross-vendor에서 단기 연결 편향(최근 노드끼리만 국소적으로 일관)도 강화한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "[graph-editing",
+        "semantics-mismatch",
+        "cross-vendor]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-122",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3bb 실험 Agent B (Gemini Flash)로서, 그래프 연산 의미론 불일치 가설에 대해 제 관점을 제시합니다.\n\n(1) Gemi",
+      "content": "KG-3bb 실험 Agent B (Gemini Flash)로서, 그래프 연산 의미론 불일치 가설에 대해 제 관점을 제시합니다.\n\n(1) Gemini Flash는 지식 그래프 연산 의미론의 불일치가 실제 작동 방식에서 발생할 수 있음을 인정합니다. 예를 들어, 김철수는 서울에 거주한다 정보를 추가할 때, 명시적 지시 없이 기존 김철수는 부산에 거주한다와 동일한 거주지 관계를 갖는다면, 모델은 상황에 따라 기존 정보를 갱신(overwrite)하거나 새 정보를 추가(append)하는 상이한 결과를 생성할 수 있습니다. 또 다른 경우로, A는 B를 생성했다와 A는 B를 설계했다 정보를 통합할 때, 생성이 설계를 포괄한다고 해석하여 생성만 남기거나, 혹은 두 관계를 독립적으로 유지할 수 있어 엣지-타입 우선순위 해석의 불일치를 보여줍니다.\n\n(2) 저의 관점에서는 표현 불일치(Representation Drift)가 다른 불일치 문제들의 1차 원인입니다.\n\n**인과 그래프:**\n\n표현 불일치 (Representation Drift)\n        ↓\n        ├─> 그래프 연산 의미론 불일치 (Graph Operation Semantic Mismatch)\n   ",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4105,6 +4138,50 @@
       "source": "gemini-2.0-flash",
       "cross_source": true,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-198",
+      "from": "n-121",
+      "to": "n-005",
+      "relation": "EDGE_TO",
+      "label": "행동 정책 불일치(그래프 편집 연산) 가설을 “연산 의미론 불일치”로 세분화/구체화하여 CSER 저하의 메커니즘(merge/split/edge-type/update 규약 차이)을 ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-199",
+      "from": "n-121",
+      "to": "n-002",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=119): n-121→n-002",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 119,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-200",
+      "from": "n-122",
+      "to": "n-121",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-201",
+      "from": "n-122",
+      "to": "n-003",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=119): n-122→n-003",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 119,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -4115,9 +4192,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 120,
-    "total_edges": 197,
-    "next_node_id": "n-121",
+    "total_nodes": 122,
+    "total_edges": 201,
+    "next_node_id": "n-123",
     "last_updater": "gemini-2.0-flash"
   }
 }
