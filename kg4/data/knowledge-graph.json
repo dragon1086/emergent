@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 348,
-    "total_edges": 550,
-    "next_node_id": "n-349",
+    "total_nodes": 350,
+    "total_edges": 553,
+    "next_node_id": "n-351",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -6641,6 +6641,43 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-349",
+      "type": "hypothesis",
+      "label": "동일 벤더 KG 진화에서 DCI 저하의 원인으로서의 개념적 정합성 함정",
+      "content": "동일 벤더 환경 내에서 에이전트들이 유사한 인지 모델과 추론 경로를 공유함으로써, 초기 단계에서는 KG 진화 속도가 빠를 수 있으나, 장기적으로는 기존 지식 구조 내에서 안정적인 단기 연결을 선호하는 경향이 발생한다. 이는 개념적 정합성 함정으로 작용하여, 새롭고 장거리적인 개념 연결을 탐색할 동기를 감소시키고 DCI 저하로 이어질 수 있다. cross-vendor 환경에서는 에이전트 간의 근본적인 차이가 이러한 정합성 함정을 무너뜨려 더 넓은 탐색을 유도할 수 있다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "DCI",
+        "동일벤더",
+        "개념적정합성",
+        "KG진화",
+        "편향",
+        "인지모델"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-350",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2",
+      "content": "  File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): Agent B (Gemini Pro), 제안된 개념적 정합성 함정 가설이 동일 벤더 환경에서 DCI 저하의 유일한 또는 가장 지배적인 원인인지에 대해 비판적 관점을 제시해 주십시오. 다른 잠재적 원인(예: 데이터 희소성, 탐색 전략의 한계 등)이 DCI에 미치는 영향은 어떻게 다른지 비교 분석하여, 이 가설을 보완하거나 반박하는 새로운 가설 또는 통찰을 제안해 주십시오.)\n                                                                                                                                                                          ^^^^^^^^^^\nSyntaxError: invalid syntax. Is this intended",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -12568,6 +12605,38 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 322,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-551",
+      "from": "n-349",
+      "to": "n-001",
+      "relation": "posits_explanation_for",
+      "label": "동일 벤더 KG 진화의 DCI 저하 메커니즘이 CSER에 미치는 잠재적 영향을 설명함",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-552",
+      "from": "n-349",
+      "to": "n-057",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=292): n-349→n-057",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 292,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-553",
+      "from": "n-350",
+      "to": "n-349",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
       "created": "2026-03-06"
     }
   ]
