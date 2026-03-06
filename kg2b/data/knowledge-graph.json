@@ -2573,6 +2573,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-157",
+      "type": "insight",
+      "label": "식별가능성 회복을 위한 “반증-우선” 운영정의: 에코챔버는 ‘유사도 증가’가 아니라 ‘반증 용량 감소’로 측정하라",
+      "content": "동일모델×다중페르소나 조건에서 “에코챔버의 자율 진화”를 유사도/합의의 증가로 정의하면 식별가능성이 붕괴한다. 이유는 (i) 동일 기반모델의 공통 prior/스타일, (ii) 프롬프트·메모리·KG 구조가 만드는 경로의존성, (iii) 토큰 수준의 자기유사(상투적 수사) 등이 모두 유사도 상승을 만든다. 따라서 ‘유사도 증가=에코챔버’는 관측 로그만으로는 대체설명(교란)과 분리되지 않는다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "operationalization",
+        "falsification]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-158",
+      "type": "critique",
+      "label": "통합 종합: (a) “반증 용량”을 로그로는 ①반증 후보 생성량(단위시간/토큰당 후보 수, 중복제거 후), ②다양성(후보 간 의미거리·원인유형 엔트로피·대안",
+      "content": "(a) “반증 용량”을 로그로는 ①반증 후보 생성량(단위시간/토큰당 후보 수, 중복제거 후), ②다양성(후보 간 의미거리·원인유형 엔트로피·대안가설 수), ③보존률(초안→수정→최종에서 반증 후보 유지/삭제/약화 비율), ④검증행동(외부검색·재계산·인용요구·가정명시·반증 테스트 설계 등 이벤트를 코드북으로 라벨링해 시퀀스/빈도 측정)로 분해하고, “감소”는 통제조건 대비 이들 지표의 유의 하락(특히 다양성·검증행동의 동시 하락)으로 정의하는 게 더 조작적입니다.  \n(b) 이 세트는 단일 모델 공통 prior·KG 경로의존성에 대해 “텍스트 그럴듯함”이 아니라 “생성-유지-검증”의 행동 흔적을 보므로 상대적으로 견고하지만, 여전히 프롬프트 누수/지시순응이 있으면 반례로 ‘후보 수/다양성은 높게 꾸미되(형식적 반증 나열) 실제 검증행동은 0’ 같은 허위양성, 또는 KG 경로가 특정 반증만 반복해 다양성 지표를 왜곡(표면적 다양성↑, 실질 독립성↓)할 수 있어, 후보 간 독립성(원인/메커니즘 수준) 코딩과 “검증행동-결과 반영” 연계(검증 후 결론 수정률)까지 함께 봐야 합니다.  \n추가로 동일모델 prior 교란을 줄이려면 동일 과제에서 “반증 유도/억제” 프롬",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5431,6 +5464,50 @@
       "temporal_bridge": true,
       "gap": 155,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-265",
+      "from": "n-157",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "유사도 기반 정의가 낳는 식별가능성 붕괴를 피하기 위해, 에코챔버를 ‘반증 후보의 생성·보존·검증 행동 감소’로 재정의하는 반증-우선 운영정의를 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-266",
+      "from": "n-157",
+      "to": "n-032",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=125): n-157→n-032",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 125,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-267",
+      "from": "n-158",
+      "to": "n-157",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-268",
+      "from": "n-158",
+      "to": "n-004",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=154): n-158→n-004",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 154,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -5441,9 +5518,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 156,
-    "total_edges": 264,
-    "next_node_id": "n-157",
+    "total_nodes": 158,
+    "total_edges": 268,
+    "next_node_id": "n-159",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
