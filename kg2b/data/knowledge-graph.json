@@ -1682,6 +1682,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-103",
+      "type": "insight",
+      "label": "동일모델-다중페르소나에서 “에코챔버”는 결과가 아니라 생성과정의 제약으로만 식별 가능",
+      "content": "동일모델(gpt-5.2) 다중 페르소나 조건에서 관측되는 “수렴(agreement)·유사도 증가·상호강화”는 에코챔버의 충분조건이 아니다. 왜냐하면 (i) 동일 파라미터/사전학습 분포 공유로 인한 공통 편향, (ii) 대화 포맷(질문-응답-요약) 자체가 만드는 구조적 수렴, (iii) 실험 과업이 “지식그래프 정련”처럼 합의 지향적일 때 나타나는 정상적 최적화가 모두 같은 관측 패턴을 만든다. 따라서 에코챔버를 ‘결과 지표(유사도↑, 다양성↓, 반대근거↓)’로만 판정하면 운영상 비식별(non-identifiable)이다. nn비판적으로는 식별가능성을 “결과”가 아니라 “생성 과정의 제약”으로 옮겨야 한다. 즉, 에코챔버의 핵심을 ‘상호작용이 반증/대안 탐색을 구조적으로 억제하는 폐쇄성’으로 정의하고, 이를 드러내는 과정적(프로세스) 시그널을 요구해야 한다. 예: (1) 반증 후보가 제기되더라도 다음 턴에서 소거/무시되는 비율, (2) 반대 증거를 요구하는 프롬프트를 줬을 때도 자기-일관성 유지가 우선되는지, (3) 동일한 반례가 반복 제기돼도 업데이트가 일어나지 않는 ‘고착(stickiness)’, (4) 외생적 교란(무작위 반대 주장 삽입, 역할 교대)에도 수렴 방향이 변하지 않는 ‘관성’. nn결론: 동일모델 조건에서는 “에코챔버 발생”을 단순히 관측 로그의 상태량으로 주장할 수 없고, (a) 대안 생성/검증의 경로가 차단되는 메커니즘을 명시한 뒤, (b) 그 메커니즘이 없으면 거의 나타나기 어려운 반사실적 테스트(개입)를 설계해야만 한다. 그렇지 않으면 ‘모델 공통분포 + 과업 최적화’가 만든 가짜 양성",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "process-metrics",
+        "same-model-bias]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-104",
+      "type": "critique",
+      "label": "통합 종합: 결과 기반 지표만으로 “부분 식별”을 하려면 최소한 **외생적 변동(무작위화/도구변수) + SUTVA(개별 대화 간 간섭 없음) + 측정불변성(",
+      "content": "결과 기반 지표만으로 “부분 식별”을 하려면 최소한 **외생적 변동(무작위화/도구변수) + SUTVA(개별 대화 간 간섭 없음) + 측정불변성(페르소나/조건이 바뀌어도 지표의 의미가 동일)** 같은 강한 가정이 필요하며, 그렇지 않으면 동일한 결과분포를 만드는 여러 생성 메커니즘이 공존해 Δ를 식별 불가능하게 만드는 반례가 쉽게 구성됩니다. 그 가정 하 최소 개입은 **대화 단위 랜덤 페르소나 스왑(또는 역할 교대) × 반례 주입(무작위 타이밍/강도) × 종료 후 단독 재생성 비교**의 2×2(또는 2×2×2) 팩토리얼로, Δ는 “동일 프롬프트에서 (스왑/주입) 처리에 따른 에코챔버 지표 변화의 평균처리효과(필요시 DiD로 시간추세 제거)”로 추정하고, 비식별성(n-007) 준수를 위해 개별 로그를 저장하지 않고 **조건별 집계(평균/분산/분위수)만** 남기면 됩니다. KG 메트릭 초안은 소거율=주입된 반례/대안 가설이 이후 턴에서 **명시적 언급·채택 비율**로부터의 감소(예: 1−retention), 고착성=초기 주장/프레임에 대한 **자기유사도(임베딩 코사인)·반대증거 이후 변경량의 역수**, 관성=새 정보(반례) 대비 결론 업데이트의 **지연(몇 턴 ",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3508,6 +3541,50 @@
       "temporal_bridge": true,
       "gap": 89,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-170",
+      "from": "n-103",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "운영상 비식별성 주장(n-007)을 “결과지표→과정제약”으로 재정식화하고, 관측가능한 프로세스 시그널과 개입 필요성을 구체화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-171",
+      "from": "n-103",
+      "to": "n-018",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=85): n-103→n-018",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 85,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-172",
+      "from": "n-104",
+      "to": "n-103",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-173",
+      "from": "n-104",
+      "to": "n-013",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=91): n-104→n-013",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 91,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -3518,9 +3595,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 102,
-    "total_edges": 169,
-    "next_node_id": "n-103",
+    "total_nodes": 104,
+    "total_edges": 173,
+    "next_node_id": "n-105",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
