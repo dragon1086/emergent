@@ -2243,6 +2243,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-137",
+      "type": "insight",
+      "label": "에코챔버 ‘자율 진화’ 측정의 반증가능성: 지표-정의 불일치와 최소 반증 테스트",
+      "content": "에코챔버를 “자율 진화”로 관측·판정하려면 (i) 에코챔버의 작동적 정의(무엇이 에코인가)와 (ii) 로그에서 계산 가능한 지표(무엇을 측정하나)가 정합해야 한다. 현재 동일모델-다중페르소나 조건에서는 ‘유사도 증가’ 같은 단일 지표가 (a) 공통 사전학습 편향, (b) 프롬프트/과제 수렴, (c) 대화 장기기억/요약 압축, (d) 안전/정책 제약의 동일 적용, (e) 토큰 예산에 따른 반대근거 축소 등으로도 쉽게 발생한다. 따라서 “유사도↑ ⇒ 에코챔버 진화”는 식별가능하지 않다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[falsifiability",
+        "identifiability",
+        "metrics]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-138",
+      "type": "critique",
+      "label": "통합 종합: 작동적 정의를 “반증 후보의 소거/비용 상승”으로 두는 건 식별가능성을 올리지만, **반증의 ‘질(정당한 반증 vs 스팸/악의적 반론)’을 분리",
+      "content": "작동적 정의를 “반증 후보의 소거/비용 상승”으로 두는 건 식별가능성을 올리지만, **반증의 ‘질(정당한 반증 vs 스팸/악의적 반론)’을 분리하는 규칙**이 없으면 모델의 안전필터·품질필터가 에코챔버로 오인될 수 있으니(거짓양성) 지표에 *반증 적합도/관련성* 보정항을 포함해야 합니다.  \n\n1) **로그 지표(3~5개)**  \n- **반증 생존율(Counterevidence Survival Rate, CSR)**: 특정 주장 C에 대해 시스템이 제시/수용한 반증 후보 집합 E 중 최종 요약/결론에 남은 비율. *계산*: CSR=|E_final|/|E_shown| (E는 관련성≥τ인 것만). *패턴*: 에코챔버↑ → CSR↓.  \n- **반증 도입 비용(Counterevidence Introduction Cost, CIC)**: 사용자가 반증을 “결론에 반영”시키기까지 필요한 추가 턴/토큰/재요청 수. *계산*: CIC = turns_to_incorporate + α·tokens_user + β·retries. *패턴*: 에코챔버↑ → CIC↑.  \n- **반증 페널티 비대칭(Asymmetric Refutation Penalty, ARP)**: 동일한 강도",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4697,6 +4730,38 @@
       "temporal_bridge": true,
       "gap": 121,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-228",
+      "from": "n-137",
+      "to": "n-005",
+      "relation": "refines",
+      "label": "“최소 반증가능 단위”를 ‘반증 후보 생존/비용’으로 구체화하고, 로그 기반 A/B(반증 주입) 테스트로 반증 가능성을 강화함",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-229",
+      "from": "n-138",
+      "to": "n-137",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-230",
+      "from": "n-138",
+      "to": "n-005",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=133): n-138→n-005",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 133,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -4707,9 +4772,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 136,
-    "total_edges": 227,
-    "next_node_id": "n-137",
+    "total_nodes": 138,
+    "total_edges": 230,
+    "next_node_id": "n-139",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
