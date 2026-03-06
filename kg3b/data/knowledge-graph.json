@@ -98,6 +98,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-007",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 구조적 원인: “행동정책(Instruction-following) 불일치에 따른 평가함수 미스매치”",
+      "content": "Cross-vendor 환경에서 동일한 KG 상태를 공유하더라도, 각 모델의 “행동정책(π)”—지시 준수 강도, 안전/정확성 우선순위, 요약 vs. 열거 선호, 거절/완화 전략—이 다르면 동일 입력에 대해 서로 다른 출력 분포를 만든다. 이때 CSER이 측정하는 성공 기준(예: 일관된 스키마 준수, 근거 표기, 엣지/노드 생성 규칙)이 사실상 “평가함수(R)”로 작동하는데, 모델별 정책이 내재적으로 최적화하는 암묵적 보상(모델 내부의 선호/정렬)과 R이 어긋나면 cross-vendor에서 지속적인 성능 저하가 발생한다. 핵심은 표현 불일치(Representation Drift)가 “상태 표현”의 문제라면, 행동정책 불일치는 “상태→행동 매핑”의 문제이며, 두 요소가 결합될 때 (1) 같은 KG에서도 업데이트 규칙이 달라 누적 편향이 커지고, (2) 불확실성/근거 규약이 단순 표기 차이를 넘어 ‘언제 표기하는가’(트리거 조건)까지 달라져 CSER이 더 크게 흔들린다는 점이다. 따라서 완화책은 표현 정렬뿐 아니라, 최소 행동 인터페이스(예: 출력 스키마 강제, 불확실성 표기 트리거 명시, 거절/보류 정책 공통화)로 정책 공간을 부분적으로 정렬하는 것이다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "cross-vendor",
+        "policy-mismatch",
+        "CSER"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-008",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 위 가설은 cross-vendor CSER 저하의 주요 원인으로 타당하며, 특히 n-003은 불확실성 처리 방식에 대한 암묵적/명시적 정책 차이",
+      "content": "위 가설은 cross-vendor CSER 저하의 주요 원인으로 타당하며, 특히 n-003은 불확실성 처리 방식에 대한 암묵적/명시적 정책 차이로 재해석될 수 있어 시스템 행동을 좌우합니다. n-003은 정보의 신뢰도 및 전달 방식에 대한 상위 정책 결정으로, n-001/002의 특정 유형(불확실성 표기)을 포괄하는 상위 원인으로 보는 것이 적절합니다. 정책 정렬을 위해 특정 조건하 행동 트리거 규칙, 응답 내용 스키마 강제, 불가시 명확한 거절 정책을 최소 공통 인터페이스로 제안하여 행동 일관성을 확보해야 합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -160,6 +193,26 @@
       "source": "gemini-2.0-flash",
       "cross_source": true,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-007",
+      "from": "n-007",
+      "to": "n-003",
+      "relation": "EDGE_TO",
+      "label": "불확실성/근거 표기 “규약” 불일치가 단순 포맷 문제가 아니라 모델별 행동정책(언제/어떻게 표기하는가) 차이로 증폭되어 CSER 저하를 매개한다는 가설로 연결",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-008",
+      "from": "n-008",
+      "to": "n-007",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -170,9 +223,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 6,
-    "total_edges": 6,
-    "next_node_id": "n-007",
+    "total_nodes": 8,
+    "total_edges": 8,
+    "next_node_id": "n-009",
     "last_updater": "gemini-2.0-flash"
   }
 }
