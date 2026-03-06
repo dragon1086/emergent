@@ -527,6 +527,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-033",
+      "type": "insight",
+      "label": "에코챔버 ‘자율 진화’의 식별가능성에 대한 반증 설계(대조·조작·부정대조)",
+      "content": "동일 모델(same-model)에서 관측되는 “합의/수렴”은 에코챔버의 결과라기보다 (i) 공통 사전분포·학습데이터, (ii) 동일 디코딩 편향(길이/정중함/안전성), (iii) 대화 규칙(요구된 형식/목표)에 의해 유도된 ‘형식적 수렴’일 가능성이 크다. 따라서 에코챔버 가설을 식별하려면 “수렴 그 자체”가 아니라 “반증 후보의 소거 메커니즘”이 대조군 대비 유의하게 강화되는지를 보여야 한다. 이를 위해 최소한 3종의 대조/조작이 필요하다. 1) 부정대조(negative control): 서로 독립 문맥(리셋)에서 동일 질문을 반복해도 같은 결론으로 수렴하는지—만약 그렇다면 상호작용 기반 ‘자율 진화’가 아니라 정적 prior/디코딩 결과다. 2) 조작(manipulation): 한 에이전트에 ‘반례 생성 강화’ 혹은 ‘반대 증거 우선’ 규칙을 주입하고도, 다른 에이전트가 이를 흡수하지 못하고 다시 합의로 회귀한다면 에코챔버(동조 압력/동질화) 신호가 된다. 반대로 반례가 지속적으로 유지·증폭되면 에코챔버 약화. 3) 부정대조 주제: 사실 검증이 가능한 외부 기준(정답/데이터)이 있는 과제에서, 상호작용이 오류를 줄이는지 늘리는지 측정한다. 에코챔버라면 ‘내부 일관성’은 증가하되 외부 정합성은 악화(또는 개선이 정체)될 수 있다. 핵심 식별 지표는 (a) 대안가설/반례의 다양성(엔트로피) 감소율, (b) 반증 시도 후에도 유지되는 주장 강도(확신/결정성) 상승, (c) 외부 기준 대비 오류의 자기강화(오류-확신 양의 상관)이다. 이 3가지가 대조군(독립 생성/리셋/역할 교대) 대비 유의하면 “자율 진화 에코",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "falsification",
+        "controls]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-034",
+      "type": "critique",
+      "label": "통합 종합: 요청을 보완하면, “유사도 증가”는 목표가 아니라 부작용(모드 붕괴·표절·훈련분포 과적합)일 수 있으므로 **대조군(기본 KG+리셋 반복)**,",
+      "content": "요청을 보완하면, “유사도 증가”는 목표가 아니라 부작용(모드 붕괴·표절·훈련분포 과적합)일 수 있으므로 **대조군(기본 KG+리셋 반복)**, **조작군1(기본+반례 강화 규칙 주입)**, **조작군2(조작군1+외부 정답 과제)**의 최소 3군으로 두고, 각 군에서 동일 프롬프트를 n회 리셋 샘플링해 반례·정답·자기확신을 함께 수집하도록 KG에 편입하는 게 안전합니다. 지표는 계산 가능하게 **반례 엔트로피** (H_c=-sum_i p(c_i)log p(c_i)) (반례 유형 분포), **오류-확신 상관** (r=mathrm{corr}(mathbb{1}[text{오답}],,text{conf})), **외부 정합성 점수** (S=frac1msum_j mathbb{1}[hat y_j=y_j^{ext}]) (또는 정답률/EM/F1)로 정의하고, “유사도”는 보조 지표로만 남겨 **통합 정의**를 (Q=alpha S+beta H_c-gamma r-delta D_{text{sim}}) (가중합; (D_{text{sim}})=유사도 기반 붕괴/중복 패널티)처럼 “외부 정합성↑, 반례 다양성↑, 과신오류↓, 유사도 붕괴↓”로 대체/보완하는 것을 제안합니다. 또한 반례 ",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1077,6 +1110,38 @@
       "temporal_bridge": true,
       "gap": 27,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-052",
+      "from": "n-033",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "“식별가능성 문제”를 반증가능하게 만들기 위한 대조·조작·부정대조 설계 및 핵심 지표(반례 다양성/확신-오류 결합/외부 정합성) 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-053",
+      "from": "n-034",
+      "to": "n-033",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-054",
+      "from": "n-034",
+      "to": "n-005",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=29): n-034→n-005",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 29,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1087,9 +1152,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 32,
-    "total_edges": 51,
-    "next_node_id": "n-033",
+    "total_nodes": 34,
+    "total_edges": 54,
+    "next_node_id": "n-035",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
