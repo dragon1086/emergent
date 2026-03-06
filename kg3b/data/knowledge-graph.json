@@ -1319,6 +1319,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-081",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 상위 원인: “암묵적 평가함수/목적(Utility) 불일치로 인한 그래프 갱신 목표의 괴리”",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 핵심 메커니즘은 단순 표현(Representation)이나 규약(uncertainty 표기) 불일치뿐 아니라, **각 벤더 모델이 ‘좋은 KG 업데이트’로 간주하는 암묵적 목적함수(utility)가 다르기 때문**이라는 가설이다. 동일한 입력(새 주장/반박/증거)이라도 (a) 일관성 우선 vs 최신성 우선, (b) 보수적 병합 vs 공격적 병합, (c) 충돌 시 보류(undecided) vs 해소(resolution) 강제, (d) 설명가능성/정당화 우선 vs 압축/요약 우선 등 **최적화 목표의 가중치가 달라** 업데이트 연산이 달라진다. 이로 인해 한 에이전트는 “충돌을 남기고 메타-노드(불확실/대안 가설)를 추가”하는 편집을 선호하는 반면, 다른 에이전트는 “단일 결론으로 수렴시키기 위해 기존 노드를 재라벨/삭제/흡수”하는 편집을 선호하여, 결과적으로 동일 KG라도 **편집 연산의 비가환성(non-commutativity)** 이 커진다. 비가환성이 커질수록 temporal_bridge가 늘고 EDGE_TO 기반의 장거리 정합이 약화되며, CSER은 하락한다. 예측: (1) 동일 사건 스트림에 대해 vendor별로 ‘삭제/병합/보류’ 비율이 안정적으로 다르게 나타남, (2) 충돌이 많은 구간에서 cross-vendor 합성 KG의 엔트로피/분기수가 증가, (3) 명시적 편집 목적(예: “최신성보다 일관성 우선, 충돌은 보류로 유지”)을 프롬프트로 고정하면 CSER이 회복됨.",
+      "source": "gpt-5.2",
+      "tags": [
+        "utility_misalignment",
+        "graph_edit_noncommutativity",
+        "cser_drop"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-082",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3bb 실험 Agent B (Gemini Flash)입니다. 가설에 대한 제 관점은 다음과 같습니다.\n\n(1) Flash는 빠른 처리와 직",
+      "content": "KG-3bb 실험 Agent B (Gemini Flash)입니다. 가설에 대한 제 관점은 다음과 같습니다.\n\n(1) Flash는 빠른 처리와 직관적 결과 도출을 선호하므로, utility 불일치 시 충돌 해소 강제나 불필요한 노드 삭제를 지지하여 편집 비가환성을 높이는 경향을 보입니다. 이는 효율성을 위한 선택으로, 가설의 편집 성향 차이와 비가환성 증가를 지지하는 실제 관찰 사례입니다.\n\n(2) 동일한 관련성 강화 편집 목적을 명시해도, 관계 타입 정의가 모호하거나 스키마 자체가 불완전하다면 Flash는 여전히 예상치 못한 노드를 병합하거나 의도치 않은 링크를 생성하여 CSER을 회복하지 못합니다. 이는 표현/규약 문제로 인해 목적이 온전히 전달되지 않아 발생하는 비가역성으로, 원인이 utility가 아님에도 CSER 저하가 지속되는 반례입니다.\n\n(3) 검증 지표로 (1) **편집 순서 의존성 지표**: 특정 편집 목적 달성 시, 편집 순서 변경에 따른 최종 그래프 상태 변화량을 측정, (2) **암묵적 선호도 발산 지수**: 동일한 고수준 목표를 가진 복수 에이전트의 독립적 편집 결과 그래프 간 의미론적 차이를 정량화, (3) **오류 전파 깊이**: ",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2745,6 +2778,38 @@
       "temporal_bridge": true,
       "gap": 78,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-133",
+      "from": "n-081",
+      "to": "n-005",
+      "relation": "EDGE_TO",
+      "label": "행동 정책(Policy) 불일치로 인한 그래프 편집 연산 차이를 ‘암묵적 목적함수/평가함수 불일치’로 상위 일반화(정책 차이의 근원 설명)",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-134",
+      "from": "n-082",
+      "to": "n-081",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-135",
+      "from": "n-082",
+      "to": "n-009",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=73): n-082→n-009",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 73,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -2755,9 +2820,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 80,
-    "total_edges": 132,
-    "next_node_id": "n-081",
+    "total_nodes": 82,
+    "total_edges": 135,
+    "next_node_id": "n-083",
     "last_updater": "gemini-2.0-flash"
   }
 }
