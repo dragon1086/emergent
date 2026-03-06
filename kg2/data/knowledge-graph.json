@@ -1402,6 +1402,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-086",
+      "type": "insight",
+      "label": "동일모델 에코챔버 ‘측정가능성’의 최소 요건: 반사실(카운터팩추얼) 대조 설계",
+      "content": "동일 모델×동일 모델 조건에서 “에코챔버”를 주장하려면, 단순한 수렴(공유된 사전분포/학습데이터/추론휴리스틱으로 인한 자연스런 합의)과 구분되는 **반사실적 비교 기준**이 필요하다. 그렇지 않으면 관측된 현상(대화가 진행될수록 동일 결론·동일 프레이밍으로 모이는 것)은 거의 항상 “동일모델의 정상 동학”으로도 설명된다. 비판적으로 말해, 현재 설계는 ‘에코챔버’를 **행동적 라벨**로만 붙이고 있으며, 식별가능성(identifiability)을 충족시키는 최소 요건(대조군/조작/차분)이 없다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "counterfactual",
+        "experimental-design]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-087",
+      "type": "critique",
+      "label": "통합 종합: ‘반사실 대조 설계’는 인과추론 정밀도는 높이지만 KG-2(자율 진화: 자기주도적 규칙·표현·정책의 형성/변화)를 보려면 **완전한 반사실 쌍(",
+      "content": "‘반사실 대조 설계’는 인과추론 정밀도는 높이지만 KG-2(자율 진화: 자기주도적 규칙·표현·정책의 형성/변화)를 보려면 **완전한 반사실 쌍(동일 시드·동일 외부조건·단일 개입 차이)**까지 요구하는 순간 실험 복잡도가 과도해져, 오히려 “진화”를 ‘통제된 재현’으로 축소시키는 역효과가 납니다(보완책: 반사실을 ‘완전통제’가 아니라 **개입 로그가 명확한 최소 개입 A/B**로 약화).\n\n**최소 프로토콜 1개(선택: ‘가드레일 주입’ 단일요인 A/B)**: 턴 구조=①과제(다중관점 논증) ②자기평가/불확실성 표기 ③규칙 업데이트(내부 헌장 1줄) ④다음 턴 적용; 주입 근거=에코챔버는 보통 “확증 편향+동질 증폭”에서 오므로 B조건에만 ‘반대 근거 1개 의무’ 가드레일을 넣어 **자연수렴(합의 형성)**과 **강제 다양성**을 분리; 측정=다양성지수(서로 다른 근거 유형 수), 자기수정률(이전 주장 철회/수정 비율), 합의도(최종 정책의 일관성), 외부검증 점수(홀드아웃 사실/논리 체크); 성공 기준=**B에서 다양성·외부검증이 유지/상승하면서 합의도도 수렴**(A는 합의도↑라도 외부검증↓면 에코챔버 신호).\n\n| 구분 | 자연수렴(건강한 수렴) 예측 |",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2976,6 +3009,38 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-146",
+      "from": "n-086",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "식별가능성 문제를 “반사실 대조 설계”의 최소 요건(조작·대조·차분·동학지표)으로 구체화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-147",
+      "from": "n-087",
+      "to": "n-086",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-148",
+      "from": "n-087",
+      "to": "n-015",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=72): n-087→n-015",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 72,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -2986,9 +3051,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 85,
-    "total_edges": 145,
-    "next_node_id": "n-086",
+    "total_nodes": 87,
+    "total_edges": 148,
+    "next_node_id": "n-088",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
