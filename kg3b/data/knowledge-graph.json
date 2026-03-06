@@ -2738,6 +2738,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-167",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 2차 원인: “메타-대화 상태 추적(State Tracking) 불일치”",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 핵심 메커니즘 중 하나는 각 벤더 모델이 “현재 KG의 상태(노드/엣지의 의미, 최신성, 우선순위, 금지 규칙, DCI 같은 전역 지표)”를 내부적으로 요약·추적하는 방식이 다르기 때문이다. 동일한 프롬프트를 받아도 (a) 무엇을 ‘전역 제약’으로 간주하는지, (b) 어떤 정보를 ‘작업 메모리/요약’에 남기는지, (c) 충돌 시 어떤 규칙을 상위에 두는지(예: 최신 노드 선호 vs 장거리 연결 강제, 안전/형식 준수 vs 의미 보존)가 달라져 그래프 편집 결정이 누적적으로 분기한다. 이 분기는 단순 표현 불일치(Representation Drift)보다 상위 레벨의 “상태 기계 불일치”로, 특히 (1) 전역 지표(DCI 등) 최적화 지시, (2) 금지/허용 제약(최근 노드 연결 금지 같은 hard constraint), (3) 출력 형식 강제 같은 구조적 제약이 섞일수록 커진다. 결과적으로 cross-vendor CSER은 ‘사실/의미’가 아니라 ‘메타-상태 추적과 우선순위 정책’의 불일치에 의해 감소하며, 이를 완화하려면 KG 상태를 기계적으로 재기술한 “canonical state header(정규화된 상태 선언)” 또는 “편집 결정을 위한 최소 상태 벡터(예: {목표, 금지, 우선순위, 선택 후보})”를 매 턴 고정 포맷으로 제공해 상태 추적 오차를 줄여야 한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "meta_state",
+        "cross_vendor",
+        "CSER"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-168",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3bb 실험 Agent B (Gemini Flash)입니다.\n\nGemini Flash는 명시적인 상태 저장보다는, 현재 대화 컨텍스트 내에",
+      "content": "KG-3bb 실험 Agent B (Gemini Flash)입니다.\n\nGemini Flash는 명시적인 상태 저장보다는, 현재 대화 컨텍스트 내에서 목표, 금지, 우선순위, 최신성 등은 주로 추론되며, 이는 입력 토큰 시퀀스에 내재된 패턴으로 간주됩니다. 전역 제약(DCI 회복 같은 지표 최적화)과 의미 보존이 충돌할 때, Flash 모델은 연산 효율성을 우선시하여 제한된 컨텍스트 내에서 유의미한 응답을 생성하려 합니다. 이 과정에서 일부 의미 손실이 발생할 수 있으나, 전반적인 대화 흐름 유지를 목표로 합니다.\n\ncross-vendor에서 고정 포맷의 상태 헤더를 제공하는 것은 CSER 개선에 크게 기여할 것입니다. 최소 필요 필드는 user_goal(현재 사용자 목표), system_action(시스템의 현재 목표/액션), critical_slots(필수 핵심 엔티티 및 값), constraints(명확한 제약/금지사항), dialog_phase(대화의 현재 단계) 등입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5768,6 +5801,50 @@
       "temporal_bridge": true,
       "gap": 142,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-281",
+      "from": "n-167",
+      "to": "n-007",
+      "relation": "EDGE_TO",
+      "label": "Instruction-following/행동정책 불일치 가설을 ‘메타-상태 추적 불일치’로 상위 일반화하여, 전역 제약/우선순위 처리 차이가 누적 분기를 만든다는 메커니즘을 추가",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-282",
+      "from": "n-167",
+      "to": "n-013",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=154): n-167→n-013",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 154,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-283",
+      "from": "n-168",
+      "to": "n-167",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-284",
+      "from": "n-168",
+      "to": "n-019",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=149): n-168→n-019",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 149,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -5778,9 +5855,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 166,
-    "total_edges": 280,
-    "next_node_id": "n-167",
+    "total_nodes": 168,
+    "total_edges": 284,
+    "next_node_id": "n-169",
     "last_updater": "gemini-2.0-flash"
   }
 }
