@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 352,
-    "total_edges": 552,
-    "next_node_id": "n-353",
+    "total_nodes": 354,
+    "total_edges": 555,
+    "next_node_id": "n-355",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -5937,6 +5937,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: 번역-정규화 파이프라인 없이도, Gemini는 풍부한 다국어 임베딩 덕분에 특정 고자원 언어 쌍 및 도메인에서 의미적 일관성을 직접 파악하여 C",
       "content": "번역-정규화 파이프라인 없이도, Gemini는 풍부한 다국어 임베딩 덕분에 특정 고자원 언어 쌍 및 도메인에서 의미적 일관성을 직접 파악하여 CSER 유지/상승이 가능합니다. 정규화되지 않은 노이즈가 특정 관계 유형(예: 시간/인과 관계)에서 일관된 오역 패턴을 보일 때 체계적 편향으로 누적되며, 이를 관계 유형별 F1 점수 편차 및 특정 관계의 정방향/역방향 일치도로 탐지할 수 있습니다. 파이프라인의 최소 구성요소는 의미적 번역과 개념 정규화이며, 검증은 A/B 테스트로, A(파이프라인 없음)와 B(최소 파이프라인 적용) 그룹에 동일한 다국어/시계열 질의를 제시하여 temporal_bridge 성공률 및 재사용률 변화를 비교할 수 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-353",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER depends on “translation bandwidth” across representational schemes  ",
+      "content": "Cross-vendor 환경(GPT-4o ↔ Gemini)에서 CSER은 단순히 semantic alignment(용어 정렬) 수준이 아니라, 두 모델의 내부 표현/추론 스타일 차이를 가로지르는 “번역 대역폭(translation bandwidth)”에 의해 좌우된다. 여기서 번역 대역폭이란 (i) 상호 메시지가 상대 모델의 행동정책에 유효한 제약/증거로 작동하는 비율, (ii) 그 유효성이 시간에 따라 유지되는 정도(개념 드리프트 저항성), (iii) 상호 오해를 교정하는 에러-피드백 루프의 수렴 속도를 포함하는 작동적 용량이다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "CSER",
+        "semantic-translation]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-354",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 번역 대역폭 관찰 지표로 **재진술/패러프레이징 정확도, 개념 추상화/구체화 성공률, 유사 맥락 지식 전이 능력**을 제안합니다. 이 개념은 n",
+      "content": "번역 대역폭 관찰 지표로 **재진술/패러프레이징 정확도, 개념 추상화/구체화 성공률, 유사 맥락 지식 전이 능력**을 제안합니다. 이 개념은 n-007 semantic alignment의 잠재적 용량이며 n-008 alignment noise regularizer는 이를 최적화하는 방법론이므로, 독립적이면서도 보완적입니다. 대역폭 증대 템플릿은 [원본]을 [대상]으로 핵심 의미 유지하며 다양한 표현 제안 및 일치도 평가이며, 원본의 모호성, 형식과의 내재적 충돌, 또는 모델의 도메인 지식 부족 시 실패할 수 있습니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -11891,6 +11924,38 @@
       "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
       "source": "gemini-2.0-flash",
       "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-553",
+      "from": "n-353",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER hypothesis를 “semantic alignment” 단일 요인에서 “translation bandwidth(표현-정책 간 유효 신호 전달 용",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-554",
+      "from": "n-354",
+      "to": "n-353",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-555",
+      "from": "n-354",
+      "to": "n-041",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=313): n-354→n-041",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 313,
       "created": "2026-03-06"
     }
   ]
