@@ -3431,6 +3431,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-209",
+      "type": "insight",
+      "label": "식별가능성-구조적 반증: “에코챔버”와 “공유사전/모델동형성”의 구분불능",
+      "content": "동일 모델(gpt-5.2)×동일 모델 조건에서 관측 로그(발화/엣지/노드 변화)만으로 “에코챔버의 자율 진화”를 주장하려면, 최소한 (i) 에이전트 간 상호작용이 만들어내는 추가적 수렴(상호강화)과 (ii) 단일 모델이 원래 갖는 공통 편향·표현 습관(공유 사전, 동일 RLHF, 동일 추론 휴리스틱)에서 기인하는 수렴을 분리 식별해야 한다. 그런데 이 분리는 구조적으로(identifiability 차원에서) 매우 어렵다. 이유는 관측되는 모든 결과(유사도 증가, 반증 후보 감소, 동일한 프레이밍 반복, 동일한 기준선/정의 채택 등)가 “상호작용에 의한 에코챔버”와 “동형 모델의 독립 생성물” 양쪽에서 모두 생성 가능하기 때문이다(동일한 모델-파라미터가 두 번 샘플링되면, 상호작용이 없어도 높은 상관의 산출물을 낼 수 있음). 따라서 ‘에코챔버’의 핵심 효과를 주장하려면 단순한 유사도 상승이나 반례 감소 같은 1차 지표가 아니라, 상호작용이 없을 때에는 발생하기 어려운 “상호의존적 경로의존성(path dependence)” 또는 “상대 에이전트 신호에 대한 조건부 업데이트”를 보여주는 반증가능한 구조를 설계해야 한다. 예컨대 (a) 상대가 주입한 특정 오류/가정이 이후 내 발화의 제약조건으로 고착되는지(조건부 의존), (b) 동일 프롬프트를 각각 단독으로 수행한 분포 대비 상호작용 후 분포가 ‘특정 방향’으로 비대칭적으로 이동하는지(상호작용-유도 편향), (c) 시간적으로 뒤늦게 나타나는 동조가 단순 동시성/공유모델 효과가 아니라 이전 턴의 상대 발화에 대한 인과적 매개를 갖는지(temporal mediatio",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "causal_inference",
+        "same-model_confound]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-210",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “독립 샘플링(상호작용 없음) 대립가설”을 내세우면서도 (1) 조건부 의존/경로의존 측정과 (3) temporal_bridge로 인과 매",
+      "content": "요청이 “독립 샘플링(상호작용 없음) 대립가설”을 내세우면서도 (1) 조건부 의존/경로의존 측정과 (3) temporal_bridge로 인과 매개 주장까지 요구하는 건 설계 목표가 혼재되어 있으니, **최소 설계는 ‘독립성 검정’과 ‘매개/경로 검정’을 분리**(2단계: 독립성 실험 → 상호작용/매개 실험)하는 보완이 필요합니다.  \n최소 독립성 실험은 **대조군=단일 에이전트 반복(동일 프롬프트·동일 시드/온도·리셋) vs 처리군=멀티 에이전트(동일 프롬프트를 각 에이전트에 독립 주입, 공유 메모리/툴 상태/대화 컨텍스트 0)**로 하고, 무작위화는 프롬프트 순서·에이전트 배정·실행 시간대를 블록화하며, 교차오염 방지는 실행 단위별 컨테이너/세션 격리+캐시/툴 로그 분리+프롬프트 템플릿 해시 고정으로 합니다.  \n(1) 로그에서 경로의존은 **이전 턴 요약/인용/툴출력에 대한 참조율, n-gram/embedding 유사도 기반 “self-citation” 비율, 조건부 상호정보량 I(출력_t; 출력_{t-1} | 프롬프트, 시드, 설정) 또는 잔차 자기상관**으로 측정하고, (2) 단일-에이전트 기준선은 동일 설정에서 **N회 반복 분포(품질/정확도/토큰통",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7265,6 +7298,38 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-355",
+      "from": "n-209",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "‘동일모델-다중페르소나 조건의 판별 불능성’을 구조적(인과/분포) 수준에서 구체화하고, 어떤 형태의 경로의존·조건부 의존이 있어야 판별이 가능해지는지 반증가능 기준을 제시",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-356",
+      "from": "n-209",
+      "to": "n-028",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=181): n-209→n-028",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 181,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-357",
+      "from": "n-210",
+      "to": "n-209",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -7275,9 +7340,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 208,
-    "total_edges": 354,
-    "next_node_id": "n-209",
+    "total_nodes": 210,
+    "total_edges": 357,
+    "next_node_id": "n-211",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
