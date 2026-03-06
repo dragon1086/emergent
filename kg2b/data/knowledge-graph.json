@@ -2837,6 +2837,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-173",
+      "type": "insight",
+      "label": "동일모델-다중페르소나 ‘에코챔버’의 반증 설계: 교차-페르소나 반사실(counterfactual) 테스트",
+      "content": "동일 모델(gpt-5.2)에서 페르소나만 다른 2에이전트가 상호작용해 KG가 “자율 진화”할 때, 관측된 유사도 증가나 합의 수렴은 (i) 공유된 기본 사전학습 priors, (ii) 대화 규칙(협력적 문체), (iii) 동일한 평가기준/채점휴리스틱, (iv) 온도/탐색 폭의 축소, (v) KG 업데이트 규칙 자체(temporal_bridge의 누적)로도 충분히 생성될 수 있다. 따라서 ‘에코챔버’ 가설을 식별하려면 “상호작용이 없었더라면”의 반사실과 비교해, 상호작용이 추가로 만들어내는 편향(특히 반증 후보의 소실/억제)을 분리해야 한다. 이를 위해 최소 반증 단위는 ‘합의/유사도’가 아니라 “대안 가설·반례·반대근거의 다양성(negative evidence capacity)”의 감소로 두고, 다음의 교차-페르소나 반사실 테스트를 제안한다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "counterfactual",
+        "falsification]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-174",
+      "type": "critique",
+      "label": "통합 종합: 지표는 “반증 후보 다양성/생존율 감소”에 맞춰 (1) **반증후보 고유도·중복률**: 시간창/턴별로 생성된 반증 후보(가설·반례·대안 설명)를",
+      "content": "지표는 “반증 후보 다양성/생존율 감소”에 맞춰 (1) **반증후보 고유도·중복률**: 시간창/턴별로 생성된 반증 후보(가설·반례·대안 설명)를 임베딩+LLM 정규화로 표준화한 뒤 unique_ratio=|U|/N, dup_rate=1-unique_ratio와 **신규 유입률**(새 후보가 이전 후보 집합과 유사도<τ인 비율)로 계량하고, (2) **반증 후보 군집 편중도(클러스터 엔트로피/HHI)**: 후보를 k-means/HDBSCAN으로 군집화해 분포의 엔트로피↓ 또는 HHI↑를 “다양성 붕괴”로 보고, (3) **생존율/도태율(선택 압력)**: 각 후보가 이후 턴에서 “검토/유지/확장”으로 참조되는지(링크·인용·검증 시도)로 생존을 정의해 survival@t 및 “초기 다양성 대비 생존 다양성 비(Effective #clusters)”를 추적하되, 단순 삭제가 아니라 **반증 시도 자체의 소실**(검증 액션 로그 감소)도 함께 본다. 독립 생성 베이스라인은 최소로 **k=20**(독립 시드/세션), 세션당 **n=30** 후보(총 600) 생성하며, 통제변수는 동일 프롬프트·지식베이스 스냅샷·모델/온도·토큰예산·평가기준(정규화 룰/τ)·후처리(중복 제",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5999,6 +6032,50 @@
       "temporal_bridge": true,
       "gap": 160,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-293",
+      "from": "n-173",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "‘판별 불능성’ 주장을 반사실(독립 합성 vs 상호작용) 비교 설계로 약화/검증 가능하게 정련",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-294",
+      "from": "n-173",
+      "to": "n-005",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=168): n-173→n-005",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 168,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-295",
+      "from": "n-174",
+      "to": "n-173",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-296",
+      "from": "n-174",
+      "to": "n-004",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=170): n-174→n-004",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 170,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -6009,9 +6086,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 172,
-    "total_edges": 292,
-    "next_node_id": "n-173",
+    "total_nodes": 174,
+    "total_edges": 296,
+    "next_node_id": "n-175",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
