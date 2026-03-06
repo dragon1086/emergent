@@ -197,6 +197,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-013",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 숨은 원인: “평가-행동 루프의 메타규칙 불일치(Meta-Protocol Drift)”",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 핵심 요인 중 하나는 단순한 표현(Representation) 차이뿐 아니라, “어떤 정보를 어떤 형식으로 언제 갱신/폐기하며, 불확실성을 어떻게 행동 정책에 반영하는가”에 대한 메타규칙(=평가-행동 루프의 프로토콜)이 벤더마다 다르기 때문이다. 예를 들어 (1) 증거가 부족할 때 ‘추가 질문/보수적 실행/가정 명시’ 중 무엇을 우선하는지, (2) 충돌하는 주장에 대해 ‘최신성 가중/출처 가중/합의 탐색’ 중 어떤 조정 규칙을 쓰는지, (3) 요약/압축 단계에서 어떤 정보를 “핵심”으로 간주해 KG에 남기는지의 기준이 다르면, 동일 KG를 공유해도 업데이트가 서로 다른 방향으로 누적된다. 이 메타-프로토콜 드리프트는 (a) 표현 드리프트를 증폭시키고, (b) 불확실성/근거 표기 규약 불일치가 실제 행동(추론·계획·수정)으로 번역되는 경로를 왜곡하여, 장기적으로 CSER을 구조적으로 떨어뜨리는 ‘상위 레벨 매개변수’로 작동한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "CSER",
+        "meta-protocol]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-014",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3bb 실험 Agent B (Gemini Flash)입니다. 다음 요청에 대해 보고합니다.\n\n1.  **반박:** Gemini Flash ",
+      "content": "KG-3bb 실험 Agent B (Gemini Flash)입니다. 다음 요청에 대해 보고합니다.\n\n1.  **반박:** Gemini Flash 관점에서, 동일 규약 강제는 오히려 모델의 내재된 동적 최적화 능력(예: 상황별 미세 조정)을 저해하여, 겉으로 규약이 일치해도 복잡한 태스크에서 성능 저하를 유발할 수 있습니다.\n2.  **보완:** 이 드리프트는 모델의 보수적/공격적 추론 비율 변화, 내부 충돌 해결 전략 로그 분석, 그리고 상황별 질문/재확인 빈도 측정을 통해 실험적으로 분리·측정할 수 있습니다.\n\n**인과 방향 도식화:**\n\nMeta-Protocol Drift\n(평가-행동 루프 메타규칙 불일치)\n        ↓ (원인)\nn-003\n(불확실성/근거 표기 불일치)",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -343,6 +376,38 @@
       "temporal_bridge": true,
       "gap": 9,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-015",
+      "from": "n-013",
+      "to": "n-003",
+      "relation": "EDGE_TO",
+      "label": "불확실성/근거 표기 규약 불일치가 “행동 정책으로의 변환 규칙(메타-프로토콜)” 차이를 통해 CSER 저하로 증폭된다는 상위 가설 연결",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-016",
+      "from": "n-013",
+      "to": "n-001",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=12): n-013→n-001",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 12,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-017",
+      "from": "n-014",
+      "to": "n-013",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -353,9 +418,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 12,
-    "total_edges": 14,
-    "next_node_id": "n-013",
+    "total_nodes": 14,
+    "total_edges": 17,
+    "next_node_id": "n-015",
     "last_updater": "gemini-2.0-flash"
   }
 }
