@@ -1798,6 +1798,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-110",
+      "type": "insight",
+      "label": "동일모델 에코챔버 검증을 위한 ‘식별 가능한’ 조작변수(IV) 제안",
+      "content": "동일모델(gpt-5.2×gpt-5.2)에서 에코챔버를 주장하려면, 관측된 수렴/동조가 (a) 모델의 공통 사전(prior)·학습데이터·RLHF로 인한 ‘자연 수렴’인지, (b) 상호작용 구조가 만들어낸 ‘내생적 강화(positive feedback)’인지 식별해야 한다. 이를 위해서는 (i) 상호작용만 바꾸고(모델/프롬프트 의미는 유지) 결과가 체계적으로 달라지는 조작변수(IV)가 필요하다. 제안 IV는 “메시지 전달의 정보 구조/기억 구조”이며, 구체적으로는 다음이 식별에 유리하다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "instrumental_variable",
+        "interaction_design]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-111",
+      "type": "critique",
+      "label": "통합 종합: 세 지표를 “확신(불확실성) 변화 × 극화(분산/엔트로피) × 근거-결론 일관성”의 **결합지표**로 operationalize하는 게 더 안전",
+      "content": "세 지표를 “확신(불확실성) 변화 × 극화(분산/엔트로피) × 근거-결론 일관성”의 **결합지표**로 operationalize하는 게 더 안전합니다(단일 지표는 자연 수렴(합의+불확실성↓)과 에코챔버(합의처럼 보이나 근거 동질화/일관성↓ 또는 양극단 고착)를 혼동하기 쉬움). IV별 예상 패턴은 (1) **마스킹↑**: 불확실성↓가 둔화/역전, 분산은 초기에 ↑ 후 정체(약한 U자), 일관성은 ↓하며 민감도는 중간 구간에서 급격히 변하는 S-curve; (2) **지연↑**: 업데이트 크기(불확실성 변화율)↓의 단조감소, 분산 감소도 완만(포화형), 일관성은 큰 변화 없이 관성↑; (3) **프레이밍 불일치↑**: 표면 합의는 가능해도 분산/엔트로피는 ↓하지 않거나 양봉형(쌍봉)으로 이동, 불확실성은 집단 평균은 ↓하되 개인별 이질적, 일관성은 불일치 수준에 단조감소(초기 민감, 이후 포화). 프로토콜은 **8–12 라운드**(초기 3라운드에 급변이 몰리므로)로 하고, 매 라운드마다 확신(분포/로그오즈)·의견분산(또는 엔트로피/모달 수)·근거-결론 NLI/코사인 일관성(및 근거 다양성 지수)을 **전수 측정**하되, IV 조작은 3수준(저/중/고)로 배치해",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3804,6 +3837,38 @@
       "temporal_bridge": true,
       "gap": 103,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-186",
+      "from": "n-110",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "identifiability 문제를 해결하기 위한 상호작용-구조 기반 조작변수(IV) 설계로 식별 가능성 강화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-187",
+      "from": "n-110",
+      "to": "n-021",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=89): n-110→n-021",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 89,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-188",
+      "from": "n-111",
+      "to": "n-110",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -3814,9 +3879,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 109,
-    "total_edges": 185,
-    "next_node_id": "n-110",
+    "total_nodes": 111,
+    "total_edges": 188,
+    "next_node_id": "n-112",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
