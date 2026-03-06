@@ -593,6 +593,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-037",
+      "type": "insight",
+      "label": "에코챔버 검증의 ‘부정적 대조군’ 설계 결여(동일모델-동일분포 문제)",
+      "content": "동일 모델(gpt-5.2×gpt-5.2)에서 페르소나만 달리한 상호작용은 생성 분포의 핵심(사전학습·정렬·안전정책·대화규칙)을 공유한다. 따라서 관측된 “합의/수렴/유사도 증가”는 (i) 에코챔버의 내생적 강화가 아니라 (ii) 동일 생성기에서 자연스럽게 나타나는 공통 편향(언어적 관성, RLHF식 합의 지향, 안전한 중도화)으로도 충분히 발생한다. 이때 에코챔버 가설을 식별하려면 최소한 ‘부정적 대조군(negative control)’이 필요하다: 에코챔버 메커니즘이 작동하지 않는 조건에서도 유사한 수렴이 나타나는지, 혹은 에코챔버가 작동해야만 나타날 패턴(예: 반증 후보의 체계적 소거/대안 가설의 다양성 감소/논거의 순환 강화)이 구분되는지 확인해야 한다. 그러나 현재 설계는 동일모델·동일분포 기반이라 “수렴=에코챔버”라는 해석이 구조적으로 과잉결정(overdetermined)된다. 해결책은 (a) 반증가능한 예측을 ‘유사도’가 아닌 ‘대안/반례 생성률의 시간적 추세’로 두고, (b) 대조군으로 무작위 페르소나 스왑, 역할 고정/교대, 또는 ‘반증 전용 라운드’ 같은 제약을 넣어 에코챔버 메커니즘이 없을 때의 베이스라인을 추정하는 것이다. 핵심 비판: 대조군 없는 동일모델 조건에서는 에코챔버의 인과적 기여(증분)를 분리해 낼 수 없으며, 관측된 KG 자율 진화는 “같은 엔진이 만든 그럴듯한 합의”로 설명 가능하다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[negative-control",
+        "identifiability",
+        "same-model-bias]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-038",
+      "type": "critique",
+      "label": "통합 종합: 에코챔버가 “없어도” 생길 수 있는 수렴(negative control)은 (1) 공통 프롬프트·평가함수(정답/간결성/안전성)로 인한 **목표함",
+      "content": "에코챔버가 “없어도” 생길 수 있는 수렴(negative control)은 (1) 공통 프롬프트·평가함수(정답/간결성/안전성)로 인한 **목표함수 수렴**, (2) 고확률 토큰·상투적 템플릿으로 인한 **언어모델 관성 수렴**, (3) 동일 근거(같은 요약/문서) 공유로 인한 **정보원 수렴**이며, 이를 에코챔버와 구분하는 지표는 **(a) 반증 제시 후에도 신념/결론이 거의 안 움직이는 ‘업데이트 저항성’**, **(b) 인용·근거의 다양성이 줄고 서로의 문구/근거를 재인용하는 ‘상호참조 폐쇄성’**, **(c) 결론 다양성은 줄지만 오류/편향이 함께 고정되는 ‘동반오류 고착률’**을 제안합니다. 최소 대조군으로 “반증 라운드”를 택하면: 동일 모델·동일 초기 프롬프트로 2조건(A: 자유 토론, B: 매 라운드마다 지정된 ‘반증자’가 가장 강한 반례/대안가설 1개+검증 질문 2개를 제출하고 나머지는 이에 대해 결론을 갱신/보류를 수치(0~1)로 보고)로 3~5라운드 진행 → 라운드별 결론 엔트로피, 업데이트 폭, 근거 다양성(서로 다른 출처/논거 수)과 상호참조 비율을 비교해 B에서만 업데이트가 살아있으면 에코챔버-특이 신호로 해석합니다. 단, B조건에서",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1219,6 +1252,50 @@
       "temporal_bridge": true,
       "gap": 30,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-059",
+      "from": "n-037",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "식별가능성 문제를 ‘대조군 결여’와 ‘동일분포 수렴’의 구체적 설계 결함으로 정교화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-060",
+      "from": "n-037",
+      "to": "n-004",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=33): n-037→n-004",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 33,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-061",
+      "from": "n-038",
+      "to": "n-037",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-062",
+      "from": "n-038",
+      "to": "n-006",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=32): n-038→n-006",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 32,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1229,9 +1306,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 36,
-    "total_edges": 58,
-    "next_node_id": "n-037",
+    "total_nodes": 38,
+    "total_edges": 62,
+    "next_node_id": "n-039",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
