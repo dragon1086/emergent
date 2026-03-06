@@ -2227,6 +2227,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-136",
+      "type": "insight",
+      "label": "동일모델 조건에서 ‘에코챔버’와 ‘자연 수렴’을 가르는 최소개입 조작: 정보 경로 단절/교차 설계",
+      "content": "동일 모델(gpt-5.2×gpt-5.2)에서 관측되는 합의·강화가 에코챔버인지(상호참조로 인한 피드백 증폭) 자연 수렴인지(동일 prior/추론으로 인한 독립적 일치) 구분하려면, **모델 내부를 바꾸지 않고 정보 흐름만 조작**하는 식별 전략이 필요하다. 핵심은 “상대의 발화가 내 믿음에 인과적으로 기여했는가?”를 분리하는 것이다. 이를 위해 (1) **단절(ablated exposure)**: 각 에이전트가 상대 발화를 전혀 보지 못한 채 동일 과제를 독립 수행하게 한 뒤, (2) **교차(permute exposure)**: 상대 발화를 보되, 그 발화가 (i) 실제 상대 발화인지 (ii) 제3자의 발화인지 (iii) 자신의 과거 발화를 재주입한 것인지 블라인드 처리하여 노출시키고, (3) **지연/요약 노출**: 원문이 아니라 요약/노이즈를 섞은 형태로 노출 강도를 연속적으로 변화시키는 설계를 제안한다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "causal-design",
+        "control-group]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-137",
+      "type": "critique",
+      "label": "통합 종합: 요청은 타당하지만 “3개 지표로 자연 수렴 vs 에코챔버를 강하게 분리”하려면 **(i) 노출·상호작용의 구조**, **(ii) 의미(내용) 변",
+      "content": "요청은 타당하지만 “3개 지표로 자연 수렴 vs 에코챔버를 강하게 분리”하려면 **(i) 노출·상호작용의 구조**, **(ii) 의미(내용) 변화**, **(iii) 외부 검증(사실/근거) 반응**을 동시에 잡아야 하며, 교차 조건의 가짜 상대 발화는 **속임수 강도**가 아니라 **대칭성·불확실성 표기·분리 로깅**으로 실험 내적타당도를 지키는 쪽이 핵심입니다.  \n\n| 핵심 지표(3) | 측정 방법(단절/교차/노출강도 공통 적용) | 자연 수렴 vs 에코챔버를 가르는 예측 패턴 |\n|---|---|---|\n| **1) 상호작용 다양성/브리징 지수 (Exposure-Bridge Index)** | 참가자별로 접한 발화의 **입장 분포(엔트로피)**, 반대진영과의 **교차 접촉 비율**, 대화 그래프의 **브로커리지(bridging centrality)** | **자연 수렴:** 교차·노출강도↑에서 다양성↑(엔트로피↑)와 함께 브리징↑. **에코챔버:** 노출강도↑여도 특정 입장 집중(엔트로피↓/정체), 교차가 있어도 재동질화(브리징 낮거나 일시적). |\n| **2) 의미적 수렴/양극화 기울기 (Semantic Convergence vs Polarizatio",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4709,6 +4742,50 @@
       "temporal_bridge": true,
       "gap": 131,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-230",
+      "from": "n-136",
+      "to": "n-008",
+      "relation": "EXTENDS",
+      "label": "대조군 결여 문제를 ‘정보 노출 단절/교차’라는 최소개입 대조 설계로 확장해 식별가능성을 개선",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-231",
+      "from": "n-136",
+      "to": "n-024",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=112): n-136→n-024",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 112,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-232",
+      "from": "n-137",
+      "to": "n-136",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-233",
+      "from": "n-137",
+      "to": "n-025",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=112): n-137→n-025",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 112,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -4719,9 +4796,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 135,
-    "total_edges": 229,
-    "next_node_id": "n-136",
+    "total_nodes": 137,
+    "total_edges": 233,
+    "next_node_id": "n-138",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
