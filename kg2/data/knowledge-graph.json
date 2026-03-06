@@ -2557,6 +2557,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-156",
+      "type": "insight",
+      "label": "동일모델 에코챔버 검증의 ‘조작점(IV) 부재’와 식별성 붕괴",
+      "content": "동일 모델(gpt-5.2 × gpt-5.2)에서 페르소나만 달리해 “에코챔버”를 측정하려면, (i) 에코챔버를 유발하는 원인(독립변수, IV)이 무엇인지, (ii) 그 IV가 다른 혼동요인들과 분리되어 조작 가능한지, (iii) 관측지표가 그 IV에 단조/특이적으로 반응하는지 가 명확해야 한다. 그런데 현재 설정은 ‘동일모델’이라는 제약만 있고, 에코챔버를 증가/감소시키는 조작점이 없다. 그 결과 관측되는 수렴(agreement 증가, 주장 반복, 반박 감소 등)은 다음 대안 메커니즘들과 구조적으로 구분되지 않는다:  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "causal-design",
+        "falsifiability]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-157",
+      "type": "critique",
+      "label": "통합 종합: “IV 없는 동일모델”은 사실상 **관찰연구**라 반증력이 약하니, 최소 개입은 (a) **노출·강화·기억 중 한 고리만 ‘미세 교란’**해 인",
+      "content": "“IV 없는 동일모델”은 사실상 **관찰연구**라 반증력이 약하니, 최소 개입은 (a) **노출·강화·기억 중 한 고리만 ‘미세 교란’**해 인과경로를 끊고 (b) **자연수렴(시간·학습·회귀)이라면 변하지 않을 지표**를 함께 두는 방식이 적합합니다. 아래 3가지는 모델 자체는 동일하게 두되 입력/피드백/리마인더만 건드려 **에코챔버 경로별로 상반 예측**을 만들며, 각 개입은 “자연수렴이면 0에 가깝고, 에코챔버면 유의한 비대칭”을 노립니다.\n\n| 최소 개입(IV) | (1) 에코챔버-원인 경로 | (2) 관측지표(방향) | (3) 자연 수렴 가설과 분기 예측 |\n|---|---|---|---|\n| **A. 대칭적 ‘반대 관점’ 미세 주입**(예: 전체 메시지의 5%만 반대 프레이밍으로 삽입, 총 토큰·난이도·정서톤 매칭) | **선택적 노출**(필터 버블 차단) | 반대측 근거 **인용/재생산↑**, 신념 극단성(분포 분산) **↓**, 응답 다양성(엔트로피) **↑** | 자연수렴: 시간 경과에 따라 **양 군 변화 유사(≈0)**; 에코챔버: 주입군만 **극단성↓·교차인용↑** |\n| **B. 강화 신호 부호만 뒤집기**(정답/사실성 평가가 아니라 ",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5431,6 +5464,26 @@
       "temporal_bridge": true,
       "gap": 145,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-266",
+      "from": "n-156",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "동일모델 조건에서 에코챔버 관측치가 자연 수렴/역할균형/시스템제약과 구분되지 않는 이유를 ‘조작점(IV) 부재’로 구체화하여 식별성 문제를 강화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-267",
+      "from": "n-157",
+      "to": "n-156",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -5441,9 +5494,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 155,
-    "total_edges": 265,
-    "next_node_id": "n-156",
+    "total_nodes": 157,
+    "total_edges": 267,
+    "next_node_id": "n-158",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
