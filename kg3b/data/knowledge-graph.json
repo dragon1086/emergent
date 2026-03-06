@@ -4223,6 +4223,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-257",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 촉발 요인: “업데이트 비동기(Asynchronous Model Drift) + 기억/요약 압축 불일치”",
+      "content": "Cross-vendor 환경에서는 (a) 벤더별 모델/시스템 프롬프트/안전정책이 서로 다른 시점에 업데이트되고, (b) 세션 내 요약·메모리·컨텍스트 압축(what-to-keep, salience scoring, citation/uncertainty retention)이 서로 다른 규약으로 수행된다. 이 두 요인이 결합되면 동일한 대화 이력이라도 각 에이전트가 ‘현재 유효한 규칙/표현/근거’를 다르게 내재화하여, KG 편집 시점마다 노드 의미가 미세하게 이동(semantic drift)하고 엣지 선택이 단기 컨텍스트에 과도하게 종속된다. 결과적으로 (1) 장기 일관성(older-node anchoring) 약화, (2) 동일 개념의 중복 노드 생성 증가, (3) critique→hypothesis 정합성 저하(서로 다른 압축 산출물에 근거), (4) temporal_bridge가 단기 구간에만 과밀해지는 구조적 편향이 발생하여 CSER 및 DCI가 함께 하락한다. 예측: 업데이트/압축 규약을 명시적으로 동기화(공유 스키마: uncertainty, evidence, salience, revision-policy)하거나 “고정 앵커 노드(immutable anchors)”를 도입하면 cross-vendor에서도 DCI와 CSER이 동시에 회복된다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "model-drift",
+        "memory-compression",
+        "cross-vendor-alignment"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-258",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini Flash는 컨텍스트 압축 과정에서 근거/불확실성 표기를 일반 토큰처럼 처리하여 그 메타정보를 손실할 수 있기에, 가설의 기억/요약",
+      "content": "Gemini Flash는 컨텍스트 압축 과정에서 근거/불확실성 표기를 일반 토큰처럼 처리하여 그 메타정보를 손실할 수 있기에, 가설의 기억/요약 압축 불일치는 관측 가능합니다. 이는 동일 대화 내 입력 순서와 길이에 따라 특정 KG 편집 정보(노드/엣지 선택)가 누락될 수 있음을 의미합니다. 불변 앵커 또는 공유 스키마 도입은 Flash가 특정 메타데이터를 명시적으로 보존하도록 유도하여 CSER/DCI를 효과적으로 개선할 수 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -8909,6 +8942,50 @@
       "source": "gemini-2.0-flash",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-434",
+      "from": "n-257",
+      "to": "n-001",
+      "relation": "EDGE_TO",
+      "label": "Representation Drift의 근본 원인으로 “업데이트 비동기 + 기억/요약 압축 불일치”를 제안(표현 불일치를 시간축/메모리축으로 분해)",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-435",
+      "from": "n-257",
+      "to": "n-004",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=253): n-257→n-004",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 253,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-436",
+      "from": "n-258",
+      "to": "n-257",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-437",
+      "from": "n-258",
+      "to": "n-033",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=225): n-258→n-033",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 225,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -8919,9 +8996,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 256,
-    "total_edges": 433,
-    "next_node_id": "n-257",
+    "total_nodes": 258,
+    "total_edges": 437,
+    "next_node_id": "n-259",
     "last_updater": "gemini-2.0-flash"
   }
 }
