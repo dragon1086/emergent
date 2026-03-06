@@ -1385,6 +1385,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-085",
+      "type": "insight",
+      "label": "동일모델-다중페르소나에서 ‘에코챔버’와 ‘공유사전(Shared Prior) 수렴’의 구분 불가능성",
+      "content": "동일 모델(gpt-5.2) 두 에이전트가 서로 다른 페르소나를 갖더라도, 관측되는 “합의 증가/표현 유사도 증가”는 (i) 상호 강화로 인한 에코챔버(상호 의존적 피드백 루프) 때문일 수도 있고, (ii) 애초에 동일 파라미터가 갖는 강한 공통 사전분포(shared prior)와 동일한 최적화 편향 때문에 독립적으로도 나타나는 ‘자연 수렴’일 수도 있다. 이 둘을 구분하려면 최소한 “상호작용이 없을 때의 기준선”과 “상호작용이 있을 때의 추가 수렴분(Δinteraction)”을 분리해야 하는데, 단순 로그(대화 텍스트)만으로는 다음의 식별 문제가 남는다. (1) 페르소나가 실제 생성분포를 얼마나 바꾸는지(효과크기) 자체가 잠재변수라서, 관측된 수렴이 상호작용 때문인지 페르소나 무력화/모델 내재 편향 때문인지 분해가 안 된다. (2) ‘반증 후보 생성’ 같은 겉보기 다양성 지표도 동일 모델의 내부 휴리스틱(균형잡기, 양비론, 안전한 반론 생성)으로 인해 상호작용 없이도 유사한 패턴을 만들 수 있다(가짜 반증). (3) 시간에 따른 수렴은 “학습(기억) 없음” 조건에서는 사실상 담화적 정렬(lexical/argumentative alignment)로 나타나는데, 이는 인간 대화에서도 상호 강화 없이 발생하는 일반 현상이며, 이를 에코챔버의 증거로 오인할 위험이 크다. 따라서 동일모델-다중페르소나 조건에서 에코챔버를 주장하려면 ‘상호 의존성의 증거’가 필요하다: 예컨대 한 에이전트의 특정 주장/프레이밍이 다른 에이전트의 이후 생성분포를 예측가능하게 이동시키는지(Granger-like predictability), ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "shared-prior",
+        "counterfactual]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-086",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “3문장 이내”인데 (a)(b)(c)를 모두 “최소 2개 설계+구체적 계산법+기준선”까지 담기엔 과밀하니, 핵심만 압축해 보완합니다. (",
+      "content": "요청이 “3문장 이내”인데 (a)(b)(c)를 모두 “최소 2개 설계+구체적 계산법+기준선”까지 담기엔 과밀하니, 핵심만 압축해 보완합니다. (a) KG 반사실 2개: **① 엣지-셔플**(시간·주제는 고정하고 발화자–수신자 엣지 재배선, 또는 동일 주제 내 이웃만 무작위 교환)과 **② 강화경로 차단**(특정 주장노드→재인용/요약노드→확신표현노드로 이어지는 k-hop 피드백 엣지 제거/감쇠; 혹은 동일 주장 반복을 만드는 triad 폐쇄만 선택적으로 끊기)로 “상호 의존적 강화”의 순환을 깨고 비교합니다. (b) 지표 계산: 주장 채택률은 (A(c)=frac{#text{agents with }s_{i,t}(c)ge tau text{ at }T - #text{at }0}{N}) (또는 (Delta s) 평균), 반증 후보 소실률은 (L=frac{|F_0setminus F_T|}{|F_0|}) (F는 반증/반례 노드 집합; 셔플/차단 후 (Delta L) 비교), 프레이밍 전이는 프레임 토픽분포 (p_t(f|c))를 임베딩/분류로 추정해 (FT(c)=mathrm{JSD}(p_0,p_T)) 또는 발화자-수신자 조건부 (I(F; text{source}totext{",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2863,6 +2896,26 @@
       "temporal_bridge": true,
       "gap": 80,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-138",
+      "from": "n-085",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "‘판별 불능성’ 주장에 대해, 구체적으로 무엇이 혼동되는지(에코챔버 vs 공유사전 수렴)와 이를 분리하기 위한 최소한의 상호의존성 증거(차단/셔플/예측가능성) 요건을 명시함",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-139",
+      "from": "n-086",
+      "to": "n-085",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -2873,9 +2926,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 84,
-    "total_edges": 137,
-    "next_node_id": "n-085",
+    "total_nodes": 86,
+    "total_edges": 139,
+    "next_node_id": "n-087",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
