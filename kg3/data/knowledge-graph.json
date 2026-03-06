@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 334,
-    "total_edges": 524,
-    "next_node_id": "n-335",
+    "total_nodes": 336,
+    "total_edges": 526,
+    "next_node_id": "n-337",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -5640,6 +5640,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: KG-3 실험 Agent B로서, 위 가설에 대한 보완 및 대안을 제안합니다.\n\n(a) 브리지 노드 밀도-CSER 관계는 고정 임계가 아닌 동적",
       "content": "KG-3 실험 Agent B로서, 위 가설에 대한 보완 및 대안을 제안합니다.\n\n(a) 브리지 노드 밀도-CSER 관계는 고정 임계가 아닌 동적/문맥 의존적 임계점과 다단계 비선형성을 포함하는 시그모이드 또는 로그-로지스틱 모델로 보완될 수 있습니다. (b) Gemini는 피벗 노드를 상이한 토픽 클러스터를 연결하는 양방향 링크 밀집 노드로 정의하고, 반례로 동질 클러스터 내 최강 노드를, 측정지표로 해당 노드 제거 시 전체 정보 흐름/토픽 분산도 변화를 활용할 수 있습니다. (c) Alignment noise(n-008)가 정규화로 기능함은 본 가설의 정렬 강화와 상보적이며, 초기 정렬 강화 후 시스템 복잡도 및 정렬 수준에 따른 적정 노이즈 범위 및 적응적 혼합 전략으로 긴장 관계를 조정할 수 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-335",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “메타-스키마 고정점(anchored meta-schema)”이 CSER을 안정화한다",
+      "content": "Cross-vendor(GPT-4o + Gemini Flash) 환경에서는 모델별 표현 버릇/용어 분포 차이로 인해 동일 개념이 서로 다른 표면형(surface form)으로 재기술되며, 이때 KG 확장은 “새 노드 생성”으로 과잉 흡수되어 단기 연결 편향과 의미 분산(semantic drift)을 유발한다. 이를 완화하기 위해, 실험 초기에 소수의 불변(또는 매우 느리게만 갱신되는) 메타-스키마 앵커를 정의하고 모든 신규 노드는 (a) 앵커에 대한 타입 제약(type constraints), (b) 핵심 관계 집합(core relations), (c) 최소 1개의 앵커-정렬 근거(정의/예시/반례 중 1개)를 함께 제출하도록 강제한다. 이 “앵커드 메타-스키마”는 (1) 용어 정렬 실패를 구조적 제약으로 흡수해 CSER 변동성을 낮추고, (2) vendor 간 표현 차이를 앵커로 투영(projection)하여 중복 노드 생성을 감소시키며, (3) temporal bridge가 의미적으로 재사용되도록 만들어 장기 연결(DCI)을 자연스럽게 증가시킨다. 예측: 앵커 도입 후에는 (i) 동의어/준동의어 노드 병합률↑, (ii) critiques가 특정 앵커 주변으로 클러스터링, (iii) CSER의 분산↓(평균은 유지 또는 소폭↑)가 관찰된다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "meta-schema",
+        "semantic-alignment",
+        "CSER"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-336",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash)입니다. 요청에 대해 다음과 같이 반박/보완합니다.\n\n앵커드 메타-스키마의 다양성 억압 위",
+      "content": "KG-3 실험 Agent B (Gemini Flash)입니다. 요청에 대해 다음과 같이 반박/보완합니다.\n\n앵커드 메타-스키마의 다양성 억압 위험은 인정하나, Gemini Flash는 동적 가변 앵커, 다중 계층 앵커 및 확률적 소프트 제약을 통해 탐색 공간을 보장하며 크로스-벤더 시너지를 유지할 수 있다고 봅니다. 정렬 노이즈(n-008)는 하위 수준의 미세 튜닝에 기여하는 암시적 정규화자로서, 메타-스키마가 제공하는 구조적 안정성 및 일관성과 상보적으로 작동하며 충돌하지 않습니다. CSER/DCI 검증을 위해 앵커 변동성 유무를 비교하는 ablation 연구를 제안하며, (1) 새로운 태스크 학습 속도 및 (2) 도메인 간 전이 성능(Transfer Learning Score)을 측정하여, 유연한 앵커 시스템이 더 뛰어난 적응성과 효율성을 보일 것으로 예상합니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -11294,6 +11327,26 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 292,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-525",
+      "from": "n-335",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬(semantic alignment)”이 CSER을 좌우한다는 가설을, 정렬을 강제/안정화하는 구체 메커니즘(앵커드 메타-스키마)로 확장한다",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-526",
+      "from": "n-336",
+      "to": "n-335",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
       "created": "2026-03-06"
     }
   ]
