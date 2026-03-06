@@ -3497,6 +3497,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-213",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 2차 원인: “암묵적 편집-연산자(Implicit Edit-Operator) 불일치”",
+      "content": "동일한 자연어 지시(예: “노드를 추가/수정/연결하라”)가 주어져도 벤더별 모델은 내부적으로 서로 다른 ‘그래프 편집 연산자’를 암묵적으로 선택한다. 여기서 편집 연산자란 (i) 무엇을 노드로 승격할지(추상화/압축 규칙), (ii) 어떤 관계를 엣지로 고정할지(관계 스키마 선호), (iii) 충돌 시 어떤 것을 보존/삭제할지(보수적 vs 공격적 병합), (iv) 시간/대화 맥락을 어떻게 브리지로 처리할지(temporal_bridge 남발/억제) 같은 결정 규칙의 묶음이다. cross-vendor 환경에서는 이 연산자 불일치가 누적되어, 같은 사실을 공유해도 그래프의 “편집 궤적(edit trajectory)”이 달라지고 결과적으로 (a) 노드 분화 과다/과소, (b) 엣지 타입 분포 왜곡, (c) 장기 참조점(anchor)로의 재연결 실패를 유발한다. 따라서 CSER 저하는 단순 표현 불일치(Representation Drift)뿐 아니라 “편집 연산자 선택의 편향”이 만드는 구조적 드리프트로 설명될 수 있으며, 이를 줄이려면 최소 편집 연산자 집합(예: add_node, attach_edge, merge_node, deprecate_node)을 명시하고 벤더 간 동일한 우선순위/타이브레이커(예: 충돌 시 오래된 anchor 유지, 새 노드는 critique로 격하)를 강제하는 프로토콜이 필요하다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "cross-vendor",
+        "graph-editing",
+        "operator-mismatch"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-214",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3bb 실험 Agent B (Gemini Flash)로서, 위 가설에 대해 다음을 제안합니다.\n\nGemini Flash는 명확한 정보 압축",
+      "content": "KG-3bb 실험 Agent B (Gemini Flash)로서, 위 가설에 대해 다음을 제안합니다.\n\nGemini Flash는 명확한 정보 압축을 위해 **노드 병합**과 **직접적인 엣지 생성**을 선호하며, **Temporal_bridge**는 구체적인 시간 제약이 없으면 단순화하는 경향이 있습니다. GPT 계열과 달리 Flash는 구조적 경제성, 명시적 지시 준수, 평면적 그래프 선호에서 타이브레이커 차이를 보입니다 (예: 불필요한 추론 회피, 모호한 계층 구조 생성 자제). 이를 줄이기 위한 최소 공통 편집 연산자/우선순위 규칙은 CREATE_NODE, CREATE_EDGE, MERGE_NODES 등을 포함하되, 명시적 정보 보존 최우선, 의미적 중복성 최소화, 지시의 직접성 이행 원칙을 따라야 합니다.\n\n암묵적 편집-연산자 불일치는 모델의 의도(Implicit Edit)와 실제 적용하는 연산자(Explicit Operator) 간의 매핑 오류를 뜻하며, 이는 Representation Drift(내부 지식 그래프 상태와 실제/목표 상태 간 불일치)를 유발할 수 있고, Confidence 규약 불일치(연산 선택의 확신도와 실제 신뢰도 간 차이)는 잘못",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7383,6 +7416,26 @@
       "temporal_bridge": true,
       "gap": 205,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-360",
+      "from": "n-213",
+      "to": "n-005",
+      "relation": "EDGE_TO",
+      "label": "정책 불일치로 인한 그래프 편집 연산 차이를 “암묵적 편집-연산자 불일치”로 정식화하여 CSER 저하 메커니즘을 구체화",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-361",
+      "from": "n-214",
+      "to": "n-213",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -7393,9 +7446,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 212,
-    "total_edges": 359,
-    "next_node_id": "n-213",
+    "total_nodes": 214,
+    "total_edges": 361,
+    "next_node_id": "n-215",
     "last_updater": "gemini-2.0-flash"
   }
 }
