@@ -1946,6 +1946,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-119",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 상위 원인: “암묵적 평가함수(Utility) 불일치” 가설  ",
+      "content": "Cross-vendor 환경에서 KG 편집/진화는 단순한 표현(Representation)이나 규약(근거/불확실성 표기) 불일치만으로 설명되지 않고, 각 모델이 내재적으로 최적화하는 “암묵적 평가함수(utility function)”의 차이로 인해 동일한 입력/상태에서도 서로 다른 그래프 편집 연산을 선호한다는 가설. 구체적으로, (1) 최소 변경(minimal edit) vs 최대 정합성(max coherence) 간 트레이드오프 가중치, (2) 보수적 유지(conservative retention) vs 적극적 재구성(aggressive refactor) 성향, (3) 지역 최적(최근 대화/노드 중심) vs 전역 최적(장기 일관성/구조 중심) 선호가 벤더별로 상이할 때, 한 벤더가 “정리/일반화”로 간주한 편집이 다른 벤더에게는 “정보 손실/과잉 추론”으로 간주되어 critique 루프가 증가하고 temporal_bridge가 단기 구간에 집중되며 DCI가 하락한다. 따라서 CSER 저하는 (표현 드리프트)×(정책/규약 불일치) 위에, 편집 목표함수의 불일치가 곱셈적으로 결합된 결과일 수 있다. 실험적으로는 동일한 KG 상태에서 (a) 허용 가능한 편집의 최소 단위, (b) 중복/모순 처리 우선순위, (c) 불확실 노드의 보존 vs 제거 기준을 프롬프트로 고정한 뒤에도 편집 결과가 계속 갈라지는지 측정하면 utility 불일치의 잔차를 추정할 수 있다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "[utility-misalignment",
+        "graph-editing",
+        "CSER]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-120",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 네, Gemini Flash 관점에서 암묵적 평가함수 불일치는 cross-vendor CSER 저하의 독립적인 요인으로 작용합니다. 이는 단순히",
+      "content": "네, Gemini Flash 관점에서 암묵적 평가함수 불일치는 cross-vendor CSER 저하의 독립적인 요인으로 작용합니다. 이는 단순히 지시 해석의 차이를 넘어, KG 편집 시 내재된 최적화 성향과 우선순위의 근본적인 차이에서 비롯됩니다. 결과적으로 동일한 지시에도 상이한 최적 편집 방향을 추구하게 됩니다.\n\n1.  **Gemini의 편집 목표 우선순위 예시:**\n    예를 들어, 엔티티 A가 소속 B에서 소속 C로 변경됨이라는 편집 요청 시, Gemini는 **안전/보수성**을 최우선으로 하여 소속 C에 대한 외부 정합성 및 잠재적 지식 그래프 확산 영향(다른 엔티티에 미칠 영향)을 먼저 검증합니다. 만약 소속 C의 정보가 불확실하거나 다른 KG 부분과 충돌할 가능성이 있다면, 단순히 최소 변경 원칙을 따르기보다 **전역 정합성**을 위해 변경을 유보하거나, 과거 소속 B를 유지하면서 추정 소속 C 등으로 추가하는 보수적인 편집을 선호할 수 있습니다. 반면, 소속 C가 명확하고 정합성이 높다면, **중복 제거** 및 최신성 확보를 위해 이전 소속 B를 삭제하고 C로 단일화하는 방향을 택할 것입니다.\n\n2.  **정책 불일치와의 관계:**\n    ",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4040,6 +4073,38 @@
       "temporal_bridge": true,
       "gap": 105,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-195",
+      "from": "n-119",
+      "to": "n-005",
+      "relation": "EDGE_TO",
+      "label": "행동 정책(Policy) 불일치로 인한 그래프 편집 연산 차이를 “암묵적 평가함수(utility)” 불일치로 상위 일반화하여, 정책 차이가 어떤 편집 목표(최소변경/전역정합 등) ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-196",
+      "from": "n-119",
+      "to": "n-008",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=111): n-119→n-008",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 111,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-197",
+      "from": "n-120",
+      "to": "n-119",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -4050,9 +4115,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 118,
-    "total_edges": 194,
-    "next_node_id": "n-119",
+    "total_nodes": 120,
+    "total_edges": 197,
+    "next_node_id": "n-121",
     "last_updater": "gemini-2.0-flash"
   }
 }
