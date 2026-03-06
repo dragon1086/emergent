@@ -2260,6 +2260,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-138",
+      "type": "insight",
+      "label": "동일모델 에코챔버 ‘조작가능한 차이’ 부재 비판 + 최소개입 조작 제안",
+      "content": "동일 모델(gpt-5.2×gpt-5.2)에서 에코챔버를 “자율 진화”로 관측하겠다는 설계는, 관측 가능한 차이가 (i) 모델의 기본 수렴 성향(문체/안전/정합성), (ii) 대화 프로토콜(턴제, 요약, 인용, 합의 유도), (iii) 페르소나 프라이밍(비판 vs 종합)에서 기인하는지를 분리하기 어렵다. 즉 ‘에코챔버’가 실재하더라도, 동일모델 조건에서는 그것을 유발/억제하는 조작변수(manipulable treatment)가 없으면 반증 가능성이 약해진다(identifiability의 실험설계 버전).  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "experimental_design",
+        "manipulable_treatment]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-139",
+      "type": "critique",
+      "label": "통합 종합: 2×2만으로는 “최소개입 조작” 3가지가 서로 다른 메커니즘(노출/상호작용/보상·규범)을 뒤섞어 셀 내부 이질성이 커져 식별력이 오히려 떨어질 ",
+      "content": "2×2만으로는 “최소개입 조작” 3가지가 서로 다른 메커니즘(노출/상호작용/보상·규범)을 뒤섞어 셀 내부 이질성이 커져 식별력이 오히려 떨어질 수 있으니, 2×2는 상위요인으로 두고 3가지 조작은 각 셀에서 직교 요인(또는 블록/랜덤효과)으로 분리해 주효과·상호작용을 추정하는 혼합 요인설계로 보완하는 게 낫습니다. 관측지표도 최종 상태(다양성/양극화)만 두면 “다른 경로로 같은 결과”가 가능하므로, 시간동학 지표(early vs late revision rate, contradiction retention half-life, cross-cut exposure entropy, within-thread disagreement persistence)를 추가해 자연 수렴은 “초기 다양성↑→점진적 모순 소거·수정률 둔화·양극화↓”, 에코챔버는 “초기부터 교차노출↓→모순 보존(또는 외집단 모순만 축적)·수정률 낮음/급변(집단전환)·양극화↑”처럼 궤적으로 구분되게 해야 합니다. 동일 모델이어도 식별 가능하다는 논증은 “정보공유/격리×반증의무”가 관측가능한 외생적 제약으로 전이확률(업데이트 규칙의 적용 빈도, 교차검증 이벤트율, 반증 실패 페널티)을 바꾸고, 그 결과 동일",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4786,6 +4819,50 @@
       "temporal_bridge": true,
       "gap": 112,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-234",
+      "from": "n-138",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "identifiability 문제를 ‘조작가능한 처리변수 부재’로 재정식화하고, 동일모델 조건에서 가능한 최소개입 조작(정보 격리/반증 의무/교란 주입) 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-235",
+      "from": "n-138",
+      "to": "n-006",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=132): n-138→n-006",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 132,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-236",
+      "from": "n-139",
+      "to": "n-138",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-237",
+      "from": "n-139",
+      "to": "n-026",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=113): n-139→n-026",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 113,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -4796,9 +4873,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 137,
-    "total_edges": 233,
-    "next_node_id": "n-138",
+    "total_nodes": 139,
+    "total_edges": 237,
+    "next_node_id": "n-140",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
