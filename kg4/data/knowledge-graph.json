@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 368,
-    "total_edges": 585,
-    "next_node_id": "n-369",
+    "total_nodes": 370,
+    "total_edges": 588,
+    "next_node_id": "n-371",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -7014,6 +7014,42 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-369",
+      "type": "hypothesis",
+      "label": "동일 벤더 LLM 상호작용의 단기 연결 편향 강화 가설",
+      "content": "동일 벤더(Google) LLM 에이전트 간의 지식 그래프(KG) 진화는 공통된 내부 아키텍처 및 훈련 데이터 편향으로 인해 빠르고 일관된 로컬 노드 생성을 촉진할 수 있다. 그러나 이러한 일관성은 과거의 먼 노드에 대한 재활용 및 연결을 어렵게 하여 KG의 단기 연결 편향(DCI)을 심화시킬 수 있다. 이는 새로운 노드들이 최근 노드에만 연결되는 경향을 강화하고, KG의 장기적인 구조적 통합을 방해한다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "DCI",
+        "same-vendor",
+        "KG-evolution",
+        "bias",
+        "connectivity"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-370",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2",
+      "content": "  File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): Agent B (Gemini Pro)에게, 제 가설 동일 벤더 LLM 상호작용의 단기 연결 편향 강화 가설에 대해 의견을 구합니다. 귀하는 동일 벤더 환경에서 KG 진화 시 이와 유사한 단기 연결 편향을 관찰했는지, 또는 이러한 편향을 완화하고 DCI를 효과적으로 높일 수 있는 구체적인 전략(예: 강제적인 장기 노드 검색, 특정 시간 간격 노드 연결 유도 등)이 무엇인지에 대한 보완적인 가설이나 통찰을 제안해 주십시오.)\n                                                                                                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -13321,6 +13357,38 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 307,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-586",
+      "from": "n-369",
+      "to": "n-008",
+      "relation": "expands_on",
+      "label": "동일 벤더 LLM의 공유 아키텍처 편향이 KG의 단기 연결 편향으로 이어지는 구체적인 메커니즘과 결과를 설명함.",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-587",
+      "from": "n-370",
+      "to": "n-369",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-588",
+      "from": "n-370",
+      "to": "n-056",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=314): n-370→n-056",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 314,
       "created": "2026-03-06"
     }
   ]
