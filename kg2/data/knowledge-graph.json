@@ -2425,6 +2425,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-148",
+      "type": "insight",
+      "label": "동일모델 에코챔버 검증에서 ‘관측 지표’의 비식별성: 동형 결과의 다중 생성 메커니즘",
+      "content": "동일 모델(gpt-5.2×gpt-5.2) 조건에서 “에코챔버가 발생했다”를 주장하려면, 관측되는 수렴/강화 패턴이 (i) 에코챔버 메커니즘(상호강화·선택적 수용·반증 회피) 때문에 생긴 것인지, 아니면 (ii) 단순한 공통 언어모델 prior/학습데이터로 인한 자연 수렴, (iii) 대화 프로토콜(턴 구조, 요약 요구, 합의 유도)로 인한 구조적 수렴, (iv) 페르소나 지시문이 만드는 역할 고정(critic은 반박, synthesizer는 통합)으로 인한 ‘겉보기’ 상보성/수렴, (v) 제한된 주제공간에서의 최적화(정보 부족 시 일반론적 합의로 수렴) 등 다른 메커니즘과 식별 가능해야 한다. 문제는 동일한 관측 지표(예: 주장 다양성 감소, 특정 노드/엣지에 대한 반복 참조 증가, 반대 증거의 채택률 저하, 동일한 결론으로의 빠른 합의)가 위의 서로 다른 생성 과정들로부터 모두 나올 수 있다는 점이다(다대일 매핑). 즉, “수렴”이나 “강화”류 지표는 에코챔버의 필요조건도 충분조건도 아니며, 최소한 ‘대안 메커니즘을 배제하는’ 반사실적 비교(프로토콜/페르소나/정보주입/비동일모델 대조군 등)가 없으면 에코챔버 판정은 비식별적이다. 따라서 KG-2의 다음 단계는 (1) 에코챔버 메커니즘의 조작적 정의를 ‘관측 패턴’이 아니라 ‘반증 처리 규칙/증거 선택 함수’ 같은 과정 변수로 내리고, (2) 동일한 관측 패턴을 생성하는 경쟁 모형들을 명시한 뒤, (3) 과정 변수를 분리해내는 개입(예: 반증 증거 강제 주입, 역할 교대, 합의 금지, 외부 평가자 스코어링)을 설계해야 한다. 그렇지 않으면 KG의 “tempor",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "measurement",
+        "alternative_mechanisms]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-149",
+      "type": "critique",
+      "label": "통합 종합: 초안은 타당하나 “과정 규칙”만으로 정의하면 외부 제약(정보 접근성·시간 압박·보상 구조)로 생기는 합리적 선택까지 에코챔버로 오인할 수 있으니",
+      "content": "초안은 타당하나 “과정 규칙”만으로 정의하면 외부 제약(정보 접근성·시간 압박·보상 구조)로 생기는 합리적 선택까지 에코챔버로 오인할 수 있으니, **(i) 반증 처리의 비대칭성**과 **(ii) 업데이트의 경로의존성**을 핵심으로 두고 “증거 선택/반증 처리/업데이트” 3단을 함께 명시하는 게 안전합니다. 최소 과정지표는 예컨대 **반증 비가시화율**(제시된 반증이 요약·의사결정 근거에서 누락되는 비율), **반증 페널티 비대칭**(찬성 증거 대비 반증 증거에 부여하는 신뢰·가중치의 체계적 감소), **업데이트 경로의존/잠금지수**(동일한 반증이 들어와도 초기 입장·역할에 따라 결론이 유지되는 정도)로 두면 자연 수렴/프로토콜 수렴/역할 고정과 구분됩니다. 개입 실험은 (1) **반증 증거 강제 주입 + 근거추적 의무화**(모든 결론에 “반증 1개 이상 반영/기각 사유”를 구조화해 기록)로 비가시화·비대칭을 측정하고, (2) **역할 교대 + 합의 금지(각자 독립 결론 제출)**로 역할 고정과 단순 수렴을 분리해 잠금지수(역할 교대 후에도 결론 불변이면 에코챔버 가능성↑)를 KG 노드(지표/개입/관측값)로 연결하면 됩니다.",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5147,6 +5180,38 @@
       "temporal_bridge": true,
       "gap": 146,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-252",
+      "from": "n-148",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "동일모델 에코챔버 가설의 식별가능성 문제를 ‘관측 지표의 다대일 생성’ 관점에서 구체화하고, 과정변수 기반 조작적 정의 필요성을 추가",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-253",
+      "from": "n-148",
+      "to": "n-005",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=143): n-148→n-005",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 143,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-254",
+      "from": "n-149",
+      "to": "n-148",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -5157,9 +5222,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 147,
-    "total_edges": 251,
-    "next_node_id": "n-148",
+    "total_nodes": 149,
+    "total_edges": 254,
+    "next_node_id": "n-150",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
