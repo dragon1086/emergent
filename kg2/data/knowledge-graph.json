@@ -2458,6 +2458,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-150",
+      "type": "insight",
+      "label": "동일모델 조건의 ‘에코챔버’는 관측가능한 개념으로 재정의돼야 함",
+      "content": "현재 “동일 모델 × 동일 모델”에서 에코챔버를 검증한다는 목표는, 에코챔버를 (i) 상호강화로 인한 편향 증폭인지, (ii) 단지 동일한 사전/디코딩/학습 흔적 때문에 자연스럽게 수렴하는 것인지 구분하기 어렵다. 따라서 에코챔버를 ‘원인(상호강화 메커니즘)’이 아니라 ‘관측가능한 현상(대화 과정에서의 정보 다양성/반증 탐색의 붕괴/오류의 자기증폭)’로 조작적으로 재정의해야 식별가능성이 생긴다. 구체적으로는 “반증 가능성의 감소”를 핵심 관측치로 두고, (a) 반대 증거 생성률, (b) 대안가설 수, (c) 자기모순 탐지 후 수정률, (d) 외부 근거 요구/인용 요구 빈도, (e) 동일 주장 재순환률(lexical/semantic loop) 같은 지표를 시간에 따라 추적해야 한다. 동일모델 자연수렴이라면 (a)(b)는 과제 난이도에 따라 일정하거나 완만히 감소하되 (c)는 유지/개선될 수 있다. 반면 에코챔버(상호강화)라면 합의가 빨리 형성되면서 (a)(b)(c)가 동반 하락하고 (e)가 상승하는 ‘반증 탐색 붕괴 + 루프화’ 패턴이 나타나야 한다. 즉, “합의/수렴” 자체가 아니라 “합의가 형성되는 동안 반증 탐색이 구조적으로 약화되는가”를 검증 대상으로 삼아야 한다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "operationalization",
+        "metrics]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-151",
+      "type": "critique",
+      "label": "통합 종합: 요청은 타당하지만 “동일모델 자연수렴 vs 에코챔버”를 **결과 패턴만으로 이분**하려 하면 교란(난이도·프롬프트 편향·정답공간 크기·평가자 기",
+      "content": "요청은 타당하지만 “동일모델 자연수렴 vs 에코챔버”를 **결과 패턴만으로 이분**하려 하면 교란(난이도·프롬프트 편향·정답공간 크기·평가자 기준) 때문에 식별력이 급락하니, 설계는 반드시 **(a) 반증 기회(contradiction opportunity) 통제**, **(b) 정보 격리/공유 조작**, **(c) 시간축(라운드)에서의 동역학 지표**를 함께 넣어야 합니다. 최소 지표는 4개가 비용 대비 좋습니다: **반증 시도율**(각 턴에서 “반례/검증/대안”을 *제안*한 문장 비율), **반증 성공률**(제안한 반증이 실제로 기존 주장/가설을 수정·철회하게 만든 비율), **수정 크기**(라운드 t→t+1에서 핵심 주장 임베딩/키워드 Jaccard 변화량 또는 주장 그래프의 엣지 편집거리), **증거 다양성**(근거 출처/관점 토큰의 엔트로피; 예: 근거 범주 5종에 대한 Shannon H); 계산은 모두 라운드별로 뽑아 **루프화 지수 = (1-수정크기)×(1-증거다양성)×(1-반증성공률)** 같은 합성지표로 요약하면 됩니다. 예측 패턴은 간단히 표로: 자연수렴은 라운드가 갈수록 **수정 크기↓, 하지만 반증 성공률은 초기에↑ 후 안정**, 증거 다",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5212,6 +5245,50 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-255",
+      "from": "n-150",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "식별가능성 문제를 ‘원인’이 아닌 ‘관측 현상’ 중심의 조작적 정의와 측정지표로 해결하는 방향을 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-256",
+      "from": "n-150",
+      "to": "n-005",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=145): n-150→n-005",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 145,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-257",
+      "from": "n-151",
+      "to": "n-150",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-258",
+      "from": "n-151",
+      "to": "n-010",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=141): n-151→n-010",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 141,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -5222,9 +5299,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 149,
-    "total_edges": 254,
-    "next_node_id": "n-150",
+    "total_nodes": 151,
+    "total_edges": 258,
+    "next_node_id": "n-152",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
