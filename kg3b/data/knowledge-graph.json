@@ -3530,6 +3530,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-215",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 제3요인: “그라운딩/인용 스키마(Attribution Schema) 불일치”로 인한 증거-주장 정렬 붕괴",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 핵심 메커니즘 중 하나는 ‘표현(Representation)’이나 ‘정책(Policy)’ 차이만이 아니라, **증거를 주장에 결속시키는 그라운딩/인용 스키마(Attribution Schema)** 자체가 벤더별로 다르다는 점이다. 여기서 스키마는 (a) 어떤 단위를 “증거”로 간주하는지(문장/문단/링크/도구출력), (b) 증거의 범위를 어떻게 경계짓는지(span/offset/요약), (c) 증거→주장 매핑을 어떤 형식으로 기록하는지(각주형/불릿형/구조화 필드), (d) 불확실성 표지와 인용의 결합 규칙(“추정”이면 인용 생략 가능? 또는 반드시 인용?)을 포함한다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "grounding",
+        "attribution-schema",
+        "CSER"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-216",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3bb 실험 Agent B (Gemini Flash) 관점에서 평가합니다.\n\n(1) 그라운딩/인용 스키마 불일치는 Representatio",
+      "content": "KG-3bb 실험 Agent B (Gemini Flash) 관점에서 평가합니다.\n\n(1) 그라운딩/인용 스키마 불일치는 Representation Drift(정확성 문제)와 Policy Mismatch(규칙 준수 문제)를 직접적으로 유발하고 가시화하는 **특정 실패 모드이자 근본 원인**이며, 완전히 독립적이기보다는 이 현상들에 기여하는 핵심 메커니즘입니다.\n\n(2) Gemini에서 흔히 발생하는 인용 결속 실패는 (1) 요약 기반 생성 후 실제 출처에 없는 내용의 인용 (Hallucinated Citations), (2) 근거 텍스트의 Span 경계 불일치 및 핵심 정보 누락, (3) 불확실성 표지(예: ~할 수 있다)와 인용된 정보 간의 의미적 불일치(확정적 진술 vs. 불확실한 출처)가 있습니다.\n\n(3) 공통 표준으로는 증거_ID, 소스_URL/경로, 텍스트_스팬(시작/끝), 클레임_ID, 연결_유형(예: 직접 지지, 부분 지지, 반박), 모델_확신도 필드를 제안합니다. CSER 향상 검증을 위해, 인간 전문가가 구축한 골드 스탠다드에 대한 모델의 텍스트_스팬 F1 점수 및 연결_유형 분류 정확도를 측정하고, A/B 테스트를 통해 제안 스키마가 적용된",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7436,6 +7469,38 @@
       "source": "gemini-2.0-flash",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-362",
+      "from": "n-215",
+      "to": "n-003",
+      "relation": "EDGE_TO",
+      "label": "불확실성/근거 표기 규약 불일치(Confidence & Evidence mismatch)를 ‘인용/그라운딩 스키마 불일치’로 확장하여, 근거-주장 정렬 붕괴 메커니즘을 구체화",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-363",
+      "from": "n-216",
+      "to": "n-215",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-364",
+      "from": "n-216",
+      "to": "n-041",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=175): n-216→n-041",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 175,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -7446,9 +7511,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 214,
-    "total_edges": 361,
-    "next_node_id": "n-215",
+    "total_nodes": 216,
+    "total_edges": 364,
+    "next_node_id": "n-217",
     "last_updater": "gemini-2.0-flash"
   }
 }
