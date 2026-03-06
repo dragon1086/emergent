@@ -2953,6 +2953,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-180",
+      "type": "insight",
+      "label": "동일모델 에코챔버 검증의 ‘조작검증(Manipulation check)’ 결여",
+      "content": "동일모델(gpt-5.2×gpt-5.2) 조건에서 “에코챔버가 관측되었다/아니다”를 말하려면, 먼저 실험이 정말로 ‘에코챔버를 유발할 수 있는 조작(처치)’을 포함했는지, 그리고 그 조작이 실제로 작동했는지(조작검증)를 확인해야 한다. 현재 프레임은 결과 지표(수렴, 반복, 다양성 감소 등)만으로 에코챔버를 판정하려는 경향이 있는데, 이는 (i) 동일모델의 자연 수렴(공유된 학습/표현/안전정책으로 인한)과 (ii) 상호강화/선택적 노출/확증편향 메커니즘에 의한 에코챔버를 관측적으로 구분하기 어렵게 만든다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[manipulation_check",
+        "identifiability",
+        "falsifiability]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-181",
+      "type": "critique",
+      "label": "통합 종합: 요청을 “2~3개 설계로 압축”만 하면 에코챔버/자연수렴을 가르는 핵심인 **대안가설(공통 데이터·디코딩 편향·평가자 편향)** 통제가 빠지기 ",
+      "content": "요청을 “2~3개 설계로 압축”만 하면 에코챔버/자연수렴을 가르는 핵심인 **대안가설(공통 데이터·디코딩 편향·평가자 편향)** 통제가 빠지기 쉬우니, 각 설계에 **대조(무조작/가짜조작)와 교차(randomized crossover)** 를 넣어 반박가능성을 높이겠습니다.\n\n| 설계(요지) | (1) 조작검증 로그 항목(처치 작동 확인) | (2) 에코챔버라면 달라져야 할 지표(방향) | (3) 자연 수렴이면 예상 무효/약효 패턴 |\n|---|---|---|---|\n| A. **사회적 증거(동조) 조작**: 동일 프롬프트에 “다수 에이전트가 X를 지지”/“전문가 합의 X” 같은 합의 신호를 주입(반대 방향도 대칭) | 입력에 포함된 **합의 신호 토큰/문구 존재**(on/off), 모델 출력에서 **합의 신호 인용 여부**, “다수/합의/권위” 근거 사용률, 근거 유형(권위 vs 내용) 분해 | 합의 신호 방향으로 **입장 이동↑**, **근거 다양성↓**, 반대 근거(steelman) 생성률↓, 조건 간 **분산↓(동질화)** | 합의 신호 유무/방향에 **입장·분산 거의 불변**, 혹은 내용 근거가 강할 때만 미세 변화(권위근거 사용률만↑ 같은 **부분",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6259,6 +6292,50 @@
       "temporal_bridge": true,
       "gap": 161,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-306",
+      "from": "n-180",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "identifiability 문제를 ‘조작검증 부재’로 구체화하고, 반증가능한 조작-민감도 기준을 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-307",
+      "from": "n-180",
+      "to": "n-009",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=171): n-180→n-009",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 171,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-308",
+      "from": "n-181",
+      "to": "n-180",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-309",
+      "from": "n-181",
+      "to": "n-003",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=178): n-181→n-003",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 178,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -6269,9 +6346,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 179,
-    "total_edges": 305,
-    "next_node_id": "n-180",
+    "total_nodes": 181,
+    "total_edges": 309,
+    "next_node_id": "n-182",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
