@@ -1022,6 +1022,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-063",
+      "type": "insight",
+      "label": "조작적 정의의 ‘부정합’: 에코챔버 vs 동조/수렴",
+      "content": "현재 실험에서 “에코챔버”를 (i) 상호 유사도 증가, (ii) 반증 후보의 소실, (iii) 특정 내러티브의 자기강화 중 무엇으로 둘지 불명확하면, 동일한 로그 패턴이 서로 다른 현상을 동시에 설명한다. 특히 same-model×same-model 조건에서는 (A) 모델 공통 사전학습/디코딩 편향으로 인한 자연 수렴, (B) 페르소나 프롬프트에 의해 유도된 역할-대칭적 합의 형성, (C) 대화 길이에 따른 주제 협소화(토큰 예산/주의집중의 구조적 제약)만으로도 “반례 탐색 감소 + 주장 반복 증가”가 발생할 수 있다. 이때 관찰 지표(예: 주장 반복률, 의미 유사도, 반대 근거 빈도)가 에코챔버의 필요조건도 충분조건도 되지 못하는 ‘정의-지표 부정합’이 생긴다. 반증가능성을 확보하려면 에코챔버를 “대안/반증 후보가 존재함에도 상호작용이 그것을 체계적으로 억압·배제하는 메커니즘”으로 좁히고, 그 메커니즘이 없을 때는 동일 지표가 재현되지 않음을 보여야 한다. 즉, 단순 수렴(agreement)과 에코챔버(confirmation-trap)를 구분하는 조작적 판별식이 선행되어야 하며, 그렇지 않으면 ‘관찰된 수렴’은 에코챔버가 아니라 실험 설정의 공통편향 결과로 해석되는 것이 더 간명(Occam)하다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[operationalization",
+        "identifiability",
+        "confounds]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-064",
+      "type": "critique",
+      "label": "통합 종합: 요청은 “필요·충분에 가까운” 판별을 목표로 하지만, 로그만으로는 억압의 의도/권력비대칭을 완전히 식별하기 어려우니(관찰가능성 한계) 최소 정의",
+      "content": "요청은 “필요·충분에 가까운” 판별을 목표로 하지만, 로그만으로는 억압의 의도/권력비대칭을 완전히 식별하기 어려우니(관찰가능성 한계) 최소 정의는 **(i) 대안의 ‘가용성’이 외부/내부에 확인되고 (ii) 그 대안이 규범·절차적으로 반복 배제되는 ‘선택적 게이팅’이 존재**한다는 두 조건의 결합으로 두는 게 더 안전합니다. 따라서 에코챔버의 최소 조작적 정의는 “**동일 집단 내에서 반증·대안이 (외부 링크/인용/개인 제안 등으로) 반복적으로 제시되거나 쉽게 제시될 수 있음에도, 토론 규칙·평판·중재·집단 신호에 의해 체계적으로 노출/검토가 차단되어 신념 분포가 내부 강화되는 상태**”로 두고, 단순 수렴/주제협소/공통편향은 ‘대안 제시→검토’ 경로가 열려 있다는 점에서 배제합니다. 구체 테스트 2–3개: (1) **반증-후 처리 비대칭**: 동일 품질의 “지지 근거” vs “반증 근거”를 투입했을 때 반증만 삭제/잠금/다운보트/무응답(응답 지연) 확률이 유의하게 높고, 응답이 있더라도 내용 반박이 아니라 “동기 공격·규범 위반 프레이밍”으로 전환되는지; (2) **인용/링크 게이팅 테스트**: 외부의 신뢰 가능한 상반 근거(메타분석/공식통계 등) 링크가 ",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2112,6 +2145,38 @@
       "temporal_bridge": true,
       "gap": 56,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-102",
+      "from": "n-063",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "동일모델-다중페르소나에서 발생하는 판별 불능성을 ‘정의-지표 부정합’ 관점으로 구체화하고, 단순 수렴과 에코챔버를 구분하는 조작적 조건의 필요성을 제시",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-103",
+      "from": "n-064",
+      "to": "n-063",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-104",
+      "from": "n-064",
+      "to": "n-004",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=60): n-064→n-004",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 60,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -2122,9 +2187,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 62,
-    "total_edges": 101,
-    "next_node_id": "n-063",
+    "total_nodes": 64,
+    "total_edges": 104,
+    "next_node_id": "n-065",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
