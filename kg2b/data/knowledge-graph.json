@@ -1616,6 +1616,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-099",
+      "type": "insight",
+      "label": "동일모델·다중페르소나에서 “에코챔버”는 관찰가능 로그만으로는 부분식별만 가능(negative-control 필요)",
+      "content": "동일 모델(gpt-5.2)·상이한 페르소나 조건에서 관찰되는 “합의 증가/유사도 증가”는 (i) 에코챔버적 자기강화, (ii) 동일 기본모델의 내재적 사전분포(linguistic/argument prior) 수렴, (iii) 실험 프로토콜(턴 구조, 요약-정련 루프)로 인한 기계적 수렴, (iv) KG 업데이트 규칙(temporal_bridge/refines 편향)로 인한 구조적 수렴이 모두 동일한 로그 패턴을 생성할 수 있어 강한 식별이 불가능하다. 따라서 ‘자율 진화 에코챔버’ 가설은 관찰자료에서 전면 식별(necessary & sufficient) 대상이 아니라, 반증가능한 부분식별(identified set)로 재정의되어야 한다. 비판적 관점에서의 핵심은 “수렴이 관찰되면 에코챔버”가 아니라, (A) 반증 후보(대안가설/반례/상충 근거)의 생성률·보존률이 시간에 따라 유의미하게 감소하고, (B) 그 감소가 위 (ii)~(iv) 대체설명으로는 설명되지 않는다는 ‘잔차(residual)’를 보여야 한다는 점이다. 이를 위해서는 최소한 두 종류의 negative control이 필요하다: 1) 페르소나를 유지하되 상호작용을 차단한 독립 생성(교차오염 없는) 베이스라인과의 비교, 2) 상호작용은 유지하되 KG 업데이트를 무력화(예: 기록만 하고 refines/temporal_bridge 금지)한 조건과의 비교. 이 두 통제가 없으면 “관측된 반증 후보 감소”조차도 업데이트 규칙의 선택편의/요약 압축에 의한 인공물일 수 있다. 결론적으로 현 설계에서 가능한 것은 ‘에코챔버적 자기강화의 존재’가 아니라 ‘에코챔버",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "negative_control",
+        "partial_identification]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-100",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “최소 변경”인데도 negative control 2종의 정의가 빠져 있어 그대로는 프로토콜/지표가 자의적으로 설계될 위험이 있으니, *",
+      "content": "요청이 “최소 변경”인데도 negative control 2종의 정의가 빠져 있어 그대로는 프로토콜/지표가 자의적으로 설계될 위험이 있으니, **(NC1) 반증 불가능 과제(정답이 없거나 모순·무작위 데이터로 반증 후보가 무의미)**와 **(NC2) 반증 단서 차단(반증 근거 문장/증거를 로그에서 마스킹·셔플해도 과제 성능은 유지되게 구성)**로 고정하고, 기존 파이프라인에선 입력 전처리 토글(무작위 시드만 추가)과 출력 로깅 스키마만 추가해 동일 프롬프트·동일 평가를 돌리면 됩니다. 로그 정량화는 (i) **반증 후보 생성률** = 시간/토큰 구간별로 “대안가설/반례/조건부 반박” 태그된 유닛 수(규칙+LLM-심사자 이중 라벨) / 총 유닛, (ii) **보존률(Counterevidence retention)** = t에서 생성된 후보 집합 Hₜ의 핵심 엔티티·관계 n-gram/트리플을 임베딩+문자 기반으로 정규화해 이후 요약/메모/최종답에서 재등장·활성(부정/수정 트리거 포함)한 비율, (iii) **대안가설 엔트로피** = 후보별 신뢰도 p(h) (자기평가/외부 채점으로 캘리브레이션)로 Shannon entropy를 계산하고, 절차는 “후보추출→정규화→",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3354,6 +3387,50 @@
       "temporal_bridge": true,
       "gap": 84,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-162",
+      "from": "n-099",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "Operational non-identifiability를 “부분식별+negative control 설계”로 구체화(대체설명 차감 후 잔차로만 주장 가능)",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-163",
+      "from": "n-099",
+      "to": "n-016",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=83): n-099→n-016",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 83,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-164",
+      "from": "n-100",
+      "to": "n-099",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-165",
+      "from": "n-100",
+      "to": "n-008",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=92): n-100→n-008",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 92,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -3364,9 +3441,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 98,
-    "total_edges": 161,
-    "next_node_id": "n-099",
+    "total_nodes": 100,
+    "total_edges": 165,
+    "next_node_id": "n-101",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
