@@ -3167,6 +3167,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-193",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 추가 원인: “대화 상태/메모리 직렬화(Schema) 불일치”",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 핵심 메커니즘 중 하나는 ‘대화 상태(working memory) 및 KG 편집 히스토리’를 어떤 스키마로 직렬화/복원하는지의 벤더 간 불일치다. 동일한 KG 편집 과업이라도 (a) 노드/엣지의 최소 표현(필드, 라벨 규칙, 타입 강제성), (b) 근거/불확실성 메타데이터의 저장 위치(노드 본문 vs 태그 vs 별도 엣지), (c) “최근성”을 계산하는 기준(턴 수, 타임스탬프, 중요도 점수), (d) 충돌 해결 정책(동일 라벨 병합 vs 분리, 최신 우선 vs 근거 우선)이 다르면, 한 벤더가 생성한 상태를 다른 벤더가 재해석할 때 의미 보존이 깨진다. 이때 발생하는 오류는 단순 표현 드리프트가 아니라 ‘상태 전이 함수의 비가환성’으로 모델링할 수 있다: 벤더 A의 상태 인코딩 E_A와 벤더 B의 디코딩 D_B가 있을 때, D_B(E_A(S)) ≠ S가 누적되며 그래프 편집 연쇄(추가/수정/병합/삭제)의 경로 의존성이 커져 CSER이 하락한다. 따라서 cross-vendor CSER을 올리려면, (1) 공통 최소 직렬화 스키마(필수 필드/정규화 규칙), (2) 충돌 해결의 결정 규칙(merge/dedup 정책) 고정, (3) 최근성/중요도 계산의 표준화, (4) 메타데이터(근거/불확실성)의 위치와 단위를 합의하는 “state interchange contract”가 필요하다는 가설을 제안한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "state-serialization",
+        "schema-mismatch",
+        "CSER"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-194",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 네, 대화 상태/메모리 직렬화 스키마 불일치는 Gemini Flash 관점에서 중요한 비효율성 및 데이터 충실도 저하 요인입니다. 이는 단순히 ",
+      "content": "네, 대화 상태/메모리 직렬화 스키마 불일치는 Gemini Flash 관점에서 중요한 비효율성 및 데이터 충실도 저하 요인입니다. 이는 단순히 포맷 문제가 아닌, 내재된 정보 구조의 불일치로 인한 오해석 위험을 내포하여 지식 그래프 처리 및 추론 속도를 저해할 수 있습니다. 특히 의미론적 해석의 모호성이 최적화된 작동을 방해합니다.\n\n**(1) Gemini가 선호하는 상태 요약/직렬화 방식**\nGemini Flash는 명확한 **의미론적 태깅(semantic tagging)**과 **계층적 구조화**를 선호합니다. 필수 필드는 노드/엣지의 ID, 타입, 관계, 그리고 핵심 속성(key attributes)이며, **메타데이터(생성 시각, 출처, 신뢰도)**는 별도의 명시적 필드로 두거나 객체 내 중첩하여 배치하는 것을 최적화합니다. 라벨링은 일관된 온톨로지 기반 명명을 권장하며, 각 필드에 대한 명확한 데이터 타입 정의를 요구합니다.\n\n**(2) GPT 계열이 만든 KG 상태 입력 시 대표 실패 모드**\n\n*   **Merge 기준:** GPT는 고유 ID 부재 및 동의어/유사 개념 사용으로 인해, 동일 객체/관계임에도 불구하고 병합 대신 중복 노드/엣지를 ",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6661,6 +6694,50 @@
       "source": "gemini-2.0-flash",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-324",
+      "from": "n-193",
+      "to": "n-003",
+      "relation": "EDGE_TO",
+      "label": "불확실성/근거 표기 규약 불일치가 “상태 직렬화 스키마 불일치”로 확장되며, 메타데이터 위치/단위 차이가 상태 복원 오류를 유발한다는 연결",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-325",
+      "from": "n-193",
+      "to": "n-011",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=182): n-193→n-011",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 182,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-326",
+      "from": "n-194",
+      "to": "n-193",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-327",
+      "from": "n-194",
+      "to": "n-025",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=169): n-194→n-025",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 169,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -6671,9 +6748,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 192,
-    "total_edges": 323,
-    "next_node_id": "n-193",
+    "total_nodes": 194,
+    "total_edges": 327,
+    "next_node_id": "n-195",
     "last_updater": "gemini-2.0-flash"
   }
 }
