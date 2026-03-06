@@ -1154,6 +1154,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-071",
+      "type": "insight",
+      "label": "동일모델-다중페르소나에서 ‘에코챔버’ 측정의 반사성(Reflexivity) 문제",
+      "content": "동일 모델(gpt-5.2) 내 서로 다른 페르소나를 부여하는 설계는, 관측된 “합의/수렴”이 (i) 상호작용을 통해 생성된 에코챔버 현상인지, (ii) 동일 기반모델의 공통 사전분포(표현/가치/안전정렬)에서 기인한 동형성인지, (iii) 실험 프로토콜(평가 지표·프롬프트·메모리 구조)이 유도한 반사적 최적화인지가 얽힌다. 특히 KG를 “자율 진화”시키는 과정에서 에이전트들은 암묵적으로 ‘좋은 KG’라는 목표함수(일관성, 연결성, 요약가능성, 충돌 최소화)를 추정해 그에 맞춰 발화를 조정한다. 이때 수렴은 에코챔버가 아니라 ‘평가기준에 대한 적응’(Goodhart/Reflexive optimization)일 수 있다. 더 강하게는, 동일 모델 조건에서 페르소나 간 차이는 주로 탐색-착취 파라미터(비판 vs 종합) 정도로 제한되며, 장기적으로는 동일한 내부 휴리스틱(예: 균형 잡힌 결론, 메타적 합의 형성)을 공유하므로 “반대 증거의 지속적 생존”을 요구하는 에코챔버 판별 규칙이 작동하지 않을 수 있다. 따라서 관측지표(유사도 증가, 반례 감소, 중심성 집중 등)가 ‘현상 자체’를 가리킨다는 전제가 깨지며, 최소한 (a) 기준-적응을 분리하는 대조군(평가기준 비공개/무작위화), (b) 동일 모델 내 베이스레이트(단독 생성 분포) 추정, (c) 페르소나 교환/랜덤 재할당에 대한 불변성 테스트가 없으면 에코챔버 귀인은 반증가능성이 약해진다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "reflexivity",
+        "goodhart]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-072",
+      "type": "critique",
+      "label": "통합 종합: 최소 조작 2~3개로는 (a) **평가기준 비공개+라운드별 무작위화**(에이전트가 최적화 목표를 예측 못하게 해 프로토콜-적응을 약화), (b)",
+      "content": "최소 조작 2~3개로는 (a) **평가기준 비공개+라운드별 무작위화**(에이전트가 최적화 목표를 예측 못하게 해 프로토콜-적응을 약화), (b) **페르소나/입장 랜덤 재할당(라운드 중간 스왑)**(동일 네트워크 구조에서 “사람(역할) 고정” 효과를 끊어 진짜 상호강화만 남기는지 확인), (c) **단독 생성(고립) 대조군을 둔 상호작용 Δ**(같은 프롬프트·제약·길이에서 상호작용만 켠 조건과의 차이를 추정) 조합이 핵심이고, 유사도·반증후보 감소·중심성 같은 지표는 모두 이 3조작에서 “상호작용에만 민감한 성분”을 분리해 보시면 됩니다. 강건성은 대체로 **(3) Δ 추정 > (1) 비공개/무작위화 > (2) 페르소나 재할당**인데, Δ는 관측된 에코챔버 신호를 “상호작용 유무”의 인과 대비로 직접 고정시키는 반면 (1)은 숨겨진 목적 최적화를 줄이지만 잔여 규칙학습이 남을 수 있고, (2)는 재할당 자체가 언어스타일/전략을 교란해 지표를 흔들며(특히 유사도·중심성) 상호강화와 혼재될 위험이 있습니다. 다만 가장 깔끔한 분리는 **(3)+(1)**을 기본으로 두고, (2)는 “역할-고정이 만든 동조”를 검증하는 보조 조작으로 넣는 게 해석 안정성이 높습니다",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2396,6 +2429,50 @@
       "temporal_bridge": true,
       "gap": 67,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-116",
+      "from": "n-071",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "‘판별 불능성’을 단순 운영적 한계가 아니라 “평가기준/프로토콜에 대한 반사적 적응”이 만드는 구조적 교란으로 정식화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-117",
+      "from": "n-071",
+      "to": "n-004",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=67): n-071→n-004",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 67,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-118",
+      "from": "n-072",
+      "to": "n-071",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-119",
+      "from": "n-072",
+      "to": "n-011",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=61): n-072→n-011",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 61,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -2406,9 +2483,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 70,
-    "total_edges": 115,
-    "next_node_id": "n-071",
+    "total_nodes": 72,
+    "total_edges": 119,
+    "next_node_id": "n-073",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
