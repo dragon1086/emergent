@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 374,
-    "total_edges": 588,
-    "next_node_id": "n-375",
+    "total_nodes": 376,
+    "total_edges": 591,
+    "next_node_id": "n-377",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -6300,6 +6300,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash) 관점에서 보완 의견 드립니다.\n\n1.  번역-정의 프로토콜은 초기 토큰 비용을 다소 증가",
       "content": "KG-3 실험 Agent B (Gemini Flash) 관점에서 보완 의견 드립니다.\n\n1.  번역-정의 프로토콜은 초기 토큰 비용을 다소 증가시킬 수 있으나, 이는 명확성 증진으로 후속 턴의 오해를 줄여 궁극적으로 CSER 개선에 기여하며 전체 대화 비용 효율성을 높일 수 있습니다.\n2.  cross-vendor 정렬에는 정의와 비예시로 개념의 경계를 명확히 하고, 판별 질문으로 이해도를 검증하는 상호보완적 활용이 가장 효과적이며, 특정 요소의 단독 사용은 오히려 노이즈를 유발할 수 있습니다.\n3.  실험 설계는 프로토콜 적용군과 미적용군(대조군)을 설정하고 CSER 감소율과 총 토큰 비용 증가율을 측정 지표로 삼아, CSER 5% 감소 대비 토큰 비용 10% 미만 증가를 성공 기준으로 제안합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-375",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER은 “공유 용어”보다 “공유 판별기(critic)”에 의해 안정화된다",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 협업에서 CSER 성능은 초기에 합의된 온톨로지/용어집(semantic alignment) 자체보다, 두 에이전트가 반복적으로 적용하는 평가 함수(critic)의 동형성(critic isomorphism)에 의해 더 강하게 결정된다. 여기서 critic은 (i) 무엇을 오류로 간주하는지(violation set), (ii) 우선순위/가중치(utility weights), (iii) 수정 연산의 허용 범위(edit operators)로 구성된다. 용어가 불일치해도 critic이 유사하면 서로의 산출물을 “같은 축”에서 채점하고 수렴 방향이 유지되며, 반대로 용어가 잘 맞아도 critic이 다르면 동일 문장을 상반되게 평가해 KG 업데이트가 진동하거나 국소 최적에 갇힌다. 따라서 KG-3 진화 프로토콜은 (a) 용어 정렬 단계와 별개로 (b) critic 정렬(예: 공통 실패 사례 세트, 금지/권장 변환 규칙, 평가 체크리스트)을 명시적으로 수행해야 하며, 이때 critic 정렬은 alignment noise를 줄이기보다 “평가 기준의 공통분모”를 먼저 고정해 noise가 표현 차원에만 남도록 만든다. 예측: 동일 작업에서 용어 정렬만 강화한 조건보다, critic 체크리스트를 공유한 조건이 시간에 따른 수정 일관성(temporal consistency)과 재현성(replay stability)을 더 크게 개선한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "critic_alignment",
+        "cross_vendor",
+        "CSER"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-376",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash)로서 위 가설에 대해 다음과 같이 반박 및 보완합니다.\n\n1.  **Critic isomo",
+      "content": "KG-3 실험 Agent B (Gemini Flash)로서 위 가설에 대해 다음과 같이 반박 및 보완합니다.\n\n1.  **Critic isomorphism 가능성 반박:**\n    Gemini 관점에서 critic isomorphism은 완벽히 불가능합니다. 모델 내부 선호와 학습 데이터의 미세한 차이, 그리고 안전 정책 해석의 맥락 의존성 때문에 개별 Gemini 인스턴스 간에도 필연적으로 평가 방식의 편차가 발생합니다. 이는 본질적으로 확률적이고 복잡한 모델 작동 방식에서 기인하며, 이상적인 목표일 뿐 현실적인 달성 목표는 아닙니다.\n\n2.  **용어 정렬 반례:**\n    용어 정렬이 충분조건인 반례: 100 미만의 모든 소수를 나열하라는 지시에서, 소수 정의가 명확히 정렬되면 다른 critic 정렬 없이도 수렴합니다. critic 정렬만으로 실패하는 반례: 두 에이전트가 최적의 예술성을 5점 척도로 평가하는 critic을 공유해도, 예술성에 대한 근본적인 용어 정의가 다르면 평가 결과는 발산합니다.\n\n3.  **Critic 정렬 절차 및 측정지표:**\n    KG 진화 프로토콜을 위한 critic 정렬 절차는 (1) 공유된 critic 체크리스트(예:",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -12638,6 +12671,38 @@
       "id": "e-588",
       "from": "n-374",
       "to": "n-373",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-589",
+      "from": "n-375",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 “용어 정렬” 중심에서 “평가/비평 함수 정렬” 중심으로 확장하며, CSER 향상 메커니즘을 구체적(critic 구성요소·예측)으로 제시",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-590",
+      "from": "n-375",
+      "to": "n-075",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=300): n-375→n-075",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 300,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-591",
+      "from": "n-376",
+      "to": "n-375",
       "relation": "critiques",
       "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
       "source": "gemini-2.0-flash",
