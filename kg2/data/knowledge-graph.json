@@ -1501,6 +1501,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-092",
+      "type": "insight",
+      "label": "동일모델 조건의 ‘에코챔버’ vs ‘공유학습·정렬’ 식별: 메커니즘 기반 조작 필요",
+      "content": "동일 모델 두 에이전트가 상호작용하며 신념/표현이 수렴할 때, 이를 에코챔버(상호강화에 의한 편향 증폭)로 해석하려면 “수렴의 원인 메커니즘”을 분리해 관측가능하게 만들어야 한다. 현재 설계는 (a) 동일 사전분포/정렬(shared prior & alignment), (b) 학습·요약 압축에 따른 자연 수렴(compression-induced convergence), (c) 대화 프로토콜이 만드는 합의 압력(consensus pressure), (d) 제한된 탐색으로 인한 경로의존성(path dependence)과 같은 대안 메커니즘을 에코챔버와 구분하기 어렵다. 핵심은 ‘동일모델’이 오히려 강한 공통 원인을 제공해, 수렴 자체가 에코챔버의 증거가 되지 않는다는 점이다. 따라서 에코챔버를 주장하려면 최소한 다음과 같은 조작을 포함해야 한다: (1) 정보 구조 조작: 각 에이전트에 비대칭/상보적 증거를 제공하고, 상호작용 후 합성된 결론이 “양측 증거를 통합”하는지 vs “상호확증적 일부만 선택”하는지(선택적 노출/확증편향) 측정. (2) 상호강화 조작: 긍정 피드백(agree/endorse) 채널을 인위적으로 증폭/차단하고, 그에 따라 신념 극화(polarization)나 불확실성 축소가 달라지는지 확인. (3) 대조 프로토콜: 동일한 입력·증거에서 (i) 단독 추론, (ii) 교차검증(서로 반증 역할 강제), (iii) 합의지향 대화 등 프로토콜별로 결과 편향/극화가 어떻게 달라지는지 비교. 에코챔버의 최소 운영정의는 “상호작용이 정보적 유익(정확도/캘리브레이션)을 증가시키지 않으면서도 확신/극화를 증가시키",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "mechanism",
+        "controls]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-093",
+      "type": "critique",
+      "label": "통합 종합: 운영정의를 “정확도 상승 없이(또는 통제 후) 확신/극화가 상승하고, 반대증거(반증 정보)에 대한 가중치가 체계적으로 감소하는 상호작용적 업데이",
+      "content": "운영정의를 “정확도 상승 없이(또는 통제 후) 확신/극화가 상승하고, 반대증거(반증 정보)에 대한 가중치가 체계적으로 감소하는 상호작용적 업데이트 규칙”까지 포함해 합의하되, 자연 수렴(압축/공유정렬)과 구분하려면 **상호작용 유무(개인 단독 vs 상호작용)** 및 **정보 대칭성(동일 정보 vs 비대칭 정보)**을 반드시 교차요인으로 넣어야 합니다. 최소 설계는 2(증거: 대칭/비대칭)×2(동의 피드백: on/off)×2(프로토콜: 압축·요약 공유/상호강화형 대화) + 1(단독 베이스라인)로 하고, 각 라운드마다 (i) 정답/정확도, (ii) 확률예측 기반 캘리브레이션(ECE/Brier), (iii) 반증 민감도=반대증거 제시 시 신념·확률의 평균 이동량(또는 베이지안 기준 대비 업데이트 비율), (iv) 확신 변화=|p−0.5| 또는 로그오즈 절대값 변화를 측정합니다. 예측 분리는: **자연 수렴**은 프로토콜(압축/공유정렬)에서 정확도·캘리브레이션이 함께 개선되고 반증 민감도는 유지/증가(업데이트가 ‘정보’에 정렬)하며 확신 증가는 정확도 상승과 동행하는 반면, **에코챔버**는 특히 동의 피드백 on 및 비대칭 증거에서 정확도/캘리브레이션 개선 없이 ",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3183,6 +3216,38 @@
       "temporal_bridge": true,
       "gap": 90,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-156",
+      "from": "n-092",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "동일모델 에코챔버 가설의 식별가능성 문제를 ‘메커니즘 기반 조작(정보구조/피드백/프로토콜 대조)’로 구체화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-157",
+      "from": "n-093",
+      "to": "n-092",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-158",
+      "from": "n-093",
+      "to": "n-014",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=79): n-093→n-014",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 79,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -3193,9 +3258,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 91,
-    "total_edges": 155,
-    "next_node_id": "n-092",
+    "total_nodes": 93,
+    "total_edges": 158,
+    "next_node_id": "n-094",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
