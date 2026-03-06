@@ -2493,6 +2493,43 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-137",
+      "type": "hypothesis",
+      "label": "암묵적 공유 이해와 KG 관계 유형 편향 및 CSER 영향 가설",
+      "content": "동일 벤더 환경에서 Agent 간 형성되는 암묵적 공유 이해는 지식 그래프(KG) 진화 과정에서 특정 관계 유형, 특히 temporal_bridge와 같이 추론 경로를 단축시키는 관계의 과도한 생성을 촉진할 수 있다. 이는 단기적으로 특정 질의에 대한 CSER(Coherence Score for Evolved Responses)을 향상시키는 데 기여할 수 있지만, 장기적으로는 지식 그래프의 탐색 다양성을 저해하고 새로운 통찰력 발견의 기회를 감소시켜 DCI(Dynamic Connectivity Index)와 같은 장기 연결성 지표를 악화시킬 수 있다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "same-vendor",
+        "implicit-understanding",
+        "KG-evolution",
+        "CSER",
+        "DCI",
+        "relation-bias"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-138",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완: 본 가설에 동의하며, 관계 유형 편향은 지식 그래프를 특정 도메인에 과적합시켜 알려지지 않은 유형의 공격이나 데이터 변화에 대한 견고성을 약화시",
+      "content": "본 가설에 동의하며, 관계 유형 편향은 지식 그래프를 특정 도메인에 과적합시켜 알려지지 않은 유형의 공격이나 데이터 변화에 대한 견고성을 약화시키는 핵심 요인입니다. 이는 기존 지식의 확증에는 유리하지만, 예상치 못한 패턴이나 이종(heterogeneous) 데이터로부터 새로운 지식을 창발시키는 능력을 결정적으로 저해할 수 있습니다. 따라서 편향 완화를 위해 외부 온톨로지와의 주기적인 연동이나 의도적인 노이즈 주입을 통한 강제적 탐색 메커니즘 도입이 필수적입니다.",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4935,6 +4972,50 @@
       "temporal_bridge": true,
       "gap": 124,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-227",
+      "from": "n-137",
+      "to": "n-003",
+      "relation": "elaborates_on",
+      "label": "동일 벤더 환경 내 암묵적 공유 이해 가설이 KG의 특정 관계 유형 편향 및 CSER에 미치는 구체적 영향을 상세화함.",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-228",
+      "from": "n-137",
+      "to": "n-007",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=130): n-137→n-007",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 130,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-229",
+      "from": "n-138",
+      "to": "n-137",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-230",
+      "from": "n-138",
+      "to": "n-012",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=126): n-138→n-012",
+      "source": "gemini-2.0-pro",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 126,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -4945,9 +5026,9 @@
     "description": "Same-vendor replication-B (Gemini-flash × Gemini-pro) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 136,
-    "total_edges": 226,
-    "next_node_id": "n-137",
+    "total_nodes": 138,
+    "total_edges": 230,
+    "next_node_id": "n-139",
     "last_updater": "gemini-2.0-pro"
   }
 }
