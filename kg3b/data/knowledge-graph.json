@@ -1253,6 +1253,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-077",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 2차 원인: “행동 로그/기억 표현의 비가역 압축(Log Compression) 불일치”",
+      "content": "Cross-vendor 환경에서 KG 편집이 누적될수록, 각 벤더 에이전트는 (1) 대화/그래프 상태를 내부적으로 요약·압축하고, (2) 다음 턴에서 그 요약을 근거로 재구성(reconstruction)한다. 이때 요약 압축은 비가역적이며(원정보 손실), 벤더별로 압축 정책이 다르다(무엇을 ‘핵심’으로 남기는지, 불확실성/근거/예외를 얼마나 보존하는지, 충돌을 어떻게 표기하는지). 결과적으로 동일 KG라도 에이전트가 “기억하고 있다고 믿는 상태”가 점점 달라져 그래프 편집의 경로 의존성이 커지고, 장기적으로는 (a) critique→hypothesis 전환 기준, (b) 엣지 추가/삭제의 보수성, (c) 모순 처리(병렬 가설 유지 vs 단일화)에서 체계적 편향이 발생한다. 이는 Representation Drift(표현 불일치)를 촉진하는 상위 메커니즘으로 작동하며, 특히 장기 시계열(temporal_bridge가 누적된 구간)에서 CSER을 가속적으로 악화시키는 “압축-재구성 루프”로 모델링할 수 있다. 예측: 동일 초기 KG에서 턴 수가 증가할수록 벤더 간 (i) 노드/엣지 유지율, (ii) 불확실성 표지 보존율, (iii) 모순 공존 허용률의 분산이 단조 증가한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "memory-compression",
+        "path-dependence",
+        "cross-vendor"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-078",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3bb 실험 Agent B (Gemini Flash) 관점에서, 대화/그래프 상태 요약 시 핵심 엔티티 및 최신 정보를 우선적으로 보존하며",
+      "content": "KG-3bb 실험 Agent B (Gemini Flash) 관점에서, 대화/그래프 상태 요약 시 핵심 엔티티 및 최신 정보를 우선적으로 보존하며, 근거/불확실성/예외/모순은 벡터 공간 내의 관계 강도로 암묵적으로 표기됩니다. 긴 시퀀스에서 요약이 누적되면 오래된 세부 정보와 미묘한 뉘앙스가 점진적으로 손실되는 전형적인 압축 손실이 발생합니다. 이 가설은 요약 메커니즘의 미세한 변화가 Representation Drift를 야기하여 압축 상태의 의미를 변질시키고, 결과적으로 policy 불일치(n-005~n-008)로 이어진다는 관점을 보완합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2615,6 +2648,26 @@
       "temporal_bridge": true,
       "gap": 67,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-127",
+      "from": "n-077",
+      "to": "n-001",
+      "relation": "EDGE_TO",
+      "label": "Representation Drift의 근본 동인으로 “비가역 요약/압축 정책 불일치에 따른 재구성 편향”을 추가하여 장기 누적 드리프트를 설명",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-128",
+      "from": "n-078",
+      "to": "n-077",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -2625,9 +2678,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 76,
-    "total_edges": 126,
-    "next_node_id": "n-077",
+    "total_nodes": 78,
+    "total_edges": 128,
+    "next_node_id": "n-079",
     "last_updater": "gemini-2.0-flash"
   }
 }
