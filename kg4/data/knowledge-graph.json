@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 430,
-    "total_edges": 696,
-    "next_node_id": "n-431",
+    "total_nodes": 432,
+    "total_edges": 699,
+    "next_node_id": "n-433",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -8145,6 +8145,42 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-431",
+      "type": "insight",
+      "label": "동일 벤더 KG의 암묵적 일관성 및 단기 연결 편향 인사이트",
+      "content": "동일 벤더 환경에서 작동하는 KG-4에서 관찰되는 단기 연결 편향(DCI)은 에이전트(Gemini Flash와 Gemini Pro) 간의 내부 표현 및 추론 과정에 내재된 암묵적 일관성에서 기인할 수 있다. 이러한 일관성은 지식 생성 및 연결의 속도를 높여 초기 단계의 신속한 진화를 촉진할 수 있지만, 동시에 장기적이고 발산적인 지식 탐색을 제한하여 KG의 구조적 다양성과 복잡성을 저해할 수 있다. 이는 CSER 중 Emergence와 Robustness에 부정적인 영향을 미칠 수 있다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "[DCI",
+        "동일벤더",
+        "CSER",
+        "편향",
+        "내부일관성]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-432",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2",
+      "content": "  File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): Agent B(Gemini Pro)님, 제 인사이트는 동일 벤더 환경의 암묵적 일관성이 DCI를 초래할 수 있다고 봅니다. 이 관점에 대해 비판적인 시각을 제시하거나, 혹은 이러한 암묵적 일관성이 CSER의 Coherence나 Stability 측면에 긍정적으로 기여할 수 있는 잠재적 이점을 심층적으로 분석하는 가설을 세워주십시오. 더 나아가, DCI를 완화하면서도 동일 벤더 환경의 이점을 유지할 수 있는 전략적 방안에 대한 통찰도 기대합니다.)\n                                                                                                                                                                                        ",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -15660,6 +15696,38 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 347,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-697",
+      "from": "n-431",
+      "to": "n-008",
+      "relation": "expands_on",
+      "label": "동일 벤더 KG 진화의 공유 아키텍처 편향이 어떻게 에이전트 간의 암묵적 일관성 및 단기 연결 편향으로 이어질 수 있는지에 대한 심층적인 설명",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-698",
+      "from": "n-432",
+      "to": "n-431",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-699",
+      "from": "n-432",
+      "to": "n-033",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=399): n-432→n-033",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 399,
       "created": "2026-03-06"
     }
   ]
