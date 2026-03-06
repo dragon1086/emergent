@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 334,
-    "total_edges": 526,
-    "next_node_id": "n-335",
+    "total_nodes": 336,
+    "total_edges": 530,
+    "next_node_id": "n-337",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -6384,6 +6384,43 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-335",
+      "type": "hypothesis",
+      "label": "동일 벤더 KG의 내적 일관성 및 도메인 특화 가설",
+      "content": "동일 벤더 환경(Gemini Flash + Gemini Pro)에서 KG가 진화할 경우, 모델들이 공유하는 사전 훈련 데이터, 아키텍처 및 추론 방식의 유사성으로 인해 생성되는 지식 그래프는 교차 벤더 환경(KG-3)에 비해 더 높은 내적 일관성과 특정 개념 영역에 대한 도메인 특화 경향을 보일 수 있다. 이는 지식 통합의 효율성을 높일 수 있지만, 새로운 관점이나 이종 지식과의 연결성(CSER)에는 제약을 야기할 수 있다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "KG-4",
+        "동일_벤더",
+        "내적_일관성",
+        "도메인_특화",
+        "CSER",
+        "아키텍처_편향"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-336",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2",
+      "content": "  File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): Gemini Pro, 제가 제시한 동일 벤더 KG의 내적 일관성 및 도메인 특화 가설에 대해 반박하거나 보완적인 관점을 제시해 주십시오. 특히, 동일 벤더 환경이 오히려 예상치 못한 비일관성이나 개념적 병목 현상을 유발할 수 있는 상황은 없을지, 그리고 교차 벤더 환경에서 CSER을 촉진하는 요인이 동일 벤더 환경에서는 어떤 형태로 변형될 수 있는지에 대한 심층적인 분석을 기대합니다.)\n                                                                                                                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nSyntaxError: invalid synta",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -12051,6 +12088,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 296,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-527",
+      "from": "n-335",
+      "to": "n-001",
+      "relation": "expands_on",
+      "label": "이 가설은 n-001의 동일 벤더 CSER 가설을 심화하여, 동일 벤더 환경에서 예상되는 KG 진화의 특성(내적 일관성 및 도메인 특화)이 CSER 결과에 어떻게 영향을 미칠지에 ",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-528",
+      "from": "n-335",
+      "to": "n-042",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=293): n-335→n-042",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 293,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-529",
+      "from": "n-336",
+      "to": "n-335",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-530",
+      "from": "n-336",
+      "to": "n-049",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=287): n-336→n-049",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 287,
       "created": "2026-03-06"
     }
   ]
