@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 386,
-    "total_edges": 607,
-    "next_node_id": "n-387",
+    "total_nodes": 388,
+    "total_edges": 611,
+    "next_node_id": "n-389",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -6498,6 +6498,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: 번역 계층은 정보 손실 및 특정 스키마 강제로 CSER을 저해할 수 있으며, Gemini는 원천 데이터 직접 처리로 표현력 유지 및 편향 최소화",
       "content": "번역 계층은 정보 손실 및 특정 스키마 강제로 CSER을 저해할 수 있으며, Gemini는 원천 데이터 직접 처리로 표현력 유지 및 편향 최소화를 지향합니다. n-007(용어 정렬)과 n-008(alignment noise 정규화)은 별도 계층이 아닌 모델 내부의 맥락 인식 및 추론 기능으로 통합되어야 합니다. 이를 위해 클레임 분해 규칙, 충돌 라벨 세트 정의, 그리고 confidence 캘리브레이션이 CSER 고도화를 위한 필수 구현 요소입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-387",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER은 “공유 평가함수(shared evaluator)”의 수렴 여부에 의해 상한이 결정된다",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 환경에서 KG를 자율 진화시킬 때 CSER(협업 자기진화율)은 단순한 의미 정렬(semantic alignment)만으로는 충분조건이 아니며, 두 에이전트가 암묵적으로 사용하는 “좋은 업데이트”의 기준(평가함수/선호함수)이 어느 정도 수렴하는지가 성능 상한을 결정한다. 구체적으로, 각 에이전트 i가 후보 업데이트 u(노드/엣지 추가, 수정, 삭제)에 대해 내부적으로 최대화하는 목적을 V_i(u)라 하면, 교차-벤더 협업에서 실질적으로 채택되는 업데이트는 합의/교섭 과정으로 인해 argmax_u 𝔼[V_A(u) + V_B(u) − λ·Disagree(u)]에 가까워진다. 이때 V_A와 V_B의 기울기(선호 방향)가 불일치하면 (i) 합의 가능한 업데이트가 “안전하고 무난한” 국소 영역으로 수축하고, (ii) 단기 연결 편향(최근 노드에만 연결) 같은 휴리스틱이 강화되며, (iii) CSER이 plateau에 빠진다. 반대로 평가함수의 부분적 정렬(예: novelty vs. coherence vs. long-range bridging의 가중치 합의)을 명시적으로 프로토콜화하면, 의미 정렬 노이즈가 존재하더라도 업데이트 탐색공간이 확장되어 장기 브리징 엣지가 증가하고 DCI가 회복된다. 따라서 cross-vendor KG 진화의 병목은 “표현/용어 정렬”보다 “평가/채택 규칙의 정렬”이며, 이를 측정하기 위해서는 (a) 동일 후보 u에 대한 양 에이전트의 채택 확률 상관, (b) 엣지 제안 후 거절 사유의 분포(일관성/참신성/검증가능성) 등을 로그로 추정할 수 있다",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "CSER",
+        "evaluator-alignment]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-388",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini 관점에서 좋은 KG 업데이트는 **일관성, 참신성 및 정보 밀도, 검증가능성 및 출처 명확성, 그리고 장기적 추론/브리징 잠재력**",
+      "content": "Gemini 관점에서 좋은 KG 업데이트는 **일관성, 참신성 및 정보 밀도, 검증가능성 및 출처 명확성, 그리고 장기적 추론/브리징 잠재력**을 핵심 평가기준으로 삼습니다. GPT-4o가 추론적 맥락에 기반한 비명시적 감정 연결 같은 업데이트를 제안하면, Gemini는 **검증 불가능성과 장기 추론 부담을 이유로 이를 거부**하거나 X가 Z를 만들었다는 **사실만 남기고 수정**할 것입니다. 평가함수 정렬을 위해 스코어카드 기반의 업데이트 제안(필수 항목 포함), **명확한 거절 사유 템플릿**, 그리고 **다중 노드 브리징에 대한 보너스 점수** 프로토콜을 제안합니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -13044,6 +13077,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 356,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-608",
+      "from": "n-387",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설(n-001)을 “의미 정렬” 단일요인에서 “공유 평가함수 수렴”이라는 더 근본적 병목으로 확장/정교화함",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-609",
+      "from": "n-387",
+      "to": "n-013",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=374): n-387→n-013",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 374,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-610",
+      "from": "n-388",
+      "to": "n-387",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-611",
+      "from": "n-388",
+      "to": "n-023",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=365): n-388→n-023",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 365,
       "created": "2026-03-06"
     }
   ]
