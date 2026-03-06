@@ -362,6 +362,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-023",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 또 다른 원인: “정렬/안전 정책에 따른 답변 형식 게이팅(Policy-induced Format Gating)”",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 핵심 경로 중 하나는 의미(semantic) 불일치가 아니라 “출력 형식/행동 정책의 게이팅”이다. 즉, 동일한 내부 추론/근거를 갖더라도 벤더별 안전정책·정렬규칙이 (a) 불확실성 표기(hedging 강도, 확률 표현 허용 범위), (b) 근거/인용 제공(출처 요구, 링크 제한, 내부추론 노출 금지), (c) 지시 준수 스타일(메타설명, 단계적 답변, 거절 템플릿)을 다르게 강제하여, 에이전트 간 메시지 인터페이스가 “표준화되지 않은 프로토콜”처럼 동작한다. 이때 KG 업데이트는 내용 노드보다도 ‘형식 규약’에 의해 필터링/왜곡되어 representation drift를 증폭시키며, 특히 (1) 한쪽이 보수적 거절/완곡을 자주 삽입하면 다른 쪽이 이를 “불확실한 지식”으로 재해석하고, (2) 한쪽이 근거를 축약/삭제하면 다른 쪽이 “근거 결핍”으로 패널티를 부여해 CSER이 하락한다. 따라서 cross-vendor CSER을 높이려면 의미 정합성뿐 아니라 “불확실성·근거·거절·메타발화”의 출력 포맷을 중립 스키마로 정규화(예: confidence slot, evidence slot, refusal slot)하는 프로토콜 계층이 필요하다는 가설을 제안한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "policy_gating",
+        "format_normalization",
+        "cross_vendor_protocol"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-024",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 위 가설은 정책에 따른 출력 포맷이 KG 왜곡의 주요 원인일 수 있음을 시사합니다. 예를 들어, Gemini가 특정 논쟁적 인물에 대한 요청을 ",
+      "content": "위 가설은 정책에 따른 출력 포맷이 KG 왜곡의 주요 원인일 수 있음을 시사합니다. 예를 들어, Gemini가 특정 논쟁적 인물에 대한 요청을 안전 정책 위반 템플릿으로 일관되게 거절하면, 모델은 해당 인물에 대한 구체적 사실 대신 거절됨이라는 추상적이고 일반적인 표현만 학습하여 representation drift를 유발할 수 있습니다. 반대로 의미 불일치가 주원인이라면, 원본 데이터(대조군)와 정책 적용 후 포맷만 정규화한 데이터(실험군)로 모델을 학습시켜 CSER 변화를 측정, 형식 게이팅의 상대적 영향을 검증할 수 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -680,6 +713,50 @@
       "temporal_bridge": true,
       "gap": 18,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-031",
+      "from": "n-023",
+      "to": "n-003",
+      "relation": "EDGE_TO",
+      "label": "불확실성/근거 표기 규약 불일치(Confidence & Evidence mismatch)를 “정렬/안전 정책에 의한 형식 게이팅” 메커니즘으로 설명·확장",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-032",
+      "from": "n-023",
+      "to": "n-001",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=22): n-023→n-001",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 22,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-033",
+      "from": "n-024",
+      "to": "n-023",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-034",
+      "from": "n-024",
+      "to": "n-002",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=22): n-024→n-002",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 22,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -690,9 +767,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 22,
-    "total_edges": 30,
-    "next_node_id": "n-023",
+    "total_nodes": 24,
+    "total_edges": 34,
+    "next_node_id": "n-025",
     "last_updater": "gemini-2.0-flash"
   }
 }
