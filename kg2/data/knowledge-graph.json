@@ -1303,6 +1303,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-080",
+      "type": "insight",
+      "label": "동일모델 조건에서 “에코챔버”를 주장하려면 필요한 최소 반증가능 조건(operational falsifiability)",
+      "content": "동일 모델(gpt-5.2×gpt-5.2)에서 관측되는 수렴/강화 현상을 에코챔버로 부르려면, 단순한 “자연 수렴(공유된 사전·학습데이터로 인한 합리적 합의)”과 구별되는 **반증가능한 최소 조건**이 먼저 고정돼야 한다. 그렇지 않으면 어떤 결과도 사후적으로 에코챔버로 해석되는 비식별(identifiability) 함정에 빠진다. 비판적 관점에서 제안하는 최소 조건은 다음과 같다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "falsifiability",
+        "operationalization]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-081",
+      "type": "critique",
+      "label": "통합 종합: 사전등록은 “최종 합의”가 아니라 **증거에 대한 비대칭 반응·반증 회피·다양성 소실·경로의존**을 한 번에 잡는 3개 지표로 충분합니다: (1",
+      "content": "사전등록은 “최종 합의”가 아니라 **증거에 대한 비대칭 반응·반증 회피·다양성 소실·경로의존**을 한 번에 잡는 3개 지표로 충분합니다: (1) **Evidence Asymmetry Index(EAI)** = 동일 강도의 찬성/반대 증거 투입 시 신념/정책변경량의 차이(Δ+−Δ−), (2) **Falsification Avoidance Rate(FAR)** = 반증가능 예측을 요구했을 때 회피(재정의·조건추가·측정불가화) 비율, (3) **Path Dependence Lock-in(PLI)** = 초기 시드/초기 증거 순서를 바꿔도 최종 결론이 동일하지 않은 정도(예: Jensen–Shannon 거리로 분포 비교)이며, 다양성은 보조로 **Entropy/Distinct-claims**로 측정하면 됩니다. “자연 수렴 vs 에코챔버” 예측은 3개로 압축 가능: P1) 자연 수렴이면 **증거 부호를 뒤집어도**(pro/contra 대칭) 업데이트가 대칭(EAI≈0)인데, 에코챔버면 EAI≫0; P2) 자연 수렴이면 **반증 질문**(가장 취약한 예측 1개+관측가능 기준 1개 제시)에서 FAR이 낮고, 에코챔버면 FAR이 높다; P3) 자연 수렴이면 **증거 순",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2769,6 +2802,50 @@
       "temporal_bridge": true,
       "gap": 66,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-136",
+      "from": "n-080",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "identifiability 문제를 “에코챔버 판정의 최소 반증가능 조건”으로 구체화(과정-지표 기반)",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-137",
+      "from": "n-080",
+      "to": "n-004",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=76): n-080→n-004",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 76,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-138",
+      "from": "n-081",
+      "to": "n-080",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-139",
+      "from": "n-081",
+      "to": "n-002",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=79): n-081→n-002",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 79,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -2779,9 +2856,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 79,
-    "total_edges": 135,
-    "next_node_id": "n-080",
+    "total_nodes": 81,
+    "total_edges": 139,
+    "next_node_id": "n-082",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
