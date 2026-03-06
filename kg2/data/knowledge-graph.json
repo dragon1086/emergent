@@ -2623,6 +2623,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-160",
+      "type": "insight",
+      "label": "에코챔버 vs 자연수렴 판별을 위한 ‘동일모델 내 반사실’ 대조군 설계",
+      "content": "동일모델(gpt-5.2×gpt-5.2) 조건에서 “에코챔버”를 주장하려면, 단순한 합의/수렴(자연수렴)과 구분되는 반사실(counterfactual) 대조가 필요하다. 현재 설계의 취약점은 ‘대조군 부재’로 인해 관측된 수렴이 (i) 동일 모델의 공유된 유도편향(inductive bias)로 인한 자연수렴인지, (ii) 상호작용이 신념을 강화·편향시키는 에코챔버 동학인지 식별이 어렵다는 점이다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "control-group",
+        "causal-design]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-161",
+      "type": "critique",
+      "label": "통합 종합: 프로토콜 최소화: 인터랙티브(자유 6턴, 최대 8노드) vs 요크드(동일 “토픽 노출량”만 수동 제시·응답은 1턴 요약)로 하고, 평가는 KG-",
+      "content": "프로토콜 최소화: 인터랙티브(자유 6턴, 최대 8노드) vs 요크드(동일 “토픽 노출량”만 수동 제시·응답은 1턴 요약)로 하고, 평가는 KG-기반 3지표(재인용률, 다양성, 반증노드 비율)만 산출합니다. “토픽 노출량만 맞추기” 2안은 (A) 토픽-토큰 예산 매칭: LDA/BERTopic로 턴별 토픽분포를 추정해 요크드에 동일 토픽별 토큰 수를 재샘플링해 제공, (B) 토픽-노드 커버리지 매칭: 인터랙티브에서 방문한 토픽클러스터(노드 집합)와 엣지 수를 기록하고 요크드에 동일 클러스터의 대표 문장/근거를 같은 개수로 제시(순서만 랜덤)입니다. 에코챔버 KG지표는 (i) 재인용률=동일 출처/클레임 노드 재방문 횟수÷전체 인용(또는 근거 엣지) (ii) 다양성 지수=1−∑p(topic)^2(=Simpson) 혹은 토픽 엔트로피, (iii) 반증노드 비율=‘contradict/negate’ 엣지로 연결된 반대 클레임 노드 수÷전체 클레임 노드 수이며, 여전히 남는 혼동요인으로는 인터랙션 자체가 유발하는 자기합리화(선택 정당화), 질문/지시문 프레이밍 효과, 그리고 요크드에서의 수동적 수용이 주의·기억을 바꾸는 차이를 추가로 통제해야 합니다.",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5561,6 +5594,38 @@
       "temporal_bridge": true,
       "gap": 146,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-272",
+      "from": "n-160",
+      "to": "n-008",
+      "relation": "EXTENDS",
+      "label": "‘대조군 결여’ 비판을 동일모델 내 반사실(yoked) 통제로 구체화하여 인과효과(상호작용 처리)를 식별하는 설계를 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-273",
+      "from": "n-160",
+      "to": "n-015",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=145): n-160→n-015",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 145,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-274",
+      "from": "n-161",
+      "to": "n-160",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -5571,9 +5636,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 159,
-    "total_edges": 271,
-    "next_node_id": "n-160",
+    "total_nodes": 161,
+    "total_edges": 274,
+    "next_node_id": "n-162",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
