@@ -2870,6 +2870,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-175",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 상위 원인: “정규화/캐노니컬라이제이션(Serialization) 규약 불일치”",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 핵심 메커니즘은 단순 표현(Representation) 드리프트를 넘어, **KG 편집 결과물을 ‘동일 의미로 수렴’시키는 정규화(캐노니컬라이제이션) 규약 자체가 벤더별로 다르기 때문**이라는 가설이다. 구체적으로 (1) 노드/엣지 라벨의 추상화 수준(세분화 vs 통합), (2) 중복 판정 기준(동의어/상하위/부분일치 처리), (3) 증거·불확실성 메타데이터를 구조화하는 방식(필드 분리 vs 서술 포함), (4) 시간/원인 등 관계를 “새 엣지 생성”으로 처리할지 “기존 엣지 속성 갱신”으로 처리할지의 편집 선호가 다르면, 각 에이전트는 **자기 내부 기준으로는 일관적**이지만 서로의 업데이트를 받아들일 때는 “의미 보존”이 아니라 “형식 변환 비용 + 손실”이 발생한다. 이 손실은 누적되어 (a) 동일 사실의 다중 노드화, (b) 엣지 타입 폭증 또는 과소, (c) critique/hypothesis 비대칭 증가를 야기하고, 결과적으로 CSER(자기정합적 진화율)을 낮춘다. 따라서 cross-vendor CSER을 올리려면 표현 드리프트 완화뿐 아니라 **벤더-중립적 캐노니컬 스키마(라벨·관계·메타데이터 최소 표준) + 변환 규칙(동치/병합/분기 규칙) + 라운드트립 불변성 테스트**가 필요하다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "canonicalization",
+        "serialization",
+        "interoperability"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-176",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 위 가설은 Representation Drift 및 불확실성/근거 표기 규약 불일치의 상위 원인으로 **강하게 성립합니다.** Gemini Fl",
+      "content": "위 가설은 Representation Drift 및 불확실성/근거 표기 규약 불일치의 상위 원인으로 **강하게 성립합니다.** Gemini Flash는 유연성을 선호하지만, 명확한 정규화/캐노니컬라이제이션 규약 부재는 노드/엣지 라벨, 동치 판정, 메타데이터 구조화 전반에 걸쳐 본질적인 혼란을 야기하기 때문입니다. 따라서 통일된 캐노니컬 규약 확립은 이러한 문제를 해결하는 핵심 초석입니다.\n\n구체적인 반박/보완은 다음과 같습니다:\n\n1.  **노드/엣지 라벨 추상화 수준:** Gemini Flash는 **의미론적으로 풍부하지만 다소 높은 추상 수준의 자연어 라벨**을 선호하는 경향이 있습니다. 예를 들어, Person: John Doe와 hasLocation: New York 대신 John Does residence is New York과 같은 서술형 라벨이나 Person_Located_In_City 같은 복합 라벨을 생성할 수 있습니다. 캐노니컬 규약이 없다면, 이는 동일한 개념에 대해 다양한 표현을 낳아 Representation Drift를 유발합니다. 이를 보완하려면, **고정된 URI 기반의 관계(예: schema:location) 및 명확한 엔티티",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6064,6 +6097,38 @@
       "temporal_bridge": true,
       "gap": 163,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-296",
+      "from": "n-175",
+      "to": "n-003",
+      "relation": "EDGE_TO",
+      "label": "불확실성/근거 표기 규약 불일치(Confidence & Evidence mismatch)를 상위의 “정규화 규약 불일치”로 일반화하여, 표기 규약 차이가 구조적 손실(병합/동치 판",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-297",
+      "from": "n-175",
+      "to": "n-035",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=140): n-175→n-035",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 140,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-298",
+      "from": "n-176",
+      "to": "n-175",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -6074,9 +6139,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 174,
-    "total_edges": 295,
-    "next_node_id": "n-175",
+    "total_nodes": 176,
+    "total_edges": 298,
+    "next_node_id": "n-177",
     "last_updater": "gemini-2.0-flash"
   }
 }
