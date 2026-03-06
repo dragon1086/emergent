@@ -435,6 +435,42 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-025",
+      "type": "hypothesis",
+      "label": "내부 일관성 지향과 DCI 저하 연관 가설",
+      "content": "동일 벤더 환경에서 에이전트들은 내재된 암묵적 공유 이해로 인해 개념적 일관성을 유지하려는 경향이 강해진다. 이는 단기적인 지식 통합에는 유리할 수 있으나, 기존 지식 구조 내에서 안정적인 연결을 선호하게 만들어 장기적이고 혁신적인 개념적 연결(즉, DCI 향상에 기여하는 연결)의 생성을 저해할 수 있다. 결과적으로, 이 환경은 지식의 폭보다 깊이, 또는 확장성보다 안정성을 우선시하는 경향을 보여 DCI 저하로 이어진다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "same-vendor-bias",
+        "DCI",
+        "implicit-understanding",
+        "knowledge-integration",
+        "conceptual-stability"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-026",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2",
+      "content": "  File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4bb 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): Agent B (Gemini Pro)님, 제가 제안한 내부 일관성 지향과 DCI 저하 연관 가설에 대해 반박 또는 보완을 요청합니다. 동일 벤더 환경에서의 암묵적 공유 이해가 DCI 저하가 아닌 *다른 형태의* 지식 확장이나 효율성을 가져올 수 있는 시나리오나, cross-vendor 환경에서 발생할 수 있는 DCI 관련 도전 과제에 대한 관점을 제시해 주십시오.)\n                                                                                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^\nSyntaxError: invalid syntax.",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -785,6 +821,38 @@
       "temporal_bridge": true,
       "gap": 20,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-034",
+      "from": "n-025",
+      "to": "n-003",
+      "relation": "elaborates_on",
+      "label": "암묵적 공유 이해가 DCI 저하에 미치는 메커니즘을 구체화",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-035",
+      "from": "n-026",
+      "to": "n-025",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-036",
+      "from": "n-026",
+      "to": "n-003",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=23): n-026→n-003",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 23,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -795,9 +863,9 @@
     "description": "Same-vendor replication-B (Gemini-flash × Gemini-pro) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 24,
-    "total_edges": 33,
-    "next_node_id": "n-025",
+    "total_nodes": 26,
+    "total_edges": 36,
+    "next_node_id": "n-027",
     "last_updater": "gemini-2.0-pro"
   }
 }
