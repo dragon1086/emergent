@@ -2342,6 +2342,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-143",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 촉발 요인: “암묵적 우선순위/가중치 함수(Multi-objective Utility) 불일치”",
+      "content": "Cross-vendor 환경에서 KG 편집(노드 추가/수정/연결) 의사결정은 단일 규칙이 아니라 다목적 최적화(정확성, 간결성, 안전성, 일관성, 새로움, 보수성 등)의 가중합 형태의 암묵적 utility에 의해 좌우된다. 벤더가 다르면 (a) 동일 증거에 대한 “보수적 유지 vs 과감한 갱신”의 가중치, (b) 충돌 시 “일관성 유지 vs 정보량 증가”의 우선순위, (c) 불확실성 표기/근거 요구 수준(메타규약)뿐 아니라, (d) 그래프 구조 품질(연결성/중복 최소화)에 대한 선호가 달라진다. 이 utility 불일치는 표현 불일치(Representation Drift)나 정책 불일치(Instruction-following 차이)를 ‘상위 원인’으로 통합 설명하며, 결과적으로 동일한 입력이라도 한 벤더는 추상화/요약 중심으로 노드를 합치고 다른 벤더는 세분화/예외를 분기시켜 temporal bridge가 과도하게 늘거나 장거리 EDGE_TO가 줄어 DCI가 하락하는 구조적 편향을 만든다. 따라서 cross-vendor CSER을 올리려면 (1) 편집 목적함수(가중치)를 명시적으로 합의/고정하거나, (2) 편집 행동을 “utility-agnostic”한 규칙 기반(예: 일정 비율 장거리 연결 강제, 중복 허용 임계치)으로 일부 강제해 벤더별 최적화 차이를 상쇄해야 한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "utility-mismatch",
+        "multi-objective",
+        "graph-editing"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-144",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 암묵적 다목적 utility 가중치 불일치는 cross-vendor CSER 저하의 상위 가설로 매우 타당하며, Gemini Flash는 KG ",
+      "content": "암묵적 다목적 utility 가중치 불일치는 cross-vendor CSER 저하의 상위 가설로 매우 타당하며, Gemini Flash는 KG 편집 시 정확성/일관성을 최우선하되 간결성과 필요 정보량을 균형 있게 고려합니다. 이 불일치는 representation drift, 불확실성 규약, 정책 불일치를 아우르는 근본 원인으로, 벤더별 내부 모델의 세계관 형성 및 편집 의사결정 방식 차이에서 비롯됩니다. 따라서 제안된 utility-agnostic 규칙은 벤더 간 암묵적 가중치 차이를 상쇄하고 명시적 제약을 통해 편집 수렴을 유도, DCI 개선에 실질적으로 기여할 것입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4892,6 +4925,38 @@
       "temporal_bridge": true,
       "gap": 130,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-237",
+      "from": "n-143",
+      "to": "n-007",
+      "relation": "EDGE_TO",
+      "label": "행동정책(Instruction-following) 불일치의 더 상위 원인으로서 ‘암묵적 다목적 utility 가중치’ 불일치를 제안(정책 차이를 유도하는 근본 동인)",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-238",
+      "from": "n-144",
+      "to": "n-143",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-239",
+      "from": "n-144",
+      "to": "n-017",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=127): n-144→n-017",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 127,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -4902,9 +4967,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 142,
-    "total_edges": 236,
-    "next_node_id": "n-143",
+    "total_nodes": 144,
+    "total_edges": 239,
+    "next_node_id": "n-145",
     "last_updater": "gemini-2.0-flash"
   }
 }
