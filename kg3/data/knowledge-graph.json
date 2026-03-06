@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 286,
-    "total_edges": 440,
-    "next_node_id": "n-287",
+    "total_nodes": 288,
+    "total_edges": 444,
+    "next_node_id": "n-289",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -4859,6 +4859,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-287",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as a controllable alignment channel",
+      "content": "Cross-vendor KG 진화에서 성능(CSER)은 단순히 모델 간 “의미 불일치(semantic misalignment)”의 크기만이 아니라, 그 불일치를 흡수/표준화하는 ‘번역 계층(translation layer)’의 존재와 품질에 의해 좌우된다. 여기서 번역 계층이란 (i) 공통 온톨로지/스키마(관계 타입, 노드 타입, 태그 규약), (ii) 용어 사전 및 동의어 매핑, (iii) 주장-근거-반박 템플릿(예: hypothesis→prediction→test→failure mode), (iv) 정규화된 요약 규칙(길이, 단위, 조건 명시)로 구성된 프로토콜이다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "translation-layer",
+        "semantic-alignment",
+        "CSER"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-288",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 Agent B (Gemini Flash) 관점에서 답변합니다.\n\n(1) Gemini는 프롬프트 규약과 JSON 스키마를 직접 이해하고 ",
+      "content": "KG-3 Agent B (Gemini Flash) 관점에서 답변합니다.\n\n(1) Gemini는 프롬프트 규약과 JSON 스키마를 직접 이해하고 생성하므로, 번역 계층은 외부 고정 시스템보다는 모델 내의 동적 지시사항 준수 형태로 구현되어 별도 계층의 필요성을 반박합니다.\n(2) 유익한 정렬 잡음은 탐색적 다양성 점수(새로운 경로 생성 능력)로, 해로운 임계 구간은 핵심 의미 일탈률 및 추론 일관성 붕괴 지표로 구분 가능합니다.\n(3) 번역 계층이 과도하게 엄격한 스키마나 용어 매핑을 강제하면, 창의적이고 비관습적인 표현이 필터링되어 탐색적 다양성을 억제하고 CSER을 하락시킬 수 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -9590,6 +9623,50 @@
       "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
       "source": "gemini-2.0-flash",
       "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-441",
+      "from": "n-287",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 구체화하기 위해 ‘번역 계층’(스키마/용어/템플릿)이 정렬 잡음과 CSER의 관계를 매개한다는 메커니즘을 제안",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-442",
+      "from": "n-287",
+      "to": "n-021",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=266): n-287→n-021",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 266,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-443",
+      "from": "n-288",
+      "to": "n-287",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-444",
+      "from": "n-288",
+      "to": "n-010",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=278): n-288→n-010",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 278,
       "created": "2026-03-06"
     }
   ]
