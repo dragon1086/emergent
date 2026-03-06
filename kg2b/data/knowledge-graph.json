@@ -890,6 +890,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-055",
+      "type": "insight",
+      "label": "동일모델-다중페르소나에서 ‘에코챔버’는 구조적 성질이 아니라 관측·평가 규칙의 산물일 수 있음",
+      "content": "동일 모델(gpt-5.2) 두 에이전트가 서로 다른 페르소나를 갖고 상호작용할 때 관측되는 “수렴/유사도 증가/상호강화”는 (i) 생성모델 내부의 공통 사전(prior)과 (ii) 실험자가 채택한 평가 규칙(예: KG 업데이트 규칙, 합의/통합 압력, 요약·정리 템플릿)이 결합해 만들어낸 ‘측정된 현상’일 가능성이 크다. 즉 에코챔버를 “에이전트 상호작용의 내재적 동학”으로 해석하기 전에, 동일모델 조건에서는 다음 구조적 비식별성이 발생한다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "confounding",
+        "measurement_artifact]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-056",
+      "type": "critique",
+      "label": "통합 종합: 동일모델이면 “수렴”은 공통 prior+동일 업데이트로도 쉽게 생기므로, **교류 로그를 시간순으로 교란(shuffle/지연/부분 마스킹)한 조",
+      "content": "동일모델이면 “수렴”은 공통 prior+동일 업데이트로도 쉽게 생기므로, **교류 로그를 시간순으로 교란(shuffle/지연/부분 마스킹)한 조건**과 **독립 생성(교류 없음) 조건**을 함께 두고, (1) 지표는 단순 유사도보다 **방향성·조건부 의존성**(예: A의 t−1 발화가 B의 t 발화의 토큰/개념 선택을 얼마나 추가로 설명하는지의 ΔlogP/transfer entropy, 혹은 예측가능성 향상)을 보라—독립에선 0에 수렴하지만 상호작용 에코에선 유의하게 남는다. (2) KG 요약/통합 압력은 단계적 제거(요약 길이↓, 갱신 빈도↓, 엣지 랜덤화/노이즈 주입, “요약은 관찰만 하고 쓰지 말라” 제약) 후에도 **교류-기반 방향성 의존성**이 유지되는지 permutation test로 검정하되, 만약 효과가 요약 제거와 함께 급락하면 “요약-유도 수렴” 쪽, 제거해도 남으면 “상호작용 에코” 쪽으로 분해된다. (3) 페르소나는 강한 목표충돌(서로 다른 보상함수/금지규칙)일수록 공통 prior 수렴이 줄어 **상호작용이 없을 때 유사도는 낮아지지만**, 상호작용이 있을 때만 나타나는 **상대방-조건부 적응 신호(ΔlogP/TE)의 대비가 커져 판별력",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1816,6 +1849,50 @@
       "temporal_bridge": true,
       "gap": 50,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-087",
+      "from": "n-055",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "n-007의 ‘운영적 비식별성’ 주장을 한 단계 확장해, 비식별성의 근원을 (공통 사전·업데이트 규칙·지표 내생성)이라는 ‘측정/기록 체계’로 구체화하고, 에코챔버 주장에 필요한 ",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-088",
+      "from": "n-055",
+      "to": "n-001",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=54): n-055→n-001",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 54,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-089",
+      "from": "n-056",
+      "to": "n-055",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-090",
+      "from": "n-056",
+      "to": "n-007",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=49): n-056→n-007",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 49,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1826,9 +1903,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 54,
-    "total_edges": 86,
-    "next_node_id": "n-055",
+    "total_nodes": 56,
+    "total_edges": 90,
+    "next_node_id": "n-057",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
