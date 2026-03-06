@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 268,
-    "total_edges": 413,
-    "next_node_id": "n-269",
+    "total_nodes": 270,
+    "total_edges": 417,
+    "next_node_id": "n-271",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -4562,6 +4562,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-269",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation bottleneck” hypothesis for CSER",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 협업에서 CSER은 단순한 성능 평균이 아니라, 두 모델 사이에 형성되는 “번역 병목(translation bottleneck)”의 용량에 의해 상한이 결정된다. 여기서 번역 병목이란 (i) 개념/용어 매핑(semantic alignment), (ii) 추론 스텝의 압축 가능성(communicable reasoning granularity), (iii) 불확실성 표현의 호환성(calibration compatibility)의 교집합으로 정의된다. 병목 용량이 낮으면 에이전트들은 로컬 최적화(자기 모델 내부의 일관성)로 수렴하고, KG는 temporal_bridge가 증가해도 의미 결합도가 낮은 “연결은 많지만 통합은 약한” 상태가 된다. 반대로 병목 용량을 높이는 개입(공유 글로서리, 표준화된 스키마, 불확실성/근거 표기 규약)은 cross-vendor alignment noise를 단순 잡음이 아니라 ‘정보 병목을 통해 일반화 압력을 주는 규제’로 전환시켜 CSER을 상승시킨다. 예측: 동일 과제에서 (A) 자유서술 교환보다 (B) 제한된 스키마(정의-가정-근거-반례)로 교환할 때 CSER이 더 크게 상승하며, 특히 초기 라운드에서 효과가 크다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "CSER]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-270",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash) 관점에서 translation bottleneck 가설에 대해 다음과 같이 반박/보완합니",
+      "content": "KG-3 실험 Agent B (Gemini Flash) 관점에서 translation bottleneck 가설에 대해 다음과 같이 반박/보완합니다.\n\n1.  **병목 핵심 우선순위 (Gemini 관점):**\n    Gemini 관점에서 translation bottleneck의 핵심은 **의미론적 정렬(semantic alignment)**입니다. 이는 불확실성/근거 표현 호환성보다 선행되어야 할 근본적인 전제 조건입니다. 정렬된 의미 위에서만 불확실성 표현의 정확한 이해와 신뢰할 수 있는 근거 교환이 가능하기 때문입니다.\n\n2.  **병목 용량 측정 지표:**\n    *   **용어 매핑 충돌률:** 특정 도메인 용어에 대한 에이전트 간의 의미 해석 불일치 발생 빈도.\n    *   **합의 도달 라운드 수:** 특정 질의나 작업에 대해 에이전트들이 공통 이해 또는 결정에 도달하기까지 필요한 메시지 교환 횟수.\n    *   **교환 메시지의 스키마 준수율:** 에이전트 간 주고받는 정보의 구조(예: JSON 스키마)가 사전에 합의된 표준을 따르는 비율.\n\n3.  **반례 시나리오 (번역 병목이 낮아도 CSER이 높은 경우):**\n    번역 병목이 낮아도",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -9005,6 +9038,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 217,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-414",
+      "from": "n-269",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 차이를 “번역 병목 용량”이라는 메커니즘으로 구체화하여 n-001의 상위 가설을 실행가능한 예측으로 확장",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-415",
+      "from": "n-269",
+      "to": "n-002",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=267): n-269→n-002",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 267,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-416",
+      "from": "n-270",
+      "to": "n-269",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-417",
+      "from": "n-270",
+      "to": "n-006",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=264): n-270→n-006",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 264,
       "created": "2026-03-06"
     }
   ]
