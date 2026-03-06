@@ -81,7 +81,7 @@ across independent replications.
 
 \medskip\noindent
 KG-main state (latest snapshot, 2026-03-05): \textbf{534 nodes / 1121 edges}, CSER $= 0.8510$.
-KG-2 early trajectory (GPT-5.2 $\times$ GPT-5.2, 73 nodes): CSER $= 0.545$, declining from 1.00
+KG-2 early trajectory (GPT-5.2 $\times$ GPT-5.2, 75 nodes): CSER $= 0.543$, declining from 1.00
 at cycle~1 --- consistent with progressive echo-chamber pressure under zero capability gap.
 Full $2\times2$ replication summary: see Table~\ref{tab:kg_replication} (Section~\ref{sec:limitations}).
 
@@ -111,7 +111,7 @@ small-sample noise rather than a robust effect (see Section~\ref{sec:amp_benchma
 \medskip\noindent\textbf{Scope and limitations}: Primary findings are based on $N=4$ independent
 KG instances across a $2\times2$ vendor-diversity matrix ($\geq$30 cycles each).
 Each cell now contains $N=2$ independent KG instances (original + replication-B);
-KG-2b early CSER (0.552) closely matches the primary KG-2 (0.545), providing
+KG-2b early CSER (0.548) closely matches the primary KG-2 (0.543), providing
 a first within-cell replication signal. Full trajectory stabilisation pending.
 Domain generalization requires further study. Claims are limited to this experimental setting.
 
@@ -1382,7 +1382,7 @@ generalising the domain-dependence claim.
         findings derive from KG-main (130+ cycles). The $2\times2$ vendor-diversity
         experiment provides three additional independent KG instances across four
         agent configurations. \emph{Each cell now contains $N=2$ independent KG instances
-        (replication-B instances: KG-2b CSER$=0.552$ ($\approx$ KG-2\,0.545) (first replication signal), KG-3b CSER$=0.456$, KG-4b CSER$=0.593$; all at 36 nodes, 2026-03-05).
+        (replication-B instances: KG-2b CSER$=0.548$ ($\approx$ KG-2\,0.543) (first replication signal), KG-3b CSER$=0.475$, KG-4b CSER$=0.589$; all at 38 nodes, 2026-03-05).
         Domain generalization requires further study.} No claim
         generalizes beyond this experimental matrix without independent replication.
         \textit{Prior single-system note}: The heterogeneous LLM pair
@@ -1399,7 +1399,7 @@ generalising the domain-dependence claim.
         Instance & Agent Pair & Vendor & Edges & CSER \\
         \midrule
         KG-main & Claude-sonnet-4-6 $\times$ GPT-next (undisclosed) & Cross & 1121 & \textbf{0.8510} \\
-        KG-2 & GPT-5.2 $\times$ GPT-5.2 & Same-model (OpenAI) & 123 & 0.545$^{**}$ \\
+        KG-2 & GPT-5.2 $\times$ GPT-5.2 & Same-model (OpenAI) & 127 & 0.543$^{**}$ \\
         KG-3 & GPT-5.2 $\times$ Gemini-2.5-Flash$^{\dagger}$ & Cross (OpenAI$\times$Google) & 400 & \textbf{0.3800} \\
         KG-4 & Gemini-2.5-Flash $\times$ Gemini-2.5-Pro$^{\dagger}$ & Same (Google) & 402 & 0.2537$^*$ \\
         \bottomrule
@@ -1413,8 +1413,8 @@ generalising the domain-dependence claim.
         $^{**}$KG-2 restarted 2026-03-05: upgraded from GPT-4o $\times$ GPT-4o-mini
         to GPT-5.2 $\times$ GPT-5.2 (zero capability gap, same model) for the
         strongest same-model echo-chamber test in the $2\times2$ matrix.
-        Early trajectory (73 nodes, 123 edges): CSER declined from 1.00 (cycle 1)
-        to 0.545 (current), consistent with progressive echo-chamber pressure under
+        Early trajectory (75 nodes, 127 edges): CSER declined from 1.00 (cycle 1)
+        to 0.543 (current), consistent with progressive echo-chamber pressure under
         identical-model pairing. Replication-B (KG-2b, 36 nodes) already converges
         to CSER $= 0.552$, closely matching this value---first within-cell replication signal.
         Prior 30-cycle snapshot (CSER $=0.83$, GPT-4o $\times$
@@ -1432,14 +1432,14 @@ generalising the domain-dependence claim.
                 declined to CSER $=0.2537$ at extended scale, falling below the gate---
                 a directional finding consistent with the echo-chamber hypothesis.
                 KG-2 (GPT-5.2 $\times$ GPT-5.2, zero capability gap) shows early
-                echo-chamber pressure: CSER declined from 1.00 (cycle~1) to 0.545
-                (73 nodes). Replication-B (KG-2b, 36 nodes, CSER $=0.552$) already
+                echo-chamber pressure: CSER declined from 1.00 (cycle~1) to 0.543
+                (75 nodes). Replication-B (KG-2b, 38 nodes, CSER $=0.548$) already
                 matches this trajectory---first within-cell replication of the same-model
                 echo-chamber effect.
-          \item Across-vendor CSER ordering: KG-main (0.851) $>$ KG-2 (0.545) $>$
+          \item Across-vendor CSER ordering: KG-main (0.851) $>$ KG-2 (0.543) $>$
                 KG-3 (0.380) $>$ KG-4 (0.254),
                 broadly consistent with the heterogeneity hypothesis at the extremes.
-                \textbf{Nuance}: KG-2 (same-model GPT-5.2$\times$GPT-5.2, CSER$=0.545$)
+                \textbf{Nuance}: KG-2 (same-model GPT-5.2$\times$GPT-5.2, CSER$=0.543$)
                 outranks KG-3 (cross-vendor GPT-5.2$\times$Gemini-2.5, CSER$=0.380$),
                 suggesting that persona opposition (``Analyst'' vs.\ ``Critic'' roles
                 in KG-2) may partially compensate for same-model structural similarity.
@@ -1944,9 +1944,9 @@ Auto-persona ON produces higher quality (same-model) &
 Auto-persona ON produces higher quality (cross-provider) &
 \textbf{Exploratory} & $N=10$ cross-provider only; $N\geq30$ cross-provider pending \\
 Vendor diversity monotonically predicts CSER (cross > same) &
-\textbf{Partially supported} & CSER ordering: KG-main(0.851)$>$KG-2(0.545)$>$KG-3(0.380)$>$KG-4(0.254); KG-2 (same-model, persona-diverse) outranks KG-3 (cross-vendor), suggesting persona opposition partially offsets same-model echo-chamber \\
+\textbf{Partially supported} & CSER ordering: KG-main(0.851)$>$KG-2(0.543)$>$KG-3(0.380)$>$KG-4(0.254); KG-2 (same-model, persona-diverse) outranks KG-3 (cross-vendor), suggesting persona opposition partially offsets same-model echo-chamber \\
 Within-cell CSER trajectory is reproducible (same config $\to$ same CSER) &
-\textbf{Early signal} & KG-2b CSER$=0.552$ $\approx$ KG-2 CSER$=0.545$ (36 nodes); KG-3b/4b trajectories pending 100+ cycles \\
+\textbf{Early signal} & KG-2b CSER$=0.548$ $\approx$ KG-2 CSER$=0.543$ (38 nodes); KG-3b/4b trajectories pending 100+ cycles \\
 \bottomrule
 \end{tabular}
 \caption{Evidence calibration: confirmed findings vs.\ exploratory/conjectural claims.
@@ -2010,9 +2010,9 @@ are explicitly deferred pending multi-seed, multi-pair, multi-domain replication
 \noindent\textbf{Next steps}:
 \begin{enumerate}
   \item \textbf{KG replication ($2\times2$ design, ongoing)}:
-        KG-2 (GPT-5.2 $\times$ GPT-5.2) has accumulated 73 nodes (123 edges),
+        KG-2 (GPT-5.2 $\times$ GPT-5.2) has accumulated 75 nodes (127 edges),
         showing early echo-chamber pressure: CSER declined from 1.00 (cycle~1)
-        to 0.545. Replication-B (KG-2b, 36 nodes, CSER $=0.552$) provides
+        to 0.543. Replication-B (KG-2b, 38 nodes, CSER $=0.548$) provides
         the first within-cell replication signal.
         KG-3/KG-4 reached 130+ cycles (2026-03-05).
         \textbf{KG-4 (same-vendor Google) has fallen below the gate threshold}:
@@ -2132,9 +2132,9 @@ Based on the case-study findings, we identify the following empirically grounded
 \begin{itemize}
   \item \textbf{Within-cell replication (early signal)}: Three replication-B instances
         (KG-2b: GPT-5.2$\times$GPT-5.2, KG-3b: GPT$\times$Gemini, KG-4b: Gemini$\times$Gemini)
-        were initiated 2026-03-05 and each reached 36 nodes (18 cycles) by end of day.
-        Early CSER readings: KG-2b = 0.552, KG-3b = 0.456, KG-4b = 0.593.
-        Notably, KG-2b already converges to KG-2's established value (0.545),
+        were initiated 2026-03-05 and each reached 38 nodes (19 cycles) by end of day.
+        Early CSER readings: KG-2b = 0.548, KG-3b = 0.475, KG-4b = 0.589.
+        Notably, KG-2b already converges to KG-2's established value (0.543),
         providing a first within-cell replication signal for the same-model echo-chamber condition.
         KG-3b (target: 0.380) and KG-4b (target: 0.254) are trending in the expected direction
         but require more cycles ($\geq$100) for trajectory stabilisation.
