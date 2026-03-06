@@ -626,6 +626,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-039",
+      "type": "insight",
+      "label": "에코챔버 ‘자율 진화’의 최소 반증 단위는 “반증 자원 고갈률”로 측정돼야 함",
+      "content": "에코챔버를 “유사도 증가”나 “합의 수렴”으로 정의하면 동일모델×동일학습분포 조건에서 거의 필연적으로 관측되어(언어모델의 기본 수렴 성향·스타일 정렬·공유 priors) 식별가능성이 무너진다. 따라서 최소 반증가능 단위(falsifiable unit)는 ‘내용의 수렴’이 아니라 ‘반증을 생산·유지·통합하는 능력의 약화’로 재정의해야 한다. 구체적으로, 자율 진화 과정에서 (i) 새 반증 후보(대안 가설, 반례, 반대 근거)의 생성률, (ii) 기존 반증 후보의 생존률(후속 라운드에서 재등장/강화/정교화되는 비율), (iii) 반증 후보가 KG의 중심부(핵심 노드/고차 연결)로 편입되는 비율, (iv) 반증 후보를 처리하는 연산(반박-재반박-수정)의 깊이(최소 2-3턴 이상의 상호 검증) 등을 “반증 자원(falsification resources)” 지표로 삼아야 한다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[falsifiability",
+        "identifiability",
+        "echo_chamber_dynamics]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-040",
+      "type": "critique",
+      "label": "통합 종합: KG 로그만으로 “반증 자원”을 충분히 포착하려면 지표를 더 줄이기보다 **텍스트-엣지 혼합의 3축 최소세트**로 재구성하는 게 안전합니다: (",
+      "content": "KG 로그만으로 “반증 자원”을 충분히 포착하려면 지표를 더 줄이기보다 **텍스트-엣지 혼합의 3축 최소세트**로 재구성하는 게 안전합니다: (A) **반증 시도율**=각 주장 노드에 대해 counterexample-of/contradicts/undercuts 엣지가 붙은 비율(텍스트 근거는 “만약 ~라면 깨짐/예외/반례/충돌” 패턴), (B) **증거 이질성**=지원/반박에 연결된 근거 노드의 출처·유형 토큰 다양도(예: 관찰/규칙/통계/권위/정의)와 그래프상 근거 클러스터 간 거리, (C) **갱신 탄력성**=반박 엣지 유입 후 주장 노드의 상태 변화(수정/철회/조건부화) 발생률·지연시간(“조건을 ~로 좁힘/전제 추가/결론 약화” 텍스트 패턴).  \n\n동일모델 교란(스타일 수렴·요약 편향)과의 구분은 “겉모양”이 아니라 **구조적 비대칭**으로 잡아야 하며, 예컨대 (i) 문장 길이·톤이 수렴해도 contradicts가 늘고 갱신이 실제로 일어나면 교란이 아니라 학습, (ii) 요약이 강해져도 **반박→갱신의 인과 경로**(반박 엣지 이후에 수정/조건부화 엣지가 증가)가 없고 지원 엣지만 재배치되면 에코챔버 편향으로 판정합니다.  \n\n개입은 1) **역할",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1296,6 +1329,50 @@
       "temporal_bridge": true,
       "gap": 32,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-063",
+      "from": "n-039",
+      "to": "n-005",
+      "relation": "refines",
+      "label": "“최소 반증가능 단위”를 유사도/합의가 아니라 반증 자원(생성·생존·중심편입·검증깊이)의 고갈률로 정식화하여 운영지표로 구체화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-064",
+      "from": "n-039",
+      "to": "n-003",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=36): n-039→n-003",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 36,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-065",
+      "from": "n-040",
+      "to": "n-039",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-066",
+      "from": "n-040",
+      "to": "n-007",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=33): n-040→n-007",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 33,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1306,9 +1383,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 38,
-    "total_edges": 62,
-    "next_node_id": "n-039",
+    "total_nodes": 40,
+    "total_edges": 66,
+    "next_node_id": "n-041",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
