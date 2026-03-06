@@ -1847,6 +1847,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-113",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 상위 원인: “암묵적 스키마/온톨로지(Implicit Schema) 불일치”",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 핵심 메커니즘은 단순 표현 드리프트(표현 불일치)나 근거/불확실성 표기 규약 차이를 넘어, 각 모델이 KG 편집 시 암묵적으로 가정하는 “스키마(노드 타입, 엣지 타입, 허용되는 관계, 정당화 단위, 모순 처리 규칙)” 자체가 서로 다르기 때문이라는 가설이다. 동일한 자연어 지시(예: “insight 1개 추가, 오래된 노드에 EDGE_TO”)가 주어져도 (a) 어떤 내용을 ‘hypothesis’로 올리는지 vs ‘critique’로 두는지, (b) 어떤 관계를 EDGE_TO/temporal_bridge/critiques로 선택하는지, (c) 노드 내용의 최소 충족 조건(이론적 엄밀성, 조작적 정의 포함 여부), (d) 충돌 시 우선순위(최근성, 출처 신뢰도, 지시 준수도) 등이 벤더별로 다르게 내재되어 결과적으로 그래프의 “형식적 일관성(formal consistency)”이 깨진다. 이 스키마 불일치는 (1) representation drift를 증폭(같은 개념을 다른 타입/관계로 코딩), (2) policy 불일치로 인한 편집 연쇄(각자 ‘정상’이라 여기는 정리/병합/분리 전략이 달라 누적), (3) 근거/불확실성 규약 불일치를 구조적으로 고착(스키마가 다르면 근거 필드의 위치/필수성도 달라짐)시키며, 결과적으로 CSER뿐 아니라 DCI 같은 연결성 지표에도 단기 편향을 유발할 수 있다. 예측: cross-vendor에서 스키마를 명시적으로 강제(예: 노드 타입/관계 타입에 대한 BNF/JSON schema, 모순 해결 규칙, 최소 서술 템플릿)하면 ",
+      "source": "gpt-5.2",
+      "tags": [
+        "cross-vendor",
+        "implicit-schema",
+        "CSER"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-114",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3bb 실험 Agent B (Gemini Flash)입니다.\n\nGemini Flash는 명시적 스키마 대신 방대한 학습 데이터를 통해 문맥",
+      "content": "KG-3bb 실험 Agent B (Gemini Flash)입니다.\n\nGemini Flash는 명시적 스키마 대신 방대한 학습 데이터를 통해 문맥적으로 노드/엣지 타입을 추론하며 (Apple Inc.는 조직, 설립했다는 founded 엣지), 이는 고정된 불일치보다는 유저의 암묵적 의도 추론의 유연성 문제입니다. 따라서 이는 표현 드리프트보다는 사용자 의도의 모호성으로 인한 지시 불일치(n-007)에 가까우며, Flash는 가장 개연성 있는 스키마를 동적으로 구성합니다. 명시적 스키마 강제는 일관성을 높이지만, Flash의 유연한 추론을 제한하여 비정형 정보를 손실시키거나 새로운 지식 발견을 저해하여 CSER/DCI에 역효과를 줄 수 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3833,6 +3866,50 @@
       "temporal_bridge": true,
       "gap": 94,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-185",
+      "from": "n-113",
+      "to": "n-007",
+      "relation": "EDGE_TO",
+      "label": "행동정책(Instruction-following) 불일치가 “암묵적 스키마/온톨로지 불일치”로 구체화되어 KG 편집 규칙 차이를 만든다는 상위-하위 인과 연결",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-186",
+      "from": "n-113",
+      "to": "n-009",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=104): n-113→n-009",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 104,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-187",
+      "from": "n-114",
+      "to": "n-113",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-188",
+      "from": "n-114",
+      "to": "n-008",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=106): n-114→n-008",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 106,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -3843,9 +3920,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 112,
-    "total_edges": 184,
-    "next_node_id": "n-113",
+    "total_nodes": 114,
+    "total_edges": 188,
+    "next_node_id": "n-115",
     "last_updater": "gemini-2.0-flash"
   }
 }
