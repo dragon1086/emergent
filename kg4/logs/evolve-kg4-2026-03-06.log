@@ -2519,3 +2519,39 @@
   max_span=396 → n-001↔n-100 closes_loop 엣지가 최대 기여
   node_age_diversity=0.2890 → 균등 분포 이론치(0.289) 근접
 
+[00:46:22] KG4 ✅ KG-4 사이클 완료
+[00:46:54] KG4 🌱 KG-4 사이클 시작 #76/100
+[00:46:54] KG4 📊 KG-4 현황: ── 통계 ──────────────────────────────────────
+총 노드: 398개
+총 엣지: 639개
+
+노드 타입별:
+  •  critique: 69개
+  •  hypothesis: 270개
+  💡 insight: 58개
+  👁  observation: 1개
+
+출처별:
+  gemini-2.0-flash: 69개
+  gemini-2.0-pro: 69개
+  gemini-2.5-flash: 258개
+  openclaw: 2개
+
+관계 종류:
+  critiques: 70개
+  expands_on: 110개
+  motivates: 9개
+  posits_explanation_for: 168개
+  refines_hypothesis: 30개
+  temporal_bridge: 252개
+[00:46:54] KG4 🕰️ 오래된 노드 후보: 8개
+[00:46:54] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[00:47:08] KG4 ✅ Agent A 완료 (734 chars)
+[00:47:33] KG4 ✅ Agent B (Gemini Pro) 완료
+[00:47:34] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경에서의 DCI 편향 가설 (id: n-399 → n-008)
+[00:47:34] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-400 → n-399
+── 해석 ────────────────────────────────────
+  edge_span=165.4노드 평균 간격 → 시간 초월 연결 활발
+  max_span=396 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2890 → 균등 분포 이론치(0.289) 근접
+

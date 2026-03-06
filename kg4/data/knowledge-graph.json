@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 398,
-    "total_edges": 639,
-    "next_node_id": "n-399",
+    "total_nodes": 400,
+    "total_edges": 642,
+    "next_node_id": "n-401",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -7560,6 +7560,42 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-399",
+      "type": "hypothesis",
+      "label": "동일 벤더 환경에서의 DCI 편향 가설",
+      "content": "KG-4에서 관찰된 단기 연결 편향(낮은 DCI)은 동일 벤더 에이전트(Gemini Flash, Gemini Pro) 간의 암묵적인 공유된 추론 패턴 및 국소적 최적화 경향의 결과일 수 있다. 이는 상호 연결된 아이디어의 즉각적인 진화를 우선시하고, 장거리 또는 초기 노드와의 연결을 소홀히 하여 장기적 지식 통합을 늦추는 경향을 유발한다. 크로스-벤더 환경에서는 상이한 관점이 오히려 초기부터 명시적인 장거리 통합을 강제하여 DCI가 다르게 나타날 가능성이 있다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "DCI",
+        "연결성",
+        "동일_벤더_특성",
+        "KG_진화",
+        "단기_편향"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-400",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완: 좋은 질문입니다. 제안하신 가설에 대해 다음과 같은 보완적 관점을 제시합니다.\n\n동일 벤더의 공유된 추론 패턴은 개념적 동질성을 강화하여 특정 ",
+      "content": "좋은 질문입니다. 제안하신 가설에 대해 다음과 같은 보완적 관점을 제시합니다.\n\n동일 벤더의 공유된 추론 패턴은 개념적 동질성을 강화하여 특정 개념의 수렴을 가속하고 지식 그래프(KG)의 구조적 안정성을 조기에 확보하는 데 결정적으로 기여할 수 있습니다. 이는 다양한 해석을 통합해야 했던 KG-3의 CSER(Cross-vendor Semantic Entity Resolution) 비용 문제와 정확히 대척점에 있는 현상으로, 다양성 확보와 일관성 유지 간의 근본적인 트레이드오프를 보여줍니다. 따라서 KG-4의 DCI 편향은 특정 도메인에서의 빠른 안정화를 위한 전략적 선택의 결과로, KG-3의 CSER 복잡성은 범용적 견고함을 얻기 위해 치르는 비용으로 재해석할 수 있습니다.",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -14455,6 +14491,38 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 329,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-640",
+      "from": "n-399",
+      "to": "n-008",
+      "relation": "expands_on",
+      "label": "동일 벤더 KG 진화의 공유 아키텍처 편향이 특정 연결 패턴 편향(DCI)으로 발현될 수 있음을 제안하며 확장",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-641",
+      "from": "n-399",
+      "to": "n-022",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=377): n-399→n-022",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 377,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-642",
+      "from": "n-400",
+      "to": "n-399",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
       "created": "2026-03-06"
     }
   ]
