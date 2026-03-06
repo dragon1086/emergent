@@ -3101,6 +3101,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-189",
+      "type": "insight",
+      "label": "에코챔버 vs “수렴(합의)”: 동일 로그에서의 비식별성 분해",
+      "content": "동일 모델·다중 페르소나 상호작용 로그에서 관측되는 “유사도 증가/합의 강화”는 에코챔버의 필요조건도 충분조건도 아닐 수 있다. 비식별성의 핵심은 동일한 관측 패턴을 생성하는 잠재 생성과정이 다수 존재한다는 점이며, 이를 구조적으로 분해해야 한다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "alternative-explanations",
+        "measurement]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-190",
+      "type": "critique",
+      "label": "통합 종합: 요청 자체가 “최소 조작”으로 네 가지 대체설명을 *동시에* 약화시키려는 목표가 과도하게 결합돼 있으니, (1) 조작은 **삼각측량형**으로 2",
+      "content": "요청 자체가 “최소 조작”으로 네 가지 대체설명을 *동시에* 약화시키려는 목표가 과도하게 결합돼 있으니, (1) 조작은 **삼각측량형**으로 2~3개만 두고 각 조작이 최소 두 가설을 교차로 깨도록 설계하는 게 낫습니다: **① 외생 반증 시드+대칭 보상**(무작위로 “유력하지만 거짓” 시드와 “그럴듯하지만 참” 시드를 주입하고, *확신도*가 아니라 *반증 성공/실패의 정합성*에 보상)로 자연수렴·협력대화·Goodhart를 동시에 약화, **② 노드 샘플링 규칙의 랜덤화/블라인드**(주기적으로 핵심 노드·주변 노드를 무작위 재샘플링하고 출처/권위 신호를 가림)로 경로의존·협력대화·자연수렴을 약화, **③ 반대근거 의무 쿼터+지연 커밋**(각 주장당 강제 반례 k개 로그화 후에만 KG 업데이트 허용)로 Goodhart·협력대화·경로의존을 약화합니다. (2) “대안 유지 역학”은 KG 로그에서 **AMD(Alternative Maintenance Dynamics) 스코어**로 계량: 시간창 t에서 대안 집합 A_t를 “서로 모순(contradiction edge)인데 모두 비영(≥τ) 신뢰로 유지된 노드군”으로 정의하고, (AMD_t = frac{sum_{ain",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6543,6 +6576,50 @@
       "temporal_bridge": true,
       "gap": 185,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-319",
+      "from": "n-189",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "유사도/합의 기반 지표가 에코챔버와 자연 수렴을 구분하지 못하는 비식별성을 구조적 대체설명으로 분해하고, 식별에 필요한 ‘대안 유지 역학’ 지표군을 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-320",
+      "from": "n-189",
+      "to": "n-025",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=164): n-189→n-025",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 164,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-321",
+      "from": "n-190",
+      "to": "n-189",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-322",
+      "from": "n-190",
+      "to": "n-008",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=182): n-190→n-008",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 182,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -6553,9 +6630,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 188,
-    "total_edges": 318,
-    "next_node_id": "n-189",
+    "total_nodes": 190,
+    "total_edges": 322,
+    "next_node_id": "n-191",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
