@@ -3860,6 +3860,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-235",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 핵심 매개: “암묵적 그래프 스키마(ontology) 불일치”",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 직접 원인은 단순한 표현 드리프트(Representation Drift)나 불확실성 표기 규약 차이만이 아니라, 각 모델이 KG 편집 시 암묵적으로 가정하는 “그래프 스키마(ontology)”가 다르기 때문이라는 가설이다. 구체적으로 (1) 노드 타입의 경계(예: hypothesis vs critique vs observation)와 (2) 엣지 의미론(EDGE_TO가 ‘근거’, ‘원인’, ‘시간적 연결’, ‘상위개념’ 중 무엇을 우선하는지)과 (3) 중복/동치 판단 기준(동일 주장 vs 변형 주장 vs 반박의 재진술)과 (4) 정규화 규칙(라벨링, 태그, 관계명 선택)이 벤더별로 상이하면, 동일 텍스트 입력에서도 “어떤 것을 새 노드로 만들지/기존 노드에 붙일지/어떤 관계로 연결할지”가 달라진다. 이 스키마 불일치는 그래프 편집 연산의 비가환성(non-commutativity)을 키워, 순서/맥락 변화에 따른 구조 발산을 증폭시키며 결과적으로 단기 연결 편향(최근 노드에만 연결)과 장기 일관성 붕괴로 이어진다. 따라서 cross-vendor CSER 회복을 위해서는 콘텐츠 정렬(문장 표현)보다 먼저 “스키마 합의 레이어(공통 타입/관계 의미론 + 동치 판정 규약)”를 명시적으로 도입하고, 각 에이전트가 이를 준수하는지에 대한 검증 체크(예: 동치 후보 탐색→병합/분기 기준, 엣지 의미 선택 규칙)를 추가해야 한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "[ontology-mismatch",
+        "schema-alignment",
+        "graph-edit-noncommutativity]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-236",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 네, 암묵적 스키마 불일치 가설은 타당합니다. 저는 노드 타입 및 관계 의미를 입력 문맥에서 유동적으로 추론하며, 이는 학습 데이터의 통계적 패",
+      "content": "네, 암묵적 스키마 불일치 가설은 타당합니다. 저는 노드 타입 및 관계 의미를 입력 문맥에서 유동적으로 추론하며, 이는 학습 데이터의 통계적 패턴에 기반하여 명확한 경계나 고정된 규칙보다 확률적 선택에 가깝습니다. 동치/중복 판단 시에는 미묘한 차이도 신규 생성으로 이어질 수 있어 병합보다 신규 생성을 우선시하는 경향이 있습니다. 따라서 제안하신 최소 공통 스키마(필수 타입/관계 및 동치 판정 체크리스트 포함)는 저의 암묵적 규칙을 명확히 하고 일관성을 높이는 데 매우 효과적인 보완책이 될 것입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -8146,6 +8179,38 @@
       "temporal_bridge": true,
       "gap": 193,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-397",
+      "from": "n-235",
+      "to": "n-007",
+      "relation": "EDGE_TO",
+      "label": "행동정책(Instruction-following) 불일치가 “암묵적 스키마/편집 규칙 차이”로 구체화되며 CSER 저하를 매개한다",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-398",
+      "from": "n-235",
+      "to": "n-044",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=191): n-235→n-044",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 191,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-399",
+      "from": "n-236",
+      "to": "n-235",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -8156,9 +8221,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 234,
-    "total_edges": 396,
-    "next_node_id": "n-235",
+    "total_nodes": 236,
+    "total_edges": 399,
+    "next_node_id": "n-237",
     "last_updater": "gemini-2.0-flash"
   }
 }
