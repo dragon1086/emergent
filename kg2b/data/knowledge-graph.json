@@ -3365,6 +3365,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-205",
+      "type": "insight",
+      "label": "Operational Non-Identifiability Breaker: “Persona-Exchange” 교차대조 설계",
+      "content": "동일모델×다중페르소나 조건에서 에코챔버(“상호작용이 신념/표현의 수렴을 자율적으로 강화”)를 주장하려면, 최소한 **페르소나가 ‘원인’인지 ‘표지’인지**를 식별해야 한다. 현재 구성은 (i) 같은 베이스모델의 공통 사전학습 편향, (ii) 동일 프롬프트 구조/평가 압력, (iii) KG 업데이트 규칙의 내재적 수렴 성향이 모두 “수렴”을 만들어낼 수 있어, 관측 로그만으로는 ‘에코챔버’와 ‘공유 생성편향+수렴적 편집 규칙’이 구분되지 않는다(운영상 비식별).",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "counterfactual",
+        "experimental_design]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-206",
+      "type": "critique",
+      "label": "통합 종합: 필요·충분에 가깝게 하려면 “내용 유사도↑”만이 아니라 **(i) 상호작용이 만들어낸 의존성(자기강화) + (ii) 반증 압력 하에서도 유지되는",
+      "content": "필요·충분에 가깝게 하려면 “내용 유사도↑”만이 아니라 **(i) 상호작용이 만들어낸 의존성(자기강화) + (ii) 반증 압력 하에서도 유지되는 수렴**을 함께 만족시키는 규칙이 핵심이며, 유사도는 **표면/의미/정책-스타일 요인으로 분해한 잔차(예: 의미 임베딩 유사도에서 길이·문체·안전문구·헤지비율·템플릿 n-gram을 회귀로 제거한 residual similarity) + 대조군(무작위 페어링/역순/교차실험) 대비 효과크기**로 공통편향(동일 모델·동일 안전정책의 “기본 톤” 수렴)을 보정해야 합니다. ② ‘반증 후보 생존율’은 정책의존을 줄이기 위해 **외생적으로 고정된 반증세트**(사전등록된 contradiction/alternative hypothesis prompt, 동일 난이도·주제 매칭)를 매 턴 삽입하고, 각 턴에서 생성된 핵심 주장 집합에 대해 **반증세트에 의해 유도되는 최소 수정(Minimal Revision) 거부율/수정량(편집거리+논리적 변경 수)·대안가설 채택률**로 조작화하며, 판정은 “대조군 대비 생존율이 유의하게 높고(상호작용 효과), 동시에 수정량이 임계값 이하로 지속”처럼 **정규화된 비율·차이**로 고정합니다. ③ 에코",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7123,6 +7156,50 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-348",
+      "from": "n-205",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "동일모델-다중페르소나 조건의 운영상 비식별성을 ‘페르소나 교환’ 반사실 조작으로 깨는 구체 설계 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-349",
+      "from": "n-205",
+      "to": "n-015",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=190): n-205→n-015",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 190,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-350",
+      "from": "n-206",
+      "to": "n-205",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-351",
+      "from": "n-206",
+      "to": "n-026",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=180): n-206→n-026",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 180,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -7133,9 +7210,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 204,
-    "total_edges": 347,
-    "next_node_id": "n-205",
+    "total_nodes": 206,
+    "total_edges": 351,
+    "next_node_id": "n-207",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
