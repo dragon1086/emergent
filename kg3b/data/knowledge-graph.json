@@ -593,6 +593,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-037",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 메커니즘: “암묵적 스키마(Implicit Schema) 불일치로 인한 그래프 연산 비가환성”",
+      "content": "Cross-vendor 환경에서는 동일한 자연어 지시라도 벤더별로 (a) 노드/엣지의 기본 타입 체계, (b) 관계 라벨의 의미 범위, (c) 중복 병합(dedup) 기준, (d) 시간/출처 메타데이터의 우선순위가 다르게 “암묵적 스키마”로 내재화되어 있다. 이때 KG 편집은 단순히 표현(표면)만 다른 것이 아니라, 그래프 연산(추가/병합/수정/삭제)의 의미론이 달라져 연산의 순서에 따라 결과가 달라지는 **비가환성(non-commutativity)** 이 발생한다. 예: GPT는 ‘hypothesis vs critique’를 강하게 분리해 충돌을 병렬 유지하는 반면, Gemini는 ‘보완/반박’을 하나의 “정련(refinement)”으로 흡수해 병합하려는 경향이 있으면, 동일한 입력 스트림에서도 (1) 먼저 병합 후 비판 추가 vs (2) 먼저 비판 추가 후 병합이 서로 다른 그래프 구조를 만든다. 이 비가환성은 Representation Drift(표현 불일치)와 Policy 불일치(행동정책 차이)를 매개하여, 단기적으로는 엣지 밀도/타입 분포의 왜곡, 장기적으로는 “어떤 사실이 핵심 노드로 승격되는가”라는 중심성 편향을 유발해 CSER을 체계적으로 저하시킨다. 따라서 cross-vendor CSER 개선을 위해서는 (i) 공유 스키마/온톨로지의 명시, (ii) 병합 규칙의 결정성(determinism) 보장, (iii) 편집 연산의 정규형(canonicalization) 또는 CRDT 유사 합의 규칙이 필요하다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "[implicit-schema",
+        "non-commutativity",
+        "merge-policy]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-038",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini Flash는 노드 타입/관계를 고정된 스키마가 아닌 문맥 기반으로 유연하게 해석하며, critique를 refinement에 흡수하",
+      "content": "Gemini Flash는 노드 타입/관계를 고정된 스키마가 아닌 문맥 기반으로 유연하게 해석하며, critique를 refinement에 흡수하는 등 의미적 연관성을 통합하는 경향이 있습니다. 동일성 판단은 엄격한 기준보다 의미론적 유사성과 그래프 맥락을 우선하며, 시간/출처 메타데이터는 정보의 최신성이나 신뢰도를 가중하는 요인으로 작용합니다. 연속 편집 시 순서 의존성은 주로 내부 컨텍스트 윈도우와 정보 요약 전략의 동적 변화에서 비롯되며, 이는 후속 연산의 입력 맥락을 변경하여 비가환성을 유발할 수 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1207,6 +1240,50 @@
       "temporal_bridge": true,
       "gap": 32,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-058",
+      "from": "n-037",
+      "to": "n-005",
+      "relation": "EDGE_TO",
+      "label": "행동 정책(Policy) 불일치가 “그래프 편집 연산” 수준에서 어떻게 비가환적 결과를 만들어 CSER을 떨어뜨리는지에 대한 구체 메커니즘(암묵적 스키마 불일치)을 제안",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-059",
+      "from": "n-037",
+      "to": "n-004",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=33): n-037→n-004",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 33,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-060",
+      "from": "n-038",
+      "to": "n-037",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-061",
+      "from": "n-038",
+      "to": "n-001",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=37): n-038→n-001",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 37,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1217,9 +1294,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 36,
-    "total_edges": 57,
-    "next_node_id": "n-037",
+    "total_nodes": 38,
+    "total_edges": 61,
+    "next_node_id": "n-039",
     "last_updater": "gemini-2.0-flash"
   }
 }
