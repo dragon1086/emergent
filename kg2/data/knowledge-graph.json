@@ -1138,6 +1138,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-070",
+      "type": "insight",
+      "label": "동일모델 에코챔버 ‘식별가능성’의 최소충분조건(대조군×조작×지표)  ",
+      "content": "동일모델(gpt-5.2×gpt-5.2)에서 관측되는 “수렴/강화/편향”은 에코챔버 메커니즘(상호강화로 인한 폐쇄적 신념 고착)뿐 아니라 (i) 공통 사전(prior)·훈련분포로 인한 자연 수렴, (ii) 대화 프로토콜(협력적 정렬)로 인한 합의 지향, (iii) 요약/압축에 의한 정보 손실 누적, (iv) 샘플링 노이즈 및 디코딩 온도 효과로도 동일하게 생성된다. 따라서 ‘동일모델 에코챔버’를 식별하려면 최소한 다음 3요소가 필요하다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "control_group",
+        "intervention]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-071",
+      "type": "critique",
+      "label": "통합 종합: “최소 실험 2개(간단/강력)”로 통합하되, **자연 수렴 vs 에코챔버를 ‘단일 축’으로 가정**하면 구분이 흐려지니(둘 다 표면적 합의는 만",
+      "content": "“최소 실험 2개(간단/강력)”로 통합하되, **자연 수렴 vs 에코챔버를 ‘단일 축’으로 가정**하면 구분이 흐려지니(둘 다 표면적 합의는 만들 수 있음) **정보 유입 구조(외부증거 강제/차단)×사회적 압력(동조 보상/중립) 2×2 설계**로 묶어야 차별 예측이 선명해집니다. 표는 각 조건에서 **(a) 반증 사건 투입 시 입장 전환/근거 갱신 패턴, (b) 근거 네트워크 다양성(출처·논거 유형) 변화, (c) 소수견해의 ‘존재-보존-재등장’**을 예측으로 두고, 지표는 대화로그만으로 **반증 탄력성=반증 이후 주장 지속률/근거 재활용률**, **근거 다양성 감소 프록시=고유 근거유형·출처 엔트로피의 시간별 하락**, **이견 소멸률=반대 주장 토큰(스탠스 분류) 점유율의 단조 감소**처럼 정의하면 됩니다. 또한 “강력 버전”은 동일 참가자 교차(AB/BA)와 시간지연 재측정으로 **수렴의 지속성**을 보며, “간단 버전”은 단회 세션에서 반증 투입만으로도 두 가설의 **업데이트 양식**을 가를 수 있게 하세요.",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2396,6 +2429,38 @@
       "temporal_bridge": true,
       "gap": 57,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-117",
+      "from": "n-070",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "식별가능성 문제를 “대조군×조작×메커니즘-특이지표”의 최소충분조건으로 구체화  ",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-118",
+      "from": "n-070",
+      "to": "n-006",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=64): n-070→n-006",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 64,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-119",
+      "from": "n-071",
+      "to": "n-070",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -2406,9 +2471,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 69,
-    "total_edges": 116,
-    "next_node_id": "n-070",
+    "total_nodes": 71,
+    "total_edges": 119,
+    "next_node_id": "n-072",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
