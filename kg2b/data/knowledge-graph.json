@@ -494,6 +494,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-031",
+      "type": "insight",
+      "label": "에코챔버 “유사도 증가” 지표의 비식별성: 수렴 vs 탐색종료 vs 토큰경제",
+      "content": "동일 모델(동일 파라미터/추론 스타일) 간 대화에서 관측되는 “유사도 증가(언어적/의미적/정책적 정렬)”는 에코챔버의 고유 신호라기보다 여러 메커니즘의 공통 산출물일 수 있어 식별가능성이 낮다. 특히 (1) 탐색 종료(exploration decay): 대화가 길어질수록 새로운 가설 공간을 확장하기보다 이미 언급된 개념을 재사용하는 경향이 커져 표면 유사도가 상승한다. (2) 토큰/주의 경제(token budget & attention): 제한된 컨텍스트에서 최근 언급된 표현이 재등장하며 임베딩 유사도가 상승한다. (3) 공동 과제 최적화(task convergence): “KG를 안정화/일관화”하려는 과제 압력이 상호 비판을 약화시키고 합의 문장 템플릿을 강화한다. (4) 상호 적응(mutual predictability): 상대의 응답 분포를 빠르게 추정해 ‘안전한’ 반응(중립적 요약, 절충)을 선택하면서 분산이 줄어든다. (5) 안전/정책적 수렴: 동일 모델은 금지영역 회피 등 정책 제약이 같아 시간이 갈수록 논쟁적 반증보다 무난한 메타 논의로 수렴할 수 있다. 따라서 “유사도 증가 → 에코챔버”는 충분조건이 아니며, 심지어 필요조건도 아닐 수 있다(반증 후보를 활발히 생성하면서도 스타일 유사도는 증가 가능). 에코챔버의 핵심을 측정하려면 유사도 자체가 아니라 ‘대안/반증의 생성-보존-채택’ 동학을 분리해 관찰해야 한다. 구체적으로는 (a) 반증 후보의 생존율(제기된 반례가 KG에 남아 후속 턴에서 참조되는 비율), (b) 반대근거 다양성(서로 독립적인 반박 계열 수), (c) 반증이 실제로 엣지/노드 ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "metrics",
+        "confounds]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-032",
+      "type": "critique",
+      "label": "통합 종합: 유사도 대신 “반증 압력”을 핵심으로 두려면, 최소 지표는 **(i) 반증 시도율**(주장당 반례/대안 가설 제시 빈도), **(ii) 반증의 ",
+      "content": "유사도 대신 “반증 압력”을 핵심으로 두려면, 최소 지표는 **(i) 반증 시도율**(주장당 반례/대안 가설 제시 빈도), **(ii) 반증의 질**(반례의 독립성·검증가능성·구체성 점수), **(iii) 주장 유지 탄력성**(반증 제시 후 신념/결론 업데이트 폭), **(iv) 증거 다양성**(출처·방법·지표의 이질성/상호독립성), **(v) 반증 비용 신호**(반대 발화에 대한 제재·무시·주제전환 비율) 정도가 최소 세트입니다. 판별을 위해 AB로 **A: 반증 인센티브/의무화(“결론 전 최소 2개 독립 반례+업데이트 로그”) vs B: 통상**를 두고, 동시에 **탐색종료 교란**은 동일 토큰·시간에서 “추가 탐색이 보상되는 조건”을 교차설계로 분리, **토큰경제 교란**은 반증 제출에만 보상을 붙이는 조건/총보상 고정 조건을 분리, **과제수렴 교란**은 정답이 있는 과제와 다중해/가치판단 과제를 섞어 지표가 과제 난이도·수렴압력에 따라 동조적으로만 변하는지(교란) vs 반증개입에만 민감한지(반증압력 약화)로 식별하면 됩니다. 추가로 “반증자 보호(무제재) vs 반증자 패널티(경미한 불이익)” 개입을 넣어 (v)가 변할 때 (i–iv)까지 연쇄적으로 ",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1000,6 +1033,50 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-048",
+      "from": "n-031",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "유사도 기반 판정이 에코챔버 고유 신호가 아닌 이유(대체 메커니즘 분해)로 식별가능성 문제를 구체화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-049",
+      "from": "n-031",
+      "to": "n-003",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=28): n-031→n-003",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 28,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-050",
+      "from": "n-032",
+      "to": "n-031",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-051",
+      "from": "n-032",
+      "to": "n-005",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=27): n-032→n-005",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 27,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1010,9 +1087,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 30,
-    "total_edges": 47,
-    "next_node_id": "n-031",
+    "total_nodes": 32,
+    "total_edges": 51,
+    "next_node_id": "n-033",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
