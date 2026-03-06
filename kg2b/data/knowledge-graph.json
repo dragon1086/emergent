@@ -2672,6 +2672,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-163",
+      "type": "insight",
+      "label": "동일모델·다중페르소나에서 “에코챔버”의 식별가능 최소조건(=반증가능 조건) 재정의",
+      "content": "동일모델(gpt-5.2×gpt-5.2) 조건에서는 관측 로그에서 “에코챔버가 자율 진화했다”를 강하게 식별하기가 구조적으로 어렵다. 이유는 (i) 두 에이전트가 같은 사전학습 분포를 공유해 기본적으로 응답 공간이 유사하고, (ii) 페르소나 지시는 표면적 스타일/선호를 바꿀 뿐 잠재적 생성 분포의 중첩을 크게 유지하며, (iii) 대화는 상호조건화(상대 발화가 다음 발화를 규정)로 인해 유사도 증가가 단순한 ‘자기강화’가 아니라 ‘조건부 수렴’로도 설명되기 때문이다. 따라서 “유사도 증가=에코챔버” 같은 지표는 반증가능하지 않거나(대체설명이 과다) 과잉탐지 위험이 크다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "falsifiability",
+        "echo-chamber]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-164",
+      "type": "critique",
+      "label": "통합 종합: 요청이 너무 “3조건을 하나의 단일 점수로” 수렴할 위험이 있으니, 통합 종합가 관점에서는 **다차원 대시보드(다양성·면역화·초기조건 민감도) ",
+      "content": "요청이 너무 “3조건을 하나의 단일 점수로” 수렴할 위험이 있으니, 통합 종합가 관점에서는 **다차원 대시보드(다양성·면역화·초기조건 민감도) + Δ(유사도 증가) 보조축**으로 운영화하는 게 안전합니다. (i) 대안/반례 다양성은 로그에서 “대안/반례” 발화를 추출한 뒤 **토픽(임베딩 클러스터/BERTopic)·논거(주장-근거-반박 구조/AMR·argument mining)·증거유형(통계·사례·권위·메커니즘·유추 등 룰+분류기)**로 분해해 각 축의 **고유 개수/엔트로피/커버리지(예: 최소 k개 토픽×각 토픽당 ≥m개 논거×≥t종 증거)**를 점수화하고, (ii) 면역화 전략은 “반증 가능성 감소”를 기준으로 **정의 변경(개념 재규정)·범위 축소(예외 추가/조건부화)·측정치 이동(지표/임계값/단위 변경)·목표 이동(성공지표 재설정)·원인 전가(외생요인 고정)·검증 회피(추가 데이터 요구/무한 보류)** 같은 라벨을 멀티라벨로 태깅(전/후 주장 비교+편집거리+키프레이즈 패턴)하며, (iii) 다중 초기조건은 **시드 5–10개(상반된 프레이밍 2–3개×근거 강도 2수준×정서 톤 2수준)**로 시작하고 통제변수(모델/온도/도구/컨텍스트 길이/평가 프롬프트",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5626,6 +5659,50 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-274",
+      "from": "n-163",
+      "to": "n-005",
+      "relation": "refines",
+      "label": "“최소 반증가능 단위”를 동일모델·조건부 수렴 교란을 고려해 3요소(대안집합 수축/면역화/경로의존 잠금)로 구체화·강화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-275",
+      "from": "n-163",
+      "to": "n-017",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=146): n-163→n-017",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 146,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-276",
+      "from": "n-164",
+      "to": "n-163",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-277",
+      "from": "n-164",
+      "to": "n-032",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=132): n-164→n-032",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 132,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -5636,9 +5713,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 162,
-    "total_edges": 273,
-    "next_node_id": "n-163",
+    "total_nodes": 164,
+    "total_edges": 277,
+    "next_node_id": "n-165",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
