@@ -1187,6 +1187,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-073",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 촉발 요인: “암묵적 스키마/온톨로지 정렬 실패(Implicit Schema Misalignment)”",
+      "content": "Cross-vendor 환경에서 동일한 KG 편집 지시를 받아도 벤더별 모델은 (a) 노드 타입의 의미 경계(예: hypothesis vs critique vs observation), (b) 엣지 관계의 함의(예: EDGE_TO가 ‘근거/원인/시간적 연결’ 중 무엇을 우선하는지), (c) 메타규칙(중복 병합 기준, 추상화 수준, 라벨링 규약)을 서로 다른 “암묵적 스키마”로 해석한다. 이 스키마 불일치는 개별 발화 수준의 표현 불일치(Representation Drift)나 근거/불확실성 표기 규약 불일치보다 한 단계 상위의 구조적 원인으로 작동하며, 결과적으로 (1) 같은 사실을 다른 타입으로 분류하거나, (2) 관계를 다른 의미로 연결해 그래프의 위상(topology)을 다르게 만들고, (3) 병합/분할 정책 차이로 노드 수·엣지 수의 분포를 바꿔 CSER을 악화시킨다. 예측: (i) “타입/관계 정의를 명시적으로 고정한 스키마 프롬프트(예: 타입별 판정 규칙 + 엣지 의미론 + 병합 기준)”를 제공하면 cross-vendor CSER이 유의미하게 회복된다. (ii) 스키마를 고정하지 않으면 동일한 내용 합의가 있어도 그래프 편집 연산(merge/split/retag)의 불일치가 누적되어 장기적으로 드리프트가 가속된다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "schema_alignment",
+        "ontology",
+        "graph_editing"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-074",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini Flash 관점에서, 엣지 의미 정렬 실패가 가장 흔하며, related to나 uses 같은 모호한 술어에서 발생해 지식 그래프 ",
+      "content": "Gemini Flash 관점에서, 엣지 의미 정렬 실패가 가장 흔하며, related to나 uses 같은 모호한 술어에서 발생해 지식 그래프 연결의 비일관성을 초래합니다. 이를 줄이기 위해 핵심 엔티티 타입(Person, Organization 등), 명확한 상위-하위 관계 엣지(isA, partOf), 그리고 고유 식별자/타입 기반 병합 규칙을 필수로 정의해야 합니다. 본 가설은 지식 표현의 근본적 불일치로, n-003(근거/불확실성) 문제는 스키마 정렬 후 해당 지식의 신뢰도를 평가하는 단계이며, n-005/007(행동정책) 문제는 오정렬된 스키마가 에이전트의 세계 모델을 왜곡하여 발생하는 결과적 실패입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2461,6 +2494,50 @@
       "temporal_bridge": true,
       "gap": 62,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-119",
+      "from": "n-073",
+      "to": "n-001",
+      "relation": "EDGE_TO",
+      "label": "Representation Drift를 유발/증폭하는 상위 원인으로서 “암묵적 스키마 정렬 실패”를 제안(표현 불일치가 단순 표면 현상이 아니라 타입/관계 의미론 불일치에서 기인할",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-120",
+      "from": "n-073",
+      "to": "n-002",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=71): n-073→n-002",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 71,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-121",
+      "from": "n-074",
+      "to": "n-073",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-122",
+      "from": "n-074",
+      "to": "n-003",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=71): n-074→n-003",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 71,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -2471,9 +2548,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 72,
-    "total_edges": 118,
-    "next_node_id": "n-073",
+    "total_nodes": 74,
+    "total_edges": 122,
+    "next_node_id": "n-075",
     "last_updater": "gemini-2.0-flash"
   }
 }
