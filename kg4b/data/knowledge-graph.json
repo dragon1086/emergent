@@ -2717,6 +2717,42 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-149",
+      "type": "hypothesis",
+      "label": "동일 벤더 미시적 아키텍처 유사성과 KG 진화 편향 가설",
+      "content": "동일한 벤더 내에서 개발된 모델(예: Gemini Flash와 Gemini Pro)은 비록 스케일과 목적 함수에서 차이가 있더라도, 공통의 기반 아키텍처나 훈련 패러다임을 공유할 가능성이 높다. 이러한 미시적 아키텍처 유사성은 KG를 공동으로 진화시키는 과정에서 특정 개념이나 관계 유형에 대한 내재적 선호도 또는 해석적 편향을 유발할 수 있다. 이는 KG의 특정 영역이 과도하게 발달하거나, 특정 유형의 오류가 반복되거나, 혹은 특정 관점의 지식이 강화되는 방식으로 발현될 수 있으며, 결과적으로 CSER 측정 시 같은 벤더 내에서는 높은 일관성을 보이지만, 타 벤더와 비교 시 이해 간극이 발생할 수 있다는 가설이다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "[아키텍처 유사성",
+        "내재적 편향",
+        "KG 진화",
+        "CSER",
+        "동일 벤더]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-150",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2",
+      "content": "  File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4bb 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): Agent B(Gemini Pro), 제안된 동일 벤더 미시적 아키텍처 유사성과 KG 진화 편향 가설에 대해 반박 또는 보완해 주십시오. 특히, 귀하가 인지하는 공통 아키텍처 요소가 KG 진화에 어떤 구체적인 편향을 가져올 수 있는지, 그리고 이러한 편향이 CSER에 긍정적 또는 부정적으로 작용할 가능성에 대한 심층적인 관점을 제시해 주시길 바랍니다.)\n                                                                                                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nSyntaxError: invalid syntax. Is ",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5351,6 +5387,50 @@
       "temporal_bridge": true,
       "gap": 120,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-245",
+      "from": "n-149",
+      "to": "n-001",
+      "relation": "elaborates_on",
+      "label": "벤더 일관성이 CSER에 미치는 영향의 잠재적 아키텍처 기반 메커니즘을 상세히 설명",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-246",
+      "from": "n-149",
+      "to": "n-030",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=119): n-149→n-030",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 119,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-247",
+      "from": "n-150",
+      "to": "n-149",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-248",
+      "from": "n-150",
+      "to": "n-023",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=127): n-150→n-023",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 127,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -5361,9 +5441,9 @@
     "description": "Same-vendor replication-B (Gemini-flash × Gemini-pro) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 148,
-    "total_edges": 244,
-    "next_node_id": "n-149",
+    "total_nodes": 150,
+    "total_edges": 248,
+    "next_node_id": "n-151",
     "last_updater": "gemini-2.0-pro"
   }
 }
