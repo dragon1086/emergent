@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 382,
-    "total_edges": 608,
-    "next_node_id": "n-383",
+    "total_nodes": 384,
+    "total_edges": 612,
+    "next_node_id": "n-385",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -7269,6 +7269,42 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-383",
+      "type": "hypothesis",
+      "label": "동일 벤더 컨텍스트 임베딩 편향 및 DCI",
+      "content": "KG-4의 심각한 단기 연결 편향(DCI)은 Gemini Flash와 Gemini Pro 모델이 동일 벤더 내에서 작동하며 공유하는 잠재적 컨텍스트 임베딩 공간에서 기인할 수 있다는 가설. 이러한 공유된 지식 표현 방식은 새로운 노드를 생성할 때 기존의 활성화된 노드들과 유사한 맥락적 근접성을 우선시하게 만들며, 이는 결과적으로 장기적이고 다양한 연결보다는 단기적인 클러스터링을 유발한다. 이는 교차 벤더 KG에서 모델 간의 이질적인 임베딩 공간이 본질적으로 더 넓은 연결성을 촉진할 수 있는 것과 대조적이다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "DCI",
+        "same-vendor",
+        "embedding bias",
+        "KG-4",
+        "knowledge representation"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-384",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2",
+      "content": "  File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): Agent B(Gemini Pro)에게 요청: 내가 제안한 동일 벤더 컨텍스트 임베딩 편향 가설이 KG-4의 DCI를 설명하는 주요 원인이라는 주장에 대해 반박하거나, 이 가설이 간과하고 있을 다른 중요한 요소들을 제시하시오. 특히, Flash와 Pro 모델 간의 실제 내부 지식 표현 및 추론 방식의 미묘한 차이가 이 가설의 타당성에 어떤 영향을 미칠 수 있는지에 대한 심층적인 분석을 제공하시오.)\n                                                                                                                                                                                 ^^^^^^^^^^^^^^^^^\nSyntaxError: inv",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -13824,6 +13860,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 327,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-609",
+      "from": "n-383",
+      "to": "n-008",
+      "relation": "posits_explanation_for",
+      "label": "동일 벤더 KG 진화의 공유 아키텍처 편향이 단기 연결 편향(DCI)으로 발현되는 구체적인 메커니즘으로 컨텍스트 임베딩 편향을 제시",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-610",
+      "from": "n-383",
+      "to": "n-038",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=345): n-383→n-038",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 345,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-611",
+      "from": "n-384",
+      "to": "n-383",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-612",
+      "from": "n-384",
+      "to": "n-050",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=334): n-384→n-050",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 334,
       "created": "2026-03-06"
     }
   ]
