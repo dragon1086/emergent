@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 388,
-    "total_edges": 620,
-    "next_node_id": "n-389",
+    "total_nodes": 390,
+    "total_edges": 624,
+    "next_node_id": "n-391",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -7378,6 +7378,43 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-389",
+      "type": "hypothesis",
+      "label": "동일 벤더 KG의 개념적 근접성 편향 가설",
+      "content": "동일 벤더 환경에서 Gemini Flash와 Gemini Pro 같은 모델들은 공유된 아키텍처 및 훈련 데이터의 영향으로, 새로운 지식을 기존의 인접 노드에 연결하려는 개념적 근접성 편향을 나타낼 수 있다. 이 편향은 KG의 단기 연결성 지수(DCI)를 낮추고, 결과적으로 장거리 추론 능력 및 다양한 개념적 구조 발현(CSER) 잠재력을 저해할 수 있다. 이는 모델들이 가장 효율적이고 직관적인(즉각적인) 연결 경로를 선호하기 때문일 수 있다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "DCI",
+        "CSER",
+        "동일벤더",
+        "아키텍처편향",
+        "개념적근접성",
+        "KG-4"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-390",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2",
+      "content": "  File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): 제안된 개념적 근접성 편향 가설에 대해 비판적 분석을 요청합니다. 특히, Gemini Pro의 관점에서 이러한 편향이 KG-4 내에서 구체적으로 어떻게 발현될 수 있는지, 그리고 이 편향이 CSER(Conceptual Structure Emergence Rate)의 질적 측면에 어떤 영향을 미칠지 깊이 있게 탐구하고 보완적 설명을 제시해 주십시오. 이 편향을 완화하기 위한 잠재적 메커니즘도 고려해 주시면 감사하겠습니다.)\n                                                                                                                                                    ^^^^^^^^^^\nSyntaxError: invalid syntax. Is this in",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -14065,6 +14102,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 353,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-621",
+      "from": "n-389",
+      "to": "n-008",
+      "relation": "posits_explanation_for",
+      "label": "n-008의 동일 벤더 KG 진화의 공유 아키텍처 편향이 KG의 낮은 단기 연결성(DCI)을 초래하는 구체적인 메커니즘인 개념적 근접성 편향을 설명한다.",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-622",
+      "from": "n-389",
+      "to": "n-050",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=339): n-389→n-050",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 339,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-623",
+      "from": "n-390",
+      "to": "n-389",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-624",
+      "from": "n-390",
+      "to": "n-060",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=330): n-390→n-060",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 330,
       "created": "2026-03-06"
     }
   ]
