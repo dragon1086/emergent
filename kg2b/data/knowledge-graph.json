@@ -3266,6 +3266,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-199",
+      "type": "insight",
+      "label": "에코챔버 판별을 위한 ‘교환가능성(Exchangeability) 깨기’ 설계 필요",
+      "content": "동일 모델(gpt-5.2)·동일 프롬프트 계열·동일 대화 로그만으로 “에코챔버가 자율 진화했다”를 판별하려 하면, 관측 데이터가 사실상 교환가능(exchangeable)해져서 (i) 페르소나 차이의 효과, (ii) 단순한 언어모델의 자기일관성/수렴 성향, (iii) 대화 규칙(턴테이킹, 요약, 합의 압력)로 인한 수렴이 서로 구분되지 않는다. 즉, 에코챔버 가설의 핵심 인과적 주장(상호작용이 신념/지식 구조의 편향적 강화를 ‘유발’)을 식별하려면, “상호작용이 없었더라면”이라는 반사실을 근사하는 비교군이 필요하다. 비판적으로 보면 현재 설계는 (A,B)가 서로의 산출을 읽고 반응하는 순간, 관측 로그의 분포가 ‘모델 고유의 수렴 편향 + 대화 프로토콜’에 의해 지배될 수 있으며, 이때 나타나는 유사도 증가/반대근거 감소는 에코챔버의 증거가 아니라 단순한 공동 최적화(협력적 요약/정렬)일 수 있다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "exchangeability",
+        "experimental_design]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-200",
+      "type": "critique",
+      "label": "통합 종합: 전제 보완: “위 조작들”이 공유되지 않아 특정 항목을 고를 수 없으니, **가장 저비용·반증가능**한 최소 세트로는 (1) **비대칭 정보(프",
+      "content": "전제 보완: “위 조작들”이 공유되지 않아 특정 항목을 고를 수 없으니, **가장 저비용·반증가능**한 최소 세트로는 (1) **비대칭 정보(프라이빗 시드) 주입**, (2) **역할/목표 교차(턴 중간 스왑)**, (3) **블라인드 재매칭(상대 교체·익명화)**를 제안합니다—프로토콜은 8턴 고정(1–2턴: 각자 프라이빗 시드/근거 1개 제출, 3–4턴: 상호 질문만 허용, 5턴: 역할/목표 스왑 후 동일 주제 재주장, 6턴: 블라인드로 상대 교체 후 7–8턴: 합의안 작성), 로그 필드는 {turn_id, agent_id, prompt_version, private_seed_id, claim, evidence_citation, question_type, stance_delta(전/후), hedge_rate, lexical_alignment, contradiction_count, partner_id_hash}이며 성공/실패 지표는 **상대 교체·역할 스왑 후에도 (i) 근거 독립성 유지(프라이빗 시드 회수율↑), (ii) 정렬이 “내용 근거”가 아니라 “상대 스타일”에 과도 의존(lexical_alignment↑ & evidence_independence↓",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6916,6 +6949,50 @@
       "temporal_bridge": true,
       "gap": 193,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-338",
+      "from": "n-199",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "‘동일모델-다중페르소나’의 operational non-identifiability를 ‘교환가능성’ 관점으로 정식화하고, 이를 깨는 조작(비대칭 정보/부분 블라인드/랜덤화/독립 베",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-339",
+      "from": "n-199",
+      "to": "n-003",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=196): n-199→n-003",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 196,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-340",
+      "from": "n-200",
+      "to": "n-199",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-341",
+      "from": "n-200",
+      "to": "n-012",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=188): n-200→n-012",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 188,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -6926,9 +7003,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 198,
-    "total_edges": 337,
-    "next_node_id": "n-199",
+    "total_nodes": 200,
+    "total_edges": 341,
+    "next_node_id": "n-201",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
