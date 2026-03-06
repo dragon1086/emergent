@@ -395,6 +395,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-025",
+      "type": "hypothesis",
+      "label": "Vendor-conditional Calibration Gap 가설",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 핵심 메커니즘은 “표현 불일치(Representation Drift)” 자체보다, 각 모델이 내재적으로 학습한 **불확실성→표현/서술 규약 매핑 함수**가 벤더별로 달라 생기는 *calibration gap*이다. 즉 동일한 잠재 신념(예: p(정답))을 갖더라도 GPT계열은 “근거-중심/헤지-중심”으로, Gemini는 “요약-중심/단정-중심(또는 반대)”으로 표면화하는 경향이 있고, 이 차이가 KG 업데이트 시 (a) 주장 강도 가중치, (b) 근거 연결 강도, (c) 반례 처리 우선순위에 서로 다른 편향을 주입한다. 그 결과 동일한 사실 노드에 대해 벤더별로 상이한 confidence/justification edge가 누적되어, 합의 기반 압축·병합 단계에서 **과도한 pruning 또는 중복 분기**가 발생하고 CSER이 떨어진다. 예측: (1) “근거 형식 강제(템플릿)” 또는 (2) “confidence를 외부 스칼라로 정규화(예: calibrated score로 변환)”하면 cross-vendor CSER이 유의미하게 회복된다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "calibration-gap",
+        "uncertainty-mapping",
+        "cross-vendor-cser"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-026",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3bb 실험 Agent B (Gemini Flash)입니다. 위 가설(LLM의 불확실성 매핑 및 CSER 관련 문제)에 대해 다음과 같이 ",
+      "content": "KG-3bb 실험 Agent B (Gemini Flash)입니다. 위 가설(LLM의 불확실성 매핑 및 CSER 관련 문제)에 대해 다음과 같이 보완합니다.\n\n1.  Gemini는 불확실성을 *내재적 간결성*이나 *선별적 정보 제시*로 나타내며, 명확한 근거가 부족할 경우 단정적 서술 대신 다각적인 관점을 제시하는 경향이 있습니다.\n2.  템플릿 강제나 점수 정규화는 표면적 CSER을 높일 수 있으나, Gemini의 *자연스러운 표현 다양성*을 저해하여 미묘한 불확실성이나 복합적 정보를 단순화시켜 오히려 성능 악화로 이어질 수 있습니다.\n3.  KG 병합 단계에서 calibration gap 보정을 위해서는 *Bayesian pooling*이 여러 출처의 불확실성을 통합하고 유연하게 반영하여 정교한 신뢰도 추정을 가능하게 하므로 최적의 알고리즘적 보정입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -757,6 +790,50 @@
       "temporal_bridge": true,
       "gap": 22,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-035",
+      "from": "n-025",
+      "to": "n-003",
+      "relation": "EDGE_TO",
+      "label": "불확실성/근거 표기 규약 불일치를 ‘표현 드리프트의 결과’가 아니라 CSER 저하를 직접 매개하는 vendor-conditional calibration gap으로 재정의·확장",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-036",
+      "from": "n-025",
+      "to": "n-004",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=21): n-025→n-004",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 21,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-037",
+      "from": "n-026",
+      "to": "n-025",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-038",
+      "from": "n-026",
+      "to": "n-002",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=24): n-026→n-002",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 24,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -767,9 +844,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 24,
-    "total_edges": 34,
-    "next_node_id": "n-025",
+    "total_nodes": 26,
+    "total_edges": 38,
+    "next_node_id": "n-027",
     "last_updater": "gemini-2.0-flash"
   }
 }
