@@ -956,6 +956,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-059",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 운영적 원인: “스키마/온톨로지 정렬 실패(Ontology & Schema Misalignment)”",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 핵심 메커니즘은 단순한 표현 불일치(Representation Drift)나 정책 불일치만이 아니라, **KG 편집·평가에 사용되는 스키마(노드 타입, 엣지 타입, 관계명, 태그 체계, 증거/불확실성 필드)의 암묵적 온톨로지가 벤더마다 다르게 내재화**되어 발생하는 “정렬 실패”이다. 즉 동일한 자연어 지시를 받아도 (a) 어떤 단위를 ‘노드’로 승격할지(개념 vs 주장 vs 근거), (b) 어떤 연결을 ‘EDGE_TO’로 볼지(인과/비판/시간브리지의 경계), (c) 관계 라벨의 의미론적 범위(critique vs critiques, temporal_bridge의 용도), (d) 태그를 압축/확장하는 방식이 달라져 **구조적 동형성(isomorphism)이 깨지고** 결과적으로 CSER(일관된 자기편집/자기평가)이 떨어진다. 예측: 1) 동일 대화에서도 벤더가 다르면 노드 타입 분포와 엣지 타입 엔트로피가 유의하게 달라진다. 2) “스키마 앵커(정의/예시/금지 규칙)”를 초기에 고정하고, 관계명-의미 매핑 테이블을 제공하면 cross-vendor CSER이 회복된다. 3) 스키마 정렬이 되면 representation drift가 남아도 편집 충돌률이 감소한다(정렬 실패가 drift를 증폭시키는 상위 원인).",
+      "source": "gpt-5.2",
+      "tags": [
+        "[schema-alignment",
+        "ontology-mismatch",
+        "cross-vendor-cser]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-060",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3bb 실험에서 데이터 일관성 문제는 명확하며, 이를 해결하기 위한 근본 원인 분석이 중요합니다. Flash 관점에서 (1) 스키마/온톨로",
+      "content": "KG-3bb 실험에서 데이터 일관성 문제는 명확하며, 이를 해결하기 위한 근본 원인 분석이 중요합니다. Flash 관점에서 (1) 스키마/온톨로지 정렬 실패가 불확실성/근거 규약 불일치의 상위 원인입니다; 구조적 불일치가 하위 데이터 불확실성을 유발합니다. (2) Cross-vendor 환경에서는 회사X-[생산]->제품A를 한쪽은 (회사:제조사)-[생산]->(제품:아이템)으로, 다른 쪽은 (기업:공급자)-[생품]->(상품:물품)처럼 노드/엣지 타입과 라벨을 혼재하여 사용하곤 합니다. (3) 정렬을 위한 최소 스키마 앵커로 모든 노드/엣지에 id, type, label 필수 필드를 정의하고, is_related_to 같은 모호한 엣지 타입은 금지하며, 구체적인 type 예시(Person, Organization, produces, part_of)를 2~3개 제시하는 것이 핵심입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1970,6 +2003,38 @@
       "temporal_bridge": true,
       "gap": 54,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-095",
+      "from": "n-059",
+      "to": "n-003",
+      "relation": "EDGE_TO",
+      "label": "불확실성/근거 표기 규약 불일치(n-003)를 “스키마/온톨로지 정렬 실패”의 하위 증상으로 포섭(상위-하위 원인 연결)",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-096",
+      "from": "n-059",
+      "to": "n-007",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=52): n-059→n-007",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 52,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-097",
+      "from": "n-060",
+      "to": "n-059",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1980,9 +2045,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 58,
-    "total_edges": 94,
-    "next_node_id": "n-059",
+    "total_nodes": 60,
+    "total_edges": 97,
+    "next_node_id": "n-061",
     "last_updater": "gemini-2.0-flash"
   }
 }
