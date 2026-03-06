@@ -1187,6 +1187,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-073",
+      "type": "insight",
+      "label": "동일모델-다중페르소나에서 ‘에코챔버’와 ‘공유사전/공유편향’의 분리 불가능성 경고",
+      "content": "동일 모델(gpt-5.2) 두 에이전트가 서로 다른 페르소나를 갖더라도, 관측되는 “합의/수렴/유사도 증가”는 (i) 상호작용으로 생긴 에코챔버 효과라기보다 (ii) 동일 파라미터가 내재한 공통 priors(선호하는 설명틀, 안전한 결론, 전형적 반례 패턴) 및 공통 생성 제약(형식적 정리 습관, 헤지/정중화, 균형잡기)의 산물일 수 있다. 이때 로그 기반 지표(텍스트 유사도, 주제 중첩, 상호 인용, KG 엣지 밀도 증가 등)는 “상호 강화로 인한 편향 증폭”과 “공유 분포에서의 독립 샘플이 우연히 비슷해진 것”을 식별하지 못한다. 반증가능성을 확보하려면 최소한 (a) 상호작용 유무에 따른 차이를 동일한 생성 조건에서 비교하는 대조군(독립 생성 후 사후 결합 vs 상호 대화 후 결합), (b) 페르소나 교차/스왑 및 블라인드 처리(누가 말했는지 숨기고 통합)가 결과에 미치는 영향, (c) “반증 후보 생성률/대안 가설 다양도/반대 근거의 질” 같은 비대칭 지표(합의가 아니라 이견 생산 능력)를 포함해야 한다. 그렇지 않으면 에코챔버 가설이 관측 가능한 현상(수렴)과 동치가 되어, 상호작용적 인과(강화 루프)를 주장할 근거가 부족해진다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "confounding",
+        "same-model]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-074",
+      "type": "critique",
+      "label": "통합 종합: 요청이 과도하게 “대칭 통제(동일 프롬프트/길이)”에 집착해 처치군의 핵심 메커니즘(상호작용으로 인한 탐색 확장)을 깎을 수 있으니, **동일 ",
+      "content": "요청이 과도하게 “대칭 통제(동일 프롬프트/길이)”에 집착해 처치군의 핵심 메커니즘(상호작용으로 인한 탐색 확장)을 깎을 수 있으니, **동일 길이 예산은 유지하되 토큰을 ‘개별 탐색’과 ‘상호 교차검증’으로 미리 배분**하는 2×2 설계를 권합니다(대조군: A,B가 각각 탐색→사후 결합 / 처치군: A,B가 교대 발화 k턴으로 탐색·반증→결합; 추가로 “상호작용 유무×결합자 고정/스왑”을 두어 결합 단계 편향을 분리). 비대칭 지표는 로그에서 근사 계산 가능하게 **(i) 반증 후보 생성률=발화당 ‘반례/실패조건/반증/단, 그러나’ 패턴+명시적 테스트 제안 수**, **(ii) 대안가설 다양도=‘가설/가능성/원인’ 문장 임베딩 클러스터 수 또는 토픽 엔트로피**, **(iii) 이견의 질=이견 문장 중 근거(출처/수식/실험/데이터) 동반 비율×구체성(숫자·조건·절차 토큰 비중)**, **(iv) 자기수정 강도=후속 턴에서 이전 주장 철회/수정(“정정/재고/오류”)의 원인-결과 연결 포함 비율**, **(v) 탐색-활용 비대칭=새 엔티티/용어 도입률 대비 최종안 재사용률**로 두고, 모두 “턴/토큰 정규화”로 비교하면 됩니다. 페르소나 스왑/블라인드는 **역",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2473,6 +2506,38 @@
       "temporal_bridge": true,
       "gap": 61,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-120",
+      "from": "n-073",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "n-007의 ‘운영적 비식별성’ 주장에 대해, 수렴 신호가 공유 priors/생성 제약으로도 설명되는 구체 메커니즘과 필요한 대조군(독립 vs 상호작용, 스왑/블라인드, 이견지표)",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-121",
+      "from": "n-074",
+      "to": "n-073",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-122",
+      "from": "n-074",
+      "to": "n-006",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=68): n-074→n-006",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 68,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -2483,9 +2548,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 72,
-    "total_edges": 119,
-    "next_node_id": "n-073",
+    "total_nodes": 74,
+    "total_edges": 122,
+    "next_node_id": "n-075",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
