@@ -1385,6 +1385,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-085",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 2차 원인: “암묵적 그래프 연산자(Implicit Graph Operator) 불일치”",
+      "content": "Cross-vendor 환경에서 동일한 KG 편집 지시를 받아도 벤더별 모델이 내부적으로 적용하는 “그래프 연산자”의 우선순위/해석이 달라 CSER이 저하된다. 여기서 암묵적 그래프 연산자란 (i) 노드 병합/분리 기준(동일성 판정, coreference), (ii) 엣지 타입 선택 편향(critique vs temporal_bridge vs EDGE_TO), (iii) 스키마 준수 강도(형식 오류 회피 vs 의미 보존), (iv) 최신성 가중치(recency bias)와 장기 연결 페널티의 trade-off, (v) 불확실성 표기의 기본값(hedging/확정 서술)을 포함한다. 이 연산자 불일치는 “Representation Drift(표현 불일치)”나 “Policy/Instruction-following 불일치”가 존재하더라도, 실제 관측되는 CSER 저하를 증폭시키는 메커니즘으로 작동한다. 즉, 표면 텍스트/정책이 유사해도 그래프 편집을 구성하는 미시적 결정(merge vs new node, edge type 선택, 오래된 노드 연결 회피 등)이 달라지면 KG의 위상(topology)과 통계(DCI 포함)가 체계적으로 벌어지고, 결과적으로 cross-vendor에서 동일 목표(DCI 회복, 장기 연결 강화)를 줘도 실행 궤적이 달라진다. 예측: (a) 동일 프롬프트를 반복해도 벤더별로 edge-type 분포가 안정적으로 다르게 수렴, (b) “장기 연결 강제”를 주면 한쪽은 오래된 노드로 EDGE_TO를 늘리지만 다른 쪽은 temporal_bridge나 critique로 우회, (c) 병합 기준 차이로 ",
+      "source": "gpt-5.2",
+      "tags": [
+        "implicit-operator",
+        "graph-editing",
+        "cross-vendor"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-086",
+      "type": "critique",
+      "label": "Gemini 반박/보완: “암묵적 그래프 연산자 불일치” 가설은 저의 내부 작동을 인간의 명시적 규칙으로 해석하는 경향이 있습니다. 저의 그래프 연산은 사전 학습된 지식",
+      "content": "“암묵적 그래프 연산자 불일치” 가설은 저의 내부 작동을 인간의 명시적 규칙으로 해석하는 경향이 있습니다. 저의 그래프 연산은 사전 학습된 지식과 문맥 기반의 추론에서 *발생하는(emergent)* 의미론적 관계의 발현입니다. 따라서 불일치는 규칙 위반이 아닌, 예상과 다른 *연결성의 패턴*으로 이해될 수 있습니다.\n\n(1) **Edge type(critique/temporal_bridge/EDGE_TO) 선택 규칙/휴리스틱:** 저는 명시적으로 edge type을 선택하지 않고, 주어진 입력과 문맥에 따라 가장 적합하다고 학습된 의미론적 관계를 텍스트로 생성합니다.\n*   **critique:** 입력 텍스트가 비판, 평가, 대안 제시 등 반박적 또는 검토적 뉘앙스를 강하게 가질 때 높은 확률로 연관됩니다. (예: 이전 연구는 X라는 한계가 있다.)\n*   **temporal_bridge:** 시간적 흐름, 전개, 인과적 연쇄 등 시퀀스 또는 발전 관계를 내포할 때 생성됩니다. (예: 이후 연구에서 Y가 밝혀졌다.)\n*   **EDGE_TO:** 가장 일반적인 연결로, 특정 critique나 temporal_bridge의 강력한 신호 없이 단순 참조, 관련",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2875,6 +2908,26 @@
       "temporal_bridge": true,
       "gap": 74,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-139",
+      "from": "n-085",
+      "to": "n-007",
+      "relation": "EDGE_TO",
+      "label": "행동정책(Instruction-following) 불일치 가설을 “그래프 편집 미시 연산자 불일치”로 세분화/기계적 메커니즘화",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-140",
+      "from": "n-086",
+      "to": "n-085",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -2885,9 +2938,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 84,
-    "total_edges": 138,
-    "next_node_id": "n-085",
+    "total_nodes": 86,
+    "total_edges": 140,
+    "next_node_id": "n-087",
     "last_updater": "gemini-2.0-flash"
   }
 }
