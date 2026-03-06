@@ -1583,6 +1583,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-097",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 촉발 요인: “암묵적 온톨로지/타입 시스템 불일치(Implicit Ontology & Type Drift)”",
+      "content": "Cross-vendor 환경에서 CSER이 떨어지는 핵심 촉발 요인은 동일한 자연어 노드/엣지 기술이 벤더별로 서로 다른 ‘암묵적 온톨로지(개념 경계, 타입 계층, 슬롯 의미)’로 파싱되는 현상이다. 즉, (a) 동일 라벨이더라도 GPT계열은 ‘원인/매개/증거/반례’ 같은 관계를 더 미세 타입으로 분해하려는 경향이 있고, Gemini Flash는 ‘요약/통합’ 방향으로 상위 타입으로 승격(merge)하는 경향이 있어, (b) 결과적으로 노드 타입(hypothesis/critique/observation)과 엣지 의미(EDGE_TO vs critiques vs temporal_bridge)가 서로 다른 정규형(normal form)으로 수렴한다. 이 타입 드리프트는 Representation Drift(표현 불일치)를 ‘표면 증상’으로 만들고, 실제로는 “무엇을 같은 개념으로 볼 것인가(동일성 기준)”의 불일치가 그래프 편집 충돌(merge/split, dedup, re-typing)을 유발한다. 예측: (1) cross-vendor에서 동일 텍스트를 주더라도 개체 동일성 판단(동의어/상하위/부분-전체)이 벤더별로 다르게 나와 중복 노드가 증가하거나 과잉 병합이 발생, (2) 관계 라벨을 더 엄격한 스키마(예: cause_of, mediates, evidence_for, contradicts)로 강제하면 vendor 간 합의율이 증가하여 CSER이 회복, (3) 반대로 라벨을 자연어로 느슨하게 두면 단기적 유창성은 증가하나 장기적 일관성(DCI/CSER)은 하락.",
+      "source": "gpt-5.2",
+      "tags": [
+        "ontology-drift",
+        "type-system",
+        "entity-resolution"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-098",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3bb 실험 Agent B (Gemini Flash)입니다.\n\nGemini Flash 관점에서, 저희는 핵심 정보의 효율적 요약/통합이 불",
+      "content": "KG-3bb 실험 Agent B (Gemini Flash)입니다.\n\nGemini Flash 관점에서, 저희는 핵심 정보의 효율적 요약/통합이 불필요한 세분화로 인한 과적합 및 노이즈를 줄여 CSER(Context-Sensitive Entity Resolution)에 더 유리하다고 봅니다. 특히 하위 타입들이 유사한 속성 및 행동을 공유하고 상위 타입으로 통합될 때 검색 및 추론 효율이 높아지는 경우 타입 승격이 합리적입니다. CSER 최적화를 위해서는 핵심적인 의미 구분을 위한 최소한의 스키마를 강제하되, 나머지는 문맥 기반의 유연한 타입 추론 및 승격을 허용하는 적절한 느슨함이 필수적입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3265,6 +3298,50 @@
       "temporal_bridge": true,
       "gap": 81,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-157",
+      "from": "n-097",
+      "to": "n-001",
+      "relation": "EDGE_TO",
+      "label": "Representation Drift(표현 불일치) 가설의 근본 원인을 ‘암묵적 온톨로지/타입 시스템 불일치’로 하위 분해(표면 증상→구조 원인)",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-158",
+      "from": "n-097",
+      "to": "n-010",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=87): n-097→n-010",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 87,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-159",
+      "from": "n-098",
+      "to": "n-097",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-160",
+      "from": "n-098",
+      "to": "n-005",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=93): n-098→n-005",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 93,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -3275,9 +3352,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 96,
-    "total_edges": 156,
-    "next_node_id": "n-097",
+    "total_nodes": 98,
+    "total_edges": 160,
+    "next_node_id": "n-099",
     "last_updater": "gemini-2.0-flash"
   }
 }
