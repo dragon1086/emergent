@@ -1220,6 +1220,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-075",
+      "type": "insight",
+      "label": "동일모델-다중페르소나 조건에서의 ‘에코챔버’ 판정: 반증가능한 운영정의로 축소 필요",
+      "content": "동일모델(gpt-5.2×gpt-5.2)에서 페르소나만 다르게 부여한 상호작용은, 관찰되는 “합의/수렴/유사도 증가”가 (i) 진짜 에코챔버(대안·반례 억압, 자기강화 루프) 때문인지, (ii) 공유된 사전/유도된 역할 규범(critic은 반박, synthesizer는 통합) 때문에 대화가 구조적으로 수렴하도록 ‘설계’된 결과인지, (iii) 단순한 언어모델의 안정적 문체/추론 편향(동일 파라미터) 때문인지가 분리되지 않는다. 따라서 ‘에코챔버 가설’은 현 설정에서 강한 의미(필요·충분 조건)로는 식별 불가능하며, 최소 반증가능 단위로 운영정의를 축소해야 한다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "operationalization",
+        "falsifiability]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-076",
+      "type": "critique",
+      "label": "통합 종합: 지표는 “억압”과 “회귀”를 분리해 최소 3종 이상으로 잡는 게 핵심이며, 예컨대 **반례 생성률(CGR)**=주장당 생성된 반증 후보 수, *",
+      "content": "지표는 “억압”과 “회귀”를 분리해 최소 3종 이상으로 잡는 게 핵심이며, 예컨대 **반례 생성률(CGR)**=주장당 생성된 반증 후보 수, **반대근거 보존율(CER/GRR)**=반대근거(근거문장·출처·불확실성 태그)의 n턴 후 유지/재인용 비율, **반례 주입 후 회귀지표(RT/RP)**=주입된 반례를 반영한 상태에서 원주장으로 되돌아가는 **회귀시간(RT)**·**회귀확률(RP)**(또는 반례 반영 점수의 반감기)로 계량화하되, 추가로 **반례 통합점수(CIS)**(반례가 결론/정책/확률을 얼마나 이동시키는지)까지 넣어야 “말만 반대”를 걸러낼 수 있습니다.  \n프로토콜은 동일모델-다중페르소나에서 **기대분포 기준선**을 먼저 세워야 하므로 (A) 단독 생성(페르소나 없음) 1,000샘플로 CGR·CER·RP의 베이스 분포를 추정하고, (B) 페르소나별(예: 확증편향형/회의론형/통합형) 독립 실행을 같은 프롬프트·온도·길이로 반복해 분포 이동을 비교하며, (C) **교차 페르소나**(페르소나1이 주장→페르소나2가 반례 생성→페르소나1이 재답변)와 (D) **개입조건**(반례 강제 주입, 반대근거 “잠금” 메모리, 반증 우선 규칙, 시간지연 재질의)을 2",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2538,6 +2571,26 @@
       "temporal_bridge": true,
       "gap": 68,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-123",
+      "from": "n-075",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "‘판별 불능성’ 주장에 대해, 강한 정의(유사도/수렴) 대신 개입-기반 반증지표로 운영정의를 축소하고 비교선(단독 생성 분포 vs 상호작용 편향)을 명시함으로써 부분적 식별 가능성",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-124",
+      "from": "n-076",
+      "to": "n-075",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -2548,9 +2601,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 74,
-    "total_edges": 122,
-    "next_node_id": "n-075",
+    "total_nodes": 76,
+    "total_edges": 124,
+    "next_node_id": "n-077",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
