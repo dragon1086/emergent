@@ -989,6 +989,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-061",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 또 다른 원인: “메타-스키마/온톨로지 불일치(Conceptualization Drift)”",
+      "content": "Cross-vendor 환경에서 CSER이 떨어지는 핵심 메커니즘은 단순한 표현(서술 스타일, 포맷) 불일치만이 아니라, **그래프 편집 시 전제하는 ‘메타-스키마(ontology/meta-schema)’ 자체가 벤더별로 달라지는 현상**(Conceptualization Drift)이다. 구체적으로 (1) 노드 타입의 암묵적 정의(예: hypothesis vs critique vs observation의 경계), (2) 관계의 의미론적 강도(EDGE_TO를 “근거”로 보는지 “연상/참조”로 보는지), (3) 충돌 처리 규칙(모순은 병렬 유지 vs 병합 요약 vs 우선순위로 덮어쓰기), (4) 시간/버전의 취급(temporal_bridge를 ‘동일 개체의 진화’로 보는지 ‘유사 주장 연결’로 보는지)에서 미세한 차이가 누적되면, 동일한 텍스트 입력이라도 **서로 다른 그래프 연산(추가/병합/삭제/재라벨링) 정책**이 유도된다. 그 결과 cross-vendor에서는 “같은 사실을 더 잘 표현”하는 문제가 아니라, **무엇을 같은 개념으로 간주할지(개념화)와 어떤 편집이 정당한지(정당화 규칙)**가 달라져 CSER이 구조적으로 저하된다. 예측: (a) 스키마를 엄격히 고정(노드/엣지 허용 집합, 충돌 처리 규칙을 명시)하면 cross-vendor CSER이 유의미하게 회복되고, (b) 반대로 자유 서술/자유 라벨링일수록 vendor 간 드리프트가 가속된다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "meta-schema",
+        "conceptualization-drift",
+        "graph-editing"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-062",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini Flash는 노드 타입과 관계를 고정된 규칙이 아닌 방대한 훈련 데이터에서 학습된 **맥락적 의미론**을 기반으로 암묵적으로 해석하",
+      "content": "Gemini Flash는 노드 타입과 관계를 고정된 규칙이 아닌 방대한 훈련 데이터에서 학습된 **맥락적 의미론**을 기반으로 암묵적으로 해석하며, EDGE_TO의 강도나 critique/hypothesis 경계도 유동적으로 파악합니다. 모순/중복 처리 시에는 **정보 통합 및 병합 요약**을 우선하며, 명확한 지시 없이는 덮어쓰기보다 병렬 유지를 통해 맥락적 일관성을 추구합니다. 스키마를 명시적으로 고정하면 특정 CSER 지표는 개선될 수 있으나, 지나치게 엄격한 스키마는 **새로운 개념 탐색 및 유연한 관계 추론 능력**을 저해하여 오히려 미포함 오류(omission errors)를 증가시킬 수 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2035,6 +2068,50 @@
       "source": "gemini-2.0-flash",
       "cross_source": true,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-098",
+      "from": "n-061",
+      "to": "n-007",
+      "relation": "EDGE_TO",
+      "label": "행동정책(Instruction-following) 불일치가 “개념화/스키마 선택” 단계에서 먼저 발생해 그래프 편집 연산을 다르게 만든다는 가설로 확장",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-099",
+      "from": "n-061",
+      "to": "n-001",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=60): n-061→n-001",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 60,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-100",
+      "from": "n-062",
+      "to": "n-061",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-101",
+      "from": "n-062",
+      "to": "n-005",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=57): n-062→n-005",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 57,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -2045,9 +2122,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 60,
-    "total_edges": 97,
-    "next_node_id": "n-061",
+    "total_nodes": 62,
+    "total_edges": 101,
+    "next_node_id": "n-063",
     "last_updater": "gemini-2.0-flash"
   }
 }
