@@ -1732,6 +1732,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-106",
+      "type": "insight",
+      "label": "동일모델 에코챔버 검증의 ‘조작 체크(manipulation check)’ 부재",
+      "content": "동일모델(gpt-5.2×gpt-5.2)에서 에코챔버를 주장하려면, (1) 상호작용이 실제로 “의견 다양성/탐색”을 줄이고 “동질적 신념 강화”를 늘리는 방향으로 작동했다는 조작 체크가 필요하다. 현재 설계는 결과(수렴/유사 응답)를 보면 곧장 에코챔버로 해석하기 쉬운데, 동일모델 조건에서는 자연 수렴(공유 파라미터·공유 학습데이터·공유 RLHF 규범)만으로도 높은 합치가 구조적으로 발생한다. 따라서 ‘에코챔버 메커니즘’이 켜졌는지(예: 상대 발화가 내 업데이트/계획을 실제로 편향시키는지), 그리고 그 편향이 단순 합의 도출이 아니라 “반증 탐색의 체계적 약화”로 나타나는지(예: 반대 증거 생성률·대안 가설 유지율·불확실성 표현의 다양성 감소)를 별도로 측정해야 한다. 조작 체크 없는 상태에서 관측되는 수렴은 식별가능성 문제(identifiability)로 귀결되며, ‘에코챔버’는 해석적 레이블에 그친다. 이 노드는 ‘에코챔버=수렴’ 등가를 깨고, 최소한 (a) 상호의존성(상대 발화가 내 분포를 바꾸는 정도), (b) 폐쇄성(새로운 반례/외부 근거 유입 차단), (c) 강화성(동일 주장 반복·확신 상승)이라는 3요소를 조작/측정 가능한 지표로 분해해 검증하자는 비판적 요구다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "manipulation-check",
+        "measurement]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-107",
+      "type": "critique",
+      "label": "통합 종합: 3문장 제한이면 “프로토콜에 조작 체크를 넣자”는 요청은 타당하지만, **동일모델 조건에선 조작(상호작용/페르소나/외부정보)이 실제로 ‘모델 내",
+      "content": "3문장 제한이면 “프로토콜에 조작 체크를 넣자”는 요청은 타당하지만, **동일모델 조건에선 조작(상호작용/페르소나/외부정보)이 실제로 ‘모델 내부’가 아니라 ‘입력·맥락’에만 작동**하므로 체크도 출력 기반 지표 + 최소한의 과제(ground truth 포함)로 설계해야 하고, 정량지표는 **반증 탐색률(FSR=반박/한계/대안 언급 문장 비율), 대안가설 유지율(AHR=초기 대안이 최종에서도 남는 비율), 확신도 캘리브레이션 변화(ΔECE 또는 정답률 대비 자기확신 오차), 외부근거 호출 빈도(ERF=출처/링크/인용 횟수)** 중 2개 이상을 고정 정의로 쓰면 됩니다. 아래는 (i)상호작용, (ii)페르소나 반대/동조, (iii)외부정보 주입의 2×2×2 조합에서 **기대 패턴(↑/↓/≈)** 입니다.\n\n| 상호작용 | 페르소나 | 외부정보 | FSR(반증탐색) | AHR(대안유지) | ΔECE(캘리브레이션) | ERF(외부근거) |\n|---|---|---|---|---|---|---|\n| 무 | 동조 | 무 | ↓ | ↓ | 악화(↑) | ↓ |\n| 무 | 동조 | 유 | ≈/↓ | ↓ | 개선(↓) | ↑ |\n| 무 | 반대 | 무 | ↑ | ↑ | ≈/",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3674,6 +3707,26 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-180",
+      "from": "n-106",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "식별가능성 문제를 “조작 체크 부재”로 구체화: 수렴을 에코챔버로 해석하기 전에 메커니즘-수준 지표(상호의존성/폐쇄성/강화성)를 측정해야 함",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-181",
+      "from": "n-107",
+      "to": "n-106",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -3684,9 +3737,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 105,
-    "total_edges": 179,
-    "next_node_id": "n-106",
+    "total_nodes": 107,
+    "total_edges": 181,
+    "next_node_id": "n-108",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
