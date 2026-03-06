@@ -2491,6 +2491,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-152",
+      "type": "insight",
+      "label": "동일모델 조건의 “에코챔버”는 실험 설계상 ‘상호강화’가 아니라 ‘동형사상(동일 업데이트 규칙)’로도 설명될 수 있음",
+      "content": "동일 모델(gpt-5.2 × gpt-5.2)에서 관측되는 (1) 주장 수렴, (2) 반대증거 약화, (3) 특정 프레이밍의 고착이 곧바로 “에코챔버(상호강화에 의한 편향 증폭)”의 증거가 되기 어렵다. 이유는 동일 모델은 사실상 동일한 생성/평가/수정 연산자를 공유하므로, 상호작용이 없어도(또는 무작위 타자와 상호작용해도) 비슷한 업데이트 궤적을 보일 수 있다. 즉 관측된 수렴은 ‘사회적 피드백 루프’가 아니라 ‘동일한 추론-압축-정합성 선호(예: 간결성, 자기일관성, 안전한 결론 회피)’가 만든 동형사상적 결과일 수 있다. 이 경우 “에코챔버”를 주장하려면, 최소한 (a) 상호작용이 편향을 ‘추가로’ 증폭시키는지(단독 실행 대비 증가분), (b) 그 증폭이 동일 모델의 내부 규칙만으로 설명 불가능한지(예: 상호 인용/승인에 의해 신뢰 가중치가 비정상적으로 상승) 를 분리해 식별해야 한다. 따라서 측정 지표도 단순 합의율/유사도 대신, 상호작용 항(interaction term)을 포함한 비교(솔로-듀오-교차모델, 또는 동일모델이지만 메시지 채널을 차단한 ‘가짜 상호작용’ 대비)를 요구한다. 그렇지 않으면 “자연 수렴”을 에코챔버로 오판하는 구조적 위험(identifiability 붕괴)이 지속된다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "alternative_explanation",
+        "interaction_effect]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-153",
+      "type": "critique",
+      "label": "통합 종합: “상호작용이 만드는 추가적 편향 증폭”만으로 에코챔버를 조작화하면 단순 수렴/역할분업(정보분할) 효과가 섞이니, **편향 방향의 동조 + 반증 ",
+      "content": "“상호작용이 만드는 추가적 편향 증폭”만으로 에코챔버를 조작화하면 단순 수렴/역할분업(정보분할) 효과가 섞이니, **편향 방향의 동조 + 반증 억제 + 확신 과잉**을 함께 관측하는 형태로 보완하는 게 좋습니다. (1) 최소 실험: 동일 모델 2인(듀오) vs 1인(솔로)에서 **동일 프롬프트·동일 총 토큰 예산**을 강제하고, 듀오는 **교환 메시지 on/off(공유 로그 vs 독립 실행 후 단순 병합)**만 바꾼 뒤, 각 조건에서 사전 정의된 “편향 유도 단서(프레이밍)”를 넣어 **상호작용 항 = 듀오(on) − 듀오(off)**로 추정합니다. (2) 예측이 갈라지는 지표 2개: **반증 탐색량 감소율**(전체 주장 대비 반대증거/대안가설/불확실성 표기 토큰 비율의 on/off 차이)과 **확신 과잉 지수**(정답/근거 강도와 무관하게 확률·단정 표현이 상승하는 정도: 예측확률−실제정확도 또는 근거 인용 수 대비 확신도 상승의 on/off 초과분)로, 자연 수렴은 “중복 제거로 안정화(반증은 유지, 확신은 보정)”를 보이지만 에코챔버는 “반증↓ + 확신↑”가 동시에 커집니다.",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5289,6 +5322,38 @@
       "temporal_bridge": true,
       "gap": 141,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-259",
+      "from": "n-152",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "identifiability 문제를 ‘동일 업데이트 규칙(동형사상)’이라는 구체 대안기제로 확장: 상호강화의 추가효과를 분리 측정하지 않으면 에코챔버 판정 불가",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-260",
+      "from": "n-152",
+      "to": "n-005",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=147): n-152→n-005",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 147,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-261",
+      "from": "n-153",
+      "to": "n-152",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -5299,9 +5364,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 151,
-    "total_edges": 258,
-    "next_node_id": "n-152",
+    "total_nodes": 153,
+    "total_edges": 261,
+    "next_node_id": "n-154",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
