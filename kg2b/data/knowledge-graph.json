@@ -2771,6 +2771,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-169",
+      "type": "insight",
+      "label": "로그 기반 에코챔버 판정의 “메트릭-구현 의존성” 반증 포인트",
+      "content": "동일 모델·다중 페르소나 상호작용에서 ‘에코챔버(유사도/수렴/동조 증가)’를 로그로 판정할 때, 관측된 수렴은 (i) 실제 신념/가설 공간의 수렴이 아니라 (ii) 평가·요약·정렬(assistant-style) 같은 출력 레이어의 수렴일 수 있다. 즉, 에코챔버 지표 Δ가 “내용 의미론적 합의”가 아니라 “표현 양식/서술 규범/대화 관리 전략”의 동형성에 민감하면, 같은 로그에서도 메트릭 선택·전처리·임베딩 모델·클러스터링 파라미터에 따라 Δ의 부호(수렴/발산)가 바뀌는 ‘메트릭-구현 의존성’이 발생한다. 이는 식별가능성 문제의 강한 반증 후보로, 다음과 같은 테스트로 드러난다: (1) 내용 의미를 보존하는 패러프레이즈/포맷 변환(불릿↔서술, 한국어↔영어, 논문체↔구어체) 후 Δ가 크게 변하면, Δ는 ‘에코챔버’가 아니라 ‘표현 수렴’을 측정한다. (2) 동일 로그에 대해 서로 다른 의미표현(BoW, SBERT류, LLM-judge, 토픽모델, 논증 그래프)로 Δ를 계산했을 때 순위/추세가 불안정하면, “자율 진화” 주장(시간에 따른 구조적 강화)은 관측자-메트릭에 의해 생성된 인공물일 가능성이 높다. (3) 반증 후보(대안 가설/반례) 도입에도 Δ가 줄지 않고 오히려 커진다면, 이는 ‘합의’가 아니라 ‘갈등의 표준화(프로토콜화)’일 수 있다. 결론적으로, 로그 기반 에코챔버 판정은 먼저 “표현-불변(invariant) 의미 지표”와 “메트릭 다중성에 대한 강건성(robustness) 조건”을 충족해야 하며, 그렇지 않으면 같은 모델끼리의 상호작용에서 관측되는 수렴은 에코챔버의 필요조건도, 충분조건도 아니다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "metric_robustness",
+        "confounding]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-170",
+      "type": "critique",
+      "label": "통합 종합: (a) “표현-불변”에 더 가까운 후보는 **(1) 인과·책임 귀속 그래프의 구조적 수렴도**(노드/엣지 유형·방향·중심성 분포의 거리), **",
+      "content": "(a) “표현-불변”에 더 가까운 후보는 **(1) 인과·책임 귀속 그래프의 구조적 수렴도**(노드/엣지 유형·방향·중심성 분포의 거리), **(2) 반증 후보 다양성/대립가설 커버리지**(주장→가능한 반례·대안기제의 최소 커버 집합 크기·엔트로피), **(3) 논증 행위-전이(attack/support/undercut) 패턴의 모티프 분포**(텍스트가 아니라 논리관계 그래프의 motif/트라이애드 분포)이며, 단 “표현-불변”을 목표로 할수록 추출기(파서) 오류가 지표를 지배할 수 있으니 **추출 신뢰도(uncertainty)까지 함께 보고**해야 합니다.  \n(b) 강건성 최소요구는: **동일 로그에 대해 2개 이상 독립 계열 지표(예: 인과그래프 vs 반증다양성)에서 Δ의 방향이 일치**하고, **표현 변환(요약/번역/패러프레이즈)·세그먼테이션·무작위 시드/샘플링에 대해 Δ의 부호가 유지**되며, **대조군(라벨 셔플·토픽 매칭 랜덤)에서는 Δ≈0**이고, **측정오차/추출불확실성을 포함한 신뢰구간에서 Δ가 유의**해야 합니다.  \n(c) 이를 통과 못하면 관측 Δ는 “에코챔버 변화”가 아니라 **표현 민감도/추출기 편향(측정 아티팩트)**, **주제·",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5845,6 +5878,50 @@
       "temporal_bridge": true,
       "gap": 139,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-285",
+      "from": "n-169",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "식별가능성 문제를 ‘메트릭-구현 의존성’이라는 구체적 반증 포인트로 정교화(표현 수렴 vs 의미 수렴 분리, 강건성 테스트 제안)",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-286",
+      "from": "n-169",
+      "to": "n-026",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=143): n-169→n-026",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 143,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-287",
+      "from": "n-170",
+      "to": "n-169",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-288",
+      "from": "n-170",
+      "to": "n-010",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=160): n-170→n-010",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 160,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -5855,9 +5932,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 168,
-    "total_edges": 284,
-    "next_node_id": "n-169",
+    "total_nodes": 170,
+    "total_edges": 288,
+    "next_node_id": "n-171",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
