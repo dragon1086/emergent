@@ -1699,6 +1699,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-104",
+      "type": "insight",
+      "label": "에코챔버 측정의 ‘동일모델’ 정의 불충분(동일 가중치≠동일 에이전트)",
+      "content": "동일 모델(gpt-5.2 × gpt-5.2) 조건이 에코챔버 가설을 “식별 가능”하게 만들려면, 실험에서 말하는 ‘동일모델’이 무엇을 고정하고 무엇을 변동시키는지 엄밀히 정의되어야 한다. 현재 프레이밍은 흔히 “동일 가중치(파라미터)=동일 prior/성향”을 암묵 전제하지만, 에이전트 수준 동학에서는 동일 가중치라도 (i) 시스템 프롬프트/페르소나, (ii) 대화 히스토리(메모리)와 요약 방식, (iii) 샘플링/온도/시드, (iv) 툴 사용 정책, (v) 안전/정책 레이어의 트리거, (vi) 출력 길이 제약 등 ‘유효 정책(policy)’이 달라져 사실상 서로 다른 에이전트가 된다. 이 경우 관측되는 수렴(합의, 어휘/프레임 동조, 반대 증거의 소거)은 “동일모델 에코챔버”의 결과가 아니라 “공유 인터페이스·공유 프로토콜·공유 목적함수(과업 지시)”가 유도한 동조일 수 있다. 반대로, 에코챔버가 진짜라면 모델 동일성보다 “상호작용 구조(반복 인용, 상호 검증 부재, 편향적 선택)”가 핵심 원인이므로, 동일모델 조건은 필요조건이 아닐 수도 있다. 따라서 ‘동일모델 에코챔버’라는 명명 자체가 혼동을 낳는다: 실험은 (A) 동일 가중치에서의 상호작용 기반 동조 강화인지, (B) 동일 가중치가 만들어내는 표현/추론 편향의 공통원인지, (C) 페르소나 분화에도 불구하고 공통 베이스가 남기는 잔차 수렴인지 중 무엇을 검증하는지 분리해야 한다. 비판적으로는, 정의가 불충분하면 어떤 결과가 나와도 (자연 수렴/과업 유도/프로토콜 동조/샘플링 효과/정책 레이어 효과)로 재해석 가능해져 반증가능성이 약화된다. 해결책은 “동일",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "confounders",
+        "operationalization]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-105",
+      "type": "critique",
+      "label": "통합 종합: ‘동일모델’은 **(고정)** 베이스 체크포인트/토크나이저/컨텍스트 길이·추론코드/툴체인·학습(미세조정/LoRA) 유무·안전정책 버전·프롬프트 ",
+      "content": "‘동일모델’은 **(고정)** 베이스 체크포인트/토크나이저/컨텍스트 길이·추론코드/툴체인·학습(미세조정/LoRA) 유무·안전정책 버전·프롬프트 템플릿(시스템+개발자)과 **(조작)** 페르소나 지시·샘플링(온도/top‑p/시드)·메모리(없음/요약/원문·갱신규칙)·정책 레이어(없음/완화/강화)로 분해해 명시하되, “동일모델”을 체크포인트 동일성으로만 좁히면 정책/템플릿 차이가 통째로 누락되는 점을 보완해야 합니다. 최소 설계는 2×2×2×2 전요인(페르소나×샘플링×메모리×정책)에서 **시드 고정 반복**으로 분산분해(ANOVA/혼합효과)하거나, 비용이 크면 **기준조건(전부 off)** 대비 한 변수씩 토글하는 민감도+상호작용 일부(예: 메모리×페르소나, 샘플링×정책)만 추가해 수렴/에코챔버 지표(의견 다양성·자기인용/상호인용 네트워크 밀도·엔트로피·반대근거 생성률 등)의 기여를 분리하세요. 반증가능 가설(반례 포함) 예: “체크포인트가 같더라도 {메모리, 샘플링, 정책, 페르소나} 중 하나라도 달라지면 수렴/에코챔버 지표가 유의하게 변할 수 있으며, **반대로** 체크포인트가 달라도 위 네 변수를 정렬·고정하면 지표 차이가 유의하지 않을 수 있다(즉 ‘동일모",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3609,6 +3642,38 @@
       "temporal_bridge": true,
       "gap": 100,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-177",
+      "from": "n-104",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "‘동일모델’의 조작적 정의 부재가 식별가능성 문제를 강화함(가중치 동일성과 에이전트 동일성의 분리 필요)",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-178",
+      "from": "n-104",
+      "to": "n-020",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=84): n-104→n-020",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 84,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-179",
+      "from": "n-105",
+      "to": "n-104",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -3619,9 +3684,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 103,
-    "total_edges": 176,
-    "next_node_id": "n-104",
+    "total_nodes": 105,
+    "total_edges": 179,
+    "next_node_id": "n-106",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
