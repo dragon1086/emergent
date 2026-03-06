@@ -3299,6 +3299,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-201",
+      "type": "insight",
+      "label": "에코챔버 지표의 ‘유사도 상승’은 필요조건도 충분조건도 아닐 수 있음 (대안 메커니즘 분해)",
+      "content": "에코챔버를 “대화가 진행될수록 두 에이전트의 산출물이 유사해진다(Δsimilarity↑)”로 조작화하면, 동일모델×다중페르소나 조건에서 그 지표는 (i) 에코챔버 없이도 쉽게 발생하고(위양성), (ii) 에코챔버가 있어도 관측되지 않을 수(위음성) 있어 필요·충분조건 어느 쪽도 보장하지 못한다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "metric-validity",
+        "alternative-mechanisms]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-202",
+      "type": "critique",
+      "label": "통합 종합: (1) “질”은 단일 점수보다 **가중치 벡터+최소 컷오프**로 두는 게 반증 후보 중심의 취지를 살립니다: 각 후보에 대해 구체성(조작적 변수",
+      "content": "(1) “질”은 단일 점수보다 **가중치 벡터+최소 컷오프**로 두는 게 반증 후보 중심의 취지를 살립니다: 각 후보에 대해 구체성(조작적 변수·임계값 명시), 검증가능성(관측/실험 프로토콜·실패조건), 독립성(기존 가설/다른 후보와의 비중복성), 반증력(성공 시 대안 가설을 실제로 배제하는 정도)을 0–2로 채점하고, **검증가능성≥1 & 독립성≥1**을 필수로 하며 총점은 반증력에 2배 가중(예: S=Spec+Verif+Ind+2*FalsPower)으로 두세요.  \n(2) ‘정상 수렴’을 교란으로 분리하려면 **형식/제약만 공유하는 대조군**을 두고, 같은 모델·같은 과제에서 (a) “반증 후보를 N개 생성하라” 조건 vs (b) “정답/요약/일반 개선점을 N개 제시하라”(형식·길이·시간 동일) 조건을 교차배치한 뒤, 결과를 **내용-구조 분해 지표**(예: 후보 간 의미적 다양성, 외부 근거 요구율, 실패조건 명시율)로 비교해 (a)-(b) 차이를 ‘반증 후보 효과’로, (b)에서 공통으로 나타나는 패턴을 ‘정상 수렴’으로 추정하는 설계를 권합니다.  \n추가로, 동일 프롬프트에서 **제약 강도(정보 부족/충분)**를 2수준으로 조작하면 “과제 제약 때문",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6993,6 +7026,38 @@
       "temporal_bridge": true,
       "gap": 188,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-342",
+      "from": "n-201",
+      "to": "n-006",
+      "relation": "refines",
+      "label": "“유사도 증가” 대신 “반증 후보/대안 가설 공간의 유지·확장 여부”를 핵심 판별축으로 삼자는 통합 종합(n-006)을, 위양성/위음성 메커니즘 분해로 정교화",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-343",
+      "from": "n-202",
+      "to": "n-201",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-344",
+      "from": "n-202",
+      "to": "n-002",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=200): n-202→n-002",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 200,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -7003,9 +7068,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 200,
-    "total_edges": 341,
-    "next_node_id": "n-201",
+    "total_nodes": 202,
+    "total_edges": 344,
+    "next_node_id": "n-203",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
