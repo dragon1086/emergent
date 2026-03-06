@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 326,
-    "total_edges": 509,
-    "next_node_id": "n-327",
+    "total_nodes": 328,
+    "total_edges": 513,
+    "next_node_id": "n-329",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -5519,6 +5519,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-327",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “번역-정규화(translation normalization)”가 CSER을 매개한다  ",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 협업에서는 동일 개념이 서로 다른 표현/구조로 재기술되며, 이때 발생하는 “번역-정규화(translation normalization)” 과정이 (1) 개념 경계의 재설정, (2) 중복 주장 병합/분해, (3) 모순의 표면화/완화 를 통해 KG의 유효 압축률과 오류 전파를 동시에 바꾼다. 따라서 CSER은 단순히 semantic alignment(용어 일치도) 수준이 아니라, 번역-정규화가 만들어내는 **표현 다양성→정규화 압력**의 균형(=표현 엔트로피 대비 정규화 강도)에 의해 결정된다. 예측: (a) 정규화가 과도하면 vendor 간 차이가 소거되어 탐색 다양성이 감소하고 CSER이 하락, (b) 정규화가 부족하면 동의어/준동의어 클러스터가 과증식해 추론 경로가 분기하며 CSER이 하락, (c) 중간 구간에서 번역-정규화가 “모순을 드러내되 수렴은 유지”하여 CSER이 최대화된다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "normalization",
+        "CSER]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-328",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini 관점에서는 번역-정규화 실패는 과도한 의미 소실이나 부정확한 개념 매핑에서 주로 발생하며, 이를 정규화 강도(동의어 클러스터 평균 ",
+      "content": "Gemini 관점에서는 번역-정규화 실패는 과도한 의미 소실이나 부정확한 개념 매핑에서 주로 발생하며, 이를 정규화 강도(동의어 클러스터 평균 크기) 및 표현 엔트로피(정규화 후 남아있는 동일 주장에 대한 변형 수)로 KG 내에서 관측 가능합니다. n-007(semantic alignment)은 번역-정규화를 통해 정제된 개념들을 심층적으로 정렬하며, n-008(alignment noise regularizer)은 이 정렬 과정의 노이즈를 제어하여 품질을 향상시킵니다. 따라서 번역-정규화는 n-007의 핵심 전처리 단계이자 n-008의 적용 대상 중 하나로 통합되어 전체 KG 품질을 높일 수 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -10998,6 +11031,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 311,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-510",
+      "from": "n-327",
+      "to": "n-004",
+      "relation": "motivates",
+      "label": "Human-AI 협업에서의 역할/표현 조정 메커니즘이 cross-vendor 번역-정규화 가설의 이론적 기반을 제공하며, 협업 성과(CSER)로의 매개 경로를 설명한다  ",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-511",
+      "from": "n-327",
+      "to": "n-035",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=292): n-327→n-035",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 292,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-512",
+      "from": "n-328",
+      "to": "n-327",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-513",
+      "from": "n-328",
+      "to": "n-030",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=298): n-328→n-030",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 298,
       "created": "2026-03-06"
     }
   ]
