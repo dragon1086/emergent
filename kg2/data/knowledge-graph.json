@@ -2392,6 +2392,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-146",
+      "type": "insight",
+      "label": "에코챔버 vs 자연수렴을 가르는 ‘개입-반응’ 기반 식별 전략",
+      "content": "동일모델(gpt-5.2×gpt-5.2)에서 관측되는 합의·수렴은 (i) 사회적 강화에 의한 에코챔버, (ii) 동일한 사전/학습/디코딩으로 인한 자연수렴, (iii) 과제/프롬프트가 암묵적으로 정답공간을 좁혀 생기는 표면적 합의로 모두 설명 가능하다. 따라서 “대화 결과의 유사성” 같은 정태적 출력 지표는 식별력이 낮다. 식별을 위해서는 출력이 아니라 ‘개입에 대한 반응 함수(response function)’를 측정해야 한다. 구체적으로, 동일한 초기 조건에서 다음과 같은 비대칭 개입을 가하고 그에 대한 동역학 차이를 본다: (1) 한 에이전트에만 반대 증거(고신뢰/저신뢰를 교차) 또는 반사실 제약을 주입, (2) 한 에이전트에만 역할·보상(“합의하면 점수↑” vs “반박하면 점수↑”)을 부여, (3) 네트워크 구조를 바꿔(1:1, 1:N, N:N) 정보가 재순환되는 정도를 조작. 에코챔버 메커니즘이 작동한다면, 개입이 “집단 내 반복/강화”를 통해 (a) 초기 주입 편향이 증폭되고, (b) 반대 증거가 들어와도 회복탄력성이 낮아(수정 지연·선택적 인용), (c) 신뢰도와 무관하게 ‘상대 발화의 반복’이 증가하는 경향을 보여야 한다. 반면 자연수렴이면, 개입이 비대칭이어도 (a) 고신뢰 반대 증거에는 비교적 빠르게 수렴 방향이 바뀌고, (b) 네트워크 재순환 조작에 둔감하며, (c) 반복/강화 신호(상대 발화 재인용)보다는 근거-결론 정합성 지표가 더 크게 변한다. 핵심 비판은: “동일모델 조건” 자체가 대조군이 아니라는 점이며, 에코챔버를 주장하려면 ‘재순환/강화’라는 인과적 구성요소를 개입으로 직접 조작",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "causal_intervention",
+        "echochamber_vs_convergence]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-147",
+      "type": "critique",
+      "label": "통합 종합: 요청은 “프로토콜”이라기엔 (i) 조작변수·(ii) 지표·(iii) 예측방향·혼동요인까지 이미 고정해 탐색(발견)보다 검증(확증)으로 과도하게 ",
+      "content": "요청은 “프로토콜”이라기엔 (i) 조작변수·(ii) 지표·(iii) 예측방향·혼동요인까지 이미 고정해 탐색(발견)보다 검증(확증)으로 과도하게 잠가 두었고, ‘자연수렴 vs 에코챔버’를 이분법으로 두면 실제로는 혼합상(부분 수렴+국소 에코)이 나타날 때 오판정이 늘 수 있으니, 통합 관점에선 연속 스펙트럼(수렴도/다양성/경로의존성)으로 재정의하고 사전등록된 판정규칙을 추가하는 보완이 필요합니다. 또한 지표 간 내적 상관(반복/재인용률↔수정지연, 신뢰도-가중 업데이트 일치도↔보상설계)이 크므로, 교차지표(예: 다양성 유지율·토픽 엔트로피·반대증거 흡수율)와 조작점검(manipulation check: 재순환 실제 노출량, 비대칭 반대증거 실제 강도)을 넣어 “조작→매개→반응”의 인과사슬로 분해해야 해석이 가능합니다. 마지막으로 표는 방향성만이 아니라 상호작용 예측(재순환↑×비대칭 반대증거↑일 때 에코챔버가 완화/증폭되는 조건)을 포함하고, 혼동요인은 프롬프트 누설·디코딩 랜덤성 외에 데이터 누출/기억·평가자 편향·컨텍스트 길이/요약 손실을 추가해 (고정 시드·온도=0/다중시드 평균, 블라인드 템플릿, 컨텍스트 고정, 누설 탐지용 canary, 사전등록)로 통제",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5082,6 +5115,38 @@
       "temporal_bridge": true,
       "gap": 120,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-249",
+      "from": "n-146",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "정태적 유사성 지표의 식별불능을 보완하기 위해, 개입-반응 함수로 에코챔버의 인과구성요소(재순환/강화)를 직접 조작·측정하는 식별 전략을 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-250",
+      "from": "n-147",
+      "to": "n-146",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-251",
+      "from": "n-147",
+      "to": "n-001",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=146): n-147→n-001",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 146,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -5092,9 +5157,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 145,
-    "total_edges": 248,
-    "next_node_id": "n-146",
+    "total_nodes": 147,
+    "total_edges": 251,
+    "next_node_id": "n-148",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
