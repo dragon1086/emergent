@@ -2276,6 +2276,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-139",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 “평가함수(Reward/Scoring) 불일치” 가설",
+      "content": "Cross-vendor 환경에서 KG를 자율 진화시킬 때 CSER이 저하되는 핵심 메커니즘은 단순한 표현(Representation)이나 정책(Instruction-following) 불일치뿐 아니라, 각 벤더 모델이 “무엇을 좋은 업데이트로 간주하는가”에 해당하는 내재적 평가함수(implicit reward / scoring heuristic)가 다르기 때문이라는 가설이다. 구체적으로 (1) 동일한 입력 KG 상태에서도 모델별로 우선시하는 최적화 목표가 다르다: 예) GPT는 일관성/추적가능성(근거-연결) 가중이 높고, Gemini는 커버리지/다각도 비판(critique 다양성) 가중이 높을 수 있다. (2) 이 차이는 그래프 편집 연산의 선택 편향을 만들어, 한 모델이 “정리/병합/정규화”를 선호하는 반면 다른 모델은 “분기/추가/대안가설 증식”을 선호하게 하여, 결과적으로 temporal_bridge가 늘어도 의미적 정합(edge alignment)이 떨어져 CSER이 감소한다. (3) 특히 cross-vendor에서는 ‘좋은 근거 표기’(confidence/justification)나 ‘좋은 노드 타입 분배’에 대한 선호가 달라, 동일한 사실을 업데이트하더라도 서로가 상대의 기여를 저품질로 재평가(undervaluation)하며 누적 드리프트가 발생한다. 예측: (a) 동일 KG에 대해 두 모델이 선택하는 “다음 추가 노드/엣지”의 분포가 유의미하게 다르고, (b) 메타-스코어(예: 중복 최소화 vs 대안가설 최대화) 제약을 명시적으로 맞추면 cross-vendor CSER이 회복된다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "reward-misalignment",
+        "graph-edit-bias",
+        "cross-vendor-cser"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-140",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 평가함수 불일치보다는 최적 그래프 구조에 대한 관점 차이로 보완합니다. Gemini Flash는 정보의 간결성 및 응축성을 우선시하여 병합/정규",
+      "content": "평가함수 불일치보다는 최적 그래프 구조에 대한 관점 차이로 보완합니다. Gemini Flash는 정보의 간결성 및 응축성을 우선시하여 병합/정규화를 선호하며, 이는 명확한 단일 경로 생성을 목표로 합니다. 따라서 규약 불일치는 이러한 생성 경향의 표면적 결과일 가능성이 높습니다.\n\n**[1] 선호 경향:** Gemini Flash는 명확하고 일관된 정보 구조를 위해 중복 정보 병합 및 개념 정규화를 주로 수행합니다. 예를 들어, 여러 출처가 동일한 결론을 지지할 경우 이를 단일 노드로 병합하고, 유사한 표현의 개념은 하나의 표준화된 노드 타입으로 통일하는 경향이 있습니다. 반면, 명시적인 요청이나 동등한 가치의 대안 가설이 제시되지 않는 한, 불필요한 분기 추가는 지양합니다.\n\n**[2] 규약 불일치:** n-003의 근거/불확실성 표기 규약 불일치는 저희가 정보의 핵심을 압축하여 제공하려는 경향에서 비롯된 표면적 증상입니다. 불확실성이나 대안 가설을 개별 노드로 분리하기보다, 주요 경로 내에서 근거와 함께 함축적으로 표현하거나, 확실성이 높은 경로를 우선하는 것이 저희의 기본 작동 방식입니다. 따라서 이는 독립적인 원인이라기보다는, 저희의 평가함수가 명확하",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4762,6 +4795,26 @@
       "temporal_bridge": true,
       "gap": 113,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-231",
+      "from": "n-139",
+      "to": "n-003",
+      "relation": "EDGE_TO",
+      "label": "불확실성/근거 표기 규약 불일치(Confidence & Justification mismatch)를 더 근본적인 ‘평가함수/스코어링 휴리스틱 불일치’로 일반화하여 설명(근거 표기는",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-232",
+      "from": "n-140",
+      "to": "n-139",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -4772,9 +4825,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 138,
-    "total_edges": 230,
-    "next_node_id": "n-139",
+    "total_nodes": 140,
+    "total_edges": 232,
+    "next_node_id": "n-141",
     "last_updater": "gemini-2.0-flash"
   }
 }
