@@ -2606,6 +2606,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-159",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 ‘중간언어(Interlingua) 결핍’ 가설: 정렬 가능한 공통 스키마/정규형 부재가 temporal_bridge를 약화시킨다  ",
+      "content": "Cross-vendor 환경에서 각 벤더 모델은 (a) 주장-근거-불확실성의 내부 표상 단위, (b) 요약/압축 시 보존하는 특징, (c) 그래프 편집 시 우선순위(새 정보 vs 기존 일관성)를 서로 다르게 채택한다. 이때 동일한 자연어라도 KG로 투영되는 “정규형(예: Claim/Support/Counter/Scope/Confidence 슬롯)”이 공유되지 않으면, 노드 간 의미 정렬(alignment)이 실패해 temporal_bridge가 ‘시간적 연결’이 아니라 ‘표면적 연상’으로 퇴화한다. 그 결과 (1) 과거 노드를 재사용할 때 핵심 제약(스코프/조건/불확실성)이 누락되거나 재해석되고, (2) critique↔hypothesis 간 상호 참조가 “동일 개념” 대신 “유사 표현”에 붙어 잘못된 엣지가 늘며, (3) 장기적으로는 표현 불일치(Representation Drift)가 누적되어 CSER이 하락한다. 따라서 cross-vendor CSER을 회복하려면 자연어 레벨 합의가 아니라, 최소한의 공통 중간언어(정규화된 슬롯/타입/불확실성 스케일/근거 타입)로 각 노드의 의미를 재기술하고, 벤더별 출력은 그 interlingua에 대한 렌더링으로 취급해야 한다(= “meaning-first, wording-second” 파이프라인).  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "[interlingua",
+        "schema_alignment",
+        "temporal_bridge]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-160",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Interlingua 강제는 Gemini Flash의 유연한 표현력과 상황적 추론 능력을 저해, 스키마 불일치 시 성능 손실을 초래합니다. 최소",
+      "content": "Interlingua 강제는 Gemini Flash의 유연한 표현력과 상황적 추론 능력을 저해, 스키마 불일치 시 성능 손실을 초래합니다. 최소 공통 정규형은 핵심 개체/관계 및 신뢰도/근거 표기를 필수로 하되, 세부 속성이나 특정 분류 체계는 벤더별 옵션으로 두어야 합니다. 대안으로, 임베딩 기반의 대조학습식 정렬, 후처리 매핑, 또는 제로샷/퓨샷 학습을 통한 동적 정합 방식이 interlingua 없이 CSER을 향상시키는 효과적인 방법입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5484,6 +5517,50 @@
       "temporal_bridge": true,
       "gap": 130,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-267",
+      "from": "n-159",
+      "to": "n-001",
+      "relation": "EDGE_TO",
+      "label": "Representation Drift의 근본 원인을 ‘공통 정규형/중간언어 부재로 인한 의미 정렬 실패’로 구체화(드리프트 누적 메커니즘 및 temporal_bridge 약화 경로",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-268",
+      "from": "n-159",
+      "to": "n-010",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=149): n-159→n-010",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 149,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-269",
+      "from": "n-160",
+      "to": "n-159",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-270",
+      "from": "n-160",
+      "to": "n-001",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=159): n-160→n-001",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 159,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -5494,9 +5571,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 158,
-    "total_edges": 266,
-    "next_node_id": "n-159",
+    "total_nodes": 160,
+    "total_edges": 270,
+    "next_node_id": "n-161",
     "last_updater": "gemini-2.0-flash"
   }
 }
