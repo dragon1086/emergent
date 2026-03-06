@@ -2326,6 +2326,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-142",
+      "type": "insight",
+      "label": "동일모델 에코챔버의 ‘측정불변성’ 위반 가능성(페르소나=처치, 동일모델≠동일조건)",
+      "content": "동일 모델(gpt-5.2 × gpt-5.2)이라도 “페르소나 부여” 자체가 강한 처치(treatment)로 작동해, 에코챔버를 측정하려는 지표의 측정불변성(measurement invariance)을 깨뜨릴 수 있다. 즉 관측되는 수렴/강화 패턴이 ‘에코챔버(상호증폭)’ 때문이 아니라 ‘역할 지시가 유도한 담화규칙(critic vs synthesizer)의 구조적 비대칭’ 때문일 수 있다. 비판적 분석가는 기본적으로 반증/대안가설 탐색을, 통합 종합가는 통합/조정/합의를 목표로 하므로, 대화 그래프에서 (1) 부정/정정 발화 비율, (2) 인용·정의·범주화 빈도, (3) 불확실성 표지, (4) 결론의 조기 고정 여부 같은 메트릭이 페르소나에 의해 선험적으로 이동한다. 이때 “동일모델 조건”은 단지 파라미터 공유를 의미할 뿐, 실험적으로 중요한 ‘조건 동일성’(동일 목표함수, 동일 보상, 동일 발화정책)을 보장하지 않는다. 따라서 에코챔버 가설을 검증하려면 (a) 페르소나를 교차-무작위로 스왑하거나, (b) 페르소나 없는 대조(중립/대칭 역할)와 비교하거나, (c) 메트릭을 페르소나-불변으로 설계(예: 동일 질문에 대한 사후 신념 업데이트의 방향성만 비교)해야 한다. 그렇지 않으면 “에코챔버”로 해석되는 현상은 사실상 ‘실험자가 주입한 역할 분업에 따른 자연스러운 담화 수렴/분업’의 산물이며, 동일모델 에코챔버의 식별가능성은 더 악화된다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[measurement_invariance",
+        "persona_as_treatment",
+        "identifiability]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-143",
+      "type": "critique",
+      "label": "통합 종합: 2×2만으로는 “페르소나”와 “지시문(스타일/목표)” 효과가 섞이니, 최소라도 **(페르소나: A/B)×(프롬프트: 중립/페르소나-유도)**에 ",
+      "content": "2×2만으로는 “페르소나”와 “지시문(스타일/목표)” 효과가 섞이니, 최소라도 **(페르소나: A/B)×(프롬프트: 중립/페르소나-유도)**에 더해 **cross-over(동일 모델·세션에서 A→B, B→A 순서 교차) 또는 블라인드(페르소나 라벨만 바꾸고 내용 동일)**를 넣어야 분리가 됩니다. 페르소나-불변 지표는 **(i) 동일 증거 제시 후 belief posterior shift(정답/근거 방향으로의 업데이트 크기), (ii) 주장–근거 그래프의 순환성/자기참조율(동일 노드 재사용·루프 비율), (iii) 반대 증거에 대한 민감도(contradiction acceptance rate/자기수정률)** 정도가 최소 후보입니다. “자연 수렴”이면 페르소나/유도 여부와 무관하게 (i)(iii)가 증거에 따라 일관되게 커지고 (ii)는 낮아지는 반면, “에코챔버”면 페르소나-유도 조건에서만 (i)(iii)가 둔화·편향되고 (ii)가 상승하며, 스왑/블라인드에서도 라벨이 바뀌면 결론이 따라 움직이는 예측이 나옵니다.",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4940,6 +4973,38 @@
       "temporal_bridge": true,
       "gap": 129,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-242",
+      "from": "n-142",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "identifiability 문제를 ‘페르소나로 인한 측정불변성 위반’으로 구체화(동일모델≠동일조건)",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-243",
+      "from": "n-143",
+      "to": "n-142",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-244",
+      "from": "n-143",
+      "to": "n-015",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=128): n-143→n-015",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 128,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -4950,9 +5015,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 141,
-    "total_edges": 241,
-    "next_node_id": "n-142",
+    "total_nodes": 143,
+    "total_edges": 244,
+    "next_node_id": "n-144",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
