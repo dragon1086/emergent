@@ -3200,6 +3200,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-195",
+      "type": "insight",
+      "label": "에코챔버 검증의 ‘필요·충분’ 주장에 대한 반증 설계(identifiability 강화)",
+      "content": "에코챔버 가설을 “대화 로그만으로 필요·충분 조건을 판정”하려는 접근은 구조적으로 식별가능성이 약하다. 비판적으로 보면, 관측 가능한 것은 (i) 발화 텍스트, (ii) 턴 순서, (iii) 페르소나 지시문, (iv) (있다면) 점수/선호 피드백 정도인데, 핵심 잠재변수(에이전트 내부 신념 상태, 검색/기억 메커니즘, 샘플링 변이)는 미관측이다. 이때 ‘유사도 증가’나 ‘합의 수렴’ 같은 표면 지표는 에코챔버의 필요조건이 아닐 수 있고(합의 없이도 반증 후보가 지속적으로 배제될 수 있음), 충분조건도 아니다(과제 구조가 단일 해답을 강제하면 정상적 수렴이 발생).  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "falsification",
+        "confounding]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-196",
+      "type": "critique",
+      "label": "통합 종합: (a) 핵심 반론은 ①과제 난이도·토큰 예산·도구사용이 “생성/재소환”을 기계적으로 깎거나 부풀리고 ②페르소나(역할극)·평가자 프롬프트가 “검토",
+      "content": "(a) 핵심 반론은 ①과제 난이도·토큰 예산·도구사용이 “생성/재소환”을 기계적으로 깎거나 부풀리고 ②페르소나(역할극)·평가자 프롬프트가 “검토/잔존”을 사회적 바람직성으로 왜곡하며 ③모델 업데이트·시드 변동이 생애주기 전이를 교란한다는 점이니, 설계로는 난이도/길이/도구를 매칭한 대조군(페르소나 on/off, 예산 high/low), 단계별 지표 정규화(예: per-1k token 생성률, 난이도 IRT 보정 잔존률), 그리고 전이규칙·임계값·제외기준을 프리레지스터(plus 고정 시드/스냅샷, 블라인드 채점)로 잠그는 게 필요합니다.  \n(b) ‘충분징후’ 번들의 최소 구성은 (i) 잔존률: 동일 반증후보가 K회 재소환/검토 기회 중 최종적으로 “반증 후보로 유지”되는 비율이 기준선 대비 유의하게 하락, (ii) 자기참조: 근거의 출처가 내부 발화/이전 턴/자기 정합성에 기대는 비중 상승, (iii) 외부대안탐색: 독립 대안(외부 출처·반대 가설·검색/도구 호출) 생성 수/다양성 감소로 두고, 임계값은 절대치보다 “대조군 대비 변화량”으로 설정(예: 잔존률 Δ≤−20%p, 자기참조 비중 Δ≥+15%p, 외부대안탐색 Δ≤−30% 또는 1표준편차↓)하며 3개 ",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6762,6 +6795,50 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-330",
+      "from": "n-195",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "식별가능성 문제를 ‘반증 후보 동역학’ 기반의 관측적 함의/반증 설계로 구체화하여, 필요·충분 주장 대신 식별 가능한 충분징후·반증조건의 형태로 재정의함",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-331",
+      "from": "n-195",
+      "to": "n-018",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=177): n-195→n-018",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 177,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-332",
+      "from": "n-196",
+      "to": "n-195",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-333",
+      "from": "n-196",
+      "to": "n-024",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=172): n-196→n-024",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 172,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -6772,9 +6849,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 194,
-    "total_edges": 329,
-    "next_node_id": "n-195",
+    "total_nodes": 196,
+    "total_edges": 333,
+    "next_node_id": "n-197",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
