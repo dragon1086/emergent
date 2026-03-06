@@ -1666,6 +1666,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-102",
+      "type": "insight",
+      "label": "에코챔버 vs ‘동일 사전’ 자연수렴을 가르는 최소 식별조건(반증가능성)",
+      "content": "동일모델 조건에서 관측되는 “합의/수렴”은 (i) 동일한 사전(prior)과 유사한 추론 절차로 인한 자연 수렴, (ii) 상호작용이 신념을 증폭시키는 에코챔버(양의 피드백) 둘 다로 설명 가능하다. 따라서 에코챔버 가설을 ‘식별’하려면 최소한 다음 중 하나가 만족되어야 한다:  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "causal_inference",
+        "experimental_design]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-103",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “가장 단순한 2×2”에 과부하를 걸고 있습니다: **독립 vs 상호작용** 조작은 곧바로 네트워크 구조·노출 이질성·동조압력 같은 교란",
+      "content": "요청이 “가장 단순한 2×2”에 과부하를 걸고 있습니다: **독립 vs 상호작용** 조작은 곧바로 네트워크 구조·노출 이질성·동조압력 같은 교란을 함께 바꾸므로, 최소한 **노출량/콘텐츠/시간을 고정**하고 상호작용은 “메타데이터(타인 의견만)” 수준으로 제한하는 보완이 필요합니다. 또한 “반대증거 주입”은 내용의 강도·신뢰도·정서성에 따라 효과가 달라지니, **친/반 양방향 동등강도 증거**를 사전 캘리브레이션하고 “주입 없음”에도 **중립 정보**를 넣어 단순 주의/정보량 효과를 통제해야 반박 가능성이 생깁니다. 마지막으로 “자연 수렴 vs 에코챔버”를 가르려면 셀 평균만이 아니라 **개인 내 전후 변화, 분산(양극화), 초기신념×조건 상호작용, 경로의존(초기 노출/순서 효과)**까지 같은 표에 포함시키도록 프로토콜을 확장하는 게 통합 종합가 관점에서 더 타당합니다.",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3532,6 +3565,50 @@
       "temporal_bridge": true,
       "gap": 97,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-173",
+      "from": "n-102",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "동일모델 에코챔버 가설의 식별가능성 문제를 ‘최소 식별조건(경로의존성/반대증거 비대칭/상호작용-의존 증폭)’으로 구체화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-174",
+      "from": "n-102",
+      "to": "n-008",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=94): n-102→n-008",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 94,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-175",
+      "from": "n-103",
+      "to": "n-102",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-176",
+      "from": "n-103",
+      "to": "n-003",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=100): n-103→n-003",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 100,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -3541,10 +3618,10 @@
     "agent_b": "openai/gpt-5.2",
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
-    "last_updated": "2026-03-05",
-    "total_nodes": 101,
-    "total_edges": 172,
-    "next_node_id": "n-102",
+    "last_updated": "2026-03-06",
+    "total_nodes": 103,
+    "total_edges": 176,
+    "next_node_id": "n-104",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
