@@ -791,6 +791,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-049",
+      "type": "insight",
+      "label": "동일모델·다중페르소나 조건에서의 ‘에코챔버’ 대안가설(메커니즘) 분해: 내생적 정렬 vs 상호강화",
+      "content": "동일모델(gpt-5.2×gpt-5.2)·상이 페르소나 조건에서 관측되는 “유사도 증가/합의 수렴”은 에코챔버의 고유 신호라기보다, 모델 내부의 공통 사전학습 분포와 대화 규범이 만들어내는 **내생적 정렬(endogenous alignment)**의 부산물일 수 있다. 따라서 ‘에코챔버 자율 진화’ 가설을 반증가능하게 하려면, 관측된 수렴을 최소 두 메커니즘으로 분해해 각각을 구별해야 한다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "null_model",
+        "echo_mechanism]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-050",
+      "type": "critique",
+      "label": "통합 종합: 좋지만, “내생적 정렬=귀무”만으로는 *동일모델·다중페르소나*에서 생기는 공통 프롬프트/시스템 지침·안전정책의 공유효과(외생 공변량)가 귀무에 ",
+      "content": "좋지만, “내생적 정렬=귀무”만으로는 *동일모델·다중페르소나*에서 생기는 공통 프롬프트/시스템 지침·안전정책의 공유효과(외생 공변량)가 귀무에 섞여 추정이 비식별적일 수 있으니, 귀무를 **H0a(공유규범/정책에 의한 수렴)**와 **H0b(진짜 내생적 정렬: 상호작용 없이도 동일 방향 수렴)**로 쪼개고, 에코챔버는 “수렴”이 아니라 **대안 공간의 비대칭적 붕괴**(특정 주장 주변으로만 압축)로 정의하는 게 더 날카롭습니다. 제안한 (i) 엔트로피 감소는 “요약/정중함” 규범에서도 자연히 감소하므로, 반드시 **조건부 엔트로피**(주장-근거 그래프에서 반대 증거 노드가 주어졌을 때의 불확실성)나 **다양성-보존 제약 하 엔트로피**로 보정하고, (ii) 반증 후보 억제는 단순 길이/시간 제약과 구분하기 위해 “반증 후보가 제시된 뒤의 *후속 회피율*”로, (iii) 상호정보량은 단순한 어휘/템플릿 재사용이 아니라 **프레이밍(인과/책임/가치축) 단위의 MI**로 잡아야 거짓양성을 줄입니다. 거짓양성 차단용 대조/로그 특징으로는 최소 (1) **독립 생성 대조**: 페르소나들을 상호 메시지 없이 동일 과제에 병렬 투입해도 지표가 비슷하면 규범/정책발 수렴(",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1621,6 +1654,38 @@
       "temporal_bridge": true,
       "gap": 47,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-078",
+      "from": "n-049",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "‘판별 불능성’을 단순 선언이 아니라, 내생적 정렬(귀무) vs 상호강화(대립) 메커니즘 분해로 구체화하여 운영적 구분 기준을 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-079",
+      "from": "n-050",
+      "to": "n-049",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-080",
+      "from": "n-050",
+      "to": "n-004",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=46): n-050→n-004",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 46,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1631,9 +1696,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 48,
-    "total_edges": 77,
-    "next_node_id": "n-049",
+    "total_nodes": 50,
+    "total_edges": 80,
+    "next_node_id": "n-051",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
