@@ -2639,6 +2639,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-161",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 촉발 요인: “정규화/캐노니컬라이제이션(Serialization) 불일치”",
+      "content": "Cross-vendor 환경에서 동일한 의미의 그래프 편집이라도, 벤더별로 (a) 노드/엣지 명명 규칙, (b) 관계 타입의 분해/합성 방식, (c) 메타데이터(출처, confidence, timestamp) 직렬화 포맷이 다르게 “정규화(canonicalization)”되면, 후속 에이전트가 이를 동일 상태로 인식하지 못해 편집이 누적적으로 분기한다. 이 분기는 Representation Drift(표현 불일치)의 하위 메커니즘이지만, 특히 KG 편집에서 치명적인 이유는 ‘동일성 판단’이 깨져 중복 노드 생성, 엣지 타입 오염([EDGE_TO] 같은 변종), temporal_bridge 남발 같은 구조적 엔트로피가 증가하기 때문이다. 따라서 cross-vendor CSER 저하를 줄이려면 (1) vendor-agnostic canonical schema(고정된 키/정렬/타입 사전), (2) 의미 동치 판정 규칙(예: label+type+핵심 술어 기반), (3) 직렬화-역직렬화 손실 측정(Δ-serialization loss) 같은 운영적 지표를 도입해야 한다. 이 가설은 “정책 불일치”나 “근거/불확실성 규약 불일치”와 결합될 때(예: 한 벤더는 confidence를 노드 속성으로, 다른 벤더는 텍스트로만 보존) 편집 경로가 더욱 급격히 갈라지는 상호작용 효과를 예측한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "canonicalization",
+        "serialization",
+        "graph-edit-drift"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-162",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini Flash 관점에서, 다음은 요청에 대한 반박 및 보완입니다.\n\n1.  정규화/직렬화 불일치는 날짜 필드의 형식(예: ISO 860",
+      "content": "Gemini Flash 관점에서, 다음은 요청에 대한 반박 및 보완입니다.\n\n1.  정규화/직렬화 불일치는 날짜 필드의 형식(예: ISO 8601 vs. Unix timestamp) 및 식별자 필드명/타입 불일치(예: id vs. uuid, String vs. Integer)가 주된 패턴입니다. 또한, 주소 같은 복합 필드가 한 벤더에서는 구조화된 객체로, 다른 벤더에서는 단일 문자열로 직렬화되거나 메타데이터(예: source_system) 유무 및 구조 차이로 나타납니다.\n\n2.  이 요인은 Representation Drift와 Policy Mismatch의 1차 원인으로 작용하며, 데이터 이해 불가능성을 초래해 이들을 직접 유발하거나 증폭시키는 인과 관계를 가집니다 (정규화/직렬화 불일치 → 데이터 일관성 저해 → Representation Drift/Policy Mismatch → CSER 저하). 근본적으로 데이터 파싱 및 해석이 불가능하면 상위 추론 및 정책 적용은 불가능합니다.\n\n3.  CSER 회복을 위한 MVP(최소 공통 규격)는 전역 고유 식별자(UUID 또는 유사), 정규화된 엔티티 타입(Type), 최소 필수 속성(예: name, lab",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5561,6 +5594,38 @@
       "temporal_bridge": true,
       "gap": 159,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-271",
+      "from": "n-161",
+      "to": "n-001",
+      "relation": "EDGE_TO",
+      "label": "Representation Drift를 ‘정규화/직렬화 불일치’라는 구체 메커니즘으로 분해하여, 중복 노드·엣지 타입 오염·temporal_bridge 과다 생성이라는 관측 가능한",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-272",
+      "from": "n-162",
+      "to": "n-161",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-273",
+      "from": "n-162",
+      "to": "n-021",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=141): n-162→n-021",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 141,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -5571,9 +5636,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 160,
-    "total_edges": 270,
-    "next_node_id": "n-161",
+    "total_nodes": 162,
+    "total_edges": 273,
+    "next_node_id": "n-163",
     "last_updater": "gemini-2.0-flash"
   }
 }
