@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 422,
-    "total_edges": 664,
-    "next_node_id": "n-423",
+    "total_nodes": 424,
+    "total_edges": 667,
+    "next_node_id": "n-425",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -7092,6 +7092,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: 위 가설의 역 U자 반례로, 고정된 정답 구조에서는 번역 계층 추가가 오히려 노이즈를 증가시켜 CSER이 평탄하거나 악화될 수 있습니다. 극단적",
       "content": "위 가설의 역 U자 반례로, 고정된 정답 구조에서는 번역 계층 추가가 오히려 노이즈를 증가시켜 CSER이 평탄하거나 악화될 수 있습니다. 극단적 도메인 특수 용어의 경우, 번역 효과가 지속적으로 증가하여 U자 정점이 나타나지 않을 수 있습니다.\n\n번역 계층 구성요소의 영향력 검증은 각 요소를 개별적으로 제거/조정하는 절제 연구(ablation study)를 통해 가능하며, CSER 또는 최종 과업 성공률 감소폭이 가장 큰 요소가 핵심입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-423",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “번역 불변 앵커(anchor invariants)”를 강제하면 CSER이 상승한다  ",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 환경에서는 동일 개념이 서로 다른 표면형(용어, 분해 수준, 서술 습관)으로 반복 생성되어 KG가 분기하고, 그 결과 critique→hypothesis의 닫힘(closing)보다 평행한 가설 증식이 커져 CSER이 저하될 수 있다. 이를 완화하기 위해 KG 진화 규칙에 “번역 불변 앵커(anchor invariants)”를 도입한다: (1) 각 핵심 개념에 대해 vendor-중립적 정규형(canonical form: 짧은 정의 + 필수 속성 3~5개 + 금지되는 혼동 사례)을 유지하고, (2) 새 노드 생성 시 해당 정규형과의 정합성 점검(동치/부분포함/충돌)을 의무화하며, (3) 불일치가 발견되면 신규 노드 생성 대신 ‘alignment/merge’ 또는 ‘explicit disagreement’(서로 다른 정규형을 병렬로 두되 충돌 조건을 명시)로 귀결시키는 정책을 적용한다. 가설: 이런 앵커는 cross-vendor alignment noise를 “무질서”가 아니라 “구조화된 편차”로 전환해, 중복 노드와 의미 드리프트를 줄이고 critique가 실제로 가설을 수렴/정제하는 경로를 늘려 CSER을 유의미하게 상승시킨다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "semantic-alignment",
+        "canonicalization",
+        "CSER"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-424",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash) 관점에서, 요청에 다음과 같이 반박/보완합니다.\n\n번역 불변 앵커는 복잡성 관리와 일관성",
+      "content": "KG-3 실험 Agent B (Gemini Flash) 관점에서, 요청에 다음과 같이 반박/보완합니다.\n\n번역 불변 앵커는 복잡성 관리와 일관성 유지에 필수적이나, 과도한 제약은 탐색-수렴 트레이드오프에서 CSER 저하 및 과정적 비용을 증가시킬 수 있음을 인정합니다. 앵커 유지 실패 모드로는 자동 추출 시 편향성 전파 및 시대착오, 합의 프로토콜 시 의사결정 지연 및 갈등 발생이 있습니다. 대안으로, 정렬 잡음(alignment noise)을 활용한 충돌 기반 학습이나 비판 라우팅은 앵커 없이도 CSER을 동적으로 개선하며 미탐색 영역을 효율적으로 탐색하게 합니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -14246,6 +14279,38 @@
       "id": "e-664",
       "from": "n-422",
       "to": "n-421",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-665",
+      "from": "n-423",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬(semantic alignment)이 CSER을 좌우한다”는 가설을, vendor-중립 정규형(앵커)이라는 구체 메커니즘/개입 규칙으로 실행 가능하게 만든다  ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-666",
+      "from": "n-423",
+      "to": "n-072",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=351): n-423→n-072",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 351,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-667",
+      "from": "n-424",
+      "to": "n-423",
       "relation": "critiques",
       "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
       "source": "gemini-2.0-flash",
