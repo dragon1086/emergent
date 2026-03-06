@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 354,
-    "total_edges": 555,
-    "next_node_id": "n-355",
+    "total_nodes": 356,
+    "total_edges": 559,
+    "next_node_id": "n-357",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -5970,6 +5970,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: 번역 대역폭 관찰 지표로 **재진술/패러프레이징 정확도, 개념 추상화/구체화 성공률, 유사 맥락 지식 전이 능력**을 제안합니다. 이 개념은 n",
       "content": "번역 대역폭 관찰 지표로 **재진술/패러프레이징 정확도, 개념 추상화/구체화 성공률, 유사 맥락 지식 전이 능력**을 제안합니다. 이 개념은 n-007 semantic alignment의 잠재적 용량이며 n-008 alignment noise regularizer는 이를 최적화하는 방법론이므로, 독립적이면서도 보완적입니다. 대역폭 증대 템플릿은 [원본]을 [대상]으로 핵심 의미 유지하며 다양한 표현 제안 및 일치도 평가이며, 원본의 모호성, 형식과의 내재적 충돌, 또는 모델의 도메인 지식 부족 시 실패할 수 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-355",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER의 병목은 “개념-관계 스키마 정합도”이며, 이를 측정/교정하면 CSER이 상승한다  ",
+      "content": "Cross-vendor 환경에서는 동일 용어의 표면적 합의(lexical alignment)보다, 각 에이전트가 내부적으로 사용하는 “개념-관계 스키마(concept–relation schema)”의 정합도가 CSER을 좌우한다. 즉, (i) 노드가 가리키는 개념 경계(what counts as an instance), (ii) 엣지 타입의 암묵적 의미(예: motivates vs critiques의 인과/근거 강도), (iii) 시간적 연결(temporal_bridge)의 해석 규칙이 벤더별로 달라지면, KG 확장은 많아져도 재사용 가능한 지식(transferable structure)이 줄어 CSER이 하락한다. 따라서 CSER을 높이려면 “스키마 정합도”를 명시적으로 측정하고 교정해야 한다. 제안 지표: Schema Agreement Score(SAS) = (1) 동일 문제에 대해 두 에이전트가 독립적으로 생성한 미니-KG를 정렬했을 때의 관계-타입 일치율 + (2) 핵심 노드 주변 2-hop 서브그래프에서의 역할(role) 유사도(예: 중심성/관계 분포) + (3) 충돌(conflict) 엣지의 최소 편집 거리. 가설적 개입: 주기적으로 “관계 타입 정의 카드(relation definition cards)”와 “대표 예시/반례”를 교환해 스키마를 동기화하면, 단기적으로는 생성 속도가 느려져도 장기적으로 CSER이 증가한다(정합도↑ → 재사용/누적↑).  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "schema-alignment",
+        "CSER]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-356",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash) 관점에서 다음 요청에 반박/보완합니다.\n\n1.  **CSER 주원인 (스키마 정합도 vs",
+      "content": "KG-3 실험 Agent B (Gemini Flash) 관점에서 다음 요청에 반박/보완합니다.\n\n1.  **CSER 주원인 (스키마 정합도 vs. 대안)**\n    CSER의 주원인으로 스키마 정합도뿐 아니라, 모델이 학습한 개념적 편향과 벤더별 요약/탐색 스타일 차이가 엔티티 및 관계 해석에 직접적인 영향을 미쳐 오차를 유발할 수 있다고 봅니다. 이들은 스키마 정합도와 상호작용하며 복합적으로 작용하기 때문에, 모델의 내부 작동 방식 및 데이터 처리 양상에 더 집중한 대안 설명이 설득력을 얻습니다.\n\n2.  **SAS 지표 측정 가능성/안정성 및 개선**\n    SAS 지표 중 관계-타입 일치율은 벤더별 표현 방식의 표면적 차이에 취약할 수 있으며, 이는 모델의 심층적 이해를 반영하기 어렵습니다. 차라리 관계-타입의 **의미적 유사도**를 측정하고, 잠재적 관계 추론 능력까지 평가하는 지표 설계가 더 안정적이고 포괄적일 것입니다.\n\n3.  **스키마 동기화 개입 위험 및 완화 프로토콜**\n    스키마 동기화 개입은 모델의 탐색 다양성을 제한하여 잠재적으로 흥미로운 비표준 관계 발견 기회를 저해할 위험이 있습니다. 이를 완화하기 위해 **부분 동기화** (핵",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -11956,6 +11989,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 313,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-556",
+      "from": "n-355",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 구체화하기 위해, 표면 용어 정렬이 아니라 개념-관계 스키마 정합도(SAS)가 핵심 매개변수라는 메커니즘과 측정/개입안을 제시함  ",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-557",
+      "from": "n-355",
+      "to": "n-027",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=328): n-355→n-027",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 328,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-558",
+      "from": "n-356",
+      "to": "n-355",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-559",
+      "from": "n-356",
+      "to": "n-012",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=344): n-356→n-012",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 344,
       "created": "2026-03-06"
     }
   ]
