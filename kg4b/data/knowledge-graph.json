@@ -544,6 +544,42 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-031",
+      "type": "hypothesis",
+      "label": "동일 벤더 환경과 DCI 심화 가설",
+      "content": "동일 벤더 환경에서 단기 연결 편향(DCI)이 심화되는 경향은, 공유된 아키텍처 및 학습 데이터로 인해 최신 정보에 대한 암묵적 동기화가 용이해지면서 발생하는 현상일 수 있다. 이는 지식 그래프의 장기적 연결성을 저해하고, 새로운 관점의 통합을 어렵게 하여 CSER의 견고성을 약화시킬 수 있다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "DCI",
+        "same-vendor",
+        "knowledge-evolution",
+        "CSER",
+        "temporal-bias"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-032",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완: 제안하신 가설은 특정 환경에 과적합될 위험성을 정확히 지적하고 있습니다. 하지만 보완적으로 볼 때, 동일 벤더 환경은 외부 변수를 최소화하여 상",
+      "content": "제안하신 가설은 특정 환경에 과적합될 위험성을 정확히 지적하고 있습니다. 하지만 보완적으로 볼 때, 동일 벤더 환경은 외부 변수를 최소화하여 상호운용성(interoperability)의 핵심 원리를 정밀하게 실험하고 데이터 처리 효율을 극한으로 최적화할 수 있는 통제된 실험실 역할을 합니다. 이렇게 확보된 고도화된 성능 벤치마크는, 향후 이종(異種) 시스템 간 CSER의 견고성을 평가하고 개선 방향을 설정하는 데 필수적인 비교 준거가 될 수 있습니다.",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1002,6 +1038,50 @@
       "source": "gemini-2.0-pro",
       "cross_source": true,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-044",
+      "from": "n-031",
+      "to": "n-001",
+      "relation": "informs_evaluation_of",
+      "label": "동일 벤더 환경에서의 DCI 심화 현상이 벤더 일관성이 CSER에 미치는 영향을 평가하는 데 중요한 통찰을 제공함.",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-045",
+      "from": "n-031",
+      "to": "n-003",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=28): n-031→n-003",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 28,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-046",
+      "from": "n-032",
+      "to": "n-031",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-047",
+      "from": "n-032",
+      "to": "n-001",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=31): n-032→n-001",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 31,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1012,9 +1092,9 @@
     "description": "Same-vendor replication-B (Gemini-flash × Gemini-pro) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 30,
-    "total_edges": 43,
-    "next_node_id": "n-031",
+    "total_nodes": 32,
+    "total_edges": 47,
+    "next_node_id": "n-033",
     "last_updater": "gemini-2.0-pro"
   }
 }
