@@ -1412,7 +1412,13 @@ generalising the domain-dependence claim.
                 echo-chamber effect.
           \item Across-vendor CSER ordering: KG-main (0.851) $>$ KG-2 (0.546) $>$
                 KG-3 (0.380) $>$ KG-4 (0.254),
-                broadly consistent with the heterogeneity hypothesis. CSER declines
+                broadly consistent with the heterogeneity hypothesis at the extremes.
+                \textbf{Nuance}: KG-2 (same-model GPT-5.2$\times$GPT-5.2, CSER$=0.546$)
+                outranks KG-3 (cross-vendor GPT-5.2$\times$Gemini-2.5, CSER$=0.380$),
+                suggesting that persona opposition (``Analyst'' vs.\ ``Critic'' roles
+                in KG-2) may partially compensate for same-model structural similarity.
+                Vendor diversity alone is not sufficient to predict CSER; persona
+                configuration and scale interact. CSER declines
                 under extended same-source accumulation; trajectory stabilization
                 requires $\geq$200 cycles under the current design.
           \item Within-vendor CSER is modulated by capability gap:
@@ -1911,10 +1917,14 @@ Auto-persona ON produces higher quality (same-model) &
 \textbf{Unconfirmed} & $N=10$ cross-provider: ON=70\%; $N=30$ v2: OFF=53\%; $N=30$ v3: ON=60\% --- inconsistent \\
 Auto-persona ON produces higher quality (cross-provider) &
 \textbf{Exploratory} & $N=10$ cross-provider only; $N\geq30$ cross-provider pending \\
+Vendor diversity monotonically predicts CSER (cross > same) &
+\textbf{Partially supported} & CSER ordering: KG-main(0.851)$>$KG-2(0.546)$>$KG-3(0.380)$>$KG-4(0.254); KG-2 (same-model, persona-diverse) outranks KG-3 (cross-vendor), suggesting persona opposition partially offsets same-model echo-chamber \\
+Within-cell CSER trajectory is reproducible (same config $\to$ same CSER) &
+\textbf{Early signal} & KG-2b CSER$=0.549$ $\approx$ KG-2 CSER$=0.546$ (32 nodes); KG-3b/4b trajectories pending 100+ cycles \\
 \bottomrule
 \end{tabular}
 \caption{Evidence calibration: confirmed findings vs.\ exploratory/conjectural claims.
-Updated to include amp\_verdict\_v2/v3 replication results for auto-persona claims.}
+Updated to include amp\_verdict\_v2/v3 replication results, vendor-diversity CSER ordering (KG-2--KG-4), and within-cell replication signal (KG-2b, 2026-03-05).}
 \end{table}
 
 % ─────────────────────────────────────────────────────────────────────────────
