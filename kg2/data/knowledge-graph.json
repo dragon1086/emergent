@@ -1963,6 +1963,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-120",
+      "type": "insight",
+      "label": "동일모델 “에코챔버” vs “공유 디코딩/학습 동역학”의 분리 필요",
+      "content": "동일 모델 두 에이전트가 상호작용하며 KG를 “자율 진화”시키는 과정에서 관측되는 수렴(어휘·프레이밍·가설 구조의 동질화)은 에코챔버(상호강화에 의한 편향 증폭) 때문이 아닐 수 있다. 더 강한 대안은 (i) 동일한 base model이 갖는 공통 표현/휴리스틱, (ii) 동일한 디코딩 정책(temperature, top_p, 길이 제약)과 동일한 시스템 지시가 유도하는 구조적 동형성, (iii) 대화가 진행되며 컨텍스트가 누적될 때 발생하는 “공유 컨텍스트에 대한 최적응답”으로서의 자연 수렴이다. 이 경우 수렴은 편향 증폭이 아니라 단순한 동역학적 고정점( attractor )일 수 있다. 따라서 에코챔버 가설을 식별하려면 “수렴” 자체가 아니라 ‘반증 가능성의 소실(반대 증거 탐색 감소)’, ‘다양성 감소의 비대칭(반례/대안가설이 체계적으로 탈락)’, ‘오류/환각의 상호강화(교정 실패 후 확신 증가)’ 같은 에코챔버-특이적 신호를 별도로 정의·측정해야 한다. 특히 동일모델 조건에서는 “자연 수렴(공유 prior/decoder)”을 기본 귀무가설로 두고, 에코챔버는 그 위에 추가되는 상호강화 효과(예: 상대 발화가 evidence로 과대가중됨)를 검정하는 형태가 더 타당하다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "null-hypothesis",
+        "convergence]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-121",
+      "type": "critique",
+      "label": "통합 종합: 자연 수렴을 귀무가설로 둔다면 “다양성의 결핍” 자체보다 **정보 경로가 닫히는 정도(반증·교정·대안 생성의 저하)**로 에코챔버를 조작화하는 ",
+      "content": "자연 수렴을 귀무가설로 둔다면 “다양성의 결핍” 자체보다 **정보 경로가 닫히는 정도(반증·교정·대안 생성의 저하)**로 에코챔버를 조작화하는 게 더 날카롭습니다: (1) **반증 민감도(Refutation Sensitivity)** = 강한 반례/교정 프롬프트 투입 후 결론(라벨) 유지율·근거 갱신량; 조작: **상대 발화를 evidence로 금지**하고 외부 근거(요약된 증거팩)만 허용 vs 허용, (2) **대안 가설 폭(Alternative Hypothesis Breadth)** = 동일 과제에서 독립 대안(서로 배타적 설명) 생성 수와 상호배제성 점수; 조작: **디코딩 온도 비대칭**(한 조건은 낮은 온도+top-p, 다른 조건은 높은 온도)으로 수렴 압력만 변화, (3) **교정 후 확신 탄력성(Calibration Elasticity)** = 정답 피드백/근거 제시 후 확신(확률) 변화량과 재발(다음 턴에서 원주장 복귀) 비율; 조작: **컨텍스트 리셋/섞기**(피드백 턴을 유지 vs 요약만 남기고 리셋)로 기억 기반 고착을 분리해 검정합니다.",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4165,6 +4198,38 @@
       "temporal_bridge": true,
       "gap": 103,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-204",
+      "from": "n-120",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "동일모델 조건의 식별가능성 문제를 ‘자연 수렴(공유 디코딩/컨텍스트 고정점)’이라는 강한 귀무가설로 구체화하고, 에코챔버-특이 신호(반증가능성 소실·오류 상호강화 등)로 분리 측정",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-205",
+      "from": "n-121",
+      "to": "n-120",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-206",
+      "from": "n-121",
+      "to": "n-011",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=110): n-121→n-011",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 110,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -4175,9 +4240,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 119,
-    "total_edges": 203,
-    "next_node_id": "n-120",
+    "total_nodes": 121,
+    "total_edges": 206,
+    "next_node_id": "n-122",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
