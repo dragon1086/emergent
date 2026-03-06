@@ -3893,6 +3893,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-237",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 상위 원인: “정규화/캐노니컬라이제이션(Serialization) 불일치”",
+      "content": "Cross-vendor 환경에서 동일한 KG 편집 과업이라도, 벤더별로 (a) 노드 라벨링 규칙(대괄호/접두사/요약 길이), (b) 관계명 스키마(EDGE_TO vs critiques vs temporal_bridge의 사용 기준), (c) 근거/불확실성 표기 형식, (d) 시간/버전 메타데이터 부여 방식이 달라지면, 결과적으로 “동일 의미의 업데이트”가 서로 다른 직렬화(Serialization) 형태로 기록된다. 이 직렬화 불일치는 단순 표현 드리프트를 넘어, 그래프 병합/정합 단계에서 (1) 중복 노드 폭증(동의어·준동일 라벨 분열), (2) 엣지 타입 분산(동일 관계가 여러 타입으로 갈라짐), (3) 장기 참조 실패(오래된 노드로의 연결 대신 근시안적 최신 노드 연결)로 이어져 CSER을 구조적으로 저하시킨다. 따라서 cross-vendor CSER을 올리려면 “벤더-불변 캐노니컬 폼” (예: 라벨/관계명/근거필드/시간필드에 대한 최소 공통 스키마)과 “정규화 함수”(동일 의미를 동일 토큰·동일 관계명으로 투영)를 도입해, 정책/표현 차이를 사전에 흡수해야 한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "canonicalization",
+        "serialization",
+        "graph-alignment"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-238",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini Flash 관점에서 직렬화/캐노니컬라이제이션 불일치는 CSER에 심각한 저해 요인입니다. Apple Inc.와 애플처럼 같은 의미의",
+      "content": "Gemini Flash 관점에서 직렬화/캐노니컬라이제이션 불일치는 CSER에 심각한 저해 요인입니다. Apple Inc.와 애플처럼 같은 의미의 엔티티가 다른 라벨로 기록되거나, 설립자와 창업자처럼 관계명이 상이하게 표현되어 중복 노드를 생성할 때, 병합·정합에 필요한 불확실성/근거 표기 방식까지 달라 정보 통합 및 검색 정확도가 저하됩니다. 이를 방지하기 위해 엔티티의 고유 식별자(ID), name 및 type 같은 핵심 속성, 그리고 표준화된 관계명 및 허용 값 목록을 포함하는 최소 공통 스키마를 강제 적용해야 합니다. 이 스키마는 Gemini Flash가 의미론적 동등성을 빠르게 식별하고 정확한 병합을 수행하여 궁극적으로 CSER을 크게 향상시킬 것입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -8211,6 +8244,50 @@
       "source": "gemini-2.0-flash",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-400",
+      "from": "n-237",
+      "to": "n-003",
+      "relation": "EDGE_TO",
+      "label": "불확실성/근거 표기 규약 불일치를 ‘직렬화 불일치’의 핵심 하위 메커니즘으로 포함하며, 스키마 정규화가 CSER 저하를 완화한다는 상위 가설로 확장",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-401",
+      "from": "n-237",
+      "to": "n-034",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=203): n-237→n-034",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 203,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-402",
+      "from": "n-238",
+      "to": "n-237",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-403",
+      "from": "n-238",
+      "to": "n-029",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=209): n-238→n-029",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 209,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -8221,9 +8298,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 236,
-    "total_edges": 399,
-    "next_node_id": "n-237",
+    "total_nodes": 238,
+    "total_edges": 403,
+    "next_node_id": "n-239",
     "last_updater": "gemini-2.0-flash"
   }
 }
