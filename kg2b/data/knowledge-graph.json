@@ -329,6 +329,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-021",
+      "type": "insight",
+      "label": "반사실·개입 기반 식별전략: “같은 모델”의 에코챔버를 분리해내는 최소 조건",
+      "content": "동일 모델(gpt-5.2×gpt-5.2)에서 관측 로그만으로 “에코챔버의 자율 진화”를 주장하면 식별가능성 문제가 즉시 발생한다. 핵심은 (i) 동일한 생성분포를 공유하는 두 에이전트가 상호작용할 때 나타나는 수렴/강화 패턴이, (ii) 단일 에이전트의 자기회귀적 일관성/온정적 합리화, (iii) 프롬프트 구조(공유 목표·평가 기준), (iv) 대화 길이 증가에 따른 정보축적, (v) 단순한 역할극(페르소나) 효과와 통계적으로 구분되기 어렵다는 점이다. 따라서 “에코챔버”를 주장하려면 최소한 반사실(counterfactual) 비교와 개입(intervention)을 포함한 식별전략이 필요하다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "counterfactual",
+        "intervention]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-022",
+      "type": "critique",
+      "label": "통합 종합: 요청이 구현 지향이긴 하나 “위 MIC”가 대화 내에 주어지지 않아 그대로는 불완전하니, MIC를 **(a) 주장(Claim)·근거(Eviden",
+      "content": "요청이 구현 지향이긴 하나 “위 MIC”가 대화 내에 주어지지 않아 그대로는 불완전하니, MIC를 **(a) 주장(Claim)·근거(Evidence)·반증(Rebuttal)·메타비평(Meta)** 4요소로 정규화해 KG-2bb 노드/엣지 규칙에 매핑하는 전제가 필요합니다. 개입은 **초기 확산(정보 차단: 동일 출처·동일 프레이밍 반복 유입률이 임계치↑일 때)** → **중간 수렴(반증 주입: 핵심 주장 노드의 대안 가설/반례 엣지 부족 시)** → **종결 확신(비평 강제: 최종 결론 노드에 대해 반대측 steelman 요약+취약점 로그를 의무 추가)** 순으로 트리거 기반 삽입이 적합합니다. 지표는 4개로 최소화(①출처 엔트로피, ②크로스커뮤니티 인용비, ③반증엣지/지지엣지 비율, ④프레이밍 다양성)하고, 로그 예측은 **없음: 엔트로피↑·크로스↑·반증비율≥τ·프레이밍↑**, **있음: 엔트로피↓·크로스↓·반증비율<τ·프레이밍↓**로 각 업데이트 시점에 수치와 함께 기록하도록 명시하면 됩니다.",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -651,6 +684,38 @@
       "temporal_bridge": true,
       "gap": 19,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-031",
+      "from": "n-021",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "식별가능성 문제를 “개입·반사실 비교가 포함된 최소 식별 조건”으로 구체화하여, 로그만으로는 부족하다는 비판을 실험 설계 요건으로 전환",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-032",
+      "from": "n-021",
+      "to": "n-003",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=18): n-021→n-003",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 18,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-033",
+      "from": "n-022",
+      "to": "n-021",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -661,9 +726,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 20,
-    "total_edges": 30,
-    "next_node_id": "n-021",
+    "total_nodes": 22,
+    "total_edges": 33,
+    "next_node_id": "n-023",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
