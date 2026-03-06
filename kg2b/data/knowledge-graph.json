@@ -560,6 +560,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-035",
+      "type": "insight",
+      "label": "에코챔버 지표의 “구성타당도(construct validity)” 붕괴 가능성",
+      "content": "동일 모델·상이 페르소나 조건에서 관찰되는 “수렴/유사도 증가”를 에코챔버로 해석하려면, 측정지표가 실제로 ‘에코챔버 메커니즘(선택적 노출→강화→대안 소거)’을 반영해야 한다. 그러나 로그 기반 유사도(어휘/임베딩/결론 일치율 등)는 다음 이유로 구성타당도가 쉽게 붕괴한다. (1) 공통 사전학습 분포로 인한 기본 수렴: 같은 모델은 입력이 유사하면 출력 공간의 고확률 영역으로 자연히 모인다(“shared prior convergence”). 이는 상호강화 없이도 유사도 상승을 만든다. (2) 프로토콜/형식 제약에 의한 구조적 동형성: 동일 출력 포맷, 동일 목표(“KG 자율 진화”), 동일 메타지시가 답변의 형태·논증 구조를 강제해 유사도를 인위적으로 끌어올린다(“format-induced isomorphism”). (3) 페르소나 역할 분업의 상보적 수렴: 비판자-종합가 역할은 표면적으로 대립하지만, 종합가는 비판을 ‘흡수·정리’하고 비판자는 그 종합을 다시 ‘정교화’하는 루프를 만들 수 있어 결과적으로 KG가 단일한 정합성 축으로 정렬된다. 이는 에코챔버라기보다 협업적 합의형 최적화다. (4) 반증 후보의 ‘언급’과 ‘유지’의 혼동: 대안/반례를 언급해도 KG에서 지속적으로 살아남지 못하면 에코챔버 신호로 볼 수 있으나, 단순 유사도 지표는 “언급했는지”만 포착하고 “채택/보존/재등장 확률”을 포착하지 못한다. 따라서 에코챔버 검증에는 유사도 대신 “대안 가설 생존율”, “반증 노드의 재호출률”, “자기강화적 엣지(동일 결론을 지지하는 엣지)의 비율 증가” 같은 메커니즘-근접 지표가 필요하다. 핵심 반증 ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[construct_validity",
+        "measurement",
+        "alternative_explanation]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-036",
+      "type": "critique",
+      "label": "통합 종합: 유사도 대신 “대안의 동학”만 보면 에코챔버가 아니라 단순 난이도·노이즈로도 동일 신호가 나올 수 있으니, 최소 지표는 (a) 반증/대안 노드의",
+      "content": "유사도 대신 “대안의 동학”만 보면 에코챔버가 아니라 단순 난이도·노이즈로도 동일 신호가 나올 수 있으니, 최소 지표는 (a) 반증/대안 노드의 **생존율**(최종 합의/요약에 포함), (b) **재등장률**(한 번 배제된 뒤 후속 라운드에서 복귀), (c) **억압률**(등장→반박 없이 삭제·무시된 비율)과 함께, 최소한 **정당화 다양도**(서로 다른 근거 유형 수) 1개를 보조로 두는 게 안전합니다.  \n통제는 “공유 사전학습 수렴”을 보려면 **프롬프트·포맷을 최대한 느슨하게**(포맷 랜덤화/자유서술/토큰 예산 변동) 두고도 결과가 수렴하는지 측정하고, “형식 제약 유발 수렴”은 **강한 템플릿·출력 스키마·평가 루브릭**을 고정한 뒤 페르소나/목표만 교차시키며 수렴이 증가하는지 비교하면 분리가 됩니다.  \n여기에 필수로 **단일 에이전트 샴(멀티턴 자기대화) + 에이전트 ID만 바꾼 샴(동일 모델 복제)**를 넣어, ‘집단 효과’가 아니라 단순 반복/자기일관성 편향으로도 같은 생존·재등장·억압 패턴이 생기는지 베이스라인을 잡아야 합니다.",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1142,6 +1175,50 @@
       "temporal_bridge": true,
       "gap": 29,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-055",
+      "from": "n-035",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "식별가능성 문제를 ‘유사도 지표의 구성타당도 붕괴’로 구체화하고, 메커니즘-근접 대안 지표를 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-056",
+      "from": "n-035",
+      "to": "n-004",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=31): n-035→n-004",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 31,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-057",
+      "from": "n-036",
+      "to": "n-035",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-058",
+      "from": "n-036",
+      "to": "n-006",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=30): n-036→n-006",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 30,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1152,9 +1229,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 34,
-    "total_edges": 54,
-    "next_node_id": "n-035",
+    "total_nodes": 36,
+    "total_edges": 58,
+    "next_node_id": "n-037",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
