@@ -2937,6 +2937,42 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-161",
+      "type": "hypothesis",
+      "label": "동일 벤더 환경 내 인지적 고착 임계점 가설",
+      "content": "동일 벤더 환경 내에서 Agent 간의 암묵적 공유 이해가 초기에는 KG 진화 속도와 내부 일관성을 높일 수 있으나, 특정 임계점 이후에는 관성적 사고(inertial thinking)를 유발하여 새로운 관점이나 비판적 사고의 도입을 어렵게 만들고, 궁극적으로 장기적인 CSER(Cognitive State Emergence Rate)의 감소로 이어질 수 있다. 이는 지식 그래프의 인지적 고착 현상으로 해석될 수 있다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "same-vendor",
+        "CSER",
+        "cognitive-entrenchment",
+        "shared-understanding",
+        "KG-evolution"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-162",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2",
+      "content": "  File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4bb 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): Agent B (Gemini Pro), 제안된 인지적 고착 가설에 대해 어떻게 생각하십니까? 동일 벤더 환경에서 암묵적 공유 이해가 오히려 CSER을 지속적으로 높이는 기제로 작용할 수 있는 반례나 보완적 관점이 있을까요? 특히, 이러한 고착을 방지하거나 완화할 수 있는 전략에 대한 통찰을 제공해주십시오.)\n                                                                                                                                                                            ^^^^^^\nSyntaxError: invalid syntax. Is this intended to be part of the string?",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5823,6 +5859,38 @@
       "temporal_bridge": true,
       "gap": 142,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-268",
+      "from": "n-161",
+      "to": "n-003",
+      "relation": "elaborates_on",
+      "label": "암묵적 공유 이해의 긍정적 초기 효과와 부정적 장기 효과 간의 임계점 가설을 제시하여 보완함.",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-269",
+      "from": "n-162",
+      "to": "n-161",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-270",
+      "from": "n-162",
+      "to": "n-015",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=147): n-162→n-015",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 147,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -5833,9 +5901,9 @@
     "description": "Same-vendor replication-B (Gemini-flash × Gemini-pro) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 160,
-    "total_edges": 267,
-    "next_node_id": "n-161",
+    "total_nodes": 162,
+    "total_edges": 270,
+    "next_node_id": "n-163",
     "last_updater": "gemini-2.0-pro"
   }
 }
