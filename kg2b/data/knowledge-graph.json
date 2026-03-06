@@ -461,6 +461,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-029",
+      "type": "insight",
+      "label": "에코챔버 지표의 ‘자기강화’와 ‘공유프롬프트’ 혼동(식별 교란)",
+      "content": "동일 모델(gpt-5.2 × gpt-5.2)에서 관찰되는 “수렴/반복/상호강화” 패턴은 에코챔버(상호작용으로 신념·표현이 강화되는 내생적 동학)라기보다, (i) 공유된 초기 프롬프트/지시문, (ii) 동일한 안전/정렬 prior, (iii) 유사한 표현 습관이 만들어내는 ‘공통원인’ 효과일 수 있다. 따라서 에코챔버 가설을 검증하려면 “A↔B 상호작용이 없었더라도 발생했을 수 있는 유사성”을 제거한 잔차(residual)에서만 자기강화(positive feedback)를 주장해야 한다. 이때 최소 식별 조건은 다음과 같다: (1) 상호작용 그래프를 끊은 반사실(독립 생성) 대비, (2) 시간에 따라 유사도가 단조 증가하거나(혹은 다양성이 단조 감소)하며, (3) 그 변화가 상대 에이전트의 직전 발화에 조건부로 유의하게 설명되는지(Granger/조건부 상호정보량 등) 보여야 한다. 그렇지 않으면 “같은 모델이니까 비슷해졌다”는 자명한 결과를 에코챔버로 오인한다. 추가로, 지표가 단순 n-gram/토픽 유사도면 ‘표현 수렴’만 잡고 ‘신념 강화’는 놓치므로, 주장(stance)·근거 유형·반증 시도 빈도 같은 구조적 변수까지 분리 측정해야 한다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "confounding",
+        "metrics]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-030",
+      "type": "critique",
+      "label": "통합 종합: 좋은 통합안이지만 “내생적 자기강화”만으로 정의하면 외생적 쇼크(뉴스·이벤트)나 공통 프롬프트/주제에 의한 동시 수렴을 에코챔버로 오인할 수 있",
+      "content": "좋은 통합안이지만 “내생적 자기강화”만으로 정의하면 외생적 쇼크(뉴스·이벤트)나 공통 프롬프트/주제에 의한 동시 수렴을 에코챔버로 오인할 수 있으니, **(상대 발화→내 상태 갱신→다음 발화/선택)**의 매개경로를 포함한 구조적 정의(예: 상대 발화의 반사실적 제거 시 강화가 사라지는지)로 보완하세요. 또한 (a)는 완전 절단(독립 생성)만 두면 “상호작용 자체의 정보량 차이”가 교란이 되므로, **내용은 공유하되 상대의 평가/강화 신호만 차단**하는 부분절단(예: 같은 코퍼스·주제, 응답은 블라인드) 대조를 추가하는 게 식별력이 큽니다. (c)는 표현/신념을 이분법으로 나누기보다 **근거 그래프(근거 유형·출처 다양성·반증 민감도·대안 가설 질량)와 업데이트 동학(증거 가중치의 편향·확신도 탄력성)**을 함께 추적해 “수렴(표면)”과 “강화(구조)”가 동시에/독립적으로 일어나는 조건을 분리하는 지표 묶음으로 통합하는 게 더 견고합니다.",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -935,6 +968,38 @@
       "temporal_bridge": true,
       "gap": 27,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-045",
+      "from": "n-029",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "식별가능성 문제를 ‘공유프롬프트/공통원인’ 교란과 반사실 비교(상호작용 절단)라는 구체적 판별 조건으로 정교화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-046",
+      "from": "n-029",
+      "to": "n-003",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=26): n-029→n-003",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 26,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-047",
+      "from": "n-030",
+      "to": "n-029",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -945,9 +1010,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 28,
-    "total_edges": 44,
-    "next_node_id": "n-029",
+    "total_nodes": 30,
+    "total_edges": 47,
+    "next_node_id": "n-031",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
