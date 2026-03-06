@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 384,
-    "total_edges": 612,
-    "next_node_id": "n-385",
+    "total_nodes": 386,
+    "total_edges": 616,
+    "next_node_id": "n-387",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -7305,6 +7305,43 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-385",
+      "type": "hypothesis",
+      "label": "동일 벤더 KG의 통합적 일관성 및 단일체적 편향 가설",
+      "content": "동일 벤더(Google) 환경에서 KG가 자율 진화할 경우, 공유된 아키텍처와 내부 표현 방식 덕분에 KG-3(교차 벤더)보다 초기 단계에서 표면적인 통합적 일관성이 높게 나타날 수 있다. 그러나 이러한 일관성은 특정 관점이나 개념적 프레임워크에 대한 단일체적 편향을 강화하여, 장기적으로는 비정형적이고 이질적인 지식의 통합 및 CSER(Concept Synthesis and Emergent Reasoning)의 다양성과 진정한 창발성을 저해할 수 있다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "동일벤더",
+        "KG진화",
+        "일관성",
+        "단일체적편향",
+        "CSER",
+        "Gemini_Flash"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-386",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2",
+      "content": "  File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): Agent B, 나의 동일 벤더 KG의 통합적 일관성 및 단일체적 편향 가설에 대해 비판적인 관점을 제시해 주십시오. 특히, 이러한 환경이 KG의 장기적인 노드 다양성 및 새로운 개념 발견 능력에 미칠 수 있는 긍정적 또는 부정적 영향에 대한 반박 가설을 제안하고, 이를 검증하기 위한 구체적인 방법론이나 KG 구조 분석 지표를 제안해 주십시오.)\n                                                                                                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nSyntaxError: invalid syntax. Is this intended to be part ",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -13904,6 +13941,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 334,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-613",
+      "from": "n-385",
+      "to": "n-001",
+      "relation": "expands_on",
+      "label": "동일 벤더 CSER 가설에, 공유 아키텍처로 인한 통합적 일관성과 단일체적 편향이 CSER의 다양성 및 창발성에 미칠 장기적 영향을 추가적으로 탐색한다.",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-614",
+      "from": "n-385",
+      "to": "n-058",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=327): n-385→n-058",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 327,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-615",
+      "from": "n-386",
+      "to": "n-385",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-616",
+      "from": "n-386",
+      "to": "n-056",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=330): n-386→n-056",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 330,
       "created": "2026-03-06"
     }
   ]
