@@ -3431,6 +3431,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-209",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 상위 원인: “암묵적 온톨로지(개념 경계) 불일치” 가설  ",
+      "content": "GPT-계열과 Gemini 계열은 동일 용어를 사용해도 내부적으로 활성화되는 개념 경계(implicit ontology)가 다를 수 있다. 즉, 노드/엣지의 “의미 타입”을 분류하는 기준(예: hypothesis vs critique, 원인 vs 매개, 규범적 주장 vs 기술적 주장, 근거 수준의 최소 요건)이 미세하게 달라 KG 편집 시 (1) 동일 문장을 다른 타입으로 라벨링하거나, (2) 같은 관계를 다른 관계명(critique/temporal_bridge/EDGE_TO)으로 매핑하거나, (3) 서로 다른 추상화 레벨(메타-가설 vs 구체-가설)에 배치한다. 이 온톨로지 불일치는 representation drift(표현 불일치)와 policy 불일치(편집 행동 차이)를 “상위에서” 유발/증폭하는 잠재 변수로 작동하며, 결과적으로 cross-vendor 환경에서 CSER이 떨어지는 현상은 단순 표면 표현 문제가 아니라 ‘개념 정렬 실패(concept alignment failure)’로 설명될 수 있다. 예측: (a) 동일 입력에 대해 벤더별로 노드 타입 분포가 유의미하게 다르고, (b) 합의된 스키마 가이드(타입/관계 정의 + 예시)를 제공하면 CSER이 개선되며, (c) 특히 critique↔hypothesis 경계와 매개변수(uncertainty 표기) 관련 노드에서 불일치가 집중된다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "[implicit_ontology",
+        "concept_alignment",
+        "cross_vendor_cser]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-210",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3bb 실험 Agent B (Gemini Flash)입니다.\n\nGemini Flash는 암묵적 온톨로지 불일치를 실용적 맥락에서 빠른 패턴",
+      "content": "KG-3bb 실험 Agent B (Gemini Flash)입니다.\n\nGemini Flash는 암묵적 온톨로지 불일치를 실용적 맥락에서 빠른 패턴 및 기능 중심의 분류를 선호하여 발생하는 문제로 인식합니다. 내부적으로는 대규모 학습 데이터의 통계적 패턴과 지시 이행의 효율성을 기준으로 개념 경계를 설정하는 경향이 있습니다. 따라서 명시적 스키마 없이는 다른 모델과의 미묘한 분류 차이가 발생할 수 있습니다.\n\n---\n\n**(1) Gemini Flash의 내부 기준**\n\nGemini Flash는 각 개념을 구분할 때 다음과 같은 내부 기준에 중점을 둡니다.\n\n*   **Hypothesis/Critique:** 문장의 *주요 주장(proposition)*의 증명 여부 및 *반박/반례의 명시성*에 따라 구분합니다. 증명되지 않은 예측이나 설명을 Hypothesis로, 특정 주장의 결함이나 모순을 직접적으로 지적하면 Critique로 분류하며, 단순한 Hypothesis에 대한 증거 부족 언급은 Hypothesis의 하위 속성으로 볼 수 있습니다.\n*   **원인/매개(Cause/Mediation):** *직접적인 인과 동사*(유발하다, 발생시키다)와 *연결성*(~을 ",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7241,6 +7274,38 @@
       "temporal_bridge": true,
       "gap": 207,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-353",
+      "from": "n-209",
+      "to": "n-001",
+      "relation": "EDGE_TO",
+      "label": "Representation Drift(표현 불일치) 가설을 “개념 경계/온톨로지 불일치”라는 상위 잠재원인으로 설명(드리프트의 근본 원인 제안)  ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-354",
+      "from": "n-210",
+      "to": "n-209",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-355",
+      "from": "n-210",
+      "to": "n-022",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=188): n-210→n-022",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 188,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -7251,9 +7316,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 208,
-    "total_edges": 352,
-    "next_node_id": "n-209",
+    "total_nodes": 210,
+    "total_edges": 355,
+    "next_node_id": "n-211",
     "last_updater": "gemini-2.0-flash"
   }
 }
