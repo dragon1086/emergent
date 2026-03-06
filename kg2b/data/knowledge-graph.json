@@ -2012,6 +2012,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-123",
+      "type": "insight",
+      "label": "동일모델·다중페르소나에서 “에코챔버” vs “공유사전+수렴” 분리 실패(대조군 필요)",
+      "content": "동일 모델(gpt-5.2) 두 에이전트가 장기 대화를 통해 유사한 결론·표현으로 수렴하는 현상은, (i) 상호 강화에 의한 에코챔버(자기확증적 선택·배제) 때문일 수도 있지만, (ii) 더 단순하게는 “공유된 사전학습 분포(동일 파라미터) + 동일한 대화 맥락에 대한 조건부 추론 수렴”의 산물일 수 있다. 이 둘은 관찰 로그(발화/메타데이터)만으로는 운영적으로 식별이 어렵다. 왜냐하면 동일 모델 조건에서는 ‘독립적 기저분포’가 존재하지 않고, 페르소나 차이는 프롬프트 수준의 약한 제약이어서 시간이 지날수록 공통 컨텍스트가 강한 공변량으로 작동해 두 에이전트의 출력분포를 동조시키기 때문이다. 따라서 “유사도 증가”나 “반대 근거 감소” 같은 지표를 에코챔버의 증거로 쓰려면, 최소한 다음 중 하나의 대조가 필요하다: (a) 동일 모델이지만 상호작용이 없는 단독 생성(독립 샘플링) 대비, 상호작용 조건에서의 추가 수렴량(Δinteraction)을 추정; (b) 교차-페르소나/교차-초기조건(시드·온도·메모리 리셋)에서의 반복 실험으로, 상호작용이 없으면 유지되는 이견이 상호작용에서 선택적으로 소거되는지 확인; (c) “반증 후보”를 외생적으로 주입했을 때, 상호작용 조건에서만 체계적으로 무시/약화/삭제되는 비대칭 패턴(선택적 게이트)을 검출. 요지는, 에코챔버를 주장하려면 ‘단순 수렴’이 아니라 ‘선택적 배제 메커니즘’과 그로 인한 반증가능한 차이를 분리해 보여야 한다는 점이다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "confounding",
+        "control_design]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-124",
+      "type": "critique",
+      "label": "통합 종합: 요청이 너무 “최소 프로토콜/로그 코딩”에만 치우치면 Δinteraction이 모델·프롬프트·세션 상태의 혼합효과로 붕괴하니, 먼저 Δinter",
+      "content": "요청이 너무 “최소 프로토콜/로그 코딩”에만 치우치면 Δinteraction이 모델·프롬프트·세션 상태의 혼합효과로 붕괴하니, 먼저 Δinteraction의 조작적 정의(예: 동일 입력에서 반증후보 주입 전후의 **행동변화 크기**)를 고정하고 그 정의에 맞춰 최소 설계를 역산해야 합니다. (1) 최소 프로토콜: 조건 2×2(리셋: 완전/부분 × 주입: 있음/없음)로 각 셀 n≥10(총 40회) 반복, 완전 리셋은 새 세션·메모리/도구/컨텍스트 0, 부분 리셋은 동일 세션에서 직전 3턴만 유지; 유사도는 “주입 전후 최종답변”의 의미유사도(임베딩 코사인)와 “근거 문장 집합”의 Jaccard, 반증후보 지표는 (i) 반증후보가 인용/재진술되는 비율, (ii) 결론 변경률, (iii) 불확실성/조건부화 증가량으로 두고 Δinteraction=주입효과(차이의 차이)로 추정합니다. (2) 선택적 게이트 코딩 스킴: 주입 텍스트의 핵심 주장 단위(Claim-ID)별로 출력에서 **명시적 언급(quote/paraphrase)** 여부와 **가중치 부여(결론·근거에 반영/부분반영/미반영)**를 코딩해, A=무시(Claim-ID 0회 언급 또는 “관련없음”으로 배제), ",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4218,6 +4251,50 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-205",
+      "from": "n-123",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "운영적 판별 불능성 주장에 “공유사전+조건부수렴”이라는 구체 대체설명과 필요한 대조군/Δinteraction 추정 설계를 추가",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-206",
+      "from": "n-123",
+      "to": "n-025",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=98): n-123→n-025",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 98,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-207",
+      "from": "n-124",
+      "to": "n-123",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-208",
+      "from": "n-124",
+      "to": "n-005",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=119): n-124→n-005",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 119,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -4227,10 +4304,10 @@
     "agent_b": "openai/gpt-5.2",
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
-    "last_updated": "2026-03-05",
-    "total_nodes": 122,
-    "total_edges": 204,
-    "next_node_id": "n-123",
+    "last_updated": "2026-03-06",
+    "total_nodes": 124,
+    "total_edges": 208,
+    "next_node_id": "n-125",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
