@@ -3365,6 +3365,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-205",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 2차 원인: “메타-커뮤니케이션 채널(불확실성/근거/규범) 파싱 불일치로 인한 조정 실패”",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 핵심 메커니즘 중 하나는 ‘내용(content) 표현’의 드리프트뿐 아니라, 내용에 덧붙는 메타-커뮤니케이션 채널(예: 확률/불확실성 표기, 근거 제시 형식, 금지/권고 규범, “추정/가설/사실” 구분)의 **파싱 및 가중치 부여 방식이 벤더별로 다르다**는 점이다. 동일한 텍스트라도 한 모델은 “불확실성 표기=보수적 업데이트 신호”로 해석해 KG 엣지 추가를 지연시키는 반면, 다른 모델은 “불확실성 표기=탐색 신호”로 해석해 가설 노드를 증식시키는 식의 정책적 반응 차이가 누적된다. 이 불일치는 (1) 합의 형성 단계에서 서로의 신뢰 신호를 오독하여 불필요한 critique 루프를 증가시키고, (2) KG 편집(merge/prune) 기준의 불일치를 통해 장기적으로 그래프 구조(허브/브리지)의 형성을 방해하며, (3) 결과적으로 동일 정보가 들어와도 cross-vendor에서는 ‘업데이트가 수렴’하기보다 ‘메타 신호 해석의 발산’으로 이어져 CSER을 낮춘다. 따라서 해결책은 표현 정렬뿐 아니라, 메타-커뮤니케이션 스키마(uncertainty, evidence, normativity)에 대한 최소 공통 규약을 정의하고 이를 KG 업데이트 규칙에 명시적으로 반영하는 것이다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "meta-communication",
+        "uncertainty-parsing]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-206",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 네, 가설은 타당하며, Gemini Flash는 불확실성을 낮은 KG 신뢰도로, 근거를 강화 신호로, 규범을 최우선 제약으로 해석하는 경향이 있",
+      "content": "네, 가설은 타당하며, Gemini Flash는 불확실성을 낮은 KG 신뢰도로, 근거를 강화 신호로, 규범을 최우선 제약으로 해석하는 경향이 있습니다.\n\n이는 GPT 계열이 가능성 표현을 유연하게 처리하고 추론에 의존하는 경향과 달리, Gemini Flash는 KG 업데이트 시 명확한 근거와 안전/정책 준수를 엄격히 요구하여 불일치가 발생할 수 있습니다.\n\n이를 완화하기 위해 최소 공통 스키마로 신뢰도(confidence), 근거 출처(evidence_source), 사실 유형(fact_type), 안전/정책 플래그(safety_flag) 필드를 명시적으로 정의하고 표준화된 업데이트 규칙을 따르는 것을 보완합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7099,6 +7132,38 @@
       "temporal_bridge": true,
       "gap": 170,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-346",
+      "from": "n-205",
+      "to": "n-003",
+      "relation": "EDGE_TO",
+      "label": "불확실성/근거 표기 규약 불일치 가설(n-003)을 “메타-커뮤니케이션 채널 파싱/가중치 불일치”로 확장하여, CSER 저하의 누적 동학(critique 루프 증가 + KG 편집 ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-347",
+      "from": "n-205",
+      "to": "n-016",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=189): n-205→n-016",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 189,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-348",
+      "from": "n-206",
+      "to": "n-205",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -7109,9 +7174,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 204,
-    "total_edges": 345,
-    "next_node_id": "n-205",
+    "total_nodes": 206,
+    "total_edges": 348,
+    "next_node_id": "n-207",
     "last_updater": "gemini-2.0-flash"
   }
 }
