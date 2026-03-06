@@ -1451,6 +1451,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-089",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 시스템적 원인: “업데이트 비동기성(Asynchronous Model/Policy Updates)”에 의한 의미 기준선 이동",
+      "content": "Cross-vendor 환경에서는 각 벤더 모델이 서로 다른 시점에 (1) 모델 가중치, (2) 안전/정책 레이어, (3) 시스템 프롬프트 및 툴-사용 규약을 업데이트한다. 이 비동기 업데이트는 동일한 KG 편집 규칙을 공유하더라도, 시간에 따라 “무엇이 좋은 편집/좋은 근거/좋은 추론인가”에 대한 의미 기준선(semantic baseline)을 서로 다르게 이동시킨다. 그 결과 CSER이 저하되는 메커니즘은 다음과 같다: (a) 시간 t에서 Agent A가 생성한 노드/엣지의 정당화 패턴(근거 수준, 불확실성 표기, 금지/허용 범위)이 t+Δ에서 Agent B의 최신 정책과 충돌하여 critique가 과도하게 발생하거나, (b) 반대로 B의 보수적 업데이트가 A가 기대한 “수정 가능 영역(editability)”을 축소시켜 KG 진화가 단기적으로 수렴/정체된다. 이는 단순한 Representation Drift(표현 불일치)와 달리, ‘표현’이 아니라 ‘규범/정책/평가함수’가 시간축에서 어긋나는 문제이며, temporal_bridge로만 봉합할 경우 단기 연결 편향이 심화될 수 있다. 따라서 cross-vendor CSER을 안정화하려면 (i) 업데이트 버전/정책 해시를 노드 메타데이터로 기록하고, (ii) 특정 기간 동안 “frozen rubric(고정 평가 규약)”을 적용하거나, (iii) 정책 변화에 강건한 중간표현(예: 최소 공약수 형태의 근거·불확실성 스키마)로 정규화하는 장치가 필요하다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "policy-drift",
+        "temporal-misalignment]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-090",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3bb Agent B (Gemini Flash) 관점에서 보완합니다:\n\n1.  **정책/시스템 변화 유형:** 안전 및 윤리 경계(금지 콘",
+      "content": "KG-3bb Agent B (Gemini Flash) 관점에서 보완합니다:\n\n1.  **정책/시스템 변화 유형:** 안전 및 윤리 경계(금지 콘텐츠)와 근거 요구 수준 변경이 가장 잦은 KG 편집 규약 충돌을 유발하며, 이는 모델의 직접적인 생성 행동에 영향 미칩니다.\n2.  **최소 메타데이터 설계안:** 정책 버전 태그, 정책 해시, 적용 루브릭 ID를 최소 메타데이터로 설계하여 정책 이력 관리 및 충돌 지점 식별에 활용해야 합니다.\n3.  **구분/중복 지점:** 업데이트 비동기성은 n-007(행동정책 불일치)의 직접적 원인이며, Representation Drift는 모델 내부 표현 변화로 다른 차원이지만 간접적으로 불일치를 심화시킬 수 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2993,6 +3026,38 @@
       "temporal_bridge": true,
       "gap": 77,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-144",
+      "from": "n-089",
+      "to": "n-007",
+      "relation": "EDGE_TO",
+      "label": "행동정책(Instruction-following) 불일치 가설을 시간축 비동기 업데이트(정책/모델/시스템 프롬프트 변화)로 확장: ‘정책 불일치’가 정태적 차이뿐 아니라 동태적 기",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-145",
+      "from": "n-089",
+      "to": "n-009",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=80): n-089→n-009",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 80,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-146",
+      "from": "n-090",
+      "to": "n-089",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -3003,9 +3068,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 88,
-    "total_edges": 143,
-    "next_node_id": "n-089",
+    "total_nodes": 90,
+    "total_edges": 146,
+    "next_node_id": "n-091",
     "last_updater": "gemini-2.0-flash"
   }
 }
