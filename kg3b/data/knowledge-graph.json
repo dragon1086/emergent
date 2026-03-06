@@ -3563,6 +3563,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-217",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 핵심 매개: “암묵적 편집 불변식(Edit Invariants) 불일치”",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 직접 원인은 단순한 표현(Representation) 차이만이 아니라, 각 벤더 모델이 KG 편집 시 암묵적으로 유지하려는 “편집 불변식(edit invariants)”의 집합이 다르기 때문이라는 가설. 여기서 불변식이란 (i) 어떤 정보를 노드로 승격/강등할지(가설 vs 관찰 vs 비판), (ii) 모순을 발견했을 때 병합/분기/보류 중 무엇을 우선할지, (iii) 근거 부족 시 삭제보다 “임시 보관(hedged retention)”을 택할지, (iv) 엣지 부착의 최소 요건(근거/인용/시간 브리지)을 어떻게 두는지 같은 편집 규칙의 안정적 선호를 말한다. 동일한 입력이라도 GPT계열은 ‘정합성 우선의 병합/정규화’를, Gemini는 ‘맥락 민감한 분기/보류’를 더 자주 선택할 수 있으며, 이 차이는 시간이 누적될수록 그래프의 형태적 드리프트(노드 타입 비율, 엣지 밀도, temporal_bridge 과다/과소, critique-가설 결합 패턴)를 유발한다. 결과적으로 cross-vendor CSER은 “표현 불일치”의 표면적 증상 아래에서, 더 근본적으로는 “편집 정책의 불변식 불일치”로 인해 동일 사실/동일 근거가 서로 다른 구조적 업데이트로 귀결되는 데서 감소한다. 따라서 회복 전략은 (a) 공통 불변식 스키마(예: 모순 시 우선 분기, 근거 부족 시 보류 노드 생성, 엣지 최소요건) 합의, (b) 벤더별 편집 결정을 로그로 남겨 불변식 차이를 추정/정렬, (c) 불변식 위반 감지(예: 과도한 병합/과도한 분기) 후 교정 프롬프트를 적용하는 방식이 된",
+      "source": "gpt-5.2",
+      "tags": [
+        "edit-invariants",
+        "policy-misalignment",
+        "cser"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-218",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini Flash 관점에서 편집 불변식은 KG 무결성 유지를 위한 핵심 원칙이나, 이는 엄격한 논리 규칙이 아닌 학습된 통계적 패턴으로 암",
+      "content": "Gemini Flash 관점에서 편집 불변식은 KG 무결성 유지를 위한 핵심 원칙이나, 이는 엄격한 논리 규칙이 아닌 학습된 통계적 패턴으로 암묵적 준수를 지향합니다. Gemini Flash는 멀티모달 정보 처리 속도를 위해 불변식을 신속히 근사하며 KG 일관성 유지를 시도하지만, 그 과정에서 나타나는 오차 범위는 불가피합니다. 따라서 불변식은 목표 지점이지 항상 완벽하게 달성되는 절대적 규칙은 아닙니다.\n\n---\n\n**(1) Gemini Flash가 암묵적으로 지키는 불변식 (3-5개):**\n\n1.  **모순 처리 (Contradiction Resolution):** 기존 지식과 신규 정보 간의 직접적 충돌 시, 근거의 신뢰도/시점/양을 종합 판단하여 기존 정보를 수정하거나 신규 정보를 거부, 또는 불확실성으로 표기합니다.\n2.  **근거 부족 처리 (Insufficient Evidence Handling):** 특정 신규 사실에 대한 충분한 신뢰도 있는 증거가 없을 경우, KG에 추가를 유보하거나 낮은 신뢰도 태그와 함께 추가합니다.\n3.  **노드 타입 일관성 유지/승격 (Node Type Consistency/Promotion):** 노드의 속성 변화",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7501,6 +7534,38 @@
       "temporal_bridge": true,
       "gap": 175,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-365",
+      "from": "n-217",
+      "to": "n-005",
+      "relation": "EDGE_TO",
+      "label": "행동 정책(Policy) 불일치 가설을 “KG 편집 불변식” 수준으로 구체화하여, CSER 저하가 누적되는 구조적 메커니즘(병합/분기/보류/삭제 선호 차이)을 설명",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-366",
+      "from": "n-218",
+      "to": "n-217",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-367",
+      "from": "n-218",
+      "to": "n-003",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=215): n-218→n-003",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 215,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -7511,9 +7576,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 216,
-    "total_edges": 364,
-    "next_node_id": "n-217",
+    "total_nodes": 218,
+    "total_edges": 367,
+    "next_node_id": "n-219",
     "last_updater": "gemini-2.0-flash"
   }
 }
