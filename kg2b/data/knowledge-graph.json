@@ -197,6 +197,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-013",
+      "type": "insight",
+      "label": "에코챔버 ‘자율 진화’의 내생성(Endogeneity) 트랩과 도구변수(IV) 요구",
+      "content": "동일 모델(gpt-5.2×gpt-5.2)에서 관측되는 “수렴/동조/반복”은 에코챔버(상호강화로 인한 편향 증폭)의 결과라기보다, 실험 설계가 만들어낸 내생적 산물일 수 있다. 특히 (i) 동일 사전학습 분포·추론 휴리스틱 공유, (ii) 동일 프롬프트 규약과 목표(“KG 자율 진화”, “에코챔버 검증”)로 인한 목표지향적 수렴, (iii) 대화 맥락창(window)에서의 상호 조건부 생성(이전 발화가 다음 발화를 강제) 때문에, 관측된 강화 패턴은 ‘에코챔버 메커니즘’이 아니라 ‘공유 생성기+공유 과제’의 부산물(내생성)로 설명될 수 있다. 따라서 가설 검증의 핵심은 “에코챔버 메커니즘이 없으면 동일한 관측이 나오지 않았을 것”이라는 반사실을 식별하는 것이다. 이를 위해서는 적어도 하나의 외생적 변동(IV)이 필요하다: 에코챔버를 유발(또는 차단)하지만, 단순한 동일모델 수렴이나 과제지향 수렴에는 직접 영향을 주지 않는 조작. 예: (a) 한 에이전트에만 무작위로 ‘반대 증거 우선 검색’ 규칙을 주입(메커니즘 차단)하되, 주제·목표는 동일 유지, (b) 동일 모델이지만 응답 샘플링 온도/탑-p를 외생적으로 교차(randomized crossover)하여 “수렴=디코딩 편향” 가설을 분리, (c) 컨텍스트 공유를 부분 차단(요약만 제공 vs 원문 제공)해 “단순 프라이밍/앵커링”과 “상호강화”를 분리. 이때 관측 지표도 ‘표면적 합의율’이 아니라, (1) 반증 시도 빈도, (2) 대안 가설 생존률, (3) 근거 다양성(출처·근거 유형 엔트로피), (4) 자기강화 루프(자기 인용/상호 인용 네트워크의 폐쇄성)처럼",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[endogeneity",
+        "identifiability",
+        "causal_design]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-014",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “최소 외생 조작”이라면 단순히 IV를 몇 개 던지기보다 **공유 입력(수렴)과 상호작용(강화)을 직교로 분리**하는 2×2(공유 프롬프",
+      "content": "요청이 “최소 외생 조작”이라면 단순히 IV를 몇 개 던지기보다 **공유 입력(수렴)과 상호작용(강화)을 직교로 분리**하는 2×2(공유 프롬프트/모델 고정 vs 상호 피드백 on/off) 교차설계가 핵심이고, 그렇지 않으면 두 가설이 동일 패턴을 낼 수 있어 식별이 약합니다. 아래 IV들은 모두 **crossover 또는 DiD로 반증 가능**하게 설계했으며, “상호강화”는 상호작용이 있을 때만 추가 변화가 나타나야 한다는 점을 이용합니다.\n\n| 최소 외생 조작(IV) | 조작 수준(교차/DiD) | 단순 수렴(공유 모델/과제/프롬프트) 예측 | 상호강화 메커니즘 예측(반증 가능 패턴) |\n|---|---|---|---|\n| **상호 피드백 채널 차단/허용** | 동일 프롬프트·모델로 A/B가 독립 생성 vs 서로의 출력을 요약/평가/수정 가능 | 피드백 유무와 무관하게 유사도(결론/근거)가 비슷하게 수렴 | **피드백 ON에서만** 유사도↑, 대안가설↓, 인용/근거의 폐쇄성↑ (crossover: ON↔OFF 전환 시 즉시 방향 전환) |\n| **동일 입력 강제(수렴 자극) vs 입력 이질화** | 같은 자료/프롬프트(공유) vs 서로 다른 자료/프롬프트",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -355,6 +388,50 @@
       "temporal_bridge": true,
       "gap": 9,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-016",
+      "from": "n-013",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "식별가능성 문제를 ‘내생성 트랩’으로 구체화하고, IV/외생 조작과 메커니즘-특이 지표를 요구하는 설계 조건으로 정교화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-017",
+      "from": "n-013",
+      "to": "n-002",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=11): n-013→n-002",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 11,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-018",
+      "from": "n-014",
+      "to": "n-013",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-019",
+      "from": "n-014",
+      "to": "n-003",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=11): n-014→n-003",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 11,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -365,9 +442,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 12,
-    "total_edges": 15,
-    "next_node_id": "n-013",
+    "total_nodes": 14,
+    "total_edges": 19,
+    "next_node_id": "n-015",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
