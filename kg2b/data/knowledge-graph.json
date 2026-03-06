@@ -725,6 +725,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-045",
+      "type": "insight",
+      "label": "Echo-vs-Convergence Disentanglement via Counterfactual Persona-Swap & Frozen-Seed Baseline",
+      "content": "동일모델·다중페르소나 상호작용에서 관측되는 “수렴/유사도 증가”는 (i) 에코챔버(상호 강화로 인한 대안·반증의 소실)일 수도, (ii) 단순한 공동 최적화/수렴(문제 풀이를 위한 정보 결합, 중복 제거)일 수도 있다. 이 둘을 구분하려면 ‘상호작용’이 만든 추가 효과를 반사실적으로 분리해야 한다. 제안: (1) 페르소나 스왑(counterfactual persona-swap) — 동일한 대화 로그/상태(KG 포함)를 유지한 채 에이전트의 “역할 지시(비판가↔종합가)”만 교환하여 다음 k-step에서 생성되는 반증 후보의 밀도·다양성·지속성을 비교한다. 에코챔버라면 역할을 바꿔도 반증 후보가 회복되지 않거나(경로 의존적 잠김) 빠르게 재흡수되는 패턴이 나타나야 한다. 단순 수렴이면 비판가 역할을 부여한 쪽에서 즉시 반증 후보가 재생산되어 ‘대안 가설 풀’이 회복될 것이다. (2) 동결 시드(frozen-seed) 독립 베이스라인 — 각 에이전트가 ‘상호작용 없이’ 동일 프롬프트·동일 초기 KG 요약을 받고 독립적으로 k-step 생성한 분포를 합성(독립 합성)한 뒤, 실제 상호작용 결과의 반증 후보 생존율/참조율/중복률과 비교한다. 에코챔버라면 실제 상호작용에서 독립 합성 대비 반증 후보가 체계적으로 ‘사라지거나’ 주변화되는 방향의 편향이 있어야 한다(특히 temporal_bridge가 반증을 “정리/통합” 명목으로 희석). 핵심은 유사도 상승을 지표로 삼지 말고, “반증 후보의 생성→유지→참조→채택/기각”의 생애주기(lifecycle)에서 상호작용이 만드는 비대칭을 검출하는 것이다. 이 설계는 ‘관측가능성 ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "counterfactual",
+        "echochamber-test]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-046",
+      "type": "critique",
+      "label": "통합 종합: 요청을 “프로토콜”로 고정하려면 먼저 반증 후보를 **단위(Claim ID)로 정규화**하고, 페르소나 스왑/독립합성은 그 단위에 대한 **동일",
+      "content": "요청을 “프로토콜”로 고정하려면 먼저 반증 후보를 **단위(Claim ID)로 정규화**하고, 페르소나 스왑/독립합성은 그 단위에 대한 **동일 입력·동일 제약(근거 인용 규칙, 길이, 온도, 검색 허용 여부)** 하에서만 비교되도록 명시해야 합니다. (a) 최소 지표는 **Novelty**(t에 등장한 Claim 중 이전 윈도우에 없던 비율), **Survival**(t+k까지 동일 Claim이 재등장/지지되는 생존곡선), **Reference**(Claim별 고유 근거 수·다양성·외부성 점수), **Adoption**(다른 에이전트/런에서 동일 Claim 채택률 및 downstream 결론에 미치는 영향)으로 두고, (b) temporal_bridge 희석 탐지는 “**강한 반증→조건부/모호화**(must→may, 단정→가능성)”, “**근거 수/외부성 감소**(새 근거 없이 재서술)”, “**결론 방향 전환 없이 프레이밍만 완화**”가 연속 2스텝 이상 나타나면 브리지-희석으로 플래그합니다. (c) 남는 교란은 **(1) 클레임 매칭 오류(동의어/재서술)**→임베딩+규칙 기반 이중매칭 및 샘플 수동검증, **(2) 페르소나가 스타일만 바꿔 ‘채택’처럼 ",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1491,6 +1524,26 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-072",
+      "from": "n-045",
+      "to": "n-007",
+      "relation": "critiques",
+      "label": "‘동일모델-다중페르소나 조건의 운영적 비식별성’ 주장에 대해, persona-swap과 frozen-seed 독립 베이스라인이라는 반사실 대조 설계를 제시해 판별력을 일부 회복할 ",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-073",
+      "from": "n-046",
+      "to": "n-045",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1501,9 +1554,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 44,
-    "total_edges": 71,
-    "next_node_id": "n-045",
+    "total_nodes": 46,
+    "total_edges": 73,
+    "next_node_id": "n-047",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
