@@ -2738,6 +2738,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-167",
+      "type": "insight",
+      "label": "동일모델×다중페르소나에서 ‘에코챔버’ vs ‘공유사전(Shared Prior)’ 분리불가 경계조건",
+      "content": "동일 모델(gpt-5.2) 간 상호작용에서 관측되는 “수렴(유사도 증가, 합의 강화, 반대근거 감소)”은 (i) 상호작용으로 인해 새로 발생한 에코챔버 동학일 수도 있지만, (ii) 원래부터 두 에이전트가 공유하는 생성분포(파라미터/정렬/학습데이터/안전정책)에서 자연스럽게 나오는 ‘공유사전(Shared Prior)’의 표면적 발현일 수도 있다. 문제는 로그 기반 관측만으로 (i)와 (ii)를 분리하는 식별가능성이 구조적으로 약하다는 점이다. 이를 비판적으로 정리하면 다음과 같다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "shared-prior",
+        "negative-control]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-168",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “에코챔버(상호강화)”와 “공유사전/기저수렴(같은 모델이면 원래 비슷함)”을 분리하려면, **처치가 ‘상호작용 구조’만 바꾸고 모델·프롬",
+      "content": "요청이 “에코챔버(상호강화)”와 “공유사전/기저수렴(같은 모델이면 원래 비슷함)”을 분리하려면, **처치가 ‘상호작용 구조’만 바꾸고 모델·프롬프트·토큰예산·온도는 고정**되어야 하며, 그래서 (1) 설계에 **상호작용 유무/형태를 요인으로 둔 최소 2×2**가 필요합니다: **A)** 동일 초기시드/동일 문제에서 *독립 병렬생성*(대조) vs *라운드로빈 상호참조*(처치) 후 최종안 비교, **B)** 상호작용은 유지하되 각 라운드에 *외부 반례(ground-truth가 아닌 “논리적 반증 후보”)*를 무작위로 주입하는 조건 vs 주입 없는 조건(에코챔버면 주입 시 수렴이 깨지거나 반증이 더 살아남음), **C)** 상호작용 유지 + *역할 강제(Devil’s advocate 고정, 혹은 매 라운드 1명은 이전 합의의 핵심 전제를 부정해야 함)* vs 역할 미부여(에코챔버면 역할강제가 다양성/반증 생존을 구조적으로 회복). 지표는 단순 텍스트 유사도 대신 **(i) 반증후보 생존율**: 각 에이전트가 1라운드에 제시한 반증 후보 집합 (R_1)을 정규화(클러스터링)한 뒤, 최종안에서 “해결/수용/무시” 라벨링하여 (text{survival}=frac{|R_",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5780,6 +5813,38 @@
       "temporal_bridge": true,
       "gap": 159,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-282",
+      "from": "n-167",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "동일모델-다중페르소나에서의 판별 불능성을 ‘공유사전 vs 상호작용 인과효과’ 분해로 구체화하고, 필요한 negative control/반사실 조건을 제시",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-283",
+      "from": "n-168",
+      "to": "n-167",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-284",
+      "from": "n-168",
+      "to": "n-029",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=139): n-168→n-029",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 139,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -5790,9 +5855,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 166,
-    "total_edges": 281,
-    "next_node_id": "n-167",
+    "total_nodes": 168,
+    "total_edges": 284,
+    "next_node_id": "n-169",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
