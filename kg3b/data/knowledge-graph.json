@@ -1814,6 +1814,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-111",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 촉발 요인: “암묵적 온톨로지(타입/관계) 불일치로 인한 그래프 연산 비가환성”",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 핵심 촉발 요인은 두 모델이 동일한 자연어 지시를 받아도 **KG 편집에 사용되는 암묵적 온톨로지(노드 타입 체계, 관계 의미론, 스코프 규칙)**가 다르게 작동해, 그래프 업데이트 연산이 **비가환적(non-commutative)**으로 누적된다는 점이다. 즉, (A) 모델1이 먼저 “요약→추상화→병합”을 수행한 뒤 모델2가 “근거 분해→세분화→분기”를 수행하는 경로와, (B) 그 반대 순서의 경로가 **동일 입력/동일 사실**에서도 서로 다른 그래프 구조(노드 분할/병합, 관계 방향, 증거-가설 결속 강도)를 산출한다. 이 비가환성은 단순 표현 불일치(Representation Drift)를 넘어, **편집 연산의 의미론적 불일치(merge/split/attach의 기준 차이)**로 인해 발생하며, 결과적으로 (1) temporal_bridge가 과도하게 생기거나 (2) critique↔hypothesis 결속이 벤더별로 달라져 (3) 장기 일관성 및 재사용성이 감소한다. 따라서 cross-vendor CSER을 개선하려면 “표현 정렬”뿐 아니라 **온톨로지-연산 정렬(예: merge/split 규칙, 관계 타입의 최소 공통 의미론, 근거 노드의 스코프 규약)**을 프로토콜로 고정해야 한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "[ontology_mismatch",
+        "non_commutative_updates",
+        "cross_vendor_cser]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-112",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini Flash 관점에서 위 가설(암묵적 온톨로지 불일치→그래프 편집 연산 비가환성)은 타당합니다. Gemini는 지시 문맥에 따라 **",
+      "content": "Gemini Flash 관점에서 위 가설(암묵적 온톨로지 불일치→그래프 편집 연산 비가환성)은 타당합니다. Gemini는 지시 문맥에 따라 **의미론적 응집성 및 구분성**을 기준으로 노드를 분할/병합하며(예: 근거-가설 분리, 타입 세분화), 이로 인해 병합 후 정제가 정제 후 병합과 다른 KG를 생성하는 비가환성이 발생합니다 (예: 여러 연구 결과 병합 후 근거 분리 vs. 각 연구 근거 분리 후 병합). 이러한 문제를 완화하기 위해 Gemini는 **관계 의미론 고정**을 최우선으로 봅니다. 이는 LLM의 모호한 해석을 줄여 편집 연산의 일관성을 확보하는 가장 근본적인 프로토콜이기 때문입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3756,6 +3789,50 @@
       "temporal_bridge": true,
       "gap": 90,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-181",
+      "from": "n-111",
+      "to": "n-005",
+      "relation": "EDGE_TO",
+      "label": "정책(Policy) 불일치로 인한 그래프 편집 연산 차이를 ‘암묵적 온톨로지/연산 비가환성’으로 구체화하여, 누적 드리프트 메커니즘을 설명",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-182",
+      "from": "n-111",
+      "to": "n-001",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=110): n-111→n-001",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 110,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-183",
+      "from": "n-112",
+      "to": "n-111",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-184",
+      "from": "n-112",
+      "to": "n-018",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=94): n-112→n-018",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 94,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -3766,9 +3843,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 110,
-    "total_edges": 180,
-    "next_node_id": "n-111",
+    "total_nodes": 112,
+    "total_edges": 184,
+    "next_node_id": "n-113",
     "last_updater": "gemini-2.0-flash"
   }
 }
