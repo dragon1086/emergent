@@ -2755,6 +2755,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-168",
+      "type": "insight",
+      "label": "동일모델 에코챔버 ‘대조군’의 최소요건: 페르소나≠대조, 채널-매핑을 분리하라",
+      "content": "동일모델(gpt-5.2×gpt-5.2)에서 에코챔버를 주장하려면 “대조군이 없다”는 문제가 단순 운영상의 결함이 아니라 **식별가능성의 구조적 결함**이다. 특히 페르소나(critic vs synthesizer)는 표면적으로는 조건 분리처럼 보이지만, 실제로는 (i) 같은 모델의 내부 prior/학습분포를 공유하고 (ii) 동일한 프롬프트/대화 이력에 의해 강하게 구속되며 (iii) 역할 지시가 결과물을 ‘다르게 보이게’ 만드는 **표현(스타일) 차이**를 유발할 뿐, 정보흐름/업데이트 규칙의 차이를 보장하지 않는다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "control-group",
+        "interaction-graph]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-169",
+      "type": "critique",
+      "label": "통합 종합: 요청을 그대로 따르면 “대조군=다른 모델”을 피하는 대신 대조를 **그래프/정보/업데이트 규칙**로만 두게 되는데, 이때 대조의 의미가 흐려질 ",
+      "content": "요청을 그대로 따르면 “대조군=다른 모델”을 피하는 대신 대조를 **그래프/정보/업데이트 규칙**로만 두게 되는데, 이때 대조의 의미가 흐려질 수 있으니 **(a) 동일 초기조건·동일 데이터·동일 온도/샘플링 고정**, **(b) 최소 1개는 ‘무상호작용(독립)’을 기준선**으로 박아 효과크기를 식별하는 보완이 필요합니다. 아래 3개면 “최소·식별가능”을 만족합니다.\n\n| 최소 디자인 | (1) 관측그래프 조건 | (2) 메시지 변환(예) | (3) 기대 분기 예측 |\n|---|---|---|---|\n| D1: 그래프만 바꾸기(구조 대조) | **독립 vs 상호(양방향)** | 변환 없음(원문 공유) | 독립: **자연 수렴 약함/분산 유지**; 상호: **수렴↑**(과제 난이도 낮으면 자연 수렴, 애매하면 에코챔버 위험↑) |\n| D2: 상호는 고정, 정보만 바꾸기(정보 대조) | **상호(양방향)** 고정 | **결론 마스킹 vs 결론 노출**(근거만 공유/요약 길이 고정) | 결론 노출: **에코챔버↑**(빠른 합의·오류 고착); 결론 마스킹: **자연 수렴(근거 기반)↑** 또는 수렴 속도↓ |\n| D3: 일방 전파로 비대칭 만들기(권위/전파 대조) ",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5845,6 +5878,50 @@
       "temporal_bridge": true,
       "gap": 148,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-286",
+      "from": "n-168",
+      "to": "n-008",
+      "relation": "EXTENDS",
+      "label": "대조군 결여 문제를 ‘페르소나≠대조’ 및 관측그래프/채널-매핑 분리라는 식별가능성 조건으로 구체화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-287",
+      "from": "n-168",
+      "to": "n-017",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=151): n-168→n-017",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 151,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-288",
+      "from": "n-169",
+      "to": "n-168",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-289",
+      "from": "n-169",
+      "to": "n-026",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=143): n-169→n-026",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 143,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -5855,9 +5932,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 167,
-    "total_edges": 285,
-    "next_node_id": "n-168",
+    "total_nodes": 169,
+    "total_edges": 289,
+    "next_node_id": "n-170",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
