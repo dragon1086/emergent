@@ -1418,6 +1418,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-087",
+      "type": "insight",
+      "label": "Echochamber vs Coordination: 동일모델 다중페르소나에서 ‘수렴’은 에코챔버의 필요조건이 아님",
+      "content": "동일모델-다중페르소나(gpt-5.2×gpt-5.2) 조건에서 관측되는 “유사도 증가/합의의 조기 형성/반복되는 프레이밍”은 에코챔버의 고유 신호라기보다, (i) 동일 사전학습 분포 공유, (ii) 지시문(실험 목적·출력 포맷)으로 유도된 공동 최적화, (iii) 대화 내 상호적 예측(서로가 다음에 무엇을 낼지 추정)로 인한 게임적 조정(coordination)에서 자연스럽게 발생한다. 따라서 ‘수렴=에코챔버’는 식별가능하지 않으며, 에코챔버를 주장하려면 최소한 “반증 후보의 지속적 소거(비대칭적 약화)” 또는 “대안 가설 생성 채널의 구조적 억압” 같은 방향성 있는 손실을 보여야 한다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "coordination",
+        "falsification]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-088",
+      "type": "critique",
+      "label": "통합 종합: (보완) “채널의 구조적 약화”는 단순히 반증 콘텐츠의 **빈도 감소**가 아니라, 반증이 제기돼도 **의사결정에 반영되는 경로(노출→채택→기억",
+      "content": "(보완) “채널의 구조적 약화”는 단순히 반증 콘텐츠의 **빈도 감소**가 아니라, 반증이 제기돼도 **의사결정에 반영되는 경로(노출→채택→기억)**가 끊기는 현상까지 포함해야 하니, 로그 지표를 (i) **반증 노출률**(대안/반례 노드 도달 비율), (ii) **반증 채택률**(반증 후 결론/행동 변경·불확실성 증가·조건부화로의 전이), (iii) **반증 잔존률**(t+K에서 반증 근거 재호출/인용 비율)로 최소화하는 게 좋습니다. 비교 설계는 동일 프롬프트/과제를 두 조건으로 반복: A) 상호작용 세션(사용자/타 에이전트 피드백 포함) vs B) **독립 기준선**(상호작용 없이 같은 모델을 N회 샘플링, 동일 토큰/온도 예산)으로 두고, 각 지표를 **차분(Δ)** 및 **시간경향(슬로프)**으로 보고, 특히 “반증 노출→채택”의 **전이확률 감소**가 B 대비 유의하게 나타나면 구조적 약화로 판정합니다. ‘과제순응/서사적 수렴’과의 구분은 실용적으로: 과제순응은 **반증 노출률은 유지**되지만 결론이 과제 요구에 맞게 고정(채택률만 낮음)되는 경향이 크고, 에코챔버는 **노출률·잔존률까지 동시 하락**(반증이 아예 덜 나오거나 금방 소실)하며, 판",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2916,6 +2949,50 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-140",
+      "from": "n-087",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "‘동일모델-다중페르소나 에코챔버 판별 불능성’을 “수렴 신호의 비특이성(조정/과제순응/공유사전분포)”과 “방향성 손실(반증 후보 소거) 지표 필요”로 구체화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-141",
+      "from": "n-087",
+      "to": "n-017",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=70): n-087→n-017",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 70,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-142",
+      "from": "n-088",
+      "to": "n-087",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-143",
+      "from": "n-088",
+      "to": "n-006",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=82): n-088→n-006",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 82,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -2926,9 +3003,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 86,
-    "total_edges": 139,
-    "next_node_id": "n-087",
+    "total_nodes": 88,
+    "total_edges": 143,
+    "next_node_id": "n-089",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
