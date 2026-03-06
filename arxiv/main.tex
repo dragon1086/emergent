@@ -2082,10 +2082,15 @@ transferred directly; empirical F1-sweep calibration per task type is required.
 Based on the case-study findings, we identify the following empirically grounded directions:
 
 \begin{itemize}
-  \item \textbf{Multi-seed replication}: Independent KG runs with preregistered protocols,
+  \item \textbf{Within-cell replication (ongoing)}: Three replication-B instances
+        (KG-2b: GPT-5.2$\times$GPT-5.2, KG-3b: GPT$\times$Gemini, KG-4b: Gemini$\times$Gemini)
+        were initiated 2026-03-05 and are accumulating cycles via automated nightly runners.
+        Full within-cell trajectory comparison (original vs.\ replication-B) will be
+        reported once each reaches $\geq$30 cycles.
+        Independent KG runs with preregistered protocols,
         different agent pairs, domains, and seeds are required before any structural finding
         (CSER trajectories, gate thresholds, D-063/D-064 rates) can be claimed to generalise
-        beyond this single experimental instance.
+        beyond this experimental setting.
 
   \item \textbf{H-CSER (Human--AI co-evolution)}: Extend CSER to human-sourced nodes.
         A preliminary measurement on the OpenClaw repository (208 commits, 89 cycles)
@@ -2104,9 +2109,10 @@ Based on the case-study findings, we identify the following empirically grounded
 \end{itemize}
 
 % [Author note — not for publication: remaining open items before venue submission:
-%  (1) Multi-seed replication: ≥3 independent KG runs; currently N=4 KG instances
-%      at 60+ cycles each (ongoing). Target: ≥100 cycles per instance.
-%  (2) amp benchmark: add second judge or significance test (Wilcoxon) on
+%  (1) Within-cell replication: N=7 KG instances total (4 original + 3 replication-B initiated
+%      2026-03-05). Target: ≥30 cycles per replication-B instance for trajectory comparison.
+%  (2) KG-main-b (Claude×GPT replication): not yet initiated; requires OAuth session.
+%  (3) amp benchmark: add second judge or significance test (Wilcoxon) on
 %      per-question insight-gain scores before formal venue submission.]
 
 % ─────────────────────────────────────────────────────────────────────────────
