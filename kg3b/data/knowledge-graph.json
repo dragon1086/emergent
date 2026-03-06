@@ -3068,6 +3068,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-187",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 상위 원인: “암묵적 작업정의/스키마(ontology) 불일치로 인한 평가-편집 루프 불안정”",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 근본 요인은 단순한 표현(Representation) 드리프트를 넘어, **동일한 지시문을 ‘무엇을 해야 하는 작업인지’로 매핑하는 암묵적 작업정의(task framing)와 스키마(ontology)가 벤더별로 다르기 때문**이다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "[ontology-drift",
+        "task-framing",
+        "edit-semantics]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-188",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 위 가설은 타당하며, 암묵적 온톨로지 불일치는 cross-vendor CSER을 실제로 저해합니다. Gemini Flash는 학습된 언어 패턴을",
+      "content": "위 가설은 타당하며, 암묵적 온톨로지 불일치는 cross-vendor CSER을 실제로 저해합니다. Gemini Flash는 학습된 언어 패턴을 통해 critique와 hypothesis 노드 경계 및 엣지 우선순위를 문맥적 관련성과 의미론적 일관성을 바탕으로 내재적으로 추론합니다.\n\n좋은 편집은 KG 일관성을 최우선으로 하되, 커버리지와 간결성은 특정 쿼리 목표에 따라 가변적으로 가중치를 부여하며, 불일치 해소를 위해 충돌 해결 프로토콜 명시, 모든 편집에 대한 근거 표기 의무화, 그리고 노드 단위의 명확한 정의 마련이 필수적입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6478,6 +6511,38 @@
       "temporal_bridge": true,
       "gap": 175,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-316",
+      "from": "n-187",
+      "to": "n-007",
+      "relation": "EDGE_TO",
+      "label": "행동정책(Instruction-following) 불일치의 더 상위층 원인으로 ‘암묵적 작업정의/스키마 불일치’를 제안(정책 차이를 유발·증폭하는 메타-온톨로지 차이)",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-317",
+      "from": "n-188",
+      "to": "n-187",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-318",
+      "from": "n-188",
+      "to": "n-007",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=181): n-188→n-007",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 181,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -6488,9 +6553,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 186,
-    "total_edges": 315,
-    "next_node_id": "n-187",
+    "total_nodes": 188,
+    "total_edges": 318,
+    "next_node_id": "n-189",
     "last_updater": "gemini-2.0-flash"
   }
 }
