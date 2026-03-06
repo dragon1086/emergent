@@ -4421,6 +4421,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-269",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 제3 요인: “개념 경계/온톨로지 분할(Ontology Segmentation) 불일치”",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 핵심 메커니즘은 단순 표현 드리프트(표현 형식/스타일 차이)만이 아니라, **동일 현상을 어떤 ‘개념 단위’로 쪼개어 노드화하는지(ontology segmentation)** 자체가 벤더별로 달라지는 데 있다. 즉, 한 벤더는 A를 단일 개념 노드로 유지하는 반면 다른 벤더는 A를 (A1,A2,A3)로 분해하거나, 반대로 서로 다른 개념을 상위 범주 A로 합쳐버린다. 이 차이는 (1) 노드 granularity 불일치로 인한 1:many/ many:1 정합 실패, (2) 엣지 의미역(원인/근거/제약/예외) 분해 수준 차이로 인한 관계 타입 혼선, (3) 병합/분해 과정에서 발생하는 “가짜 중복(duplicate synonyms)” 및 “숨은 누락(latent omission)”을 통해 그래프 편집 연쇄를 촉발한다. 결과적으로 cross-vendor 합성 KG에서는 동일 사실을 두고도 정규화(canonicalization) 실패가 누적되며, CSER은 **표현 불일치 + 규약 불일치**에 더해 **개념 경계 불일치**라는 구조적 요인에 의해 추가로 감소한다. 예측: (a) 동일 대화 로그를 주고 KG를 만들면 vendor별 평균 노드 차수/클러스터링 계수/동의어 병합률이 유의하게 다르고, (b) “개념 분할 합의 규칙(예: 최소 단위 정의, 상위/하위 개념 고정)”을 프로토콜로 강제하면 cross-vendor CSER이 유의하게 회복된다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "ontology",
+        "CSER]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-270",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 벤더별 모델링 목적과 사용 데이터셋 차이로 개념을 쪼개는 단위가 체계적으로 다를 수 있으며, 제안된 노드 세분성 지수 및 1:many 매핑률은 ",
+      "content": "벤더별 모델링 목적과 사용 데이터셋 차이로 개념을 쪼개는 단위가 체계적으로 다를 수 있으며, 제안된 노드 세분성 지수 및 1:many 매핑률은 이러한 불일치를 측정하는 유효한 지표입니다. 그러나 주요 원인은 정책, 규약, 불확실성 표기 불일치일 가능성이 더 크며, 이는 단순한 개념 세분화보다 의미론적 호환성에 더 큰 영향을 미칩니다. 이를 구분하는 실험으로는, 노드 간 직접 매핑 후 속성(attributes), 관계(relations), 제약조건(constraints)의 불일치 비율을 측정하여 정책/규약 불일치 여부를 판단할 수 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -9311,6 +9344,50 @@
       "source": "gemini-2.0-flash",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-453",
+      "from": "n-269",
+      "to": "n-001",
+      "relation": "EDGE_TO",
+      "label": "Representation Drift(표현 불일치) 가설을 ‘개념 경계/온톨로지 분할 불일치’로 구조적으로 확장(표현 수준 → 개념 단위 수준)하여 CSER 저하의 추가 원인으로 ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-454",
+      "from": "n-269",
+      "to": "n-045",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=224): n-269→n-045",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 224,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-455",
+      "from": "n-270",
+      "to": "n-269",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-456",
+      "from": "n-270",
+      "to": "n-033",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=237): n-270→n-033",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 237,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -9321,9 +9398,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 268,
-    "total_edges": 452,
-    "next_node_id": "n-269",
+    "total_nodes": 270,
+    "total_edges": 456,
+    "next_node_id": "n-271",
     "last_updater": "gemini-2.0-flash"
   }
 }
