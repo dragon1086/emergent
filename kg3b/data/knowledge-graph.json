@@ -1022,6 +1022,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-063",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 상위 원인: “암묵적 디폴트(Defaults)·우선순위(Preference Ordering) 불일치”",
+      "content": "Cross-vendor 환경에서 동일한 지시/문맥을 받아도 벤더별 모델은 (a) 안전/정책 준수, (b) 간결성 vs. 완전성, (c) 불확실성 표기 강도, (d) 추론 공개(숨김) 성향, (e) 최신 노드 선호/보수적 편집 등 “암묵적 디폴트와 목표함수의 우선순위”가 다르다. 이 불일치는 단순 표현 차이(Representation Drift)나 근거 표기 규약 불일치보다 상위 계층에서 작동하며, KG 편집 시 어떤 정보를 ‘유지/삭제/승격/강등’할지에 대한 선택을 체계적으로 갈라놓는다. 결과적으로 (1) 동일 사실을 두고도 중요도 가중치가 달라 엣지 추가/삭제가 달라지고, (2) 충돌 해결 시 한쪽은 “보수적 병렬 보존(양립 가설 유지)”을, 다른 쪽은 “단일화(가장 그럴듯한 가설로 수렴)”를 택해 그래프 구조가 분기하며, (3) 시간축 누적 시 편집 연쇄가 증폭되어 CSER이 하락한다. 예측: 벤더 간 디폴트 정렬을 명시적으로 정렬(예: 불확실성 표기, 보존 우선, 충돌 시 병렬 유지 규칙)하면 cross-vendor CSER이 유의미하게 회복되며, 특히 “행동 정책 불일치” 노드들과 강한 설명적 결합을 보인다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "defaults_misalignment",
+        "preference_ordering",
+        "policy_alignment"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-064",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 암묵적 디폴트·우선순위 정렬 불일치는 실제 KG 편집에서 충돌 해결 방식(병렬 유지/단일화), 불확실성/근거 표기 강도, 최신 노드 편향성 등 ",
+      "content": "암묵적 디폴트·우선순위 정렬 불일치는 실제 KG 편집에서 충돌 해결 방식(병렬 유지/단일화), 불확실성/근거 표기 강도, 최신 노드 편향성 등 벤더별로 상이한 편집 성향으로 명확히 드러납니다. 예를 들어, 일부는 다수의 출처를 병렬 유지하며 완전성을 추구하는 반면, 다른 일부는 단일 대표값으로 통합하거나 특정 시점 데이터를 우선하는 등 일관된 패턴이라기보다 전략적 선택에 가깝습니다. 따라서 이 가설은 명시적 충돌 해결 정책, 출처 및 신뢰도 메타데이터 명확성, 시간성 데이터 처리 규칙 등 측정 가능한 하위 지표로 세분화하여 평가해야 합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2112,6 +2145,38 @@
       "temporal_bridge": true,
       "gap": 57,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-102",
+      "from": "n-063",
+      "to": "n-007",
+      "relation": "EDGE_TO",
+      "label": "행동정책(Instruction-following) 불일치 가설을 “암묵적 디폴트/우선순위 정렬 불일치”라는 상위 메커니즘으로 일반화(정책 불일치의 근원 설명)",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-103",
+      "from": "n-064",
+      "to": "n-063",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-104",
+      "from": "n-064",
+      "to": "n-011",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=53): n-064→n-011",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 53,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -2122,9 +2187,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 62,
-    "total_edges": 101,
-    "next_node_id": "n-063",
+    "total_nodes": 64,
+    "total_edges": 104,
+    "next_node_id": "n-065",
     "last_updater": "gemini-2.0-flash"
   }
 }
