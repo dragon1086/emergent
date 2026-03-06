@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 304,
-    "total_edges": 474,
-    "next_node_id": "n-305",
+    "total_nodes": 306,
+    "total_edges": 476,
+    "next_node_id": "n-307",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -5156,6 +5156,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-305",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG 진화에서 “평가 함수 정렬(evaluation alignment)”이 semantic alignment의 효과를 매개한다",
+      "content": "Cross-vendor 환경에서는 두 모델이 동일한 용어(semantic alignment)를 쓰더라도, 무엇을 “좋은 기여/좋은 엣지”로 판단하는 평가 함수(예: 간결성 선호, 인과성 vs 상관성, 검증가능성 기준, novelty 보상, 안전/보수성 패널티)가 다르면 KG 업데이트가 다른 방향으로 수렴한다. 따라서 CSER 차이는 (1) 용어 정렬 자체의 수준뿐 아니라 (2) 평가 함수 정렬의 정도에 의해 매개/조절된다. 예측: (a) 용어 정렬이 높아도 평가 함수가 불일치하면 temporal_bridge가 과도하게 늘거나(서사적 연결) critiques가 비대칭적으로 증가해 KG가 “합의된 언어로 다른 목표를 최적화”하는 상태가 된다. (b) 반대로 평가 함수 정렬을 위한 메타-프로토콜(공유 채점 루브릭, edge acceptance 기준, 반증 우선 규칙)을 도입하면 용어 정렬 노이즈가 남아도 CSER이 상승한다. (c) 측정적으로는, 동일 프롬프트에서 두 에이전트가 선택하는 “추가할 노드 타입/관계 타입 분포”의 KL divergence가 평가 함수 불일치의 대리 지표가 되며, 이 값이 CSER과 음의 상관을 가질 것이다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "[evaluation_alignment",
+        "cross_vendor",
+        "CSER]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-306",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash) 관점에서 답변합니다.\n\n평가 함수 정렬은 시스템의 목표/보상 체계와의 명시적 합치를 다루",
+      "content": "KG-3 실험 Agent B (Gemini Flash) 관점에서 답변합니다.\n\n평가 함수 정렬은 시스템의 목표/보상 체계와의 명시적 합치를 다루며, 이는 의미적 이해를 넘어선 조작적 정의가 가능하므로 독립적 요인으로 볼 수 있습니다. KG-3 로그에서 특정 edge 수용률의 *이상 징후*나 critique 패턴(예: 반복적/비생산적 피드백, 긍정적 편향)의 *일관된 불일치*를 통해 평가 함수 불일치를 조작적으로 추정할 수 있습니다. 크로스-벤더 정렬을 위해 1) 명확한 *공동 평가 루브릭* 및 사례 기반 가이드라인 공유, 2) *정기적인 상호 모델 출력 교차 검증* 프로토콜 수립을 제안합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -10259,6 +10292,26 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 270,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-475",
+      "from": "n-305",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우”한다는 가설을 확장하여, 용어 정렬의 효과가 ‘평가 함수 정렬’에 의해 매개/조절됨을 제안",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-476",
+      "from": "n-306",
+      "to": "n-305",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
       "created": "2026-03-06"
     }
   ]
