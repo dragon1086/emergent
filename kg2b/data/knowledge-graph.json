@@ -2507,6 +2507,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-153",
+      "type": "insight",
+      "label": "에코챔버 검증의 “필요·충분” 대신 경쟁가설-구분력(Discriminability) 프레임 전환",
+      "content": "현재 same-model×same-model(다중 페르소나) 조건에서 “에코챔버가 발생했다”를 로그 기반으로 판정하려 하면, (i) 생성모델 공유로 인한 공통 편향, (ii) 프롬프트/과업 구조가 유도하는 수렴, (iii) 메모리/요약/지식그래프 업데이트 규칙이 만드는 경로의존성 때문에 관측된 수렴(유사도 증가, 동일 주장 반복, 반대근거 감소 등)이 에코챔버 ‘고유 원인’인지 식별이 거의 불가능하다. 따라서 가설을 “필요·충분 조건”으로 세우기보다, 최소한의 반증가능 단위를 유지하면서도 **경쟁 설명들 사이의 구분력(Discriminability)**을 최대화하는 형태로 재정의해야 한다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "discriminability",
+        "anti-exploration]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-154",
+      "type": "critique",
+      "label": "통합 종합: 최소 세트는 H_shared-bias와 H_update-rule를 “모델 내 공통 선호/정책”으로 묶고, H_prompt는 “입력 제약(시스템/",
+      "content": "최소 세트는 H_shared-bias와 H_update-rule를 “모델 내 공통 선호/정책”으로 묶고, H_prompt는 “입력 제약(시스템/사용자 지시)”, H_goal은 “대화 내 목적함수(예: 합의·안전·간결성)”, H_echo는 “직전 발화 복제/동조”로 정리하면 중복이 줄며, 판별은 (1) 반례 제시→(2) 동일 반례를 프롬프트만 바꿔 재노출(강제 인용/금지/요약 요구 등)→(3) 생존시간·재등장률·반례-원문 정합도·자기모순률로 점수화하고, 조건별 로그우도비(LR)로 어느 가설이 설명력이 큰지 비교하는 형태가 깔끔합니다. 지표는 예컨대 H_echo는 “직전 문장 n-그램/의미 유사도↑ + 반례 직접응답↓”, H_prompt는 “특정 지시 토글에 따라 누락률 급변”, H_goal은 “반례를 ‘갈등 비용’으로 취급해 합의문으로 흡수(양측 타당성 선언 후 결론 회피)”, H_shared-bias/update-rule는 “프롬프트 토글에도 불변인 누락/회피 패턴(특정 주제·형식에서 일관)”으로 구분하고, LR은 각 조건에서 관측된 (누락/반박/흡수) 전이확률을 가설별로 미리 정의한 기대분포와 비교하면 됩니다. “반례가 사라지는 방식” 코딩의 운영적 정의는",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5277,6 +5310,50 @@
       "temporal_bridge": true,
       "gap": 133,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-257",
+      "from": "n-153",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "식별가능성 문제를 “필요·충분 조건”에서 “경쟁가설 구분력(과정 기반 정의)”로 전환해 정교화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-258",
+      "from": "n-153",
+      "to": "n-024",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=129): n-153→n-024",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 129,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-259",
+      "from": "n-154",
+      "to": "n-153",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-260",
+      "from": "n-154",
+      "to": "n-006",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=148): n-154→n-006",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 148,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -5287,9 +5364,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 152,
-    "total_edges": 256,
-    "next_node_id": "n-153",
+    "total_nodes": 154,
+    "total_edges": 260,
+    "next_node_id": "n-155",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
