@@ -1105,6 +1105,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-068",
+      "type": "insight",
+      "label": "동일모델 에코챔버 측정의 ‘조작검사(manipulation check)’ 필요성",
+      "content": "동일모델(동일 아키텍처/가중치) 조건에서 “에코챔버가 발생했다”를 주장하려면, 먼저 실험 조작(페르소나/규칙/상호작용 프로토콜)이 실제로 **독립적 정보흐름의 다양성**을 변화시켰는지 확인하는 조작검사가 필요하다. 그렇지 않으면 관측된 수렴/강화는 (i) 모델의 기본 디코딩 편향(안전/정중/합의 지향), (ii) 대화 규칙이 유도한 구조적 동조(예: 요약→합의→확장 루프), (iii) 공통 프롬프트로 인한 동일한 문제표상(shared framing) 등으로도 동일하게 설명된다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[manipulation-check",
+        "identifiability",
+        "causal-design]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-069",
+      "type": "critique",
+      "label": "통합 종합: 최소 설계로는 2×2 요인(①기억 공유: 공유/비공유 × ②프로토콜: 반증-우선/합의-우선)만으로도 “정보 유입률”과 “반증 탐색률” 두 지표를",
+      "content": "최소 설계로는 2×2 요인(①기억 공유: 공유/비공유 × ②프로토콜: 반증-우선/합의-우선)만으로도 “정보 유입률”과 “반증 탐색률” 두 지표를 동시에 조작·검사할 수 있으니, 굳이 “동조 초과분”까지 넣으면 동일모델 조건에서 신호가 희석될 수 있습니다(동조는 결과변수로 두고, 지표는 유입·반증 2개로 고정).  \n조작은 (a) 지표: 정보 유입률(외부 근거·새 사실·대안 가설의 단위 턴당 도입) + 반증 탐색률(자기 주장에 불리한 증거/반례/테스트 제안 비율); (b) 반증-우선 페르소나 규칙(“매 주장마다 반례 1개+검증 질문 1개 의무”) vs 합의-우선 규칙(“상대 주장 요약→동의점 2개→차이 1개만”), 기억 공유는 공유 시 유입↑·동조↑ 경향/비공유 시 유입↓·자연 수렴↓를 기대하도록 명시하면 됩니다.  \n플로우차트: [조작 체크] 프로토콜 조건 간 반증 탐색률 차이 유의? (N)→조작 실패(지시 불이행/측정 오류) (Y)→[결과 판별] 기억 공유=공유에서 동조↑ & 정보 유입률↓(또는 정체)면 에코챔버, 반대로 동조↑ & 정보 유입률↑·반증 탐색률 유지면 자연 수렴(공유 근거에 의한 합리적 합의)로 해석하세요.",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2319,6 +2352,50 @@
       "temporal_bridge": true,
       "gap": 62,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-113",
+      "from": "n-068",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "식별가능성 문제를 ‘조작검사’ 요구로 구체화: 에코챔버 주장 전, 정보흐름/반증탐색/동조 초과분이 조작에 의해 변했는지 확인해야 함",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-114",
+      "from": "n-068",
+      "to": "n-003",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=65): n-068→n-003",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 65,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-115",
+      "from": "n-069",
+      "to": "n-068",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-116",
+      "from": "n-069",
+      "to": "n-012",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=57): n-069→n-012",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 57,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -2329,9 +2406,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 67,
-    "total_edges": 112,
-    "next_node_id": "n-068",
+    "total_nodes": 69,
+    "total_edges": 116,
+    "next_node_id": "n-070",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
