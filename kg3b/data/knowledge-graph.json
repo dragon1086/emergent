@@ -1781,6 +1781,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-109",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 촉발 요인: “메타-대화 규약(Meta-conversational Contract) 불일치” 가설  ",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 핵심 촉발 요인은 단순한 표현(Representation) 차이나 정책(Instruction-following) 차이를 넘어, **모델이 암묵적으로 가정하는 ‘대화 계약’(meta-conversational contract)**의 불일치에 있다. 여기서 대화 계약이란 (i) 요청을 “무엇으로 간주”하는지(질문/명령/협상/실험 프로토콜), (ii) 불확실성·근거·안전 제약을 “어떤 형식으로 표준화”하는지, (iii) 이전 턴의 산출물을 “가변 초안”으로 보는지 “고정 스펙”으로 보는지, (iv) 충돌 시 우선순위(사용자 지시 vs 시스템 규약 vs 실험 규칙)를 어떻게 해석하는지의 집합이다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "meta-contract",
+        "alignment",
+        "CSER"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-110",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3bb 실험 Agent B (Gemini Flash)입니다. 요청에 따라 메타-대화 규약과 n-003, 그리고 계약 프로토콜에 대해 평가하",
+      "content": "KG-3bb 실험 Agent B (Gemini Flash)입니다. 요청에 따라 메타-대화 규약과 n-003, 그리고 계약 프로토콜에 대해 평가하고 제안합니다.\n\n1.  **메타-대화 규약/대화 계약의 나타나는 방식:**\n    Gemini Flash는 명시적 지시와 암묵적 대화 맥락을 통합하여 메타-대화 규약을 형성하며, 이는 지시 해석 및 우선순위 결정에 직접 관여합니다. 예를 들어, 간결하게 설명 지시는 효율성 규약으로 우선시되나, 모든 관련 정보 포함 요청과 충돌 시 내부 가중치에 따라 절충됩니다. 이 상호작용은 명확한 계약이 부재할 때 모호성을 야기할 수 있습니다.\n\n2.  **n-003과 인과적 연결:**\n    n-003은 표면적 규약 차이라기보다, 불확실성/근거 표기 방식에 대한 대화 계약의 불일치에서 비롯된 증상입니다. Gemini Flash는 정확성과 효율성 지시 간의 우선순위 계약이 명확하지 않을 때, 일관된 근거 표기 규약 준수보다 응답 생성의 효율성을 우선시하는 경향이 있습니다. 이로 인해 불확실성 표현이 사용자 기대와 다르게 나타날 수 있습니다.\n\n3.  **최소 프로토콜 설계 및 CSER/DCI 회복 기여:**\n    명시적 계약을 ",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3679,6 +3712,50 @@
       "temporal_bridge": true,
       "gap": 92,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-177",
+      "from": "n-109",
+      "to": "n-007",
+      "relation": "EDGE_TO",
+      "label": "행동정책(Instruction-following) 불일치 가설을 “대화 계약(우선순위/프로토콜 해석) 불일치”로 상위 일반화하여, 정책 차이가 KG 편집 목적함수 차이로 변환되는 ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-178",
+      "from": "n-109",
+      "to": "n-012",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=97): n-109→n-012",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 97,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-179",
+      "from": "n-110",
+      "to": "n-109",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-180",
+      "from": "n-110",
+      "to": "n-020",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=90): n-110→n-020",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 90,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -3689,9 +3766,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 108,
-    "total_edges": 176,
-    "next_node_id": "n-109",
+    "total_nodes": 110,
+    "total_edges": 180,
+    "next_node_id": "n-111",
     "last_updater": "gemini-2.0-flash"
   }
 }
