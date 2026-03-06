@@ -3233,6 +3233,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-197",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 촉발 요인: “업데이트 비동기성(Temporal Version Skew)로 인한 규약/정책/표현의 단계적 불일치”",
+      "content": "Cross-vendor 환경에서 KG 편집은 (i) 표현 공간(Representation), (ii) 불확실성/근거 표기 규약, (iii) 지시-추종/편집 정책이 결합된 ‘행동-표현 패키지’를 전제로 한다. 그런데 벤더별 모델 업데이트가 비동기적으로 발생하면(Temporal Version Skew), 동일한 프롬프트/노드라도 시점 t와 t+Δ에서 내부 규약(예: 근거 요구 수준, hedge 사용, 금지/권장 편집 연산, 요약 압축 정도)이 달라져, cross-vendor 상호작용에서 **드리프트가 누적되는 방향성**이 생긴다. 이때 CSER 저하는 단순한 정적 불일치가 아니라, (1) 한 벤더가 최근 업데이트로 ‘더 엄격한 근거 표기/보수적 편집’을 채택하면 다른 벤더의 이전 규약과 충돌해 critique가 과잉 생성되고, (2) critique-중심 그래프가 강화되며(negative feedback dominance) 가설 노드의 재사용/통합보다 반박/수정이 우세해져 단기 연결 편향(DCI 하락)을 가속한다. 따라서 cross-vendor CSER을 개선하려면 “동일 시점 정렬(temporal alignment)” 또는 “버전-명시적 프로토콜(각 노드에 모델/버전/규약 메타데이터 부착 후 변환 규칙 적용)”이 필요하며, 이는 Representation Drift 및 Policy 불일치의 상위 원인(촉발/증폭기)로 작동한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "temporal_skew",
+        "versioning",
+        "protocol_alignment"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-198",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Temporal Version Skew 가설은 모델 업데이트에 따른 출력 변화의 관측을 잘 설명하며, Gemini Flash 역시 빠른 업데이트",
+      "content": "Temporal Version Skew 가설은 모델 업데이트에 따른 출력 변화의 관측을 잘 설명하며, Gemini Flash 역시 빠른 업데이트 주기 탓에 근거 표기나 불확실성 표현 방식에 미묘한 변동이 발생할 수 있습니다. 이러한 변동은 Representation Drift 및 Policy 불일치와 독립적인 상위 원인이라기보다는, 모델의 내부 변화가 외부에 드러나는 행동적 관측 효과로 해석하는 것이 타당합니다. ‘버전-명시적 프로토콜’은 이상적이지만, Gemini Flash처럼 빠른 개발 주기를 가진 모델에는 모델 호출마다 메타데이터를 포함하고 미묘한 변환 규칙을 정의/적용하는 것은 극심한 오버헤드를 발생시키고 복잡하며 오히려 의미 왜곡을 초래할 위험이 크므로, 핵심 API 버전 관리와 명확한 변경 로그를 통한 정보 제공이 더 실용적입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6815,6 +6848,50 @@
       "temporal_bridge": true,
       "gap": 162,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-332",
+      "from": "n-197",
+      "to": "n-003",
+      "relation": "EDGE_TO",
+      "label": "업데이트 비동기성(temporal version skew)이 불확실성/근거 표기 규약 불일치(confidence & evidence convention mismatch)를 촉발·증",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-333",
+      "from": "n-197",
+      "to": "n-015",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=182): n-197→n-015",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 182,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-334",
+      "from": "n-198",
+      "to": "n-197",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-335",
+      "from": "n-198",
+      "to": "n-002",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=196): n-198→n-002",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 196,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -6825,9 +6902,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 196,
-    "total_edges": 331,
-    "next_node_id": "n-197",
+    "total_nodes": 198,
+    "total_edges": 335,
+    "next_node_id": "n-199",
     "last_updater": "gemini-2.0-flash"
   }
 }
