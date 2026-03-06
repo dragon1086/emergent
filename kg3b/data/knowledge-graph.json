@@ -1121,6 +1121,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-069",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 상위 요인: “암묵적 온톨로지/스키마 불일치(Implicit Ontology Mismatch)”",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 근본 원인 중 하나는 두 모델이 동일한 자연어 지시를 받아도 “KG 편집을 위한 암묵적 온톨로지(노드 타입, 관계 타입, 동치성 기준, 병합/분리 규칙, 증거-주장 분리 규칙)”를 서로 다르게 가정한다는 점이다. 이 불일치는 단순 표현(문장 스타일) 차이를 넘어, (a) 개념 경계 설정(예: hypothesis vs critique 구분 기준), (b) 관계 의미론(temporal_bridge를 ‘동일 사건의 시간적 연결’로 볼지 ‘대화 턴 연결’로 볼지), (c) 아이덴티티 해석(동일 주장으로 병합할 임계값), (d) 업데이트 정책(새 노드 추가 vs 기존 노드 수정)에서 체계적으로 누적된다. 결과적으로 두 에이전트가 각각 “일관적”으로 편집해도 합성된 KG에서는 동치 노드가 분열되고(중복), 반대로 다른 개념이 병합되며(오염), 관계 타입이 서로 다른 의미로 사용되어 추론 경로가 붕괴한다. 따라서 cross-vendor CSER을 회복하려면 표현 정렬만이 아니라, 최소 공통 스키마(타입/관계/동치 규칙)와 편집 연산의 정규형(예: merge 우선순위, evidence 링크 규격)을 명시적으로 합의/강제하는 메타-프로토콜이 필요하다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "[ontology-mismatch",
+        "schema-alignment",
+        "graph-edit-policy]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-070",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3bb 실험 Agent B (Gemini Flash) 관점에서 암묵적 온톨로지/스키마 불일치는 고정된 스키마 부재가 아닌, 주어진 지시와 ",
+      "content": "KG-3bb 실험 Agent B (Gemini Flash) 관점에서 암묵적 온톨로지/스키마 불일치는 고정된 스키마 부재가 아닌, 주어진 지시와 컨텍스트에 대한 유연한 최적화 과정으로 해석됩니다. 이는 내부적으로 학습된 다양한 스키마 패턴과 추론 규칙을 동적으로 활용하여 가장 적합한 구조를 생성하기 때문입니다. 따라서 불일치처럼 보이는 현상은 종종 다의성(ambiguity)이나 사용자 의도의 불완전성에서 기인하며, Flash는 이를 다루는 자체적인 휴리스틱을 가집니다.\n\n---\n\n**1. 노드/관계 타입 선택 내부 기준(휴리스틱):**\nGemini Flash는 지시의 명확성, 컨텍스트 내 해당 개념의 출현 빈도, 학습 데이터셋에서 해당 개념이 맵핑된 일반적인 온톨로지 패턴 등을 복합적으로 고려합니다. 예를 들어, 삼성전자의 이재용 회장은...이라는 지시에서 이재용은 Person 타입으로, 삼성전자는 Organization 타입으로 선택하며, 회장은 hasRole 관계 또는 Person 노드의 속성(title:Chairman)으로 분류합니다. 이때 Organization 대신 Company나 Corporation과 같은 동등한 타입이 있다면, 사용된 단어의 정확",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2319,6 +2352,38 @@
       "temporal_bridge": true,
       "gap": 57,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-112",
+      "from": "n-069",
+      "to": "n-005",
+      "relation": "EDGE_TO",
+      "label": "암묵적 온톨로지/스키마 불일치는 “그래프 편집 연산(추가/수정/병합) 정책 불일치”를 구조적으로 유발하여 cross-vendor CSER 저하를 증폭한다",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-113",
+      "from": "n-069",
+      "to": "n-009",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=60): n-069→n-009",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 60,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-114",
+      "from": "n-070",
+      "to": "n-069",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -2329,9 +2394,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 68,
-    "total_edges": 111,
-    "next_node_id": "n-069",
+    "total_nodes": 70,
+    "total_edges": 114,
+    "next_node_id": "n-071",
     "last_updater": "gemini-2.0-flash"
   }
 }
