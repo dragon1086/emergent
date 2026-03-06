@@ -2606,6 +2606,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-159",
+      "type": "insight",
+      "label": "동일모델-다중페르소나의 ‘에코챔버’ 판정은 반드시 반사실(카운터팩추얼) 기준을 포함해야 함",
+      "content": "동일모델(gpt-5.2×gpt-5.2)에서 서로 다른 페르소나를 부여해 “자율 진화”를 관찰할 때, 대화 로그만으로 에코챔버를 판정하려 하면 구조적으로 식별가능성이 무너진다. 이유는 관측되는 현상(예: 주장/용어/프레임의 수렴, 상호 인용, 반대 근거의 감소)이 최소 두 종류의 생성 메커니즘에서 동일하게 산출될 수 있기 때문이다. (1) 진짜 에코챔버 메커니즘: 상호 강화로 인해 대안 가설·반례·반증 시도가 체계적으로 배제되고, 신념 공간이 국소 최적점으로 붕괴한다. (2) ‘공유 베이스모델+역할지시’ 메커니즘: 동일한 사전학습 분포와 유사한 추론 휴리스틱이 페르소나 차이를 상쇄하여 자연스럽게 수렴을 만든다(특히 목표가 “KG를 발전”시키는 방향일수록 합의 지향적 압력이 커짐). 따라서 “에코챔버가 발생했다”는 결론은 관측치 자체가 아니라, 반사실 비교(카운터팩추얼)에서만 의미가 생긴다: 동일한 초기 조건에서 (a) 상호작용이 있었을 때 vs (b) 상호작용이 없었거나, (c) 상호작용은 있으나 ‘반대 증거 생성’ 채널이 강제된 조건을 대비했을 때, 반증 후보의 생성률/다양성이 유의하게 감소하고 그 감소가 시간에 따라 자기강화적으로 누적되는가를 봐야 한다. 여기서 핵심 판정 단위는 “유사도 증가”가 아니라 “반증 후보(대안·반례·반대 근거)의 제도적/구조적 억제”이며, 이 억제가 상호작용에 의해 추가로 발생했음을 보여주는 것이 필요하다. 즉, 에코챔버 판정은 반드시 ‘상호작용 효과(Interaction Effect)’를 분리 추정하는 설계(예: 단독 생성 분포 대비 합성 기대값, 혹은 교차검증형 반대자 역할 ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "counterfactual",
+        "operationalization]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-160",
+      "type": "critique",
+      "label": "통합 종합: 정의가 “반증 후보 억제”에 치우쳐 **정보 노출(선택/추천)·사회적 신호(동조 압력)·기억/가시성(재노출)** 메커니즘이 섞이기 쉬우니, 최소",
+      "content": "정의가 “반증 후보 억제”에 치우쳐 **정보 노출(선택/추천)·사회적 신호(동조 압력)·기억/가시성(재노출)** 메커니즘이 섞이기 쉬우니, 최소 설계는 2×2로 분해하는 게 깔끔합니다: (A) **단독 생성(개인) vs 상호작용(그룹)** × (B) **반증 유인(반대 근거 보상/의무) vs 중립**, 또는 (C) 상호작용은 유지하되 **추천/랭킹(인기순) on/off**를 추가한 3조건(단독·상호작용-시간순·상호작용-인기순)으로 “사회적 강화”와 “알고리즘 강화”를 분리하세요. 로그 지표는 예를 들어 반증 후보 생성률 (r_f=frac{#text{반증 후보}}{#text{전체 주장/발화}}), 대안 다양성 (D=H(p(text{대안 토픽}))) 또는 (text{uniq-}n/text{tokens}), 반대 근거 유지시간 (T=mathbb{E}[t_{text{마지막 반대근거 언급}}-t_{text{최초 언급}}])로 두고, 핵심 통계량은 **단독 분포 합성 대비 상호작용 분포 차이**로 ( Delta = mathrm{Dist}!left(P_{text{int}}(y),,,sum_{i=1}^k w_i P_{text{solo},i}(y)right)) (예: (yi",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5508,6 +5541,26 @@
       "temporal_bridge": true,
       "gap": 154,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-269",
+      "from": "n-159",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "동일모델-다중페르소나 조건의 판별 불능성을 ‘반사실 비교(상호작용 효과 분리)’ 요구로 구체화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-270",
+      "from": "n-160",
+      "to": "n-159",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -5518,9 +5571,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 158,
-    "total_edges": 268,
-    "next_node_id": "n-159",
+    "total_nodes": 160,
+    "total_edges": 270,
+    "next_node_id": "n-161",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
