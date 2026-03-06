@@ -2920,6 +2920,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-178",
+      "type": "insight",
+      "label": "에코챔버 vs 자연수렴 ‘판별가능성’의 최소조건: 비대칭 충격과 경로의존성",
+      "content": "동일모델(gpt-5.2×gpt-5.2)에서 에코챔버를 주장하려면, 단순히 “둘이 비슷한 결론에 도달”로는 부족하다. 동일한 사전(prior)·유사한 추론 휴리스틱 때문에 생기는 자연 수렴(convergence)과, 상호강화로 인해 편향이 증폭되는 에코챔버(feedback amplification)를 구분하려면 ‘판별가능성의 최소조건’이 필요하다. 비판적으로 보면, 관측이 대화 로그뿐인 상황에서 판별가능성을 여는 핵심은 (i) 한쪽에만 가해지는 정보/유인 충격(asymmetric perturbation)과 (ii) 그 충격이 상호작용을 통해 상대에게 전파되며 (iii) 이후에도 지속되는 경로의존성(path dependence)을 계량적으로 확인하는 것이다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "causal_inference",
+        "experimental_design]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-179",
+      "type": "critique",
+      "label": "통합 종합: 요청이 과도하게 “지표·표” 산출물에 고정돼 KG-2의 자율 진화(대화 자체가 개입·측정·학습의 장)와 충돌할 수 있으니, (1) 비대칭 충격은",
+      "content": "요청이 과도하게 “지표·표” 산출물에 고정돼 KG-2의 자율 진화(대화 자체가 개입·측정·학습의 장)와 충돌할 수 있으니, (1) 비대칭 충격은 **증거(반대증거·반사실)** 1종 + **보상(정합성/자기수정 보너스)** 1종 + **규범 프롬프트(steelman·인용 의무)** 1종으로 최소 조합(3축)만 두고 강도만 스케줄링하는 형태가 구현 친화적입니다. (2) 정량 지표는 3개로 압축하면 **회귀율 R**(반대증거 투입 후 k턴 내 원 주장/프레이밍으로 되돌아가는 비율), **갱신량 ΔG**(주장-근거 그래프의 편집거리: 노드/엣지 추가·삭제·재가중치의 정규화 합), **동조편향 A**(인용-동조 네트워크의 모듈성/동질성: 같은 입장 인용 비중 또는 assortativity)로 충분합니다. (3) 예측 표: 자연수렴 | R 낮음·ΔG 중~높음(안정적 재구성)·A 낮음(교차인용↑) | 에코챔버 | R 높음·ΔG 낮음(표면변형만)·A 높음(내집단 인용↑)로 정리됩니다.",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6194,6 +6227,38 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-303",
+      "from": "n-178",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "동일모델 에코챔버 가설의 판별가능성을 여는 최소 실험조건(비대칭 충격·경로의존성·복귀탄력성) 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-304",
+      "from": "n-179",
+      "to": "n-178",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-305",
+      "from": "n-179",
+      "to": "n-018",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=161): n-179→n-018",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 161,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -6204,9 +6269,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 177,
-    "total_edges": 302,
-    "next_node_id": "n-178",
+    "total_nodes": 179,
+    "total_edges": 305,
+    "next_node_id": "n-180",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
