@@ -230,6 +230,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-015",
+      "type": "insight",
+      "label": "동일모델-상이페르소나 조건의 ‘에코챔버’는 조작변수 식별이 아니라 결과지표 재정의 문제",
+      "content": "동일 모델(gpt-5.2)에서 페르소나만 다르게 부여한 뒤 “KG 자율 진화 → 에코챔버 형성”을 검증하려면, (i) 에코챔버를 유발하는 원인변수(동질성/동조 압력)와 (ii) 관측되는 결과지표(수렴, 다양성 감소, 반증 억압)를 분리해 식별해야 한다. 그런데 same-model 조건에서는 많은 ‘수렴’이 에코챔버가 아니라 공유된 사전학습 분포(언어적 관습, 안전성 규칙, 그럴듯함 선호)에서 기인할 수 있고, 페르소나 지시 또한 둘 다 동일한 상위 목표(실험 수행, 형식 준수)에 종속되므로 실제로는 “동질적 생성기 + 공통 과업”에서 나타나는 자연 수렴을 에코챔버로 오인할 위험이 크다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "식별가능성",
+        "반증가능성",
+        "측정지표"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-016",
+      "type": "critique",
+      "label": "통합 종합: “반증 구조 붕괴”는 단순히 대체가설(노드) ‘생존율’이 아니라 **반증 경로(contradicts/undermines + evidence-of",
+      "content": "“반증 구조 붕괴”는 단순히 대체가설(노드) ‘생존율’이 아니라 **반증 경로(contradicts/undermines + evidence-of-falsification)의 연결성·가시성·재사용성**이 시간에 따라 약화되는지로 잡아야 합니다; (a) KG에서 대체가설 생존율/반례 유지율은 각 가설 (H_i)에 대해 기간 (t)별로 **반례 에지 보존율** (R_i(t)=|E^{-}_{i,t}cap E^{-}_{i,t+Delta}|/|E^{-}_{i,t}|), **반증 경로 커버리지**(반증 증거→비판→가설까지 최단/다중경로 존재 비율), **반증 에지 가중치 감쇠**(edge confidence·citation·support가 시간에 단조 감소하는지)와 함께, “살아남았지만 반증이 분리된” 상태를 잡는 **반증 분리도** (S_i(t)=1-text{reach}(text{counterevidence}to H_i))로 정량화하는 게 핵심입니다. (b) ‘표면적 통합’ 탐지는 **refines/temporal_bridge가 (i) 기존 contradicts를 우회하는 새 중간노드(“정의/프레이밍/메타합의”)를 삽입**하고, (ii) 그 결과 **contradict",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -432,6 +465,50 @@
       "temporal_bridge": true,
       "gap": 11,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-020",
+      "from": "n-015",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "identifiability 문제를 ‘원인 조작 불가 → 결과지표(반증 구조) 재정의’로 구체화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-021",
+      "from": "n-015",
+      "to": "n-002",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=13): n-015→n-002",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 13,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-022",
+      "from": "n-016",
+      "to": "n-015",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-023",
+      "from": "n-016",
+      "to": "n-002",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=14): n-016→n-002",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 14,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -442,9 +519,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 14,
-    "total_edges": 19,
-    "next_node_id": "n-015",
+    "total_nodes": 16,
+    "total_edges": 23,
+    "next_node_id": "n-017",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
