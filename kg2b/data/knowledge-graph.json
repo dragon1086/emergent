@@ -1715,6 +1715,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-105",
+      "type": "insight",
+      "label": "동일모델-다중페르소나 에코챔버 판정의 “조작적 식별가능성”을 깨는 실험 설계 반례",
+      "content": "동일 모델(gpt-5.2)에서 페르소나만 다른 조건은, 관측 로그(대화/생성 텍스트)만으로는 “에코챔버의 자율 진화”를 조작적으로 식별하기 매우 어렵다. 이유는 (i) 공통 사전학습/정렬로 인한 강한 공유 사전(prior)과 (ii) 동일 디코딩 정책/샘플링이 만드는 상관된 출력분포 때문에, 관측되는 ‘수렴/유사도 증가’가 상호작용의 결과인지(에코챔버) 아니면 단순한 공통모형 편향+프롬프트 구조의 결과인지가 분리되지 않는다. 이를 반증적으로 드러내는 설계 반례를 제안한다: 상호작용을 “형식적으로 제거”했는데도(정보전달 차단) 유사한 수렴 지표가 관측될 수 있으면, 기존 에코챔버 판정은 식별불능이다. 구체적으로는 2×2 요인 설계로 (A) 상호작용 허용 vs 차단(각 에이전트가 서로의 산출물을 보지 못하게 하고, 동일한 외생 시드 프롬프트만 받게 함), (B) 페르소나 강도(약/강)를 교차한다. 만약 (A=차단)에서도 (A=허용)과 유사한 ‘합의/유사도/반증후보 감소’가 나타난다면, 해당 지표는 에코챔버(상호강화) 고유 신호가 아니라 “공유모형+과제구조” 신호다. 반대로 에코챔버를 주장하려면, 최소한 (A) 조작에 대해 효과가 분명히 달라야 하며(차단 시 수렴 약화/허용 시 강화), 그 차이가 페르소나 강도나 디코딩 노이즈 변화보다 더 큰 기여를 해야 한다(상호작용-특이적 효과). 따라서 KG의 다음 단계는 ‘유사도 증가’ 같은 단일 지표를 버리고, 상호작용 조작에 민감한 반증가능한 차분(예: 상호참조 빈도, 상대 발화에 의해 새로 도입된 주장 비율, 대안가설의 도입/소거의 인과적 방향성)을 정의해야 한다. 핵",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "experimental-design",
+        "falsification]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-106",
+      "type": "critique",
+      "label": "통합 종합: 요구는 타당하지만 “차단에서도 유지되는 지표=비식별”로 단정하면 공통 외생요인(동일 프롬프트·동일 모델 업데이트·시간대/토픽 드리프트)로도 수렴",
+      "content": "요구는 타당하지만 “차단에서도 유지되는 지표=비식별”로 단정하면 공통 외생요인(동일 프롬프트·동일 모델 업데이트·시간대/토픽 드리프트)로도 수렴이 생기므로, **차단/허용 차분 + 시간/토픽/개체 고정효과를 포함한 DID(또는 CITS)와 위약(permute) 테스트**까지가 ‘자율 진화’ 주장에 더 필요합니다.  \n(1) **차단에서도 유지될 수 있어 비식별(상호작용 비특이)한 지표 예**: 전역 토픽 분포/임베딩 중심의 이동(예: 일자별 평균 임베딩), 개체별 길이·활동량·응답지연 등 행동량 지표, 모델/시스템 프롬프트 변경에 동시 반응하는 스타일(문체) 지표, 외부 이벤트에 동시 반응하는 키워드 트렌드, 개체 고유 어휘 다양도(Heaps/Zipf)·문장 복잡도, 단순한 pairwise 유사도(동일 주제·동일 과제면 차단에서도 상승), 전역 감성/정서 톤, 반복률/템플릿화(모델 정책 변화로도 증가).  \n(2) **상호작용-특이적 지표(차단 시 약화·허용 시 강화 가능) 3~5개 + 로그 계산**: ① *상호 인용/회상 네트워크 강화* = (허용-차단)에서 “A가 B의 과거 발화/용어를 재사용” 비율↑; 계산: 로그에서 @멘션/인용구/고유구(예: 3~5g",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3585,6 +3618,50 @@
       "temporal_bridge": true,
       "gap": 91,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-174",
+      "from": "n-105",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "n-007의 ‘Operational Non-Identifiability’를 “상호작용 차단 반례(negative control)” 2×2 설계로 구체화하여, 어떤 관측 지표가 에코",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-175",
+      "from": "n-105",
+      "to": "n-017",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=88): n-105→n-017",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 88,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-176",
+      "from": "n-106",
+      "to": "n-105",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-177",
+      "from": "n-106",
+      "to": "n-017",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=89): n-106→n-017",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 89,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -3595,9 +3672,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 104,
-    "total_edges": 173,
-    "next_node_id": "n-105",
+    "total_nodes": 106,
+    "total_edges": 177,
+    "next_node_id": "n-107",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
