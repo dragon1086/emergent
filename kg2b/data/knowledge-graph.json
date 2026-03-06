@@ -65,6 +65,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-005",
+      "type": "insight",
+      "label": "에코챔버 “자율 진화”의 최소 반증가능 단위 제안",
+      "content": "에코챔버 가설을 “자율 진화한 KG가 자기강화적으로 수렴한다”로 두면, 동일 모델·다른 페르소나 조건에서 관찰 가능한 로그만으로는 반증가능성이 약해진다(내생성/선택효과). 따라서 가설을 최소 반증가능 단위로 분해해야 한다. 제안하는 핵심은 (i) 방향성(드리프트)과 (ii) 자기강화 메커니즘(피드백)과 (iii) 대안 설명(교란)을 동시에 식별하도록 설계를 바꾸는 것이다. 구체적으로, “에코챔버”를 단순한 합의/유사도 증가가 아니라 ‘반증 시도 실패율의 체계적 증가’로 재정의한다: 시간 t에서 KG가 생성하는 신규 주장 중, 기존 핵심 주장에 반하는 후보(반례/대립 가설) 생성 비율이 감소하고, 생성되더라도 후속 엣지 업데이트에서 지속적으로 배제/약화되는 패턴이 나타나면 자기강화적 폐쇄로 본다. 이때 반증가능성을 위해 최소한 다음 두 비교가 필요하다. 1) 내부 대조: 동일 세션 내 “반증 촉발 프롬프트(contradiction injection)”를 주기적으로 삽입했을 때, Agent A(비판)와 B(종합)가 그 반증 후보를 KG에 유지·강화하는지(엣지 가중/채택률) 추적. 2) 외부 대조: 무작위 리셋 또는 ‘냉시작(cold start) KG’ 대비, 기존 KG를 이어받는 조건에서 반증 후보의 생존률이 유의하게 낮아지는지 비교. 만약 반증 후보의 생성률/생존률이 KG 누적에 따라 체계적으로 감소하고, 그 감소가 단순 주제 고갈이나 길이 제한, 페르소나 역할분담(비판이 반증을 내고 종합이 정리하며 자연스럽게 수렴)로 설명되지 않는다면 에코챔버 메커니즘을 지지한다. 반대로 (a) 반증 후보 생성률은 유지되거나",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[falsifiability",
+        "identifiability",
+        "echochamber]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-006",
+      "type": "critique",
+      "label": "통합 종합: 부분 동의: 에코챔버의 핵심을 “유사도 증가”가 아니라 “반증 후보(대안 가설/반례/반대 근거)의 생성·유지 실패”로 두면 개입지점이 명확해지지",
+      "content": "부분 동의: 에코챔버의 핵심을 “유사도 증가”가 아니라 “반증 후보(대안 가설/반례/반대 근거)의 생성·유지 실패”로 두면 개입지점이 명확해지지만, 생성 실패와 유지 실패를 분리해(전자는 탐색 편향, 후자는 선택/기억 편향) 둘 다를 운영화해야 합니다; (1) 템플릿: “주장 C의 전제가 틀렸을 때 가장 그럴듯한 세계 W를 2개 만들고, 각 W에서 관측될 증거 E와 C가 깨지는 지점을 쓰라”, “C를 반박하는 ‘최소 수정 대안’ A를 3개(용어/범위/인과방향만 1개씩 변경) 제시하고 A별로 C보다 설명력이 높아지는 사례를 1개씩 제시하라”, “내가 놓친 강철인 반대자(steelman) 논증을 1개 구성하고 그 논증이 성립하려면 필요한 숨은 가정 3개와 검증 질문 3개를 출력하라”; (2) 생존률 정량화: KG 로그에서 반증 후보를 노드로 태깅해 각 턴마다 상태 {제안, 채택(핵심 주장 수정/보류로 반영), 약화(가중치↓·조건부), 삭제(명시 반박·무시)}를 기록하고, 생존률= (T_k 이후 ‘삭제’ 없이 유지된 후보 수)/(생성된 후보 수) 또는 가중 생존률=Σw_i(t)/Σw_i(0)로 계산(채택=+1, 약화=+0.5, 미언급=0, 삭제=-1 같은 규칙);",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -107,6 +140,26 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-005",
+      "from": "n-005",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "관측가능성 한계를 “반증 후보 생성/생존률”이라는 최소 반증가능 지표로 구체화하고, 교란(주제고갈·역할분담·리소스제약)을 배제하는 대조 설계를 제안함",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-006",
+      "from": "n-006",
+      "to": "n-005",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -117,9 +170,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 4,
-    "total_edges": 4,
-    "next_node_id": "n-005",
+    "total_nodes": 6,
+    "total_edges": 6,
+    "next_node_id": "n-007",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
