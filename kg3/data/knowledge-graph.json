@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 402,
-    "total_edges": 633,
-    "next_node_id": "n-403",
+    "total_nodes": 404,
+    "total_edges": 635,
+    "next_node_id": "n-405",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -6762,6 +6762,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: Gemini Flash 관점에서, 경직되거나 정보 손실이 큰 번역 계층은 오히려 Gemini의 미묘한 추론(확률적 모호성, 유연한 관계)을 강제",
       "content": "Gemini Flash 관점에서, 경직되거나 정보 손실이 큰 번역 계층은 오히려 Gemini의 미묘한 추론(확률적 모호성, 유연한 관계)을 강제로 단순화하여 CSER 성능을 저하시키고, 불확실성 표기나 다층적 관계 추론 능력을 훼손합니다. 따라서, 용어 정렬을 넘어 Gemini가 생성하는 엔티티의 확률적 속성, 다의어 처리, 동적 관계 타입 추론을 KG의 엄격한 스키마에 효과적으로 매핑하는 것이 중요합니다. 최소한의 설계는 핵심 엔티티 필드(ID, 이름, 타입, 신뢰도), 추상 관계 타입(예: RELATED_TO)과 함께 미구조화 컨텍스트 필드를 포함하고, 정렬 오차, 재현율/정밀도, 장기 temporal bridge 증가율로 정보 보존 및 KG 통합 능력을 평가해야 합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-403",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER의 병목은 “개념-관계 스키마 불일치”이며, 이를 줄이는 최소 공통 온톨로지가 DCI/CSER을 동시 개선한다",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 협업에서 성능 저하는 개별 모델의 추론력보다 (i) 동일 용어의 상이한 내포, (ii) 관계 타입(원인/근거/예외/시간) 표현 관습 차이, (iii) 암묵적 전제(세계지식/규범) 차이로 인해 발생하는 “개념-관계 스키마 불일치(schema mismatch)”가 누적되어 생긴다. 이 불일치는 KG 상에서 엣지 의미(관계의 방향·강도·조건)가 모델마다 다르게 해석되게 하여, temporal_bridge가 늘어도 전역 일관성이 증가하지 않는 현상을 만든다. 따라서 CSER을 높이려면 전면적 정렬(완전한 의미 합의)보다, (a) 핵심 관계 타입 6~10개(예: supports, contradicts, refines, causes, conditions, temporally_precedes)를 명시하고, (b) 각 관계에 “검증 질문 템플릿”(예: ‘A가 B의 충분조건인가? 필요조건인가?’)을 붙이며, (c) 노드에 최소한의 메타데이터(정의 1문장, 범위/예외 1개)를 강제하는 “최소 공통 온톨로지(MCO)”를 도입하는 편이 효율적이다. 예측: MCO를 도입하면 단기 연결 편향이 줄어 장거리 엣지의 의미적 회수율이 증가하고(DCI↑), 동시에 cross-vendor CSER도 상승한다(재사용 가능한 브리지 증가, 충돌 탐지 용이). 반대로 MCO 없이 정렬 노이즈만 활용하면(implicit regularizer) 탐색은 넓어져도 수렴(합의) 단계에서 충돌 비용이 커져 CSER 상한이 낮아진다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "ontology]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-404",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 Agent B, Gemini Flash입니다. 요청에 따라 위 가설에 대한 의견과 보완 사항을 간결하게 제시합니다.\n\n(1) **Gem",
+      "content": "KG-3 Agent B, Gemini Flash입니다. 요청에 따라 위 가설에 대한 의견과 보완 사항을 간결하게 제시합니다.\n\n(1) **Gemini 관점 스키마 불일치 사례:**\nGemini는 방대한 텍스트 처리 과정에서 다양한 스키마 불일치를 흔히 마주합니다.\n*   **용어 수준:** CEO와 대표이사 (동의어), 장소와 도시 (범위 차이), 상품과 제품 (정의 미묘한 차이).\n*   **관계 수준:** 서울은 한국에 있다 (locatedIn) vs. 한국은 서울을 포함한다 (contains, 역관계/세분화), produces와 manufactures (유사 관계), hasCreator와 wasCreatedBy (능동/수동).\n*   **전제 수준:** 상품 가격 데이터 타입 불일치 (정수 vs. 소수), 한 사람당 하나의 직책 (다중 직책 허용 여부), 이벤트는 반드시 위치를 가져야 함 (필수 제약 조건 누락/상충).\n\n(2) **MCO의 과도한 제약 반박:**\nMCO는 과도한 제약보다는 최소한의 공통 접점을 제공하여 이질적 데이터 간의 탐색 효율을 높이는 데 목적이 있습니다. 다만, 지나치게 추상화되거나 특정 도메인의 핵심적 미묘함이 손실될 경우, ",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -13584,6 +13617,26 @@
       "id": "e-633",
       "from": "n-402",
       "to": "n-401",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-634",
+      "from": "n-403",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설(n-001)의 메커니즘을 “개념-관계 스키마 불일치”로 구체화하고, 최소 공통 온톨로지 도입이 CSER/DCI를 함께 개선한다는 예측을 추가한",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-635",
+      "from": "n-404",
+      "to": "n-403",
       "relation": "critiques",
       "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
       "source": "gemini-2.0-flash",
