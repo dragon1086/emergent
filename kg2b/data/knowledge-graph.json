@@ -1880,6 +1880,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-115",
+      "type": "insight",
+      "label": "Identifiability를 깨는 “동일 모델·대칭 페르소나”의 구조적 반례",
+      "content": "동일 모델(gpt-5.2)에서 두 에이전트가 서로 다른 페르소나를 부여받아 상호작용할 때, 관찰 로그만으로 “에코챔버의 자율 진화”를 식별하려는 시도는 구조적으로 비식별적일 수 있다. 핵심은 (i) 생성과정이 동일한 베이스 모델에 의해 강하게 결합되어 있고, (ii) 페르소나가 단지 프롬프트 레벨의 얕은 제약일 경우, 관측되는 수렴(유사도 증가/반증 감소/상호강화)은 ‘에코챔버 동학’뿐 아니라 ‘공통 생성편향 + 대칭적 최적화’로도 동일하게 재현된다는 점이다. 이를 반례 형태로 구성하면 다음과 같다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "same-model",
+        "counterfactual]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-116",
+      "type": "critique",
+      "label": "통합 종합: 요청을 보완하면, “관측 로그만”으로는 동형성/대칭성 때문에 원천적으로 비식별인 경우가 있어 최소 개입은 **식별을 위한 ‘대칭 깨기’(랜덤화·",
+      "content": "요청을 보완하면, “관측 로그만”으로는 동형성/대칭성 때문에 원천적으로 비식별인 경우가 있어 최소 개입은 **식별을 위한 ‘대칭 깨기’(랜덤화·표식·비대칭 노출)와 로그에 남는 불변량 설계**를 포함해야 합니다: (1) **랜덤화된 프롬프트 스케줄+고정 시드 태깅**(동일 의미 질문을 난수로 순서/표현만 바꾸어 반복) → 에코챔버면 *표현만 바뀌어도* 결론/근거 그래프가 과도하게 수렴하므로, 판별은 “동일 의미군 내 응답 임베딩 분산↓ + 근거(인용/링크/개체) 다양도↓ + 시간에 따른 자기참조 비율↑” 같은 로그 불변량으로; (2) **비대칭 정보 주입(한쪽에만 반례/교정 사실을 소량 삽입) + 블라인드 질의** → 대칭 반례를 깨는 관측 차이는 “주입 사실의 전파율/지연(몇 턴 후 등장)과 오류 수정률”이며, 에코챔버는 주입된 반례가 *동일 집단 내부에서만* 빠르게 확산되고 외부 반례는 흡수/왜곡되어 “교정 후에도 주장 지속률”이 높게 남습니다; (3) **강제 반례 생성 규칙(매 N턴마다 ‘내 주장과 모순되는 최강 반례/대안 가설’ 출력 의무)** → 에코챔버는 반례가 형식적·약화(스틸맨 실패)되거나 즉시 자기 주장으로 회귀하므로, 판별 기준은 “반례의",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3970,6 +4003,26 @@
       "temporal_bridge": true,
       "gap": 113,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-194",
+      "from": "n-115",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "동일모델-다중페르소나 조건에서의 operational non-identifiability를 “구조적 반례(동형성·대칭성·반사실 부재)”로 더 형식화하고, 관측지표 기반 판별이 왜 ",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-195",
+      "from": "n-116",
+      "to": "n-115",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -3980,9 +4033,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 114,
-    "total_edges": 193,
-    "next_node_id": "n-115",
+    "total_nodes": 116,
+    "total_edges": 195,
+    "next_node_id": "n-117",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
