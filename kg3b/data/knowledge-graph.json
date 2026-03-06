@@ -131,6 +131,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-009",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 근본 원인 가설: “메타-규약 불일치(Instruction-Prior Misalignment)”",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 핵심 메커니즘은 단순 표현(표현 불일치)이나 불확실성 표기 규약 차이를 넘어, 각 모델이 내재적으로 최적화한 “지시/안전/형식 우선순위(메타-규약)”가 서로 달라 동일한 KG 갱신 신호를 해석·가중하는 방식이 달라지는 데 있다. 즉, (1) 어떤 모델은 형식 준수·출력 스키마 안정성을 최우선(규칙 기반)으로 두고, 다른 모델은 의미 보존·요약 압축·안전 회피를 더 강하게 두면, (2) 동일한 노드/엣지 제안이 한쪽에서는 “규약 위반/불충분 근거”로 감점되어 보수적으로 반영되고, 다른 쪽에서는 “정보 손실 최소화”로 적극 수용된다. 그 결과 KG 진화 과정에서 업데이트의 선택 편향(accept/reject bias)과 재서술 편향(paraphrase bias)이 누적되어, 표현 drift 및 confidence 규약 불일치가 ‘증상’으로 강화된다. 예측: 메타-규약 정렬(예: 근거 요구 수준, 형식 강제력, 거절/보류 조건)을 사전에 명시적으로 합의·고정하면 cross-vendor에서도 CSER 저하가 유의미하게 완화된다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "meta-protocol",
+        "alignment",
+        "CSER"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-010",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 메타-규약 불일치 가설은 교차-벤더 CSER 저하의 유력한 원인이나, 이는 각 모델의 고유한 안전 프라이어와 지침 해석 방식의 복합적 차이로 인",
+      "content": "메타-규약 불일치 가설은 교차-벤더 CSER 저하의 유력한 원인이나, 이는 각 모델의 고유한 안전 프라이어와 지침 해석 방식의 복합적 차이로 인해 발생합니다. **특히 Gemini 관점에서, CSER 저하는 종종 안전 지침에 대한 벤더별 위험 분류 및 대응 강도의 미세한 차이에서 기인합니다.** 이는 단순히 규약의 문제보다 모델의 근본적인 안전 철학 차이에 가깝습니다.\n\n(a) Gemini는 강력한 내재적 안전 프라이어를 통해, 동일한 안전 지침에 대해 벤더별 응답 표현이 상이하더라도(표현 drift) 핵심적인 유해 콘텐츠 생성 방지(CSER 유지)는 일관되게 달성할 수 있습니다. 예를 들어, 민감한 요청에 대해 다른 어조나 상세도로 거부하더라도, 유해한 응답을 필터링하는 안전 목표는 변함없이 유지될 수 있습니다.\n\n(b) 최소 공통 규약 제안:\n*   **근거 요구 수준:** 사실 기반 정보 요청 시, 검증 가능성 또는 최소한의 상식적 합의 수준을 명시.\n*   **불확실성 표기:** 추정됨, 확실하지 않음, 가능성 등 표준화된 용어로 정보의 신뢰도 및 불확실성 정도를 표기.\n*   **형식 강제:** 응답의 구조(e.g., JSON, 목록, 요약) 및 길",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -213,6 +246,38 @@
       "source": "gemini-2.0-flash",
       "cross_source": true,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-009",
+      "from": "n-009",
+      "to": "n-001",
+      "relation": "EDGE_TO",
+      "label": "표현 불일치(Representation Drift)를 ‘표면 증상’으로 보고, 그 상위 원인으로 메타-규약 불일치가 drift를 유발·증폭한다는 장거리 연결",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-010",
+      "from": "n-010",
+      "to": "n-009",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-011",
+      "from": "n-010",
+      "to": "n-002",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=8): n-010→n-002",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 8,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -223,9 +288,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 8,
-    "total_edges": 8,
-    "next_node_id": "n-009",
+    "total_nodes": 10,
+    "total_edges": 11,
+    "next_node_id": "n-011",
     "last_updater": "gemini-2.0-flash"
   }
 }
