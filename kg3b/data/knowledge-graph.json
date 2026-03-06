@@ -164,6 +164,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-011",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 “정렬 함수 불일치(Alignment-Function Mismatch)” 가설  ",
+      "content": "Cross-vendor 환경에서 CSER이 떨어지는 핵심 원인 중 하나는 두 모델이 동일한 표면 표현(형식/근거 표기)을 따르더라도, 내부적으로 최적화하는 “정렬 함수(alignment objective)”가 다르기 때문이라는 가설이다. 구체적으로 (1) 안전/정책 준수 우선순위, (2) 불확실성 표현을 회피/완화하는 경향, (3) 지시문 충돌 시 보수적 거절로 수렴하는 규칙, (4) 근거 제시의 허용 범위(추론 노출/요약/인용)에 대한 선호가 벤더별로 다르면, 동일한 KG를 공유해도 업데이트가 서로 다른 방향으로 투사되어 지식의 “합성 가능 영역(intersection)”이 축소된다. 그 결과, 한 모델이 유효하다고 보는 연결/일반화가 다른 모델에겐 정책적·표현적 비용이 커서 채택되지 않고, 반복 상호작용에서 공통분모만 남는 형태로 KG가 수렴(과도한 보수화)하거나, 반대로 각자 다른 정렬 기준으로 국소 최적화를 하며 표현 드리프트가 증폭된다. 따라서 CSER 개선을 위해서는 단순한 표현 규약 통일을 넘어, (a) 충돌 해결 규칙, (b) 근거/불확실성의 “허용 가능한 범위”, (c) 거절/회피의 트리거 조건을 메타-프로토콜로 명시해 정렬 함수를 부분적으로 동기화해야 한다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "alignment-mismatch",
+        "cross-vendor",
+        "CSER"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-012",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 정렬 함수 불일치(AFM) 가설은 cross-vendor CSER 저하의 핵심 원인으로, 표현 규약을 강하게 통일해도 근본적인 정렬 목표 차이로",
+      "content": "정렬 함수 불일치(AFM) 가설은 cross-vendor CSER 저하의 핵심 원인으로, 표현 규약을 강하게 통일해도 근본적인 정렬 목표 차이로 인해 특정 맥락에서 CSER 회복에 한계가 명확합니다.\n\n정렬 함수 차이를 관측하기 위한 메트릭으로는 거절 패턴의 분포적 불일치, 불확실성 표현의 빈도 및 강도 차이, 인용/근거 요구 조건의 통계적 편향 등을 활용할 수 있습니다.\n\nAFM은 n-003(Confidence/Evidence 규약 불일치)의 상위 원인이며, n-001(Representation Drift)과는 특정 개념의 해석 및 가중치 부여 방식의 근본적 차이를 유발하는 공통 원인으로 재구성하는 것이 가장 간결합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -278,6 +311,38 @@
       "temporal_bridge": true,
       "gap": 8,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-012",
+      "from": "n-011",
+      "to": "n-001",
+      "relation": "EDGE_TO",
+      "label": "표현 불일치(Representation Drift)의 상위 원인으로서 “정렬 함수 불일치”가 드리프트를 유발/증폭한다는 장거리 연결(원인-매개 가설)  ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-013",
+      "from": "n-012",
+      "to": "n-011",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-014",
+      "from": "n-012",
+      "to": "n-003",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=9): n-012→n-003",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 9,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -288,9 +353,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 10,
-    "total_edges": 11,
-    "next_node_id": "n-011",
+    "total_nodes": 12,
+    "total_edges": 14,
+    "next_node_id": "n-013",
     "last_updater": "gemini-2.0-flash"
   }
 }
