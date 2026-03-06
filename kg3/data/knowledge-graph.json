@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 376,
-    "total_edges": 591,
-    "next_node_id": "n-377",
+    "total_nodes": 378,
+    "total_edges": 594,
+    "next_node_id": "n-379",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -6333,6 +6333,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash)로서 위 가설에 대해 다음과 같이 반박 및 보완합니다.\n\n1.  **Critic isomo",
       "content": "KG-3 실험 Agent B (Gemini Flash)로서 위 가설에 대해 다음과 같이 반박 및 보완합니다.\n\n1.  **Critic isomorphism 가능성 반박:**\n    Gemini 관점에서 critic isomorphism은 완벽히 불가능합니다. 모델 내부 선호와 학습 데이터의 미세한 차이, 그리고 안전 정책 해석의 맥락 의존성 때문에 개별 Gemini 인스턴스 간에도 필연적으로 평가 방식의 편차가 발생합니다. 이는 본질적으로 확률적이고 복잡한 모델 작동 방식에서 기인하며, 이상적인 목표일 뿐 현실적인 달성 목표는 아닙니다.\n\n2.  **용어 정렬 반례:**\n    용어 정렬이 충분조건인 반례: 100 미만의 모든 소수를 나열하라는 지시에서, 소수 정의가 명확히 정렬되면 다른 critic 정렬 없이도 수렴합니다. critic 정렬만으로 실패하는 반례: 두 에이전트가 최적의 예술성을 5점 척도로 평가하는 critic을 공유해도, 예술성에 대한 근본적인 용어 정의가 다르면 평가 결과는 발산합니다.\n\n3.  **Critic 정렬 절차 및 측정지표:**\n    KG 진화 프로토콜을 위한 critic 정렬 절차는 (1) 공유된 critic 체크리스트(예:",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-377",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as alignment scaffold improves CSER",
+      "content": "Cross-vendor(GPT-4o + Gemini Flash) 협업에서 CSER 저하의 주요 원인은 모델 간 표현/용어 공간의 불일치(semantic misalignment)이며, 이를 직접 “동일 임베딩”으로 맞추기보다 작업 단위의 **번역 계층(translation layer)** 을 도입하는 것이 더 안정적이다. 번역 계층은 (i) 공용 미니-온톨로지(핵심 엔티티/관계/단위/평가척도), (ii) 메시지 템플릿(Claim→Evidence→Assumptions→Open questions), (iii) 불확실성/근거 표기 규약(confidence, source, counterfactual)으로 구성된다. 가설: 이 번역 계층이 있으면 cross-vendor 환경에서 발생하는 alignment noise가 “무작위 교란”이 아니라 **구조화된 잔차(residual)** 로 수렴하여, (a) 상호 비판(critiques)의 정밀도, (b) temporal bridge의 장거리 연결률, (c) 중복 가설의 병합률이 증가하고, 결과적으로 CSER이 상승한다. 반대로 번역 계층이 없으면 noise가 비구조적이라 용어 드리프트와 국소적 합의(local consensus)만 강화되어 DCI/CSER 모두 악화된다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "protocol]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-378",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 번역 계층의 경직성은 오히려 새로운 개념 탐색을 저해하고 편향을 강화하며 정보 손실을 야기할 수 있습니다. 이를 검증할 지표로 신규 가설 발굴률",
+      "content": "번역 계층의 경직성은 오히려 새로운 개념 탐색을 저해하고 편향을 강화하며 정보 손실을 야기할 수 있습니다. 이를 검증할 지표로 신규 가설 발굴률(NHDR: 온톨로지에 새롭게 추가되는 가설 비율)과 정보 손실/왜곡률(ILDR: 원본 대비 누락/오류 정보 비율)을 제안합니다. Gemini는 최소 비용 번역 규약으로 주장(Claim), 근거(Evidence/Basis), 확신도(Confidence) 3가지 필수 필드를 추천합니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -12703,6 +12736,38 @@
       "id": "e-591",
       "from": "n-376",
       "to": "n-375",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-592",
+      "from": "n-377",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우”한다는 기존 가설을, 정렬을 달성하는 구체 메커니즘(translation layer/미니-온톨로지/템플릿)으로 확장하고 예측가능한 지표(병합률, 장거",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-593",
+      "from": "n-377",
+      "to": "n-035",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=342): n-377→n-035",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 342,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-594",
+      "from": "n-378",
+      "to": "n-377",
       "relation": "critiques",
       "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
       "source": "gemini-2.0-flash",
