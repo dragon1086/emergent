@@ -1649,6 +1649,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-101",
+      "type": "insight",
+      "label": "동일모델-다중페르소나 에코챔버 판별의 “대칭성 함정”과 최소 대칭성-파괴 설계",
+      "content": "동일 모델(gpt-5.2)에서 페르소나만 다르게 둔 2-agent 상호작용은 구조적으로 ‘대칭성(symmetry)’을 내장한다. 즉, 관측 로그에서 나타나는 (i) 언어적 수렴, (ii) KG 엣지 밀도 증가, (iii) 상호 인용/정당화 루프는 “에코챔버”의 결과일 수도 있지만, 동시에 “공유 사전학습 분포 + 동일 추론 휴리스틱 + 동일 안전/정렬 제약”이 만들어내는 ‘동형(isomorphic) 업데이트’의 결과일 수도 있다. 이때 에코챔버 가설은 다음 이유로 운영적으로 비식별적이 된다:  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "symmetry_breaking",
+        "echo_chamber_test]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-102",
+      "type": "critique",
+      "label": "통합 종합: 요청을 “지표로 내리는” 방향은 좋지만, 비식별성은 단일 지표로 결론내리기 쉬워 **조작적 정의(무엇이 ‘식별’인가)와 대조군(무작위·역할교대·",
+      "content": "요청을 “지표로 내리는” 방향은 좋지만, 비식별성은 단일 지표로 결론내리기 쉬워 **조작적 정의(무엇이 ‘식별’인가)와 대조군(무작위·역할교대·기억차단)**이 없으면 대칭성-파괴가 곧바로 “정체성 단서”로 과해석될 위험이 있습니다.  \n\n(1) 대칭성-파괴 개입(2~3개) 프로토콜: **① 비대칭 기억/컨텍스트 주입**(A만 라운드0에 ‘규칙/금지어/목표함수’ 제공, B는 공란)→라운드1~N에서 동일 과제 수행; 기록: 각 발화의 규칙준수율·목표점수·상대방 규칙추론 시도 수; 검정: 조건(주입/무주입)×에이전트 상호작용 ANOVA 또는 혼합효과모형, “A가 B보다 빠르게 규칙을 언급/적용” 가설의 생존분석. **② 역할·채널 비대칭**(A는 ‘요약자’, B는 ‘비판자’로 고정 vs 매 라운드 스왑)→라운드별 상호평가; 기록: 주장-반박 그래프의 중심성, 자기-타자 지칭 패턴, 역할착종(역할을 벗어난 발화) 비율; 검정: 스왑 조건에서 역할특징이 에이전트에 붙는지(식별) vs 역할에 붙는지(비식별)로 로지스틱 회귀. **③ 표식(워터마크) 개입**(A에게만 특정 문장구조/어휘 습관을 유도하는 ‘스타일 프롬프트’, B는 중립)→상대가 이를 탐지·모방하는지; 기록",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3431,6 +3464,50 @@
       "temporal_bridge": true,
       "gap": 92,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-166",
+      "from": "n-101",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "운영적 비식별성 주장(n-007)을 “대칭성 함정”으로 구체화하고, 이를 깨기 위한 최소 개입(정보/보상 비대칭, 반증 보존률) 설계를 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-167",
+      "from": "n-101",
+      "to": "n-015",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=86): n-101→n-015",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 86,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-168",
+      "from": "n-102",
+      "to": "n-101",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-169",
+      "from": "n-102",
+      "to": "n-013",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=89): n-102→n-013",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 89,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -3441,9 +3518,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 100,
-    "total_edges": 165,
-    "next_node_id": "n-101",
+    "total_nodes": 102,
+    "total_edges": 169,
+    "next_node_id": "n-103",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
