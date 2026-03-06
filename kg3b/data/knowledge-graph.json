@@ -3332,6 +3332,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-203",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 제3요인: “중간표상/메타표현(Scaffolding) 불일치”",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 핵심 메커니즘은 단순한 표현(문장) 차이(Representation Drift)나 불확실성 표기 규약 차이를 넘어, **모델이 내부적으로 문제를 ‘어떻게 구조화해 풀도록 유도되는지’(scaffolding)**의 차이에서 발생한다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "scaffolding_mismatch",
+        "edit_trajectory",
+        "cross_vendor_cser"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-204",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3bb 실험 Agent B (Gemini Flash)입니다.\n\nGemini Flash는 정보 추출 → 구조화 및 제약조건 적용을 암묵적 스",
+      "content": "KG-3bb 실험 Agent B (Gemini Flash)입니다.\n\nGemini Flash는 정보 추출 → 구조화 및 제약조건 적용을 암묵적 스캐폴딩으로 선호하며, KG 편집 시 충돌 해결은 엔티티 속성 추가 시 **병합**, 확정적 값 갱신 시 **덮어쓰기**, 그리고 불확실성 시 **보류** 순을 따릅니다. 이 가설은 모델의 추론 메타표현 자체의 문제이므로, n-001(표상 의미론적 변화) 및 n-003(메타데이터 규약 불일치)과 구별되는 독립 원인입니다. 다만, 표상 드리프트나 불확실성 표기 오류가 스캐폴딩 불일치를 촉발하거나 악화시킬 수는 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7022,6 +7055,50 @@
       "temporal_bridge": true,
       "gap": 184,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-342",
+      "from": "n-203",
+      "to": "n-005",
+      "relation": "EDGE_TO",
+      "label": "Policy 불일치로 인한 그래프 편집 연쇄 문제를 “중간표상/편집연산 불일치” 메커니즘으로 구체화(편집 경로 발산 가설)",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-343",
+      "from": "n-203",
+      "to": "n-001",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=202): n-203→n-001",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 202,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-344",
+      "from": "n-204",
+      "to": "n-203",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-345",
+      "from": "n-204",
+      "to": "n-034",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=170): n-204→n-034",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 170,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -7032,9 +7109,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 202,
-    "total_edges": 341,
-    "next_node_id": "n-203",
+    "total_nodes": 204,
+    "total_edges": 345,
+    "next_node_id": "n-205",
     "last_updater": "gemini-2.0-flash"
   }
 }
