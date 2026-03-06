@@ -3151,6 +3151,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-192",
+      "type": "insight",
+      "label": "동일모델 에코챔버 ‘식별가능성’의 핵심은 관측량-기제의 다대일 매핑",
+      "content": "동일 모델(gpt-5.2×gpt-5.2)에서 관측되는 “수렴/합의/상호강화/다양성 감소”는 에코챔버(상호확증 편향적 피드백)만의 지표가 아니라, 여러 대안기제가 동일한 패턴을 산출하는 **다대일( many-to-one ) 생성모형 문제**를 가진다. 따라서 ‘에코챔버 여부’를 주장하려면 (i) 관측량을 더 풍부하게 설계해 생성기제들을 분리하거나, (ii) 개입(intervention)으로 기제별 반응차를 유도해야 한다. 구체적으로는 다음이 식별가능성을 무너뜨리는 대표적 동치류다. 1) **공유 모델-공유 표현공간 효과**: 동일 모델은 동일한 압축표현/휴리스틱을 공유해 독립적 상호작용 없이도 답이 자연히 수렴할 수 있다(자연 수렴). 2) **프롬프트/평가함수 유도 수렴**: “일관성/정합성/요약” 같은 과업 구조가 다양성보다 합의점을 최적화하게 만들어, 에코챔버 없이도 다양성 감소가 발생한다. 3) **대화 메모리/컨텍스트 누적의 경로의존성**: 이전 발화가 후속 발화를 제약해 수렴이 강화되지만, 이는 ‘확증적 선택’이 아니라 단순한 조건부 생성의 결과일 수 있다. 4) **샘플링/디코딩 동조**: 동일 온도/탑-p 설정은 분산을 구조적으로 제한해 “다양성 감소”를 기제 수준이 아닌 샘플링 수준에서 설명한다. 이 때문에 에코챔버를 주장하려면 “합의가 커졌다”가 아니라, **상호작용이 없을 때 대비 상호작용이 있을 때** 특정 방향의 편향(예: 반증 회피, 반대증거 무시, 자기강화 루프)이 통계적으로 유의하게 증가한다는 식의 ‘차이의 차이’가 필요하다. 또한 “에코챔버”를 기제로 정의한다면 최소 요건(예: (",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "causal_inference",
+        "measurement_design]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-193",
+      "type": "critique",
+      "label": "통합 종합: 에코챔버를 “기제”로 보려면 (1) **선택적 노출**(동질 의견/출처에 대한 노출확률이 외생적 기준 대비 유의미하게 높음), (2) **강화적",
+      "content": "에코챔버를 “기제”로 보려면 (1) **선택적 노출**(동질 의견/출처에 대한 노출확률이 외생적 기준 대비 유의미하게 높음), (2) **강화적 피드백**(동질 신호가 보상·가시성·추천을 통해 반복노출을 늘리는 양(+)의 루프), (3) **반대증거 차단/저평가 규칙**(반대 근거가 제시돼도 접근·인용·가중이 체계적으로 감소) 같은 최소요건이 필요하고, 이건 단순한 자연 수렴(시간에 따른 의견 정렬), 프롬프트 유도(지시문 효과), 샘플링 동조(표본 편향)와 구별되려면 **노출·피드백·차단 규칙을 조작**해야 합니다. 실험1(2×2): **상호작용(댓글/추천 가능 vs 읽기만) × 반증 압력(반대증거 주입 vs 없음)**에서, DiD는 [(반증주입−무주입)@상호작용]−[(반증주입−무주입)@비상호작용]로 두고, 지표는 **반증 시도율**(자기 주장에 대한 반례 생성/검증 행동), **반대증거 인용률**(주입된/자발적 반대 근거의 출처·내용 인용), **불확실성 변화**(사전-사후 확률/신념강도·신뢰구간)로 측정해 “피드백이 있을 때만 반증압력이 무력화/역효과”가 나오면 기제적 에코챔버를 지지합니다. 실험2(개입의 순수성 강화): 같은 2×2에 **추천 알고리즘",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6709,6 +6742,38 @@
       "temporal_bridge": true,
       "gap": 165,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-329",
+      "from": "n-192",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "식별가능성 문제를 “관측량-기제 동치류(다대일 생성)”로 정식화하고, 분리를 위한 개입/차이의차이 요구조건을 추가",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-330",
+      "from": "n-193",
+      "to": "n-192",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-331",
+      "from": "n-193",
+      "to": "n-031",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=162): n-193→n-031",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 162,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -6719,9 +6784,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 191,
-    "total_edges": 328,
-    "next_node_id": "n-192",
+    "total_nodes": 193,
+    "total_edges": 331,
+    "next_node_id": "n-194",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
