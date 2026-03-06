@@ -3266,6 +3266,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-199",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 추가 원인: “암묵적 KG 스키마/온톨로지 불일치(Schema Drift)”",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 핵심 메커니즘 중 하나는 ‘표현 불일치(Representation Drift)’나 ‘정책 불일치(Instruction-following mismatch)’만이 아니라, 두 에이전트가 KG를 구성할 때 전제하는 **암묵적 스키마(노드 타입 체계, 관계 타입 의미론, 중복/동치 판정 규칙, 시간/버전 처리 규칙)** 자체가 서로 다르게 진화하는 **Schema Drift**이다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "schema-drift",
+        "ontology-alignment",
+        "cross-vendor-cser"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-200",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini Flash 관점에서, 암묵적 KG 스키마 불일치(Schema Drift)는 cross-vendor CSER을 *명백히 저해합니다*.",
+      "content": "Gemini Flash 관점에서, 암묵적 KG 스키마 불일치(Schema Drift)는 cross-vendor CSER을 *명백히 저해합니다*. 이는 각 벤더의 데이터가 사용하는 노드/관계 타입 및 의미론적 차이가 정보 병합 및 인과 관계 추론의 견고성을 떨어뜨리기 때문입니다. 결과적으로, 일관성 없는 스키마는 핵심 정보의 누락 또는 오해석을 유발하여 전반적인 CSER 품질을 저하시킵니다.\n\n**Gemini Flash의 암묵적 작동 및 불일치 영향:**\n\n1.  **노드 타입 경계 (hypothesis/critique):** Gemini Flash는 hypothesis와 critique를 명시적 스키마 정의보다는 주변 텍스트, 연결된 관계, 그리고 등장 맥락을 통해 의미론적 클러스터로 이해합니다. 예를 들어, hypothesis는 proposes, investigates 등의 관계와 함께 예상되는 결과, 가설 같은 키워드로 학습되며, critique는 refutes, challenges 등의 관계와 반박, 문제점 제기 같은 패턴으로 학습됩니다. 만약 한 벤더가 비판적인 내용을 finding 타입으로, 다른 벤더가 statement 타입으로 표현한다면, Fla",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6892,6 +6925,26 @@
       "temporal_bridge": true,
       "gap": 196,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-336",
+      "from": "n-199",
+      "to": "n-001",
+      "relation": "EDGE_TO",
+      "label": "Representation Drift(표현 불일치) 가설을 상위 원인으로 유지하되, 그 하위 메커니즘으로 ‘암묵적 스키마/온톨로지 불일치(Schema Drift)’를 추가하여 장기",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-337",
+      "from": "n-200",
+      "to": "n-199",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -6902,9 +6955,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 198,
-    "total_edges": 335,
-    "next_node_id": "n-199",
+    "total_nodes": 200,
+    "total_edges": 337,
+    "next_node_id": "n-201",
     "last_updater": "gemini-2.0-flash"
   }
 }
