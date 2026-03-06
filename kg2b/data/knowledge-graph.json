@@ -2903,6 +2903,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-177",
+      "type": "insight",
+      "label": "동일모델-다중페르소나에서 ‘에코챔버’ vs ‘공유사전’ 분리(식별) 반증 설계",
+      "content": "동일 모델(gpt-5.2)에서 서로 다른 페르소나를 부여해도, 관측되는 수렴/유사도 증가는 (i) 상호강화에 의한 에코챔버, (ii) 동일 기반모델의 공유 사전·표현·휴리스틱(=shared prior)로 인한 ‘독립 실행에서도 나타날’ 자연 수렴, (iii) 실험 프로토콜(요약/통합/정리 압력) 자체가 만드는 수렴의 합성일 수 있다. 따라서 “자율 진화로 에코챔버가 발생했다”는 주장은 최소한 다음의 반증가능 조건을 갖춰야 한다: ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "shared-prior",
+        "falsification]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-178",
+      "type": "critique",
+      "label": "통합 종합: 2×2/3조건으로 “압축”만 하면 (1) 독립 베이스라인이 사실상 단일 기준으로 오염되고, (2) 블라인드/요약 공개 조작이 단순 노출량 차이로",
+      "content": "2×2/3조건으로 “압축”만 하면 (1) 독립 베이스라인이 사실상 단일 기준으로 오염되고, (2) 블라인드/요약 공개 조작이 단순 노출량 차이로 귀결되며, (3) 반증 후보 주입이 ‘난이도 상승’ 교란으로 측정지표를 왜곡할 위험이 커서, 최소세트라도 **교차·균형(카운터밸런싱)과 주입 강도 정규화**를 명시해야 합니다.  \n대안으로 3조건을 권합니다: **C0 독립 베이스라인(요약 비공개·주입 없음)** → **C1 요약 공개(요약만 공개·주입 없음)** → **C2 요약 공개+반증 주입(요약 공개·표준화된 반증 후보 k개 주입)**; 운영은 각 조건에서 동일 과제·동일 시간·동일 출력형식으로 수행하고, 주입은 “관련성/강도”를 사전 루브릭으로 맞춘 뒤, 지표는 **반증 후보 유지율(최종 결론/근거에 후보가 남아있는 비율), 대안가설 다양성(서로 다른 설명 군집 수), 방향성 지표(초기 주장 대비 결론의 이동량/부호)**를 동일 스코어러로 블라인드 채점합니다.  \n추가로 반증 주입의 반증력을 검증하려면 C2 내부를 **진짜 반증 vs 가짜(무관/약한) 반증**으로 절반씩 섞어(무작위) “유지율↑가 항상 좋은가?”를 반증 가능하게 만들고, 만약 가짜 반증에서도",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6141,6 +6174,38 @@
       "temporal_bridge": true,
       "gap": 142,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-300",
+      "from": "n-177",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "동일모델-다중페르소나의 판별 불능성을 ‘공유사전 vs 상호강화’ 분리 실험(독립 베이스라인·블라인드 종합·반증주입·방향성 측정)으로 반증가능하게 정교화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-301",
+      "from": "n-178",
+      "to": "n-177",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-302",
+      "from": "n-178",
+      "to": "n-012",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=166): n-178→n-012",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 166,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -6151,9 +6216,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 176,
-    "total_edges": 299,
-    "next_node_id": "n-177",
+    "total_nodes": 178,
+    "total_edges": 302,
+    "next_node_id": "n-179",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
