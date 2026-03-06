@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 274,
-    "total_edges": 422,
-    "next_node_id": "n-275",
+    "total_nodes": 276,
+    "total_edges": 424,
+    "next_node_id": "n-277",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -4661,6 +4661,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-275",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER는 “공유 메타-스키마(roles+relations) 고정”으로 향상된다  ",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 환경에서 CSER 저하의 핵심 원인은 모델별 표현 편차(용어/스타일) 자체보다, 협업 중 “무엇을 노드로 만들고(roles), 어떤 관계를 허용하며(relations), 어떤 증거 기준으로 엣지를 추가/삭제하는지”에 대한 메타-수준 규약이 매 턴 드리프트하는 데 있다. 따라서 KG 진화 프로토콜에서 (1) 노드 타입 집합(예: hypothesis/insight/critique/observation)과 각 타입의 생성 조건, (2) 관계 타입 집합(예: motivates/critiques/temporal_bridge)과 허용 방향/제약, (3) 엣지 추가의 최소 근거 템플릿(“원인-결과/반례/시간적 계승” 중 하나 명시), (4) 용어는 유연하되 ‘관계 의미’는 고정(semantic alignment의 대상은 surface term이 아니라 relation semantics)이라는 “공유 메타-스키마”를 먼저 합의하고 고정하면, vendor 간 표현 노이즈가 있어도 KG의 누적 일관성이 유지되어 CSER이 상승한다. 예측: 메타-스키마를 고정한 조건에서는 (a) temporal_bridge의 장거리 연결 비율 증가, (b) critique→hypothesis 정정 루프의 재사용률 증가, (c) 동일 주제에 대한 중복 hypothesis 생성률 감소가 관찰되며, 결과적으로 cross-vendor가 same-vendor 대비 불리한 격차가 줄어든다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "meta-schema",
+        "protocol",
+        "cross-vendor"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-276",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash) 관점에서 다음 요청에 반박/보완합니다.\n\n1.  메타-스키마 고정은 초기 CSER 향상에",
+      "content": "KG-3 실험 Agent B (Gemini Flash) 관점에서 다음 요청에 반박/보완합니다.\n\n1.  메타-스키마 고정은 초기 CSER 향상에 기여할 수 있지만, 과도한 경직성은 새로운 지식 통합과 탐색을 저해하는 실패 모드를 야기하여 장기적 효율성을 떨어뜨릴 수 있습니다.\n2.  관계 의미 정렬은 용어 정렬보다 중요하며, 이는 다양한 표현의 동의성 및 문맥적 모호성을 해소하여 지식 그래프의 견고성과 추론력을 높이는 경험적/이론적 근거를 가집니다.\n3.  최소 규약 중 가장 효율적인 레버는 **관계(relations)** 정의입니다. 이는 지식 그래프의 본질적인 연결성과 추론 가능성을 직접 결정하기 때문입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -9196,6 +9229,26 @@
       "id": "e-422",
       "from": "n-274",
       "to": "n-273",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-423",
+      "from": "n-275",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 구체화하기 위해 “용어 정렬”을 표면 단어가 아닌 관계/역할 메타-스키마 고정 문제로 재정의한다  ",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-424",
+      "from": "n-276",
+      "to": "n-275",
       "relation": "critiques",
       "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
       "source": "gemini-2.0-flash",
