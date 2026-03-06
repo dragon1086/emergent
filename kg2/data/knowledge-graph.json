@@ -2590,6 +2590,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-158",
+      "type": "insight",
+      "label": "동일모델 에코챔버 판별의 ‘조작적 정의(operationalization) 공백’ 문제",
+      "content": "동일모델(gpt-5.2×gpt-5.2) 조건에서 “에코챔버”를 검증하려면, 먼저 에코챔버를 관측가능한 지표로 조작화해야 한다. 현재 설계는 (i) 자연 수렴(동일 사전/학습으로 인한 유사 결론), (ii) 대화 동역학(자기강화·합의 유도), (iii) 프롬프트/페르소나 제약(역할 일치)에서 나오는 유사성을 한데 묶어 “에코챔버”로 해석할 위험이 크다. 즉, ‘에코챔버=같은 결론’이 아니라 ‘상호작용 때문에 (반증 가능성이 줄어드는 방향으로) 믿음 상태/지식그래프가 편향적으로 강화되는 과정’이어야 한다. 이를 위해 최소한 다음을 분리 측정해야 한다:  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[operationalization",
+        "identifiability",
+        "falsification-dynamics]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-159",
+      "type": "critique",
+      "label": "통합 종합: 요청은 “3문장 이내” 조건과 “각각 한 문단씩(최소 3문단)”을 동시에 만족시킬 수 없어 형식 충돌이 있습니다; 또한 4지표 중 2개만 KPI",
+      "content": "요청은 “3문장 이내” 조건과 “각각 한 문단씩(최소 3문단)”을 동시에 만족시킬 수 없어 형식 충돌이 있습니다; 또한 4지표 중 2개만 KPI로 두면 에코챔버의 **구조(연결)**와 **정보처리(업데이트)**를 동시에 놓칠 위험이 있어, 최소 2개를 “핵심 KPI”로 두되 나머지 1개는 보조지표로 같이 보자는 보완이 필요합니다.  \n\n(1) **계산 방법**: 핵심 KPI로 **다양성 감소**와 **비대칭 업데이트**를 채택하되 보조로 **반증 억제**를 두겠습니다—다양성 감소는 (a) 대화/추천 그래프에서 커뮤니티별 노출 비율의 엔트로피 (H(p)) 또는 Gini, (b) 의미공간 임베딩에서 주장/출처 클러스터 간 평균 코사인 거리·토픽 분산의 시간에 따른 감소율 (Delta)로 측정; 비대칭 업데이트는 로그 기반으로 “증거 방향(찬성/반대)” 라벨을 붙여 belief/confidence 변화량의 비율 (A=frac{Delta conf_{pro}}{Delta conf_{con}+ epsilon}) 및 반대증거 도착 시 업데이트 지연(턴 수)·감쇠계수(변화량 기울기)를 추정; 반증 억제는 반대 근거가 제시되었을 때 (i) 인용/재진술/반박의 발생률, (ii",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5484,6 +5517,50 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-268",
+      "from": "n-158",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "identifiability 문제를 ‘에코챔버 조작적 정의 부재’로 구체화하고, 자연 수렴과 구별 가능한 동역학 지표(반증 억제·경로 의존·비대칭 업데이트)를 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-269",
+      "from": "n-158",
+      "to": "n-005",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=153): n-158→n-005",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 153,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-270",
+      "from": "n-159",
+      "to": "n-158",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-271",
+      "from": "n-159",
+      "to": "n-013",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=146): n-159→n-013",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 146,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -5494,9 +5571,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 157,
-    "total_edges": 267,
-    "next_node_id": "n-158",
+    "total_nodes": 159,
+    "total_edges": 271,
+    "next_node_id": "n-160",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
