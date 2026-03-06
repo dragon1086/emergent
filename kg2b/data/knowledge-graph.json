@@ -1484,6 +1484,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-091",
+      "type": "insight",
+      "label": "동일모델-다중페르소나에서 “에코챔버”를 식별하는 최소 실험조작(Intervention) 필요",
+      "content": "동일 모델(gpt-5.2)·다중 페르소나 조건에서 관찰 로그만으로 “에코챔버의 자율 진화”를 주장하면, 관측된 수렴(유사도 증가, 반증 감소, 표현 양식 동질화 등)이 (i) 공유된 사전학습 분포, (ii) 동일 프롬프트/과제 구조, (iii) 공통 평가기준(“정답/좋은 답변” 유도), (iv) 토큰/컨텍스트 제약, (v) 상호작용 규칙(턴테이킹/요약 요구) 같은 비에코챔버 요인으로도 충분히 생성될 수 있어 식별가능성이 붕괴한다. 따라서 “에코챔버”를 실증하려면 최소한 하나의 조작적 개입(intervention)이 필요하다. 예: (1) 정보흐름 차단/노이즈 주입(상대 발화의 일부를 가리거나 변형), (2) 반증 인센티브의 외생적 부여(반례 제시 보상, 합의 페널티), (3) 대칭성 깨기(서로 다른 근거자료/증거 집합을 할당), (4) 반사실적 대조군(상호작용 없이 독립 생성 후 결합) 설정. 핵심은 “상호작용 때문에” 발생한 수렴이라는 인과적 주장인데, 동일모델-다중페르소나에서는 관찰만으로는 그 인과 방향을 확정할 수 없다(operational non-identifiability). 그러므로 에코챔버 가설의 최소 반증가능 단위는 ‘관찰된 수렴’이 아니라 ‘특정 개입을 가했을 때 수렴/반증역량 지표가 예측된 방향으로 변한다’로 재정의되어야 한다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "intervention",
+        "causal-design]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-092",
+      "type": "critique",
+      "label": "통합 종합: “최소 개입”을 유지하려면 (a) 독립 생성 대조군 vs 상호작용군을 **최종 산출물** 기준으로만 비교하되 지표는 *성능(정답/목표달성률, 비",
+      "content": "“최소 개입”을 유지하려면 (a) 독립 생성 대조군 vs 상호작용군을 **최종 산출물** 기준으로만 비교하되 지표는 *성능(정답/목표달성률, 비용·시간), 통합성(중복률↓·커버리지↑·모순률↓, 관점 다양성/엔트로피), 검증성(근거-주장 정합도, 자기반증/불확실성 표기 빈도, 오류탐지율)*의 3묶음으로 고정하고, 상호작용 로그는 “메타데이터(턴 수 등)”만 보조로 쓰는 게 과개입을 줄입니다. (b) 조작은 **반증 인센티브** 1가지만 택해 상호작용군에서 “상대 주장에 대한 *강한 반례 1개 + 테스트 1개*를 제시하면 보상”을 주면, 정성적으로는 *동조↓·비판적 탐색↑·합의의 질↑*, 정량적으로는 *오류율/환각률↓, 모순률↓, 검증가능 주장 비율↑, 다양성은 단기적으로↑(갈등 유발) 후 수렴*을 예측할 수 있습니다. (c) “프롬프트/평가기준 공유” 대체가설 배제를 위해 추가 조작을 최소로 하여 **상호작용-가짜(프로토콜 공유만) 조건**을 넣고(서로의 내용은 못 보되 동일한 반증 인센티브·평가지표만 안내), 진짜 상호작용군이 가짜 상호작용군 대비에서만 개선되면 *정보교환/상호 비판*의 효과로 귀속할 수 있습니다.",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3070,6 +3103,38 @@
       "temporal_bridge": true,
       "gap": 76,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-148",
+      "from": "n-091",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "판별 불능성 주장에 “관찰→인과”를 가능케 하는 최소 개입 설계 요건을 추가해, 에코챔버를 ‘개입에 대한 반응’으로 재정의함",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-149",
+      "from": "n-092",
+      "to": "n-091",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-150",
+      "from": "n-092",
+      "to": "n-015",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=77): n-092→n-015",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 77,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -3080,9 +3145,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 90,
-    "total_edges": 147,
-    "next_node_id": "n-091",
+    "total_nodes": 92,
+    "total_edges": 150,
+    "next_node_id": "n-093",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
