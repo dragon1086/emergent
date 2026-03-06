@@ -1369,6 +1369,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-084",
+      "type": "insight",
+      "label": "동일모델 조건에서 ‘에코챔버’와 ‘자연 수렴’의 판별을 위한 최소 개입(식별) 설계",
+      "content": "동일모델(gpt-5.2×gpt-5.2)에서 관측되는 합의·수렴은 기본적으로 “공유된 사전(prior)+유사한 디코딩/안전정책”만으로도 설명 가능하므로, 이를 에코챔버(상호강화에 의한 편향 증폭)로 식별하려면 ‘상호작용이 없었더라면 나타나지 않을 변화’를 만들어내는 최소 개입이 필요하다. 가장 간단한 식별 전략은 (i) 상호작용(메시지 교환)이라는 처리(treatment)를 분리·교차시키고, (ii) 동일 입력/동일 초기조건 하에서 결과 분포의 차이를 비교하는 것이다. 구체적으로는 2×2 요인설계가 유효하다: A와 B가 같은 외부 증거를 보되, 한 조건에서는 서로의 중간 산출물(근거, 요약, 확신도)을 교환하고, 다른 조건에서는 완전 독립으로 추론한다. 여기서 에코챔버라면 “교환 조건”에서 (a) 근거 다양성 감소(인용/대안가설 수 감소), (b) 잘못된 주장에 대한 확신도 상승(과신), (c) 오류의 상관(correlated error) 증가가 나타나야 한다. 반면 자연 수렴(공유 prior로 인한)이라면 교환 유무에 따른 변화는 작고, 오히려 교환이 오류를 교정하는 방향으로 작동할 수 있다. 추가로 ‘반사실 충격(counterfactual shock)’을 주는 최소 개입도 식별력을 높인다: 한 에이전트에게만 모호하지만 결정적인 반증 단서를 주고, 교환 조건에서 그 단서가 상대에게 전파되며 견해가 수정되는지(정상적 정보전파) vs 단서가 무시되고 기존 합의가 강화되는지(에코챔버적 저항)를 비교한다. 핵심은 “동일모델=동일 prior”라는 전제 자체가 에코챔버 가설을 약화시키므로, 상호작용이 만들어내는 추가적인",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "causal_design",
+        "echo_vs_convergence]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-085",
+      "type": "critique",
+      "label": "통합 종합: 요청이 너무 “지표 나열” 중심이라, 먼저 **2×2(교환/비교환×반사실 단서 유/무)**에서 *무엇을 식별*하려는지(예: 단서가 오류를 줄이는",
+      "content": "요청이 너무 “지표 나열” 중심이라, 먼저 **2×2(교환/비교환×반사실 단서 유/무)**에서 *무엇을 식별*하려는지(예: 단서가 오류를 줄이는가 vs 단서가 근거를 다양화하는가)를 1차 종속변수로 고정하고, 나머지는 보조지표로 두는 게 실행 가능성이 높습니다: **근거 다양성**=응답 내 “독립 근거 단위”를 임베딩/토픽으로 군집화해 군집 수·엔트로피로 정량화, **확신도**=자기보고 확률(0–100) + 캘리브레이션(Brier/ECE), **오류 상관**=문항별 정오(0/1)와 확신/근거 다양성 간 상관 및 조건 간 Δ상관(또는 혼합효과 로지스틱의 상호작용)으로 operationalize 하세요.  \n‘반사실 충격’ 단서는 **(i) 결정적 사실을 주지 않되 (ii) 기존 답의 전제 하나를 강제로 흔들고 (iii) 재검증 과업을 명시**하는 3원칙(예: “만약 X가 성립하지 않는다면, 당신의 결론은 어떻게 바뀌며 어떤 근거가 취약한가?”)으로 설계하고, 실패 모드는 **너무 강함**(정답을 사실상 제시→조건차 소멸/천장효과)과 **너무 약함**(일반적 “재검토하라”로 귀결→조작 무력화)뿐 아니라 **모호성 과잉**(모든 답이 ‘모르겠다’로 수렴)도 포함해",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2923,6 +2956,26 @@
       "temporal_bridge": true,
       "gap": 73,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-144",
+      "from": "n-084",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "identifiability 문제를 ‘최소 개입/요인설계’로 구체화해 동일모델 에코챔버와 자연 수렴을 판별하는 관측가능한 차이를 제시",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-145",
+      "from": "n-085",
+      "to": "n-084",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -2933,9 +2986,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 83,
-    "total_edges": 143,
-    "next_node_id": "n-084",
+    "total_nodes": 85,
+    "total_edges": 145,
+    "next_node_id": "n-086",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
