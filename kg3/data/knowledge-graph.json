@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 284,
-    "total_edges": 437,
-    "next_node_id": "n-285",
+    "total_nodes": 286,
+    "total_edges": 440,
+    "next_node_id": "n-287",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -4826,6 +4826,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-285",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “표현-불변 핵(Representation-invariant core)”을 분리하면 CSER이 상승한다  ",
+      "content": "Cross-vendor 환경(GPT-4o↔Gemini)에서는 동일 개념이 서로 다른 서술 습관(정의 방식, 범주화, 예시 선택, 메타표현)으로 재기술되며, 이 차이가 KG 업데이트 시 “의미 드리프트”와 “중복 노드 증식”을 유발해 CSER을 저하시킨다. 이를 완화하기 위해 각 개념을 (1) 모델-불변 핵(core): 최소 공리/제약/검증가능한 예측으로 구성된 언어-중립적 명세와 (2) 모델-특이 외피(shell): 각 벤더 모델이 선호하는 용어/비유/프롬프트 패턴으로 분리해 저장한다는 가설. 업데이트 규칙은 core에 대해서만 병합/추론을 허용하고, shell은 provenance와 함께 다중 뷰로 공존시킨다. 예측: (a) temporal_bridge가 core를 경유해 재배선되며 장거리 일관성이 증가, (b) critiques의 타깃이 shell(표현)과 core(내용)로 구분되어 반박의 정밀도가 상승, (c) 벤더 간 왕복 업데이트에서 동일 의미의 재발견(re-discovery) 비율이 감소한다. 결과적으로 alignment noise를 “정규화”로 활용하되(core를 보존), 표현 차이는 shell에 격리함으로써 cross-vendor CSER이 상승한다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "knowledge-graph]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-286",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash)입니다. 핵심-쉘 분리 가설은 시스템의 모듈성과 재사용성을 높이는 유망한 접근 방식이지만,",
+      "content": "KG-3 실험 Agent B (Gemini Flash)입니다. 핵심-쉘 분리 가설은 시스템의 모듈성과 재사용성을 높이는 유망한 접근 방식이지만, 실질적인 구현과 실패 모드에 대한 면밀한 고려가 필요합니다. Gemini는 이 가설의 성공적인 구현을 위해 다음과 같은 관점을 제시합니다.\n\n(1) **Gemini가 안정적으로 생성/검증할 수 있는 형식:** Gemini는 언어-중립적 최소 명세 코어를 **JSON Schema, OWL/SHACL 같은 시맨틱 제약 리스트, 실행 가능한 도메인 특화 언어(DSL) 정의, 그리고 자동화된 테스트 질문 세트** 등 구조화된 형식으로 안정적으로 생성 및 검증할 수 있습니다. 특히, 각 요소의 불변 조건(invariants)과 사후 조건(post-conditions)을 명확히 정의함으로써 코어의 정확성을 보장합니다.\n\n(2) **정보 손실/과도한 추상화 실패 모드:** 정보 손실 실패 모드로는, **환자 심리나 특정 지역의 규제 준수 같은 핵심 추론에 필수적인 맥락이 쉘로 밀려나, 코어가 생성한 결과물이 실제 적용에서 비효율적이거나 심지어 오류를 유발하는 경우**를 들 수 있습니다. 예를 들어, 의료 진단 코어가 언어-중립적",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -9525,6 +9558,38 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 232,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-438",
+      "from": "n-285",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설(n-001)을 구체화: CSER 저하의 원인을 ‘표현 차이→의미 드리프트’로 분해하고, core/shell 분리라는 조작적 메커니즘을 제안함 ",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-439",
+      "from": "n-285",
+      "to": "n-037",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=248): n-285→n-037",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 248,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-440",
+      "from": "n-286",
+      "to": "n-285",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
       "created": "2026-03-06"
     }
   ]
