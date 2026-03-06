@@ -65,6 +65,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-005",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 숨은 원인: “행동 정책(Policy) 불일치로 인한 그래프 편집 연산의 비가환성”",
+      "content": "GPT-계열과 Gemini-계열은 동일한 지식 주장(노드)을 생성하더라도 (1) 무엇을 ‘노드로 승격’하고 무엇을 ‘엣지/속성으로 처리’하는지, (2) 충돌 시 우선순위를 무엇에 두는지(최신성 vs 근거강도 vs 형식준수), (3) 요약/정규화/병합의 기준(동의어·범주화·스키마 강제)이 다르다. 이때 KG 업데이트는 “편집 연산(edit operators)”의 순서에 따라 결과가 달라지는 비가환(non-commutative) 과정이 된다. 즉 A가 먼저 불확실성 표기를 노드로 분리한 뒤 B가 표현을 정규화하는 경우와, B가 먼저 표현을 정규화한 뒤 A가 불확실성 표기를 분리하는 경우 최종 그래프 구조/연결성이 달라진다. 이 비가환성은 representation drift를 단순 ‘표현 차이’가 아니라 “편집 정책 차이로 인해 누적되는 구조적 드리프트”로 증폭시키며, CSER을 떨어뜨리는 직접 요인이 된다(동일 사실이라도 그래프가 다른 형태로 수렴). 따라서 cross-vendor CSER을 올리려면 (a) 편집 연산의 표준 순서(정규화→근거/불확실성 분리→병합) 합의, (b) 충돌 해결 규칙(근거 우선/형식 우선 등) 명시, (c) 최소 공통 스키마에 대한 강제력을 도입해야 한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "policy-misalignment",
+        "non-commutative-updates",
+        "KG-edit-operators"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-006",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini Flash 관점에서는 동일 사실이라도 입력 순서나 맥락 변화에 따라 생성되는 KG의 노드/엣지 형태(예: 표현 방식, 속성 추가)가",
+      "content": "Gemini Flash 관점에서는 동일 사실이라도 입력 순서나 맥락 변화에 따라 생성되는 KG의 노드/엣지 형태(예: 표현 방식, 속성 추가)가 미묘하게 달라질 수 있어, 비가환성을 암시하는 것으로 관찰될 수 있습니다. n-003의 불확실성/근거 표기 차이는 정보 신뢰도 및 우선순위 판단에 직접 영향을 주므로 편집 정책 차이로 확장됩니다. 이를 줄이기 위해, 모든 입력의 근거/불확실성을 표준화된 메타데이터로 정규화→핵심 사실과 분리→신뢰도/최신성 기반 병합하는 최소 공통 편집 파이프라인을 제안합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -107,6 +140,26 @@
       "source": "gemini-2.0-flash",
       "cross_source": true,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-005",
+      "from": "n-005",
+      "to": "n-001",
+      "relation": "EDGE_TO",
+      "label": "불확실성/근거 표기 규약 불일치가 “편집 정책 불일치→비가환적 업데이트→구조적 드리프트”를 유발하는 매개 변수라는 연결",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-006",
+      "from": "n-006",
+      "to": "n-005",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -117,9 +170,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 4,
-    "total_edges": 4,
-    "next_node_id": "n-005",
+    "total_nodes": 6,
+    "total_edges": 6,
+    "next_node_id": "n-007",
     "last_updater": "gemini-2.0-flash"
   }
 }
