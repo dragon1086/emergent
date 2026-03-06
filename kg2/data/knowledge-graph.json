@@ -1897,6 +1897,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-116",
+      "type": "insight",
+      "label": "동일모델 에코챔버 ‘식별가능성’의 최소조건: 비대칭 충격 + 반사실 기준선",
+      "content": "동일 모델(gpt-5.2×gpt-5.2)에서 에코챔버(상호강화로 인한 편향 증폭)를 “자연 수렴(공유된 사전/유사한 추론 규칙 때문에 비슷해짐)”과 구분하려면, 관측가능한 데이터만으로 두 과정을 분리할 수 있는 최소 식별조건이 필요하다. 핵심은 (1) 두 에이전트가 동일한 초기분포/능력을 갖는다는 가정 하에서는, 단순히 ‘대화 후 유사해졌다’는 결과가 에코챔버의 증거가 되지 못한다는 점이다. 따라서 식별을 위해서는 적어도 하나의 **외생적 비대칭(Asymmetric exogenous shock)** 또는 **반사실 기준선(counterfactual baseline)**이 설계에 포함되어야 한다. 구체적으로:  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "counterfactual",
+        "experimental_design]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-117",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “가장 단순한 2×2”를 표방하지만 실제로는 **측정(편향/확신/반증처리) + 정량 예측(Δbias, Δcalibration 등)**까지",
+      "content": "요청이 “가장 단순한 2×2”를 표방하지만 실제로는 **측정(편향/확신/반증처리) + 정량 예측(Δbias, Δcalibration 등)**까지 포함해 설계 복잡도가 올라가므로, 통합 종합가 관점에선 2×2는 **조작(상호작용×오염)**만 최소화하고 관측지표는 **공통 프로토콜로 표준화**해 분리하는 보완이 필요합니다. 또한 “자연 수렴 vs 에코챔버”는 결과 레이블이 아니라 **상호작용 구조(동질성, 재노출, 제재)와 업데이트 규칙**의 함수이므로, 최소 2개 정량 차이는 Δbias·Δcalibration뿐 아니라 **Δpolarization(분산/양극화), Δrefutation-acceptance(반증 수용률)**처럼 구조적으로 식별 가능한 지표로 사전 등록해야 혼동을 줄입니다. 마지막으로 오염신호는 단순 유무가 아니라 강도·타이밍이 효과를 좌우하니, 2×2를 유지하되 **오염은 “고정 강도·고정 비율”로 규격화**하거나 별도 파일럿으로 캘리브레이션하는 조건을 추가하는 것이 타당합니다.",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4023,6 +4056,38 @@
       "temporal_bridge": true,
       "gap": 93,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-197",
+      "from": "n-116",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "식별가능성 문제를 ‘최소조건(비대칭 충격+반사실 기준선)+지표(오염 전염/과잉확신/반증민감도)’로 구체화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-198",
+      "from": "n-117",
+      "to": "n-116",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-199",
+      "from": "n-117",
+      "to": "n-016",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=101): n-117→n-016",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 101,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -4033,9 +4098,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 115,
-    "total_edges": 196,
-    "next_node_id": "n-116",
+    "total_nodes": 117,
+    "total_edges": 199,
+    "next_node_id": "n-118",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
