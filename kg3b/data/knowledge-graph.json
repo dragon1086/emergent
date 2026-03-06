@@ -32,6 +32,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-003",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 매개변수: “불확실성/근거 표기 규약 불일치(Confidence & Evidence Marking Drift)”",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 핵심 메커니즘은 단순한 표현 불일치(Representation Drift)뿐 아니라, 각 모델이 “무엇을 확실/추정/가정으로 표시하는가”에 대한 메타-표기 규약이 다르다는 점이다. 즉, 동일한 의미 내용이더라도 (a) 근거 제시 방식(인용, 출처, 경험적/연역적 구분), (b) 불확실성 표현(확률/헤지/단정), (c) 규범적 문장(“해야 한다”)과 기술적 문장(“이다”)의 경계가 vendor별로 달라, KG 업데이트 시 엣지 가중치·신뢰도·검증 우선순위가 서로 다르게 해석된다. 이로 인해 한 모델은 “가설(검증 필요)”로 취급한 노드를 다른 모델이 “사실(확정)”로 승격하거나, 반대로 중요한 가설을 과도한 헤지로 약화시켜 연결이 희석된다. 결과적으로 KG의 합의 형성(consensus)과 오류 교정 루프가 느려지고, CSER(자기-일관적 설명/추론 효율)이 감소한다. 예측: (1) 동일 프롬프트라도 vendor가 바뀌면 ‘확실/불확실’ 표지의 분포가 체계적으로 변하며, (2) 이 표지 변동이 클수록 KG에서 critique↔hypothesis 간 상호 참조가 줄고, (3) 메타-표기 스키마를 강제(예: 확률/근거 타입 필드)하면 cross-vendor CSER이 회복된다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "uncertainty-marking",
+        "evidence-schema",
+        "cross-vendor-alignment"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-004",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Representation Drift 가설을 유지하며, (1) 벤더별 불확실성/근거 표기는 그 자체보다 KG 통합 시 **표기의 손실이나 잘못된",
+      "content": "Representation Drift 가설을 유지하며, (1) 벤더별 불확실성/근거 표기는 그 자체보다 KG 통합 시 **표기의 손실이나 잘못된 해석**이 가설의 사실화, 사실의 약화, critique 루프 단절을 유발하여 Representation Drift를 심화시킨다고 보완합니다. (2) 이를 검증할 최소 실험은 **동일 입력에 대한 근거/확실성 메타데이터 표지 분포 비교** 및 **강제된 메타-스키마 적용 후 Cross-Vendor CSER 개선 여부** 분석입니다. (3) 만약 이 요인이 부차적이라면, Cross-Vendor CSER 저하의 더 강한 대안 요인은 **벤더별 근본적인 온톨로지 충돌 및 의미론적 해석 차이**로 인한 Representation Drift 심화입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -54,6 +87,26 @@
       "source": "gemini-2.0-flash",
       "cross_source": true,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-003",
+      "from": "n-003",
+      "to": "n-001",
+      "relation": "EDGE_TO",
+      "label": "Representation Drift를 “내용 표현”뿐 아니라 “근거/불확실성 메타-표기 규약”까지 확장한 매개 가설로 연결",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-004",
+      "from": "n-004",
+      "to": "n-003",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -64,9 +117,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 2,
-    "total_edges": 2,
-    "next_node_id": "n-003",
+    "total_nodes": 4,
+    "total_edges": 4,
+    "next_node_id": "n-005",
     "last_updater": "gemini-2.0-flash"
   }
 }
