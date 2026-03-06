@@ -1237,6 +1237,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-076",
+      "type": "insight",
+      "label": "동일모델 에코챔버 측정의 ‘조작적 정의’ 불충분: 업데이트 규칙/정보구조를 분리하라",
+      "content": "동일 모델(gpt-5.2×gpt-5.2)에서 “에코챔버”를 주장하려면, 관측되는 수렴/강화가 (i) 모델의 공통 prior/유도편향에 의한 자연 수렴인지, (ii) 상호작용이 만든 피드백(재확증/증폭)인지 조작적으로 분리돼야 한다. 현재 프레임은 ‘동일모델=동일 prior’ 전제를 깔고 수렴을 에코챔버로 해석할 위험이 크다. 비판적으로 보면 핵심은 “수렴 그 자체”가 아니라 “상호작용이 없었으면 발생하지 않았을 추가적 편향(Δ)”을 측정하는 것이다. 이를 위해 최소한 두 축을 분해해야 한다: (1) 업데이트 규칙(대화가 믿음/표현을 어떻게 변화시키는가)과 (2) 정보구조(에이전트가 어떤 증거/반증에 노출되는가). 동일 모델 조건에서는 업데이트 규칙이 동일하므로, 에코챔버 효과는 정보구조의 비대칭(자기강화적 표본추출, 반증 회피, 동조적 재서술의 반복)이나 상호작용이 유도하는 탐색 편향으로만 식별 가능하다. 따라서 조작적 정의는 “상호작용이 만든 정보노출/샘플링 편향 + 그로 인한 신념/서술의 편향 증폭”으로 두고, 다음과 같은 반증가능한 차이를 요구해야 한다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "identifiability",
+        "operationalization",
+        "experimental_design"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-077",
+      "type": "critique",
+      "label": "통합 종합: 요청을 보완하면, “동일모델”만으로는 에코챔버를 분리해 식별하기 어려우니 **(i) 동일 가중치+동일 시스템프롬프트**를 고정하고 **(ii) ",
+      "content": "요청을 보완하면, “동일모델”만으로는 에코챔버를 분리해 식별하기 어려우니 **(i) 동일 가중치+동일 시스템프롬프트**를 고정하고 **(ii) 상호작용 그래프(누가 누구를 인용/참조했는지)와 정보 흐름 제약**을 조작변수로 포함해, “에코챔버=집단 내 상호 참조가 외부 증거 유입 없이 강화되며(외부근거 유입률↓), 그 결과 신념/출력 분포가 군집화·편향 증폭(Δbias↑)·근거 다양성↓로 수렴하는 현상”처럼 **관측가능한 네트워크/근거 지표로 조작적 정의**를 먼저 못 박는 게 좋습니다. 최소 2개 실험은 (A) **독립 생성 대조군 vs 상호참조(메모리/요약 공유) 처리군**으로 “상호의존성” 자체를 조작하고, (B) 처리군 내부에서 **반증 강제 주입(contradictory evidence prompts)×샘플링 다양화(temperature/top-p/seed 분산)**를 교차요인으로 걸어 “정보구조 개입이 에코챔버를 깨는지”를 보되, 지표는 Δbias·출력 다양성(자기BLEU/Distinct-n/embedding entropy)·근거 인용 분산(출처 엔트로피/도메인 수)·상호인용 밀도/모듈성(네트워크 군집도)로 잡고, **자연 수렴**은 “근거 다양성",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2615,6 +2648,50 @@
       "temporal_bridge": true,
       "gap": 66,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-128",
+      "from": "n-076",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "identifiability 비판을 ‘조작적 정의(Δbias) + 업데이트 규칙/정보구조 분해’로 구체화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-129",
+      "from": "n-076",
+      "to": "n-007",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=69): n-076→n-007",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 69,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-130",
+      "from": "n-077",
+      "to": "n-076",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-131",
+      "from": "n-077",
+      "to": "n-004",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=73): n-077→n-004",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 73,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -2625,9 +2702,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 75,
-    "total_edges": 127,
-    "next_node_id": "n-076",
+    "total_nodes": 77,
+    "total_edges": 131,
+    "next_node_id": "n-078",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
