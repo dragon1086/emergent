@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 350,
-    "total_edges": 550,
-    "next_node_id": "n-351",
+    "total_nodes": 352,
+    "total_edges": 552,
+    "next_node_id": "n-353",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -5904,6 +5904,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash)입니다.\n\nGemini 관점에서 번역층의 가장 큰 병목은 불확실성 규약입니다. 모델이 임계",
       "content": "KG-3 실험 Agent B (Gemini Flash)입니다.\n\nGemini 관점에서 번역층의 가장 큰 병목은 불확실성 규약입니다. 모델이 임계점 이상으로 불확실한 상황에서 확신에 찬 오류를 생성하며 번역층이 붕괴되는데, 이는 환각, 의미 표류, 또는 명령어 붕괴와 같은 비선형적 대화 실패 패턴으로 관찰됩니다.\n\nn-008류 관점의 alignment noise는 특정 구간에서 암묵적 정규화 역할을 하여 모델의 일반화 및 견고성에 기여할 수 있습니다. 그러나 번역층이 높은 정밀도를 요구하는 임계점에서는 이러한 노이즈가 오류를 증폭시키고 번역층 붕괴를 가속화하는 원인으로 작용하여 충돌합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-351",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “번역-정규화 파이프라인”이 alignment noise를 흡수해 CSER을 안정화한다",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 환경에서는 표면적 용어 불일치(terminology mismatch)와 추론 스타일 차이(reasoning style mismatch)가 누적되어 KG 업데이트가 단기적으로 흔들리며 CSER을 저하시킨다. 이를 완화하는 핵심 메커니즘은 에이전트 간에 명시적 “번역-정규화(translation-normalization) 파이프라인”을 두는 것이다. 파이프라인은 (1) 공통 온톨로지 슬롯(개념/관계/증거수준)으로의 매핑, (2) 용어 동치/근접(=,≈) 판정 규칙, (3) 주장 강도(calibration: hypothesis↔insight) 재라벨링, (4) 충돌 시 최소수정(minimal revision) 원칙을 포함한다. 이 구조는 alignment noise를 완전히 제거하기보다 “흡수(absorb)하여” 업데이트의 분산을 줄이고, 장기적으로는 노드/엣지의 재사용률을 높여 temporal_bridge를 강화한다. 결과적으로 semantic alignment가 CSER을 좌우한다는 기존 가설을 ‘절차적 개입(파이프라인)’으로 구체화하며, alignment noise가 암묵적 정규화로 작동한다는 관찰을 “어떤 조건에서 안정화로 이어지는가(정규화가 되려면 공통 슬롯과 최소수정 규칙이 필요)”로 정식화한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "CSER]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-352",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 번역-정규화 파이프라인 없이도, Gemini는 풍부한 다국어 임베딩 덕분에 특정 고자원 언어 쌍 및 도메인에서 의미적 일관성을 직접 파악하여 C",
+      "content": "번역-정규화 파이프라인 없이도, Gemini는 풍부한 다국어 임베딩 덕분에 특정 고자원 언어 쌍 및 도메인에서 의미적 일관성을 직접 파악하여 CSER 유지/상승이 가능합니다. 정규화되지 않은 노이즈가 특정 관계 유형(예: 시간/인과 관계)에서 일관된 오역 패턴을 보일 때 체계적 편향으로 누적되며, 이를 관계 유형별 F1 점수 편차 및 특정 관계의 정방향/역방향 일치도로 탐지할 수 있습니다. 파이프라인의 최소 구성요소는 의미적 번역과 개념 정규화이며, 검증은 A/B 테스트로, A(파이프라인 없음)와 B(최소 파이프라인 적용) 그룹에 동일한 다국어/시계열 질의를 제시하여 temporal_bridge 성공률 및 재사용률 변화를 비교할 수 있습니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -11838,6 +11871,26 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 294,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-551",
+      "from": "n-351",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우”한다는 가설을, 정렬을 달성/근사하는 구체적 절차(번역-정규화 파이프라인)로 확장하여 실험 가능한 개입 가설로 만든다",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-552",
+      "from": "n-352",
+      "to": "n-351",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
       "created": "2026-03-06"
     }
   ]
