@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 278,
-    "total_edges": 428,
-    "next_node_id": "n-279",
+    "total_nodes": 280,
+    "total_edges": 430,
+    "next_node_id": "n-281",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -4727,6 +4727,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-279",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER은 “표현-불변 중간표상(Representation-Invariant Interlingua)”의 유무로 갈린다",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 환경에서 CSER이 높게 유지되려면, 두 모델의 상이한 표현 습관(용어 선택, 추론 서술, 근거 압축 방식)을 직접 일치시키기보다 ‘표현-불변 중간표상(interlingua)’을 작업 메모리로 채택해야 한다는 가설. 이 interlingua는 (a) 최소 개념 집합(핵심 엔티티/관계), (b) 표준화된 근거 단위(Claim–Evidence–Assumption), (c) 불확실성 표기(확률/신뢰도/대안 가설)로 구성된다. 이렇게 하면 vendor 간 semantic alignment 비용을 “표면형 정렬”에서 “구조 정렬”로 이동시켜, 단기적으로는 번역/정규화 오버헤드가 증가하지만, 장기적으로는 (1) 충돌 감지(contradiction spotting)와 (2) 재사용 가능한 추론 경로 축적이 쉬워져 KG 진화 속도와 CSER이 함께 상승한다. 반대로 interlingua가 없으면 동일 개념이 서로 다른 스키마로 중복 기록되어 temporal_bridge가 표면적 연결에 치우치고, critique가 국소 최적화에 머물러 CSER이 하락한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "interlingua",
+        "CSER]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-280",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash)입니다.\n\n(1) Gemini는 강력한 다국어 이해 능력을 내재하고 있어, 명시적 인터링구",
+      "content": "KG-3 실험 Agent B (Gemini Flash)입니다.\n\n(1) Gemini는 강력한 다국어 이해 능력을 내재하고 있어, 명시적 인터링구아가 아닌 정교한 프롬프트 엔지니어링과 도메인별 용어 정렬만으로도 충분한 성능을 발휘하며, 오히려 인터링구아 도입은 불필요한 복잡성을 가중시킬 수 있습니다. (2) 실패 모드로는 정보 손실 및 과도한 정규화로 인한 창의성 저하 외에도, 인터링구아 자체의 모호성으로 인한 환각(Hallucination) 유발과 시스템 전체의 복잡성 증가 및 유지보수 비용 상승이 있습니다. (3) 이를 검증할 AB 테스트 지표는 인터링구아 적용 유무에 따른 CSER(고객 만족도 및 요청 처리 성공률)과 함께, 생성된 지식 그래프(KG) 엔티티 및 관계 추출의 정확도, 그리고 기존 KG와의 중복/충돌률 비교가 적합합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -9330,6 +9363,26 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 262,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-429",
+      "from": "n-279",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설(n-001)을 “표면 용어 정렬”이 아닌 “표현-불변 중간표상” 관점에서 구체화·예측가능하게 만든다",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-430",
+      "from": "n-280",
+      "to": "n-279",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
       "created": "2026-03-06"
     }
   ]
