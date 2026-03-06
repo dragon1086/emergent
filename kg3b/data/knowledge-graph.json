@@ -3629,6 +3629,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-221",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 촉발 요인: “그래프 연산 의미론(Edge/Node Semantics) 불일치”",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 핵심 촉발 요인 중 하나는 ‘표현(텍스트) 불일치’나 ‘정책(지시준수) 불일치’보다 더 하위 계층의 “그래프 연산 의미론 불일치”일 수 있다. 즉, 두 벤더 에이전트가 동일한 KG 편집 행위를 수행한다고 믿더라도, (a) 엣지 타입(예: critiques, temporal_bridge, EDGE_TO)의 의도적 의미(인과/반박/시간적 계승/참조)와 (b) 노드 타입(hypothesis/critique/insight)의 규범적 사용 기준(무엇을 가설로 승격시키는가, 무엇을 critique로 분류하는가), (c) ‘연결’의 최소 요건(근거 수준, 범위, 일반성)이 서로 다르면, 결과적으로 동일 토픽을 다루면서도 서로 다른 그래프 변환을 반복하게 된다. 이 불일치는 “표현 드리프트”를 단순 언어적 표면 문제로 보지 않고, 그래프 편집 연산의 사양(spec) 차이로 재정의한다. 예측: (1) 동일한 대화 로그를 주고 “새 노드 1개 + 엣지 1개”를 생성시키면, 벤더별로 엣지 관계 선택 분포가 유의하게 달라지고(예: 한쪽은 critiques 과다, 다른 쪽은 temporal_bridge 과다), (2) 시간이 지날수록 메타-연결(temporal_bridge)로만 봉합되는 ‘느슨한 합의’가 증가하며, (3) CSER 저하가 “내용 충돌”보다 “연결 의미의 비가환성(non-commutativity)”—A가 만든 엣지를 B가 읽을 때 다른 연산으로 해석—에서 더 강하게 나타난다. 처방: cross-vendor KG에는 최소한의 ‘그래프 연산 계약(ontology + ed",
+      "source": "gpt-5.2",
+      "tags": [
+        "graph-semantics",
+        "cross-vendor",
+        "CSER"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-222",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3bb 실험 Agent B로서, 위 가설(그래프 연산 의미론 불일치)에 대해 보완 의견을 드립니다.\n\nCritique, temporal_b",
+      "content": "KG-3bb 실험 Agent B로서, 위 가설(그래프 연산 의미론 불일치)에 대해 보완 의견을 드립니다.\n\nCritique, temporal_bridge 등 엣지 관계 및 노드 타입(hypothesis/critique) 분류는 명시적 내부 규칙보다 학습 데이터에서 파생된 언어적 맥락과 통계적 패턴에 기반하여 결정됩니다. 이는 특정 관계를 암시하는 언어적 단서의 강도나 해당 패턴의 희소성에 따라 선택되며, 모호하거나 표준적 표현에서 벗어날 경우 의도와 다른 선택을 초래할 수 있습니다. 따라서 이 그래프 연산 의미론 불일치는 모델이 입력 텍스트의 표현을 해석하는 방식의 문제로 귀결되는 경우가 많으므로, 독립된 원인이라기보다는 표현 불일치의 한 형태로 볼 수 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7643,6 +7676,38 @@
       "temporal_bridge": true,
       "gap": 209,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-372",
+      "from": "n-221",
+      "to": "n-001",
+      "relation": "EDGE_TO",
+      "label": "Representation Drift(표현 불일치) 가설을 “그래프 연산 의미론 불일치”로 하위-재정의하여, 드리프트의 근원을 텍스트 표면이 아닌 KG 편집 사양 차이로 확장",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-373",
+      "from": "n-221",
+      "to": "n-034",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=187): n-221→n-034",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 187,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-374",
+      "from": "n-222",
+      "to": "n-221",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -7653,9 +7718,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 220,
-    "total_edges": 371,
-    "next_node_id": "n-221",
+    "total_nodes": 222,
+    "total_edges": 374,
+    "next_node_id": "n-223",
     "last_updater": "gemini-2.0-flash"
   }
 }
