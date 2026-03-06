@@ -692,6 +692,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-043",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 상위 원인: “온톨로지/스키마 정렬 실패(Ontology & Schema Misalignment)”",
+      "content": "Cross-vendor 환경에서 CSER이 떨어지는 근본 원인은 단순한 표현 불일치(Representation Drift)나 근거/불확실성 규약 차이를 넘어, **지식 그래프 편집의 ‘단위(what counts as a node/edge)’와 ‘정합성 제약(what counts as consistency)’ 자체가 벤더별로 다르게 내재화**되어 발생하는 **온톨로지/스키마 정렬 실패**이다. 구체적으로 (1) 한 벤더는 “hypothesis/critique”를 서로 배타적 타입으로 강하게 취급해 분리 노드를 선호하는 반면, 다른 벤더는 동일 내용을 하나의 노드에 혼합해 요약하려는 경향이 있어 노드 분해/병합 전략이 달라진다. (2) 관계 라벨의 의미론(예: EDGE_TO가 ‘근거 연결’인지 ‘시간적 브리지’인지 ‘반박 연결’인지)에 대한 암묵적 정의가 달라, 동일한 업데이트 요청에서도 서로 다른 엣지 타입을 선택하거나 중복 엣지를 생성한다. (3) 결과적으로 그래프의 “동일성 조건(identity condition)”이 불일치하여, 한쪽이 일관성 유지로 판단한 편집이 다른쪽에서는 충돌/중복/누락으로 평가되며, 이는 CSER의 핵심인 **일관된 자기-편집 루프**를 약화시킨다. 따라서 해결 방향은 표현 통일 이전에 **메타-스키마(노드 타입, 엣지 의미, 병합 규칙, 충돌 해결 우선순위)를 명시적으로 합의**하고, 각 에이전트가 업데이트 시 이를 체크리스트로 강제하는 것이다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "[schema-alignment",
+        "ontology",
+        "cross-vendor]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-044",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 가설에 보완적으로 접근하자면, 온톨로지/스키마 정렬 실패는 CSER 저하의 *중요한* 원인이지만, Gemini Flash와 같은 LLM에서는 표",
+      "content": "가설에 보완적으로 접근하자면, 온톨로지/스키마 정렬 실패는 CSER 저하의 *중요한* 원인이지만, Gemini Flash와 같은 LLM에서는 표현 드리프트나 근거/불확실성 규약 불일치보다 항상 상위 원인이라고 단정하기는 어렵습니다.\n\n1.  **노드 병합/분해 및 관계 우선순위:** Gemini Flash는 노드 병합/분해를 명시적 규칙보다는 입력 컨텍스트, 학습된 시맨틱 유사성, 그리고 결과의 일관성 및 유용성을 기반으로 수행하며, EDGE_TO, temporal_bridge, critiques 같은 관계 유형의 우선순위는 선택이라기보다 주어진 데이터와 질문의 맥락적 적합성에 따라 동적으로 결정되는 경향이 있습니다.\n2.  **메타-스키마 개선 주장에 대한 반례/추가 조건:** 메타-스키마가 잘못 정의되었거나, 너무 경직되거나, 또는 입력 데이터의 본질적 의미와 불일치할 경우 CSER을 오히려 저하시킬 수 있습니다. 예를 들어, Person 노드에 has_color 엣지를 강제하는 스키마가 주어졌을 때, 해당 정보가 입력에 없으면 불필요한 추론 오류를 유발하거나, 스키마에 맞추기 위해 의미 없는 값을 생성하여 CSER을 저해할 수 있습니다. 즉, 메타-스키",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1402,6 +1435,38 @@
       "temporal_bridge": true,
       "gap": 40,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-067",
+      "from": "n-043",
+      "to": "n-001",
+      "relation": "EDGE_TO",
+      "label": "Representation Drift(표현 불일치) 가설을 상위 원인(온톨로지/스키마 불일치)으로 일반화/포섭",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-068",
+      "from": "n-044",
+      "to": "n-043",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-069",
+      "from": "n-044",
+      "to": "n-005",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=39): n-044→n-005",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 39,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1412,9 +1477,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 42,
-    "total_edges": 66,
-    "next_node_id": "n-043",
+    "total_nodes": 44,
+    "total_edges": 69,
+    "next_node_id": "n-045",
     "last_updater": "gemini-2.0-flash"
   }
 }
