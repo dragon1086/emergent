@@ -2078,6 +2078,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-127",
+      "type": "insight",
+      "label": "동일모델-다중페르소나에서 “에코챔버”를 만든 메커니즘 vs 측정지표의 혼동(construct confounding)",
+      "content": "동일 모델(gpt-5.2) 두 에이전트의 상호작용에서 관측되는 “합의 증가/유사도 증가/반대 근거 감소”를 에코챔버의 ‘발생’으로 해석하는 것은 구성개념 수준에서 혼동을 내포한다. 특히 (1) **공유 사전(prior)과 표현 공간(shared latent space)** 때문에 두 에이전트는 서로 독립 표본이 아니라 강하게 상관된 샘플이며, (2) 페르소나는 주로 “표현 스타일/탐색 정책”을 바꾸지 “기저 신념 분포”를 충분히 분리하지 못할 수 있다. 이 경우 지표가 잡는 것은 ‘사회적 강화로 인한 폐쇄성’이 아니라 ‘동일 생성모형의 자기상관 + 대화 수렴(협력적 최소갈등 규범)’일 가능성이 크다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "construct_validity",
+        "alternative_explanations]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-128",
+      "type": "critique",
+      "label": "통합 종합: 유사도·합의 지표는 “에코챔버(구성개념)”의 *충분조건*이 아니라 “표현상 수렴(측정치)”의 *필요조건도 아닐* 수 있는데, 최소 반례는 (i)",
+      "content": "유사도·합의 지표는 “에코챔버(구성개념)”의 *충분조건*이 아니라 “표현상 수렴(측정치)”의 *필요조건도 아닐* 수 있는데, 최소 반례는 (i) **정답이 단일한 폐쇄형 과제**(수학/규격/사실검증)에서 서로 다른 페르소나가 높은 합의·유사도를 보여도 이는 정보구조가 단일해 수렴한 것이지 대안이 억압된 에코챔버가 아니고, (ii) **다양한 탐색 후의 합의**(각 페르소나가 상이한 가설·근거 집합을 제시→반증을 거쳐 동일 결론에 도달)에서도 최종 텍스트 유사도는 높지만 “대안 경쟁-도태”가 관찰되므로 에코챔버로 오판한다. 이를 피하려면 조작적 지표를 *결과 유사도*가 아니라 **반증 후보 생존율/대안세트 다양성**으로 두고, 예를 들어 각 페르소나 (p)가 생성한 대안 집합 (A_p={a_{p,i}})와 각 대안의 반증 시도 후 생존 (s_{p,i}in{0,1})를 기록해 (SR=frac{sum_{p,i}s_{p,i}}{sum_{p}|A_p|}), 다양성은 의미군(클러스터) 분포 (q(c)=frac{1}{N}sum_{p,i}mathbf{1}[C(a_{p,i})=c])에 대해 (D=H(q)) 또는 (1-sum_c q(c)^2)로 두며, 절차는 “(1) 대안 K",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4360,6 +4393,38 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-212",
+      "from": "n-127",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "Operational Non-Identifiability를 ‘구성개념(construct) 혼동’과 ‘동일모델 자기상관’ 메커니즘으로 구체화하고, 유사도 지표의 불충분성을 반증지향 ",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-213",
+      "from": "n-127",
+      "to": "n-024",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=103): n-127→n-024",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 103,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-214",
+      "from": "n-128",
+      "to": "n-127",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -4370,9 +4435,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 126,
-    "total_edges": 211,
-    "next_node_id": "n-127",
+    "total_nodes": 128,
+    "total_edges": 214,
+    "next_node_id": "n-129",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
