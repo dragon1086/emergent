@@ -1270,6 +1270,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-078",
+      "type": "insight",
+      "label": "동일모델 에코챔버 판별의 ‘암묵적 공통충분조건’(CSC) 문제",
+      "content": "동일모델(gpt-5.2×gpt-5.2)에서 “에코챔버”를 주장하려면, 관측된 수렴/강화가 단지 (i) 공유된 사전(prior)·유사한 유도편향, (ii) 동일한 대화 규칙/역할 프롬프트가 만드는 구조적 제약, (iii) 동일한 최적화 목표(도움/일관성/안전)로 인한 합리적 합의, (iv) 정보 제시 순서·요약 압축으로 인한 경로의존성 등으로도 **충분히 설명되지 않음**을 보여야 한다. 그런데 실제 실험 설계가 흔히 “두 에이전트가 서로를 인용하며 확신이 커졌다/다양성이 줄었다” 같은 지표를 에코챔버로 해석할 때, 그 지표는 위 (i)~(iv)와 **공통으로 성립하는 공통충분조건(Common Sufficient Condition)**이 된다. 즉, 에코챔버만의 고유 예측이라기보다 “동일모델 상호작용에서 일반적으로 기대되는 합의 형성”의 예측과 겹친다. 이 CSC 문제를 해결하려면 에코챔버의 핵심 메커니즘을 ‘상호강화적 선택적 노출/가중(confirmation-weighting)’처럼 **반사실적으로 구별 가능한 조작(예: 반대 증거의 강제 주입, 교차심문형 채널, 정보 출처 블라인드 처리, 대화 메모리 리셋/섞기)**에 대해 특이적 민감도를 갖도록 정의해야 한다. 그렇지 않으면 동일모델 조건에서의 “수렴”은 에코챔버가 아니라 “공유 유도편향+압축/요약의 경로의존성”으로도 충분히 설명되어 식별가능성이 붕괴한다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "confounding",
+        "experimental_design]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-079",
+      "type": "critique",
+      "label": "통합 종합: 요청은 타당하지만 “고유 예측”을 보장하려면 **동일모델 합의/수렴(계산·표현의 동질성)**과 **에코챔버(정보노출·인용·신뢰의 폐쇄성)**를 ",
+      "content": "요청은 타당하지만 “고유 예측”을 보장하려면 **동일모델 합의/수렴(계산·표현의 동질성)**과 **에코챔버(정보노출·인용·신뢰의 폐쇄성)**를 조작적으로 분리해야 하며, 그렇지 않으면 공유 prior·요약압축·규범적 합의로도 같은 패턴이 나옵니다. 따라서 예측은 “반대증거의 *존재*”가 아니라 **반대증거가 네트워크를 통해 *전파·채택*되는 동역학**과 **출처/경로 의존성**에 걸어야 구별력이 생깁니다. 아래 3개 예측은 그 점을 겨냥해 보완한 것입니다.\n\n| 고유 예측(에코챔버라면) | (1) 조작변수 | (2) 관측지표 | (3) 대안가설(동일모델 수렴/공유 prior/요약압축/규범합의) 기대패턴 |\n|---|---|---|---|\n| **P1. “출처-게이팅”**: 내용이 같아도 *출처 신호*가 붙으면 반대증거 채택이 급감 | 동일한 반대증거를 **(a) 신뢰 집단 출처**, **(b) 비신뢰 집단 출처**, **(c) 출처 블라인드**로 제시 | 업데이트 크기(후행 신념 변화), 반증 탐색률, 인용/링크 선택 편향(같은 내용의 인용이 출처에 따라 갈림) | 동일모델 수렴·공유 prior면 **출처에 둔감**(블라인드/비블라인드 차이 작음); 요약압축",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2692,6 +2725,50 @@
       "temporal_bridge": true,
       "gap": 73,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-132",
+      "from": "n-078",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "identifiability 문제를 ‘공통충분조건(CSC)’로 정식화하여, 관측지표가 대안가설들과 예측을 공유해 판별력을 잃는 구조를 명시",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-133",
+      "from": "n-078",
+      "to": "n-004",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=74): n-078→n-004",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 74,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-134",
+      "from": "n-079",
+      "to": "n-078",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-135",
+      "from": "n-079",
+      "to": "n-013",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=66): n-079→n-013",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 66,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -2702,9 +2779,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 77,
-    "total_edges": 131,
-    "next_node_id": "n-078",
+    "total_nodes": 79,
+    "total_edges": 135,
+    "next_node_id": "n-080",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
