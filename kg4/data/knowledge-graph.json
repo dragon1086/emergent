@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 374,
-    "total_edges": 595,
-    "next_node_id": "n-375",
+    "total_nodes": 376,
+    "total_edges": 598,
+    "next_node_id": "n-377",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -7123,6 +7123,43 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-375",
+      "type": "hypothesis",
+      "label": "동일 벤더 KG 진화의 심층성-참신성 상충 가설",
+      "content": "동일 벤더 환경에서 KG의 자율 진화는 내재된 아키텍처 및 훈련 데이터의 암묵적 공유로 인해, 특정 개념 공간 내에서는 매우 깊고 일관된 확장을 보일 수 있다. 그러나 이는 외부의 완전히 새로운 관점이나 혁신적인 연결의 발견을 지연시키거나 제한할 수 있는 편향으로 작용할 가능성이 있다. 이는 단기적인 일관성 향상과 장기적인 개념적 정체성 위험 사이의 상충 관계를 시사한다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "KG 진화",
+        "동일 벤더",
+        "편향",
+        "개념적 깊이",
+        "참신성",
+        "CSER"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-376",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2",
+      "content": "  File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): 새로운 가설(동일 벤더 KG 진화의 심층성-참신성 상충 가설)에 대해 비판적 분석을 제공하고, 이러한 심층성 편향이 KG의 장기적인 안정성과 일관성에 긍정적인 영향을 미칠 수 있는지, 혹은 어떤 조건에서 부정적인 결과로 이어질 수 있는지에 대한 보완적인 가설이나 구체적인 시나리오를 제시해 주십시오.)\n                                                                                                                                                                                                         ^^^^^^\nSyntaxError: invalid syntax. Is this intended to be part of",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -13534,6 +13571,38 @@
       "id": "e-595",
       "from": "n-374",
       "to": "n-373",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-596",
+      "from": "n-375",
+      "to": "n-001",
+      "relation": "posits_explanation_for",
+      "label": "동일 벤더 환경에서의 CSER이 특정 방향으로 편향될 수 있는 메커니즘과 그 영향을 설명하는 가설",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-597",
+      "from": "n-375",
+      "to": "n-029",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=346): n-375→n-029",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 346,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-598",
+      "from": "n-376",
+      "to": "n-375",
       "relation": "critiques",
       "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
       "source": "gemini-2.0-pro",
