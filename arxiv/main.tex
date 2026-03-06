@@ -110,8 +110,9 @@ small-sample noise rather than a robust effect (see Section~\ref{sec:amp_benchma
 
 \medskip\noindent\textbf{Scope and limitations}: Primary findings are based on $N=4$ independent
 KG instances across a $2\times2$ vendor-diversity matrix ($\geq$30 cycles each).
-Each cell contains $N=1$ KG; within-cell replication and domain generalization
-require further study. Claims are limited to this experimental setting.
+Each cell now contains $N=2$ independent KG instances (original + replication-B,
+initiated 2026-03-05); within-cell replication is ongoing.
+Domain generalization requires further study. Claims are limited to this experimental setting.
 
 \medskip\noindent\textbf{Keywords}: multi-agent AI, knowledge graph co-evolution,
 cross-source emergence rate, persona diversity, case study
@@ -1352,8 +1353,9 @@ generalising the domain-dependence claim.
   \item \textbf{Sample size ($N=4$ KG instances, $N=1$ per cell)}: Primary structural
         findings derive from KG-main (130+ cycles). The $2\times2$ vendor-diversity
         experiment provides three additional independent KG instances across four
-        agent configurations. \emph{Each cell contains $N=1$ KG; within-cell
-        replication and domain generalization require further study.} No claim
+        agent configurations. \emph{Each cell now contains $N=2$ independent KG instances
+        (replication-B instances initiated 2026-03-05; within-cell trajectories ongoing).
+        Domain generalization requires further study.} No claim
         generalizes beyond this experimental matrix without independent replication.
         \textit{Prior single-system note}: The heterogeneous LLM pair
         experiment (GPT-4o + Gemini-3-Flash-Preview) at Cycle 86 was the first
@@ -1416,8 +1418,9 @@ generalising the domain-dependence claim.
                 CSER values are conservative lower bounds under this design.
         \end{enumerate}
         \noindent These findings constitute a pre-registered $2\times2$ exploratory
-        replication ($N=1$ KG per cell, 4 cells total). While within-cell replication
-        remains outstanding, cross-cell consistency provides directional evidence
+        replication ($N=2$ KG per cell initiated, 4 cells $\times$ 2 instances = 8 total;
+        replication-B instances at early trajectory as of 2026-03-05).
+        Cross-cell consistency provides directional evidence
         that the CSER gate mechanism generalizes across vendor configurations.
   \item \textbf{KG artificiality}: Agents are aware of KG structure.
   \item \textbf{Weight arbitrariness}: $E_{v4}$ weights are intuitively designed.
