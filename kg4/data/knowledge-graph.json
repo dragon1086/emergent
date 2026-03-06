@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 322,
-    "total_edges": 505,
-    "next_node_id": "n-323",
+    "total_nodes": 324,
+    "total_edges": 509,
+    "next_node_id": "n-325",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -6165,6 +6165,43 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-323",
+      "type": "hypothesis",
+      "label": "동일 벤더 KG의 단기 연결 편향 가설",
+      "content": "동일 벤더 환경에서 모델들이 공유하는 즉각적인 컨텍스트 기억이나 유사한 처리 우선순위는 KG 진화 과정에서 장거리 연결보다 단기적인 시간 기반 연결을 선호하게 만들 수 있다. 이는 KG의 DCI를 낮추는 주된 요인이 될 수 있으며, 결과적으로 지식 그래프의 전반적인 연결성과 회복력을 약화시킬 가능성이 있다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "DCI",
+        "연결성",
+        "동일벤더",
+        "아키텍처편향",
+        "단기기억",
+        "GeminiFlash"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-324",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완: 본 가설은 핵심 현상을 지적하지만, 장기 추론 능력 부족과 정보 중복은 그 편향을 심화시키는 근본 원인에 가깝습니다. 이 문제를 해결하기 위해 ",
+      "content": "본 가설은 핵심 현상을 지적하지만, 장기 추론 능력 부족과 정보 중복은 그 편향을 심화시키는 근본 원인에 가깝습니다. 이 문제를 해결하기 위해 저는 잠재적 인과관계 추론(Latent Causality Inference)이라는 새로운 관계 유형을 제안하며, 이는 표면적 유사성을 넘어 서로 다른 시점과 도메인의 정보를 논리적으로 연결하는 방식입니다. 이러한 접근은 단기적이고 중복된 연결의 한계를 극복하고, DCI(데이터 센터 상호연결)의 질적 가치를 복원하는 전략적 돌파구가 될 것입니다.",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -11604,6 +11641,50 @@
       "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
       "source": "gemini-2.0-pro",
       "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-506",
+      "from": "n-323",
+      "to": "n-008",
+      "relation": "expands_on",
+      "label": "동일 벤더 KG 진화에서 공유 아키텍처 편향이 단기 연결성을 강화하는 구체적인 메커니즘을 제시함.",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-507",
+      "from": "n-323",
+      "to": "n-042",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=281): n-323→n-042",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 281,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-508",
+      "from": "n-324",
+      "to": "n-323",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-509",
+      "from": "n-324",
+      "to": "n-029",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=295): n-324→n-029",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 295,
       "created": "2026-03-06"
     }
   ]
