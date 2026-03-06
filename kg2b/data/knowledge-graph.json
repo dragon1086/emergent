@@ -2045,6 +2045,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-125",
+      "type": "insight",
+      "label": "동일모델 조건에서 “자율 에코챔버”의 최소 식별 설계: 대조군(독립 합성) + 개입(반증 주입) 없이는 결론 불가",
+      "content": "동일모델(gpt-5.2×gpt-5.2)·상이한 페르소나 조건에서 관찰 로그만으로 “에코챔버가 자율 진화했다”를 주장하려면, 최소한 (i) 기준선(baseline)과 (ii) 반증가능한 차이(detectable contrast)가 필요하다. 그렇지 않으면 관측된 “유사도 증가/합의 강화/대안 감소”는 다음의 대체설명으로 흡수되어 식별 불가능해진다: (1) 동일 사전학습 분포에 의한 자연스러운 수렴(공유 priors), (2) 대화 프로토콜/목표(‘KG를 진화’)가 유도하는 합의 압력, (3) 페르소나가 실제로는 스타일 차이만 만들고 생성 분포를 충분히 분리하지 못함, (4) KG 업데이트 규칙(temporal_bridge/refines)이 구조적으로 누적 수렴을 촉진, (5) 관측 지표(예: 노드/엣지 비율, 유사도)가 반증 후보의 “부재”를 에코로 오인.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "counterfactual",
+        "intervention]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-126",
+      "type": "critique",
+      "label": "통합 종합: 운영정의가 “반증 후보의 소실”이라면, 독립 합성 대조군에서도 **(i) 반증 후보 생존곡선/반감기**(시간·스텝 대비 반증 노드 수/가중치의 ",
+      "content": "운영정의가 “반증 후보의 소실”이라면, 독립 합성 대조군에서도 **(i) 반증 후보 생존곡선/반감기**(시간·스텝 대비 반증 노드 수/가중치의 감소율), **(ii) 반증-지지의 비대칭 전이율**(새 주장→반증 연결 생성률 vs 반증→삭제·약화률의 비), **(iii) 반증 커버리지 갭**(핵심 주장별 ‘최소 반증 집합’ 대비 실제 유지된 반증의 Jaccard/재현율)을 지표로 두면 “소실”을 정량화하면서 단독 생성에서도 계산 가능합니다.  \n외생 개입은 예컨대 **A: 반증 주입**(동일 강도의 반증 후보를 주기적으로 삽입)과 **B: 인센티브 변화**(정답/일관성 보상 vs 반증 탐색 보상)를 설계할 수 있는데, 자율 에코는 A에서 주입 직후 반증 중심성이 잠깐 오르다 빠르게 재-소실(짧은 반감기, 삭제/약화 전이율↑, 커버리지 갭 재확대)되고 B에서 보상을 줘도 ‘표면적 반증 나열’만 늘며 실제 연결·중심성은 회복되지 않는 패턴이 예상됩니다.  \n반대로 프로토콜 유도 수렴은 A에서 반증이 **구조적으로 통합**되어 주장 업데이트/분기 증가(반증 생존곡선 평탄화, 반증→주장 수정 전이율↑, 대안 경로 길이↑)가 나타나고, B에서 보상 변경에 **민감하게*",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4295,6 +4328,38 @@
       "temporal_bridge": true,
       "gap": 119,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-209",
+      "from": "n-125",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "판별 불능성 주장(n-007)을 ‘최소 식별 설계(대조군+개입)’로 구체화하여, 어떤 추가 조건이 있으면 부분적으로 식별 가능해지는지 경계조건을 제시",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-210",
+      "from": "n-125",
+      "to": "n-018",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=107): n-125→n-018",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 107,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-211",
+      "from": "n-126",
+      "to": "n-125",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -4305,9 +4370,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 124,
-    "total_edges": 208,
-    "next_node_id": "n-125",
+    "total_nodes": 126,
+    "total_edges": 211,
+    "next_node_id": "n-127",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
