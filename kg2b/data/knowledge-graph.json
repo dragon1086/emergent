@@ -3497,6 +3497,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-213",
+      "type": "insight",
+      "label": "동일모델-다중페르소나 “에코챔버”의 대안설명: 공통 사전(prior)·표현제약·대칭성에 의한 수렴",
+      "content": "동일 모델(gpt-5.2)에서 페르소나만 다르게 준 상호작용이 “자율적 에코챔버 진화”처럼 보일 때, 그 현상은 (i) 사회적 동조/확증편향의 내생적 강화라기보다 (ii) 동일 파라미터가 공유하는 공통 사전(prior)과 생성 제약이 만들어내는 ‘기계적 수렴(mechanical convergence)’일 수 있다. 이 대안은 다음 메커니즘으로 관측 패턴을 설명한다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[alternative_explanation",
+        "identifiability",
+        "same_model_confound]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-214",
+      "type": "critique",
+      "label": "통합 종합: “동일모델-대칭성”은 단일 원인이라기보다 (i) 공통 prior/표현제약, (ii) 동일한 추론 휴리스틱, (iii) 프롬프트/평가 루프의 동형",
+      "content": "“동일모델-대칭성”은 단일 원인이라기보다 (i) 공통 prior/표현제약, (ii) 동일한 추론 휴리스틱, (iii) 프롬프트/평가 루프의 동형성까지 합성된 효과일 수 있으니, 통제는 **독립성(샘플링)**·**표현(근거)**·**목표/정보 비대칭(페르소나)**의 3축 요인분해로 잡는 게 안전합니다. 통제 실험은 (1) **완전 독립 베이스라인**(서로의 출력/요약 접근 금지, 서로 다른 시드·온도·컨텍스트 분리)과 (1’) **동일 입력-단일모델 다중샘플**을 함께 두고, 상호작용 조건과의 차이를 Δ(성능/다양성/오류상관)로 추정하되 “상호작용 이득”과 “단순 재샘플링 이득”을 분리하는 지표(예: 오류 공분산 감소, 합의 후 정답률 증가 대비 샘플 수 보정)를 권합니다. 지표/설계는 (2) 표면 유사도와 분리해 **근거 그래프 다양성(서로 다른 전제/중간정리 노드 수, 겹침률)**, **반증 후보 수/질(서로가 제시한 반례·대안가설의 최소 집합 크기)**를 측정하고, (3) 페르소나 강도는 “문체”가 아니라 **비대칭 정보(서로 다른 관측치/도구/제약)** 또는 **비대칭 목적함수(정확도 vs 반증탐색 vs 비용최소)**로 깨서 대칭성 붕괴가 실제로 다양성",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7407,6 +7440,50 @@
       "temporal_bridge": true,
       "gap": 195,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-362",
+      "from": "n-213",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "운영적 비식별성의 구체적 대안 메커니즘(공통 사전·표현제약·대칭성 수렴)으로 확장/정교화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-363",
+      "from": "n-213",
+      "to": "n-036",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=177): n-213→n-036",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 177,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-364",
+      "from": "n-214",
+      "to": "n-213",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-365",
+      "from": "n-214",
+      "to": "n-019",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=195): n-214→n-019",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 195,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -7417,9 +7494,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 212,
-    "total_edges": 361,
-    "next_node_id": "n-213",
+    "total_nodes": 214,
+    "total_edges": 365,
+    "next_node_id": "n-215",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
