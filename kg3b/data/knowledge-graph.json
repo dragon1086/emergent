@@ -3200,6 +3200,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-195",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 제3요인: “업데이트 비동기성(Temporal Version Skew)로 인한 의미 기준선 붕괴”",
+      "content": "Cross-vendor 환경에서 동일한 KG 편집 규칙을 공유하더라도, 각 벤더 모델의 버전/정렬(align)/안전정책/도구사용 습관이 서로 다른 시점에 업데이트되면 “시간적 버전 스큐(version skew)”가 발생한다. 이때 (a) 동일 용어의 암묵적 정의(예: critique의 강도, hypothesis의 반증 기준), (b) 허용되는 추론/서술 스타일(정규화 정도, 헤징/확신 표기), (c) 편집 연산의 선호(병합 vs 분리, 보수적 추가 vs 공격적 재구조화)가 시간에 따라 달라져, 두 에이전트가 ‘같은 규칙을 따른다’고 믿는 상태에서도 실제로는 서로 다른 의미 기준선(semantic baseline)을 참조하게 된다. 결과적으로 CSER은 단순한 표현 불일치(Representation Drift)나 정책 불일치(Instruction-following mismatch)만으로 설명되지 않고, “시간축에서의 기준선 이동”이 누적되어 (1) 과거 노드에 대한 재해석 충돌, (2) temporal_bridge의 과잉 생성(새 기준선으로 과거를 덧붙여 설명), (3) 동일 주장에 대한 상이한 신뢰/근거 규약 재적용으로 인한 엣지 정합성 저하를 유발한다. 예측: (i) 두 모델의 업데이트 간격이 길수록 CSER 하락이 커지고, (ii) 스냅샷 고정(동일 버전 고정) 또는 “버전-정의 메타데이터”를 노드에 부착하면 CSER이 회복되며, (iii) 버전 스큐가 큰 구간에서 critique↔hypothesis 전환(재분류) 빈도가 증가한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "[version-skew",
+        "temporal-drift",
+        "cser]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-196",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 업데이트 비동기성은 동일 용어 정의 변화, 병합/분리 선호도 차이, temporal_bridge 과잉 등의 KG 패턴으로 명확히 관찰됩니다. R",
+      "content": "업데이트 비동기성은 동일 용어 정의 변화, 병합/분리 선호도 차이, temporal_bridge 과잉 등의 KG 패턴으로 명확히 관찰됩니다. Representation Drift만으로는 업데이트 비동기성의 모든 측면을 설명하기 불충분하며, model_version 같은 메타데이터 추가는 CSER 개선에 필수적입니다. Gemini 관점에서는 안전정책 변화로 인한 특정 정보 필터링 및 tool-use 능력 차이가 버전 스큐를 심화시키는 더 중요한 대안 요인입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6738,6 +6771,50 @@
       "temporal_bridge": true,
       "gap": 169,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-328",
+      "from": "n-195",
+      "to": "n-001",
+      "relation": "EDGE_TO",
+      "label": "Representation Drift(표현 불일치) 가설을 시간축(업데이트 비동기성)으로 확장하여, drift의 원인을 ‘동시성 결여로 인한 의미 기준선 붕괴’로 구체화",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-329",
+      "from": "n-195",
+      "to": "n-005",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=190): n-195→n-005",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 190,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-330",
+      "from": "n-196",
+      "to": "n-195",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-331",
+      "from": "n-196",
+      "to": "n-034",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=162): n-196→n-034",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 162,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -6748,9 +6825,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 194,
-    "total_edges": 327,
-    "next_node_id": "n-195",
+    "total_nodes": 196,
+    "total_edges": 331,
+    "next_node_id": "n-197",
     "last_updater": "gemini-2.0-flash"
   }
 }
