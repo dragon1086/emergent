@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 420,
-    "total_edges": 661,
-    "next_node_id": "n-421",
+    "total_nodes": 422,
+    "total_edges": 664,
+    "next_node_id": "n-423",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -7059,6 +7059,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash) 관점에서, RIA는 개념의 유동성을 간과하여 정의가 벤더별/문화별로 변동하는 경우 불변성",
       "content": "KG-3 실험 Agent B (Gemini Flash) 관점에서, RIA는 개념의 유동성을 간과하여 정의가 벤더별/문화별로 변동하는 경우 불변성이 깨지며, 특정 맥락에 고정될 때만 유효하다는 반례를 제시합니다. RIA를 강제하면 기준점 고정으로 새로운 표현과 아이디어 탐색을 제약하여 과도한 보수성, 혁신 억압, 표현 다양성 감소를 초래할 수 있습니다. 대안으로 다중표현 앙상블, 상호번역 루프, 모순 예산은 다양한 표현 간의 불일치를 정규화 요소로 활용하여 유연하면서도 강건한 정렬을 가능하게 합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-421",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as a controllable alignment-noise budget",
+      "content": "Cross-vendor KG 진화에서 성능/CSER을 좌우하는 핵심 매개변수는 모델 간 표현 차이 그 자체가 아니라, 그 차이를 “번역(translation) 레이어”로 얼마나 구조화·통제하느냐(=alignment-noise budget)이다. 구체적으로, (1) 공통 온톨로지/용어집, (2) 관계 스키마 제약(허용 관계 타입·방향·카디널리티), (3) 정규화된 정의 템플릿(필수 필드: 전제/기제/예측/반증조건), (4) 양방향 패러프레이즈-검증 루프(한 모델이 재서술, 다른 모델이 스키마 적합성 체크)를 “translation layer”로 두면, 모델 간 의미 불일치가 무작위 잡음이 아니라 측정 가능한 예산으로 전환된다. 이때 CSER은 잡음 예산이 0에 가까운 극단(과도한 동형화로 탐색 감소)과 너무 큰 극단(용어 붕괴로 누적 불가능) 사이에서 역 U자 형태로 최대화되며, 최적점은 태스크의 추상도/분해가능성에 따라 이동한다. 따라서 KG-3에서는 alignment noise를 줄이는 것만이 목표가 아니라, translation layer를 통해 “유익한 불일치”를 유지하면서도 축적 가능한 형태로 포장하는 것이 자율 진화의 조건이다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "CSER]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-422",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 위 가설의 역 U자 반례로, 고정된 정답 구조에서는 번역 계층 추가가 오히려 노이즈를 증가시켜 CSER이 평탄하거나 악화될 수 있습니다. 극단적",
+      "content": "위 가설의 역 U자 반례로, 고정된 정답 구조에서는 번역 계층 추가가 오히려 노이즈를 증가시켜 CSER이 평탄하거나 악화될 수 있습니다. 극단적 도메인 특수 용어의 경우, 번역 효과가 지속적으로 증가하여 U자 정점이 나타나지 않을 수 있습니다.\n\n번역 계층 구성요소의 영향력 검증은 각 요소를 개별적으로 제거/조정하는 절제 연구(ablation study)를 통해 가능하며, CSER 또는 최종 과업 성공률 감소폭이 가장 큰 요소가 핵심입니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -14185,6 +14218,38 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 384,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-662",
+      "from": "n-421",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 “translation layer(정렬-잡음 예산)”라는 조절 가능한 메커니즘으로 구체화하고, 최적 잡음 수준(역 U자)을 예측으로 추가한다",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-663",
+      "from": "n-421",
+      "to": "n-051",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=370): n-421→n-051",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 370,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-664",
+      "from": "n-422",
+      "to": "n-421",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
       "created": "2026-03-06"
     }
   ]
