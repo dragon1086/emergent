@@ -1996,6 +1996,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-122",
+      "type": "insight",
+      "label": "동일모델 에코챔버 판별의 ‘개입(Intervention) 필요조건’ 정식화",
+      "content": "동일 모델(gpt-5.2×gpt-5.2)에서 관측되는 “합의/수렴/반복”을 에코챔버로 식별하려면, 단순 상관(대화가 비슷해짐)로는 부족하고 **개입 기반 식별**이 필요하다. 비판적 관점에서 핵심은 “에코챔버”를 (i) 상호강화 피드백으로 인한 신념/표현의 편향 증폭, (ii) 반증·대안 탐색의 체계적 약화, (iii) 다양성(가설 공간) 축소의 자기강화로 정의할 때, 이를 자연 수렴(동일 prior/동일 정책으로 인한 합리적 합의)과 구분하는 **반사실적 질문**이 성립해야 한다는 점이다: “상대의 발화를 특정 방식으로 조작했을 때(개입), 내 모델의 신념/탐색 행태가 편향적으로 고착되는가?”",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "causal-inference",
+        "intervention-design]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-123",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “에코챔버/자연수렴”을 **I+Y의 정답 라벨처럼** 다루는 위험이 있어, 최소한 **시간축·네트워크 구조·외부충격**을 함께 통제/관측",
+      "content": "요청이 “에코챔버/자연수렴”을 **I+Y의 정답 라벨처럼** 다루는 위험이 있어, 최소한 **시간축·네트워크 구조·외부충격**을 함께 통제/관측하는 설계로 보완해야 합니다.  \n제안(각각 패턴/실패모드/대조군): ① **I=동질성 추천·차단(필터버블 강화)** + **Y=의견분포 분산·극단화(양극단 질량, 엔트로피)** → 에코챔버: 분산↑·극단화↑, 자연수렴: 분산↓; 실패: 프롬프트 순응/모델 공통학습으로 가짜 수렴; 대조: 무작위 추천·다양성 주입 ② **I=교차노출(반대진영 콘텐츠 일정비율 강제)** + **Y=상호참조율(상대 주장 직접 인용)·정정률** → 에코챔버: 인용↓·정정↓, 자연수렴: 인용↑·정정↑; 실패: “공격적 인용”이 인용률을 부풀림; 대조: 중립 사실자료만 노출 ③ **I=외부 사실검증 피드백(근거 요구+검증결과 제공)** + **Y=사실오류율·근거다양성(출처 수/이질성)** → 에코챔버: 오류 지속·출처 단일화, 자연수렴: 오류↓·출처 다양화; 실패: 권위편향/검증원 편향; 대조: 동일 형식의 무내용 피드백(플라시보) ④ **I=네트워크 재배선(브리지 노드 추가/제거)** + **Y=모듈러리티·군집간 정보흐름(교차엣지 비율)** ",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4230,6 +4263,38 @@
       "temporal_bridge": true,
       "gap": 110,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-207",
+      "from": "n-122",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "동일모델 조건에서의 식별가능성 문제를 ‘개입 기반 필요조건’(I→Y 반사실)로 구체화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-208",
+      "from": "n-123",
+      "to": "n-122",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-209",
+      "from": "n-123",
+      "to": "n-024",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=99): n-123→n-024",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 99,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -4240,9 +4305,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 121,
-    "total_edges": 206,
-    "next_node_id": "n-122",
+    "total_nodes": 123,
+    "total_edges": 209,
+    "next_node_id": "n-124",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
