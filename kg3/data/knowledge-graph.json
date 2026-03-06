@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 362,
-    "total_edges": 569,
-    "next_node_id": "n-363",
+    "total_nodes": 364,
+    "total_edges": 573,
+    "next_node_id": "n-365",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -6102,6 +6102,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: 번역 계층은 필수 파싱/매핑 규칙 중심으로 최소화하되, 불필요한 추상화로 인한 정보 손실과 CSER 저하 가능성을 주의해야 합니다. 이는 ali",
       "content": "번역 계층은 필수 파싱/매핑 규칙 중심으로 최소화하되, 불필요한 추상화로 인한 정보 손실과 CSER 저하 가능성을 주의해야 합니다. 이는 alignment noise를 정규화가 아닌 단순 손실로 변질시킬 수 있는 반례가 됩니다. 이를 검증하기 위해 스키마 유연성, 동의어 사전 크기, 불확실성 표기 규칙 유무를 조작 변수로, CSER, 정규화 성공률, 처리 시간을 관측지표로 제안합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-363",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “번역-내재화 루프(translation–internalization loop)”가 CSER을 결정한다  ",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 협업에서 성능 저하의 핵심 원인은 단순한 용어 불일치(semantic alignment) 자체보다, 각 벤더 모델이 상대의 산출물을 “자기 내부 표현으로 재부호화(re-encoding)”하는 과정에서 발생하는 정보 손실/왜곡이다. 이를 번역-내재화 루프(TIL)로 정의한다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-drift",
+        "CSER]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-364",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini Flash 관점에서 TIL의 내재화 단계에서 가장 많이 손실되는 정보는 *정의와 스키마 간의 미묘한 관계성 및 맥락적 제약 조건*으",
+      "content": "Gemini Flash 관점에서 TIL의 내재화 단계에서 가장 많이 손실되는 정보는 *정의와 스키마 간의 미묘한 관계성 및 맥락적 제약 조건*으로, 이는 복잡한 추론과 일반화를 저해합니다. Alignment noise는 *번역 단계*에서 입력의 다양성을 높여 내재화 모델의 *일반화 및 강건성*을 향상시킬 때 정규화 이득을 주며, 이는 다양한 노이즈 조건 하의 OOD(Out-of-Distribution) 성능 비교를 통해 엄밀히 구분 가능합니다. 앵커 주입은 *단일 맥락이 아닌 풍부하고 다양한 예시/스키마*를 통해 주입될 경우, 오히려 모델이 유연하게 다중 패턴을 학습하고 특정 과제에 대한 과적합 및 협업 경직을 방지할 수 있습니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -12240,6 +12273,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 336,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-570",
+      "from": "n-363",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 구체화하기 위해, 벤더 간 재부호화(TIL)가 CSER 저하/개선의 직접 메커니즘이라는 설명을 제공한다  ",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-571",
+      "from": "n-363",
+      "to": "n-067",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=296): n-363→n-067",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 296,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-572",
+      "from": "n-364",
+      "to": "n-363",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-573",
+      "from": "n-364",
+      "to": "n-058",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=306): n-364→n-058",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 306,
       "created": "2026-03-06"
     }
   ]
