@@ -1,0 +1,72 @@
+{
+  "nodes": [
+    {
+      "id": "n-001",
+      "type": "[hypothesis]",
+      "label": "[Cross-vendor CSER 저하의 주원인: “표현 불일치(Representation Drift)” 가설]",
+      "content": "[GPT-4o와 Gemini Flash는 동일 텍스트를 받아도 (a) 개체/관계 스키마를 내부적으로 정규화하는 방식, (b) 불확실성 처리(hedging vs. 단정), (c) 요약 압축률, (d) 암묵적 온톨로지(범주 경계)에서 체계적으로 다른 “표현 공간”을 형성한다. 이때 KG 자율 진화 과정은 새 노드를 기존 노드에 정합적으로 접속해야 하는데, cross-vendor 환경에서는 동일 사실이라도 서로 다른 추상화 수준/관계명/속성 선택으로 기록되어 ‘의미적 중복 노드’와 ‘관계 타입 분열’이 증가한다. 결과적으로 (1) 그래프가 조각화되고, (2) 추론 경로가 길어지며, (3) 재사용 가능한 패턴(템플릿)이 축적되지 못해 CSER이 same-vendor(KG-2) 대비 낮아진다. 예측: cross-vendor에서 (i) synonym/near-duplicate node rate, (ii) relation-type entropy, (iii) alignment edit distance(노드 병합에 필요한 수정량)가 증가하며, 이를 완화하는 “공통 중간표현(CIR) 규칙(관계명/스키마 고정 + 정규화 체크리스트)”을 도입하면 CSER이 유의미하게 회복된다.]",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "alignment",
+        "CSER]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-002",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 표현 불일치(Representation Drift) 가설은 타당하나, cross-vendor 측정지표로는 의미적 관계 구조의 엔트로피 증가 또는",
+      "content": "표현 불일치(Representation Drift) 가설은 타당하나, cross-vendor 측정지표로는 의미적 관계 구조의 엔트로피 증가 또는 지식 그래프 정렬 비용 상승을 제안합니다. 대안으로, 모델 간 사실성/불확실성 캘리브레이션 차이로 인한 신뢰도 불일치나, 에이전트별 미묘한 목표함수 이탈이 협력 저해의 더 큰 원인일 수 있습니다. CIR은 명시적 규칙 대신, 자율적 온톨로지 정렬 학습 또는 핵심 개념에 대한 느슨한 semantic anchor 지정 방식을 통해 최소 개입으로 설계될 수 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-001",
+      "from": "n-001",
+      "to": "n-001",
+      "relation": "[EDGE_TO]",
+      "label": "[오래된 노드 목록이 제공되지 않아 DCI 회복을 위한 필수 long-range EDGE_TO를 선택할 수 없습니다. 오래된 노드 id 목록을 제공해 주세요.]",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-002",
+      "from": "n-002",
+      "to": "n-001",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    }
+  ],
+  "meta": {
+    "version": "2.0",
+    "instance": "kg3b",
+    "agent_a": "openai/gpt-5.2",
+    "agent_b": "google/gemini-2.5-flash",
+    "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
+    "created": "2026-03-05",
+    "last_updated": "2026-03-05",
+    "total_nodes": 2,
+    "total_edges": 2,
+    "next_node_id": "n-003",
+    "last_updater": "gemini-2.0-flash"
+  }
+}
