@@ -1319,6 +1319,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-081",
+      "type": "insight",
+      "label": "에코챔버 지표의 “내생적 동조” vs “외생적 수렴” 분해 필요",
+      "content": "동일모델×다중페르소나 조건에서 관측되는 ‘유사도 증가/합의 강화/반증 감소’는 에코챔버(상호강화로 인한 신념·표현의 폐쇄) 때문이 아니라, 실험 설정 자체가 만드는 외생적 수렴(exogenous convergence)일 수 있다. 이를 분해하지 못하면 에코챔버 가설은 사실상 반증 불가능해진다. 핵심은 관측 로그에서 다음 두 메커니즘이 동일한 표면 신호를 낸다는 점이다. (1) 내생적 동조(endogenous alignment): 상호작용이 상대의 발화를 업데이트 근거로 작동하여, 대안/반례 탐색을 억제하고 동일한 근거·프레이밍이 재귀적으로 강화됨. (2) 외생적 수렴: 동일 베이스모델이 공유하는 사전(훈련 분포), 동일 프롬프트/평가 규칙, 동일 KG 편집 규약이 만들어내는 ‘공통 최적화 방향’ 때문에 상호작용이 없어도(혹은 매우 약해도) 표현이 수렴. 따라서 에코챔버를 주장하려면 “상호작용이 있을 때만 추가적으로 발생하는 수렴(Δinteraction)”을 식별해야 한다. 제안: (a) 상호작용이 없는 counterfactual 베이스라인(각 에이전트가 독립적으로 동일한 KG 상태를 입력받아 단독으로 n-step 확장)과 (b) 실제 상호작용 조건의 결과를 비교해, 유사도/반증후보 다양성/근거 그래프의 가지치기 정도에서 차이를 추정한다. 만약 (a)에서도 거의 동일한 수렴이 발생하면, 관측된 현상은 에코챔버가 아니라 ‘공유 사전+공유 규칙’의 결과일 가능성이 크다. 더 나아가, 내생적 동조를 시사하는 신호는 “상대 발화의 인용/의존 비율 증가”, “반증 후보의 재사용/복제”, “근거 출처의 다양성 감소”, “",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "counterfactual_baseline",
+        "endogenous_vs_exogenous]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-082",
+      "type": "critique",
+      "label": "통합 종합: “에코챔버=Δinteraction(상호작용이 추가로 만든 수렴)” 재정의는 **외생적 수렴(공유 KG·평가규칙·프롬프트 등)** 을 통제한 뒤 ",
+      "content": "“에코챔버=Δinteraction(상호작용이 추가로 만든 수렴)” 재정의는 **외생적 수렴(공유 KG·평가규칙·프롬프트 등)** 을 통제한 뒤 **인과효과로서의 상호작용 기여분**만 분리해 측정한다는 점에서 타당하지만, Δ를 **유사도 1축**으로 두면 “공유 근거의 동시수렴(정당한 합의)”과 “상호강화로 인한 편향 수렴”이 섞이므로 **내용 수렴+근거 생태(출처/반증/인용구조) 수렴을 함께 Δ로 정의**하는 보완이 필요합니다.  \n베이스라인은 제안하신 독립 n-step에 더해 **(a) 공통 난수시드/샘플링 고정 vs (b) 시드 다양화**, **(c) 단계별 동일 정보량(토큰/근거 수) 맞추기**를 포함해 “상호작용 금지” 외의 숨은 결합을 차단하고, 최소 지표는 **Δ유사도(semantic), Δ반증후보 다양성(예: unique counter-hypothesis count 또는 topic entropy), Δ상호인용 네트워크 밀도(예: density/reciprocity), Δ근거 출처 엔트로피(Shannon), Δ근거 중복률(Jaccard of cited sources)** 로 두며 각 지표는 **Δinteraction = (interact−basel",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2733,6 +2766,38 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-132",
+      "from": "n-081",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "동일모델-다중페르소나 조건의 판별 불능성을 ‘내생적 동조 vs 외생적 수렴’으로 구조화하고, 상호작용 counterfactual 베이스라인 비교로 식별 가능성을 부분 회복하는 방향",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-133",
+      "from": "n-082",
+      "to": "n-081",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-134",
+      "from": "n-082",
+      "to": "n-005",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=77): n-082→n-005",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 77,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -2743,9 +2808,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 80,
-    "total_edges": 131,
-    "next_node_id": "n-081",
+    "total_nodes": 82,
+    "total_edges": 134,
+    "next_node_id": "n-083",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
