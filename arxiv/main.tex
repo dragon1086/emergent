@@ -473,12 +473,14 @@ full graph $G$ at each snapshot.}
 \label{fig:kg_structure}
 \end{figure}
 
-\medskip\noindent\textbf{Data cutoff}: All KG metrics reported in this paper
-use the snapshot dated \textbf{2026-03-02} unless otherwise noted. Experiments
-labeled ``Cycle 86'' or ``Cycle 89'' reference historical snapshots taken at
-those cycle counts; they are not updated to the latest snapshot.
-Comparisons that span multiple snapshots are explicitly labeled with their
-respective snapshot dates to ensure same-snapshot consistency.
+\medskip\noindent\textbf{Data cutoff}: KG-main metrics in this paper use the
+snapshot dated \textbf{2026-03-02} (534 nodes/1121 edges, CSER$=0.851$).
+The $2\times2$ replication instances (KG-2, KG-3, KG-4) and replication-B
+instances (KG-2b, KG-3b, KG-4b) are reported as of \textbf{2026-03-05}
+(latest snapshot). Experiments labeled ``Cycle 86'' or ``Cycle 89'' reference
+historical snapshots taken at those cycle counts; they are not updated to the
+latest snapshot. Comparisons spanning multiple snapshots are explicitly labeled
+with their respective snapshot dates.
 Supplementary controlled experiments labeled ``Cycle 90,'' ``Cycle 91,''
 and ``Cycle 92'' are independent experiments conducted after the main KG
 snapshot; they do not modify the main KG state and should be interpreted
@@ -1423,8 +1425,8 @@ generalising the domain-dependence claim.
         strongest same-model echo-chamber test in the $2\times2$ matrix.
         Early trajectory (95 nodes, 161 edges): CSER declined from 1.00 (cycle 1)
         to 0.534 (current), consistent with progressive echo-chamber pressure under
-        identical-model pairing. Replication-B (KG-2b, 36 nodes) already converges
-        to CSER $= 0.552$, closely matching this value---first within-cell replication signal.
+        identical-model pairing. Replication-B (KG-2b, 68 nodes, CSER $=0.500$) tracks the same declining
+        trajectory---first within-cell replication signal.
         Prior 30-cycle snapshot (CSER $=0.83$, GPT-4o $\times$
         GPT-4o-mini) is retained as a supplementary data point.
         $^{\dagger}$KG-3 and KG-4 were initialized with earlier model versions (GPT-4o,
@@ -1441,8 +1443,7 @@ generalising the domain-dependence claim.
                 a directional finding consistent with the echo-chamber hypothesis.
                 KG-2 (GPT-5.2 $\times$ GPT-5.2, zero capability gap) shows early
                 echo-chamber pressure: CSER declined from 1.00 (cycle~1) to 0.534
-                (95 nodes). Replication-B (KG-2b, 68 nodes, CSER $=0.500$) tracks
-                matches this trajectory---first within-cell replication of the same-model
+                (95 nodes). Replication-B (KG-2b, 68 nodes, CSER $=0.500$) tracks this declining trajectory---first within-cell replication of the same-model
                 echo-chamber effect.
           \item Across-vendor CSER ordering: KG-main (0.851) $>$ KG-2 (0.534) $>$
                 KG-3 (0.380) $>$ KG-4 (0.254),
