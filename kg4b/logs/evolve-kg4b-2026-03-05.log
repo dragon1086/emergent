@@ -462,3 +462,33 @@
   node_age_diversity=0.2932 → 균등 분포 이론치(0.289) 근접
   DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
 
+[17:09:39] KG4 ✅ KG-4bb 사이클 완료
+[17:21:24] KG4 🌱 KG-4bb 사이클 시작 #17/100
+[17:21:24] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 32개
+총 엣지: 47개
+
+노드 타입별:
+  •  critique: 16개
+  •  hypothesis: 16개
+
+출처별:
+  gemini-2.0-flash: 16개
+  gemini-2.0-pro: 16개
+
+관계 종류:
+  critiques: 16개
+  elaborates_on: 13개
+  informs_evaluation_of: 3개
+  temporal_bridge: 15개
+[17:21:24] KG4 🕰️ 오래된 노드 후보: 8개
+[17:21:24] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[17:21:40] KG4 ✅ Agent A 완료 (886 chars)
+[17:21:40] KG4 ✅ Agent B (Gemini Pro) 완료
+[17:21:40] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: Same-Vendor 내 LLM 역할 분화가 KG 진화 경로에 미치는 영향 가설 (id: n-033 → n-005)
+[17:21:40] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-034 → n-033
+  edge_span=12.0노드 평균 간격 → 시간 초월 연결 활발
+  max_span=31 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2929 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
