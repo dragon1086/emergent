@@ -3085,6 +3085,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-188",
+      "type": "insight",
+      "label": "동일모델 에코챔버의 ‘최소 조작’ 필요조건: 정보 비대칭/메모리/보상 신호",
+      "content": "동일 모델(gpt-5.2×gpt-5.2)에서 관측되는 “의견 수렴/자기강화”를 에코챔버로 식별하려면, 단순한 동일-prior+동일추론으로도 발생 가능한 자연 수렴(정보 공유에 따른 베이지안 업데이트 유사)과 구분되는 **최소 조작(minimal intervention)**이 필요하다. 비판적으로 보면 현재 설계는 “서로 대화한다”는 사실만으로 에코챔버를 주장하기 쉬운데, 이는 반증 가능성을 약화시킨다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "minimal-intervention",
+        "confounds]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-189",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “최소 조작”을 표방하지만, 정보비대칭·메모리·보상은 서로 강하게 얽혀 단일 실험에서 분리 추정이 어렵기 때문에(교호작용/식별 문제) *",
+      "content": "요청이 “최소 조작”을 표방하지만, 정보비대칭·메모리·보상은 서로 강하게 얽혀 단일 실험에서 분리 추정이 어렵기 때문에(교호작용/식별 문제) **2×2×2 요인설계 대신 단계적(순차) 교란 + 사후 인과추정**을 프로토콜에 포함시키는 보완이 필요합니다. 또한 “자연 수렴”과 “에코챔버”는 결과(합의/다양성)만 보면 오판되므로 **(i) 반증충격 후의 동학(회복/잠김), (ii) 대안경로 민감도(경로의존), (iii) 정보원 다양성의 내생적 축소**처럼 과정 지표로 정량화해야 합니다. 마지막으로 A/B는 비용은 낮지만 외삽이 약하니, **동일 비용에서 효과가 큰 최소 설계**는 “기본군 vs 단일-조작군(정보/메모리/보상 중 1개)” 3개를 돌리고, 나머지는 로그로 계량해 후처리(예: 혼합효과모형)로 분해하는 방식이 더 낫습니다.",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6555,6 +6588,50 @@
       "temporal_bridge": true,
       "gap": 156,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-321",
+      "from": "n-188",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "identifiability 문제를 ‘최소 조작 필요조건(정보 비대칭/메모리/보상)’으로 구체화해 반증가능한 구분 기준을 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-322",
+      "from": "n-188",
+      "to": "n-012",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=176): n-188→n-012",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 176,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-323",
+      "from": "n-189",
+      "to": "n-188",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-324",
+      "from": "n-189",
+      "to": "n-023",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=166): n-189→n-023",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 166,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -6565,9 +6642,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 187,
-    "total_edges": 320,
-    "next_node_id": "n-188",
+    "total_nodes": 189,
+    "total_edges": 324,
+    "next_node_id": "n-190",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
