@@ -1171,6 +1171,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-072",
+      "type": "insight",
+      "label": "동일모델 에코챔버의 ‘작동 정의’ 미정: 동의율 vs 정보손실 vs 다양성 붕괴",
+      "content": "동일 모델 간 상호작용에서 “에코챔버”를 주장하려면, 관측량이 최소한 (a) 단순 수렴(합리적 베이지안 업데이트/공유 증거로 인한 합의)와 (b) 상호강화로 인한 정보 손실·탐색 붕괴를 구분해야 한다. 현재 프레임은 “동일모델이므로 더 쉽게 에코챔버”라는 직관에 기대지만, 에코챔버의 핵심은 ‘동의의 증가’ 자체가 아니라 ‘대안 가설/증거의 체계적 소거’와 ‘내부 피드백에 의해 오류가 고착’되는 동학이다. 따라서 작동 정의 없이 동의율(agreement rate), 발화 유사도(embedding similarity), 토픽 집중도 같은 표면 지표를 쓰면 자연 수렴을 에코챔버로 오인할 위험이 크다. 비판적으로는 에코챔버를 (1) 반증가능성 감소(대안 가설 공간의 엔트로피 하락), (2) 외생 증거 주입에 대한 교정 실패(교정탄력성/elasticity 저하), (3) 오류 신념의 자기강화(ground-truth 대비 편향의 단조 증가)라는 3축으로 정의하고, 각각에 대해 동일모델-비동일모델, 상호작용-독립 샘플링, 외부 증거 유무를 교차시킨 실험 설계가 필요하다. 특히 “동일모델” 조건에서만 나타나는 추가적인 정보손실(예: 반대증거 제시 빈도 감소, 가설 다양성 붕괴 속도 증가)이 없다면, 관측된 수렴은 에코챔버가 아니라 단순한 prior/likelihood 공유의 결과일 수 있다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[operationalization",
+        "identifiability",
+        "metrics]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-073",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “3문장 이내”인데 교차표까지 넣으면 형식적으로 과밀해지니, **표 대신 2×2 예측을 문장 내에 압축**하는 게 더 일관됩니다(또 “자",
+      "content": "요청이 “3문장 이내”인데 교차표까지 넣으면 형식적으로 과밀해지니, **표 대신 2×2 예측을 문장 내에 압축**하는 게 더 일관됩니다(또 “자연 수렴”의 기준모델을 먼저 고정하지 않으면 동일/비동일·상호작용/독립 구분이 공허해질 수 있음). 지표는 (1) **가설 엔트로피 감소율**(시간/상호작용 대비 후보가설 분포가 단조 붕괴), (2) **반대증거 생성·인용율**(steelman+출처 포함 반례 비중), (3) **외생 증거 주입 후 편향 회복 반감기**(교정된 판단으로 돌아오는 속도)로 두고, 예측은 **동일모델×독립**(자연수렴이면 1은 완만·2는 유지·3은 빠름), **동일모델×상호작용**(자연수렴은 네트워크 동조로 1↓·2↓·3↑ 가능하나 외생 주입에 민감), **비동일모델×독립**(에코챔버면 1 급락·2 구조적 저하·3 지연이 개인 수준에서 지속), **비동일모델×상호작용**(에코챔버면 1·2·3 모두 네트워크 강화로 극단화: 엔트로피 급락/반례 거의 0/회복 매우 느림)처럼 “주입 민감도와 회복 동학”에서 자연수렴과 분리됩니다. 추가로, “대안가설 소거”를 더 직접 잡으려면 **반사실 질문(만약 A가 틀리다면?)에 대한 최소수정 대안 제시율*",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2461,6 +2494,50 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-120",
+      "from": "n-072",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "식별가능성 문제를 ‘에코챔버 작동 정의/측정축 부재’로 구체화하고, 동의율 중심 지표의 오판 위험을 추가",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-121",
+      "from": "n-072",
+      "to": "n-008",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=64): n-072→n-008",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 64,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-122",
+      "from": "n-073",
+      "to": "n-072",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-123",
+      "from": "n-073",
+      "to": "n-001",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=72): n-073→n-001",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 72,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -2471,9 +2548,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 71,
-    "total_edges": 119,
-    "next_node_id": "n-072",
+    "total_nodes": 73,
+    "total_edges": 123,
+    "next_node_id": "n-074",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
