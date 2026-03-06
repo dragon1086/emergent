@@ -1468,6 +1468,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-090",
+      "type": "insight",
+      "label": "동일모델 에코챔버 ‘식별 불가능성’을 깨는 최소 개입: 퍼소나-정렬 충돌(orthogonalization) 설계",
+      "content": "동일 모델(gpt-5.2×gpt-5.2)에서 “에코챔버(상호강화로 인한 편향 증폭)”를 주장하려면, 관측된 수렴/동조가 (i) 동일 prior 및 학습 데이터에 따른 자연스런 수렴인지, (ii) 대화 동역학(상호 인용·반복·확증편향) 때문에 발생한 추가 효과인지 식별해야 한다. 현재 설계는 두 메커니즘이 관측적으로 동일해질 위험이 크다(식별가능성 문제). 이를 깨는 최소 개입은 ‘입력 정보’나 ‘모델’을 바꾸지 않고도, **대화 규칙(퍼소나/목표 함수)을 서로 직교(orthogonal)시키는 것**이다. 즉 Agent A/B가 같은 사실 기반을 공유하더라도, 평가 기준을 의도적으로 충돌시키면 자연 수렴은 제한되고, 에코챔버적 상호강화가 있다면 오히려 특정 방향으로 “동조 압력”이 나타난다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "identifiability",
+        "persona-orthogonalization",
+        "echochamber-dynamics"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-091",
+      "type": "critique",
+      "label": "통합 종합: 요청은 “최소 프로토콜”이라면서 지표·실패모드·판별기준까지 과적재되어 최소성이 깨지므로, 3요소(퍼소나-정렬 충돌/반사실 고정점/인용 제한)는 ",
+      "content": "요청은 “최소 프로토콜”이라면서 지표·실패모드·판별기준까지 과적재되어 최소성이 깨지므로, 3요소(퍼소나-정렬 충돌/반사실 고정점/인용 제한)는 **단일 게이트**로만 묶고 나머지는 그 게이트의 출력물(로그)에서 계산되게 해야 합니다: 매 턴 (1) *충돌 스캔*—퍼소나 주장↔사용자 목표↔안전/사실 제약의 불일치 수를 C로 기록, (2) *반사실 고정점*—최소 1개 반사실(“만약 X가 거짓/반대라면 결론이 유지되는가”)을 생성해 결론 안정성 F(유지=1/부분=0.5/붕괴=0)를 기록, (3) *인용 제한*—근거는 최대 k개 ‘독립 근거 단위’로 요약해 근거 다양성 I(서로 다른 출처/가정 축 수)만 로그; 그러면 (a) 규범 전염=ΔC/turn의 누적(갈수록 충돌이 줄면 전염↑), 경로의존성=동일 입력에서 초기 프레이밍 변화에 따른 결론 분산 Var(out|seed), 합의 속도=목표 상태(충돌 C≤c*, 안정성 F≥f*) 도달 턴수로 정의 가능합니다. (b) 실패 모드는 메타-순응=F는 낮은데 C만 급락(겉합의)하는 패턴이므로 “F< f_min이면 C 감소를 합의로 카운트 금지” 규칙, 목표함수 붕괴=I가 급락하며 단일 근거로 수렴하는 패턴이므로 “I< i_",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3118,6 +3151,38 @@
       "temporal_bridge": true,
       "gap": 88,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-153",
+      "from": "n-090",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "‘동일모델 에코챔버’ 식별가능성 문제를 내부 조작(퍼소나/규범 직교화)으로 깨는 설계 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-154",
+      "from": "n-091",
+      "to": "n-090",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-155",
+      "from": "n-091",
+      "to": "n-001",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=90): n-091→n-001",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 90,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -3128,9 +3193,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 89,
-    "total_edges": 152,
-    "next_node_id": "n-090",
+    "total_nodes": 91,
+    "total_edges": 155,
+    "next_node_id": "n-092",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
