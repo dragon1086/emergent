@@ -1979,6 +1979,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-121",
+      "type": "insight",
+      "label": "에코챔버 ‘자율 진화’ vs ‘프로토콜 유도’의 인과 혼동(Intervention Confounding)",
+      "content": "동일 모델·고정 페르소나·고정 프롬프트 구조에서 관측되는 “합의 강화/유사도 증가/반증 약화”는 (i) 상호작용으로부터의 내생적 자기강화(가설적 에코챔버)라기보다 (ii) 실험 프로토콜 자체가 만들어낸 인과효과(프로토콜 유도 수렴)일 수 있다. 특히 KG를 “자율 진화”시키는 과정은 매 턴 (a) 이전 노드/엣지의 재노출, (b) DCI 회복을 위한 특정 노드 선택 강제, (c) 동일한 출력 포맷 강제, (d) ‘관계 종류’의 제한된 어휘(temporal_bridge/refines/critiques) 사용을 통해, 대안 가설 탐색 공간을 구조적으로 축소한다. 이때 관측되는 수렴은 ‘에코챔버 메커니즘’(선택적 노출→확증편향 강화→대안 삭제)의 증거가 아니라, ‘실험 설계의 반복 노출/제약’에 의해 생성된 인공적 경로의 결과일 수 있다. 반증가능하게 만들려면, 최소한 “프로토콜 유도 수렴”을 분리하는 대조 조건이 필요하다: 예컨대 (1) DCI 강제 없이 랜덤 과거노드 재연결, (2) 관계 어휘를 확장(contradicts, falsifies, alternative_to 등)하거나 자유서술 허용, (3) 재노출 빈도/강도를 조절하는 ablation, (4) ‘반증 후보 생성’ 전용 턴을 삽입해 수렴 압력을 역전. 이런 대조가 없으면, 동일 모델 간 상호작용에서 나타난 어떤 수렴도 “에코챔버의 자율 진화”로 식별하기 어렵고, 오히려 실험이 만든 경로의 산물이라는 강한 교란 설명이 남는다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "confounding",
+        "protocol_effect]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-122",
+      "type": "critique",
+      "label": "통합 종합: 요청을 보완하면, “프로토콜 유도 수렴(PIC)”은 **모델의 내생적 신념수렴**이 아니라 **프로토콜(평가/지시/보상/템플릿)이라는 외생 변수",
+      "content": "요청을 보완하면, “프로토콜 유도 수렴(PIC)”은 **모델의 내생적 신념수렴**이 아니라 **프로토콜(평가/지시/보상/템플릿)이라는 외생 변수**가 발화분포를 수렴시키는 현상으로 정식화해야 하며, 따라서 경쟁가설인 “에코챔버 자율진화(EAE)”와는 **외생 개입에 대한 반응(불변성/민감도)**에서 갈립니다. 최소 SCG로는 (Y_t)(산출/어휘/가설분포), (S_t)(세션 내 상태), (P_t)(프로토콜/지시/평가압), (U_t)(잠재 주제·사용자 성향)로 두고, **PIC**: (P_tto Y_t) 및 (P_tto S_tto Y_{t+1}) (동일 (U_t)에서도 (P) 변화가 (Y)를 즉시·강하게 이동) vs **EAE**: (U_tto Y_t), (Y_tto S_tto Y_{t+1}) (주로 자기강화 루프)이며 (P_t)의 효과는 약하거나 (U)에 의해 매개된다고 두면 됩니다. 구분 지표는 (i) **반증 후보 다양성**(동일 주장에 대한 반례/실험 제안의 종류수), (ii) **대안가설 생존율**(턴 (t)에서 제시된 대안이 (t+k)에서도 유지/참조되는 비율), (iii) **관계어휘 엔트로피**(인과·조건·반례·불확실성 표지의 분포 엔트로피), ",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4153,6 +4186,38 @@
       "temporal_bridge": true,
       "gap": 118,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-202",
+      "from": "n-121",
+      "to": "n-003",
+      "relation": "refines",
+      "label": "관측가능성 한계/교란 목록을 ‘프로토콜 유도 수렴’이라는 구체적 인과 교란으로 정교화하고, 이를 분리하는 대조조건(ablation/대체 어휘/재노출 조절)을 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-203",
+      "from": "n-121",
+      "to": "n-023",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=98): n-121→n-023",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 98,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-204",
+      "from": "n-122",
+      "to": "n-121",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -4163,9 +4228,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 120,
-    "total_edges": 201,
-    "next_node_id": "n-121",
+    "total_nodes": 122,
+    "total_edges": 204,
+    "next_node_id": "n-123",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
