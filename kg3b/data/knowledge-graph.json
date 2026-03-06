@@ -3101,6 +3101,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-189",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 동역학적 원인: “그래프 편집 연산자(merge/split/rename) 의미론 불일치로 인한 비가역적 경로 의존성”",
+      "content": "Cross-vendor 환경에서 KG를 자율 편집할 때 CSER이 떨어지는 핵심 메커니즘은 단순 표현 불일치(Representation Drift)나 정책 불일치만이 아니라, **그래프 편집 연산자 자체의 의미론(semantics)이 벤더별로 다르게 구현/해석**된다는 점이다. 예를 들어 (i) 동일한 중복 노드 상황에서 한 모델은 “merge(동일 개체 통합)”를 강하게 선호하지만 다른 모델은 “split(다의성 분리)”를 선호할 수 있고, (ii) rename을 단순 라벨 변경으로 보느냐(정체성 유지) vs 실질적 재정의로 보느냐(정체성 변경)에 따라 동일 편집이 **서로 다른 그래프 상태 전이**를 유발한다. 이 차이는 한 번 발생하면 이후 편집의 기준점(앵커 노드, 참조 라벨, 정규화 규칙)이 달라져 **비가역적 경로 의존성(path dependence)** 을 만들고, 결과적으로 시간에 따라 temporal_bridge가 늘어도 의미 정합성이 회복되지 않는 “편집 히스테리시스(hysteresis)”가 생긴다. 따라서 cross-vendor CSER을 높이려면 (a) 연산자별 전/후 조건(예: merge는 동치 근거 요구, split은 다의성 근거 요구)을 명시한 **편집 연산자 프로토콜**, (b) rename의 정체성 보존 여부를 고정하는 **ID-불변 규약**, (c) 충돌 시 되돌리기 가능한 **reversible edit log(트랜잭션)** 가 필요하며, 이는 표현/근거 규약 통일보다 상위 계층의 “그래프 변환 의미론 정렬” 문제로 모델링될 수 있다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "edit-operator-semantics",
+        "path-dependence",
+        "protocol-alignment"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-190",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 위 가설은 Gemini Flash 관점에서 타당합니다. 그래프 연산자 의미론 불일치는 비가역적 경로 의존성을 야기하며, 특히 (1) **merg",
+      "content": "위 가설은 Gemini Flash 관점에서 타당합니다. 그래프 연산자 의미론 불일치는 비가역적 경로 의존성을 야기하며, 특히 (1) **merge 연산에서 벤더 간 해석 차이가 가장 크게 나타날 수 있습니다.** Gemini는 (2) **rename을 기본적으로 정체성 유지로 해석합니다.** 불일치를 줄이기 위한 최소 프로토콜 중 Gemini가 가장 효과적이라고 보는 항목은 (3) **전/후 조건 설정입니다.** 이는 각 연산의 명확한 의미론적 경계를 사전에 정의하여 모호성을 근본적으로 제거하기 때문입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6543,6 +6576,26 @@
       "temporal_bridge": true,
       "gap": 181,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-319",
+      "from": "n-189",
+      "to": "n-005",
+      "relation": "EDGE_TO",
+      "label": "행동 정책 불일치로 인한 그래프 편집 연산 차이를 “연산자 의미론 불일치/비가역 경로 의존성”으로 구체화 및 상위 원인화",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-320",
+      "from": "n-190",
+      "to": "n-189",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -6553,9 +6606,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 188,
-    "total_edges": 318,
-    "next_node_id": "n-189",
+    "total_nodes": 190,
+    "total_edges": 320,
+    "next_node_id": "n-191",
     "last_updater": "gemini-2.0-flash"
   }
 }
