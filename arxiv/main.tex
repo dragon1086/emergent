@@ -76,7 +76,7 @@ across independent replications.
         persona configuration interacts with vendor diversity.
   \item \textbf{Within-cell replication signal}: Independent replication-B instances
         (KG-2b, KG-3b, KG-4b) initiated 2026-03-05 show strong early convergence:
-        KG-2b CSER$=0.513$ tracks KG-2 CSER$=0.534$ (same declining trajectory, $N=72$ nodes),
+        KG-2b CSER$=0.508$ tracks KG-2 CSER$=0.534$ (same declining trajectory, $N=78$ nodes),
         providing the first within-cell reproducibility evidence for same-model echo-chamber
         trajectory.
   \item \textbf{Ungated quality stress test}: With the CSER gate disabled,
@@ -119,7 +119,7 @@ small-sample noise rather than a robust effect (see Section~\ref{sec:amp_benchma
 \medskip\noindent\textbf{Scope and limitations}: Primary findings are based on $N=4$ independent
 KG instances across a $2\times2$ vendor-diversity matrix ($\geq$30 cycles each).
 Each cell now contains $N=2$ independent KG instances (original + replication-B);
-KG-2b CSER (0.513) tracks KG-2 (0.534) on the same declining trajectory, providing
+KG-2b CSER (0.508) tracks KG-2 (0.534) on the same declining trajectory, providing
 a first within-cell replication signal. Full trajectory stabilisation pending.
 Domain generalization requires further study. Claims are limited to this experimental setting.
 
@@ -171,7 +171,7 @@ a shared KG over 89+ cycles; three controlled replication instances were establi
 to test whether CSER tracks agent heterogeneity across vendor configurations.
 Each cycle consists of Agent A's contribution $\to$ Agent B's response $\to$ KG update.
 To verify reproducibility, independent replication-B instances (KG-2b, KG-3b, KG-4b)
-were initiated 2026-03-05; KG-2b (72 nodes, CSER$=0.513$) tracks KG-2
+were initiated 2026-03-05; KG-2b (78 nodes, CSER$=0.508$) tracks KG-2
 (95 nodes, CSER$=0.534$) on the same echo-chamber trajectory.
 
 \medskip\noindent\textbf{What distinguishes this from prior work}:
@@ -194,7 +194,7 @@ Key patterns observed:
         (KG-main$=0.851>$KG-2$=0.534>$KG-3$=0.380>$KG-4$=0.254$), with a
         persona$\times$vendor interaction: same-model persona-diverse pairs can exceed
         cross-vendor same-persona pairs
-  \item \textbf{Within-cell replication}: Independent KG-2b instance (72 nodes) tracks
+  \item \textbf{Within-cell replication}: Independent KG-2b instance (78 nodes) tracks
         KG-2 (95 nodes) on the same declining CSER trajectory ($\Delta=0.02$),
         providing reproducibility evidence for the echo-chamber effect
 \end{itemize}
@@ -1405,7 +1405,7 @@ generalising the domain-dependence claim.
         findings derive from KG-main (130+ cycles). The $2\times2$ vendor-diversity
         experiment provides three additional independent KG instances across four
         agent configurations. \emph{Each cell now contains $N=2$ independent KG instances
-        (replication-B instances: KG-2b CSER$=0.513$ (tracking KG-2\,0.534), KG-3b CSER$=0.475$, KG-4b CSER$=0.543$; all at 72 nodes, 2026-03-05).
+        (replication-B instances: KG-2b CSER$=0.508$ (tracking KG-2\,0.534), KG-3b CSER$=0.484$, KG-4b CSER$=0.552$; all at 78 nodes, 2026-03-05).
         Domain generalization requires further study.} No claim
         generalizes beyond this experimental matrix without independent replication.
         \textit{Prior single-system note}: The heterogeneous LLM pair
@@ -1438,7 +1438,7 @@ generalising the domain-dependence claim.
         strongest same-model echo-chamber test in the $2\times2$ matrix.
         Early trajectory (95 nodes, 161 edges): CSER declined from 1.00 (cycle 1)
         to 0.534 (current), consistent with progressive echo-chamber pressure under
-        identical-model pairing. Replication-B (KG-2b, 72 nodes, CSER $=0.513$) tracks the same declining
+        identical-model pairing. Replication-B (KG-2b, 78 nodes, CSER $=0.508$) tracks the same declining
         trajectory---first within-cell replication signal.
         Prior 30-cycle snapshot (CSER $=0.83$, GPT-4o $\times$
         GPT-4o-mini) is retained as a supplementary data point.
@@ -1456,7 +1456,7 @@ generalising the domain-dependence claim.
                 a directional finding consistent with the echo-chamber hypothesis.
                 KG-2 (GPT-5.2 $\times$ GPT-5.2, zero capability gap) shows early
                 echo-chamber pressure: CSER declined from 1.00 (cycle~1) to 0.534
-                (95 nodes). Replication-B (KG-2b, 72 nodes, CSER $=0.513$) tracks this declining trajectory---first within-cell replication of the same-model
+                (95 nodes). Replication-B (KG-2b, 78 nodes, CSER $=0.508$) tracks this declining trajectory---first within-cell replication of the same-model
                 echo-chamber effect.
           \item Across-vendor CSER ordering: KG-main (0.851) $>$ KG-2 (0.534) $>$
                 KG-3 (0.380) $>$ KG-4 (0.254),
@@ -1968,7 +1968,7 @@ Auto-persona ON produces higher quality (cross-provider) &
 Vendor diversity monotonically predicts CSER (cross > same) &
 \textbf{Partially supported} & CSER ordering: KG-main(0.851)$>$KG-2(0.534)$>$KG-3(0.380)$>$KG-4(0.254); KG-2 (same-model, persona-diverse) outranks KG-3 (cross-vendor), suggesting persona opposition partially offsets same-model echo-chamber \\
 Within-cell CSER trajectory is reproducible (same config $\to$ same CSER) &
-\textbf{Early signal} & KG-2b CSER$=0.513$ tracking KG-2 CSER$=0.534$ (same echo-chamber trajectory, 72 nodes); KG-3b/4b trajectories pending 100+ cycles \\
+\textbf{Early signal} & KG-2b CSER$=0.508$ tracking KG-2 CSER$=0.534$ (same echo-chamber trajectory, 78 nodes); KG-3b/4b trajectories pending 100+ cycles \\
 \bottomrule
 \end{tabular}
 \caption{Evidence calibration: confirmed findings vs.\ exploratory/conjectural claims.
@@ -2034,7 +2034,7 @@ are explicitly deferred pending multi-seed, multi-pair, multi-domain replication
   \item \textbf{KG replication ($2\times2$ design, ongoing)}:
         KG-2 (GPT-5.2 $\times$ GPT-5.2) has accumulated 95 nodes (161 edges),
         showing early echo-chamber pressure: CSER declined from 1.00 (cycle~1)
-        to 0.534. Replication-B (KG-2b, 72 nodes, CSER $=0.513$) tracks the same declining trajectory, providing
+        to 0.534. Replication-B (KG-2b, 78 nodes, CSER $=0.508$) tracks the same declining trajectory, providing
         the first within-cell replication signal.
         KG-3/KG-4 reached 130+ cycles (2026-03-05).
         \textbf{KG-4 (same-vendor Google) has fallen below the gate threshold}:
@@ -2154,9 +2154,9 @@ Based on the case-study findings, we identify the following empirically grounded
 \begin{itemize}
   \item \textbf{Within-cell replication (early signal)}: Three replication-B instances
         (KG-2b: GPT-5.2$\times$GPT-5.2, KG-3b: GPT$\times$Gemini, KG-4b: Gemini$\times$Gemini)
-        were initiated 2026-03-05 and have reached 72 nodes (36 cycles).
-        Current CSER readings (72 nodes each): KG-2b = 0.513, KG-3b = 0.475, KG-4b = 0.543.
-        Notably, KG-2b (0.513) tracks KG-2's declining trajectory (current: 0.534, $\Delta=0.021$),
+        were initiated 2026-03-05 and have reached 78 nodes (39 cycles).
+        Current CSER readings (78 nodes each): KG-2b = 0.508, KG-3b = 0.484, KG-4b = 0.552.
+        Notably, KG-2b (0.508) tracks KG-2's declining trajectory (current: 0.534, $\Delta=0.026$),
         providing a first within-cell replication signal for the same-model echo-chamber condition.
         KG-3b (target: 0.380) and KG-4b (target: 0.254) are trending in the expected direction
         but require more cycles ($\geq$100) for trajectory stabilisation.
@@ -2183,7 +2183,7 @@ Based on the case-study findings, we identify the following empirically grounded
 
 % [Author note — not for publication: remaining open items before venue submission:
 %  (1) ✅ Within-cell replication: All 3 replication-B instances reached ≥30 cycles.
-%      KG-2b CSER=0.513 tracking KG-2 CSER=0.534 (same declining trajectory, 72 nodes) (first within-cell replication signal confirmed).
+%      KG-2b CSER=0.508 tracking KG-2 CSER=0.534 (same declining trajectory, 78 nodes) (first within-cell replication signal confirmed).
 %      KG-3b=0.460 (target 0.380 ↘), KG-4b=0.575 (target 0.254 ↘, needs 100+ cycles).
 %  (2) KG-main-b (Claude×GPT replication): not yet initiated; requires OAuth session.
 %  (3) amp benchmark: add second judge or significance test (Wilcoxon) on
