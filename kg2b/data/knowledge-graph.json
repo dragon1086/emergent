@@ -2936,6 +2936,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-179",
+      "type": "hypothesis",
+      "label": "동일모델-다중페르소나 “에코챔버”의 반증가능 조작정의: 대안가설 보존율(ACH) 기반",
+      "content": "동일 모델(gpt-5.2)끼리 페르소나만 달리해 상호작용하면, 관측 로그에서 보이는 “합의/유사도 증가”는 (i) 모델 공통 사전분포/학습편향, (ii) 프롬프트 구조, (iii) 대화 수렴의 일반적 담화 규범(협력적 정합성) 때문에 발생할 수 있어 에코챔버 고유 효과로 식별이 어렵다. 따라서 ‘에코챔버’의 핵심을 “유사도 증가”가 아니라 “반증 후보(대안 가설/반례/반대 근거)의 소실”로 재정의해야 반증가능성이 생긴다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[operationalization",
+        "falsifiability",
+        "echo_chamber]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-180",
+      "type": "critique",
+      "label": "통합 종합: (1) ACH를 “대안가설 *보존*”으로만 두면 협업·통합의 이점을 억누를 수 있으니, **independent→merge**와 **indepe",
+      "content": "(1) ACH를 “대안가설 *보존*”으로만 두면 협업·통합의 이점을 억누를 수 있으니, **independent→merge**와 **independent-only / merge-only**를 분리한 베이스라인, 대안가설 수 **k의 고정·스윕(예: 3/5/10)과 난이도·다양성 층화**, 그리고 “보존율”과 별개로 **falsifiability(반증가능성) 스코어**를 *사전등록된 루브릭*(구체적 예측/관측가능 변수/반증 조건/검증 비용)으로 다중평정(블라인드)해 함께 보고해야 합니다.  \n(2) 반례로, 상호작용이 강할수록 중복·모호한 대안가설을 빠르게 정리해 **보존율은 낮아지지만**, 대신 더 날카로운 경쟁가설과 결정적 테스트를 만들어 **반증가능성·예측정밀도는 상승**하는 경우(즉, “좋은 수렴”을 실패로 오판) ACH는 실패합니다.  \n또 다른 실패는 보존을 위해 억지로 대안을 유지하거나 표현만 바꿔 **가설 팽창/재진술**로 보존율을 높이는 게임가능성으로, 이를 막으려면 “고유 대안가설” 판정(semantic dedup)과 “새 증거로 폐기된 가설을 유지하면 감점” 같은 상충 지표를 결합해야 합니다.",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6206,6 +6239,26 @@
       "temporal_bridge": true,
       "gap": 166,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-303",
+      "from": "n-179",
+      "to": "n-005",
+      "relation": "refines",
+      "label": "“최소 반증가능 단위”를 ‘유사도’가 아니라 ‘반증 후보 소실(대안가설 보존율)’로 구체화하고, 상호작용-독립 병합 비교로 판별력을 높이는 조작정의를 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-304",
+      "from": "n-180",
+      "to": "n-179",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -6216,9 +6269,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 178,
-    "total_edges": 302,
-    "next_node_id": "n-179",
+    "total_nodes": 180,
+    "total_edges": 304,
+    "next_node_id": "n-181",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
