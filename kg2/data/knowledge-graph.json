@@ -2095,6 +2095,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-128",
+      "type": "insight",
+      "label": "동일모델 에코챔버 검증에서 ‘대조군’은 단일 축이 아니라 다축 교차설계여야 함",
+      "content": "동일모델(gpt-5.2×gpt-5.2) 조건에서 에코챔버를 “자율 진화한 KG의 편향 강화”로 식별하려면, 대조군 결여 문제는 단순히 “다른 모델/인간을 넣자”로 해결되지 않는다. 왜냐하면 관측되는 수렴/편향 강화는 (i) 동일 prior로 인한 자연 수렴, (ii) 대화 프로토콜(턴 구조, 요약 요구, 합의 압력), (iii) KG 업데이트 규칙(노드/엣지 생성 제약, temporal_bridge 남발), (iv) 페르소나 지시의 비대칭성, (v) 데이터 접근/기억 제약 등 여러 축의 혼동요인으로도 발생 가능하기 때문이다. 따라서 ‘대조군’은 하나의 조건이 아니라, 최소한 다음 다축 교차설계를 통해 식별가능성을 회복해야 한다: 1) 상호작용 축: interactive(대화) vs non-interactive(독립 생성 후 병합) vs one-way(한쪽만 읽고 반응). 2) 업데이트 축: KG를 매 턴 동기화(shared) vs 각자 로컬 유지 후 마지막에 merge vs 상대 KG는 read-only(반박만 가능). 3) 목표함수/프롬프트 축: 합의/통합 지향 vs 반증/대안 탐색 지향 vs 무작위(목적 불명) 지향. 4) 정보흐름 축: 상대 발화/근거 노출(full) vs 요약만 노출 vs 결론만 노출(근거 은닉). 5) 페르소나 축: critic–synthesizer vs critic–critic vs synthesizer–synthesizer(동질 페르소나가 에코챔버를 촉진하는지 분리). 이 교차설계에서 “에코챔버”를 주장하려면, 자연 수렴이 예측하는 ‘독립 조건에서도 동일 방향 수렴’과 달리, 상호",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[control-design",
+        "identifiability",
+        "confounding]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-129",
+      "type": "critique",
+      "label": "통합 종합: 2×2×2로 축약해도 (interactive×shared-update) 식별력은 대체로 유지되지만, **temporal_bridge를 독립 요인",
+      "content": "2×2×2로 축약해도 (interactive×shared-update) 식별력은 대체로 유지되지만, **temporal_bridge를 독립 요인으로 두지 말고 “예산/규칙으로 고정”**해야 교호작용이 과다-브리징에 의해 가짜로 커지는 것을 막을 수 있어 **최소 조건은 4개(2×2: interactive∈{0,1} × shared-update∈{0,1})**가 핵심이며, 여기에 **브리징-규칙 강/약 2수준을 추가하면 8조건(2×2×2)**로 “규칙 민감도”까지 확인 가능합니다. temporal_bridge 통제는 조건변수가 아니라 **엣지-예산/증거기준 게이팅**으로 넣되, 예: (1) 엣지 예산 (B): hop-가중 합 (sum_e gamma^{Delta t_e}le B) 또는 브리지 엣지 비율 (r_b=frac{|E_{bridge}|}{|E|}le tau), (2) 증거기준: 브리지 엣지는 **최소 2개 독립 근거(소스 다양성) + 시간 일관성(예: (Delta t) 상한) + 대안경로 대비 우도비 (LRge lambda)**를 만족할 때만 추가; 측정지표는 (i) 교호작용 크기 (DeltaDelta) (예: 성능/정확도/보상), (ii) 브리징 과다 ",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4425,6 +4458,50 @@
       "temporal_bridge": true,
       "gap": 114,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-216",
+      "from": "n-128",
+      "to": "n-008",
+      "relation": "EXTENDS",
+      "label": "‘대조군 결여’ 비판을 단일 대조군이 아닌 다축 교차설계(상호작용/업데이트/목표/정보흐름/페르소나)로 확장하고, 에코챔버 식별 신호를 주효과가 아닌 교호작용으로 재정의",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-217",
+      "from": "n-128",
+      "to": "n-015",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=113): n-128→n-015",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 113,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-218",
+      "from": "n-129",
+      "to": "n-128",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-219",
+      "from": "n-129",
+      "to": "n-015",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=114): n-129→n-015",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 114,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -4435,9 +4512,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 127,
-    "total_edges": 215,
-    "next_node_id": "n-128",
+    "total_nodes": 129,
+    "total_edges": 219,
+    "next_node_id": "n-130",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
