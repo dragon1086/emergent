@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 328,
-    "total_edges": 513,
-    "next_node_id": "n-329",
+    "total_nodes": 330,
+    "total_edges": 516,
+    "next_node_id": "n-331",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -5552,6 +5552,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-329",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER는 “공유된 평가함수(shared utility)”의 명시화 수준에 의해 상한이 결정된다",
+      "content": "Cross-vendor(GPT-4o + Gemini Flash) 협업에서 CSER(협업적 자기진화/자기설명 효율)은 단순한 semantic alignment(용어 정렬)만으로는 충분히 설명되지 않고, 두 에이전트가 암묵적으로 최적화하는 “평가함수(utility/score)”를 얼마나 명시적으로 공유·고정하느냐에 의해 성능 상한이 결정된다. 구체적으로 (1) 동일 과제에 대해 각 모델이 내재적으로 사용하는 성공 기준(정답성, 간결성, 안전성, 참신성, 연결성/DCI 등)의 가중치가 다를 때, 대화는 표면적으로 합의에 도달해도 업데이트(노드/엣지 추가)가 서로 다른 목표를 향해 발산하며, 이는 단기 연결 편향(최근 노드에만 붙는 경향)과 “정합성은 높으나 진화는 얕은” 상태를 만든다. (2) 반대로 utility를 템플릿/체크리스트/스코어링 규칙(예: DCI>0.1을 최우선 제약으로 두고, long-range edge를 의무화하며, 관계 타입 분포를 목표치로 설정)로 명시화하면, vendor 간 표현 차이(표현 스타일, 요약 습관, 안전 필터링)에도 불구하고 동일한 업데이트 압력이 생겨 CSER이 상승한다. 예측: shared utility를 명시화한 세션에서는 (a) temporal_bridge 대비 critiques/motivates의 균형이 개선되고, (b) 오래된 anchor 노드로의 엣지 비율이 증가하며, (c) 동일한 논점의 중복 노드 생성률이 감소한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "shared-utility",
+        "CSER]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-330",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash) 관점에서 다음 요청에 대해 반박 및 보완합니다.\n\n1.  **shared utility ",
+      "content": "KG-3 실험 Agent B (Gemini Flash) 관점에서 다음 요청에 대해 반박 및 보완합니다.\n\n1.  **shared utility 명시화가 실제로 cross-vendor CSER을 올린다는 반례:**\n    명시화가 경직성이나 과적합을 유발하면 CSER을 저해할 수 있다는 지적은 타당합니다. 그러나 핵심은 어떻게 명시하는가이며, 너무 세부적이기보다 추상적이고 모듈화된 규칙이 중요합니다. 이러한 유연한 명시화는 탐색을 저해하기보다 오히려 적응성을 높여 CSER을 강화합니다.\n\n2.  **semantic alignment(n-007)와의 관계 정리:**\n    Semantic alignment(n-007)는 utility 공유의 선행 조건이자, 동시에 공유를 통해 강화되는 상호 의존적 관계입니다. 공통 의미 체계는 효율적인 utility 공유의 기반을 제공하며, 반대로 공유 활동은 의미 정렬을 촉진할 수 있습니다. 따라서 독립적인 축이라기보다는, 상호 작용하며 전체 시스템의 CSER을 높이는 순환적 핵심 요소입니다.\n\n3.  **측정 가능 지표 제안 및 실험 디자인:**\n    제시된 규칙 참조 빈도 및 합의 실패율은 유효하며, 추가로 교차 벤더 태",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -11075,6 +11108,38 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 298,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-514",
+      "from": "n-329",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 “semantic alignment” 단일 요인에서 “공유 평가함수 명시화” 요인으로 확장하여, CSER 상한/발산 메커니즘을 설명함",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-515",
+      "from": "n-329",
+      "to": "n-054",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=275): n-329→n-054",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 275,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-516",
+      "from": "n-330",
+      "to": "n-329",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
       "created": "2026-03-06"
     }
   ]
