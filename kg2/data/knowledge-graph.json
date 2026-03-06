@@ -1864,6 +1864,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-114",
+      "type": "insight",
+      "label": "동일모델 에코챔버 검증의 ‘대조군’은 2×2 요인설계여야 한다",
+      "content": "현재 KG-2의 “동일모델이면 에코챔버가 생기나?”는 질문은 대조군이 단일 축(모델 동일/상이)로만 상정되기 쉬운데, 동일모델 조건에서 관측되는 수렴/편향을 에코챔버로 귀속하려면 최소한 2×2 요인설계가 필요하다. 핵심은 (A) 모델 동일성(same vs different)과 (B) 상호작용 구조(coupled vs decoupled)를 분리하는 것이다. 여기서 coupled은 에이전트가 서로의 산출물을 직접 인용/반박/요약하며 업데이트하는 구조(피드백 루프)이고, decoupled는 동일 프롬프트를 독립적으로 여러 번 샘플링하되 서로의 산출물을 보지 않는 구조다. 에코챔버의 정의가 “상호강화적 피드백으로 인한 편향 증폭”이라면, 모델 동일성만으로는 충분조건이 아니고 ‘coupling’이 필수 요인일 가능성이 크다. 따라서 관측치(의견 분산 감소, 극단화, 특정 서술의 고착 등)가 나타났을 때, (1) same+decoupled에서도 동일하게 나타나면 이는 모델의 prior/디코딩/프롬프트 유도에 의한 ‘자연 수렴’ 또는 ‘공통 인덕션’일 가능성이 높고, (2) same+coupled에서만 유의미하게 강화되면 그때서야 상호작용으로 인한 증폭(에코챔버 메커니즘)을 지지할 수 있다. 또한 different+coupled 조건을 넣으면 “모델 다양성”이 피드백 루프를 약화시키는지(다양성-완충 가설)까지 동시에 검증 가능하다. 요약하면, 현재의 대조군 결여 문제는 단순히 ‘다른 모델 하나 더’가 아니라, 상호작용 구조를 통제하지 않으면 identifiability가 붕괴한다는 설계 결함이다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[control_group",
+        "identifiability",
+        "experimental_design]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-115",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “지표를 곧바로 에코챔버로 해석”하는 함정을 피하려면, 각 지표를 **(1) 신념 분포(평균·분산·꼬리), (2) 네트워크 동질성(ass",
+      "content": "요청이 “지표를 곧바로 에코챔버로 해석”하는 함정을 피하려면, 각 지표를 **(1) 신념 분포(평균·분산·꼬리), (2) 네트워크 동질성(assortativity), (3) 근거 다양성(출처 엔트로피/크로스-캠프 인용률)**로 분해해 운영화하고, **자연 수렴(정확도↑·이질 출처 유지)**과 **에코챔버 증폭(정확도↔/↓·출처/연결 단색화)**을 구분하는 판별 규칙을 함께 넣어야 합니다.  \n정량 방향 예측(↑증가/↓감소): same×coupled는 분산↓·극단화↓(또는 제한)·내적일관성↑(정확도↑ 동반이면 자연 수렴), same×decoupled는 분산↓↓·극단화↑·내적일관성↑↑(증폭 위험 최대), different×coupled는 분산↔/↓·극단화↓·내적일관성↔(캠프 간 인용↑이면 자연 수렴), different×decoupled는 분산↑(양극화로 이봉분포)·극단화↑·내적일관성(캠프 내)↑(증폭)로 표에 정리하세요.  \ncoupled 최소 프로토콜은 **(a) 매 라운드 주장당 상반 진영 출처 1개 인용 의무, (b) 반박 1라운드+재반박 1라운드(총 2회 교차), (c) 공유 메모리는 ‘주장-근거-출처’만(개인 신념/선호는 비공유) + 상대 요지 1문장",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3946,6 +3979,50 @@
       "temporal_bridge": true,
       "gap": 107,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-193",
+      "from": "n-114",
+      "to": "n-008",
+      "relation": "EXTENDS",
+      "label": "대조군 결여를 ‘모델 동일/상이’가 아니라 ‘모델 동일성 × 상호작용 결합’ 요인설계로 확장해 식별가능성을 회복",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-194",
+      "from": "n-114",
+      "to": "n-001",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=113): n-114→n-001",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 113,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-195",
+      "from": "n-115",
+      "to": "n-114",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-196",
+      "from": "n-115",
+      "to": "n-022",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=93): n-115→n-022",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 93,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -3956,9 +4033,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 113,
-    "total_edges": 192,
-    "next_node_id": "n-114",
+    "total_nodes": 115,
+    "total_edges": 196,
+    "next_node_id": "n-116",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
