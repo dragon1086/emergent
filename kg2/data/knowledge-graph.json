@@ -2656,6 +2656,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-162",
+      "type": "insight",
+      "label": "동일모델-에코챔버 판별을 위한 ‘대조군 생성’의 최소요건(내생적 랜덤화)",
+      "content": "동일모델(gpt-5.2×gpt-5.2)에서 에코챔버를 주장하려면, “동일한 입력/규칙이면 비슷해질 수밖에”라는 자연 수렴(공유 아키텍처·학습분포·디코딩 편향)과 구분되는 **반사실적(counterfactual) 대조군**이 필요하다. 외부 모델을 쓰지 않는 조건에서도 대조군은 내생적으로 만들 수 있는데, 핵심은 (i) 두 에이전트가 동일한 모델이더라도 **상호작용 구조(정보 흐름/피드백 강도)** 를 조작하고, (ii) 그 조작이 내용(주장)의 참·거짓이나 주제 자체를 바꾸지 않도록 **랜덤화/블라인딩**을 걸어 “에코챔버 메커니즘만” 변동시키는 것이다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[control_group",
+        "identifiability",
+        "endogenous_randomization]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-163",
+      "type": "critique",
+      "label": "통합 종합: 난이도 혼동은 맞지만 “동일 토큰/정보량”만으론 부족합니다—마스킹·지연·반대증거는 **추론 경로(탐색 폭, 회상 부담, 업데이트 비용)** 자체",
+      "content": "난이도 혼동은 맞지만 “동일 토큰/정보량”만으론 부족합니다—마스킹·지연·반대증거는 **추론 경로(탐색 폭, 회상 부담, 업데이트 비용)** 자체를 바꾸므로, 보정은 토큰 예산 외에 **동일 질의-정답 가능성(oracle answerability)·근거 접근성·추론 단계수**까지 맞추는 방향(예: 동일 근거집 제공 후 일부만 가리기, 지연은 동일 총 근거 노출량 유지, 반대증거는 동일 신뢰도/난이도의 찬성증거와 페어링)으로 설계해야 합니다.  \n지표 세트(최소 3): **(1) 믿음 엔트로피/다양성**(대안 가설 분포 엔트로피, 자기-샘플 간 결론 다양도), **(2) 자기모순률**(동일 조건 재질의·역질문에서의 논리/수치/근거 충돌 비율), **(3) 반증 수용률**(반대증거 주입 후 결론 변경·신뢰도 하향·근거 교체의 정량 변화), + 보완으로 **(4) 근거 혼합도**(출처/근거 그래프의 다양성·상호연결도)나 **(5) 업데이트 효율**(정보 1토큰당 신념 변화량)도 에코챔버(낮은 (1)(3), 높은 (2), 낮은 (4)) vs 자연수렴(적정 (1)→감소, 낮은 (2), 높은 (3), 높은 (4)) 구분에 유효합니다.",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5626,6 +5659,50 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-275",
+      "from": "n-162",
+      "to": "n-008",
+      "relation": "EXTENDS",
+      "label": "대조군 결여 문제를 ‘외부모델 없이도 가능한 내생적 대조군 설계’로 구체화(상호영향 강도만 조작해 식별성 확보)",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-276",
+      "from": "n-162",
+      "to": "n-026",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=136): n-162→n-026",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 136,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-277",
+      "from": "n-163",
+      "to": "n-162",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-278",
+      "from": "n-163",
+      "to": "n-032",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=131): n-163→n-032",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 131,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -5636,9 +5713,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 161,
-    "total_edges": 274,
-    "next_node_id": "n-162",
+    "total_nodes": 163,
+    "total_edges": 278,
+    "next_node_id": "n-164",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
