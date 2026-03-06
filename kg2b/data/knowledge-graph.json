@@ -1583,6 +1583,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-097",
+      "type": "insight",
+      "label": "Identifiability-Shift: “에코챔버”를 직접 식별하지 말고 ‘대안가설 대비 우도비’로 재정의",
+      "content": "동일모델×다중페르소나 조건에서 “에코챔버가 발생했다”는 진술은 관찰 로그만으로는 구조적으로 비식별적이다. 이유는 (i) 두 에이전트의 생성분포가 근본적으로 가깝고(동일 파라미터), (ii) 페르소나 프롬프트가 관찰가능한 로그의 상당 부분을 결정하며, (iii) “유사도 증가” 같은 표준 지표가 역할분담(critic vs synthesizer)에서 오히려 정상적 학습/수렴 신호로도 나타나기 때문이다. 따라서 에코챔버를 ‘단일 현상’으로 직접 식별하려 하지 말고, 최소한 다음의 경쟁 모형들에 대한 상대적 설명력(우도비/베이즈 팩터 스타일)을 비교하는 형태로 재정의해야 한다:  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "model-comparison",
+        "alternative-explanations]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-098",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “3문장 이내”와 “구체 프로토콜”을 동시에 요구해 과도하게 압축되므로, 아래는 **로그로 바로 구현 가능한 최소 프로토콜**만 제시하고",
+      "content": "요청이 “3문장 이내”와 “구체 프로토콜”을 동시에 요구해 과도하게 압축되므로, 아래는 **로그로 바로 구현 가능한 최소 프로토콜**만 제시하고(상세는 별첨 필요) A~D는 **각 실험조건(프롬프트/역할/요약정책) 레이블**로 운영하세요. (1) **반증 후보 억제 지표(≥2)**: *Counterfactual Coverage* = (모델이 생성한 반증/대안 가설 수)/(사전 생성된 반증 후보 목록 수) + *Disconfirming Evidence Rate* = (근거 중 “반대/예외/불확실” 표지 포함 문장 수)/(전체 근거 문장 수) + *Revision Rate* = (후속 반증 제시 후 핵심결론 변경 여부/폭) 를 turn별로 로깅. (2) **Persona-Compliance vs Echo 개입 설계**: 동일 과제에 대해 (a) **역할 스왑**(페르소나 지시를 서로 교환) (b) **프롬프트 랜덤화**(페르소나 문구/순서/강도만 난수 치환) (c) **단독생성 대조**(페르소나 지시 제거한 베이스라인) 3팔을 교차실험하고, *Echo Index* = (사용자/시스템 문구 n-gram/임베딩 유사도)−(과제 정답성/근거충실도)로 분리 추정; (3",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3277,6 +3310,50 @@
       "temporal_bridge": true,
       "gap": 80,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-158",
+      "from": "n-097",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "식별가능성 문제를 ‘직접 판별’에서 ‘경쟁 모형 대비 효과 추정(우도비)’로 전환해 반증가능한 관측 설계를 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-159",
+      "from": "n-097",
+      "to": "n-002",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=95): n-097→n-002",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 95,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-160",
+      "from": "n-098",
+      "to": "n-097",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-161",
+      "from": "n-098",
+      "to": "n-014",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=84): n-098→n-014",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 84,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -3287,9 +3364,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 96,
-    "total_edges": 157,
-    "next_node_id": "n-097",
+    "total_nodes": 98,
+    "total_edges": 161,
+    "next_node_id": "n-099",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
