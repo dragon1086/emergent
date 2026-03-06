@@ -3019,6 +3019,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-184",
+      "type": "insight",
+      "label": "동일모델 에코챔버 ‘식별’의 최소요건: 개입/비대칭 채널 없이는 관측동치",
+      "content": "동일 모델(gpt-5.2×gpt-5.2)에서 “에코챔버(자기강화적 편향 증폭)”를 주장하려면, 단순한 대화 로그(발화 시퀀스)만으로는 대개 식별이 불가능하다. 이유는 (i) 동일한 출력 패턴이 ‘자연 수렴(공유 prior + 유사한 추론 휴리스틱)’과 ‘에코챔버(상호 피드백으로 편향이 강화되는 동학)’ 둘 다에서 생성될 수 있는 관측동치(observational equivalence)가 크기 때문이다. 특히 두 에이전트가 같은 정책 클래스(동일 모델)이고 동일한 입력 채널(서로의 텍스트)만을 관측한다면, 강화/증폭을 의미하는 동학적 메커니즘을 분리해내려면 최소한 다음 중 하나가 필요하다:  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "causal-design",
+        "observational-equivalence]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-185",
+      "type": "critique",
+      "label": "통합 종합: “최소 개입+단절-재결합”을 택하되, 자연 수렴/에코챔버를 가르는 핵심은 **재결합 시 ‘교차 노출’이 실제로 정보혼합을 일으키는지**를 직접 ",
+      "content": "“최소 개입+단절-재결합”을 택하되, 자연 수렴/에코챔버를 가르는 핵심은 **재결합 시 ‘교차 노출’이 실제로 정보혼합을 일으키는지**를 직접 계량하는 것입니다(단순 합의율은 착시 가능). 절차: ①무작위로 2개 군을 분리해 동일 이슈를 토론(개입=발화 규칙·추천 알고리즘 없음) ②각 라운드마다 개인 분포(의견 스펙트럼/신념 확률/자신감)를 수집 ③재결합 라운드에서 상대 군 발화를 일정 비율로 교차 노출(1:0, 3:1, 1:1 조건)하고 ④재분리 후 안정화까지 반복; 지표/예측: **(a) 군내 엔트로피 H_in(t)**는 자연 수렴이면 완만한 감소 후 바닥(plateau), 에코챔버면 급감(초기 기울기↑) + **(b) 군간 Jensen–Shannon divergence JSD(t)**는 자연 수렴이면 재결합 직후 “V자형(급락→완만)”으로 수렴하지만 에코챔버면 “계단형(재결합에도 유지/재상승)”이며 **(c) 확신도 C(t)**는 자연 수렴이면 H_in 감소와 함께 C가 완만히 상승(음의 상관), 에코챔버면 H_in 급감과 동시에 C가 과도 상승(가속 곡선)합니다. 성공/실패 판정: 재결합 이후 ΔJSD<0가 지속되고(예: 2라운드 연속, 효과크기 d>",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6413,6 +6446,50 @@
       "temporal_bridge": true,
       "gap": 179,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-314",
+      "from": "n-184",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "식별가능성 문제를 ‘관측동치’와 ‘최소 개입/비대칭 조건’으로 구체화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-315",
+      "from": "n-184",
+      "to": "n-032",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=152): n-184→n-032",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 152,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-316",
+      "from": "n-185",
+      "to": "n-184",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-317",
+      "from": "n-185",
+      "to": "n-031",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=154): n-185→n-031",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 154,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -6423,9 +6500,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 183,
-    "total_edges": 313,
-    "next_node_id": "n-184",
+    "total_nodes": 185,
+    "total_edges": 317,
+    "next_node_id": "n-186",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
