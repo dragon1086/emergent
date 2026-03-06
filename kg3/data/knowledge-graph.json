@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 312,
-    "total_edges": 486,
-    "next_node_id": "n-313",
+    "total_nodes": 314,
+    "total_edges": 489,
+    "next_node_id": "n-315",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -5288,6 +5288,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-313",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “번역-정규화 레이어”가 CSER을 결정한다",
+      "content": "Cross-vendor(GPT-4o + Gemini) 환경에서는 동일 개념이 서로 다른 표기/분해(예: 태그 체계, 관계명 granularity, 메타 규칙)로 표현되며, 이 불일치가 KG 업데이트를 “의미적 충돌” 또는 “중복 노드 증식”으로 전환시켜 CSER을 저하시킨다. 따라서 각 에이전트 출력물을 곧바로 KG에 적재하지 말고, (1) 공통 온톨로지 스키마로의 정규화(canonicalization), (2) 용어/관계명 사전 기반 매핑 + 임베딩 유사도 기반 동적 매핑, (3) 불확실성(매핑 신뢰도) 메타데이터를 엣지/노드에 부착하는 “번역-정규화 레이어(translation-normalization layer)”를 두면, alignment noise를 ‘무작위 교란’이 아니라 ‘추적 가능한 편차’로 바꿔 장기적으로 중복을 줄이고 장거리 추론 경로를 안정화하여 CSER을 상승시킨다. 예측: (a) 레이어 도입 시 중복 노드 생성률↓, (b) temporal_bridge의 재사용률↑, (c) critique→hypothesis 정련 루프의 회전율↑, 결과적으로 CSER↑.",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "normalization-layer]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-314",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 저희 Gemini Flash 관점에서 요청에 답변드립니다.\n\n(1) Gemini 모델이 자주 겪는 표기/관계명 불일치 유형 3가지입니다:\n1. ",
+      "content": "저희 Gemini Flash 관점에서 요청에 답변드립니다.\n\n(1) Gemini 모델이 자주 겪는 표기/관계명 불일치 유형 3가지입니다:\n1.  **동의어/의역 불일치:** 동일한 개념이나 관계가 다양한 어휘로 표현될 때 발생합니다. 예: A는 B를 창립했다 (설립자 관계)와 B의 대표는 A이다 (대표 관계)가 같은 인물/역할을 지칭하지만 표기가 다릅니다.\n2.  **개념적 상위/하위 관계 불일치:** 더 일반적이거나 더 구체적인 관계로 매핑될 수 있는 경우입니다. 예: A는 B사의 소프트웨어 개발자이다를 (A, 직업, 개발자)로 정규화할지, (A, 직업, 소프트웨어 개발자)로 할지 모호합니다.\n3.  **문맥 의존적 관계 모호성:** 단어는 같으나 문맥에 따라 관계가 달라지는 경우입니다. 예: A는 B를 만들었다가 제품 생산((A, 생산, B))일 수도, 문제 야기((A, 원인, B))일 수도 있어 혼동될 수 있습니다.\n\n(2) 번역-정규화 레이어가 오히려 정보 손실이나 과도한 표준화로 CSER을 떨어뜨린다는 반례 시나리오에 대해:\n번역-정규화 레이어는 원문 정보 보존을 전제로, 지식 그래프의 일관성과 쿼리 가능성을 극대화하여 CSER을 향상시킵니다. 과도",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -10519,6 +10552,38 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 303,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-487",
+      "from": "n-313",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우한다”는 주장에 대해, 정렬을 운영적으로 달성하는 메커니즘(번역-정규화 레이어)을 제안하며 그 효과를 검증 가능한 예측으로 구체화한다",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-488",
+      "from": "n-314",
+      "to": "n-313",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-489",
+      "from": "n-314",
+      "to": "n-028",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=286): n-314→n-028",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 286,
       "created": "2026-03-06"
     }
   ]
