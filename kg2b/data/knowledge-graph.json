@@ -1451,6 +1451,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-089",
+      "type": "insight",
+      "label": "조작적 비식별성 타개를 위한 ‘개입·대조’ 최소세트(동일모델-다중페르소나)",
+      "content": "동일 모델×다중 페르소나 조건에서 “에코챔버가 자율 진화했다”는 주장은 관찰 로그만으로는 조작적으로 비식별적일 가능성이 크다. 왜냐하면 (i) 동일 기반모델의 공통 사전분포/표현이 상호작용 없이도 유사 산출을 만들 수 있고, (ii) 페르소나 프롬프트는 사실상 같은 생성분포의 조건부 샘플링이어서 ‘수렴’이 구조적으로 내재될 수 있으며, (iii) KG 업데이트 규칙(엣지 추가/삭제, 가중치, 요약 압축)이 독립적으로도 유사도 증가를 유도하는 알고리즘적 편향(regularization)으로 작동할 수 있기 때문이다. 따라서 에코챔버를 “상호강화로 인해 반증 후보가 소거되고 신념/표현이 폐쇄적으로 수렴하는 과정”으로 정의한다면, 이를 식별하려면 최소한의 개입·대조 실험 세트가 필요하다. 제안하는 최소세트는 다음과 같다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "identifiability",
+        "intervention",
+        "causal-contrast"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-090",
+      "type": "critique",
+      "label": "통합 종합: 요청을 “비식별성 완화”로만 몰면 지표가 페르소나/프롬프트 고정효과를 다시 측정하는 함정이 있어, (1) 지표는 **개별 세션 내 변동**과 *",
+      "content": "요청을 “비식별성 완화”로만 몰면 지표가 페르소나/프롬프트 고정효과를 다시 측정하는 함정이 있어, (1) 지표는 **개별 세션 내 변동**과 **개입(프롬프트·역할·요약) 전후 차이**를 분리해 정의해야 합니다: 예) **반증노드 생존율**(반증이 다음 턴 의사결정에 실제로 남는 비율), **대안가설 유효다양도**(서로 독립한 설명군의 엔트로피), **자기강화 루프 지수**(자기 인용·자기 전제 재사용이 새 증거 없이 누적되는 정도), **브리지-근거 비율**(temporal_bridge 같은 연결이 근거 토큰/인용을 동반하는 비율), **역할-민감도 기울기**(역할 프롬프트 변경 시 결론/가설 분포 변화량). (2) 매핑은 이렇게 구분됩니다: 공통 prior는 **역할-민감도↓·대안다양도↓**로 나타나고, 요약압축은 **반증노드 생존율↓·브리지-근거 비율↓**(연결만 남고 근거 소실), 역할 프롬프트는 **역할-민감도↑·자기강화 루프 지수↑**(역할 문구 재진술)로 분리됩니다. (3) KG-2bb 통계와 붙인 즉시 경고 신호는 **critique/insight 비율이 높아지는데 반증노드 생존율이 같이 떨어지는 패턴**(비판이 실행에 반영 안 됨), **te",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2993,6 +3026,50 @@
       "temporal_bridge": true,
       "gap": 82,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-144",
+      "from": "n-089",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "비식별성 주장에 대해, 상호작용/페르소나/업데이트규칙을 분해하는 최소 개입·대조 설계를 제시해 조작적 식별 가능 조건을 구체화함",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-145",
+      "from": "n-089",
+      "to": "n-004",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=85): n-089→n-004",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 85,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-146",
+      "from": "n-090",
+      "to": "n-089",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-147",
+      "from": "n-090",
+      "to": "n-014",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=76): n-090→n-014",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 76,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -3003,9 +3080,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 88,
-    "total_edges": 143,
-    "next_node_id": "n-089",
+    "total_nodes": 90,
+    "total_edges": 147,
+    "next_node_id": "n-091",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
