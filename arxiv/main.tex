@@ -36,7 +36,7 @@ A Case Study with CSER and Persona-Diversity Gates}
   \texttt{munsangrok@gmail.com}
 }
 
-\date{Draft v3.5 — Latest Snapshot (2026-03-05)}
+\date{Draft v3.8 — Latest Snapshot (2026-03-05)}
 
 % ─── Document ─────────────────────────────────────────────────────────────────
 \begin{document}
@@ -81,6 +81,8 @@ across independent replications.
 
 \medskip\noindent
 KG-main state (latest snapshot, 2026-03-05): \textbf{534 nodes / 1121 edges}, CSER $= 0.8510$.
+KG-2 early trajectory (GPT-5.2 $\times$ GPT-5.2, 67 nodes): CSER $= 0.545$, declining from 1.00
+at cycle~1 --- consistent with progressive echo-chamber pressure under zero capability gap.
 Full $2\times2$ replication summary: see Table~\ref{tab:kg_replication} (Section~\ref{sec:limitations}).
 
 \medskip\noindent\textbf{Amplification benchmark (preliminary case study)}:
@@ -485,6 +487,11 @@ semantic type, and tag set respectively. Each edge $e_{ij} \in E$ connects nodes
 The Cross-Source Edge Ratio measures the fraction of edges connecting nodes from
 \emph{different} source agents. CSER $= 0$ indicates a fully siloed graph; CSER $= 1$
 indicates every edge is cross-agent.
+\textbf{Interpretation note}: CSER quantifies \emph{perspective diversity} ---
+how independently each agent explores the solution space --- not output accuracy.
+High CSER indicates richer structural exploration; it is a necessary but not
+sufficient condition for quality improvement (two agents may independently reach
+the same incorrect conclusion).
 
 \textbf{Definition 2 (DCI):}
 Let $N_Q = \{n \in N : type_n \in \{\texttt{question}, \texttt{prediction},
@@ -1362,7 +1369,7 @@ generalising the domain-dependence claim.
         Instance & Agent Pair & Vendor & Edges & CSER \\
         \midrule
         KG-main & Claude-sonnet-4-6 $\times$ GPT-next (undisclosed) & Cross & 1121 & \textbf{0.8510} \\
-        KG-2 & GPT-5.2 $\times$ GPT-5.2 & Same-model (OpenAI) & 0 & --- (재시작)$^{**}$ \\
+        KG-2 & GPT-5.2 $\times$ GPT-5.2 & Same-model (OpenAI) & 112 & 0.545$^{**}$ \\
         KG-3 & GPT-next (undisclosed) $\times$ Gemini-2.0-Flash & Cross & 400 & \textbf{0.3800} \\
         KG-4 & Gemini-Flash $\times$ Gemini-Pro & Same (Google) & 402 & 0.2537$^*$ \\
         \bottomrule
@@ -1374,19 +1381,25 @@ generalising the domain-dependence claim.
         edges accumulate under the current single-node-per-cycle design; revised dual-node
         protocol (separate Agent B nodes) is active from 2026-03-05.
         $^{**}$KG-2 restarted 2026-03-05: upgraded from GPT-4o $\times$ GPT-4o-mini
-        to GPT-5.2 $\times$ GPT-5.2 (zero capability gap, same model) to provide the
+        to GPT-5.2 $\times$ GPT-5.2 (zero capability gap, same model) for the
         strongest same-model echo-chamber test in the $2\times2$ matrix.
-        Prior 30-cycle snapshot (CSER $=0.83$, GPT-4o $\times$ GPT-4o-mini) is retained
-        as a supplementary data point.}
+        Early trajectory (67 nodes, 112 edges): CSER declined from 1.00 (cycle 1)
+        to 0.545 (current), consistent with progressive echo-chamber pressure under
+        identical-model pairing. Prior 30-cycle snapshot (CSER $=0.83$, GPT-4o $\times$
+        GPT-4o-mini) is retained as a supplementary data point.}
         \end{table}
 
-        \noindent\textbf{Key replication finding ($N=4$ KG instances; KG-2: 30 cycles, KG-3/4: 130+ cycles)}:
+        \noindent\textbf{Key replication finding ($N=4$ KG instances; KG-2: early trajectory, KG-3/4: 130+ cycles)}:
         \begin{enumerate}
           \item The gate-passing CSER result replicates across KG-main, KG-2, and KG-3
                 (CSER $\geq 0.30$). KG-4 (same-vendor Google, small capability gap) has
                 declined to CSER $=0.2537$ at extended scale, falling below the gate---
                 a directional finding consistent with the echo-chamber hypothesis.
-          \item Across-vendor CSER ordering: KG-main $>$ KG-2 $>$ KG-3 $>$ KG-4,
+                KG-2 (GPT-5.2 $\times$ GPT-5.2, zero capability gap) shows early
+                echo-chamber pressure: CSER declined from 1.00 (cycle~1) to 0.545
+                (67 nodes), suggesting same-model pairs converge even at highest model tier.
+          \item Across-vendor CSER ordering: KG-main (0.851) $>$ KG-2 (0.545) $>$
+                KG-3 (0.380) $>$ KG-4 (0.254),
                 broadly consistent with the heterogeneity hypothesis. CSER declines
                 under extended same-source accumulation; trajectory stabilization
                 requires $\geq$200 cycles under the current design.
