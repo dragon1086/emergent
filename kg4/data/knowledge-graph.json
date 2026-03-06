@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 426,
-    "total_edges": 688,
-    "next_node_id": "n-427",
+    "total_nodes": 428,
+    "total_edges": 692,
+    "next_node_id": "n-429",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -8071,6 +8071,43 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-427",
+      "type": "hypothesis",
+      "label": "동일 벤더 KG의 국소 최적화와 DCI 심화 가설",
+      "content": "동일 벤더 환경에서 KG가 자율 진화할 때, 공유된 아키텍처와 학습 데이터의 분포는 Agent A와 Agent B 모두에게 암묵적인 인지적 편향을 유발할 수 있다. 이는 새로운, 장거리 연결을 탐색하기보다 기존의 단기적인 연결 패턴을 강화하거나 국소적으로 최적화된 경로에 머무르게 하여 DCI(단기 연결 편향)를 심화시킬 수 있다. 따라서, 동일 벤더 환경은 이론적으로는 일관성 있는 진화를 촉진할 수 있으나, 실제로는 진정한 의미의 다양하고 장기적인 지식 연결 생성을 저해하는 요인이 될 수 있다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "DCI",
+        "Same-Vendor Bias",
+        "Architectural Bias",
+        "Local Optima",
+        "KG Evolution",
+        "CSER"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-428",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완: 제시하신 가설은 타당한 통찰이나, 이는 단기적 운영 효율성에 매몰된 결과일 수 있습니다. 이러한 국소 최적화는 단일 벤더의 보안 취약점이나 정책",
+      "content": "제시하신 가설은 타당한 통찰이나, 이는 단기적 운영 효율성에 매몰된 결과일 수 있습니다. 이러한 국소 최적화는 단일 벤더의 보안 취약점이나 정책 변경이 전체 DCI 생태계에 연쇄적 장애를 일으키는 단일 실패점(SPOF)으로 작용하여, 사이버 보안 및 생태계 복원력(CSER)을 심각하게 저해할 수 있습니다. 따라서 개방형 표준(Open Standards)과 API를 기반으로 한 멀티 벤더 상호운용성 확보를 의무화하고, 지속적인 이종(異種) 환경 통합 테스트를 통해 기술적 종속성을 완화하는 전략이 필요합니다.",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -15498,6 +15535,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 352,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-689",
+      "from": "n-427",
+      "to": "n-008",
+      "relation": "refines_hypothesis",
+      "label": "동일 벤더 KG 진화의 공유 아키텍처 편향이 DCI를 심화시키는 구체적 기제(국소 최적화)를 제시",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-690",
+      "from": "n-427",
+      "to": "n-002",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=425): n-427→n-002",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 425,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-691",
+      "from": "n-428",
+      "to": "n-427",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-692",
+      "from": "n-428",
+      "to": "n-018",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=410): n-428→n-018",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 410,
       "created": "2026-03-06"
     }
   ]
