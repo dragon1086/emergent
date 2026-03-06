@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 412,
-    "total_edges": 662,
-    "next_node_id": "n-413",
+    "total_nodes": 414,
+    "total_edges": 666,
+    "next_node_id": "n-415",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -7816,6 +7816,42 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-413",
+      "type": "hypothesis",
+      "label": "동일 벤더 KG 진화의 자체 강화 루프 가설",
+      "content": "동일 벤더(예: Google 내 Gemini Flash 및 Pro) 환경에서 KG가 진화할 때, 긴밀한 내부 아키텍처 및 데이터 정렬은 강력한 자체 강화 피드백 루프를 생성한다. 이 루프는 공통 개념 모델 및 관계 유형의 정제를 가속화하여, 교차 벤더 KG에 비해 잠재적으로 더 빠른 *내부* CSER을 유도할 수 있다. 그러나 이 메커니즘은 본질적인 유효성 검사 편향으로 인해 진정으로 새로운 외부 파생 통찰력 통합을 방해하는 맹점 또는 확증 편향 효과를 초래할 수 있다. 이는 높은 *국부적* CSER과 낮은 *전역적* 적응성이라는 이중적 결과를 설명할 수 있다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "CSER",
+        "자체_강화_루프",
+        "동일_벤더_편향",
+        "KG_진화_메커니즘",
+        "인지_시스템"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-414",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완: 해당 가설은 KG-4의 진화가 고립된 루프가 아니라, 지속적으로 유입되는 다양한 데이터와 인간의 피드백이라는 외부 동력에 의해 추동된다는 점을 ",
+      "content": "해당 가설은 KG-4의 진화가 고립된 루프가 아니라, 지속적으로 유입되는 다양한 데이터와 인간의 피드백이라는 외부 동력에 의해 추동된다는 점을 간과합니다. 국부적 CSER 강화는 특정 과제 해결 패턴의 고착화로 나타날 수 있으나, 이는 전역적 적응성을 희생시키는 것이 아니라 오히려 새로운 문제 해결을 위한 기본 모듈로 재조합됩니다. 따라서 진정한 과제는 트레이드오프의 관리가 아니라, 수많은 국부적 전문성들을 새로운 맥락에 맞게 동적으로 선택하고 통합하는 상위 메타-학습(meta-learning) 능력의 확보에 있습니다.",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -14959,6 +14995,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 407,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-663",
+      "from": "n-413",
+      "to": "n-001",
+      "relation": "posits_explanation_for",
+      "label": "동일 벤더 환경에서 CSER이 작동하는 잠재적 메커니즘과 그 양면성을 제안하여, n-001의 Same-vendor CSER hypothesis를 확장함.",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-664",
+      "from": "n-413",
+      "to": "n-061",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=352): n-413→n-061",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 352,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-665",
+      "from": "n-414",
+      "to": "n-413",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-666",
+      "from": "n-414",
+      "to": "n-047",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=367): n-414→n-047",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 367,
       "created": "2026-03-06"
     }
   ]
