@@ -1055,6 +1055,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-065",
+      "type": "insight",
+      "label": "조작적 식별가능성: “same-model 에코챔버”는 ‘수렴’이 아니라 ‘의존성(커플링)’을 보여야 한다",
+      "content": "동일 모델×다중 페르소나 조건에서 관측되는 “의견/표현/가설의 유사도 증가”는 에코챔버의 필요조건이 되기 어렵다. 이유는 (i) 동일 사전학습 분포·동일 추론 메커니즘이 만들어내는 기본 유사성(공통 원인)과 (ii) 과제/프롬프트 구조가 유도하는 공통 답변(공통 자극)만으로도 유사도는 증가할 수 있기 때문이다. 따라서 에코챔버를 조작적으로 식별하려면 ‘수렴(convergence)’이 아니라 ‘상호작용으로 인해 추가로 생긴 의존성(coupling)’을 보여야 한다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "counterfactual-baseline",
+        "coupling]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-066",
+      "type": "critique",
+      "label": "통합 종합: (1) “충분조건”에 가깝게 하려면 단일 지표가 아니라 **(a) 내용 수렴(의미적 유사도↑), (b) 근거 네트워크 폐쇄(동일 근거/출처 재사",
+      "content": "(1) “충분조건”에 가깝게 하려면 단일 지표가 아니라 **(a) 내용 수렴(의미적 유사도↑), (b) 근거 네트워크 폐쇄(동일 근거/출처 재사용↑·새 근거 유입↓), (c) 반증 취약(반증 후보 생존율↓·다양성↓)**이 **독립 기준선(shadow) 대비 동시 악화**되는 조합이 필요하며, 특히 *수렴은 높은데 새 근거 유입이 낮고 반증이 빨리 소거*되면 에코챔버를 강하게 시사합니다.  \n(2) 다만 이 조합도 공통자극(같은 질문·지식·모델 편향)으로 설명될 수 있으니, **프롬프트 의미는 유지하되 표면형 랜덤화 + 역할/입장 교차(찬반·전문성 스왑) + 시간지연 및 독립 기준선의 “동일 온도/동일 길이/동일 도구제약” 매칭 + 가짜-공유근거(서로 다른 seed evidence) 주입**으로 공통원인을 깨고, 결과는 *교차조건(스왑 후에도 동일 패턴 유지)*에서만 에코챔버로 판정하는 게 안전합니다.  \n(3) KG 로그만으로는 노드(주장/근거/출처)와 엣지(지원/반박/참조) 기준으로 예컨대 **근거 재순환률 R = |{e∈E_ref : tgt(e)∈V_evid ∧ indeg_ref(tgt(e))≥2}| / |E_ref|**, **반증 후보 생존율 S = |",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2177,6 +2210,50 @@
       "temporal_bridge": true,
       "gap": 60,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-105",
+      "from": "n-065",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "‘판별 불능성’ 비판을 “수렴이 아닌 의존성(커플링) 측정 + 독립 기준선”으로 조작화하여 완화/구체화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-106",
+      "from": "n-065",
+      "to": "n-011",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=54): n-065→n-011",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 54,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-107",
+      "from": "n-066",
+      "to": "n-065",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-108",
+      "from": "n-066",
+      "to": "n-005",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=61): n-066→n-005",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 61,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -2187,9 +2264,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 64,
-    "total_edges": 104,
-    "next_node_id": "n-065",
+    "total_nodes": 66,
+    "total_edges": 108,
+    "next_node_id": "n-067",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
