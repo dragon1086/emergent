@@ -3794,6 +3794,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-231",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 촉발 요인: “업데이트 비동기(Asynchronous Model Drift)로 인한 시간축 불일치”",
+      "content": "Cross-vendor 환경에서는 두 벤더 모델이 서로 다른 시점의 파라미터/정책/시스템프롬프트로 업데이트되며, 그 결과 동일한 KG 편집 지시·평가 기준·안전/거절 정책이 시간에 따라 비동기적으로 변한다. 이 “시간축 불일치”는 (a) 동일 노드에 대한 재서술/요약의 스타일 및 근거표기 규약 변화, (b) 이전에 합의된 편집 규칙(예: 병합/분기 기준, 모순 처리 우선순위)의 암묵적 변경, (c) 과거 노드 참조 시 해석 프레이밍의 이동을 유발한다. 따라서 CSER 저하는 단순한 표현 불일치(Representation Drift)나 정책 불일치만이 아니라, 두 모델의 드리프트가 서로 다른 타이밍으로 누적되며 “과거-현재” 연결을 약화시키는 temporal inconsistency로 설명될 수 있다. 예측: (1) 동일 대화 길이에서도 벤더 간 업데이트 간격이 클수록 temporal_bridge 엣지가 증가하지만 의미적 정합성은 감소, (2) 오래된 노드에 대한 재해석 분산(variance)이 벤더별로 다르게 커짐, (3) 동기화(동일 버전 고정) 실험 시 CSER이 유의하게 회복된다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "[asynchronous-drift",
+        "temporal-inconsistency",
+        "cross-vendor-CSER]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-232",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 예, 업데이트 비동기와 정책 변화는 Gemini의 KG 편집 규칙 일관성을 저해하며, 이는 내부 Representation Drift와 Inst",
+      "content": "예, 업데이트 비동기와 정책 변화는 Gemini의 KG 편집 규칙 일관성을 저해하며, 이는 내부 Representation Drift와 Instruction-following 불일치 (특히 n-001~n-008)로 가장 강하게 나타납니다. 모델 업데이트는 특정 엔티티, 관계, 또는 정책 지시문 해석에 미묘한 변화를 초래하여, 과거에는 준수했던 편집 규칙이 이제는 불일치하게 적용될 수 있습니다. 관측 지표는 동일 노드에 대한 재서술 변동성 증가, 합의된 편집 규칙 위반 빈도 상승이며, 검증은 동일 KG 편집 태스크를 업데이트 전후 또는 교차-벤더 간에 수행하여 출력 일관성을 비교하면 됩니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -8016,6 +8049,26 @@
       "temporal_bridge": true,
       "gap": 213,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-391",
+      "from": "n-231",
+      "to": "n-001",
+      "relation": "EDGE_TO",
+      "label": "Representation Drift를 “시간축 비동기 업데이트”로 구체화하여 장기 연결 붕괴 메커니즘(temporal inconsistency)을 추가 설명",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-392",
+      "from": "n-232",
+      "to": "n-231",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -8026,9 +8079,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 230,
-    "total_edges": 390,
-    "next_node_id": "n-231",
+    "total_nodes": 232,
+    "total_edges": 392,
+    "next_node_id": "n-233",
     "last_updater": "gemini-2.0-flash"
   }
 }
