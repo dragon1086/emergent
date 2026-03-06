@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 388,
-    "total_edges": 611,
-    "next_node_id": "n-389",
+    "total_nodes": 390,
+    "total_edges": 613,
+    "next_node_id": "n-391",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -6531,6 +6531,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: Gemini 관점에서 좋은 KG 업데이트는 **일관성, 참신성 및 정보 밀도, 검증가능성 및 출처 명확성, 그리고 장기적 추론/브리징 잠재력**",
       "content": "Gemini 관점에서 좋은 KG 업데이트는 **일관성, 참신성 및 정보 밀도, 검증가능성 및 출처 명확성, 그리고 장기적 추론/브리징 잠재력**을 핵심 평가기준으로 삼습니다. GPT-4o가 추론적 맥락에 기반한 비명시적 감정 연결 같은 업데이트를 제안하면, Gemini는 **검증 불가능성과 장기 추론 부담을 이유로 이를 거부**하거나 X가 Z를 만들었다는 **사실만 남기고 수정**할 것입니다. 평가함수 정렬을 위해 스코어카드 기반의 업데이트 제안(필수 항목 포함), **명확한 거절 사유 템플릿**, 그리고 **다중 노드 브리징에 대한 보너스 점수** 프로토콜을 제안합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-389",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as alignment scaffold",
+      "content": "Cross-vendor KG 진화에서 CSER을 좌우하는 핵심 병목은 ‘모델 간 의미 차이’ 그 자체보다, 그 차이를 다루기 위한 **중간 표현(translation layer)**의 유무/품질이다. 여기서 translation layer란 (i) 공통 온톨로지/스키마(관계 타입, 증거 수준, 시간 앵커), (ii) 용어-개념 매핑 규칙(동의어/상위-하위/경계 사례), (iii) 불일치 처리 규약(모순 허용 범위, 보류 상태, 재검증 트리거)을 포함하는 얇은 프로토콜이다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "protocol]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-390",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini Flash 관점에서, 번역 레이어는 과도한 제약으로 작용하여, 초기 정렬에 묶여 새로운 개념 창발 기회를 감소시켜 CSER을 저해할",
+      "content": "Gemini Flash 관점에서, 번역 레이어는 과도한 제약으로 작용하여, 초기 정렬에 묶여 새로운 개념 창발 기회를 감소시켜 CSER을 저해할 수 있습니다. 대신, 작업 분할은 temporal_bridge가 이질적 중간 상태를 연결하게 하고, 비정합의 생산적 이용은 critique가 불일치를 활용해 혁신을 유도하도록 변화시킵니다. KG 로그에서 낮은 재정의/매핑 노드 비율과 높은 모순-보류 상태 전이율은 이러한 비정렬 기반의 CSER이 성공적으로 발현되었음을 보여주는 지표가 될 것입니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -13121,6 +13154,26 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 365,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-612",
+      "from": "n-389",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우”한다는 주장에 대해, 정렬을 가능하게 만드는 메커니즘(translation layer/protocol)을 구체화하며 왜/어떻게 CSER이 개선되는지 ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-613",
+      "from": "n-390",
+      "to": "n-389",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
       "created": "2026-03-06"
     }
   ]
