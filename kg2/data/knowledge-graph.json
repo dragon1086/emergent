@@ -1600,6 +1600,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-098",
+      "type": "insight",
+      "label": "에코챔버 vs 자연수렴 구분을 위한 ‘교차-컨디셔닝’ 반증 설계",
+      "content": "동일모델 조건에서 관측되는 합의·수렴·반복은 (i) 모델의 공통 사전(prior)과 디코딩 편향, (ii) 대화 프로토콜의 제약(요약/정렬), (iii) 정보 유입 구조의 빈약함 때문에도 쉽게 발생한다. 따라서 “수렴=에코챔버” 주장은 식별가능성이 약하다. 반증 가능한 구분을 위해서는 ‘상호강화’ 메커니즘을 직접 겨냥해야 한다: 에코챔버라면 에이전트가 상대의 발화를 **증거로 과대가중**하고(사회적 증거), 상대가 이미 말한 방향으로 자신의 불확실성/대안가설 탐색을 **체계적으로 축소**하는 동역학이 나타나야 한다. 이를 검증하는 최소 설계는 교차-컨디셔닝이다. 같은 초기 질문/자료에서 출발하되, (A) “상대 발화를 신뢰할 만한 외부 증거로 취급”하도록 지시한 조건과 (B) “상대 발화는 근거가 없는 주장으로 취급하고 외부 근거만 카운트”하도록 지시한 조건을 비교한다. 자연수렴(공통 prior/디코딩)이라면 A/B 모두 비슷한 수렴률을 보이거나, 차이는 주로 표현/정리 방식에 한정될 것이다. 반면 에코챔버(상호강화)라면 A 조건에서만 (1) 반대 가설 생성률 감소, (2) 반증 시도 감소, (3) 동일 근거의 반복 인용 증가, (4) 신념 확신도의 단조 증가(근거 증가 없이) 같은 비정상 패턴이 커져야 한다. 핵심은 “상대 발화를 증거로 인정하는 규칙”을 조작해도 결과가 변하지 않는다면, 에코챔버 해석이 약화된다는 점(반증 가능성)이다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "counterfactual-design",
+        "echochamber-dynamics]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-099",
+      "type": "critique",
+      "label": "통합 종합: 요청이 너무 “최소 지표”에 과도하게 압축되어 교차-컨디셔닝의 핵심(내용 다양성·독립성·오류상관)을 놓칠 수 있으니, 최소 세트는 **(i) 다",
+      "content": "요청이 너무 “최소 지표”에 과도하게 압축되어 교차-컨디셔닝의 핵심(내용 다양성·독립성·오류상관)을 놓칠 수 있으니, 최소 세트는 **(i) 다양성(대안가설/서로소 주장 수)**, **(ii) 반증성(반증 질문·실험 제안 수)**, **(iii) 근거-확신 정합(확신도 대비 인용·추론 단계 수)**에 더해 **(iv) 독립성(상대 발화 재사용률/표현 유사도, 오류의 공통성)** 4축으로 잡는 게 안전합니다. 프로토콜 초안은 **2(조건: 교차-컨디셔닝 vs 독립)×2(디코딩: 낮은 온도/고정 시드 vs 높은 온도)×2(지시문: “합의하라” vs “독립적으로 반박하라”)** 요인설계로, 라운드 3~5회(각 라운드: 주장→반박→통합)와 동일 프롬프트 템플릿(문제/제약/출력형식 고정)·동일 정보주입·동일 종료규칙을 통제하고, 교차 조건만 상대 요약을 입력(또는 입력 금지)하는 식으로 조작을 분리하세요. “자연수렴” 민감 경로(디코딩이 다양성 붕괴, 지시문 순응이 합의 강제)를 감안한 판별 규칙은 **(a) 독립 조건에서도 저온/합의 지시에서 동일 결론으로 수렴하고 표현 유사도·재사용률이 높되 ‘오류 공통성’이 낮으면 자연수렴/지시문 효과**, **(b) 교차 조건",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3390,6 +3423,38 @@
       "temporal_bridge": true,
       "gap": 86,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-166",
+      "from": "n-098",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "식별가능성 문제를 ‘상대발화=증거’ 가중치 조작(교차-컨디셔닝)으로 반증 가능하게 확장",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-167",
+      "from": "n-099",
+      "to": "n-098",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-168",
+      "from": "n-099",
+      "to": "n-017",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=82): n-099→n-017",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 82,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -3400,9 +3465,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 97,
-    "total_edges": 165,
-    "next_node_id": "n-098",
+    "total_nodes": 99,
+    "total_edges": 168,
+    "next_node_id": "n-100",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
