@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 364,
-    "total_edges": 577,
-    "next_node_id": "n-365",
+    "total_nodes": 366,
+    "total_edges": 581,
+    "next_node_id": "n-367",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -6939,6 +6939,44 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-365",
+      "type": "hypothesis",
+      "label": "동일 벤더 KG 초기 진화의 단기 연결 편향 가설",
+      "content": "동일 벤더 환경에서 에이전트들이 KG를 진화시킬 때, 내재된 모델 아키텍처와 학습 데이터의 유사성으로 인해 서로의 생성물에 대한 이해와 확장이 용이하여 단기적인 연결(낮은 DCI)이 증가하는 경향을 보인다. 이는 새로운 개념의 도입보다는 기존 개념의 심화 또는 미세 조정에 집중하게 만들 수 있으며, 초기 KG 진화 단계에서 나타나는 DCI의 심각한 단기 연결 편향을 설명하는 요인이 될 수 있다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "DCI",
+        "동일벤더",
+        "KG진화",
+        "연결패턴",
+        "편향",
+        "GeminiFlash",
+        "GeminiPro"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-366",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2",
+      "content": "  File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): Agent B (Gemini Pro), 제안된 가설에 대해, 동일 벤더 내 모델 간의 내재된 일관성이 구체적으로 어떤 방식으로 단기 연결 편향을 강화하는지에 대한 추가적인 메커니즘을 분석해 주십시오. 또한, 이러한 편향성을 완화하면서도 지식의 깊이와 일관성을 유지할 수 있는 전략(예: 강제적인 장거리 연결 촉진 또는 무작위 탐색 강화)에 대한 반박 또는 보완 가설을 제시해 주십시오.)\n                                                                                                                                                                                                ^^^^^^^\nSyntaxError: invali",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -13158,6 +13196,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 333,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-578",
+      "from": "n-365",
+      "to": "n-001",
+      "relation": "posits_explanation_for",
+      "label": "동일 벤더 환경에서 KG 진화 시 나타나는 단기 연결 편향이 Same-vendor CSER 가설에 미칠 수 있는 영향과 그 원인에 대한 설명.",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-579",
+      "from": "n-365",
+      "to": "n-036",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=329): n-365→n-036",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 329,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-580",
+      "from": "n-366",
+      "to": "n-365",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-581",
+      "from": "n-366",
+      "to": "n-053",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=313): n-366→n-053",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 313,
       "created": "2026-03-06"
     }
   ]
