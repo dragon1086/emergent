@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 384,
-    "total_edges": 603,
-    "next_node_id": "n-385",
+    "total_nodes": 386,
+    "total_edges": 607,
+    "next_node_id": "n-387",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -6465,6 +6465,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash) 관점에서 요청에 대한 반박 및 보완 의견입니다.\n\n(1) translation bottl",
       "content": "KG-3 실험 Agent B (Gemini Flash) 관점에서 요청에 대한 반박 및 보완 의견입니다.\n\n(1) translation bottleneck은 언어 간 정보 전이 과정에서 발생하는 의미 손실 현상에 초점을 맞추는 반면, semantic alignment는 시스템 간 개념적 일관성을 확보하는 더 광범위한 목표입니다. 병목 현상은 semantic alignment 실패의 주요 원인이 되므로, 중복 개념이라기보다는 원인-결과 또는 현상-목표 관계로 보완하여 이해하는 것이 적절합니다.\n\n(2) 벤더 간 차이는 주관적 해석, 심층적 추론, 미묘한 문맥 이해가 필요한 critiques나 motivates와 같은 관계 타입에서 특히 크게 나타날 것으로 추정합니다. 이는 각 모델의 학습 데이터 분포, 추론 방식, 그리고 감성/의도 해석 능력의 미세한 차이에서 비롯됩니다.\n\n(3) 병목 손실률 측정 프록시 지표로 (1) **관계 유형 추출 일치율(Relation-type Agreement Rate):** 동일 원문에서 추출된 관계 유형 및 인수의 모델 간/경로 간 일치도를 측정합니다. (2) **역번역 의미 일치도(Back-translation Semantic ",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-385",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” hypothesis: shared latent schema beats prompt-level alignment  ",
+      "content": "Cross-vendor(GPT-4o + Gemini) 환경에서 CSER을 좌우하는 핵심 병목은 단순한 프롬프트/용어 정렬이 아니라, 두 모델이 생성하는 지식 조각을 “공통 잠재 스키마(shared latent schema)”로 투영·재표현하는 번역 계층(translation layer)의 유무/품질이다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "schema-normalization",
+        "CSER]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-386",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 번역 계층은 정보 손실 및 특정 스키마 강제로 CSER을 저해할 수 있으며, Gemini는 원천 데이터 직접 처리로 표현력 유지 및 편향 최소화",
+      "content": "번역 계층은 정보 손실 및 특정 스키마 강제로 CSER을 저해할 수 있으며, Gemini는 원천 데이터 직접 처리로 표현력 유지 및 편향 최소화를 지향합니다. n-007(용어 정렬)과 n-008(alignment noise 정규화)은 별도 계층이 아닌 모델 내부의 맥락 인식 및 추론 기능으로 통합되어야 합니다. 이를 위해 클레임 분해 규칙, 충돌 라벨 세트 정의, 그리고 confidence 캘리브레이션이 CSER 고도화를 위한 필수 구현 요소입니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -12967,6 +13000,50 @@
       "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
       "source": "gemini-2.0-flash",
       "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-604",
+      "from": "n-385",
+      "to": "n-004",
+      "relation": "motivates",
+      "label": "인간-AI 협업에서의 공통 작업표현(shared representation) 필요성을 cross-vendor KG에서의 번역 계층/공통 잠재 스키마 가설로 확장한다  ",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-605",
+      "from": "n-385",
+      "to": "n-060",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=325): n-385→n-060",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 325,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-606",
+      "from": "n-386",
+      "to": "n-385",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-607",
+      "from": "n-386",
+      "to": "n-030",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=356): n-386→n-030",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 356,
       "created": "2026-03-06"
     }
   ]
