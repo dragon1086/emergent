@@ -268,6 +268,18 @@ bash "$HOME/emergent/evolve-auto-kg3.sh" >> "$LOG" 2>&1 || true
 echo "[$(date '+%F %T')] KG-4 사이클 시작" >> "$LOG"
 bash "$HOME/emergent/evolve-auto-kg4.sh" >> "$LOG" 2>&1 || true
 
+# ── KG-2b 사이클 (same-model replication-B: N=2 within-cell) ──
+echo "[$(date '+%F %T')] KG-2b 사이클 시작" >> "$LOG"
+bash "$HOME/emergent/evolve-auto-kg2b.sh" >> "$LOG" 2>&1 || true
+
+# ── KG-3b 사이클 (cross-vendor replication-B: N=2 within-cell) ──
+echo "[$(date '+%F %T')] KG-3b 사이클 시작" >> "$LOG"
+bash "$HOME/emergent/evolve-auto-kg3b.sh" >> "$LOG" 2>&1 || true
+
+# ── KG-4b 사이클 (same-vendor replication-B: N=2 within-cell) ──
+echo "[$(date '+%F %T')] KG-4b 사이클 시작" >> "$LOG"
+bash "$HOME/emergent/evolve-auto-kg4b.sh" >> "$LOG" 2>&1 || true
+
 # ── 4. 벤치마크 결과 완료 감지 → 텔레그램 알림 ──
 REAL_RESULT="/Users/rocky/emergent/experiments/amp_benchmark_results_real.json"
 NOTIFIED_FLAG="/Users/rocky/emergent/experiments/checkpoints/benchmark_notified.flag"
