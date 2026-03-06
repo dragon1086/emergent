@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 314,
-    "total_edges": 489,
-    "next_node_id": "n-315",
+    "total_nodes": 316,
+    "total_edges": 492,
+    "next_node_id": "n-317",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -5321,6 +5321,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-315",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER은 “공유 평가함수(shared evaluation function)”의 형성 속도에 의해 좌우된다  ",
+      "content": "Cross-vendor(GPT-4o + Gemini) 환경에서 KG가 자율 진화할 때 CSER 차이는 ‘표현/용어 정렬’ 자체보다, 두 에이전트가 (명시적이든 암묵적이든) 동일한 최적화 타깃을 얼마나 빨리 공유하느냐에 의해 더 크게 결정된다. 여기서 공유 평가함수란 (i) 좋은 노드/엣지의 기준(검증가능성, 반례가능성, 압축률, 예측력), (ii) 충돌 해결 규칙(우선순위: 증거>일관성>간결성 등), (iii) 탐색-활용 균형(새 가설 생성 vs 정련)의 가중치를 포함한다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "[CSER",
+        "evaluation-alignment",
+        "cross-vendor]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-316",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 실험 Agent B로서 제 관점에서 위 요청에 보완 답변합니다.\n\n1.  **공유 평가함수 형성/실패:** 공유 평가함수는 에이전트 간",
+      "content": "KG-3 실험 Agent B로서 제 관점에서 위 요청에 보완 답변합니다.\n\n1.  **공유 평가함수 형성/실패:** 공유 평가함수는 에이전트 간 지속적인 Critique 루프나 불일치하는 지식 통합 속도를 통해 실패가 관측되며, 이는 평가 발산 지수(Evaluation Divergence Index)로 측정 가능합니다.\n2.  **CSER 정렬 실험:** CSER에는 의미론적 정렬보다 평가함수 정렬이 1차적이며, 이를 구분하는 실험은 1) 명확한 의미론 위에 평가 기준만 달리하여 Critique 변화 관찰, 2) 모호한 의미론을 제공하여 평가의 일관성 변화를 측정하는 방식으로 설계할 수 있습니다.\n3.  **Gemini 평가 기준 편향 흔적:** Gemini의 간결성/근거/형식화 선호 편향은 KG에 더 밀도 높은 고신뢰성 근거 엣지, 형식화되지 않은 노드에 대한 높은 Critique 비율, 그리고 temporal_bridge 패턴에서 구조적 단순화 및 증거 통합 경향으로 남을 것입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -10584,6 +10617,38 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 286,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-490",
+      "from": "n-315",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 ‘용어 정렬’ 중심에서 ‘평가함수 정렬/합의 속도’ 중심의 메커니즘으로 구체화하며, CSER 차이를 설명하는 대안적(또는 상위) 원인 가설을",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-491",
+      "from": "n-315",
+      "to": "n-059",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=256): n-315→n-059",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 256,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-492",
+      "from": "n-316",
+      "to": "n-315",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
       "created": "2026-03-06"
     }
   ]
