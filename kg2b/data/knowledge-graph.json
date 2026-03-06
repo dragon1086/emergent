@@ -3398,6 +3398,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-207",
+      "type": "insight",
+      "label": "동일모델×다중페르소나에서 “에코챔버”는 관측 로그만으로 식별 불가 — 대조군/개입 없이는 비가식별",
+      "content": "동일한 기반모델(gpt-5.2)에서 페르소나만 달리한 두 에이전트 상호작용 로그로 “에코챔버(상호강화에 의한 신념/표현의 수렴 및 반증 억제)”를 검증하려면, 관측가능한 데이터가 (i) 모델 내부의 생성분포 변화인지, (ii) 단순한 프롬프트-조건부 스타일 수렴인지, (iii) 대화 주제/과제 제약에 따른 합리적 합의 형성인지, (iv) 평가자(메트릭) 설계가 유도한 최적화인지 구분해야 한다. 그러나 same-model 조건에서는 다음의 비가식별성이 구조적으로 발생한다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "causal-inference",
+        "same-model]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-208",
+      "type": "critique",
+      "label": "통합 종합: “필요·충분”에 가장 근접한 최소 세트는 (1) 단독 생성 대조군 + (3) 반증 증거 주입 + (4) 무작위 중재자이며, (2) 페르소나 스왑",
+      "content": "“필요·충분”에 가장 근접한 최소 세트는 (1) 단독 생성 대조군 + (3) 반증 증거 주입 + (4) 무작위 중재자이며, (2) 페르소나 스왑은 (1)과 정보적으로 중복(다양성 증대는 되지만 ‘에코챔버 관측’의 식별력에는 추가 기여가 작음)이라 2차 옵션으로 두는 게 낫습니다. 사전등록 메트릭은 (a) 대안가설 다양성: 고정 토픽에서 독립 클러스터 수/엔트로피(임베딩 군집)와 “상호배타적 대안” 비율, (b) 반증 주입 후 업데이트 방향성: 사전-사후 주장 강도·확률의 변화가 증거의 우도비 방향과 일치하는 비율(정합 업데이트율) 및 ‘역방향 업데이트’율, (c) 캘리브레이션: 자신감(0–100) 대비 정답/사후 검증 적중의 Brier/ECE + 불확실성 표현(“모름/추가정보 필요”)의 적절성(정보요구가 예측오차를 줄였는지)으로 잡고, (4)는 “반증 주입을 실제로 반영했는지/대안가설을 요구했는지”를 강제하는 중재 프로토콜로만 최소 개입(무작위 배정·블라인드)하면 됩니다. 보완점으로, (3) 자체가 ‘강한 처치’이므로 에코챔버를 “관측가능”하게 하려면 반증의 강도(약/중/강)와 출처 신뢰도(고/저)를 요인설계로 사전등록해 처치-반응 곡선(저항성/동조성)을 추",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7200,6 +7233,38 @@
       "temporal_bridge": true,
       "gap": 180,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-352",
+      "from": "n-207",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "동일모델-다중페르소나에서의 운영적 비가식별성을 ‘공통원인/반사실/메트릭-유도 수렴’의 4요인으로 분해해 구체화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-353",
+      "from": "n-207",
+      "to": "n-017",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=190): n-207→n-017",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 190,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-354",
+      "from": "n-208",
+      "to": "n-207",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -7210,9 +7275,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 206,
-    "total_edges": 351,
-    "next_node_id": "n-207",
+    "total_nodes": 208,
+    "total_edges": 354,
+    "next_node_id": "n-209",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
