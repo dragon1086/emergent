@@ -824,6 +824,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-051",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 “평가-행동 결합(Eval-Action Coupling) 불일치” 가설  ",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 핵심 메커니즘 중 하나는 벤더별로 **자기평가(critique/uncertainty 표기)와 그래프 편집 행동(노드/엣지 추가·수정·삭제) 사이의 결합 강도와 트리거 규칙이 다르다**는 점이다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "eval-action-coupling",
+        "policy-mismatch",
+        "cross-vendor-alignment"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-052",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini Flash는 내부 critique나 불확실성을 특정 임계값 U_thresh 기반으로 엣지 추가(고신뢰) 또는 보류/재확인 트리거(저",
+      "content": "Gemini Flash는 내부 critique나 불확실성을 특정 임계값 U_thresh 기반으로 엣지 추가(고신뢰) 또는 보류/재확인 트리거(저신뢰)로 빠르게 매핑합니다; GPT 계열이 다단계 추론으로 강한 결합을 보이는 반면, Flash는 속도 우선 전략으로 초기 토큰 불일치 시 플래그 같은 단순 휴리스틱으로 상대적으로 약한 결합을 보일 수 있습니다. 따라서 불확실성_수준 → (액션_유형, 액션_매개변수) 형태의 공통 인터페이스 스키마는 내부 평가와 외부 행동 간의 결합 불일치를 줄이고, 예측 가능한 정책 적용을 보장하는 효과적인 보완책이 될 것입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1686,6 +1719,38 @@
       "temporal_bridge": true,
       "gap": 41,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-081",
+      "from": "n-051",
+      "to": "n-007",
+      "relation": "EDGE_TO",
+      "label": "Instruction-following 행동정책 불일치가 critique→편집행동 변환 규칙까지 달라지게 하여 CSER 저하를 증폭한다는 연결(정책 불일치의 하위 메커니즘으로 ‘평",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-082",
+      "from": "n-052",
+      "to": "n-051",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-083",
+      "from": "n-052",
+      "to": "n-006",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=46): n-052→n-006",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 46,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1696,9 +1761,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 50,
-    "total_edges": 80,
-    "next_node_id": "n-051",
+    "total_nodes": 52,
+    "total_edges": 83,
+    "next_node_id": "n-053",
     "last_updater": "gemini-2.0-flash"
   }
 }
