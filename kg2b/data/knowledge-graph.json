@@ -2870,6 +2870,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-175",
+      "type": "insight",
+      "label": "동일모델-다중페르소나 에코챔버의 ‘식별가능한’ 최소 실험 설계(반증 우선)",
+      "content": "동일 모델(gpt-5.2)에서 페르소나만 다른 두 에이전트의 상호작용으로 “에코챔버가 자율 진화했다”를 주장하려면, 관측 로그만으로도 대안 설명을 배제할 수 있는 식별가능(identifiable)한 조작적 정의가 필요하다. 그러나 현재 프레이밍은 (i) 같은 기반모델의 공통 사전분포, (ii) 페르소나 프롬프트의 유도 편향, (iii) 대화의 경로의존성(초기 조건), (iv) 동일한 평가자/로깅 지표의 측정 편향 때문에 ‘유사도 증가=에코챔버’로는 거의 항상 비식별이다. 따라서 반증을 목표로 하는 최소 설계는 “유사도 증가”가 아니라 “반증 후보의 소실(또는 접근 비용 증가)”을 핵심 결과로 두고, 이를 대조군과 교차 설계로 분리해 측정해야 한다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "falsifiability",
+        "experimental_design]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-176",
+      "type": "critique",
+      "label": "통합 종합: 요청이 타당하지만 “로그만으로 자동 산출”은 관측가능성(생성 전 후보공간, 내부 샘플링) 한계가 있어 **최소한의 구조화 로그(후보안 목록/선택",
+      "content": "요청이 타당하지만 “로그만으로 자동 산출”은 관측가능성(생성 전 후보공간, 내부 샘플링) 한계가 있어 **최소한의 구조화 로그(후보안 목록/선택이유/반례 스캔 결과)**를 함께 남기게 설계 보완이 필요합니다. (1) 지표는 **D_alt**를 “최종안과의 임베딩 거리+군집 수(중복제거는 MinHash/SimHash)+클레임-근거 그래프에서 서로 다른 결론 노드 수/근거 유형 다양성”으로, **반례 채택률**은 “반례 노드(contradiction/undercut) 생성→해결행동(수정/조건부화/기각) 중 ‘수정·조건부화’ 비율”로 정의하고, NLI+그래프(Claim↔Evidence↔Counterexample)로 자동 라벨링/집계하세요. (2) 교란 통제는 **길이·토큰예산 매칭(동일 출력길이 강제), 역할준수 체크리스트 점수로 공변량 보정, 프롬프트 스왑(지시문/콘텐츠 분리), 랜덤 시드·샘플링 온도 고정/주입, 주제수렴은 토픽 엔트로피(임베딩 토픽 분산)로 측정**한 뒤, 각 교란을 단독/교호 요인으로 둔 요인실험(2×2×2)과 회귀/혼합모형으로 분해하는 대조군 분석을 권합니다. “자율 진화” 필요조건(피드백 서명)은 **(i) 외부 피드백 신호→내부 정책변",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6076,6 +6109,38 @@
       "temporal_bridge": true,
       "gap": 170,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-297",
+      "from": "n-175",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "식별가능성 문제를 ‘유사도’가 아닌 ‘반증 후보 소실’로 재정의하고, 교차-오버·반증-주입·복원 테스트로 관측가능한 최소 반증 설계를 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-298",
+      "from": "n-176",
+      "to": "n-175",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-299",
+      "from": "n-176",
+      "to": "n-034",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=142): n-176→n-034",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 142,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -6086,9 +6151,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 174,
-    "total_edges": 296,
-    "next_node_id": "n-175",
+    "total_nodes": 176,
+    "total_edges": 299,
+    "next_node_id": "n-177",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
