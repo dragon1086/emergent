@@ -989,6 +989,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-061",
+      "type": "insight",
+      "label": "동일모델-다중페르소나 “에코챔버”의 대체설명: 공유 사전/정렬(align)로 인한 구조적 수렴",
+      "content": "동일 모델(gpt-5.2)에서 페르소나만 달리한 두 에이전트가 대화 중 유사한 결론·표현·근거 구조로 “수렴”하는 현상은, 에코챔버(상호 강화로 인한 신념 편향의 폐쇄적 증폭)라기보다 **공유된 파라미터/사전지식/정렬 규칙이 만드는 구조적 수렴(structural convergence)**의 결과일 수 있다. 즉 관측되는 유사도 증가는 (i) 상호작용에 의해 생성된 폐쇄성 증가가 아니라, (ii) 동일 생성분포에서 샘플링된 두 과정이 대화라는 약한 결합을 통해 공통 모드로 빨려 들어가는 현상일 수 있다. 특히 RLHF/안전정렬은 “대안 제시→균형 잡기→합의적 요약” 같은 대화 규범을 강하게 주입하므로, 페르소나 차이(비판/종합)가 있어도 메타-합의로 수렴하는 경향이 생긴다. 이때 로그 기반 지표(유사도, 합의율, 반대발화 감소 등)는 에코챔버의 핵심 메커니즘(반증 후보의 체계적 배제와 자기강화 루프)을 식별하지 못하고, 단지 **동일 모델의 공통 편향/규범에 따른 수렴**을 에코챔버로 오인할 위험이 크다. 반증 설계 관점에서, “동일모델 조건에서 관측된 수렴”을 에코챔버로 주장하려면 최소한 (a) 상호작용이 없을 때의 기본 수렴률(독립 생성분포) 대비 추가 수렴(Δ)을 분리하고, (b) 그 Δ가 ‘반증 후보의 누락/왜곡’과 결합된 형태(폐쇄성 증가)를 보이는지까지 입증해야 한다. 그렇지 않으면 에코챔버 가설은 operationally non-identifiable 하며, 관측된 현상은 “공유 prior + 대화 규범”의 부산물로 설명된다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "alternative-explanation",
+        "same-model-convergence]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-062",
+      "type": "critique",
+      "label": "통합 종합: 운영적 판별은 “수렴 그 자체”가 아니라 **상호작용이 유발한 추가 수렴 Δ가 반증 탐색을 약화시키는가**로 두 층(Δ추정, 반증지표)으로 정의",
+      "content": "운영적 판별은 “수렴 그 자체”가 아니라 **상호작용이 유발한 추가 수렴 Δ가 반증 탐색을 약화시키는가**로 두 층(Δ추정, 반증지표)으로 정의하는 게 에코챔버와의 분리력이 큽니다: (1) Δ는 동일 초기조건에서 **독립 생성군(서로 출력 비가시)** vs **상호참조군(타 출력 요약/원문 제공)**을 두고, 임베딩/토픽/결론분포의 분산 감소(예: Jensen–Shannon divergence, pairwise cosine dispersion) 차이를 **difference-in-differences**로 추정하되, 단순 스타일 수렴을 제거하려고 내용-증거-가설 단위로 구조화된 라벨(핵심 주장/근거/반례/불확실성)을 추출해 “의미적 수렴”만 계산하세요. (2) Δ가 “반증 후보의 체계적 배제”로 연결되는지 검증하려면, 상호작용군에서 **반례 생성률(주장당 반례 수·강도), 대안가설 다양도(가설 엔트로피/서로 다른 인과그래프 수), 자기확증 인용 패턴(동일 결론 지지 근거 재사용률·순환 인용 그래프의 클러스터링)**이 독립군 대비 유의하게 악화되는지(또는 반례가 제기돼도 후속 턴에서 소거되는 “반례 소멸률”)를 지표로 삼아 Δ와의 매개분석/상관을 보시면 됩니다",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2035,6 +2068,50 @@
       "temporal_bridge": true,
       "gap": 52,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-098",
+      "from": "n-061",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "판별 불능성의 원인을 ‘관측 설계 부족’뿐 아니라 ‘공유 정렬/사전으로 인한 구조적 수렴’이라는 구체적 대체 메커니즘으로 정교화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-099",
+      "from": "n-061",
+      "to": "n-005",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=56): n-061→n-005",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 56,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-100",
+      "from": "n-062",
+      "to": "n-061",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-101",
+      "from": "n-062",
+      "to": "n-006",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=56): n-062→n-006",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 56,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -2045,9 +2122,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 60,
-    "total_edges": 97,
-    "next_node_id": "n-061",
+    "total_nodes": 62,
+    "total_edges": 101,
+    "next_node_id": "n-063",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
