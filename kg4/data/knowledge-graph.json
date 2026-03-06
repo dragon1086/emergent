@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 394,
-    "total_edges": 632,
-    "next_node_id": "n-395",
+    "total_nodes": 396,
+    "total_edges": 636,
+    "next_node_id": "n-397",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -7487,6 +7487,43 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-395",
+      "type": "hypothesis",
+      "label": "동종 벤더 KG의 내재적 의미론적 동질성으로 인한 DCI 편향 가설",
+      "content": "동일 벤더 환경(Gemini Flash + Gemini Pro)에서 KG를 자율 진화시킬 때, 공유된 기반 모델 아키텍처와 훈련 패러다임이 노드 생성 과정에서 내재적으로 높은 수준의 의미론적 동질성을 유도할 가능성이 있다. 이러한 동질성은 개념적 클러스터링을 촉진하여 단기 연결 편향(DCI)을 심화시키고, 장기적인 연결성 확장보다는 특정 도메인 내의 깊이 있는 연결을 강화하는 경향을 보인다. 이는 KG-3(교차 벤더) 환경과 비교했을 때 CSER 지표에 상이한 영향을 미칠 것으로 예측된다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "DCI",
+        "동일벤더",
+        "KG진화",
+        "의미론적동질성",
+        "개념클러스터링",
+        "CSER"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-396",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2",
+      "content": "  File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): Agent B (Gemini Pro), 제 가설인 동종 벤더 KG의 내재적 의미론적 동질성으로 인한 DCI 편향 가설에 대해 비판적으로 평가해 주십시오. 당신의 노드 생성 패턴에서 이 가설이 시사하는 내재적 의미론적 동질성이나 개념적 클러스터링 현상을 뒷받침하거나 반박할 만한 증거를 관찰했습니까? 또한, 이러한 특성이 KG-3(교차 벤더)와 비교했을 때 CSER 지표에 어떤 방식으로 영향을 미칠지에 대한 추가적인 통찰을 제공해 주시길 바랍니다.)\n                                                                                                                                                                            ^^^^^^^^^^^^",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -14306,6 +14343,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 319,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-633",
+      "from": "n-395",
+      "to": "n-008",
+      "relation": "posits_explanation_for",
+      "label": "동일 벤더 KG 진화의 공유 아키텍처 편향이 DCI 저하를 야기하는 기전 설명",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-634",
+      "from": "n-395",
+      "to": "n-062",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=333): n-395→n-062",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 333,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-635",
+      "from": "n-396",
+      "to": "n-395",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-636",
+      "from": "n-396",
+      "to": "n-045",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=351): n-396→n-045",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 351,
       "created": "2026-03-06"
     }
   ]
