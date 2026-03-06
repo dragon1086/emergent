@@ -1748,6 +1748,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-107",
+      "type": "insight",
+      "label": "반증 설계의 핵심은 “동일모델-페르소나”에서 에코챔버를 ‘내생적 수렴’으로 식별하는 대조군(반사실) 구축이다",
+      "content": "동일 모델×다중 페르소나 조건에서는 관측된 수렴(합의 증가, 표현 유사성 증가, 상호 인용 증가 등)이 “에코챔버적 내생 진화” 때문인지, 혹은 (i) 동일 파라미터/사전학습으로 인한 공통 편향, (ii) 동일 프롬프트 구조·채점함수·중단규칙이 유도하는 최적화 수렴, (iii) 대화 기록 공유로 인한 단순 모방/기억효과, (iv) 안전/정책 제약의 공통 적용, (v) KG 편집 규칙(노드/엣지 타입, DCI 회복 등)이 만들어내는 구조적 동형성 때문인지가 운영적으로 구분되지 않는다. 따라서 “에코챔버 가설 검증”을 반증가능하게 만들려면, 관측 로그만으로는 부족하고 최소한의 반사실 비교(대조군)를 설계해야 한다. 구체적으로는 동일 모델이라는 제약을 유지하되, 내생 수렴을 주장하려면 ‘상호작용이 없었을 때의 기대 수렴’(독립 생성 분포의 합성)과 ‘상호작용이 있을 때의 실제 수렴’ 사이의 차이를 추정해야 한다. 이때 핵심은 단일 유사도 지표가 아니라, 반증 후보(대안 가설/반례/반대 근거)의 생성·보존·증식률이 상호작용으로 인해 감소하는지(=탐색 붕괴)라는 기능적 정의로 옮겨가야 한다. 즉 에코챔버의 “필요·충분”을 논하기 전에, (a) 상호작용이 반증 다양성을 억제한다는 방향성, (b) 그 억제가 독립 생성 대비 통계적으로 유의미하다는 비교, (c) 억제의 원인이 단순한 공유 메모리/규칙/정책이 아니라 상호강화(상호 인용·정당화 루프)라는 메커니즘 지표로 분해되어야 한다. 이 반사실 대조가 없으면, 어떤 관측된 KG의 자율 진화도 “에코챔버”로 귀속시키는 것은 식별가능성 결여(operational non-ide",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "counterfactual-control",
+        "falsifiability]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-108",
+      "type": "critique",
+      "label": "통합 종합: 지표는 “유사도”보다 **반증 후보의 생성·유지·채택** 흐름을 직접 잡아야 하므로 (1) **반증후보 다양성 엔트로피**(대안/반례/조건부 반",
+      "content": "지표는 “유사도”보다 **반증 후보의 생성·유지·채택** 흐름을 직접 잡아야 하므로 (1) **반증후보 다양성 엔트로피**(대안/반례/조건부 반증의 토픽·메커니즘 클러스터 분포), **상호작용 억제율**(독립 대비 상호작용에서 반증후보 *생성 수·채택 수·최종 포함 비율*의 감소), **반증 생존/지속성**(라운드 경과에 따른 반증후보의 생존곡선/삭제·희석 확률), **참조-고착도**(대화 중 동일 근거·프레이밍 재인용 비율↑ vs 새로운 반증 근거 유입률↓) 정도 3–5개가 최소 세트이고, novelty는 “새 주장”보다 “새 반증 메커니즘” 기준으로 계산해야 합니다. (2) 교란 통제는 **2×2 요인설계**로: 동일 과제에서 *독립생성(비상호작용)* vs *상호작용*, 그리고 *로그 공유/비공유*를 교차해 “공유 로그=에코”를 분리하고, 각 조건은 **시드·프롬프트·컨텍스트 완전 리셋**(세션간 메모리 금지) + **동일 모델/동일 정책 유지**하되 에이전트별 **서로 다른 시스템 프롬프트(역할만)**로 편향을 상쇄하며, 평가는 **블라인드 채점**(조건 숨김) + **차분(DiD)**(상호작용-독립의 변화량을 로그공유/비공유에서 다시 차분)로 추정하세",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3662,6 +3695,50 @@
       "temporal_bridge": true,
       "gap": 89,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-178",
+      "from": "n-107",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "‘판별 불능성’ 진단을 “반사실 대조군(독립 생성 분포 vs 상호작용 분포) 구축”이라는 구체적 반증 설계 요건으로 정교화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-179",
+      "from": "n-107",
+      "to": "n-004",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=103): n-107→n-004",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 103,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-180",
+      "from": "n-108",
+      "to": "n-107",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-181",
+      "from": "n-108",
+      "to": "n-002",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=106): n-108→n-002",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 106,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -3672,9 +3749,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 106,
-    "total_edges": 177,
-    "next_node_id": "n-107",
+    "total_nodes": 108,
+    "total_edges": 181,
+    "next_node_id": "n-109",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
