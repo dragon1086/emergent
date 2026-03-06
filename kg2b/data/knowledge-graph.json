@@ -2540,6 +2540,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-155",
+      "type": "insight",
+      "label": "에코챔버 검증의 “내생적 수렴 vs 공통모델 편향” 분해 불가능성",
+      "content": "동일 모델(gpt-5.2)·상이한 페르소나 조건에서 관측되는 합의/유사도 증가는 (i) 상호작용을 통해 발생한 내생적 에코챔버(사회적 강화·선택적 노출·반복 인용) 때문일 수도 있고, (ii) 두 에이전트가 공유하는 동일 파라미터/학습분포가 만들어내는 ‘외생적’ 공통 편향(기본 추론 습관, 안전 규범, 전형적 논증 템플릿)의 단순 발현일 수도 있다. 문제는 로그 기반 관측(발화, KG 업데이트, 엣지 패턴)만으로는 (i)와 (ii)를 식별하는 데 필요한 반사실(counterfactual) 비교군이 결여된다는 점이다. 특히 “자율 진화”는 상호작용의 함수인데, 동일모델에서는 상호작용을 제거한 독립 생성 분포조차 서로 높은 상관을 갖는다. 따라서 관측된 Δ(유사도/합의/반증 감소 등)는 ‘상호작용 효과(내생)’와 ‘공유모델 효과(외생)’의 합성으로만 측정되며, 분해를 위한 최소 조건(예: 모델/시드/정책의 독립성, 혹은 외생적 교란 주입)이 충족되지 않으면 에코챔버 가설은 운영적으로 비식별적이다. 반증 가능성을 회복하려면 적어도 하나가 필요하다: (a) 상호작용을 차단한 단독 생성 대비 상호작용 조건의 차이를 추정하는 준실험 설계(교차-오버, 시간차, 블라인드 프롬프트), (b) 대안가설(공통모델 편향) 하에서 예측되는 패턴(예: 특정 논증 템플릿/안전문구의 동시 출현, 독립 생성에서도 동일한 결론 수렴)을 사전등록하고 이를 위반하는 상호작용-특이적 시그니처를 정의, (c) 페르소나를 ‘내용’이 아니라 ‘증거 기준/반증 규칙’ 수준에서 강제하여 공통모델 편향을 상쇄. 핵심 비판: 현재 실험은 “에코챔버”를 주장하",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "confounding",
+        "same-model]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-156",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “반박 가능하게”라는 조건을 잘 걸었지만, 로그만으로 (특히 모델/시드 고정) 두 가설을 **식별**하겠다는 뉘앙스는 과감합니다—현실적으",
+      "content": "요청이 “반박 가능하게”라는 조건을 잘 걸었지만, 로그만으로 (특히 모델/시드 고정) 두 가설을 **식별**하겠다는 뉘앙스는 과감합니다—현실적으로는 *부분적 구분*은 가능하되, 강한 가정(교란의 외생성·대체가능한 자연실험·충분한 반복구조)이 없으면 “공통모델 편향 vs 상호작용-특이 에코챔버”는 관측적으로 동치가 되기 쉽습니다. 그 전제에서, 아래는 **(1) 공통모델 편향(CMB) 하 예측 시그니처**와 **(2) 상호작용-특이 에코챔버(IE) 시그니처**를 *짝지어* 3–5개 제시한 것이고, (3) 로그 기반 준실험 설계 가능성도 조건부로 정리합니다.\n\n1) **전역-일관성 vs 쌍-특이 상관구조**  \n- (CMB) 에이전트/세션을 바꿔도 특정 주장·프레이밍·안전문구·수사 패턴이 **전역적으로 동시 상관**(예: 같은 날 모든 대화에서 특정 편향 토큰 빈도 상승).  \n- (IE) 특정 사용자–에이전트(또는 특정 에이전트 쌍)에서만 **상관이 급증**하고 다른 조합에는 약함(“그 조합에서만” 극단화/확증편향이 강화).\n\n2) **초기응답 고정점 vs 상호작용 누적 의존성(히스테리시스)**  \n- (CMB) 대화 초반(첫 1–2턴)부터 편향된 결론/프레임",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5354,6 +5387,50 @@
       "temporal_bridge": true,
       "gap": 148,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-261",
+      "from": "n-155",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "동일모델-다중페르소나 조건의 운영적 비식별성을 ‘내생적 수렴 vs 공통모델 편향’으로 구체 분해하고, 이를 깨기 위한 최소 준실험/시그니처 조건을 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-262",
+      "from": "n-155",
+      "to": "n-012",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=143): n-155→n-012",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 143,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-263",
+      "from": "n-156",
+      "to": "n-155",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-264",
+      "from": "n-156",
+      "to": "n-001",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=155): n-156→n-001",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 155,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -5364,9 +5441,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 154,
-    "total_edges": 260,
-    "next_node_id": "n-155",
+    "total_nodes": 156,
+    "total_edges": 264,
+    "next_node_id": "n-157",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
