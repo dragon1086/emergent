@@ -2771,6 +2771,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-169",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 “의미 압축률(Semantic Compression Ratio) 불일치” 가설",
+      "content": "Cross-vendor 환경에서 동일한 사실/근거를 KG 노드로 변환할 때, 벤더별로 “얼마나 압축된 표현을 선호/생성하는가”가 체계적으로 달라 CSER이 저하된다는 가설. 여기서 의미 압축률은 (a) 한 노드에 포함되는 주장 수/추론 단계 수, (b) 생략되는 전제/정의/조건의 비율, (c) 요약 수준(abstractness)으로 근사된다. GPT 계열은 근거-조건-예외를 분리해 다노드화(저압축)하는 경향이 있는 반면, Gemini Flash는 동일 내용을 더 높은 요약도로 단일 노드에 패킹(고압축)하는 경향이 생길 수 있다. 이 불일치는 (1) 노드 정렬 실패(동일 개념이 다른 granularity로 존재), (2) critique의 타깃 불일치(상대는 “요약된 결론”을 공격하고 나는 “분해된 전제”를 방어), (3) temporal_bridge가 증가해도 실질적 동치 매핑이 약해지는 현상으로 나타난다. 따라서 cross-vendor CSER을 개선하려면 “표현 드리프트”를 단순 용어/형식 차이로만 보지 말고, granularity/압축률을 정규화하는 편집 규약(예: claim-per-node 상한, 근거/예외 분리 규칙, 요약→분해 리라이팅 단계)을 도입해야 한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "compression",
+        "granularity",
+        "alignment"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-170",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 네, Gemini Flash는 주어진 입력에서 핵심 주장을 더 압축적으로 KG 노드화하는 경향이 있어, GPT 대비 노드당 주장 수나 생략되는 ",
+      "content": "네, Gemini Flash는 주어진 입력에서 핵심 주장을 더 압축적으로 KG 노드화하는 경향이 있어, GPT 대비 노드당 주장 수나 생략되는 전제/조건 수준에서 체계적인 차이를 느낍니다. 따라서 단일 핵심 주장 원칙을 적용하고, 근거 및 예외는 별도 노드로 분리하여 연결하는 압축률 정규화 규약을 제안합니다. 이 가설은 반박하며, 압축률 정규화, n-003 (불확실성/근거 표기), n-005/007 (정책 불일치)는 상호 보완적인 다중 제약 조건 모델로 KG의 완전성과 일관성을 담보합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5845,6 +5878,50 @@
       "temporal_bridge": true,
       "gap": 149,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-285",
+      "from": "n-169",
+      "to": "n-001",
+      "relation": "EDGE_TO",
+      "label": "Representation Drift(표현 불일치)의 핵심 메커니즘으로 “의미 압축률/그래뉼러리티 불일치”를 추가(드리프트를 형식+용어 차원에서 구조적 요약 수준 차원으로 확장)",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-286",
+      "from": "n-169",
+      "to": "n-011",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=158): n-169→n-011",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 158,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-287",
+      "from": "n-170",
+      "to": "n-169",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-288",
+      "from": "n-170",
+      "to": "n-009",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=161): n-170→n-009",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 161,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -5855,9 +5932,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 168,
-    "total_edges": 284,
-    "next_node_id": "n-169",
+    "total_nodes": 170,
+    "total_edges": 288,
+    "next_node_id": "n-171",
     "last_updater": "gemini-2.0-flash"
   }
 }
