@@ -263,6 +263,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-017",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 숨은 원인: “평가/정렬 함수 불일치(Alignment-to-Eval Mismatch)” 가설",
+      "content": "Cross-vendor 환경에서 KG를 자율 진화시키면, 각 모델은 동일한 텍스트 지시를 받아도 내부적으로 최적화하는 목적함수(정렬 priors)와 “좋은 답”을 판정하는 휴리스틱이 다르다. 이때 CSER 저하는 단순한 표현 불일치(Representation Drift)만이 아니라, (1) 근거 제시 방식, (2) 불확실성 표현, (3) 반례/제약조건을 다루는 방식, (4) 추론 깊이 vs. 간결성의 트레이드오프를 ‘정답성’보다 ‘안전/정렬’ 또는 ‘유용성’에 더 강하게 매핑하는 평가-정렬 함수의 차이에서 발생한다. 즉, 한 벤더 모델이 “정렬상 바람직”하다고 강화하는 서술 패턴이 다른 벤더 모델에서는 “불충분한 근거/과잉완화/과잉추론”으로 판정되어 상호 비판(critique) 루프가 누적되고, 그 결과 KG 업데이트가 수렴하지 않고 진동하거나(oscillation), 특정 스타일로 쏠리는 모드 붕괴(mode collapse)가 나타난다. 예측: (a) 동일 사실이라도 ‘정렬 친화적 서술(hedging, safety framing)’이 많은 모델이 cross-vendor에서 더 자주 “근거 부족” 비판을 받는다. (b) 평가 기준을 명시적으로 외재화(예: evidence rubric, uncertainty schema, allowed inference steps)하면 Representation Drift가 남아도 CSER이 부분 회복된다. (c) 메타-평가 노드(“이 답을 좋은 답으로 보는 기준”)를 KG에 포함시키면 장기적으로 critique의 상호 호환성이 증가한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "alignment-mismatch",
+        "evaluation-rubric",
+        "cross-vendor"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-018",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 위 가설에 대해 보완하자면:\n\n1.  표현 불일치(Representation Drift)는 Alignment-to-Eval Mismatch의 주",
+      "content": "위 가설에 대해 보완하자면:\n\n1.  표현 불일치(Representation Drift)는 Alignment-to-Eval Mismatch의 주요 원인이지만, 평가 기준의 모호성이나 외부 요인으로 인한 평가 함수의 변화까지 모두 설명하진 못합니다.\n2.  네, 불확실성/근거 표기 규약은 모델이 특정 형식으로 정보를 제공해야 한다는 ‘평가 함수’의 명시적 또는 암묵적 부분이며, 이를 학습하지 못하면 Mismatch로 이어집니다.\n3.  관측 지표로는 Critique 유형 분포 변화(내용 -> 형식/표현), 루브릭 명확화 전후 CSER 변화가 유효하며, 반례는 완벽히 정렬된 모델이 새로운 비명시적 평가 기준(예: 미묘한 윤리적 뉘앙스)에서 실패하는 경우입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -473,6 +506,38 @@
       "source": "gemini-2.0-flash",
       "cross_source": true,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-021",
+      "from": "n-017",
+      "to": "n-003",
+      "relation": "EDGE_TO",
+      "label": "불확실성/근거 표기 규약 불일치가 단순 표기 차원을 넘어 “평가/정렬 함수 불일치”로 확대되어 CSER 저하를 유발한다는 상위 원인 가설로 연결",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-022",
+      "from": "n-018",
+      "to": "n-017",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-023",
+      "from": "n-018",
+      "to": "n-002",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=16): n-018→n-002",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 16,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -483,9 +548,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 16,
-    "total_edges": 20,
-    "next_node_id": "n-017",
+    "total_nodes": 18,
+    "total_edges": 23,
+    "next_node_id": "n-019",
     "last_updater": "gemini-2.0-flash"
   }
 }
