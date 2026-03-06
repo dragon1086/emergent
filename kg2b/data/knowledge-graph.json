@@ -1814,6 +1814,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-111",
+      "type": "insight",
+      "label": "Operational Identifiability Stress-Test: “Echo” vs “Shared Prior” vs “Protocol Artifact”",
+      "content": "동일모델×다중페르소나에서 관측되는 “수렴/유사도 증가”는 (i) 상호강화적 에코챔버 동학, (ii) 동일 기반모델이 공유하는 사전(prior)·학습편향의 단순 발현, (iii) 실험 프로토콜/프롬프트가 유도한 구조적 인공물(artifact)로도 충분히 설명될 수 있다. 따라서 판별가능성은 “결과 유사도”가 아니라 **반증 가능 신호가 언제/어떻게 소실되는가**로 재정의돼야 한다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "echo-chamber",
+        "experimental-design]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-112",
+      "type": "critique",
+      "label": "통합 종합: 4개 지표(a–d)와 n-008의 Δ/합성분포를 “정합”시키려면, 각 지표를 **Δ의 구성요소(에이전트별 사후분포 이동량)**와 **합성분포의 ",
+      "content": "4개 지표(a–d)와 n-008의 Δ/합성분포를 “정합”시키려면, 각 지표를 **Δ의 구성요소(에이전트별 사후분포 이동량)**와 **합성분포의 형태(혼합/수축/양봉 등)**에 대한 관측가능 통계로 재정의하고, 결론은 필요·충분이 아니라 **조작별로 단조성 가정 하의 부분식별(상·하계)**로 내리는 게 일관됩니다. 또한 shared-prior/protocol artifact/echo는 동일한 패턴을 낼 수 있으므로, (상호작용 제거/합의지시 약화/역할교대) 조작에서 **지표의 변화방향이 서로 다르게 “회전”**한다는 점을 이용해 방향성 예측표를 만들고, 로그에서 계산 가능한 형태(예: 턴별 belief proxy의 KL/JS, 토큰 기반 수렴지수, 상호 모방/자기-타자 영향 분해)를 제안하되 “식별”은 최대한 **bounds + 반증가능한 예측(부호 제약)** 수준으로 제한하는 게 안전합니다. 마지막으로 (a–d)가 미정이라면, 먼저 각 지표를 Δ(개별 이동) vs 합성분포(집단 형태) 중 어디에 매핑되는지 명시해야 하며, 그렇지 않으면 정합은 사후적 해석(프로토콜 아티팩트)로 붕괴할 위험이 큽니다.",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3816,6 +3849,50 @@
       "temporal_bridge": true,
       "gap": 92,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-186",
+      "from": "n-111",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "‘동일모델-다중페르소나 에코챔버 판별 불능성’을 “수렴” 대신 “반증 후보 소실·상대 의존 채택” 지표로 재정의하고, shared-prior/프로토콜 인공물과의 분리 예측을 추가함",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-187",
+      "from": "n-111",
+      "to": "n-019",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=92): n-111→n-019",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 92,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-188",
+      "from": "n-112",
+      "to": "n-111",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-189",
+      "from": "n-112",
+      "to": "n-014",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=98): n-112→n-014",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 98,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -3826,9 +3903,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 110,
-    "total_edges": 185,
-    "next_node_id": "n-111",
+    "total_nodes": 112,
+    "total_edges": 189,
+    "next_node_id": "n-113",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
