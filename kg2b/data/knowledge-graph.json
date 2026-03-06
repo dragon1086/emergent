@@ -3068,6 +3068,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-187",
+      "type": "insight",
+      "label": "동일모델 조건에서 ‘에코챔버’와 ‘공유사전(Shared Prior) 수렴’의 구별 기준 요구",
+      "content": "동일 모델(gpt-5.2×gpt-5.2)·다중 페르소나 설정에서 관측되는 “유사도 증가/합의 강화/반론 감소”는 에코챔버(상호강화로 인한 편향적 폐쇄) 때문이 아니라, 애초에 두 에이전트가 동일한 사전분포(언어모델 파라미터, RLHF 규범, 안전·정합성 휴리스틱)를 공유하기 때문에 발생하는 ‘자연 수렴(Shared Prior Convergence)’로도 충분히 설명될 수 있다. 이때 상호작용은 원인이라기보다 촉진자일 뿐이며, 로그 기반 지표로는 (i) 상호강화에 의해 반증 탐색이 구조적으로 억제된 것인지, (ii) 동일 사전이 단지 유사한 답을 반복 산출한 것인지가 운영적으로 분리되지 않는다. 따라서 에코챔버 가설을 검증하려면 최소한 다음과 같은 “구별 가능한 반증 패턴”을 요구해야 한다: (1) 상호작용이 있을 때만 반증 후보의 생성률/다양성이 유의미하게 감소(또는 특정 방향으로 편향)하고, 상호작용이 없거나 교차-페르소나가 바뀌면 회복되는 상호작용-의존적 효과; (2) 동일 사전 수렴이 예측하는 ‘대칭적 유사화’가 아니라, 대화 네트워크 구조(턴-의존, 인용/재진술 루프, 확인편향적 선택)에 의해 특정 주장 군집이 과잉 강화되는 ‘비대칭적 강화’; (3) 반증 탐색 비용(예: 명시적 반례 요구, adversarial prompt) 부여 시 에코챔버라면 저항/회피/형식적 반박으로 대체되는 반면, 공유사전 수렴이라면 반증 산출이 비교적 정상적으로 증가하는 차이. 요지는 “유사도 증가”를 에코챔버의 필요·충분 조건으로 두지 말고, 상호작용-의존적 폐쇄성(반증 후보 억제/선택적 증거 축적)이라는 구조적 시그니처를",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "shared-prior",
+        "falsifiability]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-188",
+      "type": "critique",
+      "label": "통합 종합: 요청을 보완하면, “공유사전(동일 파라미터·RLHF 규범) 수렴”은 에코챔버의 *원인*이라기보다 *전역적 바이어스(모델-내생)*이고, 에코챔버는",
+      "content": "요청을 보완하면, “공유사전(동일 파라미터·RLHF 규범) 수렴”은 에코챔버의 *원인*이라기보다 *전역적 바이어스(모델-내생)*이고, 에코챔버는 *상호작용-내생(네트워크/대화 동역학)*이므로 KG에는 **H₁: 공유사전 수렴**, **H₂: 상호작용 유도 에코챔버**, **H₃: 혼합(공유사전×상호작용 증폭)**로 경쟁가설을 분리해 넣는 게 식별에 유리합니다.  \n\n(a) 에코챔버가 공유사전 수렴과 구별되는 운영적 예측(≥3): **P1** 상호작용 ON(서로의 답을 본 후 재작성)에서만 “의견/근거 분산”이 시간에 따라 단조 감소(수렴)하고 OFF(독립)에서는 감소폭이 작다(차분-차분); **P2** 인용/참조 그래프에서 동일 출처(또는 동일 주장)로 되돌아가는 **인용 루프 비율**이 ON에서 급증하며, 공유사전 수렴만이면 루프보다는 “초기부터 유사한 답”이 나타나되 루프의 시간적 증가가 약하다; **P3** 반증 요구(adversarial: “내 주장의 최강 반례 3개+조건부 수정”)를 넣으면 에코챔버는 ON에서 **반증 후보 다양성**이 오히려 더 줄거나(집단이 같은 반례만 반복) 특정 반례가 과강화되는 **비대칭 강화 계수**가 커지지만, 공유사전 ",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6478,6 +6511,38 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-316",
+      "from": "n-187",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "‘동일모델-다중페르소나’ 판별 불능성을 “공유사전 수렴 vs 상호강화 에코챔버” 대체설명으로 구체화하고, 구별 가능한 반증 패턴(상호작용-의존/비대칭 강화/반증 비용 반응)을 추가",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-317",
+      "from": "n-188",
+      "to": "n-187",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-318",
+      "from": "n-188",
+      "to": "n-003",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=185): n-188→n-003",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 185,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -6488,9 +6553,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 186,
-    "total_edges": 315,
-    "next_node_id": "n-187",
+    "total_nodes": 188,
+    "total_edges": 318,
+    "next_node_id": "n-189",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
