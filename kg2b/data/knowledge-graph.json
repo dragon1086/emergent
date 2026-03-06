@@ -131,6 +131,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-009",
+      "type": "insight",
+      "label": "로그 기반 “자율 진화” vs. 프롬프트 유도 상관의 구분(식별 전략)",
+      "content": "동일 모델·상이 페르소나 조건에서 관찰되는 KG 변화가 ‘자율 진화’(내생적 동역학)인지, 단지 프롬프트/평가규칙/대화기억이 유도한 ‘상관적 드리프트’인지가 핵심 식별 문제다. 비판적으로 보면, 현재 설계는 (i) 동일 가중치 모델의 결정경로가 유사하고, (ii) KG 업데이트 규칙이 외생 변수(지시문, 출력 포맷 강제, DCI 회복 지시 등)에 강하게 종속되며, (iii) 로그는 잠재상태(각 에이전트의 내부 요약·주의·샘플링 변동)를 관측하지 못한다는 점에서, 에코챔버 가설을 “로그만으로” 입증하기 어렵다. 이를 반증가능하게 만들려면 최소한 다음의 구분 실험/검정이 필요하다:  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "식별가능성",
+        "대조실험",
+        "반증가능성"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-010",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “로그 관측만”이라도 **프롬프트/정책·템플릿·세이프가드**가 만든 구조적 제약을 분리하지 않으면 지표가 에코챔버가 아니라 “형식 순응”",
+      "content": "요청이 “로그 관측만”이라도 **프롬프트/정책·템플릿·세이프가드**가 만든 구조적 제약을 분리하지 않으면 지표가 에코챔버가 아니라 “형식 순응”을 측정하게 되니, 지표는 **(a) 내용적 동질화**와 **(b) 대화/그래프 생성 규칙**을 분해해 사전등록해야 합니다. 사전등록 가능한 5개 지표와 예측쌍은 다음과 같습니다: ① **반대노드 생성률**(turn당/토픽당 ‘반대 주장’ 노드 수): 에코챔버=낮음, 형식제약=프롬프트가 ‘반대 제시’ 요구 시 높고 아니면 낮음; ② **contradict 엣지 비율**(전체 엣지 중 contradict): 에코챔버=낮고 시간 경과에 따라 감소, 형식제약=스키마/지시가 엣지 타입을 강제하면 고정(조건부 상수); ③ **자기강화 루프 길이·빈도**(support/entail 중심 순환의 평균 길이·출현률): 에코챔버=짧은 루프가 자주(클러스터 내부 재인용), 형식제약=요약/결론 템플릿이 있으면 짧은 루프 증가하되 토픽과 무관하게 일정; ④ **동질성/모듈성**(동일 입장 커뮤니티의 모듈성 Q 또는 assortativity): 에코챔버=Q↑·assortativity↑(분극 클러스터 강화), 형식제약=대화 길이/노드 수에 의",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -213,6 +246,38 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-009",
+      "from": "n-009",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "identifiability 문제를 ‘프롬프트 유도 상관 vs 자율 진화’로 구체화하고, 대조·차분 설계로 식별을 강화하는 전략 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-010",
+      "from": "n-010",
+      "to": "n-009",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-011",
+      "from": "n-010",
+      "to": "n-003",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=7): n-010→n-003",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 7,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -223,9 +288,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 8,
-    "total_edges": 8,
-    "next_node_id": "n-009",
+    "total_nodes": 10,
+    "total_edges": 11,
+    "next_node_id": "n-011",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
