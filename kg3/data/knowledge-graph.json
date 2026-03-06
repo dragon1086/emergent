@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 340,
-    "total_edges": 533,
-    "next_node_id": "n-341",
+    "total_nodes": 342,
+    "total_edges": 537,
+    "next_node_id": "n-343",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -5739,6 +5739,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: Gemini의 관점에서, 단순히 용어 정렬된 앵커는 문맥적 변화에 따른 의미 함의 드리프트를 충분히 막지 못하며, 이는 최적화와 같은 개념에서 ",
       "content": "Gemini의 관점에서, 단순히 용어 정렬된 앵커는 문맥적 변화에 따른 의미 함의 드리프트를 충분히 막지 못하며, 이는 최적화와 같은 개념에서 목표 함수 변경 시 더 분명해집니다. 따라서 최소 반례 세트, 테스트 케이스 생성 규칙, 그리고 앵커 만족도 스코어링을 통해 동적으로 불변성을 검증하는 더 강한 앵커 설계가 필수적입니다. KG 진화 과정에서 낮은 critique율과 높은 temporal_bridge 재사용률은 앵커 불변성이 단순한 용어 정렬을 넘어 모델 간의 안정적인 의미 합의에 핵심임을 입증하는 지표가 될 것입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-341",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as a controllable alignment bottleneck",
+      "content": "Cross-vendor KG 자율 진화에서 성능(CSER)은 “모델 간 의미 차이” 그 자체보다, 그 차이를 흡수/노출시키는 번역 계층(translation layer)의 설계에 의해 더 크게 좌우된다. 구체적으로, (1) 공유 온톨로지/스키마(관계 타입, 증거 단위, 불확실성 표기), (2) 정규화된 용어 사전(동의어/상위어/금지어), (3) 상호 검증 가능한 요약 포맷(예: claim–evidence–assumption–test)의 3요소가 “정렬 병목(alignment bottleneck)”을 형성하며, 이 병목의 대역폭이 너무 좁으면 정보 손실로 CSER이 하락하고, 너무 넓으면 vendor별 표현 편향이 그대로 유입되어 충돌/중복이 증가한다. 따라서 최적의 CSER은 번역 계층의 병목 폭을 조절(예: 스키마 강제 수준, 용어 정규화 강도, 증거 요구량)하여 “충돌을 생산적으로 만들되(검증 가능), 중복/표현 드리프트는 억제”하는 지점에서 나타난다는 가설을 제안한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "translation-layer",
+        "semantic-alignment",
+        "CSER"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-342",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash)입니다. 다음은 요청에 대한 반박 및 보완입니다.\n\nGemini는 광범위한 다국어 및 다중",
+      "content": "KG-3 실험 Agent B (Gemini Flash)입니다. 다음은 요청에 대한 반박 및 보완입니다.\n\nGemini는 광범위한 다국어 및 다중 모달 학습으로 맥락적 의미를 깊이 이해하여, 단순한 번역 계층 병목으로 인한 동형이의어 오해나 관계 타입 불일치 오류 발생률이 현저히 낮습니다. 병목이 너무 좁을 경우, CSER의 검증가능 주장 비율이 감소하고 중복률이 증가할 수 있습니다. 반대로 병목이 너무 넓을 경우 충돌률과 중복률이 상승하며, temporal_bridge 안정성 저하로 이어져 전반적인 CSER에 부정적인 영향을 미칠 수 있습니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -11489,6 +11522,50 @@
       "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
       "source": "gemini-2.0-flash",
       "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-534",
+      "from": "n-341",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 차이를 설명하는 핵심 메커니즘으로 “번역 계층의 병목 설계”를 추가하여, n-001의 상위 가설(교차 벤더 환경에서 CSER 비교)을 구체화/예측 ",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-535",
+      "from": "n-341",
+      "to": "n-037",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=304): n-341→n-037",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 304,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-536",
+      "from": "n-342",
+      "to": "n-341",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-537",
+      "from": "n-342",
+      "to": "n-061",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=281): n-342→n-061",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 281,
       "created": "2026-03-06"
     }
   ]
