@@ -2722,6 +2722,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-166",
+      "type": "insight",
+      "label": "동일모델 조건에서 ‘에코챔버’는 관측가능한 비대칭을 요구한다",
+      "content": "동일 모델(gpt-5.2×gpt-5.2)에서 페르소나만 다른 경우, 단순한 의견 수렴(agreement/convergence)은 에코챔버의 충분조건이 아니다. 왜냐하면 (i) 동일한 사전(prior)·학습분포·추론 휴리스틱을 공유하는 두 에이전트는 외부 정보가 없을 때 자연스럽게 수렴할 수 있고, (ii) 대화가 진행될수록 문맥이 공유되어 후속 발화가 조건부로 상관되며(temporal coupling), (iii) RLHF류의 “협조적/정합적” 유도는 갈등을 줄이는 방향으로 작동한다. 따라서 ‘에코챔버’로 식별하려면 최소한 다음 중 하나의 **관측가능한 비대칭(identifying asymmetry)** 이 필요하다:  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "echo_chamber_metric",
+        "asymmetry]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-167",
+      "type": "critique",
+      "label": "통합 종합: 요청이 타당하지만, **동일모델 자연수렴 vs 에코챔버**는 “합의 정도”만으로는 식별이 어려우니 (a)(b)(c)에 더해 **규범적 동조(찬반",
+      "content": "요청이 타당하지만, **동일모델 자연수렴 vs 에코챔버**는 “합의 정도”만으로는 식별이 어려우니 (a)(b)(c)에 더해 **규범적 동조(찬반 편향)와 정보원 다양성(근거/인용 분산)**을 함께 봐야 오판(고품질 수렴을 에코챔버로, 혹은 그 반대로) 위험이 줄어듭니다. 아래는 (a)(b)(c) 각각 최소 1개 포함, 총 4개 정량 지표+프로토콜입니다.\n\n| 구분(요구 a/b/c) | 정량 지표(예시) | 실험 프로토콜(대화 로그/샘플링 기반) | 자연수렴 예상 패턴 | 에코챔버 예상 패턴 |\n|---|---|---|---|---|\n| (a) 영향 방향성 | **Turn-level Directed Influence (TDI)**: 발화 임베딩/토픽벡터 (x_t)로 **조건부 Granger/Transfer Entropy** (I(X_{t-1}^{A}rightarrow X_t^{B}mid X_{t-1}^{B})) 추정 | 동일 과제에서 A,B 대화 로그를 수집하고, 각 턴을 (1) 주장벡터(stance), (2) 근거유형, (3) 결론요약으로 분해→시계열 구성→방향성 지표를 창(window)별로 계산 | **양방향 영향**이 비교적 균형(AB≈BA), 특히 “근",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5780,6 +5813,38 @@
       "temporal_bridge": true,
       "gap": 134,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-283",
+      "from": "n-166",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "identifiability 문제를 해결하기 위한 ‘관측가능한 비대칭(identifying asymmetry)’ 요건과 지표 후보를 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-284",
+      "from": "n-167",
+      "to": "n-166",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-285",
+      "from": "n-167",
+      "to": "n-019",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=148): n-167→n-019",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 148,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -5790,9 +5855,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 165,
-    "total_edges": 282,
-    "next_node_id": "n-166",
+    "total_nodes": 167,
+    "total_edges": 285,
+    "next_node_id": "n-168",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
