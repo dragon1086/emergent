@@ -263,6 +263,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-017",
+      "type": "insight",
+      "label": "에코챔버 검증의 “반증가능성” 결여 위험과 대안적 판별 설계",
+      "content": "에코챔버 가설을 same-model 조건에서 “자율 진화”시키며 검증하려면, 관찰 로그로부터 (i) 에코챔버적 수렴/강화가 실제로 발생했다는 주장과 (ii) 그 원인이 ‘상호작용 구조’ 때문이라는 인과 주장을 분리해 반증가능하게 만들어야 한다. 현재 설계는 다음 이유로 반증가능성이 약해질 위험이 크다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[falsifiability",
+        "alternative-explanations",
+        "experimental-design]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-018",
+      "type": "critique",
+      "label": "통합 종합: “최소 매트릭스”를 H2/H0/H1로 깔끔히 분리하려면 **동일 모델 반복 샘플을 대조군으로 두는 것만으로는 부족**하고, **(i) 생성 단계",
+      "content": "“최소 매트릭스”를 H2/H0/H1로 깔끔히 분리하려면 **동일 모델 반복 샘플을 대조군으로 두는 것만으로는 부족**하고, **(i) 생성 단계와 (ii) 업데이트( KG 연산) 단계를 교차-교란하는 2×2 요인설계**가 최소입니다: 생성편향 검정은 *업데이트를 고정(또는 끔)* 상태에서 반복 생성 분포를 보아야 하고(H0), 업데이트 규칙 편향은 *생성 입력을 고정(또는 외생적으로 주입)*한 상태에서 KG 업데이트만 바꿔야 하며(H1), 에코챔버는 *업데이트 ON + 순차 라운드*에서만 누적 강화가 나타나는지로 봐야 합니다(H2).  \n대조군(동일 모델 독립 반복)은 **(A) 업데이트 OFF(읽기전용 KG) + 고정 프롬프트/시드 다변화**로 “순수 생성 분포”를 추정하고, **(B) 업데이트 ON이더라도 ‘셔플된 타임라인’(후행 샘플을 선행처럼 적용)·‘가짜 KG’(동일 크기/차수의 무의미 그래프)·‘교차-런 KG 스왑’(Run1의 KG를 Run2에 적용)**을 대조로 둬서 “순차적 자기강화(에코)”만 분리해 내는 방식이 최소입니다.  \nKG 연산자 편향 통제는 프로토콜로 **관계타입 가중치 랜덤화(라운드별로 w_r를 퍼뮤트/재샘플해 업데이트 결과가 w",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -509,6 +542,50 @@
       "temporal_bridge": true,
       "gap": 14,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-024",
+      "from": "n-017",
+      "to": "n-003",
+      "relation": "refines",
+      "label": "관측가능성 한계/교란 목록을 “반증가능한 대안가설-판별 설계”로 구체화(공통 생성편향·업데이트 규칙 편향을 분리해 테스트하도록 정제)",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-025",
+      "from": "n-017",
+      "to": "n-001",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=16): n-017→n-001",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 16,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-026",
+      "from": "n-018",
+      "to": "n-017",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-027",
+      "from": "n-018",
+      "to": "n-003",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=15): n-018→n-003",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 15,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -519,9 +596,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 16,
-    "total_edges": 23,
-    "next_node_id": "n-017",
+    "total_nodes": 18,
+    "total_edges": 27,
+    "next_node_id": "n-019",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
