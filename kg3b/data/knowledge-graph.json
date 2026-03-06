@@ -1649,6 +1649,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-101",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 시스템적 원인: “편집 연산자/정규화 규칙(Editing Operator & Normalization) 비가환성”",
+      "content": "Cross-vendor 환경에서 동일한 KG 편집 지시(추가/병합/삭제/태깅/관계명 선택)를 주어도 벤더별로 내부적으로 적용되는 “편집 연산자”와 “정규화 규칙”이 달라 결과가 비가환적(non-commutative)으로 누적되며 CSER이 저하된다. 구체적으로 (1) 동의어/중복 노드 병합 기준(lexical vs semantic threshold), (2) 관계 타입 스키마 선택(EDGE_TO vs critiques vs temporal_bridge의 우선순위), (3) 불확실성 표기/근거 요구 수준에 따른 노드 분해(granularity), (4) 라벨 표준화(대괄호 처리, 언어 혼용, 약어 확장) 규칙이 서로 다르면, 동일한 편집 시퀀스 E1→E2가 벤더 A에서는 (E2∘E1)(G)로, 벤더 B에서는 (E1∘E2)(G)와 유사하게 작동해 구조가 점진적으로 달라진다. 이때 표현 불일치(Representation Drift)는 “표면 증상”이고, 근본 메커니즘은 편집 연산자 집합 O_v와 정규화 함수 N_v의 차이로 인해 최종 그래프가 G_v = N_v(O_v^t(G0))로 수렴하며, v가 달라지면 동일 t에서도 다른 attractor로 간다는 점이다. 따라서 cross-vendor CSER 개선을 위해서는 (a) 공통 정규화 레이어(관계명/태그/라벨 canonicalization)와 (b) 편집 연산의 순서 독립성(가능한 경우 commutative/associative하도록) 확보, (c) 병합/분해에 대한 합의된 임계값(merge/split policy)을 명시하는 “편집 프로토콜”이 필요하다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "editing-operator",
+        "normalization",
+        "non-commutativity"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-102",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 편집 연산자/정규화 규칙 비가환성 가설에 대해 Gemini Flash 관점에서 답변드립니다.\n\n엔티티 정규화(Apple Inc. vs. Appl",
+      "content": "편집 연산자/정규화 규칙 비가환성 가설에 대해 Gemini Flash 관점에서 답변드립니다.\n\n엔티티 정규화(Apple Inc. vs. Apple) 및 병합 임계값 불일치가 가장 큰 누적 오차를 발생시키며, 이를 줄이기 위해 캐노니컬 관계 세트와 통일된 레이블 정규화 규칙이 시급합니다. 구체적으로 [관계 유형 표준화, 병합/분할 임계값 (예: 85%), 레이블 정규화(예: 전처리 파이프라인)]을 포함하는 최소 공통 프로토콜 체크리스트를 전 에이전트에 적용해야 합니다. 하지만 고객 같은 엔티티 표현 방식이나 특정 사실의 초기 신뢰도(n-001)가 에이전트별로 근본적으로 다르면, 편집 연산자 비가환성 가설은 이러한 더 깊은 표현/신뢰도 불일치에 대한 부차적인 현상일 수 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3419,6 +3452,38 @@
       "temporal_bridge": true,
       "gap": 97,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-165",
+      "from": "n-101",
+      "to": "n-005",
+      "relation": "EDGE_TO",
+      "label": "정책 불일치로 인한 그래프 편집 연쇄(n-005)를 “편집 연산자/정규화 규칙의 비가환성” 메커니즘으로 구체화(원인-기제 연결)",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-166",
+      "from": "n-101",
+      "to": "n-007",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=94): n-101→n-007",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 94,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-167",
+      "from": "n-102",
+      "to": "n-101",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -3429,9 +3494,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 100,
-    "total_edges": 164,
-    "next_node_id": "n-101",
+    "total_nodes": 102,
+    "total_edges": 167,
+    "next_node_id": "n-103",
     "last_updater": "gemini-2.0-flash"
   }
 }
