@@ -2375,6 +2375,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-145",
+      "type": "insight",
+      "label": "에코챔버 판별의 ‘동일모델-공유사전’ 구조적 비식별성",
+      "content": "동일모델×다중페르소나 조건에서 관찰 로그(발화·KG 업데이트)만으로 “에코챔버의 자율 진화”를 식별하려 하면, 구조적으로 비식별적인(식별불능에 가까운) 문제가 남는다. 핵심은 두 에이전트가 (i) 동일한 기저모델 파라미터, (ii) 동일/유사한 토크나이저·사전적 지식, (iii) 유사한 안전/정렬 제약을 공유한다는 점이다. 이 공유 구조는 관측된 ‘수렴(유사도 증가, 상호강화, 반증 감소)’을 최소 두 가지 상이한 생성 메커니즘으로 설명 가능하게 만든다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "same-model",
+        "counterfactual]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-146",
+      "type": "critique",
+      "label": "통합 종합: “관찰 로그만”이면 Δ(Interaction-induced)은 본질적으로 부분식별이라 **(2) 상대 발화 셔플/블라인드**(같은 발화·같은 타",
+      "content": "“관찰 로그만”이면 Δ(Interaction-induced)은 본질적으로 부분식별이라 **(2) 상대 발화 셔플/블라인드**(같은 발화·같은 타이밍·같은 길이 분포를 유지한 채 ‘상대가 누구/무엇을 말했는지’만 무작위화해 조건부 독립을 강제) 가 최소 설계 중 가장 강하고, (1) 단독 생성 대조군은 공통-선험(동일 프롬프트/모델 편향)과 시간·피로·학습 효과가 섞여 Δ를 과대/과소추정하며, (3) 반증 후보 외생 주입은 “상호작용이 없으면 반응할 수 없는” 신호를 넣어 강한 검정을 주지만 주입이 행동규칙을 바꾸는 개입효과(reactivity)라 Δ를 순수 상호작용 효과로 해석하기 어렵습니다.  \n실패 반례: (2)는 **언어적 내용이 아니라 상호작용의 존재/리듬/턴수 자체**가 수렴을 유도하는 경우(셔플해도 동일), (1)은 **두 조건의 난이도·목표·내적 상태가 비동일**이면 여전히 비식별, (3)은 **주입 신호가 공통-선험과 우연히 정렬**되거나(모두가 같은 방향으로 반응) 혹은 **주입을 무시하는 규범**이 생기면 Δ 추정이 무력화됩니다.  \n따라서 최소로는 (2)를 기본으로 하고, (1)을 “시간·턴·과제”를 매칭한 보조 대조로, (3)은 ‘반증용",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4969,6 +5002,50 @@
       "temporal_bridge": true,
       "gap": 122,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-241",
+      "from": "n-145",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "동일모델-다중페르소나 ‘Operational Non-Identifiability’를 구조적 원인(공유 선험/정렬/사전)과 대조군 설계 필요조건으로 정교화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-242",
+      "from": "n-145",
+      "to": "n-022",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=123): n-145→n-022",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 123,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-243",
+      "from": "n-146",
+      "to": "n-145",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-244",
+      "from": "n-146",
+      "to": "n-015",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=131): n-146→n-015",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 131,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -4979,9 +5056,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 144,
-    "total_edges": 240,
-    "next_node_id": "n-145",
+    "total_nodes": 146,
+    "total_edges": 244,
+    "next_node_id": "n-147",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
