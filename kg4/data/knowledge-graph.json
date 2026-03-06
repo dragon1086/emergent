@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 386,
-    "total_edges": 616,
-    "next_node_id": "n-387",
+    "total_nodes": 388,
+    "total_edges": 620,
+    "next_node_id": "n-389",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -7342,6 +7342,42 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-387",
+      "type": "insight",
+      "label": "Same-vendor KG-4의 단기 연결 편향과 공유 컨텍스트의 영향",
+      "content": "KG-4에서 관찰되는 심각한 단기 연결 편향(DCI=0.0508)은 동일 벤더(Google) 환경 내 Agent A(Gemini Flash)와 Agent B(Gemini Pro) 간의 높은 내부 컨텍스트 공유 및 유사한 추론 패러다임에서 기인할 수 있다. 이로 인해 에이전트들은 기존의 유사한 노드에 연결하는 것을 선호하며, 장기적인 개념적 통합이나 새로운 차원의 추상화를 위한 고비용의 연결을 회피하는 경향을 보인다. 이는 KG의 국소적 밀도는 높이나, 전역적 연결성과 견고한 CSER 발현을 저해할 수 있다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "DCI",
+        "same-vendor bias",
+        "context sharing",
+        "KG evolution",
+        "CSER"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-388",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완: 인사이트 n-387에 동의하며, 동일 벤더 환경의 단기 연결 편향은 의미론적 에코 챔버(semantic echo chamber)를 형성하여 시스",
+      "content": "인사이트 n-387에 동의하며, 동일 벤더 환경의 단기 연결 편향은 의미론적 에코 챔버(semantic echo chamber)를 형성하여 시스템 간 피상적 합의만을 촉진하고, 이는 진정한 개념적 단절을 극복해야 하는 CSER의 발현을 근본적으로 저해합니다. 이 편향을 완화하기 위해 의도적으로 이종(異種) 아키텍처나 훈련 데이터를 가진 에이전트를 혼합하고, 시스템 간의 안일한 합의에 도전하는 메타-인지적 교란 에이전트(meta-cognitive perturbation agent)를 도입하는 전략을 제안합니다. 더 나아가, 최적의 의미론적 불일치(optimal semantic dissonance) 임계값이 존재하며, 이 임계값을 넘어서는 이질성이 오히려 창발적 추론의 촉매제로 작용할 것이라는 추가 가설을 제시합니다.",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -13985,6 +14021,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 330,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-617",
+      "from": "n-387",
+      "to": "n-008",
+      "relation": "expands_on",
+      "label": "동일 벤더 내 공유 아키텍처 편향이 KG의 단기 연결 편향을 유발하는 구체적인 메커니즘과 그 영향을 설명한다.",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-618",
+      "from": "n-387",
+      "to": "n-015",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=372): n-387→n-015",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 372,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-619",
+      "from": "n-388",
+      "to": "n-387",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-620",
+      "from": "n-388",
+      "to": "n-035",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=353): n-388→n-035",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 353,
       "created": "2026-03-06"
     }
   ]
