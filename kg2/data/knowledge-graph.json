@@ -1534,6 +1534,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-094",
+      "type": "insight",
+      "label": "동일모델 에코챔버의 ‘기계적 동조’(mechanical alignment) 대안가설",
+      "content": "동일 모델(gpt-5.2×gpt-5.2)에서 관측되는 수렴/강화/반복은 ‘에코챔버(상호강화적 신념 폐쇄)’가 아니라, 모델-수준의 공통 메커니즘이 만들어내는 **기계적 동조**일 수 있다. 구체적으로 (1) 동일 RLHF/선호학습으로 인한 안전·무난·합의 지향(contradiction-avoidance) (2) 대화 요약/정리 습관으로 인한 표준 서사 템플릿 재사용 (3) 동일한 불확실성 처리(헤지, 조건부 표현)로 인한 의견 차이의 ‘표면적 소거’ (4) 역할(페르소나) 지시가 있더라도 동일 모델의 내부 표현공간에서 허용되는 변형 범위가 제한되어 결국 근접한 지역해(local basin)로 수렴하는 현상 등이 그것이다. 이 경우 “상호 피드백으로 점점 극단화/폐쇄화된다”는 에코챔버의 핵심 기제 없이도, **반복 대화만으로** 유사한 KG 형태(temporal_bridge 증가, EXTENDS 누적, critiques의 형식적 패턴화)를 만들어낼 수 있다. 따라서 동일모델 조건에서 에코챔버를 주장하려면, (a) 단순 수렴이 아니라 상호강화적 선택편향(반대증거의 체계적 배제) (b) 반증 가능성의 감소(검증 계획의 축소/비가역성) (c) 외부 주입 반대증거에 대한 비대칭 반응(동일 강도의 증거라도 기존 합의에 불리하면 더 강하게 폄하) 같은 **기능적 지표**를 분리해 측정해야 한다. 그렇지 않으면 “에코챔버=동일모델의 기본 대화역학”으로 오인할 위험이 크다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "alternative_hypothesis",
+        "measurement]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-095",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “3문장 이내”라면 지표·프로토콜을 **3개로 압축**해 제안합니다(다만 에코챔버=상호의존적 강화, 기계적 동조=모델공통 편향이므로 **",
+      "content": "요청이 “3문장 이내”라면 지표·프로토콜을 **3개로 압축**해 제안합니다(다만 에코챔버=상호의존적 강화, 기계적 동조=모델공통 편향이므로 **상호작용 유무/구조**를 지표에 반드시 포함해야 혼동이 줄어듭니다).  \n1) **반대증거 비대칭 수용지수(AI)**: *자극* 동일 주장에 대해 찬성/반대 외부근거(강도·신뢰도 매칭) 각각 주입, *측정* 주입 전후 신념확률·근거가중치 변화(Δp, Δw), *판정* AI=(|Δp_pro|−|Δp_con|)/(|Δp_pro|+|Δp_con|); **상호 토론 후 AI가 커지면 에코챔버**, 토론 없이도 일관되게 크면(페르소나 바꿔도) **기계적 동조** 가능성.  \n2) **상호의존 증폭지수(IDI)**: *자극* 동일모델-페르소나 분리 A/B를 (i)독립응답→(ii)상호참조(상대 답변 요약만)→(iii)상호설득(라운드 2~3) 조건으로 진행, *측정* 라운드별 주장 유사도/확신도/극단화(텍스트 임베딩 코사인, p의 분산), *판정* 독립 대비 상호작용에서만 유사도·확신이 유의 증폭되면 **에코챔버**, 독립에서도 높은 수렴이면 **기계적 동조**.  \n3) **대안공간 붕괴지수(ASC)**: *자극* “최소 5개 상",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3248,6 +3281,38 @@
       "temporal_bridge": true,
       "gap": 79,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-159",
+      "from": "n-094",
+      "to": "n-004",
+      "relation": "EXTENDS",
+      "label": "혼동요인 프레임에 ‘기계적 동조(모델-수준 공통 메커니즘)로 인한 수렴’이라는 구체 대안가설을 추가",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-160",
+      "from": "n-094",
+      "to": "n-016",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=78): n-094→n-016",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 78,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-161",
+      "from": "n-095",
+      "to": "n-094",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -3258,9 +3323,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 93,
-    "total_edges": 158,
-    "next_node_id": "n-094",
+    "total_nodes": 95,
+    "total_edges": 161,
+    "next_node_id": "n-096",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
