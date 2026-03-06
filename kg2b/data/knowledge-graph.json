@@ -3134,6 +3134,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-191",
+      "type": "insight",
+      "label": "Operationalization Leak: “Echo” vs “Coordination Artifact” 분리 실패",
+      "content": "동일모델·다중페르소나 조건에서 관찰되는 “수렴/유사도 증가”는 에코챔버(반증 배제에 의한 자기강화)라기보다, (i) 동일 사전학습 분포 공유, (ii) 대화형 최적화(상대 발화에 대한 국소적 적합), (iii) 역할 프롬프트가 만드는 탐색공간 제약 때문에 발생하는 **조정(coordination) 산물**일 수 있다. 이때 핵심 비판은 ‘에코챔버’의 작동기제(반증 후보의 체계적 소거, 대안 가설의 생존율 저하, 불확실성의 인위적 축소)가 로그에서 직접 식별되지 않으면, 어떤 유사도/합의 지표도 “에코챔버의 증거”가 아니라 “공유 priors + 상호조건화의 결과”로 재해석 가능하다는 점이다(운영적 비식별성).  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "operationalization",
+        "confounding]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-192",
+      "type": "critique",
+      "label": "통합 종합: 요청을 유지하되 보완하자면, “반증 후보의 체계적 소거”는 **관측 가능한 단위(반증 후보·대응행동·결과)**로 로그를 강제하지 않으면 유사도 ",
+      "content": "요청을 유지하되 보완하자면, “반증 후보의 체계적 소거”는 **관측 가능한 단위(반증 후보·대응행동·결과)**로 로그를 강제하지 않으면 유사도 지표로 회귀하므로, 분리 기준 4개는 각각 **지표(정의)–계산 절차–최소 로그 단위**로 고정해야 합니다: (1) **반증 후보 유지율 R**=세션 t에 제기된 반증 후보 집합 H_t 중 Δ시간(또는 N턴) 이후에도 ‘활성’ 상태인 비율 |{h∈H_t: state(h,t+Δ)∈{active,open}}|/|H_t|; 코딩/자동추출은 최소 로그 단위를 **(hypothesis_id, claim_span, counterevidence_span, source_type[user/model/external], timestamp, state∈{active,answered,discarded,ignored}, discard_reason∈{refuted,irrelevant,too_costly,authority,goal_shift}, evidence_link)**로 두고, LLM+규칙으로 “반증 후보”를 **(i) ‘만약 ~라면 내 주장/결론이 틀림’ 형태의 조건문, (ii) 사용자/외부가 제시한 반례·데이터·반대 주장, (iii) ",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6620,6 +6653,50 @@
       "temporal_bridge": true,
       "gap": 182,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-323",
+      "from": "n-191",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "‘동일모델-다중페르소나’ 판별 불능성을 “수렴=에코”라는 운영화 누수로 구체화하고, 에코챔버-조정산물 분리 기준(반증 후보 유지율/억압 신호/역전 테스트/충격 저항성)을 제안함",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-324",
+      "from": "n-191",
+      "to": "n-022",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=169): n-191→n-022",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 169,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-325",
+      "from": "n-192",
+      "to": "n-191",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-326",
+      "from": "n-192",
+      "to": "n-024",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=168): n-192→n-024",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 168,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -6630,9 +6707,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 190,
-    "total_edges": 322,
-    "next_node_id": "n-191",
+    "total_nodes": 192,
+    "total_edges": 326,
+    "next_node_id": "n-193",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
