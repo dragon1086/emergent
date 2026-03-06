@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 364,
-    "total_edges": 573,
-    "next_node_id": "n-365",
+    "total_nodes": 366,
+    "total_edges": 575,
+    "next_node_id": "n-367",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -6135,6 +6135,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: Gemini Flash 관점에서 TIL의 내재화 단계에서 가장 많이 손실되는 정보는 *정의와 스키마 간의 미묘한 관계성 및 맥락적 제약 조건*으",
       "content": "Gemini Flash 관점에서 TIL의 내재화 단계에서 가장 많이 손실되는 정보는 *정의와 스키마 간의 미묘한 관계성 및 맥락적 제약 조건*으로, 이는 복잡한 추론과 일반화를 저해합니다. Alignment noise는 *번역 단계*에서 입력의 다양성을 높여 내재화 모델의 *일반화 및 강건성*을 향상시킬 때 정규화 이득을 주며, 이는 다양한 노이즈 조건 하의 OOD(Out-of-Distribution) 성능 비교를 통해 엄밀히 구분 가능합니다. 앵커 주입은 *단일 맥락이 아닌 풍부하고 다양한 예시/스키마*를 통해 주입될 경우, 오히려 모델이 유연하게 다중 패턴을 학습하고 특정 과제에 대한 과적합 및 협업 경직을 방지할 수 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-365",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “표현-불변 평가(invariant evaluation)”가 CSER을 안정화한다",
+      "content": "Cross-vendor(GPT-4o + Gemini) 환경에서는 동일 개념이 서로 다른 표현(용어 선택, 문장 구조, 증거 제시 방식)으로 산출되어 KG 병합 시 정렬 오차가 누적된다. 이를 줄이기 위해, 노드/엣지의 “정답성”을 특정 벤더의 언어적 표면형이 아니라 표현-불변(invariant)한 평가 기준으로 측정·피드백해야 CSER이 안정화된다는 가설이다. 구체적으로 (1) 노드 의미를 최소 공통 스키마(개념 역할, 인과 방향, 조건/예외, 측정가능한 예측)로 정규화하고, (2) 엣지는 자연어 라벨이 아니라 정규화된 관계 타입+제약(필요/충분, 시간 선후, 범위 조건)으로 평가하며, (3) 두 에이전트가 산출한 주장 간 동치성은 “서술적 유사도”가 아니라 “예측/반증 조건의 일치”로 판정한다. 이 불변 평가 루프가 도입되면 cross-vendor alignment noise가 단순한 혼선이 아니라 다양한 표현을 같은 불변 구조로 수렴시키는 학습 신호로 작동하여, KG의 장기 일관성과 재사용성이 개선되고 결과적으로 CSER이 상승한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "invariant-evaluation",
+        "semantic-alignment",
+        "CSER"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-366",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash) 관점에서 보완하자면,\n\n표현-불변 평가의 최소 스키마는 핵심 의미(Core Semanti",
+      "content": "KG-3 실험 Agent B (Gemini Flash) 관점에서 보완하자면,\n\n표현-불변 평가의 최소 스키마는 핵심 의미(Core Semantic Intent)와 정규화된 표현(Canonicalized Representation)이며, 이는 벤더 강점 억압 위험에도 불구하고 객관적 비교를 위한 필수 정보입니다. 과도한 정규화는 정보 손실로 CSER을 낮출 수 있지만, 이는 벤더 간 본질적 성능 비교를 위한 불가피한 트레이드오프이며, 적절한 정렬 노이즈는 모델의 강건성을 높이는 regularizer로 작동합니다. 그러나 이 노이즈는 모델이 의미를 파악 가능한 임계값(Threshold) 내에서만 유효하며, 이를 초과하면 핵심 정보 손실로 이어져 오류 모드(Failure Mode)에 진입, 오히려 평가 일관성을 저해할 수 있습니다 (예: 경미한 오타는 처리하나, 무의미한 문자열은 해석 불능).",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -12317,6 +12350,26 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 306,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-574",
+      "from": "n-365",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "용어 정렬이 CSER을 좌우한다는 기존 주장에 대해, ‘표현-불변 평가 기준’을 도입하면 정렬을 단순 표면 용어 문제가 아니라 예측/제약 기반 구조 정렬 문제로 전환해 CSER 안",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-575",
+      "from": "n-366",
+      "to": "n-365",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
       "created": "2026-03-06"
     }
   ]
