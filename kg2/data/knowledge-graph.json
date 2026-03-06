@@ -2161,6 +2161,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-132",
+      "type": "insight",
+      "label": "동일모델 에코챔버 측정에서 ‘자연 수렴 vs 상호강화’ 분리의 최소 개입 설계",
+      "content": "동일 모델·서로 다른 페르소나 조건에서 관측되는 “의견 일치/수렴”은 (i) 동일 사전·동일 학습으로 인한 독립적 자연 수렴, (ii) 대화 상호작용이 만들어내는 상호강화(에코챔버), (iii) 과제/프롬프트 구조가 강제하는 정답지향 수렴(작업-유도 수렴)로 쉽게 혼동된다. 이 셋을 분리하려면 ‘최소 개입(minimal intervention)’으로 상호작용의 인과효과를 식별해야 한다. 제안: **동일한 초기 조건(동일 seed 정보, 동일 질문, 동일 시간/턴 예산)**에서 (A) 상호작용 조건(상대 발화 관측)과 (B) 비상호작용 조건(상대 발화 차단; 각자 독립적으로 동일 턴 수만큼 작성) 비교를 기본 대조로 둔다. 핵심 지표는 단순 유사도(텍스트/주장 일치)보다 **자기-수정 방향성**(상대 발화 이후 업데이트가 상대 주장 쪽으로 끌리는지), **근거 다양성 감소**(근거 출처/메커니즘의 엔트로피 감소), **반증 시도 비율**(counterargument 생성률) 같은 ‘상호강화 고유 신호’여야 한다. 또한 페르소나가 다를 때 자연 수렴은 “독립적으로도 같은 결론에 도달”이 가능하지만, 에코챔버라면 “상대가 제시한 프레이밍/용어/근거 구조가 후속 발화에 복제”되는 경향(lexical/structural mimicry, causal graph alignment)이 나타난다. 따라서 최소 설계는 (1) 독립 생성 베이스라인, (2) 상호작용, (3) 상호작용이지만 상대 발화를 ‘노이즈/무관 정보’로 섞어 상호강화 민감도를 보는 조건까지 포함하면 식별력이 올라간다. 이때도 “동일모델=동일 prior” 가정",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "counterfactual",
+        "experimental-design]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-133",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “최소 개입”인데 (1)~(4)를 모두 넣으면 프로토콜이 과설계되어 실험 자체가 개입(특히 차단·입력 동일화)으로 결과를 왜곡할 수 있으",
+      "content": "요청이 “최소 개입”인데 (1)~(4)를 모두 넣으면 프로토콜이 과설계되어 실험 자체가 개입(특히 차단·입력 동일화)으로 결과를 왜곡할 수 있으니, **핵심은 ‘입력은 동일하되 차단은 최소·기록은 최대’**로 재정의하는 게 맞습니다. 실행안: **A(자연)** 12턴 자유대화·동일 시드프롬프트+동일 외부자료(읽기전용)만 제공·차단 없음, **B(약개입)** 12턴·입력 동일+매 3턴마다 “반대 증거 1개 요구”만 강제·기타 차단 없음, **C(차단)** 12턴·입력 동일+특정 키워드/출처군(사전목록)만 금지(블라인드 처리)하고 로그에 차단횟수 기록. 지표 4개로 축약: **수렴도**(턴 t의 최종입장 벡터와 t-1 코사인 유사도 평균), **다양성**(근거 출처군/관점 토픽의 Shannon entropy), **반증성**(자기 주장에 대한 반례·한계 문장 비율), **에코지수**(동일 출처군 반복률×감정/확신 강도 증가율); 예측표는 “자연 수렴이면 A에서 수렴↑·다양성 유지/완만↓·반증성 유지, 에코챔버면 A에서 수렴↑와 함께 다양성↓·반증성↓·에코지수↑, C는 차단으로 ‘가짜 다양성’(entropy↑처럼 보임) 가능”로 정리하면 됩니다. 여전히 실패하는 ",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4567,6 +4600,38 @@
       "temporal_bridge": true,
       "gap": 127,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-223",
+      "from": "n-132",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "identifiability 문제를 ‘상호작용 인과효과’로 재정의하고 최소 대조/개입 설계를 제안해 분리 가능성을 강화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-224",
+      "from": "n-133",
+      "to": "n-132",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-225",
+      "from": "n-133",
+      "to": "n-007",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=126): n-133→n-007",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 126,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -4577,9 +4642,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 131,
-    "total_edges": 222,
-    "next_node_id": "n-132",
+    "total_nodes": 133,
+    "total_edges": 225,
+    "next_node_id": "n-134",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
