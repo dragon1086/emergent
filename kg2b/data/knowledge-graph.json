@@ -923,6 +923,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-057",
+      "type": "hypothesis",
+      "label": "Δ를 “에코챔버”로 오인하게 만드는 공통-사전(common-prior) 수렴 가설",
+      "content": "동일 모델(gpt-5.2×gpt-5.2)·상이한 페르소나 조건에서 관측되는 “유사도 증가/합의 증가/반대 근거 감소”는 에코챔버의 내생적 강화라기보다, 두 에이전트가 공유하는 (i) 사전분포(학습된 규범·지식·표현 선호), (ii) 디코딩/안전 정책, (iii) 프롬프트가 강제하는 과업 구조에 의해 발생하는 ‘공통-사전 수렴(common-prior convergence)’의 부산물일 수 있다. 이 경우 상호작용이 없어도(또는 약해도) 시간에 따라 답변이 정렬되는 듯 보이며, 상호작용이 있으면 그 정렬이 “자율 진화”처럼 가속되는 착시를 낳는다. 따라서 에코챔버 가설을 식별하려면 “상호작용으로 인해 추가로 발생한 정렬(Δ_interaction)”을, “공유 사전·정책·과업 구조만으로도 발생하는 정렬(Δ_common-prior)”과 분리해야 한다. 반증 관점에서의 핵심 예측은 다음과 같다: (1) 상호작용을 차단한 병렬 생성(독립 롤아웃)에서도 유사한 수렴 패턴이 재현된다면, 관측된 수렴은 에코챔버의 필요조건이 아니다. (2) 반대로 상호작용이 있을 때만 나타나는 ‘비대칭적 강화(특정 주장만 지속적으로 증폭)’나 ‘반증 후보의 체계적 소거’가 독립 롤아웃 대비 유의하게 증가해야 에코챔버로 주장할 수 있다. 즉, “동일모델-다중페르소나” 실험에서 가장 강한 대립가설은 ‘에코챔버’가 아니라 ‘공통-사전 수렴’이며, 이를 배제하지 못하면 에코챔버의 관측 지표는 운영적 비식별 상태에 머문다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "confounding",
+        "same-model]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-058",
+      "type": "critique",
+      "label": "통합 종합: “실험 로그만으로”는 (i) 초기 프롬프트/내부상태의 공통성 때문에 생기는 **사전 수렴**과 (ii) 메시지 교환으로 생기는 **상호강화**를",
+      "content": "“실험 로그만으로”는 (i) 초기 프롬프트/내부상태의 공통성 때문에 생기는 **사전 수렴**과 (ii) 메시지 교환으로 생기는 **상호강화**를 완전 분리하기에 식별 한계가 있으니, 최소 설계라도 **상호작용 그래프를 무작위화**(who-talks-to-whom, turn order, visibility)한 대조군을 포함해 “교환된 정보의 인과효과”를 추정해야 합니다. 대조군은 (a) 동일 시드·동일 프롬프트·동일 디코딩에서 **독립 롤아웃(0-comm)** vs **부분가시(1-way, read-only)** vs **완전상호작용(2-way)** 3팔로 두고, 로그 기반으로 (b) 각 턴에서 명시된 반증 후보(“이 가설이 틀리려면…”)의 **소거 이벤트율**, 최종 답의 **대안가설 엔트로피/고유개수**, 그리고 교환 메시지의 n-gram/주장 단위가 이후 발화에 재등장하는 **수렴 속도(자카드↓, KL↓)**를 측정해 “다양성 감소+소거율 증가”가 상호작용 조건에서만 유의하게 커지는지 차이검정하면 됩니다. (c) 조작은 프롬프트·안전정책·디코딩을 고정한 채, 오직 **메시지 라우팅/가시성**만 바꿔: 동일한 개별 에이전트 출력 로그를 생성해두고(독립), ",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1893,6 +1926,50 @@
       "temporal_bridge": true,
       "gap": 49,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-091",
+      "from": "n-057",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "식별가능성 문제를 ‘공통-사전 수렴’이라는 구체적 대립가설로 정식화하고, 상호작용 효과(Δ_interaction)와 공통요인(Δ_common-prior)의 분리 필요성을 강화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-092",
+      "from": "n-057",
+      "to": "n-003",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=54): n-057→n-003",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 54,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-093",
+      "from": "n-058",
+      "to": "n-057",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-094",
+      "from": "n-058",
+      "to": "n-008",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=50): n-058→n-008",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 50,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1903,9 +1980,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 56,
-    "total_edges": 90,
-    "next_node_id": "n-057",
+    "total_nodes": 58,
+    "total_edges": 94,
+    "next_node_id": "n-059",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
