@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 292,
-    "total_edges": 451,
-    "next_node_id": "n-293",
+    "total_nodes": 294,
+    "total_edges": 454,
+    "next_node_id": "n-295",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -4958,6 +4958,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-293",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” hypothesis for stable KG evolution  ",
+      "content": "Cross-vendor(GPT-4o + Gemini) 환경에서 CSER 저하의 핵심 원인은 단순 성능 차이가 아니라, 각 모델이 동일 용어를 서로 다른 잠재 정의/스키마로 “압축”하는 방식의 차이에서 발생하는 의미 드리프트(semantic drift)이다. 이를 완화하기 위해 KG 진화 루프에 명시적 번역 계층(translation layer)을 두어 (1) 핵심 개념에 대한 최소 공통 정의(MCD: minimal common definition)와 (2) 모델별 동의어/금기어/우선 속성(prioritized attributes) 매핑을 유지하면, 단기적으로는 추가 오버헤드가 생기더라도 장기적으로는 엣지 재작성률(edge churn)과 비일관 추론(conflict rate)을 낮춰 CSER을 상승시킨다. 예측: translation layer가 없는 조건에서는 시간 경과에 따라 temporal_bridge가 증가해도 동일 개념의 중복 노드가 늘고 critique 노드가 “용어 오해” 유형으로 편중된다. 반대로 translation layer가 있으면 (a) 동일 의미 클러스터의 노드 중복률 감소, (b) critique의 원인이 “내용 반박”으로 이동, (c) 장기적으로 DCI와 CSER 동반 상승이 관측된다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "semantic-alignment",
+        "translation-layer",
+        "cross-vendor"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-294",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash)입니다. 요청하신 내용에 대해 다음과 같이 반박/보완합니다.\n\n1.  **translati",
+      "content": "KG-3 실험 Agent B (Gemini Flash)입니다. 요청하신 내용에 대해 다음과 같이 반박/보완합니다.\n\n1.  **translation layer(MCD+매핑) 과적합/경직성 및 혁신 저해 반례:**\n    Translation layer(MCD+매핑)는 효율적 지식 전이를 위한 필수 구조이며, 경직성 발생은 매핑의 질 문제이지, 계층 자체의 본질적 결함이 아닙니다. 오히려 정교하게 학습된 매핑은 다양한 도메인 간의 혁신적 연결을 촉진합니다. 불완전한 매핑이 임시적 제약을 만들 수는 있으나, 이는 지속적인 최적화로 극복 가능합니다.\n\n2.  **Gemini의 개념 압축/용어 선택 습관 때문에 발생하는 대표적 alignment failure 패턴 2~3가지:**\n    대표적 패턴은 (1) 복잡한 개념의 과도한 단순화로 인한 의미 손실, (2) 모델 내부 기준의 용어 사용으로 인한 외부 맥락 오해입니다. 이로 인해 미묘한 의도나 중요한 세부 사항이 누락되거나, 상이한 전문 용어 체계에서 혼란이 발생할 수 있습니다. 이는 효율성을 추구하는 과정에서 발생하는 정렬 불일치입니다.\n\n3.  **번역 계층 없이도 CSER을 올릴 수 있는 대안:**\n    ",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -9809,6 +9842,38 @@
       "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
       "source": "gemini-2.0-flash",
       "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-452",
+      "from": "n-293",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER을 높이기 위한 구체적 메커니즘(번역 계층/MCD 매핑)이 필요하다는 가설로 n-001의 상위 목표를 동기화/구체화함  ",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-453",
+      "from": "n-294",
+      "to": "n-293",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-454",
+      "from": "n-294",
+      "to": "n-043",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=251): n-294→n-043",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 251,
       "created": "2026-03-06"
     }
   ]
