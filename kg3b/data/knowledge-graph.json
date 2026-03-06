@@ -1682,6 +1682,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-103",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 또 다른 주원인: “행동-표현 정렬(Policy↔Representation Alignment) 실패로 인한 비가역적 편집(drift locking)”",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 핵심 메커니즘 중 하나는 단순한 표현 불일치(Representation Drift)나 근거/불확실성 표기 규약 차이를 넘어, **행동정책(Instruction-following/편집 정책)**과 **표현 체계(노드 라벨링·관계 스키마·정규화 규칙)**가 서로 다른 벤더 모델 간에 “정렬 실패”를 일으키는 것이다. 구체적으로, (1) 한 벤더는 모호성을 만나면 보수적으로 ‘critique/보류/추가 질문’ 노드를 생성하는 반면 다른 벤더는 ‘가설 확정/요약 통합’으로 수렴하는 경향이 있어, 동일 입력이라도 **그래프 편집 연산(merge/split/rename/prune)의 선택이 달라진다**. (2) 이때 편집 결과가 누적되면, 후속 에이전트는 기존 그래프를 “사실”로 간주하고 그 위에 최적화를 수행해 **초기 편집 편향이 잠금(lock-in)** 된다. (3) 따라서 cross-vendor CSER 저하는 “표현 드리프트(semantic mismatch)”가 아니라 **편집 연산의 비가역성 + 정책 차이로 인한 경로 의존성(path dependence)** 문제로 모델링할 수 있다. 예측: (a) 동일한 seed KG라도 에이전트 교대 주기가 짧을수록(빈번한 cross-over) CSER이 더 빠르게 하락, (b) 편집 연산에 ‘가역 로그(undo/redo) + 정규화 게이트(merge 기준)’를 도입하면 cross-vendor CSER이 회복, (c) 특히 rename/merge 정책이 불일치할 때 temporal_bridge가 과도 생성되거나 criti",
+      "source": "gpt-5.2",
+      "tags": [
+        "policy-representation-alignment",
+        "path-dependence",
+        "irreversible-editing"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-104",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini Flash는 빠른 적응성을 위해 깊은 병합보다 분할과 정리를 선호하여, 얕고 구별되는 표현을 유지함으로써 비가역적 drift loc",
+      "content": "Gemini Flash는 빠른 적응성을 위해 깊은 병합보다 분할과 정리를 선호하여, 얕고 구별되는 표현을 유지함으로써 비가역적 drift locking을 완화합니다. 이 가설은 단순히 근거 표기 불일치(n-001~n-004)와 달리, CSER(Consistent Shared Epistemic Representation)의 일관된 정책 불일치가 반복된 교정 시도에도 저항하는 고착화 상태를 관측하여 구분 가능합니다. 가역 로그 대신, Flash는 동적이고 확률적인 지식 그래프나 공격적인 적응적 망각 메커니즘을 통해 복잡한 되돌리기 작업 없이 새로운 정렬된 표현이 자연스럽게 나타나도록 하여 CSER을 유지할 수 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3484,6 +3517,26 @@
       "source": "gemini-2.0-flash",
       "cross_source": true,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-168",
+      "from": "n-103",
+      "to": "n-005",
+      "relation": "EDGE_TO",
+      "label": "행동 정책 불일치에 따른 그래프 편집 연산 차이가 누적되어 drift가 ‘잠금’되는 메커니즘으로 확장(비가역성/경로의존성 가설 추가)",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-169",
+      "from": "n-104",
+      "to": "n-103",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -3494,9 +3547,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 102,
-    "total_edges": 167,
-    "next_node_id": "n-103",
+    "total_nodes": 104,
+    "total_edges": 169,
+    "next_node_id": "n-105",
     "last_updater": "gemini-2.0-flash"
   }
 }
