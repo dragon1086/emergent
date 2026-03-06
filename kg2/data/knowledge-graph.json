@@ -1831,6 +1831,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-112",
+      "type": "insight",
+      "label": "동일모델 에코챔버 ‘신호’는 동질성 산출물일 수 있다: 메커니즘-비식별성 분해",
+      "content": "동일 모델(gpt-5.2×gpt-5.2)에서 관측되는 “상호 강화→의견 수렴/극화” 패턴을 에코챔버의 고유 신호로 해석하는 것은 구조적으로 비식별적이다. 왜냐하면 동일한 관측(수렴, 반복되는 프레이밍, 반대증거 약화, 자기참조적 정당화)은 (i) 단순한 모형 동질성(같은 prior/훈련분포), (ii) 대화 프로토콜의 목표함수(협력적 합의/일관성 유지), (iii) 대칭적 정보구조(동일 맥락창·동일 툴·동일 제약), (iv) 언어모델의 디코딩/안전정책으로 인한 보수적 답변 수렴 등으로도 생성될 수 있다. 따라서 “동일모델 조건에서 에코챔버가 발생한다”는 주장은 관측 변수만으로는 반증 가능성이 낮고, 최소한 다음과 같이 메커니즘을 분해한 뒤 각각에 대한 조작/대조를 설계해야 한다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "alternative_hypotheses",
+        "experimental_design]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-113",
+      "type": "critique",
+      "label": "통합 종합: 요청은 타당하지만, “동일모델 조건”에서 에코챔버를 **의견 동질화(출력 유사도)**로만 보면 프로토콜/표현 요인과 식별이 붕괴하므로, **정보",
+      "content": "요청은 타당하지만, “동일모델 조건”에서 에코챔버를 **의견 동질화(출력 유사도)**로만 보면 프로토콜/표현 요인과 식별이 붕괴하므로, **정보처리·메모리·탐색**에 걸친 조작적 신호가 필요합니다. 에코챔버 고유 신호(최소 2개)로는 (1) **반증정보 비대칭 업데이트율**: 동일 강도의 찬성/반증 증거를 제시했을 때 신념(또는 결론 확률)의 이동량이 반증 쪽에서 유의하게 작음, (2) **반대가설 생존율/복원력**: 강제 대안가설 생성 후 시간지연·재노출을 거쳐도 대안가설이 유지·재상기·재평가되는 비율이 낮음(=지배 가설로 빠르게 회귀), (3) **재노출 편향(선택적 재검색/인용)**: 동일한 증거 풀을 주어도 재요약·재질문 시 지배 가설을 지지하는 항목의 재인용 확률이 과도하게 높음으로 두면 좋습니다. 아래는 3개 대안 메커니즘을 각각 통제하는 대조 설계와, 어떤 패턴이면 에코챔버로 식별되는지(예측 차이)입니다.\n\n| 통제 대상 메커니즘 | 대조 실험 설계(핵심 조작) | 에코챔버라면(예측 패턴) | 대안 메커니즘이라면(예측 패턴) |\n|---|---|---|---|\n| 동질성-유도 수렴(입력/상호작용이 동질) | **입력 다양성 고정**: 동일 모델에",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -3869,6 +3902,50 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-189",
+      "from": "n-112",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "동일모델 에코챔버 가설의 비식별성 문제를 ‘동질성/프로토콜/디코딩’ 3요인으로 분해해 관측-메커니즘 혼동을 명시",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-190",
+      "from": "n-112",
+      "to": "n-012",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=100): n-112→n-012",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 100,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-191",
+      "from": "n-113",
+      "to": "n-112",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-192",
+      "from": "n-113",
+      "to": "n-006",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=107): n-113→n-006",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 107,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -3879,9 +3956,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 111,
-    "total_edges": 188,
-    "next_node_id": "n-112",
+    "total_nodes": 113,
+    "total_edges": 192,
+    "next_node_id": "n-114",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
