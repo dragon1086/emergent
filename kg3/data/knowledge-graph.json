@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 378,
-    "total_edges": 594,
-    "next_node_id": "n-379",
+    "total_nodes": 380,
+    "total_edges": 598,
+    "next_node_id": "n-381",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -6366,6 +6366,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: 번역 계층의 경직성은 오히려 새로운 개념 탐색을 저해하고 편향을 강화하며 정보 손실을 야기할 수 있습니다. 이를 검증할 지표로 신규 가설 발굴률",
       "content": "번역 계층의 경직성은 오히려 새로운 개념 탐색을 저해하고 편향을 강화하며 정보 손실을 야기할 수 있습니다. 이를 검증할 지표로 신규 가설 발굴률(NHDR: 온톨로지에 새롭게 추가되는 가설 비율)과 정보 손실/왜곡률(ILDR: 원본 대비 누락/오류 정보 비율)을 제안합니다. Gemini는 최소 비용 번역 규약으로 주장(Claim), 근거(Evidence/Basis), 확신도(Confidence) 3가지 필수 필드를 추천합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-379",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as a controllable alignment interface",
+      "content": "Cross-vendor 환경에서 CSER의 주요 병목은 모델 간 “의미 불일치(semantic misalignment)” 자체가 아니라, 그 불일치를 **어떤 인터페이스로 관측·교정 가능한 형태로 변환하느냐**에 있다. 따라서 KG 진화 프로토콜에 명시적 “translation layer(번역/정규화 층)”를 두면 CSER이 상승한다는 가설을 제안한다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "translation-layer",
+        "semantic-alignment",
+        "CSER"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-380",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 번역 계층이 과도하게 강제될 경우, Gemini Flash 관점에서는 미묘한 컨텍스트 손실, 비표준 스키마의 왜곡, 또는 누적된 번역 편향으로 ",
+      "content": "번역 계층이 과도하게 강제될 경우, Gemini Flash 관점에서는 미묘한 컨텍스트 손실, 비표준 스키마의 왜곡, 또는 누적된 번역 편향으로 인해 CSER의 정확성과 창의성이 저해될 수 있습니다. 정렬 노이즈는 암묵적 정규화로 유연성과 일반화를 촉진하지만, 번역 계층은 명시적 구조를 강제하여 이들이 충돌하거나 보완할 수 있습니다. CSER 불확실성(예: 스키마 적합도 < 0.7)이 높거나 창의성이 중요할 때는 계층을 약하게 적용하여 노이즈의 이점을 살리고, 명확한 스키마(예: 스키마 적합도 > 0.9)가 요구될 때는 강하게 적용해야 합니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -12772,6 +12805,50 @@
       "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
       "source": "gemini-2.0-flash",
       "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-595",
+      "from": "n-379",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 “관측·교정 가능한 정렬 인터페이스(translation layer)” 설계 문제로 구체화하며, CSER 향상 메커니즘(구조화된 편차→비판/",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-596",
+      "from": "n-379",
+      "to": "n-003",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=376): n-379→n-003",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 376,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-597",
+      "from": "n-380",
+      "to": "n-379",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-598",
+      "from": "n-380",
+      "to": "n-065",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=315): n-380→n-065",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 315,
       "created": "2026-03-06"
     }
   ]
