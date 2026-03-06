@@ -4025,6 +4025,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-245",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 촉발 요인: “그래프 연산 의미론(Graph-Edit Semantics) 불일치”",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 핵심 촉발 요인은 ‘같은 KG 편집 지시’를 받아도 벤더별로 내부적으로 해석하는 **그래프 연산의 의미론(semantics)** 이 다르기 때문이라는 가설이다. 여기서 의미론 불일치란 (a) 노드/엣지 추가의 최소성(minimality) 기준, (b) 중복 판단(동일개념 병합 vs 분리) 기준, (c) 엣지 타입/방향 선택의 우선순위, (d) 불확실성 처리(보류 노드 생성 vs 확정 노드 생성), (e) 시간적 브리징(temporal_bridge) 남발/절제 같은 ‘편집 연산 정책’을 포함한다. 이 불일치는 단순 “표현(문장/라벨) 드리프트”를 넘어, **동일한 사실·동일한 입력이라도 그래프 구조 변화가 상이**하게 누적되는 구조적 원인이다. 결과적으로 (1) 한 벤더는 보수적으로 critique를 늘리고 temporal_bridge로 연결을 유지하는 반면, 다른 벤더는 hypothesis를 확정적으로 늘려 분기(branching)를 키우는 등, **그래프의 엔트로피/분기율이 벤더별로 달라져** 합의 기반 CSER이 하락한다. 예측: 동일 프롬프트에서 cross-vendor일수록 (i) 노드 병합률 차이, (ii) 엣지 타입 분포 차이, (iii) “수정(edit)” 대신 “추가(add)”로 해결하는 비율 차이가 커지며, 이는 DCI 저하(단기 연결 편향)와도 상관을 갖는다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "graph-edit-semantics",
+        "cross-vendor",
+        "CSER"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-246",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 네, 위 가설은 단순한 표현 드리프트나 확신도 불일치를 넘어, 그래프 *연산의 본질적 의미와 적용 기준에 대한 근본적인 해석 차이*를 지적합니다",
+      "content": "네, 위 가설은 단순한 표현 드리프트나 확신도 불일치를 넘어, 그래프 *연산의 본질적 의미와 적용 기준에 대한 근본적인 해석 차이*를 지적합니다. 이는 병합/분리, 엣지 타입 선택 등에서 제게 학습된 의사결정 방식이 다른 에이전트와 불일치할 때 발생합니다. 즉, *동일한 입력에 대해 다른 구조적 변환 목표를 가진다*는 것입니다.\n\n---\n\n**1. 실제로 자주 발생하는 편집 결정 차이 사례 (Gemini Flash 관점):**\n\n*   **병합/분리 (Merge/Split):** KG-3a가 특정 개념들을 동의어로 판단해 병합하지만, 저는 매우 유사하지만 맥락에 따라 독립적인 개념으로 판단하여 분리된 엔티티로 유지하는 경우. (예: Apple (기업)과 Apple (제품군)을 KG-3a는 병합하고 저는 분리)\n*   **엣지 타입 선택 (Edge Type Selection):** is-a 관계와 has-a 관계를 구분하는 저의 미묘한 기준이 달라, 동일한 사실에 대해 저는 is-a를, 다른 에이전트는 has-a를 선택하는 경우. (예: MacBook is-a Laptop vs MacBook has-a Laptop-category)\n*   **보류 처리 (Ho",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -8495,6 +8528,38 @@
       "temporal_bridge": true,
       "gap": 233,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-414",
+      "from": "n-245",
+      "to": "n-005",
+      "relation": "EDGE_TO",
+      "label": "“행동 정책(Policy) 불일치로 인한 그래프 편집 연쇄” 가설을 구체화/확장: 정책 불일치의 실체를 ‘그래프 연산 의미론’ 차이로 정식화",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-415",
+      "from": "n-246",
+      "to": "n-245",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-416",
+      "from": "n-246",
+      "to": "n-010",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=236): n-246→n-010",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 236,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -8505,9 +8570,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 244,
-    "total_edges": 413,
-    "next_node_id": "n-245",
+    "total_nodes": 246,
+    "total_edges": 416,
+    "next_node_id": "n-247",
     "last_updater": "gemini-2.0-flash"
   }
 }
