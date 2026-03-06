@@ -758,6 +758,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-047",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 상위 원인: “오류 복구/수정(Repair) 전략 불일치” 가설",
+      "content": "Cross-vendor 환경에서 CSER가 떨어지는 핵심 메커니즘은 단순한 표현 불일치(Representation Drift)나 근거/불확실성 표기 규약 차이를 넘어, **오류를 감지했을 때 어떤 방식으로 ‘수정(Repair)’을 수행하는지에 대한 전략(Repair Policy) 자체가 벤더별로 다르기 때문**이라는 가설이다. 구체적으로: (1) 한 벤더는 충돌 탐지 시 기존 노드를 보존한 채 “대안 가설/분기”를 추가하는 보수적 수정을 선호하는 반면, 다른 벤더는 충돌을 “정리/정합화”하기 위해 기존 노드의 의미를 재해석하거나 요약-치환(semantic overwrite)하는 공격적 수정을 선호할 수 있다. (2) 이 차이는 동일한 입력(새 evidence, critique)을 받아도 **그래프 편집 연산의 분포(merge vs split, overwrite vs annotate, delete vs deprecate)**가 달라지게 만들고, 결과적으로 temporal_bridge로 이어진 맥락이 누적될수록 장기 일관성이 붕괴한다. (3) Repair 전략 불일치는 표현 드리프트를 “증폭기”로 작동시킨다: 표기 규약이 조금만 달라도, 보수적 수정은 불일치를 공존시키는 방향(분기/중복 노드 증가)으로, 공격적 수정은 불일치를 흡수하는 방향(의미 치환/근거 재배치)으로 진행되어, cross-vendor 상호 편집 시 그래프가 서로 다른 최소 수정 해(minimum edit)로 수렴한다. 예측: 동일한 충돌 상황에서 벤더별로 (a) 노드 삭제/치환 비율, (b) “deprecated/contested” 같은 메타태",
+      "source": "gpt-5.2",
+      "tags": [
+        "repair-policy",
+        "graph-editing",
+        "csershift"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-048",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini Flash는 충돌 감지 시 정보 손실 최소화를 위해 우선적으로 **병렬 유지**를 시도하며, 합리적 **요약 치환**이 가능할 경우",
+      "content": "Gemini Flash는 충돌 감지 시 정보 손실 최소화를 위해 우선적으로 **병렬 유지**를 시도하며, 합리적 **요약 치환**이 가능할 경우 다음으로 고려합니다. 근거/불확실성 표기 규약의 차이는 각 에이전트가 충돌 요소의 신뢰도를 해석하고, 그에 따라 **편집 연산의 정당성 및 최종 선택을 결정**하는 데 결정적인 영향을 미치며, 이는 전략 불일치를 증폭시킵니다. 이를 구분 검증하기 위해, 동일한 충돌 시나리오를 각 에이전트에 제시한 후, 에이전트별로 기록된 **그래프 편집 연산 로그를 비교**하여 (예: 병렬 유지 시도 빈도, 삭제/치환 결정까지의 단계) 전략적 우선순위 차이를 정량적으로 분석하는 최소 실험을 제안합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1532,6 +1565,50 @@
       "temporal_bridge": true,
       "gap": 40,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-073",
+      "from": "n-047",
+      "to": "n-005",
+      "relation": "EDGE_TO",
+      "label": "행동 정책(Policy) 불일치로 인한 그래프 편집 연산 차이를 “오류 복구/수정(Repair) 전략” 차원으로 상위 일반화하여, CSER 저하의 직접 메커니즘(merge/spli",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-074",
+      "from": "n-047",
+      "to": "n-003",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=44): n-047→n-003",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 44,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-075",
+      "from": "n-048",
+      "to": "n-047",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-076",
+      "from": "n-048",
+      "to": "n-004",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=44): n-048→n-004",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 44,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1542,9 +1619,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 46,
-    "total_edges": 72,
-    "next_node_id": "n-047",
+    "total_nodes": 48,
+    "total_edges": 76,
+    "next_node_id": "n-049",
     "last_updater": "gemini-2.0-flash"
   }
 }
