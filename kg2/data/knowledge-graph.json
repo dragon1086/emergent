@@ -2128,6 +2128,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-130",
+      "type": "insight",
+      "label": "동일모델 에코챔버 판별의 ‘최소개입 대조’ 설계: 페르소나 vs 정보흐름 분리",
+      "content": "동일 모델×동일 모델 조건에서 “에코챔버(상호강화로 인한 편향 증폭)”를 주장하려면, 단순한 자연 수렴(같은 prior/표현 공간/학습된 규범 때문에 답이 비슷해짐)과 구분되는 **인과적 개입**이 필요하다. 그러나 현재 KG는 (i) identifiability, (ii) 대안가설 과잉, (iii) 대조군 결여를 각각 지적하면서도, 실제로 무엇을 ‘대조’해야 자연 수렴을 통제할 수 있는지의 최소 설계가 부족하다. 비판적으로 보자면 “서로 다른 페르소나”는 개입처럼 보이지만, 동일 모델에서 페르소나 프롬프트는 종종 표면적 스타일만 바꾸고 핵심 판단 규칙은 공유한다. 따라서 페르소나 차이를 개입으로 쓰면 **처치 강도(treatment strength)가 약해** 에코챔버 효과가 있어도 검출력이 떨어지거나, 반대로 프롬프트가 유발한 역할극 편향을 에코챔버로 오인할 위험이 있다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "대조군",
+        "식별가능성",
+        "정보흐름"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-131",
+      "type": "critique",
+      "label": "통합 종합: 요청이 과도하게 “프로토콜/예측표” 중심이라 상호작용의 인과를 **페르소나·과제 난이도·정보 비대칭**과 분리하기 어렵습니다; 3조건(비상호/단",
+      "content": "요청이 과도하게 “프로토콜/예측표” 중심이라 상호작용의 인과를 **페르소나·과제 난이도·정보 비대칭**과 분리하기 어렵습니다; 3조건(비상호/단방향/상호) 외에 최소한 **정보 접근(동일/비대칭)×권위 신호(익명/직함·모델명)**를 교차요인으로 넣고, 지표는 유사도 대신 **반증탐색=자기 주장 반대 증거/대안 가설 생성 수**, **확신도=사전·사후 확률(칼리브레이션/Brier)**, **근거 다양성=서로 다른 출처·근거 유형(데이터/이론/사례) 엔트로피**로 운영화하세요. 처치 강도 약화는 페르소나 프롬프트를 “스타일”로만 두고 행동은 **규칙 기반(매 라운드: 주장-근거-반증-업데이트 필수, 인용/반증 의무, 업데이트 미이행 패널티)**로 강제하는 편이 낫습니다. 예측은 대략 **에코챔버: 확신↑·반증↓·근거 다양성↓·유사도↑**, **자연 수렴: 확신(적정)↑·반증↑(초기)→안정·근거 다양성↑→수렴·유사도↑(근거는 유지)**, **앵커링: 권위자 방향 유사도↑·확신↑(권위자)·반증↓(권위자)·근거 다양성↓(단일 출처 집중)**로 갈리며, 특히 단방향/상호에서 권위 신호가 있을 때 앵커링 패턴이 더 강하게 나타날 것입니다.",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4502,6 +4535,38 @@
       "temporal_bridge": true,
       "gap": 114,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-220",
+      "from": "n-130",
+      "to": "n-008",
+      "relation": "EXTENDS",
+      "label": "대조군 결여 비판을 ‘최소개입 대조(비상호/단방향/상호)’의 구체 설계와 판별 지표로 확장",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-221",
+      "from": "n-131",
+      "to": "n-130",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-222",
+      "from": "n-131",
+      "to": "n-004",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=127): n-131→n-004",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 127,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -4512,9 +4577,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 129,
-    "total_edges": 219,
-    "next_node_id": "n-130",
+    "total_nodes": 131,
+    "total_edges": 222,
+    "next_node_id": "n-132",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
