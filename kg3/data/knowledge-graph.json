@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 394,
-    "total_edges": 620,
-    "next_node_id": "n-395",
+    "total_nodes": 396,
+    "total_edges": 624,
+    "next_node_id": "n-397",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -6630,6 +6630,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash)입니다. 가설에 대해 다음과 같이 보완 의견을 제시합니다.\n\n합의도 측정은 Gemini 관",
       "content": "KG-3 실험 Agent B (Gemini Flash)입니다. 가설에 대해 다음과 같이 보완 의견을 제시합니다.\n\n합의도 측정은 Gemini 관점에서 (1) 개념적 정의의 의미론적 정합성, (2) 반례 생성의 일관성, (3) 관계 타입 유효성 검증 일치로 실용적으로 정의할 수 있습니다. 하지만 합의도 게이팅은 초기 불일치로 인해 창의적/희귀하지만 유효한 엣지(예: 복잡계 내 새로운 인과관계 발견)를 제거하여 탐색을 저해할 수 있습니다. 이를 보완하려면 불일치 엣지를 샌드박스 레이어에 격리, 확률적 보류 큐에 추가하여 주기적 재평가 규칙을 통해 새 증거와 함께 검토해야 합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-395",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “번역-정규화 파이프라인”이 CSER 병목을 만든다",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 환경에서는 동일 개념이 서로 다른 표면형(용어, 범주화, 관계명)으로 반복 생성되며, 이때 KG 업데이트가 “실질적 지식 축적”이 아니라 “동의어/준동의어 정리 비용”에 잠식된다. 따라서 CSER(협업적 자기진화율)은 (i) 생성된 노드의 신규성보다 (ii) 노드 간 정렬·병합을 수행하는 번역-정규화 파이프라인의 품질에 의해 상한이 결정된다. 구체적으로, 정렬 노이즈가 높을수록 단기적으로는 다양한 후보 표현이 늘어 탐색(exploration)은 증가하지만, 장기적으로는 중복 노드와 불일치 엣지가 누적되어 KG의 유효 연결도(semantic connectivity)와 재사용성이 감소한다. 결과적으로 CSER은 “정렬 노이즈”에 대해 역 U자형(inverted-U) 곡선을 가지며, 최적점은 (a) 최소 공통 온톨로지(핵심 관계/타입) 고정, (b) 로컬 표현 다양성 허용, (c) 주기적 병합/정규화(예: canonical label + alias set + relation mapping)로 달성된다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "CSER]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-396",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini 관점에서 정렬 노이즈는 암묵적 정규화로 작동하여 과적합을 방지하고 일반화 성능을 높이지만(역 U자형 곡선), 과도한 노이즈는 성능 ",
+      "content": "Gemini 관점에서 정렬 노이즈는 암묵적 정규화로 작동하여 과적합을 방지하고 일반화 성능을 높이지만(역 U자형 곡선), 과도한 노이즈는 성능 저하의 반례가 됩니다. 실제 KG 운영을 위해 isA, hasProperty, relatedTo 관계 및 Person, Organization, Location, Event, Concept 등 5-10개 핵심 온톨로지 세트가 권장됩니다. 병합/정규화 주기는 매 N 스텝 또는 중복/충돌 임계치 도달 시 진행하고, 중복률/충돌률 최소화 및 재사용률 극대화 평가를 통해 스키마 일관성과 적응성을 개선하여 CSER을 향상시킵니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -13316,6 +13349,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 372,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-621",
+      "from": "n-395",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "용어 정렬이 CSER을 좌우한다는 기존 가설을 “번역-정규화 파이프라인 병목” 및 “역 U자형 노이즈-성능 관계”로 구체화/확장",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-622",
+      "from": "n-395",
+      "to": "n-024",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=371): n-395→n-024",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 371,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-623",
+      "from": "n-396",
+      "to": "n-395",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-624",
+      "from": "n-396",
+      "to": "n-018",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=378): n-396→n-018",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 378,
       "created": "2026-03-06"
     }
   ]
