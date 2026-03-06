@@ -626,6 +626,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-039",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 추가 원인: “암묵적 온톨로지/스키마(Concept Lattice) 불일치”",
+      "content": "Cross-vendor 환경에서 CSER이 떨어지는 핵심 메커니즘은 단순 표현(문장/포맷) 불일치보다 한 단계 아래의 “암묵적 온톨로지(implicit schema)” 불일치일 수 있다. 각 벤더 모델은 (a) 개체/관계의 기본 타입 체계, (b) 관계의 방향성/대칭성 가정, (c) 사건 vs 상태의 구분, (d) 원인/근거/정당화의 계층(why-chain) 깊이, (e) 동치성 판단(같은 노드로 병합 vs 별도 노드 유지) 규칙을 서로 다르게 내재화한다. 이 차이는 KG 편집 시 “병합/분할 결정”과 “관계 선택(EDGE_TO vs critiques vs temporal_bridge)”에 체계적 편향을 유발해, 동일한 증거를 받아도 서로 다른 그래프 위상(topology)으로 수렴한다. 결과적으로 cross-vendor에서는 (1) 노드 정규화 실패(동일 개념이 다른 클러스터로 분산), (2) 관계 의미의 비가환성(한쪽은 ‘근거’로, 다른 쪽은 ‘비판’으로 연결), (3) 시간/인과 브리지의 과잉 또는 결핍이 누적되어 CSER이 감소한다. 따라서 회복 전략은 표면 형식 통일뿐 아니라 “공유 스키마 앵커(typed relation set + merge/split rule + equivalence test)”를 명시적으로 합의/고정하고, 각 에이전트가 신규 노드를 추가할 때 해당 스키마에 대한 준수 여부를 메타데이터로 기록하는 것이다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "[implicit-ontology",
+        "schema-mismatch",
+        "graph-topology-drift]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-040",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3bb 실험 Agent B (Gemini Flash) 관점에서 요청에 대해 보완하여 답변합니다.\n\n(1) 암묵적 스키마 차이는 오픈AI와 ",
+      "content": "KG-3bb 실험 Agent B (Gemini Flash) 관점에서 요청에 대해 보완하여 답변합니다.\n\n(1) 암묵적 스키마 차이는 오픈AI와 OpenAI Inc. 병합/분할 기준 부재 또는 관계 방향성 불일치(X는 Y의 창립자 vs Y는 X에 의해 창립됨)로 명확히 드러납니다. critiques는 불확실성 기준 모호 시 남발되거나 억제되며, temporal_bridge는 중요도 판단 오류 시 과잉/부족하게 나타나 일관성 저하를 야기합니다. Flash는 명시적 규칙이 부재할 때 이러한 패턴들이 작업의 비효율성과 데이터 품질 저하로 이어진다고 판단합니다.\n\n(2) CSER 미회복 시, 스키마 불일치 진단을 위해 표면 포맷 통일 + 명시적 스키마 적용 (A그룹)과 표면 포맷 통일만 적용 (B그룹)의 A/B 프롬프트 실험을 제안합니다. 각 그룹의 KG 편집 결과에 대해 엔티티 일치율, 관계 추출 정확도, 누락된 필수 스키마 요소 체크리스트를 측정합니다. 만약 A그룹의 성능이 유의미하게 높다면 스키마 불일치가 주 원인이며, 아니라면 정책/불확실성 규약 등 다른 요인 분석이 필요합니다.\n\n(3) 합의 가능한 최소 공유 스키마로 다음을 제안합니다: 1. is_a, pa",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -1284,6 +1317,26 @@
       "temporal_bridge": true,
       "gap": 37,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-062",
+      "from": "n-039",
+      "to": "n-001",
+      "relation": "EDGE_TO",
+      "label": "Representation Drift(표현 불일치) 가설을 “표면 표현”에서 “암묵적 스키마/온톨로지 불일치”로 하위 원인 분해하여 설명력을 확장",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-063",
+      "from": "n-040",
+      "to": "n-039",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -1294,9 +1347,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 38,
-    "total_edges": 61,
-    "next_node_id": "n-039",
+    "total_nodes": 40,
+    "total_edges": 63,
+    "next_node_id": "n-041",
     "last_updater": "gemini-2.0-flash"
   }
 }
