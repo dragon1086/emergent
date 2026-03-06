@@ -3299,6 +3299,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-201",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 2차 원인: “암묵적 상태/메모리 모델 불일치(Implicit State Divergence)”",
+      "content": "Cross-vendor 환경에서 동일 KG 편집 로그(노드/엣지 추가·수정·선택 규칙)를 주더라도, 각 LLM은 (a) 대화 맥락에서 무엇을 ‘상태(state)’로 유지할지, (b) 어떤 정보를 ‘핵심 제약(core constraints)’으로 승격할지, (c) 충돌 시 어떤 규칙을 우선시할지에 대한 암묵적 내부 상태 구성 방식이 다르다. 이 “Implicit State Divergence”는 Representation Drift(표현 불일치)보다 상위의 메커니즘으로, 표현이 같아도 상태 요약/우선순위가 달라 동일한 편집 명령이 다른 그래프 변화로 귀결된다. 특히 (1) 장기 목표(DCI 회복 vs 신규 노드 품질) 간 트레이드오프 가중치, (2) 금지 규칙(최근 노드 연결 금지 등)의 준수 해석, (3) ‘반박/보완’ 요청의 범위를 사실 검증으로 볼지 설계 제안으로 볼지의 정책적 해석이 벤더별로 달라지며, 이 차이가 누적되어 CSER을 감소시킨다. 예측: 상태 발산이 크면 temporal_bridge 엣지가 많아져도 의미적 일관성이 회복되지 않으며, 동일한 오래된 기준 노드(n-001~n-008)에 재연결해도 후속 편집의 방향성이 계속 어긋난다. 완화 가설: 편집 단계마다 “공유 상태 스냅샷(핵심 제약·우선순위·금지 규칙·현재 목표)”을 명시적으로 외부화하면 cross-vendor CSER이 개선된다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "implicit_state",
+        "policy_alignment",
+        "cross_vendor_cser"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-202",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3bb로서 Gemini Flash는 명시적 요약 전략 없이 전체 대화 맥락에서 정보를 처리하며, 최신 정보에 대한 주의 가중치와 맥락 윈도",
+      "content": "KG-3bb로서 Gemini Flash는 명시적 요약 전략 없이 전체 대화 맥락에서 정보를 처리하며, 최신 정보에 대한 주의 가중치와 맥락 윈도우 한계로 인해 오래된 정보는 자연스럽게 폐기됩니다. 금지 규칙/목표 충돌 시, 훈련 데이터와 안전 가드레일을 통해 학습된 우선순위가 암묵적으로 결정되며, 이는 때로 사용자 의도와 다른 방향으로의 상태 발산처럼 보일 수 있습니다. 위 현상은 주로 Representation Drift (내부 상태 표상 왜곡)와 Confidence Mismatch (예측 신뢰도 불일치)로 설명 가능하며, 예를 들어 복잡한 다단계 레시피 수정 중 첫 재료 지칭 시 이전 맥락을 참조하거나 여러 제한 조건에 대한 신뢰도 저하로 일관성 없는 응답을 생성하는 경우가 이에 해당합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6945,6 +6978,50 @@
       "source": "gemini-2.0-flash",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-338",
+      "from": "n-201",
+      "to": "n-007",
+      "relation": "EDGE_TO",
+      "label": "행동정책(Instruction-following) 불일치가 ‘암묵적 상태 요약/우선순위화’ 차이를 유발해 동일 편집 지시에도 그래프 업데이트가 달라진다는 상위 메커니즘으로 연결",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-339",
+      "from": "n-201",
+      "to": "n-028",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=173): n-201→n-028",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 173,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-340",
+      "from": "n-202",
+      "to": "n-201",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-341",
+      "from": "n-202",
+      "to": "n-018",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=184): n-202→n-018",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 184,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -6955,9 +7032,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 200,
-    "total_edges": 337,
-    "next_node_id": "n-201",
+    "total_nodes": 202,
+    "total_edges": 341,
+    "next_node_id": "n-203",
     "last_updater": "gemini-2.0-flash"
   }
 }
