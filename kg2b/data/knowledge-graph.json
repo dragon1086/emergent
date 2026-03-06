@@ -2309,6 +2309,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-141",
+      "type": "insight",
+      "label": "DCI-Identifiability-Rescue: “동일모델×페르소나”에서 에코챔버 판별의 최소 개입 설계",
+      "content": "동일모델(gpt-5.2) 다중 페르소나 조건에서 “에코챔버가 자율 진화했다”는 주장은 관측 로그만으로는 운영적 비식별성(operational non-identifiability)에 빠지기 쉽다. 이유는 (i) 두 에이전트의 생성 분포가 본질적으로 강하게 상관(동일 파라미터/학습데이터/디코딩 편향)되어 있고, (ii) 페르소나 프롬프트가 유도하는 스타일 차이가 ‘내용적 수렴’을 가리는 반대 방향의 교란으로 작동하며, (iii) KG 업데이트 규칙(노드/엣지 생성·선택 편향)이 “수렴처럼 보이는 구조적 결과”를 내기 때문이다. 따라서 “에코챔버”를 단순 유사도 증가가 아닌 ‘반증 후보의 소거/비대칭적 약화’로 재정의하더라도, 그 소거가 상호강화 때문인지(에코챔버), 아니면 (a) 요약/정리 압력, (b) 토큰 예산에 의한 가지치기, (c) DCI 회복처럼 특정 노드로의 강제 브리징, (d) 관계 타입의 제한(temporal_bridge 과다) 같은 메커니즘 때문인지 분리되지 않는다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "falsification-test",
+        "intervention-design]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-142",
+      "type": "critique",
+      "label": "통합 종합: 요청을 그대로 따르면 “Null=독립 생성 후 병합”이 KG-2bb의 DCI 회복·EDGE_TO 강제·관계타입 편향 때문에 애초에 동일한 생성공",
+      "content": "요청을 그대로 따르면 “Null=독립 생성 후 병합”이 KG-2bb의 DCI 회복·EDGE_TO 강제·관계타입 편향 때문에 애초에 동일한 생성공간을 공유하지 않아 공정 비교가 깨질 수 있으니, 구현은 **동일 시드/동일 소스/동일 관계타입 분포를 고정한 뒤** Treat만 “상호 관찰(중간 산출물 읽기)”을 허용하는 절차로 내려야 합니다; (1) 반증 후보 잔존율은 노드 기준으로 (R_N=frac{|C_{final}cap C_{init}|}{|C_{init}|}), 엣지 기준으로 (R_E=frac{|E(C_{final})cap E(C_{init})|}{|E(C_{init})|})처럼 “초기 반증후보(Claim/Counterclaim 노드 집합)와 그 지지/반박 엣지(STRENGTHENS/WEAKENS 등) 중 최종 그래프에 그대로 남은 비율”로 운영 정의하면 됩니다. (2) temporal_bridge 과다 편향 통제는 최소 수정으로 **관계타입 쿼터/패널티**(예: 각 에이전트가 추가하는 temporal_bridge는 전체 신규 엣지의 ≤p% 또는 동일 주장쌍에 대해 temporal_bridge 중복 금지, 초과분은 EDGE_TO로만 연결)만 넣어도 되고,",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -4827,6 +4860,38 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-234",
+      "from": "n-141",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "운영적 비식별성 주장(n-007)을 “상호작용 vs 독립” 최소 개입 대조 설계와 ‘반증 후보 잔존율’ 지표로 구체화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-235",
+      "from": "n-141",
+      "to": "n-003",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=138): n-141→n-003",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 138,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-236",
+      "from": "n-142",
+      "to": "n-141",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -4837,9 +4902,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 140,
-    "total_edges": 233,
-    "next_node_id": "n-141",
+    "total_nodes": 142,
+    "total_edges": 236,
+    "next_node_id": "n-143",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
