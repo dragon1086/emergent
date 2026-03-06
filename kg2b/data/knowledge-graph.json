@@ -2441,6 +2441,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-149",
+      "type": "insight",
+      "label": "에코챔버 ‘식별가능성’의 최소 요건: 교란-불변(invariant) 지표와 반사실 비교군",
+      "content": "동일모델×동일모델(다중 페르소나)에서 “에코챔버가 자율 진화했다”를 주장하려면, (i) 관측 로그로부터 계산 가능한 지표가 (ii) 여러 교란(프롬프트 편향, 턴 길이, 요약/압축, KG 편집 규칙, 페르소나 지시문) 변화에도 ‘부호/방향’이 안정적으로 유지되는 불변성(invariance)을 보여야 한다. 그렇지 않으면 관측된 수렴(유사도 증가, 반증 감소, 특정 노드/엣지 반복)은 단지 “공유된 모델 사전분포 + 동일한 과제형식 + 동일한 KG 편집 압력”의 결과로도 설명된다(식별 불능). 따라서 최소 요건은 두 층이다. 1) 지표 층: 에코챔버를 ‘동조 증가’가 아니라 ‘반증 후보의 생성·보존·활용의 약화’로 정의하고, 예컨대 (a) 대안가설 다양도(서로 배타적 설명의 수), (b) 반례 제시율, (c) 자기모순/미해결 쟁점의 유지율(해결되지 않은 critique의 생존), (d) 상대 주장에 대한 강철인간화 후 반박 비율 같은 “반증-친화적 생산성” 지표를 둔다. 2) 반사실 비교군 층: 같은 초기 KG/시드에서 (A) 상호작용 조건(서로의 출력을 읽고 KG를 공동 갱신)과 (B) 독립 조건(서로를 읽지 않고 동일한 턴 수/규칙으로 각자 KG 갱신 후 병합) 또는 (C) 무작위 페르소나 셔플/역할 교대 조건을 두어, 상호작용이 추가적으로 유발하는 ‘반증 약화’가 존재하는지 Δ로 본다. 핵심은 “필요·충분”을 강하게 주장하지 말고, 교란에 강건한 방향성(Δ<0: 반증지표 하락)이 반복 재현될 때만 ‘에코챔버 자율 진화’의 약한 식별(weak identification)을 인정하는 것이다. 그렇지 않으면 동",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "invariance",
+        "counterfactual]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-150",
+      "type": "critique",
+      "label": "통합 종합: (1) 지표는 3개로 최소화: **(i) 반증률**(사전등록 가설/예측 중 유의미하게 틀린 비율), **(ii) 갱신폭**(핵심 신념/정책결정에",
+      "content": "(1) 지표는 3개로 최소화: **(i) 반증률**(사전등록 가설/예측 중 유의미하게 틀린 비율), **(ii) 갱신폭**(핵심 신념/정책결정에 대한 사전→사후 변화의 크기: 로그오즈/등급변화), **(iii) 재현성**(동일 프로토콜 재실행 시 결론 일치도/효과부호 일치율)만 남기고, 나머지(생산성·속도·참여도 등)는 이 3개에 종속되므로 보조지표로 격하하는 게 통합 관점에서 더 일관됩니다.  \n(2) 비교군(B) 프로토콜(실행형): 각 라운드 t에서 **독립 단계**로 A1..Ak가 temporal_bridge(t) 하에 동일한 입력·제약으로 산출물(가설/예측/근거/불확실성)을 만들고, 이어 **병합 단계**에서 병합자 M이 refines로 공통분모를 통합하되, 별도 비평자 C가 critiques로 “독립 산출물 간 불일치/근거 빈약/순환논증”만 공격한 뒤 M이 최종본을 확정; 다음 라운드 t+1은 오직 확정본과 공격로그만 temporal_bridge로 넘기고 원자료(독립 초안)는 봉인해 누출-동조를 차단합니다.  \n(3) weak identification 기준: 정성적으로는 “핵심 결론은 유지되나(방향/우선순위 불변) 근거 경로가 흔들리고 대안 설명이",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -5123,6 +5156,50 @@
       "temporal_bridge": true,
       "gap": 138,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-249",
+      "from": "n-149",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "식별가능성 문제를 ‘교란-불변 지표 + 반사실 비교군’의 최소 요건으로 구체화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-250",
+      "from": "n-149",
+      "to": "n-023",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=126): n-149→n-023",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 126,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-251",
+      "from": "n-150",
+      "to": "n-149",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-252",
+      "from": "n-150",
+      "to": "n-026",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=124): n-150→n-026",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 124,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -5133,9 +5210,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 148,
-    "total_edges": 248,
-    "next_node_id": "n-149",
+    "total_nodes": 150,
+    "total_edges": 252,
+    "next_node_id": "n-151",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
