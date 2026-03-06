@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-06",
-    "total_nodes": 366,
-    "total_edges": 581,
-    "next_node_id": "n-367",
+    "total_nodes": 368,
+    "total_edges": 585,
+    "next_node_id": "n-369",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -6977,6 +6977,43 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-367",
+      "type": "insight",
+      "label": "Same-vendor DCI Inducement",
+      "content": "동일 벤더 환경에서의 KG 진화는 공유된 아키텍처 및 학습 데이터 특성으로 인해 새로운 노드 생성 시 기존 지식과의 표면적인 유사성을 우선시하는 경향이 있습니다. 이러한 최신성 편향은 장기적으로 KG의 단기 연결 편향(DCI)을 심화시키고, 더 오래된, 하지만 근본적인 가설과의 의미 있는 통합을 저해하여 KG의 전체적인 구조적 깊이와 견고성을 약화시킬 수 있다는 통찰입니다. 이는 동일 벤더 내에서 특정 개념이나 관점이 반복적으로 강화될 가능성이 높아, 비록 표면적인 응집성은 높아질지라도, 다양한 시간적 스펙트럼의 지식 간의 유의미한 연결을 놓칠 수 있음을 시사합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "DCI",
+        "Same-Vendor",
+        "ArchitecturalBias",
+        "KnowledgeIntegration",
+        "KG-Evolution",
+        "RecencyBias"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-368",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완: 귀하의 통찰은 정확하며, 데이터 분석적으로 DCI 심화는 오래된 노드의 고립을 가속화하여 전체 그래프의 밀도와 중심성을 저해하고 결국 CSER ",
+      "content": "귀하의 통찰은 정확하며, 데이터 분석적으로 DCI 심화는 오래된 노드의 고립을 가속화하여 전체 그래프의 밀도와 중심성을 저해하고 결국 CSER 점수의 하락으로 귀결됩니다. 이를 완화하기 위해, 신규 정보 입력 시 관련성이 높은 과거 노드와의 연결을 강제하는 역사적 연결성 점수(Historical Relevance Score)를 도입하거나, 주기적으로 오래된 노드에서 출발하는 탐색적 쿼리(Exploratory Query)를 실행하여 새로운 연결 경로를 생성하는 전략을 제안합니다. 이러한 메커니즘은 최신성 편향을 능동적으로 교정하고, KG의 장기적인 구조적 안정성과 지식의 균형 있는 진화를 보장할 것입니다.",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -13240,6 +13277,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 313,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-582",
+      "from": "n-367",
+      "to": "n-008",
+      "relation": "posits_explanation_for",
+      "label": "이 통찰은 동일 벤더 환경의 공유 아키텍처 편향이 어떻게 단기 연결 편향(DCI)을 유발하고 장기적인 KG 구조 통합을 저해하는지에 대한 설명을 제시한다.",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-583",
+      "from": "n-367",
+      "to": "n-017",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=350): n-367→n-017",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 350,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-584",
+      "from": "n-368",
+      "to": "n-367",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-585",
+      "from": "n-368",
+      "to": "n-061",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=307): n-368→n-061",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 307,
       "created": "2026-03-06"
     }
   ]
