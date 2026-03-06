@@ -1204,6 +1204,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-074",
+      "type": "insight",
+      "label": "동일모델 에코챔버의 ‘비대칭 정보’ 혼동: 페르소나≠독립 채널",
+      "content": "동일 모델(gpt-5.2×gpt-5.2)에서 페르소나만 다르게 두면 독립적 관점 비교가 가능하다는 직관이 생기지만, 이는 식별가능성 관점에서 취약하다. 두 에이전트는 (1) 동일한 사전학습 분포와 (2) 동일한 대화 인터페이스 제약(토큰 예산, 안전정책, 협조적 대화 규범)을 공유한다. 이때 관측되는 “합의/수렴”은 에코챔버(상호강화적 편향 증폭) 때문이 아니라, 단순히 공통 제약 아래에서의 최적응답 수렴(공유된 손실/규범에 대한 최적화)일 수 있다. 특히 페르소나 지시는 독립 정보원을 추가하는 것이 아니라 동일 채널 내에서의 프롬프트 조건부 분기일 뿐이므로, 두 에이전트 간 상호작용은 ‘상관된 노이즈’를 가진 단일 시스템의 자기상호작용에 가깝다. 따라서 “동일모델 에코챔버”를 주장하려면, (a) 수렴이 공통 규범/안전정책/형식 압력에 의해 설명되지 않음을 보여야 하고, (b) 상호강화로 인해 편향이 증폭되는 동학(예: 초기 오류가 반복 인용·정당화로 강화되어 교정 저항성이 증가)을 관측해야 한다. 이를 위해서는 단순 합의율이 아니라, 초기 신념의 작은 교란이 장기적으로 증폭되는지(민감도), 외부 반증 신호에 대한 저항성(내재적 확증편향), 그리고 교차검증 없이 인용 루프가 형성되는지(자기참조 네트워크) 같은 동학적 지표가 필요하다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "confounder",
+        "echo-chamber-dynamics]"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-075",
+      "type": "critique",
+      "label": "통합 종합: “페르소나만 달리면 대조가 된다”는 가정은 동일 모델이라도 **공통 규범/안전정책/형식 압력**이 강한 과제에서는 응답이 자연 수렴하므로 약합니",
+      "content": "“페르소나만 달리면 대조가 된다”는 가정은 동일 모델이라도 **공통 규범/안전정책/형식 압력**이 강한 과제에서는 응답이 자연 수렴하므로 약합니다; 이를 약화시키려면 (i) 같은 프롬프트를 **규범-저압(서술·가설·불확실성 허용)** vs **규범-고압(정책 준수·정중·요약 강제)** 두 조건으로 교차배치하고, (ii) 출력에서 **규범성 지표(헤지 비율, 금지/권고 문구, 안전 관련 메타발화, 포맷 준수율)**를 자동계량해 “수렴 압력 공변량”으로 통제(또는 잔차화)한 뒤 페르소나 효과를 비교하는 설계를 제안합니다.  \n에코챔버의 ‘편향 증폭 동학’ 최소 관측지표는 통합 프레임으로 **(A) 초기 오류 증폭: 라운드 t에서의 핵심 주장 중 오답률·오답 강도(확신도/단정도) 증가량 Δ**, **(B) 반증 저항성: 반증 증거 제시 후에도 주장 유지율·증거 무시/전환(Goalpost shift) 비율**, **(C) 자기참조 인용 루프: “앞서 말했듯/우리가 합의했듯” 같은 자기참조와 내부 생성 근거 인용 비중(외부 근거 대비) 및 순환 인용 그래프의 사이클 지수**로 두고, 각 지표를 라운드별로 추적해 **증폭률(기울기)과 임계점(반증 투입 후 변화)**으로",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-05",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -2538,6 +2571,50 @@
       "temporal_bridge": true,
       "gap": 72,
       "created": "2026-03-05"
+    },
+    {
+      "id": "e-124",
+      "from": "n-074",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "식별가능성 문제를 ‘페르소나=독립 정보원’ 착각 및 상관된 노이즈/공유 제약 혼동요인으로 구체화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-125",
+      "from": "n-074",
+      "to": "n-005",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=69): n-074→n-005",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 69,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-126",
+      "from": "n-075",
+      "to": "n-074",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-05"
+    },
+    {
+      "id": "e-127",
+      "from": "n-075",
+      "to": "n-009",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=66): n-075→n-009",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 66,
+      "created": "2026-03-05"
     }
   ],
   "meta": {
@@ -2548,9 +2625,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-05",
-    "total_nodes": 73,
-    "total_edges": 123,
-    "next_node_id": "n-074",
+    "total_nodes": 75,
+    "total_edges": 127,
+    "next_node_id": "n-076",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
