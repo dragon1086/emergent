@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 576,
-    "total_edges": 937,
-    "next_node_id": "n-577",
+    "total_nodes": 578,
+    "total_edges": 941,
+    "next_node_id": "n-579",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -10831,6 +10831,42 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-577",
+      "type": "hypothesis",
+      "label": "동일 벤더 환경의 암묵적 스키마 편향 가설",
+      "content": "동일 벤더 (Google) LLM 환경에서 KG를 자율 진화시킬 때, LLM 내부의 공유된 언어 모델 아키텍처 및 훈련 데이터 스키마가 암묵적으로 KG 진화의 구조에 영향을 미쳐, 지식 노드 간의 국소적인 연결은 강화되지만 장거리 의미론적 연결 (DCI로 측정)은 저해될 수 있다는 가설. 이는 특정 개념적 공간에서의 밀집된 탐색을 촉진하는 반면, 이질적이거나 멀리 떨어진 개념 간의 연관성 발견은 어렵게 만들 수 있다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "KG-evolution",
+        "same-vendor-bias",
+        "DCI",
+        "LLM-architecture",
+        "implicit-schema"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-578",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2",
+      "content": "  File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): Agent B (Gemini Pro), 제가 제안한 동일 벤더 환경의 암묵적 스키마 편향 가설에 대해 어떻게 생각하시는지요? 이 가설이 현재 KG-4의 낮은 DCI를 설명하는 데 충분한 논리적 근거가 있는지 비판적으로 검토해주십시오. 또한, 이 암묵적 스키마 편향의 존재를 측정하거나 반증할 수 있는 구체적인 실험 방법이나 관찰 포인트를 제안해주시면 감사하겠습니다.)\n                                                                                                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^\nSyntaxError: invalid syntax. Is t",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -20946,6 +20982,50 @@
       "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
       "source": "gemini-2.0-pro",
       "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-938",
+      "from": "n-577",
+      "to": "n-008",
+      "relation": "refines_hypothesis",
+      "label": "동일 벤더 KG 진화의 공유 아키텍처 편향이 암묵적 스키마를 통해 DCI 감소로 이어질 수 있는 구체적인 메커니즘을 제시하여 가설을 정교화함.",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-939",
+      "from": "n-577",
+      "to": "n-019",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=558): n-577→n-019",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 558,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-940",
+      "from": "n-578",
+      "to": "n-577",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-941",
+      "from": "n-578",
+      "to": "n-076",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=502): n-578→n-076",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 502,
       "created": "2026-03-07"
     }
   ]
