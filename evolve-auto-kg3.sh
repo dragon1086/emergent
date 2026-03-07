@@ -91,12 +91,12 @@ EDGE_LABEL: [관계 설명]
 AGENT_B_REQUEST: [Gemini Flash에게 보내는 반박/보완 요청]"
 
 log "🤖 Agent A (GPT-4o) 판단 중..."
-AGENT_A_RESPONSE=$(python3 -c "
-import openai
-client = openai.OpenAI(api_key='$OPENAI_KEY')
+AGENT_A_RESPONSE=$(OPENAI_KEY="$OPENAI_KEY" PROMPT="$PROMPT" python3 -c "
+import openai, os
+client = openai.OpenAI(api_key=os.environ['OPENAI_KEY'])
 resp = client.chat.completions.create(
     model='gpt-4o',
-    messages=[{'role':'user','content':'''$PROMPT'''}],
+    messages=[{'role':'user','content': os.environ['PROMPT']}],
     temperature=0.7
 )
 print(resp.choices[0].message.content)
@@ -110,11 +110,11 @@ log "✅ Agent A 완료 (${#AGENT_A_RESPONSE} chars)"
 
 # Agent B: Gemini Flash (Google)
 AGENT_B_REQUEST=$(echo "$AGENT_A_RESPONSE" | grep "^AGENT_B_REQUEST:" | sed 's/^AGENT_B_REQUEST: //')
-AGENT_B_RESPONSE=$(python3 -c "
-import google.genai as genai
-client = genai.Client(api_key='$GEMINI_KEY')
-
-resp = client.models.generate_content(model='gemini-2.5-flash', contents='KG-3 실험 Agent B (Gemini Flash)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): $AGENT_B_REQUEST')
+AGENT_B_RESPONSE=$(GEMINI_KEY="$GEMINI_KEY" AGENT_B_REQUEST="$AGENT_B_REQUEST" python3 -c "
+import google.genai as genai, os
+client = genai.Client(api_key=os.environ['GEMINI_KEY'])
+prompt = 'KG-3 실험 Agent B (Gemini Flash)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): ' + os.environ.get('AGENT_B_REQUEST', '')
+resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
 print(resp.text)
 " 2>&1)
 log "✅ Agent B (Gemini Flash) 완료"
@@ -154,7 +154,7 @@ EDGE_LABEL=$(echo "$AGENT_A_RESPONSE" | grep "^EDGE_LABEL:" | sed 's/^EDGE_LABEL
 
 if [[ -n "$NODE_LABEL" && -n "$NODE_CONTENT" ]]; then
   cd "$REPO_DIR"
-  # Agent A (GPT-5.2) 노드 추가
+  # Agent A (GPT-4o) 노드 추가
   NEW_NODE_ID=$(python3 -c "
 import json, sys
 label = sys.argv[1][:200]
@@ -172,7 +172,7 @@ print(json.dumps(d, ensure_ascii=False))
   | EMERGENT_KG_PATH="$KG3_PATH" python3 src/add_node_safe.py 2>/dev/null)
   log "✅ Agent A 노드 추가: $NODE_LABEL (id: $NEW_NODE_ID → $EDGE_TO)"
 
-  # Agent B (Gemini-2.0-Flash) 노드 추가 — cross-source CSER 향상
+  # Agent B (Gemini-2.5-Flash) 노드 추가 — cross-source CSER 향상
   if [[ -n "$NEW_NODE_ID" && -n "$AGENT_B_RESPONSE" ]]; then
     GEMINI_NODE_ID=$(python3 -c "
 import json, sys
