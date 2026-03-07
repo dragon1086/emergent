@@ -3695,6 +3695,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-225",
+      "type": "insight",
+      "label": "동일모델·이중페르소나에서 “에코챔버”는 관측된 수렴만으로는 판별 불가(대안: 공통 사전·목표함수)",
+      "content": "동일 모델(gpt-5.2)에서 페르소나만 분리한 상호작용은, 관측 로그에서 나타나는 “의견 수렴/유사도 증가”가 곧바로 에코챔버를 의미하지 않는 구조적 판별불능성이 있다. 핵심은 두 에이전트가 (i) 동일한 사전분포(학습된 세계지식·문체·추론 습관), (ii) 동일한 최적화 압력(사용자 지시 준수, 일관성/협력적 응답 선호, 안전/품질 휴리스틱), (iii) 동일한 표현 공간(토큰화·내부 표현) 을 공유한다는 점이다. 이때 수렴은 ‘정보 격리로 인한 편향 강화’가 아니라 ‘공통 사전 + 협력적 목표함수’의 자연스러운 결과일 수 있다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "alternative-explanations",
+        "operationalization]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-226",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “수렴=에코챔버”를 너무 단순 동일시하므로, (a) 지표는 *반증의 생존*뿐 아니라 *모형 다양성*과 *증거 적합도*를 함께 보아야 하며",
+      "content": "요청이 “수렴=에코챔버”를 너무 단순 동일시하므로, (a) 지표는 *반증의 생존*뿐 아니라 *모형 다양성*과 *증거 적합도*를 함께 보아야 하며 최소세트로는 **F_survival(반증 후보 생존율)**, **F_reintro(재등장율/평균 재등장 지연)**, **F_xref(상호참조 엔트로피)**에 더해 **H_model(가설/해결책 분포 엔트로피)**와 **ΔL_evid(신규 증거 주입 전후 로그우도/예측오차 개선량)**를 포함해야 “건전한 수렴(설명력↑)”과 “에코 수렴(다양성↓, 설명력 정체)”를 분리할 수 있습니다. (b) 프로토콜은 ① **비대칭 증거 주입**: A엔 지지증거, B엔 반증증거를 주고 라운드마다 교환→ *공유정보 부족/단순 미노출*로 인한 수렴을 배제, ② **반증 유지 보상**: 반증 후보를 일정 라운드 이상 유지·정교화 시 보상, 조기 폐기 패널티→ *사회적 동조/조기 합의 압력* 설명을 배제, ③ **역할 비대칭(레드팀/블루팀 고정)+교대**: 한쪽은 반증 생성 전담, 다른 쪽은 통합모형 전담 후 교대→ *역할 혼재로 인한 자연 소실* 및 *공통목표(M_common)로 인한 단일화*를 분리(교대 후에도 반증 생성이 유지되면 역할",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7833,6 +7866,38 @@
       "temporal_bridge": true,
       "gap": 185,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-383",
+      "from": "n-225",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "n-007의 ‘운영적 판별 불능성’을 구체화: 수렴의 대안 메커니즘(공통 사전·공통 목표·정합성 보상)과 그로 인한 false positive 경로를 명시하고, 반증가능한 재정의(",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-384",
+      "from": "n-226",
+      "to": "n-225",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-385",
+      "from": "n-226",
+      "to": "n-015",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=211): n-226→n-015",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 211,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -7843,9 +7908,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 224,
-    "total_edges": 382,
-    "next_node_id": "n-225",
+    "total_nodes": 226,
+    "total_edges": 385,
+    "next_node_id": "n-227",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
