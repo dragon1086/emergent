@@ -4454,6 +4454,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-271",
+      "type": "insight",
+      "label": "Echochamber vs “shared prior” 분리: 동일모델 조건의 반증 설계 원칙",
+      "content": "동일모델·다중페르소나에서 관측되는 “합의 증가/어휘·논증 구조의 수렴”은 에코챔버의 결과일 수도 있지만, 더 단순한 대체설명(공유된 사전분포/유도된 작업목표/공유된 프롬프트 제약)로도 충분히 생성된다. 따라서 에코챔버 가설을 식별하려면 **수렴 그 자체가 아니라 ‘반증 압력의 붕괴’**를 핵심 종속변수로 삼아야 한다. 구체적으로, (i) 각 에이전트가 독립적으로 생성할 때 유지되던 “대안 가설/반례/반대 근거”의 다양성이 상호작용 후 구조적으로 감소하고, (ii) 그 감소가 단순한 스타일 동조(표현·용어 공유)나 목표 정렬(실험 목적에 대한 순응)로 설명되지 않으며, (iii) 특히 **상대가 제시한 주장에 대한 강한 반증 기회가 존재함에도** 상호작용이 이를 반복적으로 회피·약화시키는 패턴(예: 반례의 체계적 누락, 반박의 형식화/무력화, ‘합의 가능한 부분’만 확대)이 나타나야 한다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "falsification",
+        "same-model-control]"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-272",
+      "type": "critique",
+      "label": "통합 종합: (보완) (1) “반증 후보 보존율”은 문장/토큰보다 **논증 단위(Claim–Evidence–Warrant)**로 정의하고, 초기 생성의 반증",
+      "content": "(보완) (1) “반증 후보 보존율”은 문장/토큰보다 **논증 단위(Claim–Evidence–Warrant)**로 정의하고, 초기 생성의 반증 후보 리스트를 고정한 뒤 후속 턴에서 **동일 후보의 (a) 존재, (b) 핵심 주장 극성, (c) 테스트 가능 조건**이 유지되는지 매칭해 *보존율 = 유지된 후보 수/초기 후보 수*로 측정하되, 후보가 **더 강한 반증(더 좁은 조건·명시적 판정 기준)**으로 정제되면 “보존+강화”로 별도 집계하세요. (2) 공유 prior/프롬프트 순응 통제는 최소 **2×2 대조**로: A/B가 같은 프롬프트를 받고 *독립 생성*(상호 미노출) vs *상호작용*(서로의 후보/근거를 읽고 갱신), 그리고 *공유 prior 강함*(공통 배경지식 요약 제공) vs *prior 약함*(요약 미제공)으로 두어, 상호작용 효과를 prior 효과와 분리합니다. (3) 판별 규칙은 “표면 수렴 vs 의미 붕괴”로 나눠 **스타일 수렴=유사도(문체 임베딩/기능어/길이/헤지 비율)↑ & 반증 후보 보존율 변화≈0**, **내용적 반증 붕괴=문체 유사도 변화와 무관하게 보존율↓ 또는 후보의 테스트 조건 삭제/비가역적 일반화**로 두며, 예: “",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -9436,6 +9469,50 @@
       "temporal_bridge": true,
       "gap": 245,
       "created": "2026-03-07"
+    },
+    {
+      "id": "e-461",
+      "from": "n-271",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "운영적 비식별성 문제를 ‘수렴=에코챔버’ 오판에서 ‘반증 압력 붕괴’ 중심의 식별 기준으로 재정의/정교화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-462",
+      "from": "n-271",
+      "to": "n-049",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=222): n-271→n-049",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 222,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-463",
+      "from": "n-272",
+      "to": "n-271",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-464",
+      "from": "n-272",
+      "to": "n-016",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=256): n-272→n-016",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 256,
+      "created": "2026-03-07"
     }
   ],
   "meta": {
@@ -9446,9 +9523,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-07",
-    "total_nodes": 270,
-    "total_edges": 460,
-    "next_node_id": "n-271",
+    "total_nodes": 272,
+    "total_edges": 464,
+    "next_node_id": "n-273",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
