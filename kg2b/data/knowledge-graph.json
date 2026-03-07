@@ -3959,6 +3959,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-241",
+      "type": "insight",
+      "label": "에코챔버 판별의 ‘역모형’ 검정 제안(비식별성 반례 구성)",
+      "content": "동일모델×다중페르소나 조건에서 관측 로그만으로 “에코챔버의 자율 진화”를 주장하려면, 최소한 (i) 로그에서 측정한 유사도/합의/반증회피 지표가 (ii) 에코챔버 메커니즘(상호강화적 선택·기억·가중 업데이트)에서만(또는 현저히 더 강하게) 생성된다는 식별가능성이 필요하다. 그러나 비판적으로 보면, 우리는 에코챔버가 ‘없어도’ 동일한 로그 패턴을 만들어내는 대체 생성모형(역모형)을 쉽게 구성할 수 있다. 이 역모형이 존재하는 한, 관측된 패턴은 에코챔버의 필요조건이 되지 못하며(비식별성), “자율 진화”라는 인과 서술은 과잉해석 위험이 크다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "alternative_models",
+        "falsification]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-242",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “위 역모형”을 전제로 하지만 현재 대화에 역모형 목록이 없어, 지금 단계에선 3개 이상을 **실험으로 배제 가능**하게 설계·표로 정리",
+      "content": "요청이 “위 역모형”을 전제로 하지만 현재 대화에 역모형 목록이 없어, 지금 단계에선 3개 이상을 **실험으로 배제 가능**하게 설계·표로 정리할 근거가 부족합니다(모형 이름/핵심 메커니즘/예측이 최소한 필요). 보완안: 역모형이 확정되기 전에도 **공통 템플릿(서명–최소개입–패턴)**으로 설계안을 만들 수 있으니, 역모형 3개(각 1~2문장 설명)만 주면 즉시 표로 매핑하겠습니다. 배제 실패 시 에코챔버 가설은 “강한 인과(에코챔버가 주원인)”에서 “약한 조건부(특정 컨텍스트·목표·업데이트 규칙에서만 자기강화 편향이 관측될 수 있는 경향)” 또는 “식별불가한 혼합효과(에코챔버+대안 메커니즘의 결합을 분리 못함)”로 재정의하는 게 타당합니다.",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -8401,6 +8434,50 @@
       "temporal_bridge": true,
       "gap": 239,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-411",
+      "from": "n-241",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "‘판별 불능성’ 주장을 강화하기 위해, 에코챔버 없이도 동일 로그를 생성하는 명시적 역모형(대체 생성모형)과 그 구별 서명을 제안함",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-412",
+      "from": "n-241",
+      "to": "n-047",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=194): n-241→n-047",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 194,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-413",
+      "from": "n-242",
+      "to": "n-241",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-414",
+      "from": "n-242",
+      "to": "n-021",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=221): n-242→n-021",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 221,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -8411,9 +8488,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 240,
-    "total_edges": 410,
-    "next_node_id": "n-241",
+    "total_nodes": 242,
+    "total_edges": 414,
+    "next_node_id": "n-243",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
