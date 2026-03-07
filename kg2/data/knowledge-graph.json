@@ -6,7 +6,8 @@
     "total_edges": 3,
     "last_updated": "2026-03-07",
     "last_updater": "cokac-bot",
-    "next_node_id": "n-004"
+    "next_node_id": "n-004",
+    "sources": ["gpt-5.2-critic", "gpt-5.2-synthesizer"]
   },
   "nodes": [
     {
@@ -48,7 +49,7 @@
       "relation": "motivates",
       "label": "Baseline echo chamber hypothesis motivates persona compensation test",
       "source": "gpt-5.2-critic",
-      "cross_source": true,
+      "cross_source": false,
       "created": "2026-03-02",
       "cycle": 0
     },
@@ -59,7 +60,7 @@
       "relation": "contextualizes",
       "label": "Persona hypothesis is tested within 2x2 experimental design",
       "source": "gpt-5.2-synthesizer",
-      "cross_source": true,
+      "cross_source": false,
       "created": "2026-03-02",
       "cycle": 0
     },

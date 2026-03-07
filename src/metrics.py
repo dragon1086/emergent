@@ -33,13 +33,14 @@ v4 창발 공식 (n-102 제안, 록이):
 """
 
 import json
+import os
 import sys
 import statistics
 from pathlib import Path
 from collections import Counter
 
 REPO = Path(__file__).parent.parent
-KG_FILE = REPO / "data" / "knowledge-graph.json"
+KG_FILE = Path(os.environ.get("EMERGENT_KG_PATH", REPO / "data" / "knowledge-graph.json"))
 
 
 # ─── I/O ─────────────────────────────────────────────────────────────────────
@@ -70,6 +71,11 @@ def compute_cser(kg: dict) -> float:
             return "cokac"
         if s in ("록이", "상록"):
             return "록이"
+        # Strip persona suffixes to compare by model/vendor only
+        for suffix in ("-critic", "-synthesizer", "-analyst", "-explorer",
+                       "-challenger", "-integrator", "-human"):
+            if s.endswith(suffix):
+                return s[:-len(suffix)]
         return s
     node_src = {n["id"]: _norm(n.get("source", "")) for n in kg["nodes"]}
     n_edges = len(kg["edges"])

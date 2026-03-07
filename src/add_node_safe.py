@@ -51,6 +51,16 @@ try:
     node_id = f"n-{next_num:03d}"
 
     # source 다양성 확인 (cross-source 여부)
+    # vendor/model 기준 비교: "gpt-5.2-critic" → "gpt-5.2", "gemini-2.5-flash" → "gemini-2.5-flash"
+    def _extract_model(src: str) -> str:
+        """Extract model/vendor from source string, stripping persona suffixes."""
+        # Known persona suffixes to strip
+        for suffix in ("-critic", "-synthesizer", "-analyst", "-explorer",
+                       "-challenger", "-integrator", "-human"):
+            if src.endswith(suffix):
+                return src[: -len(suffix)]
+        return src
+
     all_sources = {n.get("source", "unknown") for n in graph["nodes"]}
     new_source = data.get("source", "unknown")
 
@@ -92,7 +102,7 @@ try:
         next_edge_num = max(existing_edges, default=0) + 1
         edge_id = f"e-{next_edge_num:03d}"
         target_source = next((n.get("source", "unknown") for n in graph["nodes"] if n["id"] == edge_to), "unknown")
-        cross = (new_source != target_source)
+        cross = (_extract_model(new_source) != _extract_model(target_source))
         edge = {
             "id": edge_id,
             "from": node_id,
@@ -141,7 +151,7 @@ try:
                                    if e.get("id", "").startswith("e-") and (m := re.search(r'\d+', e["id"]))]
                 next_edge_num2 = max(existing_edges2, default=0) + 1
                 bridge_edge_id = f"e-{next_edge_num2:03d}"
-                cross2 = (new_source != old_target.get("source", ""))
+                cross2 = (_extract_model(new_source) != _extract_model(old_target.get("source", "")))
                 # 노드 번호 차이(gap)를 label에 포함
                 new_num = int(re.search(r'\d+', node_id).group())
                 old_num = int(re.search(r'\d+', old_target_id).group())

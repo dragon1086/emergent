@@ -121,13 +121,10 @@ if [[ -z "$AGENT_A_RESPONSE" ]]; then
 fi
 log "✅ Agent A 완료 (${#AGENT_A_RESPONSE} chars)"
 
-# Agent A 파싱 검증
-if [[ -z "$NODE_LABEL" || -z "$NODE_CONTENT" ]]; then
-  # 파싱은 아래에서 하지만 여기서 미리 체크
-  _PRE_LABEL=$(echo "$AGENT_A_RESPONSE" | grep "^NODE_LABEL:" | sed 's/^NODE_LABEL: //' | tr -d "'\`\"\\")
-  if [[ -z "$_PRE_LABEL" ]]; then
-    log "⚠️  Agent A 응답 형식 불량 — NODE_LABEL 누락. 응답 앞 200자: ${AGENT_A_RESPONSE:0:200}"
-  fi
+# Agent A 파싱 사전 검증 (NODE_LABEL 존재 여부만 확인)
+_PRE_LABEL=$(echo "$AGENT_A_RESPONSE" | grep "^NODE_LABEL:" | head -1)
+if [[ -z "$_PRE_LABEL" ]]; then
+  log "⚠️  Agent A 응답 형식 불량 — NODE_LABEL 누락. 응답 앞 200자: ${AGENT_A_RESPONSE:0:200}"
 fi
 
 # Agent B: gpt-5.2 (통합 종합가)
@@ -154,9 +151,9 @@ if [[ -z "$AGENT_B_RESPONSE" || ${#AGENT_B_RESPONSE} -lt 10 ]]; then
 fi
 log "✅ Agent B (gpt-5.2, 통합 종합가) 완료"
 
-# 필드 파싱
-NODE_LABEL=$(echo "$AGENT_A_RESPONSE" | grep "^NODE_LABEL:" | sed 's/^NODE_LABEL: //' | tr -d "'\`\"\\")
-NODE_CONTENT=$(echo "$AGENT_A_RESPONSE" | grep "^NODE_CONTENT:" | sed 's/^NODE_CONTENT: //' | tr -d "'\`\"\\")
+# 필드 파싱 (backtick/backslash만 제거, 인용부호 보존)
+NODE_LABEL=$(echo "$AGENT_A_RESPONSE" | grep "^NODE_LABEL:" | sed 's/^NODE_LABEL: //' | tr -d '\`\\')
+NODE_CONTENT=$(echo "$AGENT_A_RESPONSE" | grep "^NODE_CONTENT:" | sed 's/^NODE_CONTENT: //' | tr -d '\`\\')
 NODE_TYPE=$(echo "$AGENT_A_RESPONSE" | grep "^NODE_TYPE:" | sed 's/^NODE_TYPE: //' | tr -d ' ')
 NODE_TAGS=$(echo "$AGENT_A_RESPONSE" | grep "^NODE_TAGS:" | sed 's/^NODE_TAGS: //')
 EDGE_TO=$(echo "$AGENT_A_RESPONSE" | grep "^EDGE_TO:" | sed 's/^EDGE_TO: //' | tr -d ' ')
@@ -263,9 +260,12 @@ CSER_VAL=$(echo "$METRICS_OUTPUT" | grep "CSER" | head -1 | grep -oE '[0-9]+\.[0
 E_V5_VAL=$(echo "$METRICS_OUTPUT" | grep "E_v5" | tail -1 | grep -oE '[0-9]+\.[0-9]+' | head -1)
 log "📈 CSER=${CSER_VAL:-?}, E_v5=${E_V5_VAL:-?}"
 
-# git 커밋
-cd "$REPO_DIR"
-git add kg2/ 2>/dev/null
-git commit -m "🤖 kg2 cycle $(date +%Y-%m-%d-%H%M) — same-model(gpt-5.2xgpt-5.2)" 2>/dev/null || true
-
-log "✅ KG-2 사이클 완료"
+# git 커밋 (노드 추가 성공 시에만)
+if [[ -n "$NEW_NODE_ID" ]]; then
+  cd "$REPO_DIR"
+  git add kg2/ 2>/dev/null
+  git commit -m "🤖 kg2 cycle $(date +%Y-%m-%d-%H%M) — same-model(gpt-5.2xgpt-5.2)" 2>/dev/null || true
+  log "✅ KG-2 사이클 완료 (committed)"
+else
+  log "⚠️  KG-2 사이클 종료 — 노드 추가 실패, commit 스킵"
+fi
