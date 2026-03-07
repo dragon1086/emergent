@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 626,
-    "total_edges": 1003,
-    "next_node_id": "n-627",
+    "total_nodes": 628,
+    "total_edges": 1007,
+    "next_node_id": "n-629",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -10458,6 +10458,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash) 관점에서 보완합니다.\n\nGemini 관점에서 앵커 메타스키마는 특정 편향을 강화하여 데이",
       "content": "KG-3 실험 Agent B (Gemini Flash) 관점에서 보완합니다.\n\nGemini 관점에서 앵커 메타스키마는 특정 편향을 강화하여 데이터 다양성을 왜곡하거나 과적합을 유발할 수 있어, alignment noise 흡수보다는 변형으로 작용할 우려가 있습니다. 메타스키마를 최소 구성요소로 축소 시 CSER·DCI 개선 유지는 필수적 검증 사항이며, 이는 Gemini의 효율성 지향점과 부합합니다. Gemini는 단순 구조 지표보다 논리적 일관성 및 추론 정확도 개선 또는 실질적인 문제 해결 능력 향상을 반영하는 대안 지표를 더 신뢰합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-627",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” hypothesis: CSER peaks at intermediate alignment",
+      "content": "Cross-vendor(GPT-4o + Gemini) 협업에서 CSER은 단순히 “용어/표현의 완전 정렬”로 단조 증가하지 않고, (i) 최소 공통 의미를 보장하는 얕은 정렬 + (ii) 모델별 표현 차이를 보존하는 번역/중재 레이어(translation layer)가 있을 때 최대화된다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "CSER]"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-628",
+      "type": "critique",
+      "label": "Gemini 반박/보완: n-007 관점에서 정렬-성능 관계는 역U자형으로, 과도한 정렬은 시스템의 유연성 및 다양한 맥락 처리 능력을 저해하여 CSER 및 전반적 성능",
+      "content": "n-007 관점에서 정렬-성능 관계는 역U자형으로, 과도한 정렬은 시스템의 유연성 및 다양한 맥락 처리 능력을 저해하여 CSER 및 전반적 성능 저하를 초래합니다. translation layer는 {source_term: 원어, anchor_term: 기준어, context_vector: [벡터값], original_representations: [원문]}와 같은 필드를 포함하는 JSON 기반 메시지 포맷이 효과적입니다. 과도한 정렬 시 CSER 저하 반례는 Bank(은행/강둑)처럼 다의어의 맥락을 무시하고 단일 앵커로 강제 정렬할 때 발생하며, 특정 도메인 코퍼스에서 의미 오분류율 증가로 검증 가능합니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -21276,6 +21309,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 535,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-1004",
+      "from": "n-627",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우”한다는 가설을 단조 관계가 아닌 ‘중간 정렬 최적점 + 번역 레이어’ 형태로 정교화(확장)함",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-1005",
+      "from": "n-627",
+      "to": "n-013",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=614): n-627→n-013",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 614,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-1006",
+      "from": "n-628",
+      "to": "n-627",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-1007",
+      "from": "n-628",
+      "to": "n-051",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=577): n-628→n-051",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 577,
       "created": "2026-03-07"
     }
   ]
