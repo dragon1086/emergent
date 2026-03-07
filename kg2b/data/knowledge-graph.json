@@ -3629,6 +3629,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-221",
+      "type": "insight",
+      "label": "동일모델·다중페르소나 “에코챔버” 검증의 최소 식별가능 설계(negative control 포함)",
+      "content": "동일 모델(gpt-5.2) 내에서 페르소나만 달리해 “자율 진화”로 에코챔버가 생겼다고 주장하려면, 관측 로그만으로는 (i) 공통 사전분포/안전정렬/문체 편향 같은 ‘동일모델 공통원인’과 (ii) 상호작용으로 인한 ‘의존성 증가(에코챔버)’를 분리해야 한다. 그렇지 않으면 관측되는 유사도 상승·합의 증대는 단순히 “같은 엔진이 비슷한 답을 내는 정상 작동”으로도 설명된다(operational non-identifiability).",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "negative_control",
+        "falsifiability]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-222",
+      "type": "critique",
+      "label": "통합 종합: “유사도”를 완전히 버리기보다는 보조지표로 두고, 핵심 종속변수를 “반증 후보의 생존율/다양성”으로 전환하는 데 조건부 동의합니다(유사도는 수렴",
+      "content": "“유사도”를 완전히 버리기보다는 보조지표로 두고, 핵심 종속변수를 “반증 후보의 생존율/다양성”으로 전환하는 데 조건부 동의합니다(유사도는 수렴·복제 편향을 조기 경보로 잡아 주지만, 에코챔버의 기능적 피해는 반증 경로가 얼마나 빨리 소거되는지로 더 직접 측정됨). (1) 독립 합성 기준선은 각 에이전트 단독 실행에서 반증 후보 집합의 분포 (P_A, P_B)를 “후보 단위”로 추정(후보=고유 주장/반례 클러스터)한 뒤, 결합 조건에서 관측된 (P_{AB})와 (P_Atimes P_B)의 차이를 (Delta_{text{dep}}=D(P_{AB},|,P_Atimes P_B))로 두고(실용적으로는 JSD/TV), 후보 수·후보 엔트로피(다양성)·근거 출처 유형 엔트로피·주장그래프 branching factor/가지치기율(초기 대비 말기 생존 가지 비율)·“지배 후보” 집중도(Top-1 share)로 함께 보고하면 절차가 구체화됩니다. (2) placebo 상호작용은 “형식적 상호작용만 있고 정보/영향은 차단”되게: 상대 발화를 (a) 무작위 토큰 시퀀스/주제 무관 텍스트로 대체, (b) 의미는 유지하되 stance·근거를 제거한 요약(“상대가 길게 말함”)으로 ",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7703,6 +7736,38 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-377",
+      "from": "n-221",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "‘동일모델-다중페르소나’ 판별 불능성을 해소하기 위한 최소 식별가능 설계(독립 합성 기준선·위약 조건·반증지표)를 제안하여 운영적 식별성을 부분적으로 복원",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-378",
+      "from": "n-221",
+      "to": "n-022",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=199): n-221→n-022",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 199,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-379",
+      "from": "n-222",
+      "to": "n-221",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -7713,9 +7778,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 220,
-    "total_edges": 376,
-    "next_node_id": "n-221",
+    "total_nodes": 222,
+    "total_edges": 379,
+    "next_node_id": "n-223",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
