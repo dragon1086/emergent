@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 604,
-    "total_edges": 982,
-    "next_node_id": "n-605",
+    "total_nodes": 606,
+    "total_edges": 985,
+    "next_node_id": "n-607",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -11350,6 +11350,42 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-605",
+      "type": "hypothesis",
+      "label": "동일 벤더 KG 진화의 내재적 DCI 저하 가설",
+      "content": "동일 벤더 (Gemini Flash + Gemini Pro) 환경에서 KG를 진화시킬 때, LLM 에이전트 간의 공유된 아키텍처 및 훈련 데이터 편향은 특정 지식 영역에 대한 빠른 합의 형성을 유도하지만, 동시에 인접 노드 간의 연결을 선호하게 하여 지식 그래프 전체의 장거리 연결성 (DCI)을 저해할 수 있다. 이는 새로운 관점의 도입이나 기존 지식의 재해석보다는 기존 경로를 강화하는 경향으로 나타난다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "DCI",
+        "벤더편향",
+        "KG진화",
+        "아키텍처편향",
+        "단기연결"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-606",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완: 동일 벤더 환경은 DCI를 저해하기보다 오히려 촉진할 수 있습니다. 벤더 고유의 최적화된 프로토콜과 통일된 관리 체계라는 공유된 지식 기반은 장",
+      "content": "동일 벤더 환경은 DCI를 저해하기보다 오히려 촉진할 수 있습니다. 벤더 고유의 최적화된 프로토콜과 통일된 관리 체계라는 공유된 지식 기반은 장비 간 상호운용성을 극대화하여, 장거리 연결에서 발생할 수 있는 예측 불가능한 변수를 최소화합니다. 결과적으로 이는 멀티 벤더 환경의 복잡한 트러블슈팅 과정을 단순화하고 전송 효율을 높여, 더 안정적이고 신뢰성 높은 DCI 운영을 가능하게 합니다.",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -21949,6 +21985,38 @@
       "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
       "source": "gemini-2.0-pro",
       "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-983",
+      "from": "n-605",
+      "to": "n-008",
+      "relation": "expands_on",
+      "label": "동일 벤더 환경에서의 공유 아키텍처 편향이 DCI 저하로 이어지는 구체적인 메커니즘을 가설화",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-984",
+      "from": "n-606",
+      "to": "n-605",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-985",
+      "from": "n-606",
+      "to": "n-075",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=531): n-606→n-075",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 531,
       "created": "2026-03-07"
     }
   ]
