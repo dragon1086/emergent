@@ -4157,6 +4157,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-253",
+      "type": "insight",
+      "label": "비판-식별가능성: “자율 진화” vs “공유 사전분포+프롬프트 수렴” 분해 불가능",
+      "content": "동일모델×다중 페르소나에서 관측되는 ‘에코챔버적 수렴’은 (i) 상호작용으로 인해 믿음/표현이 실제로 수렴한 결과(자율 진화)인지, (ii) 두 에이전트가 애초에 동일한 사전분포(모델 파라미터)와 동일한 과업지시를 공유해 조건부로 같은 모드에 끌리는 결과(공유 사전분포+프롬프트 수렴)인지 로그만으로는 원리적으로 분해가 어렵다. 이는 식별가능성(identifiability) 문제가 단지 “지표 선택의 어려움”이 아니라, 관측가능 데이터(대화 로그)가 생성과정의 잠재변수(각 턴의 내부 신념 업데이트, 정책 혼합, 안전/정렬 제약의 활성화)를 충분히 제약하지 못하는 구조적 비식별성임을 뜻한다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "null_hypothesis",
+        "causal_inference]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-254",
+      "type": "critique",
+      "label": "통합 종합: “최소 설계”를 AB/대조군으로만 좁히면 H1의 핵심(상호작용·경로의존) 신호가 평균 처리효과에 희석될 수 있으니, **(i) 독립 샘플링으로 ",
+      "content": "“최소 설계”를 AB/대조군으로만 좁히면 H1의 핵심(상호작용·경로의존) 신호가 평균 처리효과에 희석될 수 있으니, **(i) 독립 샘플링으로 베이스라인 분포를 먼저 분리**하고 **(ii) 동일 입력-상이 경로(교란)에서의 분기/재수렴 패턴**을 함께 봐야 합니다.  \n설계 1) **독립 베이스라인 캘리브레이션**: 동일 태스크를 에이전트 간 **완전 독립(세션/메모리 분리)**로 N회 반복(시드·온도·샘플러 고정/변경을 교차)해 “이미 비슷” 주장을 **분포(다양성·엔트로피·자기일치도)**로 계량하고, 이후 상호작용 조건에서 그 분포가 **축소(동형 수렴, H0)**되는지 또는 **특정 상대 발화에 조건부로만 축소(매개 수렴, H1)**되는지 비교합니다.  \n설계 2) **프롬프트/시드 교란 AB + 역질문 삽입으로 경로의존성 테스트**: A/B로 (A) 표준 대화, (B) 중간에 **무작위 시드 변경·동의어 치환·역질문(“왜 그렇게 결론났나?”)·오답 미끼**를 삽입해 경로를 흔들고, 최종 결론의 **재수렴률이 교란에 불변이면 H0**, 반대로 **상대의 특정 응답(매개 변수) 이후에만 재수렴/전환되면 H1**로 판별합니다.  \n설계 3) **교차-매개",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -8827,6 +8860,38 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-432",
+      "from": "n-253",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "식별가능성 문제를 “구조적 비식별성(공유 사전분포+프롬프트 수렴 vs 상호작용 효과)”로 구체화하고, 필요한 구분기준(경로의존성·반증후보 변화·독립베이스라인 대비)을 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-433",
+      "from": "n-253",
+      "to": "n-015",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=238): n-253→n-015",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 238,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-434",
+      "from": "n-254",
+      "to": "n-253",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -8837,9 +8902,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 252,
-    "total_edges": 431,
-    "next_node_id": "n-253",
+    "total_nodes": 254,
+    "total_edges": 434,
+    "next_node_id": "n-255",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
