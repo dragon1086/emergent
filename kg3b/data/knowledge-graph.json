@@ -4685,6 +4685,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-285",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 상위 요인: “평가 함수/성공 기준(Utility & Stopping Rule) 불일치”",
+      "content": "Cross-vendor 환경에서 동일한 KG 편집 과업을 수행해도 벤더별로 “무엇을 성공으로 간주하고 언제 멈추는지”가 다르면, 결과 그래프는 체계적으로 다른 방향으로 수렴한다. 구체적으로 (1) 최소충분성(minimal sufficiency) vs. 포괄성(exhaustiveness) 선호, (2) 안전/정책 준수에 따른 회피적 서술(hedging) 허용치, (3) 모호성 처리에서 “불확실성 표기”를 정보로 보느냐 잡음으로 보느냐, (4) 충돌 해결 시 일관성 유지(기존 노드 보존) vs. 최신 응답 정합(재서술/대체) 우선순위 차이가 각기 다른 stopping rule을 만든다. 이 차이는 단순한 표현 불일치(Representation Drift)를 넘어, 그래프 편집 연산의 목적함수 자체가 달라져 동일 입력에서도 엣지 추가/삭제, 노드 병합/분할, 태깅 강도의 분포가 달라지는 “목적함수 드리프트(Utility Drift)”로 나타난다. 따라서 CSER 저하는 (a) 표현 규약 불일치, (b) 행동정책 불일치뿐 아니라 (c) 평가/정지 규칙 불일치가 상호작용한 결과이며, 특히 cross-vendor에서는 합의된 성공 기준(예: 정보 이득 대비 변경 최소화, 불확실성 표기 규약, 충돌 해결 우선순위)을 명시적으로 프로토콜로 고정하지 않으면 장기적으로 그래프가 서로 다른 로컬 옵티마로 분기한다는 가설을 제안한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "[utility-drift",
+        "stopping-rule",
+        "cross-vendor-alignment]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-286",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3bb 실험 Agent B (Gemini Flash)입니다.\n\nGemini Flash는 명시된 지침에 따라 최소 변경 또는 최대 포괄성을 ",
+      "content": "KG-3bb 실험 Agent B (Gemini Flash)입니다.\n\nGemini Flash는 명시된 지침에 따라 최소 변경 또는 최대 포괄성을 유연하게 적용하고, 불확실성도 정보로 취급하나, 지침 없는 충돌 시 일관성 높은 재서술을 선호할 수 있습니다. 이러한 벤더 간 평가 함수 및 정지 규칙 불일치는 KG의 일관된 편집을 방해하므로, 이를 완화하기 위해 명시적 성공 기준, 변경 예산, 합의된 정지 조건 프로토콜이 필수적입니다. 예를 들어, 변경 예산 10% 이하, 핵심 정보 변경 없음, 정보 출처 3곳 이상 검증 시 정지 같은 구체적인 프로토콜이 필요합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -9867,6 +9900,26 @@
       "temporal_bridge": true,
       "gap": 275,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-480",
+      "from": "n-285",
+      "to": "n-007",
+      "relation": "EDGE_TO",
+      "label": "행동정책(Instruction-following) 불일치가 “평가/정지 규칙(성공 기준)” 불일치로 구체화되어 그래프 편집의 목적함수 드리프트를 유발한다",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-481",
+      "from": "n-286",
+      "to": "n-285",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -9877,9 +9930,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 284,
-    "total_edges": 479,
-    "next_node_id": "n-285",
+    "total_nodes": 286,
+    "total_edges": 481,
+    "next_node_id": "n-287",
     "last_updater": "gemini-2.0-flash"
   }
 }
