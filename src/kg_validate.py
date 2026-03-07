@@ -143,6 +143,12 @@ def validate(graph: dict, fix: bool = False) -> dict:
 
         if eid in seen_edge_ids:
             duplicate_edge_ids.append(eid)
+            if fix:
+                new_eid = f"e-{next_edge_num:04d}"
+                e["id"] = new_eid
+                next_edge_num += 1
+                fixes_applied += 1
+                eid = new_eid
         seen_edge_ids.add(eid)
 
         for field in REQUIRED_EDGE_FIELDS:

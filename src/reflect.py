@@ -31,6 +31,7 @@ reflect.py — emergent 반성 엔진
 """
 
 import json
+import os
 import sys
 import argparse
 from datetime import datetime
@@ -38,7 +39,7 @@ from pathlib import Path
 from collections import defaultdict
 
 REPO_DIR = Path(__file__).parent.parent
-KG_FILE  = REPO_DIR / "data" / "knowledge-graph.json"
+KG_FILE  = Path(os.environ.get("EMERGENT_KG_PATH", REPO_DIR / "data" / "knowledge-graph.json"))
 LOGS_DIR = REPO_DIR / "logs"
 
 

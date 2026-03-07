@@ -25,7 +25,10 @@ def _node_num(nid: str) -> int:
 def build_adjacency(kg: dict) -> dict[str, list[str]]:
     adj: dict[str, list[str]] = {}
     for e in kg.get("edges", []):
-        src, tgt = e["from"], e["to"]
+        src = e.get("from", "")
+        tgt = e.get("to", "")
+        if not src or not tgt:
+            continue
         adj.setdefault(src, []).append(tgt)
         adj.setdefault(tgt, []).append(src)
     return adj
