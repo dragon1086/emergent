@@ -4223,6 +4223,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-257",
+      "type": "insight",
+      "label": "동일모델-다중페르소나 에코챔버 “식별가능한 잔차(Residual)” 설계",
+      "content": "동일모델(gpt-5.2)×다중 페르소나 조건에서 관측 로그만으로 “에코챔버”를 판별하려면, (i) 모델 공통의 생성 편향(베이스레이트), (ii) 프롬프트/역할 지시가 강제하는 스타일·담화 규칙, (iii) 대화의 순차 의존(앞선 텍스트가 다음 분포를 구속), (iv) 평가자가 선택한 지표의 단조성 가정 때문에 발생하는 비식별성을 먼저 제거/통제해야 한다. 그렇지 않으면 ‘유사도 증가’나 ‘합의 수렴’은 거의 언제나 관찰되며, 이를 에코챔버로 오인할 위험이 크다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "residualization",
+        "echochamber-metrics]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-258",
+      "type": "critique",
+      "label": "통합 종합: “상대 미노출” 독립 베이스라인은 완전 독립을 보장하기 어렵기 때문에 *근사 잔차(residual)*로 설계해야 하며, 방법은 (a) **mas",
+      "content": "“상대 미노출” 독립 베이스라인은 완전 독립을 보장하기 어렵기 때문에 *근사 잔차(residual)*로 설계해야 하며, 방법은 (a) **masked-context self-play**: 상대 텍스트를 전부 [MASK]/길이·형식만 유지한 더미로 치환한 입력에서 생성·판단을 반복해 분포를 얻고, (b) **counterfactual prompting**: 동일 과제에 대해 상대 텍스트가 “없었다/요약만 있었다/상충 정보였다”는 반사실 조건을 프롬프트로 명시해 응답 분포 차이를 추정, (c) **summary-noise channel**: 상대 텍스트의 요약을 제공하되 엔티티·수치·관계 일부를 확률적으로 교란(혹은 DP-노이즈)해 “의미는 유지하되 식별 신호는 약화”한 채 결과를 비교하는 2~3축 조합이 적합합니다. ‘반증 후보 소실’ 최소 지표는 **FCR(Falsifier Coverage Rate)**=|C∩R|/|C| (C: 사전 정의된 반증 후보 체크리스트/질문 집합, R: 모델이 실제로 언급·검증한 항목 집합; 절차: C를 고정→응답에서 반증 시도/검증 문장 추출→매칭), **ΔNLI(Contradiction Sensitivity Drop)**=P_c",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -8957,6 +8990,50 @@
       "temporal_bridge": true,
       "gap": 253,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-438",
+      "from": "n-257",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "동일모델-다중페르소나 조건의 판별 불능성을 ‘독립/교정 베이스라인 대비 잔차’로 operationalize하여 완화하는 설계 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-439",
+      "from": "n-257",
+      "to": "n-040",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=217): n-257→n-040",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 217,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-440",
+      "from": "n-258",
+      "to": "n-257",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-441",
+      "from": "n-258",
+      "to": "n-047",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=211): n-258→n-047",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 211,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -8967,9 +9044,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 256,
-    "total_edges": 437,
-    "next_node_id": "n-257",
+    "total_nodes": 258,
+    "total_edges": 441,
+    "next_node_id": "n-259",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
