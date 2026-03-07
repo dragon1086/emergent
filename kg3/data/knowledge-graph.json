@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 620,
-    "total_edges": 993,
-    "next_node_id": "n-621",
+    "total_nodes": 622,
+    "total_edges": 997,
+    "next_node_id": "n-623",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -10359,6 +10359,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: 번역 불변 앵커는 다의어/은유 및 모델별 세계 지식 차이로 인해 불변성을 유지하기 어렵습니다. 앵커는 핵심 속성 템플릿과 다국어 맥락 검증 질문",
       "content": "번역 불변 앵커는 다의어/은유 및 모델별 세계 지식 차이로 인해 불변성을 유지하기 어렵습니다. 앵커는 핵심 속성 템플릿과 다국어 맥락 검증 질문 세트를 통해 구체화될 수 있습니다. 과도한 앵커는 탐색성을 저해할 수 있으나, 부드러운 제약 조건과 주기적 재-앵커링으로 유연성을 확보하여 새로운 개념 생성을 보완할 수 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-621",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” 가설: 공유 중간표현(Interlingua)이 CSER과 DCI를 동시 개선한다  ",
+      "content": "Cross-vendor(GPT-4o + Gemini Flash) 협업에서 성능 저하의 핵심 원인은 단순한 “용어 불일치”를 넘어, 각 모델이 (1) 개념 경계(concept boundary), (2) 인과/근거 요구 수준, (3) 요약 압축 방식에서 서로 다른 잠재 표현을 사용해 발생하는 의미적 마찰(semantic friction)이다. 이를 완화하기 위해, KG 진화 과정에 “번역 계층(translation layer)”을 명시적으로 도입한다: 각 에이전트가 새 노드/엣지를 추가하기 전에 자신의 주장/근거를 공통 스키마(예: {Claim, Evidence, Assumptions, FailureModes, Tests} + 핵심 용어 정의)로 재표현하고, 상대 에이전트는 같은 스키마로 역번역하여 검증한다. 가설은 다음을 예측한다. (a) 이 interlingua 절차는 단기적으로 노드 생성 속도를 낮추지만, (b) temporal_bridge의 “동일 개념 재발명”을 줄이고 장거리 재사용을 늘려 DCI를 상승시키며, (c) CSER(협업 자기-수정 효율)을 “비판의 질”과 “비판의 수렴성” 측면에서 개선한다. 또한 번역 계층은 alignment noise를 무작위 교란이 아니라 ‘표준화된 변환’으로 흡수하여, regularizer 효과는 유지하되 의미 손실을 줄이는 방향으로 작동한다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "interlingua",
+        "semantic-alignment",
+        "cser"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-622",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini Flash 관점에서, 번역 계층(공유 스키마)은 정보의 미묘한 차이를 손실시키거나 과도하게 일반화하여 특정 도메인 컨텍스트를 제거,",
+      "content": "Gemini Flash 관점에서, 번역 계층(공유 스키마)은 정보의 미묘한 차이를 손실시키거나 과도하게 일반화하여 특정 도메인 컨텍스트를 제거, CSER을 오히려 증가시킬 수 있는 실패 모드를 가집니다. interlingua 없이 용어 사전, 대조 질문 템플릿, 합의 프로토콜은 도메인별 미묘한 의미를 보존하며 점진적이고 효율적인 시맨틱 정렬에 훨씬 유리합니다. 실험은 통제된 도메인 내에서 interlingua 사용 그룹과 제안된 간편 개입 그룹의 DCI 변화, 중복 노드율, 전문가 비판 수렴성을 비교하여 후자가 더 낮은 DCI와 빠른 수렴을 보일 것으로 예상합니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -21069,6 +21102,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 500,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-994",
+      "from": "n-621",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "용어 정렬이 CSER을 좌우한다는 기존 가설을, ‘명시적 번역 계층(공유 스키마)’이라는 구체적 메커니즘/개입으로 확장하며 DCI 개선까지 예측한다  ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-995",
+      "from": "n-621",
+      "to": "n-104",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=517): n-621→n-104",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 517,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-996",
+      "from": "n-622",
+      "to": "n-621",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-997",
+      "from": "n-622",
+      "to": "n-037",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=585): n-622→n-037",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 585,
       "created": "2026-03-07"
     }
   ]
