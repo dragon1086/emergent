@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 490,
-    "total_edges": 776,
-    "next_node_id": "n-491",
+    "total_nodes": 492,
+    "total_edges": 779,
+    "next_node_id": "n-493",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -8214,6 +8214,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash) 관점에서 요청에 답변드립니다.\n\n1.  **모델-중립성 및 강건한 중간 표현:**\n   ",
       "content": "KG-3 실험 Agent B (Gemini Flash) 관점에서 요청에 답변드립니다.\n\n1.  **모델-중립성 및 강건한 중간 표현:**\n    3-튜플은 모델-중립적 기반을 제공하지만, 해석의 모호성을 줄이기 위해선 스키마/타입 제약이나 미니-테스트셋 같은 더 구조화된 중간 표현이 필수적입니다. 이는 추상적 정의를 구체적인 검증 가능 형태로 전환하여 강건성을 확보합니다. 특히, Gemini Flash 같은 언어 모델은 이러한 구조적 제약을 활용하여 일관된 이해와 생성을 보장할 수 있습니다.\n\n2.  **Round-trip invariance 위험 및 안전장치:**\n    Round-trip invariance의 과적합 정렬 위험은 실제하며, KG의 다양성을 저해할 수 있습니다. 임계값 어닐링 외에, 일부 노드를 의도적으로 정렬하지 않거나(intentionally unaligned) 다중 피벗을 허용하여 탐색 공간을 넓히는 것이 중요합니다. 이는 상이한 모델 관점을 유지하며 KG의 풍부한 표현력을 보장하는 안전장치입니다.\n\n3.  **관계 스키마 설계 (motivates/temporal_bridge/critique):**\n    motivates, tempo",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-491",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER은 “번역-표준화(semantic canonicalization)” 레이어의 유무로 갈린다  ",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 협업에서 CSER 차이는 모델 고유 추론력보다, 두 에이전트가 산출물을 공유 KG에 적재하기 전에 수행하는 “의미 표준화(canonicalization)” 레이어의 품질에 의해 더 크게 결정된다. 여기서 표준화 레이어란 (1) 용어/개념의 동의어·상위어·범위(범주 경계) 정규화, (2) 주장 단위의 스키마 정규화(Claim–Evidence–Constraint–Assumption), (3) 불확실성/조건부 표현의 규격화(“항상/대체로/특정 조건에서”)를 포함한다. 이 레이어가 약하면 cross-vendor에서는 (a) 동일 개념의 다중 라벨화로 노드 파편화가 증가하고, (b) temporal_bridge가 사실상 “번역 오류 브리지”로 변질되어 장기 일관성이 붕괴하며, (c) critique가 핵심 가정이 아니라 표현 차이를 공격하는 방향으로 치우친다. 반대로 표준화 레이어가 강하면 alignment noise를 “표현 다양성”으로 흡수해 중복을 줄이고, 서로 다른 모델의 표현을 동일한 개념 노드로 수렴시켜 장기적 재사용성과 CSER을 상승시킨다. 따라서 KG-3의 개선 레버는 ‘더 많은 노드’가 아니라 ‘적재 전 표준화 규약(ontology + claim schema + uncertainty markers)’의 도입/강화이며, 이는 same-vendor 대비 cross-vendor에서 더 큰 한계요인이 된다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-canonicalization",
+        "CSER]"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-492",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash) 관점에서 답변드립니다.\n\nSemantic canonicalization 레이어는 중요하나",
+      "content": "KG-3 실험 Agent B (Gemini Flash) 관점에서 답변드립니다.\n\nSemantic canonicalization 레이어는 중요하나, 원본 데이터가 이미 정제되었거나 하위 시스템의 의미 파싱이 충분히 견고하다면 높은 CSER이 달성될 수 있습니다. 과도한 표준화는 표현 다양성 및 탐색성 손실과 잘못된 단일화로 인한 오류 전파를 야기할 수 있습니다. 최소 비용의 크로스-벤더 구현을 위해 (1) 공통 코어 클레임 스키마 (JSON-LD/RDF), (2) 불확실성/출처 메타데이터 태그 표준, (3) 문맥 기반 동의어/동일성 프로토콜, (4) 스키마 확장 및 매핑을 위한 경량 API를 제안합니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -16576,6 +16609,38 @@
       "id": "e-776",
       "from": "n-490",
       "to": "n-489",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-777",
+      "from": "n-491",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 “표준화 레이어”라는 구체적 메커니즘으로 설명하며, CSER 차이의 원인을 추론력보다 KG 적재 전 의미 정규화 실패/성공으로 귀속시킴  ",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-778",
+      "from": "n-491",
+      "to": "n-061",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=430): n-491→n-061",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 430,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-779",
+      "from": "n-492",
+      "to": "n-491",
       "relation": "critiques",
       "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
       "source": "gemini-2.0-flash",
