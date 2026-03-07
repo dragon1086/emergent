@@ -3217,6 +3217,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-196",
+      "type": "insight",
+      "label": "동일모델 에코챔버 ‘식별가능성’의 핵심: 공유 사전분포 vs 공유 업데이트 규칙",
+      "content": "동일 모델(gpt-5.2 × gpt-5.2) 조건에서 관측되는 “신념/서술의 수렴”은 에코챔버 효과라기보다 (i) 동일한 사전분포(prior)와 (ii) 동일한 업데이트/디코딩 규칙(예: RLHF로 학습된 합리화·정합성 압력, 안전/정중/균형 프롬프트 준수)의 산물일 가능성이 크다. 즉, 에코챔버의 작동원인(상호강화로 인한 편향 증폭)을 주장하려면 ‘상호작용이 없었어도 나타날 자연 수렴’과 ‘상호작용 때문에 추가로 생긴 증폭’을 분리해야 한다. 하지만 동일모델에서는 두 항이 구조적으로 얽혀 식별이 깨진다: 대화는 단지 정보 교환이 아니라 모델의 내재적 규범(일관성/협조)을 활성화하는 트리거이므로, 상호작용으로 인한 변화가 “상호강화”인지 “협조적 일관성 유지”인지 관측만으로 구분하기 어렵다. 따라서 측정 목표를 ‘에코챔버=편향의 자기강화’로 두려면 최소한 (a) 상호작용의 방향성(누가 누구를 얼마나 이동시켰는지), (b) 이동이 근거(증거) 민감적인지/권위(상대 발화) 민감적인지, (c) 상호작용이 없을 때의 기준선(독립 샘플/독립 롤아웃)을 포함한 설계가 필요하다. 이 3요소가 빠지면 “동일모델끼리 결국 비슷해짐”을 에코챔버로 오인하는 위험이 크다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "echo-chamber",
+        "same-model]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-197",
+      "type": "critique",
+      "label": "통합 종합: 요청안은 타당하지만 “에코챔버=상호강화로 인한 편향 증폭”을 분리식별하려면 **(i) 방향성(a)**을 *집단 평균의 이동*이 아니라 **개인별",
+      "content": "요청안은 타당하지만 “에코챔버=상호강화로 인한 편향 증폭”을 분리식별하려면 **(i) 방향성(a)**을 *집단 평균의 이동*이 아니라 **개인별 사전신념 대비 업데이트 방향(자기-일치 강화 vs 교정)**으로 정의하고, **(ii) 권위-민감성(b)**은 “근거 없음”만이 아니라 **검증 불가능한 지위/다수/전문가 호소**로 조작해야 하며, **(iii) 기준선(c)**은 독립 롤아웃뿐 아니라 **무상호작용+동일 정보노출(상호작용 없이 동일 발화 로그를 읽기만 함)**을 추가해 “상호작용 효과”를 정보량 효과와 분리하는 보완이 필요합니다. 최소 설계는 2(상호작용: 대화 vs 독립 롤아웃)×2(상대 발화: 근거 기반 vs 권위 기반)×(사전신념 정렬: 찬/반 균형 배정)로 하고, 종속변수는 **편향증폭(사전신념 방향으로의 확신/극단화), 근거-민감성(증거 강도에 따른 업데이트 탄력), 합의의 질(정확도/캘리브레이션)**로 두면 됩니다.  \n\n| 조건 | 자연 수렴(정보통합) 예측 | 에코챔버(상호강화) 예측 |\n|---|---|---|\n| **독립 롤아웃 × 근거 기반** | 근거에 따라 방향성(a) 분산 감소, 정확도↑ | 큰 변화 없음(개인 편향 유지) ",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6839,6 +6872,38 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-335",
+      "from": "n-196",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "식별가능성 문제를 ‘공유 prior’뿐 아니라 ‘공유 업데이트/디코딩 규칙(협조·정합성 압력)’까지 포함해 더 근본적 혼동으로 확장",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-336",
+      "from": "n-197",
+      "to": "n-196",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-337",
+      "from": "n-197",
+      "to": "n-015",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=182): n-197→n-015",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 182,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -6849,9 +6914,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 195,
-    "total_edges": 334,
-    "next_node_id": "n-196",
+    "total_nodes": 197,
+    "total_edges": 337,
+    "next_node_id": "n-198",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
