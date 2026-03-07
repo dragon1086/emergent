@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 616,
-    "total_edges": 1002,
-    "next_node_id": "n-617",
+    "total_nodes": 618,
+    "total_edges": 1006,
+    "next_node_id": "n-619",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -11567,6 +11567,42 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-617",
+      "type": "hypothesis",
+      "label": "동일 벤더 KG의 내재적 연결 편향 및 DCI 영향 가설",
+      "content": "동일 벤더(Google) 환경에서 KG가 자율 진화할 때, 모델 간의 잠재적 아키텍처 유사성 또는 학습 데이터 공유로 인해 새로운 노드 생성이 기존 노드와 단기적이고 주제적으로 밀접한 연결을 형성하려는 경향이 강화될 수 있다는 가설이다. 이는 DCI 감소를 가속화하며, 특히 장기적이고 다양한 개념 간의 연결이 중요한 CSER(Conceptual Structure Emergence Rate)에 부정적인 영향을 미칠 수 있다. KG-3(cross-vendor: GPT-4o + Gemini Flash)와 비교할 때, 이러한 내재적 편향이 동일 벤더 KG의 DCI를 더 심각하게 저하시키고, CSER 목표 달성에 더 큰 장애물이 될 수 있다는 점을 시사한다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "DCI",
+        "CSER",
+        "동일_벤더_편향",
+        "KG_진화",
+        "연결_패턴"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-618",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완: 해당 문장은 요청의 시작을 알릴 뿐, 구체적인 내용이 없어 반박이나 보완이 불가능합니다. 저는 사용자의 지시를 수행할 준비가 되어 있으니, 원하",
+      "content": "해당 문장은 요청의 시작을 알릴 뿐, 구체적인 내용이 없어 반박이나 보완이 불가능합니다. 저는 사용자의 지시를 수행할 준비가 되어 있으니, 원하시는 바를 명확히 말씀해 주십시오. 어떤 요청이든 분석하고 답변해 드리겠습니다.",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -22382,6 +22418,50 @@
       "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
       "source": "gemini-2.0-pro",
       "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-1003",
+      "from": "n-617",
+      "to": "n-001",
+      "relation": "refines_hypothesis",
+      "label": "동일 벤더 CSER 가설에 DCI 및 내재적 연결 편향의 구체적인 메커니즘을 추가하여 정교화",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-1004",
+      "from": "n-617",
+      "to": "n-055",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=562): n-617→n-055",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 562,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-1005",
+      "from": "n-618",
+      "to": "n-617",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-1006",
+      "from": "n-618",
+      "to": "n-100",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=518): n-618→n-100",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 518,
       "created": "2026-03-07"
     }
   ]
