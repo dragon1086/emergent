@@ -16,6 +16,7 @@ import shutil
 import subprocess
 import time
 from dataclasses import dataclass, field
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Optional
 
@@ -96,10 +97,49 @@ class RoleMeshExecutor:
     """
 
     def __init__(self, config_path: Optional[Path] = None,
-                 timeout: int = 120, dry_run: bool = False):
+                 timeout: int = 120, dry_run: bool = False,
+                 history_path: Optional[Path] = None):
         self.router = RoleMeshRouter(config_path=config_path)
         self.timeout = timeout
         self.dry_run = dry_run
+        self.history_path = history_path or Path.home() / ".rolemesh" / "history.jsonl"
+
+    def _log_history(self, request: str, result: 'ExecutionResult') -> None:
+        """Append execution record to history JSONL file."""
+        if self.dry_run:
+            return
+        try:
+            self.history_path.parent.mkdir(parents=True, exist_ok=True)
+            entry = {
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "request": request[:200],
+                "tool": result.tool,
+                "task_type": result.task_type,
+                "confidence": round(result.confidence, 2),
+                "success": result.success,
+                "exit_code": result.exit_code,
+                "duration_ms": result.duration_ms,
+                "fallback_used": result.fallback_used,
+            }
+            with open(self.history_path, "a") as f:
+                f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+        except OSError:
+            pass  # non-critical
+
+    def get_history(self, limit: int = 50) -> list[dict]:
+        """Read recent execution history entries."""
+        if not self.history_path.exists():
+            return []
+        entries = []
+        try:
+            with open(self.history_path) as f:
+                for line in f:
+                    line = line.strip()
+                    if line:
+                        entries.append(json.loads(line))
+        except (OSError, json.JSONDecodeError):
+            pass
+        return entries[-limit:]
 
     def check_tool(self, tool_key: str) -> bool:
         """Check if a tool's CLI binary is available on PATH."""
@@ -162,7 +202,9 @@ class RoleMeshExecutor:
                 stderr="", duration_ms=0,
             )
 
-        return self._run_subprocess(cmd, tool_key, route, prompt, context)
+        result = self._run_subprocess(cmd, tool_key, route, prompt, context)
+        self._log_history(prompt, result)
+        return result
 
     def run(self, request: str, context: Optional[dict] = None) -> ExecutionResult:
         """
@@ -188,9 +230,10 @@ class RoleMeshExecutor:
                 )
                 result = self._execute_tool(route, request, context)
                 result.fallback_used = True
+                self._log_history(request, result)
                 return result
             else:
-                return ExecutionResult(
+                result = ExecutionResult(
                     tool=route.tool, tool_name=route.tool_name,
                     task_type=route.task_type, confidence=route.confidence,
                     exit_code=127, stdout="",
@@ -199,6 +242,8 @@ class RoleMeshExecutor:
                               if route.fallback else ""),
                     duration_ms=0,
                 )
+                self._log_history(request, result)
+                return result
 
         result = self._execute_tool(route, request, context)
 
@@ -214,8 +259,10 @@ class RoleMeshExecutor:
             )
             fallback_result = self._execute_tool(fallback_route, request, context)
             fallback_result.fallback_used = True
+            self._log_history(request, fallback_result)
             return fallback_result
 
+        self._log_history(request, result)
         return result
 
     def _execute_tool(self, route: RouteResult, prompt: str,

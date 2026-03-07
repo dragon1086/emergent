@@ -561,6 +561,220 @@ def test_executor_routed_with_config():
     print("  PASS: executor_routed_with_config")
 
 
+# ===== Custom Tool Registration Tests =====
+
+def test_register_tool():
+    """register_tool adds a new tool and probes availability."""
+    wizard = SetupWizard()
+    wizard.tools = []
+    profile = wizard.register_tool(
+        key="mytool", name="My Tool", vendor="Test",
+        strengths=["coding"], check_cmd=["nonexistent_binary_xyz"],
+        cost_tier="low",
+    )
+    assert profile.key == "mytool"
+    assert profile.available is False  # binary doesn't exist
+    assert any(t.key == "mytool" for t in wizard.tools)
+    assert "mytool" in TOOL_REGISTRY
+    # Cleanup
+    del TOOL_REGISTRY["mytool"]
+    print("  PASS: register_tool")
+
+
+def test_register_tool_replaces_existing():
+    """register_tool replaces a tool with the same key."""
+    wizard = SetupWizard()
+    wizard.tools = [
+        ToolProfile(key="x", name="Old", vendor="V",
+                    strengths=["a"], cost_tier="low", available=False),
+    ]
+    wizard.register_tool(key="x", name="New", vendor="V2",
+                         strengths=["b"], check_cmd=["no_such_bin"],
+                         cost_tier="high")
+    assert len([t for t in wizard.tools if t.key == "x"]) == 1
+    assert wizard.tools[0].name == "New"
+    # Cleanup
+    del TOOL_REGISTRY["x"]
+    print("  PASS: register_tool_replaces_existing")
+
+
+def test_register_tool_invalid_cost():
+    """register_tool rejects invalid cost_tier."""
+    wizard = SetupWizard()
+    try:
+        wizard.register_tool(key="bad", name="Bad", vendor="V",
+                             strengths=[], check_cmd=["x"],
+                             cost_tier="ultra")
+        assert False, "Should have raised ValueError"
+    except ValueError:
+        pass
+    print("  PASS: register_tool_invalid_cost")
+
+
+def test_unregister_tool():
+    """unregister_tool removes a tool."""
+    wizard = SetupWizard()
+    TOOL_REGISTRY["temp"] = {"name": "Temp", "vendor": "V",
+                              "strengths": [], "check_cmd": ["x"],
+                              "cost_tier": "low"}
+    wizard.tools = [
+        ToolProfile(key="temp", name="Temp", vendor="V",
+                    strengths=[], cost_tier="low"),
+    ]
+    result = wizard.unregister_tool("temp")
+    assert result is True
+    assert "temp" not in TOOL_REGISTRY
+    assert not any(t.key == "temp" for t in wizard.tools)
+    print("  PASS: unregister_tool")
+
+
+def test_unregister_tool_not_found():
+    """unregister_tool returns False for unknown keys."""
+    wizard = SetupWizard()
+    result = wizard.unregister_tool("nonexistent_tool_xyz")
+    assert result is False
+    print("  PASS: unregister_tool_not_found")
+
+
+# ===== Config Validation Tests =====
+
+def test_validate_config_valid():
+    """Valid config passes validation."""
+    config = {
+        "version": "1.0.0",
+        "tools": {"claude": {"name": "Claude"}},
+        "routing": {
+            "coding": {"primary": "claude", "fallback": None},
+        },
+    }
+    errors = SetupWizard.validate_config(config)
+    assert errors == [], f"Expected no errors, got {errors}"
+    print("  PASS: validate_config_valid")
+
+
+def test_validate_config_missing_fields():
+    """Missing required fields are detected."""
+    errors = SetupWizard.validate_config({})
+    assert any("version" in e for e in errors)
+    assert any("tools" in e for e in errors)
+    assert any("routing" in e for e in errors)
+    print("  PASS: validate_config_missing_fields")
+
+
+def test_validate_config_dead_ref():
+    """Dead routing references are detected."""
+    config = {
+        "version": "1.0.0",
+        "tools": {"claude": {"name": "Claude"}},
+        "routing": {
+            "coding": {"primary": "ghost_tool", "fallback": None},
+        },
+    }
+    errors = SetupWizard.validate_config(config)
+    assert any("ghost_tool" in e for e in errors)
+    print("  PASS: validate_config_dead_ref")
+
+
+def test_validate_config_dead_fallback():
+    """Dead fallback references are detected."""
+    config = {
+        "version": "1.0.0",
+        "tools": {"claude": {"name": "Claude"}},
+        "routing": {
+            "coding": {"primary": "claude", "fallback": "missing_fb"},
+        },
+    }
+    errors = SetupWizard.validate_config(config)
+    assert any("missing_fb" in e for e in errors)
+    print("  PASS: validate_config_dead_fallback")
+
+
+def test_validate_config_not_dict():
+    """Non-dict config is rejected."""
+    errors = SetupWizard.validate_config("not a dict")
+    assert errors == ["Config must be a dict"]
+    print("  PASS: validate_config_not_dict")
+
+
+# ===== Execution History Tests =====
+
+def test_executor_history_logging():
+    """Execution history is logged to JSONL file."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        history_path = Path(tmpdir) / "history.jsonl"
+        executor = RoleMeshExecutor(
+            config_path=Path("/nonexistent"),
+            history_path=history_path,
+        )
+        # Manually log a result
+        result = ExecutionResult(
+            tool="claude", tool_name="Claude",
+            task_type="coding", confidence=0.9,
+            exit_code=0, stdout="ok", stderr="",
+            duration_ms=500,
+        )
+        executor._log_history("test request", result)
+
+        assert history_path.exists()
+        entries = executor.get_history()
+        assert len(entries) == 1
+        assert entries[0]["tool"] == "claude"
+        assert entries[0]["request"] == "test request"
+        assert entries[0]["success"] is True
+    print("  PASS: executor_history_logging")
+
+
+def test_executor_history_limit():
+    """get_history respects limit parameter."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        history_path = Path(tmpdir) / "history.jsonl"
+        executor = RoleMeshExecutor(
+            config_path=Path("/nonexistent"),
+            history_path=history_path,
+        )
+        result = ExecutionResult(
+            tool="t", tool_name="T", task_type="x",
+            confidence=1.0, exit_code=0, stdout="",
+            stderr="", duration_ms=0,
+        )
+        for i in range(10):
+            executor._log_history(f"req-{i}", result)
+
+        entries = executor.get_history(limit=3)
+        assert len(entries) == 3
+        assert entries[0]["request"] == "req-7"  # last 3
+    print("  PASS: executor_history_limit")
+
+
+def test_executor_history_no_file():
+    """get_history returns empty list when no history file."""
+    executor = RoleMeshExecutor(
+        config_path=Path("/nonexistent"),
+        history_path=Path("/nonexistent/history.jsonl"),
+    )
+    assert executor.get_history() == []
+    print("  PASS: executor_history_no_file")
+
+
+def test_executor_dry_run_no_history():
+    """Dry run does not log to history."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        history_path = Path(tmpdir) / "history.jsonl"
+        executor = RoleMeshExecutor(
+            config_path=Path("/nonexistent"),
+            dry_run=True,
+            history_path=history_path,
+        )
+        result = ExecutionResult(
+            tool="t", tool_name="T", task_type="x",
+            confidence=1.0, exit_code=0, stdout="",
+            stderr="", duration_ms=0,
+        )
+        executor._log_history("test", result)
+        assert not history_path.exists()
+    print("  PASS: executor_dry_run_no_history")
+
+
 # ===== Run all tests =====
 
 def run_all():
@@ -606,6 +820,23 @@ def run_all():
         test_executor_result_failure,
         test_executor_tool_commands_registry,
         test_executor_routed_with_config,
+        # Custom Tool Registration
+        test_register_tool,
+        test_register_tool_replaces_existing,
+        test_register_tool_invalid_cost,
+        test_unregister_tool,
+        test_unregister_tool_not_found,
+        # Config Validation
+        test_validate_config_valid,
+        test_validate_config_missing_fields,
+        test_validate_config_dead_ref,
+        test_validate_config_dead_fallback,
+        test_validate_config_not_dict,
+        # Execution History
+        test_executor_history_logging,
+        test_executor_history_limit,
+        test_executor_history_no_file,
+        test_executor_dry_run_no_history,
     ]
 
     passed = 0
