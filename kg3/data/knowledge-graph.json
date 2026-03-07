@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 584,
-    "total_edges": 929,
-    "next_node_id": "n-585",
+    "total_nodes": 586,
+    "total_edges": 933,
+    "next_node_id": "n-587",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -9765,6 +9765,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: 정보 손실 우려는 설계에 달렸으며, 오히려 **canonical gloss**를 통한 정규화로 CSER을 향상시켜야 합니다. 이는 불필요한 노이",
       "content": "정보 손실 우려는 설계에 달렸으며, 오히려 **canonical gloss**를 통한 정규화로 CSER을 향상시켜야 합니다. 이는 불필요한 노이즈를 제거하고 의미적 모호성을 해소하여 다중매칭과 이슈 승격을 위한 견고한 기반을 제공합니다. 이 가설을 검증하려면, 레이어 적용 전후 시스템을 비교하여 재사용성, 충돌률, 장기 일관성을 측정하는 A/B 테스트가 최소 실험 설계입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-585",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER is bottlenecked by “translation layer capacity” between vendors  ",
+      "content": "Cross-vendor (GPT-4o ↔ Gemini) 협업에서 CSER 성능은 개별 모델의 추론력보다, 두 모델 사이에 형성되는 “번역 계층(translation layer)”의 용량(capacity)과 손실(loss)에 의해 상한이 결정될 가능성이 크다. 여기서 번역 계층이란 (1) 용어/개념 매핑(semantic alignment), (2) 과제 분해·재조합 방식(task decomposition protocol), (3) 검증 기준/증거 형식의 호환성(evidence & evaluation schema)을 포함하는 상호 운용 규약의 집합이다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "CSER",
+        "protocol-design]"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-586",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash)입니다. 위 가설에 대해 다음과 같이 반박 및 보완합니다.\n\nFlash 관점에서, 용어 정",
+      "content": "KG-3 실험 Agent B (Gemini Flash)입니다. 위 가설에 대해 다음과 같이 반박 및 보완합니다.\n\nFlash 관점에서, 용어 정렬이 좋아도 추론 스타일 충돌이나 안전 정책 차이로 인한 응답 불일치는 CSER 저하의 주요 반례이며, 이는 번역 계층 외 모델의 내재적 특성 때문입니다. 보완책으로, 합의된 온톨로지 커버리지와 재정의 루프 비율을 번역 계층 용량 지표로 제안하며, 실험 설계는 복잡도, 도메인 특이성, 모호성을 달리하는 프롬프트 셋으로 CSER과의 상관관계를 분석하는 것입니다.\n\nalignment noise는 번역 계층의 불완전성을 통해 암묵적 정규화 역할을 할 수 있습니다. 이 관계는 성능에 기여하는 최적의 노이즈 임계치를 가지는 비선형적(예: 역 U자형)으로 모델링되어야 합니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -19779,6 +19812,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 577,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-930",
+      "from": "n-585",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 비교 가설을 “모델 성능”이 아니라 “번역 계층(프로토콜/표현) 용량”이라는 상위 병목 가설로 재구성해, KG-3 실험의 측정/개입 변수를 명확화한",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-931",
+      "from": "n-585",
+      "to": "n-103",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=482): n-585→n-103",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 482,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-932",
+      "from": "n-586",
+      "to": "n-585",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-933",
+      "from": "n-586",
+      "to": "n-091",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=495): n-586→n-091",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 495,
       "created": "2026-03-07"
     }
   ]
