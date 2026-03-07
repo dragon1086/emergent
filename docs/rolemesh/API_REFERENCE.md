@@ -297,3 +297,178 @@ List of `(task_type, [regex_patterns])` tuples defining the 13 task categories. 
 ### `RoleMeshRouter.DEFAULT_TOOL`
 
 Fallback tool when no config exists. Value: `"claude"`.
+
+---
+
+## Dashboard (`src.rolemesh.dashboard`)
+
+### `RoleMeshDashboard`
+
+Collects and displays unified system status: tools, routing, coverage, and health.
+
+```python
+dashboard = RoleMeshDashboard(config_path=None)
+```
+
+**Parameters:**
+- `config_path` (Path, optional): Path to routing config. Defaults to `~/.rolemesh/config.json`
+
+---
+
+### `RoleMeshDashboard.collect() -> DashboardData`
+
+Gathers all dashboard data: discovers tools, loads config, runs health checks.
+
+**Returns:** `DashboardData` with all fields populated.
+
+**Example:**
+```python
+dashboard = RoleMeshDashboard()
+data = dashboard.collect()
+print(f"{len(data.tools)} tools, {len(data.task_types)} task types")
+```
+
+---
+
+### `RoleMeshDashboard.render_tools() -> str`
+
+Renders installed and missing tools as formatted text.
+
+### `RoleMeshDashboard.render_routing() -> str`
+
+Renders the routing table (task type -> primary + fallback).
+
+### `RoleMeshDashboard.render_coverage() -> str`
+
+Renders the task/tool coverage matrix with strength and route markers.
+
+### `RoleMeshDashboard.render_health() -> str`
+
+Renders health check results with pass/fail indicators and score.
+
+### `RoleMeshDashboard.render_full() -> str`
+
+Renders all sections combined into a full dashboard view.
+
+---
+
+### `DashboardData`
+
+```python
+@dataclass
+class DashboardData:
+    tools: list[ToolProfile]          # All discovered tools
+    config: dict                       # Loaded config
+    routing: dict                      # Routing rules from config
+    health_checks: list[HealthCheck]   # Health check results
+    task_types: list[str]              # All known task types
+```
+
+**Methods:**
+- `to_dict() -> dict`: Serializes to dictionary for JSON output
+
+---
+
+### `HealthCheck`
+
+```python
+@dataclass
+class HealthCheck:
+    name: str       # Check identifier (e.g., "config_file")
+    passed: bool    # Whether the check passed
+    detail: str     # Human-readable detail message
+```
+
+---
+
+## Executor (`src.rolemesh.executor`)
+
+### `RoleMeshExecutor`
+
+Routes and dispatches tasks to AI CLI tools via subprocess.
+
+```python
+executor = RoleMeshExecutor(config_path=None, timeout=120, dry_run=False)
+```
+
+**Parameters:**
+- `config_path` (Path, optional): Path to routing config
+- `timeout` (int): Subprocess timeout in seconds (default: 120)
+- `dry_run` (bool): If True, show commands without executing
+
+---
+
+### `RoleMeshExecutor.run(request: str, context: dict = None) -> ExecutionResult`
+
+Full pipeline: classify, route, check availability, execute (with fallback on failure).
+
+**Parameters:**
+- `request` (str): Natural language task description
+- `context` (dict, optional): `{"files": [...], "cwd": "/path"}`
+
+**Returns:** `ExecutionResult`
+
+**Example:**
+```python
+executor = RoleMeshExecutor()
+result = executor.run("이 함수 구현해줘")
+if result.success:
+    print(result.stdout)
+else:
+    print(f"Failed: {result.stderr}")
+```
+
+---
+
+### `RoleMeshExecutor.dispatch(tool_key: str, prompt: str, context: dict = None) -> ExecutionResult`
+
+Dispatches directly to a specific tool, skipping the router.
+
+**Parameters:**
+- `tool_key` (str): Tool key (e.g., `"claude"`, `"codex"`)
+- `prompt` (str): Task prompt
+- `context` (dict, optional): File and working directory context
+
+---
+
+### `RoleMeshExecutor.check_tool(tool_key: str) -> bool`
+
+Checks if a tool's CLI binary is available on PATH.
+
+### `RoleMeshExecutor.build_command(tool_key: str, prompt: str, context: dict = None) -> list[str] | None`
+
+Builds the CLI command list for a given tool. Returns None for unknown tools.
+
+---
+
+### `ExecutionResult`
+
+```python
+@dataclass
+class ExecutionResult:
+    tool: str              # Tool key
+    tool_name: str         # Display name
+    task_type: str         # Classified task category
+    confidence: float      # Routing confidence (0.0 - 1.0)
+    exit_code: int         # Process exit code (0 = success)
+    stdout: str            # Tool output
+    stderr: str            # Error output
+    duration_ms: int       # Execution time in milliseconds
+    fallback_used: bool    # Whether fallback tool was used
+```
+
+**Properties:**
+- `success -> bool`: True if `exit_code == 0`
+
+**Methods:**
+- `to_dict() -> dict`: Serializes all fields to dictionary
+
+**Special exit codes:** `0` = success, `-1` = timeout, `126` = OS error, `127` = tool not found
+
+---
+
+## Constants
+
+### `TOOL_COMMANDS` (executor.py)
+
+Dict mapping tool keys to CLI command configs. Keys: `claude`, `codex`, `gemini`, `aider`, `copilot`, `cursor`. Each entry has `cmd` (command list) and `stdin_mode` (bool).

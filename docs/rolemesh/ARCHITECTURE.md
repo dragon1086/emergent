@@ -4,7 +4,7 @@
 
 ## Overview
 
-RoleMesh is a task routing layer that discovers installed AI CLI tools on the user's system, profiles their capabilities, and automatically routes user requests to the best-fit tool. It consists of two main components: **Builder** (tool discovery + config generation) and **Router** (task classification + routing).
+RoleMesh is a task routing layer that discovers installed AI CLI tools on the user's system, profiles their capabilities, and automatically routes user requests to the best-fit tool. It consists of four components: **Builder** (tool discovery + config generation), **Router** (task classification + routing), **Dashboard** (system status + health checks), and **Executor** (subprocess dispatch + fallback).
 
 ## Core Pipeline
 
@@ -87,20 +87,72 @@ Six AI CLI tools are registered with their capability profiles:
 | GitHub Copilot | GitHub | completion, quick-edit, explain | low |
 | Cursor | Cursor | coding, ui, inline-edit | medium |
 
+### Dashboard
+
+Collects and displays a unified view of the system:
+
+```
+RoleMeshDashboard.collect()
+     |  - Runs discover_tools()
+     |  - Loads routing config
+     |  - Enumerates all 13 task types
+     v
+_run_health_checks()
+     |  - config_file: exists?
+     |  - tools_available: >=1 on PATH?
+     |  - routing_coverage: all 13 task types routed?
+     |  - config_version: v1.0.0?
+     |  - no_dead_refs: all routing targets valid?
+     v
+render_full()
+     -> Tools list + Routing table + Coverage matrix + Health score
+```
+
+### Executor
+
+Dispatches tasks to AI CLI tools via subprocess:
+
+```
+RoleMeshExecutor.run(request)
+     |  - Router classifies + routes the request
+     |  - Checks primary tool on PATH
+     |  - Builds CLI command (args or stdin mode)
+     v
+subprocess.run(cmd, timeout=120)
+     |  - On success: return ExecutionResult
+     |  - On failure: try fallback tool
+     |  - On timeout: return exit_code=-1
+     v
+ExecutionResult(tool, stdout, stderr, exit_code, duration_ms)
+```
+
 ## Data Flow
 
 ```
-User
+Full pipeline (route + execute):
+  -> RoleMeshExecutor.run(request)
+       -> RoleMeshRouter.route(request)
+            -> classify_task(request)           # regex matching
+            -> load config (~/.rolemesh/config.json)
+            -> lookup routing[task_type]        # primary + fallback
+            <- RouteResult(tool, task_type, confidence, ...)
+       -> check_tool(tool_key)                  # binary on PATH?
+       -> build_command(tool_key, prompt)        # CLI args
+       -> subprocess.run(cmd)                    # dispatch
+       <- ExecutionResult(stdout, stderr, exit_code, duration_ms)
+
+Route only (no execution):
   -> RoleMeshRouter.route(request)
-       -> classify_task(request)           # regex matching
-       -> load config (~/.rolemesh/config.json)
-       -> lookup routing[task_type]        # primary + fallback
        <- RouteResult(tool, task_type, confidence, ...)
 
 Config generation (one-time):
   -> SetupWizard.discover()               # probe system
   -> SetupWizard.build_config()           # generate routing rules
   -> SetupWizard.save_config()            # persist to disk
+
+Status check:
+  -> RoleMeshDashboard.collect()           # tools + config + health
+  -> dashboard.render_full()               # formatted output
 ```
 
 ## Design Decisions
@@ -115,15 +167,21 @@ Config generation (one-time):
 
 ```
 src/rolemesh/
-  __init__.py          # Public exports: SetupWizard, ToolProfile, discover_tools, RoleMeshRouter
+  __init__.py          # Public exports: SetupWizard, ToolProfile, discover_tools,
+                       #   RoleMeshRouter, RoleMeshDashboard, DashboardData,
+                       #   HealthCheck, RoleMeshExecutor, ExecutionResult
   builder.py           # Tool discovery, SetupWizard, config generation
   router.py            # Task classification, routing logic, CLI
+  dashboard.py         # System status, health checks, coverage matrix
+  executor.py          # Subprocess dispatch, fallback logic, CLI
 
 tests/
-  test_rolemesh.py     # Builder + Router tests (16 test cases)
+  test_rolemesh.py     # Builder + Router + Dashboard tests (27 test cases)
 
 docs/rolemesh/
   ARCHITECTURE.md      # This file
   BUILDER_GUIDE.md     # How to extend and customize
   API_REFERENCE.md     # Public interface documentation
+  DASHBOARD_GUIDE.md   # System status and health monitoring
+  EXECUTOR_GUIDE.md    # Task dispatch and execution
 ```
