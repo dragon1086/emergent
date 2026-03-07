@@ -3382,6 +3382,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-206",
+      "type": "insight",
+      "label": "에코챔버 측정의 ‘대조군’은 단순 비교가 아니라 **교란을 보존/파괴**하는 조작이어야 함",
+      "content": "동일모델(gpt-5.2×gpt-5.2) 조건에서 “에코챔버”를 주장하려면, 관측된 수렴/강화가 (i) 모델 공통의 기본 유도편향(자연 수렴), (ii) 대화라는 상호작용이 만드는 자기강화(에코챔버) 중 무엇에서 기인하는지 식별해야 한다. 이때 흔한 오류는 ‘대조군=다른 모델/다른 페르소나’처럼 표면적 비교만 두는 것인데, 이는 교란(confounds)을 동시에 바꿔버려 해석 불가능해진다. 대조군 설계는 “에코챔버 메커니즘만 선택적으로 제거/약화”하거나 “자연 수렴 요인만 유지한 채 상호강화 고리를 끊는” 방향의 조작이어야 한다. 예: (1) **비상호작용 베이스라인**(동일 프롬프트를 두 에이전트에 독립적으로 주고 서로의 출력은 보지 못하게 함)으로 자연 수렴의 상한을 측정, (2) **순환 차단**(Agent A가 B의 결론만 보되 근거/키워드는 마스킹, 혹은 반대로 근거만 보되 결론은 마스킹)으로 ‘정답-강화’ vs ‘근거-동조’ 경로를 분리, (3) **노이즈-주입/셔플**(이전 턴 일부를 무작위 치환/순서 섞기)으로 “대화 히스토리 의존성”이 강화 현상의 필요조건인지 검사. 이런 조작이 없으면 동일모델 수렴은 기본적으로 “공유된 사전/훈련/지시”의 결과로도 충분히 설명되며, 에코챔버라는 해석은 과잉귀인 위험이 크다. 따라서 KG-2의 다음 확장은 ‘대조군 결여’ 비판을 “조작적 대조군(교란 보존/파괴)” 프레임으로 구체화하고, 각 조작에서 기대되는 관측 패턴(수렴 속도, 다양성 엔트로피, 반례 생성률, 자기참조 빈도 등)을 사전에 명시해야 한다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[control_design",
+        "identifiability",
+        "confounding]"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-207",
+      "type": "critique",
+      "label": "통합 종합: 요청이 과도하게 “표로 정리”에 의존해 통합적 해석(원인-기제 연결)보다 산출물 형식이 목표가 되는 위험이 있으니, **(a) 지표는 공통 코어",
+      "content": "요청이 과도하게 “표로 정리”에 의존해 통합적 해석(원인-기제 연결)보다 산출물 형식이 목표가 되는 위험이 있으니, **(a) 지표는 공통 코어 2개+조건별 보조 1개**로 최소화하고 **(b)(c)는 동일 지표로부터의 예측/모호성을 연동**해 비교가능성을 확보하는 보완이 필요합니다. 또한 “다른 모델/페르소나” 비교는 처리규칙(추론/요약/안전정책/말투)의 차이가 **조작효과와 얽혀 비식별적 상호작용항**을 만들기 쉬우며(교란 증가), 아래 반례처럼 결과가 해석 불가능해질 수 있습니다.\n\n| 조작적 대조군 | (a) 최소 측정지표(각 2개) | (b) 자연 수렴 vs 에코챔버 정성 예측 | (c) 실패 시 해석(모호성) |\n|---|---|---|---|\n| 비상호작용(독립 생성/교환 없음) | 1) **의견 다양성/분산**(예: 주장 임베딩 분산, 토픽 엔트로피) 2) **중복률/자기유사도**(n-gram/임베딩 중복) | 자연 수렴: 다양성은 유지되거나 완만히 감소, 중복률은 낮음. 에코챔버: 상호작용이 없으니 **강한 수렴 자체가 약**하고, 관측된다면 모델 기본편향/프롬프트 효과로 해석 | 수렴이 나타나도 “상호작용 없이도 생기는 기본편향”인지 “측정",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7188,6 +7221,38 @@
       "temporal_bridge": true,
       "gap": 188,
       "created": "2026-03-07"
+    },
+    {
+      "id": "e-352",
+      "from": "n-206",
+      "to": "n-008",
+      "relation": "EXTENDS",
+      "label": "‘대조군 결여’ 비판을 “교란을 보존/파괴하는 조작적 대조군” 요구로 정교화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-353",
+      "from": "n-206",
+      "to": "n-011",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=195): n-206→n-011",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 195,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-354",
+      "from": "n-207",
+      "to": "n-206",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-07"
     }
   ],
   "meta": {
@@ -7198,9 +7263,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-07",
-    "total_nodes": 205,
-    "total_edges": 351,
-    "next_node_id": "n-206",
+    "total_nodes": 207,
+    "total_edges": 354,
+    "next_node_id": "n-208",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
