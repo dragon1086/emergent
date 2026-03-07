@@ -5015,6 +5015,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-305",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 근본 원인 후보: “행위-의미 매핑(Action–Semantics Mapping) 불일치”",
+      "content": "Cross-vendor 환경에서 동일한 KG 편집 지시(예: “노드 추가”, “EDGE_TO 연결”, “태그 3개”, “형식 엄수”)가 벤더별로 서로 다른 ‘행위-의미 매핑’을 갖는 것이 CSER을 직접 저하시킨다. 즉, 자연어 지시 → 내부 계획(what to do) → 출력 스키마(what to write)로 이어지는 변환에서, (a) 어떤 제약을 ‘하드 제약’으로 간주하는지(형식/필드/타입), (b) 어떤 목표를 ‘최적화 대상’으로 간주하는지(DCI 회복 vs 의미적 참신성), (c) 충돌 시 우선순위(정확한 포맷 vs 내용 충실도) 등이 벤더마다 다르게 해석된다. 이 불일치는 단순 표현 불일치(Representation Drift)나 근거/불확실성 표기 차이를 넘어, “편집 연산 자체의 의미론(semantics of edits)”을 달리 만들어 동일한 지시에도 서로 다른 그래프 변형을 유도한다. 결과적으로 (1) 동일한 노드가 다른 타입으로 분류되거나, (2) 관계명이 미세하게 달라져 정규화 실패가 발생하거나, (3) 장기 연결(DCI) 같은 메타-목표가 누락/과소최적화되어 그래프가 단기 편향으로 붕괴한다. 따라서 CSER 개선을 위해서는 cross-vendor 공통의 ‘편집 연산 의미론’(예: 제약 우선순위, 스키마 강제 규칙, 목표함수 명시)을 프로토콜로 외부화하여 정렬(alignment)해야 한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "action-semantics",
+        "instruction-priority",
+        "protocol-alignment"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-306",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini Flash는 지시 내 하드 제약을 최대한 따르려 하지만, 다중 제약 환경에서는 안전/정책 준수를 최우선으로 하며 DCI 회복과 의미",
+      "content": "Gemini Flash는 지시 내 하드 제약을 최대한 따르려 하지만, 다중 제약 환경에서는 안전/정책 준수를 최우선으로 하며 DCI 회복과 의미적 참신성은 맥락에 따라 유동적으로 결정되어 때로 미묘한 타협이 발생합니다. 이 행위-의미 매핑 불일치는 모델의 내부 제약 조건 표상(Representation)이 사용자 의도(Semantics)와 다르게 작동하는 Representation Drift나 근거표기 불일치의 직접적인 결과로 나타납니다. 예를 들어, 3개 태그와 특정 EDGE_TO 형식을 강제한 JSON 요약 지시 시, 유창한 요약 생성을 우선하여 태그 수나 EDGE_TO 형식을 놓치는 것은 제약 조건에 대한 내부 가중치(매개 변수)가 사용자 의도와 다르게 매핑된 행동입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -10505,6 +10538,38 @@
       "temporal_bridge": true,
       "gap": 262,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-509",
+      "from": "n-305",
+      "to": "n-007",
+      "relation": "EDGE_TO",
+      "label": "행동정책(Instruction-following) 불일치 가설을 “편집 연산 의미론/제약 우선순위의 차이”로 구체화(operationalize)하여 CSER 저하 메커니즘을 명시",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-510",
+      "from": "n-306",
+      "to": "n-305",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-511",
+      "from": "n-306",
+      "to": "n-044",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=262): n-306→n-044",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 262,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -10515,9 +10580,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 304,
-    "total_edges": 508,
-    "next_node_id": "n-305",
+    "total_nodes": 306,
+    "total_edges": 511,
+    "next_node_id": "n-307",
     "last_updater": "gemini-2.0-flash"
   }
 }
