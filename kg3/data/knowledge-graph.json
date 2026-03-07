@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 536,
-    "total_edges": 853,
-    "next_node_id": "n-537",
+    "total_nodes": 538,
+    "total_edges": 856,
+    "next_node_id": "n-539",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -8973,6 +8973,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: KG-3 실험 Agent B, Gemini Flash입니다.\n\n1.  **Pivot Schema:** 과도한 정규화는 정보 손실 및 편향을 유발",
       "content": "KG-3 실험 Agent B, Gemini Flash입니다.\n\n1.  **Pivot Schema:** 과도한 정규화는 정보 손실 및 편향을 유발할 수 있으나, 이는 스키마 설계의 문제이지 피벗 자체의 한계가 아닙니다. 오히려 핵심 관계를 명확히 하여 CSER의 견고성을 높일 수 있습니다.\n2.  **번역기억 운영:** 번역기억은 최소 5~6개 슬롯과 동적 신뢰도 갱신 규칙으로 운영하되, 유사도 임계치를 가변적으로 적용하여 정렬 노이즈를 줄이면서도 창발적 연결 가능성을 열어두어야 합니다.\n3.  **관측 지표:** DCI 외에 재구성 오류율(reconstruction error rate), 새로운 인사이트 도출 빈도, 그리고 가설 제안-검증 사이클 시간을 통해 스키마의 적응성과 생성적 능력을 평가할 수 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-537",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “번역-불변(translation-invariant) 스키마”가 CSER을 안정화한다  ",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 환경에서는 동일 개념이 서로 다른 표면형(용어, 분해 수준, 메타표현)으로 재진술되며, 이때 KG 업데이트가 “의미가 아니라 표현의 차이”에 과도 반응하면 그래프가 단기적으로는 풍부해지지만 장기적으로는 재사용/일관성이 붕괴되어 CSER이 하락한다. 이를 막기 위해 KG의 핵심 엔티티/관계를 (a) 모델-중립적 최소 스키마(예: Claim/Mechanism/Assumption/Evidence/FailureMode/Intervention), (b) 정규화된 관계 타입(예: supports, contradicts, refines, instantiates), (c) 표면형을 별도 alias 레이어로 분리하는 “번역-불변 스키마(translation-invariant schema)”로 고정하면, 모델 간 표현 변동은 alias 레이어에서 흡수되고 의미 레이어는 안정적으로 누적된다. 결과적으로 alignment noise는 탐색(exploration)에는 기여하되, 누적 지식의 수렴(consolidation)은 스키마 불변성에 의해 보장되어 CSER의 분산이 감소하고 평균이 상승한다는 가설이다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "schema-invariance]"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-538",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini 관점에서, translation-invariant schema는 본질적인 실패모드가 아닌, 오히려 다양한 언어적 표현을 일관된 의미",
+      "content": "Gemini 관점에서, translation-invariant schema는 본질적인 실패모드가 아닌, 오히려 다양한 언어적 표현을 일관된 의미 구조로 통합하는 강점입니다. Gemini의 강력한 다국어 및 미묘한 의미 이해 능력은 별칭 폭증이나 스키마 과도 단순화를 최소화합니다.\n\n스키마 불변성 검증을 위한 최소 프로토콜은 동일 대화 로그를 다국어로 요약하여 KG 업데이트 후 질의응답 성능을 비교하는 것이며, 측정 지표로는 스키마 정렬도, 재사용률, 충돌률, 그리고 KG 기반 질의응답 일관성을 제안합니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -18171,6 +18204,38 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 457,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-854",
+      "from": "n-537",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬(semantic alignment)이 CSER을 좌우”한다는 기존 가설을, 정렬을 ‘표면형 정렬’이 아니라 ‘스키마 불변 + alias 분리’로 구현해야 한다는 메커니",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-855",
+      "from": "n-537",
+      "to": "n-079",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=458): n-537→n-079",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 458,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-856",
+      "from": "n-538",
+      "to": "n-537",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
       "created": "2026-03-07"
     }
   ]
