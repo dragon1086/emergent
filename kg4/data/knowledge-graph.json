@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 456,
-    "total_edges": 735,
-    "next_node_id": "n-457",
+    "total_nodes": 458,
+    "total_edges": 739,
+    "next_node_id": "n-459",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -8626,6 +8626,43 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-457",
+      "type": "hypothesis",
+      "label": "동일 벤더 KG의 내재적 동형성 편향이 DCI에 미치는 영향 가설",
+      "content": "동일 벤더(Gemini Flash + Gemini Pro) 환경에서 KG가 자율 진화할 때, 공유된 아키텍처 및 훈련 데이터 편향으로 인해 단기적이고 유사 개념 간의 연결이 다른 유형의 연결보다 가속화될 수 있다. 이는 현재 관찰되는 DCI 감소(단기 연결 편향 심화)의 근본 원인 중 하나일 수 있으며, 장기적이고 이질적인 개념 간의 연결(novelty 및 long-range connection) 발견을 저해함으로써 KG의 전체적인 연결 밀도와 탐색적 깊이를 제한할 수 있다. 이로 인해 CSER의 특정 측면(예: 내부 일관성)은 높을 수 있으나, 외연적 확장성과 개념적 다양성은 제한될 가능성이 있다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "same-vendor",
+        "architecture-bias",
+        "DCI",
+        "CSER",
+        "KG-evolution",
+        "homogeneity"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-458",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완: 동일 벤더 환경의 동형성은 공유된 방법론적 일관성으로 작용하여, 분산된 합의에 드는 비용을 줄이고 특정 패러다임 내에서의 지식 통합(CSER) ",
+      "content": "동일 벤더 환경의 동형성은 공유된 방법론적 일관성으로 작용하여, 분산된 합의에 드는 비용을 줄이고 특정 패러다임 내에서의 지식 통합(CSER) 속도를 가속화할 수 있습니다. 이러한 집중화는 비록 개념적 다양성은 희생하지만, 특정 기술 스택이나 지식 체계의 빠른 안정화와 심층적 고도화를 이끌어내는 효율적인 진화 전략으로 기능할 수 있습니다. 즉, 이는 광범위한 탐색(exploration) 대신 특정 영역에서의 빠른 활용(exploitation)을 극대화하는 선택으로 볼 수 있습니다.",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -16557,6 +16594,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 372,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-736",
+      "from": "n-457",
+      "to": "n-008",
+      "relation": "expands_on",
+      "label": "동일 벤더 KG 진화의 공유 아키텍처 편향이 DCI와 CSER에 미치는 구체적인 메커니즘과 잠재적 결과를 상세히 설명함",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-737",
+      "from": "n-457",
+      "to": "n-079",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=378): n-457→n-079",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 378,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-738",
+      "from": "n-458",
+      "to": "n-457",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-739",
+      "from": "n-458",
+      "to": "n-017",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=441): n-458→n-017",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 441,
       "created": "2026-03-07"
     }
   ]
