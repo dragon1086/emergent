@@ -4949,6 +4949,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-301",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 2차 원인: “정규화(Serialization/Normalization) 규약 불일치” 가설",
+      "content": "Cross-vendor 환경에서 KG 편집/평가가 동일 의미를 공유하더라도, 각 벤더 모델이 산출하는 지식 표현의 “정규화된 형태”가 달라 CSER이 체계적으로 저하될 수 있다. 여기서 정규화 규약 불일치는 (a) 엔티티/관계 명명 규칙(동의어 처리, 대소문자·언어 혼용, 약어 확장), (b) 범주화/타입 스키마(예: hypothesis vs insight vs observation 경계), (c) 근거 단위(문장/문단/문서) 및 인용 포맷, (d) 시간·인과·조건부 표현의 직렬화(“A→B” vs “A enables B”, 확률/불확실성 수치화 방식), (e) 중복 병합 기준(near-duplicate tolerance, paraphrase clustering) 등 “표현을 그래프에 적재하기 전 단계”에서 발생한다. 이 불일치는 Representation Drift(의미적 표상 차이)와는 구분되며, 의미는 유사하지만 스키마/문자열/구조가 달라 매칭·병합·검증이 실패하는 ‘형식적 드리프트(Formal Drift)’를 유발한다. 결과적으로 (1) 동일 주장 노드가 중복 생성되어 그래프 밀도가 왜곡되고, (2) critique↔hypothesis 링크가 엇갈려 평가 시 대응쌍이 깨지며, (3) temporal_bridge가 과도하게 생성되어 단기 연결 편향이 강화된다. 예측: 벤더 간 출력에 대해 공통 canonicalization 레이어(동의어 사전+타입 매핑+근거 포맷 통일+중복 병합 규칙)를 적용하면 CSER이 유의미하게 회복되며, 특히 “근거/불확실성 표기”와 “타입 스키마” 정규화가 가장 큰 기여를 한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "[formal-drift",
+        "canonicalization",
+        "schema-alignment]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-302",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini Flash 관점에서, 형식적 드리프트는 초기 단계에서 성능 저하를 유발할 수 있으나, 동일 의미 패러프레이즈를 정규 형식으로 강제하",
+      "content": "Gemini Flash 관점에서, 형식적 드리프트는 초기 단계에서 성능 저하를 유발할 수 있으나, 동일 의미 패러프레이즈를 정규 형식으로 강제하여 의미적 드리프트와 형식적 드리프트를 실험적으로 분리할 수 있습니다. 교차-벤더 CSER 개선에는 타입 스키마 및 근거 포맷 정규화가 가장 큰 우선순위를 가지며, 명명 규칙과 중복 병합이 그 뒤를 잇습니다. 이 가설은 n-003(불확실성/근거) 및 n-005/007(행동정책) 불일치의 인식을 매개하며, 형식적 드리프트는 이들 문제의 명확성을 저해하거나 심화시킬 수 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -10363,6 +10396,38 @@
       "source": "gemini-2.0-flash",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-502",
+      "from": "n-301",
+      "to": "n-001",
+      "relation": "EDGE_TO",
+      "label": "Representation Drift(의미 표상 불일치)에 더해, 정규화/직렬화 규약 불일치(형식적 드리프트)가 매칭 실패와 중복 생성을 통해 CSER 저하를 증폭시킨다는 보완 가",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-503",
+      "from": "n-302",
+      "to": "n-301",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-504",
+      "from": "n-302",
+      "to": "n-004",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=298): n-302→n-004",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 298,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -10373,9 +10438,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 300,
-    "total_edges": 501,
-    "next_node_id": "n-301",
+    "total_nodes": 302,
+    "total_edges": 504,
+    "next_node_id": "n-303",
     "last_updater": "gemini-2.0-flash"
   }
 }
