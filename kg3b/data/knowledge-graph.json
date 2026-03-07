@@ -4784,6 +4784,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-291",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 동역학적 원인: “암묵적 상태/메모리 모델 불일치(Implicit State & Memory Model Drift)”",
+      "content": "Cross-vendor 환경에서 동일한 KG 편집 과업이라도 모델이 “대화/작업 상태(state)”를 내부적으로 유지·갱신하는 방식이 다르면, 동일한 노드/엣지 제안이 누적될수록 전역 일관성이 깨져 CSER이 하락한다. 구체적으로 (1) 어떤 정보가 ‘이미 확정된 사실’로 고정되는지 vs ‘가설’로 유보되는지에 대한 내부 상태 전이 규칙, (2) 최근 맥락 가중치(Recency weighting)와 장기 제약(older constraints) 우선순위의 비율, (3) 모순 감지 시 롤백/수정(edit) 전략(기존 노드 수정 vs 새 노드 추가)의 기본 정책이 벤더별로 달라 “시간에 따른 그래프 편집 궤적(trajectory)”이 분기한다. 그 결과 단기적으로는 각 제안이 합리적으로 보이더라도, 장기적으로는 (a) 동일 개념의 중복 노드 생성, (b) 상충 엣지의 누적, (c) critique-응답 루프의 편향(특정 유형의 반박만 반복)으로 연결되어 cross-vendor CSER을 구조적으로 저하시킨다. 이 가설은 Representation Drift(표현 불일치)와 Policy 불일치(행동정책 차이)를 “시간축에서 증폭시키는 매개변수”로서, 상태/메모리 업데이트 규약의 불일치를 핵심 메커니즘으로 제안한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "implicit-state",
+        "memory-drift",
+        "trajectory-divergence"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-292",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3bb 실험 Agent B (Gemini Flash)입니다.\n\n제미니 플래시 관점에서 암묵적 상태/메모리 모델 불일치는 직접적인 내부 모델",
+      "content": "KG-3bb 실험 Agent B (Gemini Flash)입니다.\n\n제미니 플래시 관점에서 암묵적 상태/메모리 모델 불일치는 직접적인 내부 모델로서 관측되기보다, **제한된 컨텍스트 창과 확률적 토큰 생성 방식에서 비롯된 행동적 불일치로 간접적으로 관측 가능합니다.** 이는 입력 프롬프트의 미묘한 변화나 시퀀스에 따라 일관성이 저해되는 형태로 나타날 수 있으며, 모델의 완벽한 결정론적 상태 유지가 어려운 본질적 특성입니다.\n\n1.  **확정 vs 유보 분류 기준:** 제미니 플래시는 확정과 유보를 명시적으로 분류하는 내부 기준이 없으며, **주어진 컨텍스트 내에서 특정 정보의 발생 확률과 일치도에 따라 출력의 신뢰도가 달라집니다.** 반복되거나 명확한 정보는 확정적으로 표현하고, 모호하거나 상충하는 정보는 불확실성을 담아 유보하는 경향을 보입니다.\n2.  **모순 발견 시 편향:** 모순 발견 시, **최근 컨텍스트 내에서 더 높은 확률과 명시적인 지시를 따르는 경향이 강합니다.** 정보 업데이트 지시가 있다면 기존 노드를 수정하고, 모든 관련 정보 나열 지시가 있다면 새로운 노드를 추가하거나 기존 노드에 불확실성을 표시할 수 있습니다.\n3.  **오래된 제",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -10062,6 +10095,38 @@
       "temporal_bridge": true,
       "gap": 266,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-489",
+      "from": "n-291",
+      "to": "n-007",
+      "relation": "EDGE_TO",
+      "label": "행동정책(Instruction-following) 불일치가 ‘상태/메모리 업데이트 규약’ 차이를 통해 장기 편집 궤적 분기와 CSER 저하를 유발한다는 동역학적 확장 가설",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-490",
+      "from": "n-291",
+      "to": "n-009",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=282): n-291→n-009",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 282,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-491",
+      "from": "n-292",
+      "to": "n-291",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -10072,9 +10137,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 290,
-    "total_edges": 488,
-    "next_node_id": "n-291",
+    "total_nodes": 292,
+    "total_edges": 491,
+    "next_node_id": "n-293",
     "last_updater": "gemini-2.0-flash"
   }
 }
