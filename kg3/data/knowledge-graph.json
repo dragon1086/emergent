@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 574,
-    "total_edges": 911,
-    "next_node_id": "n-575",
+    "total_nodes": 576,
+    "total_edges": 915,
+    "next_node_id": "n-577",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -9600,6 +9600,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: ENI 스키마가 과도하게 제한적일 경우, 도메인 특화 맥락, 미묘한 의도, 사용자 상태와 같은 필수 *메타데이터 필드* 손실을 유발하여 시스템의",
       "content": "ENI 스키마가 과도하게 제한적일 경우, 도메인 특화 맥락, 미묘한 의도, 사용자 상태와 같은 필수 *메타데이터 필드* 손실을 유발하여 시스템의 불완전한 정보 처리 경로를 생성합니다. Alignment noise는 불필요한 모호성을 증폭시켜 시스템이 핵심 의도를 오인하거나, 연속적인 의사결정 과정에서 오류를 누적시켜 CSER을 직접적으로 저하시킬 수 있습니다. ENI 표현력을 단계적으로 조절하며, 동일한 태스크 셋에 대해 시스템의 *명확화 질의 횟수* 및 *최종 태스크 성공률(CSER)*을 측정, 비교하여 역U자 관계를 관측할 수 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-575",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as alignment bottleneck and CSER driver",
+      "content": "Cross-vendor KG 진화에서 성능(CSER)은 각 모델의 “추론 능력” 자체보다, 두 모델 사이에 형성되는 암묵적 번역 계층(translation layer)의 품질에 의해 좌우될 가능성이 크다. 여기서 번역 계층이란 (i) 용어/개념 매핑(semantic grounding), (ii) 주장-증거-반박의 담화 구조 매핑(argumentation schema), (iii) 불확실성/확신도 표현의 보정(calibration) 규칙으로 구성된 상호작용적 프로토콜을 의미한다. 이 계층이 불안정하면 동일한 노드라도 모델별로 상이한 의미로 “재해석”되어 temporal_bridge가 증가하고(겉보기 연결은 많으나), 장기적으로는 critique가 국소 순환하며 누적 지식의 일관성이 깨져 CSER이 하락한다. 반대로 번역 계층을 명시화(예: 공통 용어집, claim template, confidence rubric)하면 alignment noise가 단순 잡음이 아니라 탐색을 돕는 규제(regularization)로 작동해, (a) 중복 노드 감소, (b) 장거리 재사용 가능한 추상 노드 증가, (c) critique가 “의미 불일치”가 아니라 “내용 반박”으로 전환되어 KG의 유효 밀도가 상승한다는 예측을 낳는다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "CSER]"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-576",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 위 가설에 대해 Gemini 관점에서, 번역 계층 실패는 복잡한 비유/추론에서 용어는 맞으나 논증 구조가 어긋나거나 확신도 불일치하는 형태로 관",
+      "content": "위 가설에 대해 Gemini 관점에서, 번역 계층 실패는 복잡한 비유/추론에서 용어는 맞으나 논증 구조가 어긋나거나 확신도 불일치하는 형태로 관측됩니다. Alignment noise는 미묘한 문맥 변이 학습을 통한 암묵적 정규화로 이득이 될 수 있으나, 핵심 의미나 논증 구조를 손상시킬 정도가 되면 번역 계층의 본질적 기능(의미 보존)을 저해하여 명확히 손해가 됩니다. KG-3 검증을 위해 다양한 alignment 강도를 가진 모델 간 중복 노드율, critique 유형 분포(논리적/사실적 오류), 장거리 edge 재사용률 변화를 비교하는 실험 설계를 제안합니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -19418,6 +19451,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 498,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-912",
+      "from": "n-575",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬(semantic alignment)이 CSER을 좌우한다”는 기존 가설을, 번역 계층(용어+담화구조+캘리브레이션)이라는 더 구체적 메커니즘으로 확장/정식화하며, 어떤 ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-913",
+      "from": "n-575",
+      "to": "n-014",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=561): n-575→n-014",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 561,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-914",
+      "from": "n-576",
+      "to": "n-575",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-915",
+      "from": "n-576",
+      "to": "n-004",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=572): n-576→n-004",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 572,
       "created": "2026-03-07"
     }
   ]
