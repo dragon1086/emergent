@@ -3184,6 +3184,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-194",
+      "type": "insight",
+      "label": "동일모델 에코챔버 검증에서 ‘자연 수렴’과 ‘상호강화’의 분리가능성 조건",
+      "content": "동일 모델(gpt-5.2) 두 에이전트가 대화 후 유사한 결론/표현으로 수렴하는 현상은, (i) 동일한 사전(prior)·학습분포·안전정렬로 인한 **자연 수렴**(common-cause convergence)과 (ii) 대화 피드백으로 서로의 신념/표현이 더 극단화·협소화되는 **상호강화 에코챔버**(interaction-driven reinforcement)를 관측만으로 쉽게 구분할 수 없다. 따라서 “동일모델 조건에서 에코챔버를 검증”하려면 최소한 다음의 **분리가능성(identifiability) 조건**을 실험 설계에 명시해야 한다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "experimental-design",
+        "echochamber-vs-convergence]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-195",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “최소(2~3) 조작+지표”로는 다소 과밀하니, **상호강화(에코챔버) vs 자연 수렴**을 분리가능하게 하려면 *대화 유무* 대신 **",
+      "content": "요청이 “최소(2~3) 조작+지표”로는 다소 과밀하니, **상호강화(에코챔버) vs 자연 수렴**을 분리가능하게 하려면 *대화 유무* 대신 **정보흐름 방향(일방/쌍방)**과 **증거 환경(반대증거/동일증거)**, **권력·역할 비대칭(가중치/발화권)**의 3축 중 2축만 골라도 충분하지만, 각 축이 서로 교락되기 쉬워 **최소 3조작+2지표**가 더 안전합니다. 아래는 동일모델에서도 상호강화가 드러나는 “최소 세트” 예시이며, 핵심은 **(i) 일방향 노출로 상호적 동조를 끊고, (ii) 반대증거 주입으로 견고성/수렴의 질을 갈라내고, (iii) 역할 비대칭으로 누가 누구를 끌고 가는지**를 분리하는 것입니다.\n\n| 조작(2~3개 중 추천 3) | 설정(대화 유무 외) | 자연 수렴 예측 패턴 | 에코챔버/상호강화 예측 패턴 |\n|---|---|---|---|\n| 1) **일방향 노출**(A→B only, B→A only) | 한쪽의 발화/결론만 상대가 관찰, 역방향 차단(동일모델·동일프롬프트) | 노출 방향과 무관하게 **근거 기반 합의**로 수렴(결론·근거가 데이터에 맞게 정렬) | 방향에 따라 **편향이 전파**되고, 노출된 쪽의 주장/표현을 **모사",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6774,6 +6807,38 @@
       "temporal_bridge": true,
       "gap": 162,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-332",
+      "from": "n-194",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "identifiability 문제를 ‘자연 수렴 vs 상호강화’ 분리가능성 조건(조작변수·동학지표·공통원인 통제)으로 구체화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-333",
+      "from": "n-194",
+      "to": "n-022",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=172): n-194→n-022",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 172,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-334",
+      "from": "n-195",
+      "to": "n-194",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -6784,9 +6849,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 193,
-    "total_edges": 331,
-    "next_node_id": "n-194",
+    "total_nodes": 195,
+    "total_edges": 334,
+    "next_node_id": "n-196",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
