@@ -4421,6 +4421,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-269",
+      "type": "insight",
+      "label": "에코챔버 지표의 “동일모델-페르소나” 교란 분해(Deconfounding) 프레임",
+      "content": "동일 모델(gpt-5.2) + 상이 페르소나 조건에서 관측되는 “수렴/유사도 증가”는 에코챔버가 아니라 (i) 공유 사전분포(모델 내장 priors), (ii) 동일 프롬프트/컨텍스트에 대한 공통 반응성, (iii) 대화 로그가 제공하는 공통 정보(정보 누출), (iv) 에이전트가 합리적으로 선택하는 협력적 압축(요약/정합성 최적화), (v) 평가 지표의 설계 편향(유사도=성과로 간주)로도 발생한다. 따라서 에코챔버를 주장하려면 “관측된 수렴”을 (A) 모델-공유 요인과 (B) 상호강화적 피드백(반증 억제, 대안 소거, 자기강화 루프)로 분해하는 식별 전략이 필요하다. nn비판적 제안: 최소한 다음의 분해 가능한 관측량을 정의해 교란을 줄여야 한다. 1) 반증 후보 보존율(R_alt): 각 라운드에서 생성된 대안/반례/반대근거의 생존(재등장) 확률. 2) 비대칭 영향도(I_asym): 한 에이전트의 주장/프레이밍이 상대의 이후 분포를 얼마나 바꾸는지(상호정보량/조건부 perplexity 변화로 근사). 3) 독립 기준선 대비 편차(Δ_ind): “두 에이전트가 상호작용 없이 같은 컨텍스트에서 각각 생성”한 분포의 혼합 대비, 실제 상호작용 산출물의 유사도/다양성/반증성 편차. 4) 반증 비용 신호(C_refute): 반박을 시도할 때 나타나는 길이 증가, 헤지 증가, 자기검열 표지(‘불명확’, ‘추정’, ‘안전’ 템플릿) 등 비용의 대리변수. nn핵심은 ‘유사도 증가’가 아니라 “대안 가설 공간이 축소되는가”를 관찰하는 것. 에코챔버가 맞다면 (a) R_alt가 단조 감소하고, (b) I_asym가 특정 방향",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "deconfounding",
+        "operationalization]"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-270",
+      "type": "critique",
+      "label": "통합 종합: n-007의 운영적 비식별 결론은 유지하되, R_alt(대체경로)·I_asym(비대칭 정보)·Δ_ind(독립성 붕괴)·C_refute(반증가능성",
+      "content": "n-007의 운영적 비식별 결론은 유지하되, R_alt(대체경로)·I_asym(비대칭 정보)·Δ_ind(독립성 붕괴)·C_refute(반증가능성) 관점에서 “부분 식별”은 **(1) 독립 기준선 샘플링으로 동일 과업을 무관한 시드/세션/모델에서 반복해 분포 차(Δ_ind↑)가 재현**되거나, **(2) 정보 누출 차단 전후(메모리·캐시·툴 로그·시스템 프롬프트·네트워크) 성능/발화가 유의미하게 변해 I_asym이 실험적으로 드러나거나**, **(3) 교차검증 프롬프트(역할/표현/언어 변환, 대체 설명 요구)에서 R_alt가 막혀도 특정 고유 패턴이 남아 C_refute 가능한 예측(“이 조건에서만 이 반응이 나온다”)을 통과**할 때 약화됩니다.  \n즉 “추가 로그/조작”은 (a) 세션 간 독립성 보장·파기 로그로 Δ_ind를 검증, (b) 누출 경로별 차단 A/B 및 접근권한 로그로 I_asym을 분해, (c) 표현을 바꿔도 유지되는 지문을 찾는 교차검증으로 R_alt를 제거하여도 남는 신호를 C_refute로 확인하는 형태가 핵심이며, 이 중 하나라도 안정적으로 성립하면 **완전 식별은 아니더라도 부분 식별 가능 조건**으로 간주됩니다.",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -9359,6 +9392,50 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-07"
+    },
+    {
+      "id": "e-457",
+      "from": "n-269",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "‘판별 불능성’ 주장에 대해, 교란 요인을 분해하는 관측량/지표 세트를 제안하여 “부분적 식별 가능 조건”을 구체화함",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-458",
+      "from": "n-269",
+      "to": "n-038",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=231): n-269→n-038",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 231,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-459",
+      "from": "n-270",
+      "to": "n-269",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-460",
+      "from": "n-270",
+      "to": "n-025",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=245): n-270→n-025",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 245,
+      "created": "2026-03-07"
     }
   ],
   "meta": {
@@ -9369,9 +9446,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-07",
-    "total_nodes": 268,
-    "total_edges": 456,
-    "next_node_id": "n-269",
+    "total_nodes": 270,
+    "total_edges": 460,
+    "next_node_id": "n-271",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
