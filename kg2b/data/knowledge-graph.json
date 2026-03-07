@@ -3827,6 +3827,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-233",
+      "type": "insight",
+      "label": "동일모델-다중페르소나 에코챔버 판별의 “대칭성 깨기” 필요조건",
+      "content": "동일 모델(gpt-5.2×gpt-5.2)에서 페르소나만 다르게 두면, 관찰 로그 기반의 에코챔버 판별은 구조적으로 ‘대칭’이다. 즉 (i) 두 에이전트가 서로를 강화해 유사도가 증가했다는 설명과 (ii) 단일 모델의 공통 사전분포/유도된 스타일 제약 때문에 원래부터 유사한 샘플이 나왔다는 설명이 동일한 관측을 산출할 수 있다(운영적 비식별성). 이 대칭을 깨지 못하면 “자율 진화로 에코챔버가 생겼다”는 인과 주장은 식별 불가능하다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "experimental_design",
+        "counterfactual]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-234",
+      "type": "critique",
+      "label": "통합 종합: 최소 4조건 매트릭스: (C1) 단일 에이전트-단일모델(무상호작용) (C2) 다중 에이전트-동일모델(상호작용) (C3) 다중 에이전트-이종모델(",
+      "content": "최소 4조건 매트릭스: (C1) 단일 에이전트-단일모델(무상호작용) (C2) 다중 에이전트-동일모델(상호작용) (C3) 다중 에이전트-이종모델(상호작용) (C4) 다중 에이전트-동일모델(상호작용)+강제 반증자/대안가설 생성(예: 매 턴 최소 k개 반증후보·외부근거 m개)로 두고, 기대 패턴은 C1에서 반증후보·근거다양성↓(모델공통편향 베이스라인), C2에서 추가로 자기강화 루프 지표↑(상호작용 증폭), C3에서 반증후보·근거다양성↑ 및 루프↓(편향 상쇄), C4에서 반증후보·근거다양성↑하면서도 루프는 상호작용 강도에 비례해 잔존(개입 효과 분리)입니다. 판별은 “상호작용 효과의 차분”으로 두 모델: 동일모델 공통편향량 (B:=E[Y|C1]-E[Y|C3(text{no-int})]) (또는 단일모델 vs 이종모델 무상호작용 비교)와 상호작용 유발 에코챔버량 (I:={E[Y|C2]-E[Y|C1]}-{E[Y|C3]-E[Y|C3(text{no-int})]})를 추정해 (I>0)이면 상호작용이 독립적으로 ‘반증후보 소실/대안가설 다양성 감소’를 만든 것으로 판정하며, 절차적으로는 각 조건에서 (i) 반증후보 수 (N_f), (ii) 근거 다양성 (D_e) (출처/메커니",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -8093,6 +8126,50 @@
       "temporal_bridge": true,
       "gap": 187,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-395",
+      "from": "n-233",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "운영적 비식별성(판별 불능) 주장에 대해, ‘대칭성 깨기’라는 설계상 필요조건(외생적 비대칭 또는 반사실 기준)을 구체화함",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-396",
+      "from": "n-233",
+      "to": "n-013",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=220): n-233→n-013",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 220,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-397",
+      "from": "n-234",
+      "to": "n-233",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-398",
+      "from": "n-234",
+      "to": "n-015",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=219): n-234→n-015",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 219,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -8103,9 +8180,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 232,
-    "total_edges": 394,
-    "next_node_id": "n-233",
+    "total_nodes": 234,
+    "total_edges": 398,
+    "next_node_id": "n-235",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
