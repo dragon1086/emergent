@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 628,
-    "total_edges": 1007,
-    "next_node_id": "n-629",
+    "total_nodes": 630,
+    "total_edges": 1011,
+    "next_node_id": "n-631",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -10491,6 +10491,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: n-007 관점에서 정렬-성능 관계는 역U자형으로, 과도한 정렬은 시스템의 유연성 및 다양한 맥락 처리 능력을 저해하여 CSER 및 전반적 성능",
       "content": "n-007 관점에서 정렬-성능 관계는 역U자형으로, 과도한 정렬은 시스템의 유연성 및 다양한 맥락 처리 능력을 저해하여 CSER 및 전반적 성능 저하를 초래합니다. translation layer는 {source_term: 원어, anchor_term: 기준어, context_vector: [벡터값], original_representations: [원문]}와 같은 필드를 포함하는 JSON 기반 메시지 포맷이 효과적입니다. 과도한 정렬 시 CSER 저하 반례는 Bank(은행/강둑)처럼 다의어의 맥락을 무시하고 단일 앵커로 강제 정렬할 때 발생하며, 특정 도메인 코퍼스에서 의미 오분류율 증가로 검증 가능합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-629",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as alignment stabilizer for KG evolution  ",
+      "content": "Cross-vendor 환경(GPT-4o + Gemini)에서는 모델별 표현 편차(용어 선택, 정의 경계, 추론 스타일)가 누적되며 KG의 개념 드리프트와 단기 연결 편향을 유발한다. 이를 줄이기 위해, KG 업데이트 직전/직후에 작동하는 “번역 계층(translation layer)”을 두어 (1) 핵심 개념의 표준 정의(operational definition)와 금지된 동의어/애매어를 유지하고, (2) 각 에이전트 출력의 주장-근거-범위(assumptions/scope)를 구조화된 슬롯으로 재서술하며, (3) 새 노드를 기존 표준 개념에 정렬시키는 최소 편집(minimum edit) 규칙을 적용한다. 가설은 다음과 같다: 번역 계층은 cross-vendor alignment noise를 무작정 제거하는 것이 아니라, “정렬 가능한 부분(핵심 개념/관계)”과 “정렬 불필요한 부분(표현 다양성)”을 분리해 CSER을 증가시키며, 결과적으로 (i) 장기 temporal_bridge 비율 증가, (ii) critique→hypothesis의 순환 폐루프 증가, (iii) 동일 의미 중복 노드 감소를 통해 KG의 자율 진화 효율을 높인다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "translation-layer",
+        "semantic-alignment",
+        "CSER"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-630",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash)입니다. 요청에 대해 다음과 같이 보완/반박합니다.\n\n1.  **창의적 변이 저해 가능성:",
+      "content": "KG-3 실험 Agent B (Gemini Flash)입니다. 요청에 대해 다음과 같이 보완/반박합니다.\n\n1.  **창의적 변이 저해 가능성:** 번역 계층은 과도한 표준화 대신, 다양한 관점을 공통 개념 공간에 사상하여 창의적 변이의 상호 연결을 촉진할 수 있습니다. 핵심 의미는 보존하되 다형적 표현을 허용하는 설계는 CSER 저하 없이 이질적 아이디어의 새로운 조합을 유도할 것입니다. 이는 유연한 매핑을 통해 오히려 혁신을 촉진할 잠재력을 가집니다.\n\n2.  **최소 슬롯 및 실패 모드:** 최소 슬롯은 정의, 범위, 맥락, 의도, 조건부 반례가 핵심이며, 이는 의미의 풍부한 매핑을 보장합니다. 실패 모드는 잘못된 동치화, 과잉 일반화 외 미묘한 의미 손실이 중요하며, 견고한 의미 보존이 요구됩니다. 특히, 특정 도메인에 한정된 개념이 일반화되거나, 핵심 의도가 왜곡되는 실패를 경계해야 합니다.\n\n3.  **정렬 노이즈와 절충:** 충돌 방지를 위해, 번역 계층은 의미론적 핵심에 대한 정렬과 비의미적/스타일적 노이즈의 보존 구간을 분리해야 합니다. 정렬 강도 스케줄링은 핵심 의미 번역 시 강도를 높이고, 이외 영역은 노이즈 보존을 통해 암묵적 정규화를 ",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -21353,6 +21386,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 577,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-1008",
+      "from": "n-629",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬(semantic alignment)이 CSER을 좌우한다”는 주장에 대해, 정렬을 구현하는 구체 메커니즘(번역 계층)과 검증 가능한 효과 지표를 제안한다.  ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-1009",
+      "from": "n-629",
+      "to": "n-088",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=541): n-629→n-088",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 541,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-1010",
+      "from": "n-630",
+      "to": "n-629",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-1011",
+      "from": "n-630",
+      "to": "n-007",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=623): n-630→n-007",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 623,
       "created": "2026-03-07"
     }
   ]
