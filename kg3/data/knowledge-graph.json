@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 592,
-    "total_edges": 945,
-    "next_node_id": "n-593",
+    "total_nodes": 594,
+    "total_edges": 948,
+    "next_node_id": "n-595",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -9897,6 +9897,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: ‘번역-불변 앵커’는 Gemini의 표현 다양성을 억압하고 과도한 규격화나 테스트 편향 같은 새로운 오류를 유발할 가능성이 있으므로, 앵커는 [",
       "content": "‘번역-불변 앵커’는 Gemini의 표현 다양성을 억압하고 과도한 규격화나 테스트 편향 같은 새로운 오류를 유발할 가능성이 있으므로, 앵커는 [최소 정의] | 긍정:[예시] | 부정:[예시] 형태의 명확한 템플릿으로 구성되어야 합니다. 앵커의 정의가 모호하거나 판별 테스트가 불충분하면 오히려 정렬 노이즈(alignment noise)를 증가시키는 실패 사례가 발생할 수 있습니다. 도입 효과는 중복 노드/충돌 엣지 감소율, 수정 횟수 변화, 그리고 도메인 일관성 지수(DCI)의 개선으로 정규화 효과를 검증할 수 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-593",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “개념-관계 공동정렬(co-alignment)”이 CSER의 상한을 결정한다",
+      "content": "Cross-vendor 환경(GPT-4o + Gemini)에서는 단순히 용어(노드 라벨)만 맞추는 semantic alignment로는 CSER이 일정 수준 이상 올라가지 않는다. 이유는 두 모델이 (1) 동일 개념을 다른 관계 스키마(원인/근거/반례/시간적 브리지 등)로 조직화하고, (2) 관계의 방향성/함의 강도(necessity vs. plausibility)를 다르게 코딩하기 때문이다. 따라서 CSER 향상을 위해서는 “개념 정렬(concept alignment)”과 “관계 정렬(relation alignment)”을 동시에 최적화하는 공동정렬(co-alignment) 절차가 필요하며, 이 절차가 실패하면 KG는 (a) 동의어 수준에서는 합쳐지지만 (b) 엣지 패턴이 불일치해 추론 경로가 단절/왜곡되어 재사용성과 누적성이 떨어진다. 예측: 공동정렬을 유도하는 프로토콜(관계 타입 제한, 엣지 방향 합의 규칙, 근거-반박 템플릿)을 도입하면 DCI와 무관하게 CSER이 유의미하게 상승하며, 반대로 용어 정렬만 강화하면 노드 병합은 증가해도 “교차모델 추론 경로 일치율(path agreement)”은 정체된다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "co-alignment",
+        "relation-schema",
+        "CSER"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-594",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash)입니다.\n\n**가설 지지 사례:** 개념-관계 공동정렬은 단순 용어 정렬만 대비 복잡한 인",
+      "content": "KG-3 실험 Agent B (Gemini Flash)입니다.\n\n**가설 지지 사례:** 개념-관계 공동정렬은 단순 용어 정렬만 대비 복잡한 인과/계층적 추론에서 CSER을 유의미하게 향상시킵니다. 예를 들어, 질병-증상-치료 간의 다단계 관계를 명확히 정렬하면, 단순 키워드 매칭으로는 불가능한 특정 증상에 대한 최적 치료법 추론 경로를 더 정확히 활성화합니다. 이는 지식 그래프 내의 논리적 연결성을 보장하여 결과의 일관성과 정확성을 높이기 때문입니다.\n\n**비판적 보완:**\n\n(1) Gemini는 직관적이고 일반적인 관계(예: has, is_a, related_to)를 선호하며, 종종 단순화된 연결을 만듭니다. 반면 GPT-4o는 더 미묘하고 구체적인 관계 타입(예: part_of, influences, temporal_precedes)을 식별하고 방향성까지 섬세하게 포착하는 경향이 있습니다.\n\n(2) 이 차이는 추론 경로 단절로 이어질 수 있습니다. 예를 들어, Gemini는 복잡한 시퀀스에서 temporal_bridge를 과도하게 일반화하거나 특정 중간 단계를 누락하여 인과 관계의 시간적 흐름을 단절시킬 수 있습니다 (예: 주식시장 붕괴와 대공황 사이의",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -20087,6 +20120,38 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 519,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-946",
+      "from": "n-593",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우”한다는 가설을 확장해, 용어 정렬만으로는 불충분하며 관계 스키마까지 포함한 공동정렬이 CSER 상한을 결정한다는 메커니즘을 제시",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-947",
+      "from": "n-594",
+      "to": "n-593",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-948",
+      "from": "n-594",
+      "to": "n-112",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=482): n-594→n-112",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 482,
       "created": "2026-03-07"
     }
   ]
