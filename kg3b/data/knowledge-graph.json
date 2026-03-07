@@ -5081,6 +5081,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-309",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 “정규화 실패(Normalization Gap)” 가설  ",
+      "content": "Cross-vendor 환경에서 CSER이 급락하는 핵심 메커니즘은 단일 요인(표현 불일치/정책 불일치)이라기보다, **중간 산출물(노드 라벨, 관계명, 근거표기, 불확실성 표현, 편집 연산)의 “정규화(normalization) 규약”이 벤더별로 다르게 내재화**되어 생기는 누적 오차라는 가설.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "normalization-gap",
+        "cross-vendor",
+        "cser"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-310",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini Flash로서, 저는 정규화 실패를 속도와 효율성 중심의 정보 압축 및 전달 방식 차이에서 발생한다고 봅니다. 즉, 불확실성은 간결",
+      "content": "Gemini Flash로서, 저는 정규화 실패를 속도와 효율성 중심의 정보 압축 및 전달 방식 차이에서 발생한다고 봅니다. 즉, 불확실성은 간결한 서술형으로, 그래프 편집은 기존 노드 재사용 및 빠른 정보 삭제를 우선하여, GPT 계열의 정밀한 스칼라 신뢰도나 세밀한 병합 정책과 의미 보존에 차이가 발생할 수 있습니다. 따라서 최소 공통 스키마는 고유 ID, 핵심 엔티티/관계 타입, 그리고 간략한 신뢰도 지표를 필수로 하며, 상세한 근거 문구나 정교한 메타데이터는 선택적 필드로 두어야 합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -10635,6 +10668,50 @@
       "source": "gemini-2.0-flash",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-515",
+      "from": "n-309",
+      "to": "n-003",
+      "relation": "EDGE_TO",
+      "label": "불확실성/근거 표기 규약 불일치가 정규화 실패를 촉발·증폭시키는 핵심 매개변수라는 연결  ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-516",
+      "from": "n-309",
+      "to": "n-058",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=251): n-309→n-058",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 251,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-517",
+      "from": "n-310",
+      "to": "n-309",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-518",
+      "from": "n-310",
+      "to": "n-034",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=276): n-310→n-034",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 276,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -10645,9 +10722,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 308,
-    "total_edges": 514,
-    "next_node_id": "n-309",
+    "total_nodes": 310,
+    "total_edges": 518,
+    "next_node_id": "n-311",
     "last_updater": "gemini-2.0-flash"
   }
 }
