@@ -9,7 +9,12 @@ KG2_PATH="$KG2_DIR/data/knowledge-graph.json"
 LOG="$KG2_DIR/logs/evolve-kg2-$(date +%Y-%m-%d).log"
 CYCLE_COUNT_FILE="/tmp/emergent-kg2-cycles-$(date +%Y%m%d)"
 MAX_CYCLES=100
-OPENAI_KEY=$(grep "OPENAI_API_KEY" ~/.zshrc | head -1 | sed "s/.*='//;s/'.*//")
+# API key: env var first, then .zshrc (handles export KEY='val', KEY="val", KEY=val)
+OPENAI_KEY="${OPENAI_API_KEY:-$(grep 'OPENAI_API_KEY' ~/.zshrc 2>/dev/null | head -1 | sed "s/^[^=]*=//; s/^['\"]//; s/['\"]$//" | tr -d ' ')}"
+if [[ -z "$OPENAI_KEY" ]]; then
+  log "API key not found in env or ~/.zshrc"
+  exit 1
+fi
 
 mkdir -p "$KG2_DIR/logs" "$KG2_DIR/data"
 
@@ -88,16 +93,22 @@ EDGE_LABEL: [관계 설명]
 AGENT_B_REQUEST: [Agent B(gpt-5.2, 통합 종합가)에게 보내는 반박/보완 요청]"
 
 log "🤖 Agent A (gpt-5.2, 비판적 분석가) 판단 중..."
-AGENT_A_RESPONSE=$(python3 -c "
-import openai
-client = openai.OpenAI(api_key='$OPENAI_KEY')
+# Use temp files to avoid shell injection from prompt content
+PROMPT_A_FILE=$(mktemp /tmp/kg2-prompt-a-XXXXXX.txt)
+printf '%s' "$PROMPT_A" > "$PROMPT_A_FILE"
+AGENT_A_RESPONSE=$(OPENAI_API_KEY="$OPENAI_KEY" python3 -c "
+import openai, os
+client = openai.OpenAI(api_key=os.environ['OPENAI_API_KEY'])
+with open('$PROMPT_A_FILE', encoding='utf-8') as f:
+    prompt = f.read()
 resp = client.chat.completions.create(
     model='gpt-5.2',
-    messages=[{'role':'user','content':'''$PROMPT_A'''}],
+    messages=[{'role':'user','content':prompt}],
     temperature=0.8
 )
 print(resp.choices[0].message.content)
 " 2>&1)
+rm -f "$PROMPT_A_FILE"
 
 if [[ -z "$AGENT_A_RESPONSE" ]]; then
   log "❌ Agent A 호출 실패"
@@ -107,17 +118,21 @@ log "✅ Agent A 완료 (${#AGENT_A_RESPONSE} chars)"
 
 # Agent B: gpt-5.2 (통합 종합가)
 AGENT_B_REQUEST=$(echo "$AGENT_A_RESPONSE" | grep "^AGENT_B_REQUEST:" | sed 's/^AGENT_B_REQUEST: //')
-AGENT_B_RESPONSE=$(python3 -c "
-import openai
-client = openai.OpenAI(api_key='$OPENAI_KEY')
+PROMPT_B_FILE=$(mktemp /tmp/kg2-prompt-b-XXXXXX.txt)
+printf '%s' "당신은 KG-2 실험의 Agent B (gpt-5.2, 페르소나: 통합 종합가)입니다. 다양한 관점을 통합하고 새로운 연결을 찾습니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): $AGENT_B_REQUEST" > "$PROMPT_B_FILE"
+AGENT_B_RESPONSE=$(OPENAI_API_KEY="$OPENAI_KEY" python3 -c "
+import openai, os
+client = openai.OpenAI(api_key=os.environ['OPENAI_API_KEY'])
+with open('$PROMPT_B_FILE', encoding='utf-8') as f:
+    prompt = f.read()
 resp = client.chat.completions.create(
     model='gpt-5.2',
-    messages=[{'role':'user','content':'당신은 KG-2 실험의 Agent B (gpt-5.2, 페르소나: 통합 종합가)입니다. 다양한 관점을 통합하고 새로운 연결을 찾습니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): $AGENT_B_REQUEST'}],
+    messages=[{'role':'user','content':prompt}],
     temperature=0.8
 )
 print(resp.choices[0].message.content)
 " 2>&1)
-AGENT_B_RESPONSE=$(echo "$AGENT_B_RESPONSE" | tr -d "'\`\"\\")
+rm -f "$PROMPT_B_FILE"
 log "✅ Agent B (gpt-5.2, 통합 종합가) 완료"
 
 # 필드 파싱

@@ -59,13 +59,14 @@ def select_bfs_max(kg_path: str, edge_to: str, old_ids: list[str]) -> str:
         with open(kg_path, encoding="utf-8") as f:
             kg = json.load(f)
     except Exception:
-        import random
-        return f"OVERRIDE:{edge_to}:{random.choice(old_ids)}"
+        # Deterministic fallback: pick lowest node_id (oldest) for reproducibility
+        fallback = min(old_ids, key=_node_num)
+        return f"OVERRIDE:{edge_to}:{fallback}"
 
     nodes = kg.get("nodes", [])
     if not nodes:
-        import random
-        return f"OVERRIDE:{edge_to}:{random.choice(old_ids)}"
+        fallback = min(old_ids, key=_node_num)
+        return f"OVERRIDE:{edge_to}:{fallback}"
 
     # Find newest node (highest node_id number)
     newest = max(nodes, key=lambda n: _node_num(n["id"]))
