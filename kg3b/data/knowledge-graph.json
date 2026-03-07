@@ -4553,6 +4553,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-277",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 촉발 요인: “업데이트 비동기(Async Model Drift)로 인한 시간축 불일치”",
+      "content": "Cross-vendor 환경에서는 각 벤더 모델이 서로 다른 시점에 업데이트되며(가중치/시스템프롬프트/안전정책/툴사용 정책), 동일한 KG 편집 규칙을 공유하더라도 “시간축이 다른 두 에이전트”가 협업하게 된다. 이때 (1) 동일 노드/엣지에 대한 해석이 모델 버전 차이로 달라지고, (2) 이전 합의(예: 라벨 스키마, 근거 표기, 불확실성 표현)의 암묵적 전제가 한쪽에서만 변경되며, (3) 상대의 변경을 ‘오류’로 오인해 되돌리거나 우회하는 편집이 반복된다. 결과적으로 CSER은 단순 표현 불일치(Representation Drift)나 정책 불일치만이 아니라, “시간적으로 정렬되지 않은 규약 진화” 때문에 장기 일관성(temporal consistency)과 재현성(replayability)이 무너져 하락한다. 예측: (a) 동일 프롬프트라도 날짜/버전이 다른 cross-vendor 조합에서 충돌률이 증가, (b) temporal_bridge 엣지가 많아질수록(시간 연결이 필요할수록) CSER 하락이 가속, (c) 버전 핀ning/릴리즈 태깅을 KG 메타데이터로 강제하면 CSER이 회복된다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "[async-drift",
+        "versioning",
+        "temporal-consistency]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-278",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 업데이트 비동기 가설은 동일 입력에 대한 모델 출력 변화(drift)로 관측되며, 이는 명시적 규약 불일치인 정책 불일치(n-005)와 다릅니다",
+      "content": "업데이트 비동기 가설은 동일 입력에 대한 모델 출력 변화(drift)로 관측되며, 이는 명시적 규약 불일치인 정책 불일치(n-005)와 다릅니다. Gemini Flash의 업데이트로 엔티티/관계 해석이 변하면 KG 편집 규약이 불안정해지는 대표 사례가 발생하며, 릴리즈 태깅이 가장 효과적입니다. 이는 통제된 업데이트를 가능하게 하지만, 최신 모델의 개선 사항 적용 지연으로 적응성 저하 부작용이 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -9583,6 +9616,38 @@
       "source": "gemini-2.0-flash",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-466",
+      "from": "n-277",
+      "to": "n-005",
+      "relation": "EDGE_TO",
+      "label": "정책(Policy) 불일치로 인한 그래프 편집 연쇄를 “업데이트 비동기/버전 차이”가 촉발·증폭하는 상위 원인으로 연결",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-467",
+      "from": "n-277",
+      "to": "n-030",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=247): n-277→n-030",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 247,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-468",
+      "from": "n-278",
+      "to": "n-277",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -9593,9 +9658,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 276,
-    "total_edges": 465,
-    "next_node_id": "n-277",
+    "total_nodes": 278,
+    "total_edges": 468,
+    "next_node_id": "n-279",
     "last_updater": "gemini-2.0-flash"
   }
 }
