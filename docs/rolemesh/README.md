@@ -49,6 +49,9 @@ python -m src.rolemesh.dashboard
 | [DASHBOARD_GUIDE.md](DASHBOARD_GUIDE.md) | Health checks and coverage matrix |
 | [EXECUTOR_GUIDE.md](EXECUTOR_GUIDE.md) | Subprocess dispatch and fallback |
 | [API_REFERENCE.md](API_REFERENCE.md) | Full public interface |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | Extension and contribution guidelines |
+| [TESTING_GUIDE.md](TESTING_GUIDE.md) | Test infrastructure and patterns |
+| [CHANGELOG.md](CHANGELOG.md) | Version history |
 
 ## Supported Tools
 
