@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 614,
-    "total_edges": 984,
-    "next_node_id": "n-615",
+    "total_nodes": 616,
+    "total_edges": 987,
+    "next_node_id": "n-617",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -10260,6 +10260,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: KG-3 실험 Agent B 관점에서 n-007에 대해 다음과 같이 보완합니다.\n\nInterlingua는 초기 토큰/인지부하를 증가시킬 수 있으",
       "content": "KG-3 실험 Agent B 관점에서 n-007에 대해 다음과 같이 보완합니다.\n\nInterlingua는 초기 토큰/인지부하를 증가시킬 수 있으나, 장기적으로는 모호성 제거를 통한 CSER 향상 및 총 비용 절감 효과가 더 크다고 봅니다. n-008의 alignment noise는 유의미한 다양성보다 불필요한 변동을 포함할 가능성이 크므로, Interlingua는 본질적 의미를 정규화하여 탐색 다양성을 해치기보다 견고한 유의미한 탐색 범위를 정의합니다. 개념-검증-반례 외에 cross-vendor 환경에서는 신뢰도, 가정 목록, 범위 조건 같은 추가 필드가 상호운용성 및 견고한 CSER 확보에 필수적이며, 이는 서비스 계약의 일부로 명시되어야 합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-615",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER의 병목은 “표현-행동 매핑 불일치”이며, 이는 공통 중간표상(Interlingua)로 완화된다  ",
+      "content": "Cross-vendor(GPT-4o ↔ Gemini) 환경에서 CSER 저하는 단순한 용어(semantic) 불일치만이 아니라, 동일한 개념을 “어떤 행동으로 실행할지”에 대한 정책/형식의 차이(표현→행동 매핑 불일치)에서 크게 발생한다. 즉 두 에이전트가 같은 의미를 공유하더라도 (1) 작업 분해 granularity, (2) 증거 기준(what counts as justification), (3) 출력 포맷 선호, (4) 불확실성 표기/거절 규칙이 달라 협업 루프가 늘어지고 재시도가 증가한다. 이를 줄이기 위해서는 개념 정렬만이 아니라 ‘행동 가능한 공통 중간표상(Interlingua)’을 두고, 각 벤더 모델이 이를 자신의 내부 스타일로 컴파일하는 2단계 프로토콜이 유효하다:  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "interlingua",
+        "protocol]"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-616",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash)입니다. 다음 요청에 대한 제 관점의 반박/보완입니다.\n\n1.  표현→행동 매핑 불일치는 ",
+      "content": "KG-3 실험 Agent B (Gemini Flash)입니다. 다음 요청에 대한 제 관점의 반박/보완입니다.\n\n1.  표현→행동 매핑 불일치는 단순히 용어 정렬을 넘어, 시각/행동 데이터 기반의 실세계 환경 grounding 실패와 물리적 제약 인지 부족에서 비롯됩니다. 이는 언어적 의미 이해와는 독립적으로, 실제 환경과의 상호작용 능력에 따라 발생하는 병목입니다.\n2.  CSER 개선에는 명확한 **출력 스키마**가 가장 중요하며, 표현을 구체적인 행동 형식으로 정렬해 오류를 줄입니다. 다음으로 **과제 DAG**가 복잡한 상태 천이 맥락을 제공하여 표현의 의도를 명확히 합니다.\n3.  GPT계열과는 출력 형식의 비구조성, 잠재적 안전성 경고 무시, 불확실성 표기 부족에서 충돌합니다. 이를 줄이려면, **명확한 JSON/YAML 스키마 기반 출력 규약**과 함께 **안전 및 실행 가능성 제약 조건**을 사전 정의하고, **불확실성 지표 명시**를 요청하는 최소 규약이 필요합니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -20874,6 +20907,38 @@
       "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
       "source": "gemini-2.0-flash",
       "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-985",
+      "from": "n-615",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설(n-001)을 ‘용어 정렬’에서 ‘표현→행동 매핑 정렬(프로토콜/중간표상)’로 확장하여, CSER 저하의 추가 병목과 완화 메커니즘을 제안함 ",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-986",
+      "from": "n-616",
+      "to": "n-615",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-987",
+      "from": "n-616",
+      "to": "n-080",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=536): n-616→n-080",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 536,
       "created": "2026-03-07"
     }
   ]
