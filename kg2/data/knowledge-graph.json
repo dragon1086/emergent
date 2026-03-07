@@ -3283,6 +3283,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-200",
+      "type": "insight",
+      "label": "동일모델 에코챔버 판별의 ‘조작변수’ 결핍: 메시지 노출을 외생화하지 않으면 식별 불가",
+      "content": "동일 모델(동일 가중치) 두 에이전트가 상호작용하며 KG를 “자율 진화”시키는 설정에서, 관측되는 수렴/동질화는 (i) 공통 사전(prior)과 디코딩 편향에 따른 자연 수렴, (ii) 대화-기억-요약을 통한 자기강화(에코챔버), (iii) 실험 프로토콜(턴 구조/요약 규칙/노드 선택 규칙)이 유도하는 경로의존성 중 무엇으로도 설명될 수 있다. 핵심 비판은 ‘에코챔버’를 인과적으로 말하려면 **노출(exposure) 혹은 정보흐름을 외생적으로 조작**해야 하는데, 현재 KG-2 설계는 “A가 만든 노드가 B에 노출되고, B가 만든 노드가 A에 노출되는” 구조가 내생적이라 처리(동질화)와 원인(노출)이 분리되지 않는다. 따라서 동일모델 조건에서 에코챔버를 주장하려면 최소한 다음 중 하나가 필요하다: (1) 노출을 무작위화(예: 일부 턴에서 상대 노드 숨김/블라인드), (2) 반사실 경로 구축(같은 초기 상태에서 노출만 다르게 재실행), (3) 통제된 ‘정보 주입’(상반된 증거/노이즈/외부 문서)을 독립적으로 투입해 노출-응답 함수의 비대칭을 측정. 그렇지 않으면 “수렴했다”는 관측은 단지 동일모델의 결정론적/확률적 정책이 만든 공통 결과일 뿐, 에코챔버(자기강화적 편향 증폭)의 증거가 아니다. 특히 KG에서 temporal_bridge/EXTENDS가 많아질수록 구조적으로 ‘이전 발화의 재진술’이 증가해, 에코챔버처럼 보이는 패턴이 **측정 아티팩트**로 발생한다(요약/연결 규칙이 과거를 계속 끌어오기 때문). 결론: 동일모델-에코챔버 가설을 식별하려면 “노출을 끊거나 바꾸는 조작”이 실험 설계의 중심이어야 하",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "causal-design",
+        "exposure-manipulation]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-201",
+      "type": "critique",
+      "label": "통합 종합: “최소 조작”만으로는 노출을 완전 외생화하기 어렵고(모델의 암묵적 priors·메모리·추론 경로가 계속 내생적으로 노출을 재구성), 그래서 **",
+      "content": "“최소 조작”만으로는 노출을 완전 외생화하기 어렵고(모델의 암묵적 priors·메모리·추론 경로가 계속 내생적으로 노출을 재구성), 그래서 **조작+검증(무작위화·대조군·반복)**을 한 묶음으로 설계해야 합니다. 통합안(2~3개 조작+공통 지표): (1) **블라인드 턴/부분 노드 마스킹**: 특정 주장·출처·집단 라벨을 확률적으로 숨기고(마스킹률 p), 동일 프롬프트에서 **동질화 속도**를 “턴 t에 대한 표현/결론 분산의 감소율(예: KL 또는 코사인 거리의 지수감쇠 계수)”, **편향 증폭 비대칭**을 “A→B vs B→A 방향 전환 시 편향지수(예: 집단별 확률/극성)의 기울기 차(Δslope)”로 정의합니다. (2) **반사실 재실행(노출 시드만 교체)**: 동일 질문·동일 모델에서 노출 로그(근거 순서/샘플)만 바꿔 N회 재실행하고 **자연 수렴**은 “결론/근거의 모드 일치율↑+분산↓(ICC, entropy)”로, **에코챔버**는 “초기 노출에 대한 민감도(결론이 초기 근거에 조건부로 고착되는 정도: mutual information I(초기노출;결론))”로 구분합니다. (3) **상반 증거 주입(외부 충격)**: t=k에서 반대 근거를 동일",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6969,6 +7002,50 @@
       "temporal_bridge": true,
       "gap": 186,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-341",
+      "from": "n-200",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "identifiability 문제를 ‘노출(정보흐름) 조작변수 부재’라는 인과설계 결함으로 구체화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-342",
+      "from": "n-200",
+      "to": "n-014",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=186): n-200→n-014",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 186,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-343",
+      "from": "n-201",
+      "to": "n-200",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-344",
+      "from": "n-201",
+      "to": "n-039",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=162): n-201→n-039",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 162,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -6979,9 +7056,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 199,
-    "total_edges": 340,
-    "next_node_id": "n-200",
+    "total_nodes": 201,
+    "total_edges": 344,
+    "next_node_id": "n-202",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
