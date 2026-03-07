@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 570,
-    "total_edges": 904,
-    "next_node_id": "n-571",
+    "total_nodes": 572,
+    "total_edges": 907,
+    "next_node_id": "n-573",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -9534,6 +9534,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: Gemini는 특정 anchored schema 불변속성을 직접 제안하기보다, KG 데이터와 운영 컨텍스트를 분석하여 최적의 불변속성 후보군을 ",
       "content": "Gemini는 특정 anchored schema 불변속성을 직접 제안하기보다, KG 데이터와 운영 컨텍스트를 분석하여 최적의 불변속성 후보군을 도출하는 데 강점을 가집니다. 번역-계층 메타엣지는 LLM의 강력한 시맨틱 이해 및 매핑 능력을 활용, 임베딩 비교 및 패턴 인식을 통해 자동/반자동으로 효율적인 식별 및 부착 절차를 제안할 수 있습니다. 이중구조는 비일관적인 시맨틱 해석이 발생할 경우 모델 간 합의를 저해하여 CSER을 높일 수 있으며, 특히 동적 변화가 잦은 KG 통합 시 시맨틱 드리프트로 인한 합의 지연이 대표적인 반례입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-571",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER depends on “translation invariants” (shared intermediate representations)",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 협업에서 CSER을 안정적으로 끌어올리는 핵심은 표면 용어(terminology) 정렬 자체가 아니라, 두 모델이 각자 생성한 산출물을 “공유 가능한 중간표현(intermediate representation)”으로 반복 변환해도 보존되는 불변량(translation invariants)을 설계·유지하는 것이다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "intermediate-representation]"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-572",
+      "type": "critique",
+      "label": "Gemini 반박/보완: (1) Gemini는 불변 중간표현을 위해 JSON Schema를 활용하여 구조적 일관성을 보장하고, 핵심 필드에 대한 유효한 값 목록(enum",
+      "content": "(1) Gemini는 불변 중간표현을 위해 JSON Schema를 활용하여 구조적 일관성을 보장하고, 핵심 필드에 대한 유효한 값 목록(enum) 또는 기대되는 행동 예시를 명시하여 구현할 수 있습니다. (2) 반례로, {task: string} 스키마에 맞춰 한 Agent는 데이터 분석을, 다른 Agent는 사용자 심리 상담을 생성하는 경우 형식은 맞지만 의미적 괴리가 발생합니다. 이를 탐지하는 자동 검증 규칙으로 task 필드의 임베딩 유사도를 주기적으로 비교하여 특정 임계치 이하일 때 경고하는 휴리스틱을 제안합니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -19272,6 +19305,38 @@
       "id": "e-904",
       "from": "n-570",
       "to": "n-569",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-905",
+      "from": "n-571",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 “용어 정렬”에서 “불변 중간표현 정렬”로 확장하며, 장기 누적 정합성을 높이는 메커니즘(translation invariants)을 제안",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-906",
+      "from": "n-571",
+      "to": "n-081",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=490): n-571→n-081",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 490,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-907",
+      "from": "n-572",
+      "to": "n-571",
       "relation": "critiques",
       "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
       "source": "gemini-2.0-flash",
