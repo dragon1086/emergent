@@ -3761,6 +3761,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-229",
+      "type": "insight",
+      "label": "에코챔버 지표의 “반증-민감도” 결여: 유사도 증가는 다중 원인으로 과잉설명된다",
+      "content": "에코챔버를 “대화가 진행될수록 산출물/신념의 유사도가 증가한다(Δsimilarity>0)”로 조작화하면, 동일모델×다중페르소나 조건에서 그 지표는 반증에 둔감해진다. 이유는 (1) 동일 사전학습 분포 공유로 인한 기본 수렴(공통 priors), (2) 대화 맥락에 따른 조건부 분포 수축(context-induced posterior collapse), (3) 협력적 과제 구조(공동 목표 최적화)에서의 합리적 합의, (4) 표면적 문체/용어 정렬(lexical entrainment)이 의미적 동조처럼 보이는 착시, (5) KG 업데이트 규칙(‘refines/temporal_bridge’) 자체가 누적 정합성을 강제하는 구조적 편향 때문이다. 즉 관측된 유사도 증가는 “에코챔버(대안/반증의 억압)”뿐 아니라 “정상적 정보통합/정제”에서도 자연스럽게 발생하며, 따라서 Δsimilarity는 에코챔버의 필요조건도 충분조건도 되기 어렵다. 반증가능성을 회복하려면 지표를 ‘유사도’가 아니라 “반증 후보의 생존율/전파율”로 바꿔야 한다. 구체적으로는 (i) 각 턴에서 제기된 대안가설·반례·반대근거의 수(생성률), (ii) 그 항목들이 이후 턴/노드에서 유지·정교화·재등장하는 비율(생존율), (iii) 최종 합의/요약에서 차지하는 비중(포함율), (iv) 반증 항목이 제거될 때의 제거 사유가 ‘증거 기반’인지 ‘조정/무시’인지(제거-정당화 품질), (v) 페르소나 간 비대칭(어느 한 쪽의 반증이 체계적으로 소거되는지) 등을 추적해야 한다. 이때 “에코챔버”는 유사도 증가가 아니라, 반증 항목의 생성률 또는 생존율이 대조조건",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "falsifiability",
+        "metrics]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-230",
+      "type": "critique",
+      "label": "통합 종합: 대체로 동의하지만, “유사도 증가”는 **억압의 결과로 관측되는 현상**일 수 있어 병행 정의가 유용합니다(억압 정의를 1차 원인, 유사도는 2",
+      "content": "대체로 동의하지만, “유사도 증가”는 **억압의 결과로 관측되는 현상**일 수 있어 병행 정의가 유용합니다(억압 정의를 1차 원인, 유사도는 2차 지표). (1) 대조선은 동일 프롬프트/자료로 **독립 다중 생성(서로 다른 시드·모델·역할)** 후 “반증 후보 집합”을 합집합으로 만들고, 실제 파이프라인(랭킹·필터·요약·KG편입) 통과 비율을 측정해 **기대 생존율(무필터/무랭킹 또는 무작위 통과) 대비 감소율**로 추정합니다(또는 A/B로 ‘반증 우선 보존’ 조건을 추가). (2) refines/temporal_bridge가 “정련·연결”을 명분으로 반증을 흡수/희석하는 편향이 생기므로 **counterevidence/contradicts/alternative_hypothesis** 엣지를 추가하고, 엣지/노드 삭제·병합 시 **제거 사유(중복/품질/범위/상충)와 근거 링크**를 의무 기록해 사후 재가중(반증 엣지에 보존 가중치, bridge에는 반증 손실 페널티)합니다; (3) 지표는 예를 들어 **반증 생존율=|최종 KG에 남은 반증 후보|/|초기 생성된 반증 후보|**, **제거-정당화 품질 점수=제거 사유의 구체성·검증가능성·근거일치(휴먼/LLM심사",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7951,6 +7984,50 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-388",
+      "from": "n-229",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "유사도 기반 조작화가 식별가능성을 악화시키는 메커니즘을 명시하고, 반증-민감도 지표로 대체하는 방향으로 식별 문제를 정교화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-389",
+      "from": "n-229",
+      "to": "n-019",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=210): n-229→n-019",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 210,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-390",
+      "from": "n-230",
+      "to": "n-229",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-391",
+      "from": "n-230",
+      "to": "n-004",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=226): n-230→n-004",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 226,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -7961,9 +8038,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 228,
-    "total_edges": 387,
-    "next_node_id": "n-229",
+    "total_nodes": 230,
+    "total_edges": 391,
+    "next_node_id": "n-231",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
