@@ -13,8 +13,16 @@ import json, sys, os, fcntl, time, re, random
 from pathlib import Path
 from datetime import datetime
 
+# --dry-run: validate input + show what would happen, without mutating KG
+DRY_RUN = "--dry-run" in sys.argv
+
 KG_PATH = Path(os.environ.get("EMERGENT_KG_PATH",
     Path(__file__).parent.parent / "data" / "knowledge-graph.json"))
+
+# Ensure src/ is importable regardless of CWD
+_src_dir = str(Path(__file__).parent.parent)
+if _src_dir not in sys.path:
+    sys.path.insert(0, _src_dir)
 
 data = json.loads(sys.stdin.read())
 
@@ -159,8 +167,17 @@ try:
     graph["meta"]["last_updater"] = new_source
     graph["meta"]["next_node_id"] = f"n-{next_num+1:03d}"
 
-    KG_PATH.write_text(json.dumps(graph, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(node_id)
+    if DRY_RUN:
+        orig_edges = json.loads(KG_PATH.read_text(encoding="utf-8"))["edges"]
+        new_edge_count = len(graph["edges"]) - len(orig_edges)
+        print(f"[dry-run] would add node {node_id}, {new_edge_count} new edge(s)")
+    else:
+        KG_PATH.write_text(json.dumps(graph, ensure_ascii=False, indent=2), encoding="utf-8")
+        print(node_id)
 finally:
     fcntl.flock(lock_file, fcntl.LOCK_UN)
     lock_file.close()
+    try:
+        os.remove(lock_path)
+    except OSError:
+        pass

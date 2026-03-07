@@ -231,7 +231,12 @@ def main():
     parser.add_argument("--fix", action="store_true", help="Auto-fix missing fields and save")
     parser.add_argument("--stats", action="store_true", help="Show stats only")
     parser.add_argument("--json", action="store_true", help="Output as JSON")
+    parser.add_argument("--kg-path", type=str, default=None, help="Override KG file path")
     args = parser.parse_args()
+
+    global KG_FILE
+    if args.kg_path:
+        KG_FILE = Path(args.kg_path)
 
     graph = load_kg()
     report = validate(graph, fix=args.fix)
