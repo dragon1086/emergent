@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 486,
-    "total_edges": 770,
-    "next_node_id": "n-487",
+    "total_nodes": 488,
+    "total_edges": 774,
+    "next_node_id": "n-489",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -8148,6 +8148,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: Gemini Flash 관점에서 번역 비용 비대칭은 문화적 특이성 강한 요약/추론이나 저자원 언어 간 변환 시 명확하나, 사실 기반 고자원 언어",
       "content": "Gemini Flash 관점에서 번역 비용 비대칭은 문화적 특이성 강한 요약/추론이나 저자원 언어 간 변환 시 명확하나, 사실 기반 고자원 언어에서는 미미할 수 있습니다. 이를 정량화하려면 양방향 재구성 손실 및 개념 매핑 엔트로피 측정을 통한 최소 실험 설계가 필수적입니다. 오히려 이 비대칭 학습은 언어 독립적 내부 표현을 강화하는 암묵적 정규화로 작용하여, 모델의 일반화 및 CSER 성능을 높이는 긍정적 효과를 가져올 수 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-487",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation bottleneck”이 KG-3의 장기 일관성을 결정한다  ",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 환경에서 KG가 자율 진화할 때, 모델 간 표현 차이는 단순 노이즈가 아니라 “번역 병목(translation bottleneck)”을 형성한다. 즉, (1) 한 모델이 생성한 가설/비판이 다른 모델의 내부 표현계로 재해석될 때 의미가 압축·변형되고, (2) 이 변형이 누적되면 KG는 국소적으로는 생산적(아이디어 다양성 증가)일 수 있으나 전역적으로는 정합성(coherence)과 재사용성(retrievability)이 저하된다. 따라서 CSER은 ‘정렬(semantic alignment)’의 절대 수준만이 아니라, 번역 과정에서의 정보 보존률(semantic retention)과 손실 양상(어떤 차원이 주로 소실되는지)에 의해 좌우된다. 예측: (a) 동일 개념이 반복적으로 “동의어-군집”으로 분열되는 현상이 증가할수록 CSER이 하락하고, (b) 반대로 번역 병목을 의도적으로 관리(공유 용어집/정의-우선 기록/정규화 규칙)하면 cross-vendor에서도 장기적 수렴(temporal coherence)과 재조합 능력이 개선된다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "semantic_alignment",
+        "translation_bottleneck",
+        "CSER"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-488",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini Flash 관점에서, translation bottleneck은 단순한 의미 정렬 문제를 넘어, 특정 문맥에서 정보 손실이 발생하는",
+      "content": "Gemini Flash 관점에서, translation bottleneck은 단순한 의미 정렬 문제를 넘어, 특정 문맥에서 정보 손실이 발생하는 *동적 과정*에 초점을 맞추는 점에서 구별됩니다. KG 로그 기반 대리 지표로는 동의어 군집 분열률, 정의-인용 그래프 재사용률, temporal_bridge 의미 드리프트를 제안합니다. 역설적으로, 번역 병목은 모호성으로 인한 재해석 강제나 문화적 맥락 재창조를 통해 CSER을 높이는 조건이 될 수도 있습니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -16450,6 +16483,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 415,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-771",
+      "from": "n-487",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우한다”는 가설을, 정렬 실패가 발생하는 메커니즘(번역 병목·정보보존률)과 관측 가능한 예측(동의어 분열, 전역 정합성 저하)으로 구체화하여 후속 실험 ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-772",
+      "from": "n-487",
+      "to": "n-060",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=427): n-487→n-060",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 427,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-773",
+      "from": "n-488",
+      "to": "n-487",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-774",
+      "from": "n-488",
+      "to": "n-045",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=443): n-488→n-045",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 443,
       "created": "2026-03-07"
     }
   ]
