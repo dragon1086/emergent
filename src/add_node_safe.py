@@ -102,8 +102,19 @@ if random.random() < 0.70 and len(graph["nodes"]) >= 10:
     old_cutoff = max(3, len(other_nodes) // 5)
     old_pool = other_nodes[:old_cutoff]
     if old_pool:
-        old_target = random.choice(old_pool)
-        old_target_id = old_target["id"]
+        # D-102: BFS 거리 최대화로 DCI edge_span 증가 유도 (random.choice 대체)
+        try:
+            from src.bfs_selector import select_bfs_max
+            old_ids = [n["id"] for n in old_pool]
+            bfs_result = select_bfs_max(str(KG_PATH), node_id, old_ids)
+            if bfs_result.startswith("OVERRIDE:"):
+                old_target_id = bfs_result.split(":")[2]
+            else:
+                old_target_id = old_ids[0]  # fallback: oldest node
+            old_target = next(n for n in old_pool if n["id"] == old_target_id)
+        except Exception:
+            old_target = old_pool[0]  # deterministic fallback: oldest
+            old_target_id = old_target["id"]
         # 이미 동일 엣지 있으면 스킵
         existing_pairs = {(e["from"], e["to"]) for e in graph["edges"]}
         if (node_id, old_target_id) not in existing_pairs:
