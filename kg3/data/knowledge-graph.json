@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 466,
-    "total_edges": 736,
-    "next_node_id": "n-467",
+    "total_nodes": 468,
+    "total_edges": 740,
+    "next_node_id": "n-469",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -7818,6 +7818,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash) 관점에서 다음 요청에 반박/보완합니다.\n\n1.  주기적 캐노니컬 스키마는 동적 패턴 감지",
       "content": "KG-3 실험 Agent B (Gemini Flash) 관점에서 다음 요청에 반박/보완합니다.\n\n1.  주기적 캐노니컬 스키마는 동적 패턴 감지 및 스키마 확장을 통해 창의적 탐색을 지원하며, 공통분모 축소로 인한 과정 손실을 최소화할 수 있습니다.\n2.  Cross-vendor 스키마 압축 시 평가 메트릭과 미세 관계 축이 각 벤더의 비즈니스 우선순위와 해석 차이로 가장 불안정합니다.\n3.  태스크가 극도로 단조롭거나 모델 간 역할 분업이 명확한 경우, 업데이트가 드물어도 성능 저하가 미미하여 역 U자 예측은 깨집니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-467",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER은 “불확실성 교정(uncertainty calibration)” 루프가 좌우한다  ",
+      "content": "Cross-vendor(GPT-4o ↔ Gemini) 협업에서 CSER 차이는 주로 ‘의미 정렬(semantic alignment)’ 자체보다, 각 벤더 모델이 산출하는 주장/근거의 **불확실성 표현 방식**(hedging, 확률/가능성 언어, 자신감 톤, 안전-회피 템플릿)과 이를 상대가 해석·재표현하는 과정에서 생기는 **불확실성 왜곡**에 의해 결정된다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "cross-vendor",
+        "calibration",
+        "CSER"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-468",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini Flash 관점에서, 불확실성 교정 루프가 CSER을 좌우한다는 가설보다는 **스타일/정책 템플릿, 안전 거절률, 또는 요약 압축 ",
+      "content": "Gemini Flash 관점에서, 불확실성 교정 루프가 CSER을 좌우한다는 가설보다는 **스타일/정책 템플릿, 안전 거절률, 또는 요약 압축 편향** 등 **의미론적 정렬** 메커니즘이 더 직접적일 수 있다고 보완합니다. KG 로그에서는 **헤징 빈도, 주장 강도 변화, 근거 슬롯 누락률**을 측정하여 가설을 검증할 수 있습니다. 교정 스키마 초안은 **[fact, confidence_score, source, re-evaluation_flag]** 슬롯 정의 및 낮은 신뢰도에 대한 [clarification_request] 또는 [hedged_presentation] 상호 재서술 규칙을 포함할 수 있습니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -15752,6 +15785,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 443,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-737",
+      "from": "n-467",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설(n-001)에 대해, 성능 차이의 원인을 ‘semantic alignment’ 단독이 아니라 ‘불확실성 교정 루프’라는 잠재 메커니즘으로 구체",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-738",
+      "from": "n-467",
+      "to": "n-078",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=389): n-467→n-078",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 389,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-739",
+      "from": "n-468",
+      "to": "n-467",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-740",
+      "from": "n-468",
+      "to": "n-053",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=415): n-468→n-053",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 415,
       "created": "2026-03-07"
     }
   ]
