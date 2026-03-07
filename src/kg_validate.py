@@ -90,9 +90,12 @@ def validate(graph: dict, fix: bool = False) -> dict:
                 n["label"] = n.get("content", nid)[:80] if n.get("content") else nid
                 fixes_applied += 1
 
-        # Missing content
+        # Missing content — backfill from label if available
         if "content" not in n:
             missing_content.append(nid)
+            if fix and n.get("label"):
+                n["content"] = n["label"]
+                fixes_applied += 1
 
         # Missing source
         if "source" not in n:

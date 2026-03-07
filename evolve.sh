@@ -23,7 +23,7 @@ COKAC_INBOX="$COMMS_DIR/cokac-bot/inbox"
 LOG_FILE="$REPO_DIR/logs/evolve-$(date +%Y-%m-%d).log"
 DECISIONS_FILE="$REPO_DIR/DECISIONS.md"
 MAX_CYCLES_PER_DAY=4
-CYCLE_COUNT_FILE="/tmp/emergent-cycles-$(date +%Y%m%d)"
+CYCLE_COUNT_FILE="$REPO_DIR/logs/emergent-cycles-$(date +%Y%m%d)"
 TG_BOT_TOKEN="${TG_BOT_TOKEN:?TG_BOT_TOKEN env var required}"
 TG_OWNER="${TG_OWNER:-7726642089}"
 
@@ -249,9 +249,9 @@ cmd_parse_and_run() {
 
     # 8c. E_v4 + 전체 메트릭 스냅샷
     log "📈 E_v4 메트릭 스냅샷..."
-    python3 -c "
-import json, sys
-sys.path.insert(0, '$REPO_DIR')
+    EMERGENT_REPO="$REPO_DIR" python3 -c "
+import sys, os
+sys.path.insert(0, os.environ['EMERGENT_REPO'])
 from src.metrics import compute_all_metrics
 m = compute_all_metrics()
 print(f'E_v4={m[\"E_v4\"]:.4f}  CSER={m[\"CSER\"]:.4f}  DCI={m[\"DCI\"]:.4f}  edge_span={m[\"edge_span\"][\"raw\"]:.2f}')
@@ -261,9 +261,9 @@ print(f'E_v4={m[\"E_v4\"]:.4f}  CSER={m[\"CSER\"]:.4f}  DCI={m[\"DCI\"]:.4f}  ed
 
     # 8d. DCI 자동 체크 + pair_designer v5 (D-116: age_contrib 독립 + cross-ratio 강제)
     local dci_val
-    dci_val=$(python3 -c "
-import sys
-sys.path.insert(0, '$REPO_DIR')
+    dci_val=$(EMERGENT_REPO="$REPO_DIR" python3 -c "
+import sys, os
+sys.path.insert(0, os.environ['EMERGENT_REPO'])
 from src.metrics import compute_all_metrics
 m = compute_all_metrics()
 print(f'{m[\"DCI\"]:.4f}')
@@ -310,13 +310,14 @@ cmd_measure() {
         log "✅ 수렴 측정 완료"
         # 과수렴 경보 체크
         local dist
-        dist=$(python3 -c "
-import json
-h = json.load(open('$REPO_DIR/data/convergence_history.json'))
+        dist=$(EMERGENT_REPO="$REPO_DIR" python3 -c "
+import json, os
+p = os.path.join(os.environ['EMERGENT_REPO'], 'data', 'convergence_history.json')
+h = json.load(open(p))
 m = h['measurements']
 print(m[-1]['distance'] if m else '?')
 " 2>/dev/null || echo "?")
-        if python3 -c "d=$dist; exit(0 if d < 0.15 else 1)" 2>/dev/null; then
+        if [[ "$dist" != "?" ]] && python3 -c "d=$dist; exit(0 if d < 0.15 else 1)" 2>/dev/null; then
             log "⚠️  과수렴 경보! 거리 $dist < 0.15 (D-037 에코챔버 위험)"
             tg_dm "⚠️ emergent 과수렴 경보! 페르소나 거리 $dist < 0.15 (D-037 에코챔버 위험)"
         else

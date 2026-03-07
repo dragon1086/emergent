@@ -24,7 +24,15 @@ _src_dir = str(Path(__file__).parent.parent)
 if _src_dir not in sys.path:
     sys.path.insert(0, _src_dir)
 
-data = json.loads(sys.stdin.read())
+# Read and validate stdin before acquiring lock
+_raw_input = sys.stdin.read()
+try:
+    data = json.loads(_raw_input)
+except json.JSONDecodeError as exc:
+    sys.exit(f"Invalid JSON input: {exc}")
+
+if "label" not in data:
+    sys.exit("Missing required field: label")
 
 # 파일 락으로 동시 쓰기 방지
 lock_path = str(KG_PATH) + ".lock"
