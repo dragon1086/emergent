@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 480,
-    "total_edges": 760,
-    "next_node_id": "n-481",
+    "total_nodes": 482,
+    "total_edges": 763,
+    "next_node_id": "n-483",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -8049,6 +8049,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: Gemini Flash 관점에서,\n\n1.  번역 불변 앵커는 다국어 임베딩의 통계적 견고성으로 감지 가능한, 언어/문화 독립적 핵심 개념(예: ",
       "content": "Gemini Flash 관점에서,\n\n1.  번역 불변 앵커는 다국어 임베딩의 통계적 견고성으로 감지 가능한, 언어/문화 독립적 핵심 개념(예: 물리량, 기본 감정)에 성립하며, 다의어나 문화 특정적 표현(관용구, 은유)은 반례입니다.\n2.  반가설: 앵커가 과도하게 강하면 새로운 지식 탐색과 다양성을 억압하여 CSER(Creative Search and Exploration Rate)을 저해할 수 있습니다.\n3.  운영 규칙은 핵심 앵커 스키마(필수 공유 속성 정의), 다국어 체크리스트, 그리고 의미 일관성 자동 검증 프롬프트로 구현 가능하며, 이는 n-008(암묵적 정규화)과 상보적으로 작용하여, 명시적 안정성 내에서 유연한 탐색을 촉진합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-481",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” hypothesis for CSER gains  ",
+      "content": "Cross-vendor(GPT-4o + Gemini) 환경에서 CSER을 안정적으로 끌어올리려면, 두 에이전트가 생성하는 발화/노드/관계의 **표면형 차이**를 흡수하는 “translation layer(중간 표현)”가 필요하다. 이 레이어는 (i) 용어 사전 + 동의어/상하위어 매핑, (ii) 관계 스키마 정규화(예: motivates/critique/temporal_bridge의 의미 경계 고정), (iii) 불확실성 표기(모호한 매핑은 confidence로 남김)를 포함한다. 가설은 다음을 예측한다: 1) translation layer가 없으면 vendor별 표현 습관 차이로 인해 critique가 실질적으로는 같은 가설을 다른 라벨로 중복 공격/중복 지지하여 KG가 비효율적으로 팽창하고, 2) 레이어가 있으면 “의미적으로 동일한 주장”이 병합되어 장거리 추론 경로가 짧아지고(그래프 직경 감소), 3) 결과적으로 동일 예산에서 CSER이 증가한다. 또한 alignment noise가 완전 제거되기보다, **레이어가 노이즈를 구조화**(어디가 번역 불확실성인지 명시)할 때가 가장 유리하다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "semantic-alignment",
+        "schema-normalization",
+        "cross-vendor"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-482",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 Agent B (Gemini Flash)로서 위 가설에 대해 보완합니다.\n\n1.  Gemini 관점에서 translation layer",
+      "content": "KG-3 Agent B (Gemini Flash)로서 위 가설에 대해 보완합니다.\n\n1.  Gemini 관점에서 translation layer의 최소 구성요소는 용어 사전(의미 정합성)과 관계 스키마(구조적 일관성)이며, 이는 언어 모델의 지식을 KG에 효과적으로 정렬합니다.\n2.  하지만 과도한 레이어는 엄격한 규칙으로 인해 창의적 불일치를 제거하여 미발견 잠재 연결을 억압, CSER을 저해할 수 있습니다.\n3.  KG 지표 중 비판의 타겟 분산은 시스템의 탐색적 다양성과 창의적 문제 해결 노력을 가장 직접적으로 반영하여 CSER 변화 예측에 가장 민감할 것입니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -16243,6 +16276,38 @@
       "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
       "source": "gemini-2.0-flash",
       "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-761",
+      "from": "n-481",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬(semantic alignment)이 CSER을 좌우”한다는 기존 가설을, 구체적 메커니즘(translation layer: 용어/관계 스키마/불확실성 표기)과 검증 ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-762",
+      "from": "n-482",
+      "to": "n-481",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-763",
+      "from": "n-482",
+      "to": "n-028",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=454): n-482→n-028",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 454,
       "created": "2026-03-07"
     }
   ]
