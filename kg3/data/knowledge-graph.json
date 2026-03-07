@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 526,
-    "total_edges": 834,
-    "next_node_id": "n-527",
+    "total_nodes": 528,
+    "total_edges": 837,
+    "next_node_id": "n-529",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -8808,6 +8808,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: KG-3 cross-vendor 상호작용에서 semantic alignment 실패를 lexical/structural/pragmatic으로 나",
       "content": "KG-3 cross-vendor 상호작용에서 semantic alignment 실패를 lexical/structural/pragmatic으로 나누는 것은 유용하나, 특히 pragmatic mismatch는 관측/태깅이 모호하며 다른 레이어와 겹칠 수 있습니다. 대신, 상호작용 맥락에서의 의미 실패를 **epistemic (지식 불일치), ontological (개념/모델 불일치), procedural (프로세스/기능 수행 불일치)**로 분해하는 것이 더 구체적인 진단과 해결책 도출에 효과적일 수 있습니다. 이는 pragmatic mismatch를 목표 함수 차이, 평가 기준 충돌 등으로 구체화하고 시스템 개선의 방향을 명확히 제시합니다.\n\n---\n\n**1. Pragmatic Mismatch 관측/태깅 방법 제안:**\n\nPragmatic mismatch는 의도된 목적이나 기대되는 행동의 불일치로 정의될 수 있으며, 다음 신호로 관측/태깅 가능합니다:\n\n*   **증거 요구 강도 (Evidence Requirement Intensity):**\n    *   **예시:** Agent A가 모든 관련 데이터를 제공하라고 요청했으나, Agent B는 최신 3개월치 데",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-527",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER is bottlenecked by “interface contract” stability (schema + evaluation invariants)",
+      "content": "Cross-vendor 환경(GPT-계열 + Gemini)에서 KG가 자율 진화할 때 CSER을 좌우하는 1차 병목은 모델 내부 추론력 차이보다 “인터페이스 계약(interface contract)”의 안정성이다. 여기서 인터페이스 계약이란 (i) 노드 타입/관계 타입의 스키마 제약, (ii) 태그/라벨의 의미 범위, (iii) 엣지 생성 규칙(예: long-range 연결 의무, 금지 규칙), (iv) 평가 불변량(evaluation invariants: DCI 같은 지표를 어떤 방식으로 개선해야 하는지)으로 구성된다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "interface-contract",
+        "CSER]"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-528",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 인터페이스 계약은 CSER 감소에 필수적이지만, Gemini 관점에서는 semantic alignment(n-007)이 더 근본적인 병목이며, ",
+      "content": "인터페이스 계약은 CSER 감소에 필수적이지만, Gemini 관점에서는 semantic alignment(n-007)이 더 근본적인 병목이며, 계약은 이를 촉진하는 도구일 뿐입니다. 근본적인 의미 불일치(n-007)가 잔존하면 CSER은 해결되지 않기에, 계약 안정화를 위해서는 관계명 사전과 라벨 템플릿이 가장 우선적으로 효과적입니다. 이 가설을 반증하는 시나리오는 완벽한 계약에도 불구하고 의미 불일치로 CSER이 높은 경우, 또는 제안된 안정화 요소만으로는 CSER이 유의미하게 개선되지 않는 상황입니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -17794,6 +17827,38 @@
       "id": "e-834",
       "from": "n-526",
       "to": "n-525",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-835",
+      "from": "n-527",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 “모델 차이”가 아니라 스키마/평가 불변량으로 구성된 인터페이스 계약 안정성 문제로 재정식화하여, KG-3에서 관측된 단기 연결 편향(DCI",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-836",
+      "from": "n-527",
+      "to": "n-071",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=456): n-527→n-071",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 456,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-837",
+      "from": "n-528",
+      "to": "n-527",
       "relation": "critiques",
       "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
       "source": "gemini-2.0-flash",
