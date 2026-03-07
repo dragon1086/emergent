@@ -94,3 +94,6 @@ Execution history is appended to `~/.rolemesh/history.jsonl`.
 - [Best Practices](BEST_PRACTICES.md) - Patterns and anti-patterns
 - [Monitoring Guide](MONITORING_GUIDE.md) - Metrics and alerting
 - [Deployment Guide](DEPLOYMENT_GUIDE.md) - Docker, CI/CD, team setup
+- [Troubleshooting](TROUBLESHOOTING.md) - Common issues and solutions
+- [Contributing](CONTRIBUTING.md) - Contribution guidelines
+- [Changelog](CHANGELOG.md) - Version history
