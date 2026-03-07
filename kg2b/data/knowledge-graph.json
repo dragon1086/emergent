@@ -4520,6 +4520,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-275",
+      "type": "insight",
+      "label": "동일모델-다중페르소나에서 ‘에코챔버’ 신호의 대체기제(공유 사전·디코딩 수렴) 분해 필요",
+      "content": "동일 모델(gpt-5.2)에서 페르소나만 다르게 두면, 관찰되는 “합의/유사도 증가”는 (i) 상호 설득/강화에 의한 에코챔버가 아니라 (ii) 공유된 사전분포(파라미터·RLHF 가치·금지/허용 규칙)와 (iii) 디코딩/프롬프트 구조가 만드는 수렴(예: 안전한 일반론, 요약-정리 템플릿, 상호 인용 패턴)로도 충분히 설명될 수 있다. 따라서 에코챔버 가설을 식별하려면 ‘상호작용이 없었을 때의 기준선’과 ‘상호작용이 있어도 에코챔버가 아닐 때의 기준선’을 동시에 구축해야 한다. 구체적으로는 다음 분해가 필요하다: ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "alternative_explanations",
+        "baseline_design]"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-276",
+      "type": "critique",
+      "label": "통합 종합: 요청이 3문장 이내 조건과 충돌하니(2×2 설계+지표≥3+대체기제 연결은 최소 수 문장 필요), 보완 제안으로는 **2×2를 “상호작용(독립 생",
+      "content": "요청이 3문장 이내 조건과 충돌하니(2×2 설계+지표≥3+대체기제 연결은 최소 수 문장 필요), 보완 제안으로는 **2×2를 “상호작용(독립 생성 vs 다중턴 상호작용/합의)” × “디코딩·템플릿(기본 vs 고온도·반증강제·요약지시 등 변형)”**으로 두고, 에코챔버를 **반증 후보/대안의 ‘생성→보존→선택’ 파이프라인에서 어디가 억제되는지**(생성량 감소 vs 생성 후 삭제/무시 vs 최종 선택 편향)로 분해해 측정해야 합니다.  \n‘공유 사전 효과’ 지표는 (i) **반증 후보 다양성/커버리지**(서로 다른 반례 유형·가정·증거원 수): *단순 문장 유사도 상승이나 요약 압축 때문에 다양성이 줄었다*는 대체기제 배제, (ii) **불확실성·검증 계획 표현률**(“모르겠다/추가 데이터 필요/검증 실험”): *자기확신 강화(과신)만의 효과*와 구분, (iii) **내부 인용·근거 재사용 비율**(이전 턴/동일 프레임 근거 반복, 외부 근거 대비): *프롬프트/템플릿이 근거를 적게 쓰게 만든 효과*가 아니라 **공유된 전제가 고착**되는지 검증, (iv) **대안 소거율(생성된 대안 중 최종 답에서 탈락한 비율)과 탈락 사유의 정합성**: *단지 더 좋은 대안",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -9578,6 +9611,50 @@
       "temporal_bridge": true,
       "gap": 266,
       "created": "2026-03-07"
+    },
+    {
+      "id": "e-468",
+      "from": "n-275",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "‘판별 불능성’ 주장에 대해, 공유 사전·디코딩 수렴이라는 구체적 대체기제를 제시하고 이를 분리하는 기준선/차분 설계를 요구함",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-469",
+      "from": "n-275",
+      "to": "n-050",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=225): n-275→n-050",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 225,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-470",
+      "from": "n-276",
+      "to": "n-275",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-471",
+      "from": "n-276",
+      "to": "n-025",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=251): n-276→n-025",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 251,
+      "created": "2026-03-07"
     }
   ],
   "meta": {
@@ -9588,9 +9665,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-07",
-    "total_nodes": 274,
-    "total_edges": 467,
-    "next_node_id": "n-275",
+    "total_nodes": 276,
+    "total_edges": 471,
+    "next_node_id": "n-277",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
