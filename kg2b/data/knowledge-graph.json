@@ -4190,6 +4190,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-255",
+      "type": "insight",
+      "label": "에코챔버 측정지표의 ‘생성기-평가기’ 내생성(Goodhart) 및 판별 오류",
+      "content": "동일 모델·다중 페르소나 조건에서 “에코챔버(상호강화→다양성 감소/수렴)”를 로그로 판정하려는 시도는, 측정지표 자체가 대화 규칙/프롬프트/페르소나에 의해 내생적으로 형성되는 ‘생성기-평가기(endogenous generator-evaluator)’ 문제를 갖는다. 즉 (1) 에이전트가 생성하는 텍스트 분포가 지표(유사도, 합의율, 인용/재진술 빈도, 반증 제시율 등)를 직접 조작하지 않더라도, (2) 동일한 기반모델이 “평가에 유리한 담화 스타일”을 학습적으로 내재하고 있어, 지표가 진짜 신념 수렴이 아니라 ‘표현 양식의 수렴’ 혹은 ‘역할 수행의 일관성’을 측정하게 된다. 이때 Goodhart’s law가 발생한다: “에코챔버 지표”를 목표로 삼지 않아도, 지표는 대화의 안정성·정합성·요약 압력에 의해 자동으로 최적화된다. 결과적으로 관측된 Δ(다양성 감소/유사도 증가)가 (A) 실제로 대안가설 공간이 축소된 에코챔버인지, (B) 동일 모델 특유의 문체/논증 구조로 수렴한 것인지, (C) 페르소나 지시가 만든 ‘역할-일관성’ 강화인지 분리하기 어렵다. 반증 관점에서 핵심은 “지표가 참 현상에 대한 충분통계가 아니다”라는 점이며, 최소한 다음의 판별 실험이 필요하다: (i) 표현을 강제 교란(문체 랜덤화/패러프레이즈 강제)해도 Δ가 유지되는지, (ii) 평가자를 외부(다른 모델/블라인드 휴먼)로 분리했을 때도 동일한 Δ가 재현되는지, (iii) 지표를 다중(내용-수준: 주장 그래프, 근거 다양성, 반례 커버리지)으로 두고 서로 불일치할 때 어떤 것이 ‘에코챔버’에 더 근접한지 사전 정의하는 것. 그렇지 않으",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "goodhart",
+        "endogeneity]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-256",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “최소 설계”를 표방하면서도 (1)~(3)까지 한 번에 넣으면 조작변수 과다로 인과해석이 흐려지니, 2단계로 쪼개는 보완이 필요합니다: ",
+      "content": "요청이 “최소 설계”를 표방하면서도 (1)~(3)까지 한 번에 넣으면 조작변수 과다로 인과해석이 흐려지니, 2단계로 쪼개는 보완이 필요합니다: 1단계는 내용수준 지표만 고정해 검증(주장-근거-반례를 단위로 추출→그래프에서 (i) 근거 출처 다양성/상호배타성, (ii) 반례·반증 커버리지=각 주장에 대해 독립 반증 노드가 연결된 비율, (iii) 논증 경로 중복률로 에코성 점수화)하고, 2단계에서 문체 교란/패러프레이즈를 “내용 동일성 제약 하의 표면형 변형”으로만 조작하며 외부 평가자는 블라인드로 “주장 동일성·근거 적절성·반증 존재”만 채점하게 하세요. 다중지표 불일치 규칙은 사전등록으로 “핵심지표(반증 커버리지) 우선 + 보조지표(출처 다양성, 경로 중복률) 다수결”처럼 위계화하고, 불일치 시 ‘불확정’ 구간(예: 핵심지표 신뢰구간이 임계값 걸침)을 둬서 억지 단일판정을 피하는 것이 최소 설계에 더 부합합니다.",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -8892,6 +8925,38 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-435",
+      "from": "n-255",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "식별가능성 문제를 ‘측정지표 내생성/Goodhart’로 구체화하고, 표현 수렴 vs 신념 수렴의 구분 실패를 반증 포인트로 추가",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-436",
+      "from": "n-256",
+      "to": "n-255",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-437",
+      "from": "n-256",
+      "to": "n-003",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=253): n-256→n-003",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 253,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -8902,9 +8967,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 254,
-    "total_edges": 434,
-    "next_node_id": "n-255",
+    "total_nodes": 256,
+    "total_edges": 437,
+    "next_node_id": "n-257",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
