@@ -121,8 +121,18 @@ if [[ -z "$AGENT_A_RESPONSE" ]]; then
 fi
 log "✅ Agent A 완료 (${#AGENT_A_RESPONSE} chars)"
 
+# Agent A 파싱 검증
+if [[ -z "$NODE_LABEL" || -z "$NODE_CONTENT" ]]; then
+  # 파싱은 아래에서 하지만 여기서 미리 체크
+  _PRE_LABEL=$(echo "$AGENT_A_RESPONSE" | grep "^NODE_LABEL:" | sed 's/^NODE_LABEL: //' | tr -d "'\`\"\\")
+  if [[ -z "$_PRE_LABEL" ]]; then
+    log "⚠️  Agent A 응답 형식 불량 — NODE_LABEL 누락. 응답 앞 200자: ${AGENT_A_RESPONSE:0:200}"
+  fi
+fi
+
 # Agent B: gpt-5.2 (통합 종합가)
-AGENT_B_REQUEST=$(echo "$AGENT_A_RESPONSE" | grep "^AGENT_B_REQUEST:" | sed 's/^AGENT_B_REQUEST: //')
+# Multi-line AGENT_B_REQUEST 캡처 (첫 줄 + 이후 비-KEY: 줄)
+AGENT_B_REQUEST=$(echo "$AGENT_A_RESPONSE" | sed -n '/^AGENT_B_REQUEST:/,/^[A-Z_]*:/{ /^AGENT_B_REQUEST:/s/^AGENT_B_REQUEST: //p; /^[A-Z_]*:/!p; }' | head -5 | tr '\n' ' ')
 PROMPT_B_FILE=$(mktemp /tmp/kg2-prompt-b-XXXXXX.txt)
 printf '%s' "당신은 KG-2 실험의 Agent B (gpt-5.2, 페르소나: 통합 종합가)입니다. 다양한 관점을 통합하고 새로운 연결을 찾습니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): $AGENT_B_REQUEST" > "$PROMPT_B_FILE"
 AGENT_B_RESPONSE=$(OPENAI_API_KEY="$OPENAI_KEY" python3 -c "
@@ -138,6 +148,10 @@ resp = client.chat.completions.create(
 print(resp.choices[0].message.content)
 " 2>&1)
 rm -f "$PROMPT_B_FILE"
+if [[ -z "$AGENT_B_RESPONSE" || ${#AGENT_B_RESPONSE} -lt 10 ]]; then
+  log "⚠️  Agent B 응답 비어있거나 너무 짧음 (${#AGENT_B_RESPONSE} chars) — Agent A 노드만 추가"
+  AGENT_B_RESPONSE=""
+fi
 log "✅ Agent B (gpt-5.2, 통합 종합가) 완료"
 
 # 필드 파싱
@@ -174,7 +188,8 @@ fi
 if [[ -n "$NODE_LABEL" && -n "$NODE_CONTENT" ]]; then
   cd "$REPO_DIR"
 
-  # Agent A 노드 추가
+  # Agent A 노드 추가 (cycle 번호 포함)
+  CYCLE_NUM=$((COUNT))
   NEW_NODE_ID=$(python3 -c "
 import json, sys
 label = sys.argv[1][:200]
@@ -184,12 +199,14 @@ tags = [t.strip() for t in sys.argv[4].split(',') if t.strip()]
 edge_to = sys.argv[5].strip()
 edge_rel = sys.argv[6].strip() or 'extends'
 edge_lbl = sys.argv[7][:100] if len(sys.argv) > 7 else ''
+cycle = int(sys.argv[8]) if len(sys.argv) > 8 else 0
 d = {'label': label, 'content': content,
      'type': node_type, 'source': 'gpt-5.2-critic', 'tags': tags,
      'domain': 'emergence_theory',
+     'cycle': cycle,
      'edge_to': edge_to, 'edge_relation': edge_rel, 'edge_label': edge_lbl}
 print(json.dumps(d, ensure_ascii=False))
-" "$NODE_LABEL" "$NODE_CONTENT" "${NODE_TYPE:-insight}" "${NODE_TAGS:-kg2,same-model}" "${EDGE_TO:-}" "${EDGE_RELATION:-extends}" "$EDGE_LABEL" 2>/dev/null \
+" "$NODE_LABEL" "$NODE_CONTENT" "${NODE_TYPE:-insight}" "${NODE_TAGS:-kg2,same-model}" "${EDGE_TO:-}" "${EDGE_RELATION:-extends}" "$EDGE_LABEL" "$CYCLE_NUM" 2>/dev/null \
   | EMERGENT_KG_PATH="$KG2_PATH" python3 src/add_node_safe.py 2>/dev/null)
   log "✅ Agent A 노드 추가: $NODE_LABEL (id: $NEW_NODE_ID -> $EDGE_TO)"
 
@@ -207,6 +224,7 @@ agent_a_id = sys.argv[1].strip()
 agent_b_resp = sys.argv[2][:600]
 relation = sys.argv[3].strip()
 edge_label = sys.argv[4]
+cycle = int(sys.argv[5]) if len(sys.argv) > 5 else 0
 d = {
   'label': 'synthesizer: ' + agent_b_resp[:80],
   'content': agent_b_resp,
@@ -214,19 +232,36 @@ d = {
   'source': 'gpt-5.2-synthesizer',
   'tags': ['kg2', 'same-model', 'agent-b', 'synthesizer'],
   'domain': 'emergence_theory',
+  'cycle': cycle,
   'edge_to': agent_a_id,
   'edge_relation': relation,
   'edge_label': edge_label
 }
 print(json.dumps(d, ensure_ascii=False))
-" "$NEW_NODE_ID" "$AGENT_B_RESPONSE" "$AGENT_B_RELATION" "$AGENT_B_EDGE_LABEL" 2>/dev/null \
+" "$NEW_NODE_ID" "$AGENT_B_RESPONSE" "$AGENT_B_RELATION" "$AGENT_B_EDGE_LABEL" "$CYCLE_NUM" 2>/dev/null \
     | EMERGENT_KG_PATH="$KG2_PATH" python3 src/add_node_safe.py 2>/dev/null)
     log "✅ Agent B 노드 추가: $AGENT_B_NODE_ID -> $NEW_NODE_ID (relation: $AGENT_B_RELATION)"
   fi
 fi
 
+# 스키마 검증 (post-cycle validation)
+log "🔍 Post-cycle KG 스키마 검증..."
+VALIDATE_RESULT=$(EMERGENT_KG_PATH="$KG2_PATH" python3 src/kg_validate.py --fix 2>&1) || true
+if echo "$VALIDATE_RESULT" | grep -q "\[ERR\]"; then
+  log "❌ 스키마 오류 감지: $(echo "$VALIDATE_RESULT" | grep '\[ERR\]')"
+else
+  log "✅ 스키마 검증 통과"
+fi
+echo "$VALIDATE_RESULT" >> "$LOG"
+
 # 메트릭 계산
-EMERGENT_KG_PATH="$KG2_PATH" python3 src/metrics.py 2>/dev/null | tail -5 | tee -a "$LOG" || true
+log "📊 메트릭 계산..."
+METRICS_OUTPUT=$(EMERGENT_KG_PATH="$KG2_PATH" python3 src/metrics.py 2>/dev/null) || true
+echo "$METRICS_OUTPUT" | tail -10 | tee -a "$LOG"
+# 핵심 메트릭 한 줄 요약
+CSER_VAL=$(echo "$METRICS_OUTPUT" | grep "CSER" | head -1 | grep -oE '[0-9]+\.[0-9]+' | head -1)
+E_V5_VAL=$(echo "$METRICS_OUTPUT" | grep "E_v5" | tail -1 | grep -oE '[0-9]+\.[0-9]+' | head -1)
+log "📈 CSER=${CSER_VAL:-?}, E_v5=${E_V5_VAL:-?}"
 
 # git 커밋
 cd "$REPO_DIR"

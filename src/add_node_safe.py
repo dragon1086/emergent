@@ -34,7 +34,11 @@ try:
     graph = json.loads(KG_PATH.read_text(encoding="utf-8"))
 
     # ── 노드 추가 ────────────────────────────────────────────
-    existing_nodes = [int(n["id"].split("-")[1]) for n in graph["nodes"] if n["id"].startswith("n-")]
+    existing_nodes = []
+    for n in graph["nodes"]:
+        m = re.search(r'\d+', n["id"])
+        if m:
+            existing_nodes.append(int(m.group()))
     next_num = max(existing_nodes, default=0) + 1
     node_id = f"n-{next_num:03d}"
 
@@ -54,6 +58,9 @@ try:
         "domain": data.get("domain", "emergence_theory"),
         "subdomain": data.get("subdomain", "general"),
     }
+    # Preserve cycle number if provided
+    if "cycle" in data:
+        node["cycle"] = data["cycle"]
     graph["nodes"].append(node)
 
     # ── 엣지 추가 (선택) ─────────────────────────────────────
@@ -72,7 +79,8 @@ try:
     if edge_to and edge_to not in valid_ids:
         edge_to = graph["nodes"][0]["id"] if graph["nodes"] else ""
     if edge_to and edge_to in valid_ids:
-        existing_edges = [int(e["id"].split("-")[1]) for e in graph["edges"] if e.get("id", "").startswith("e-")]
+        existing_edges = [int(m.group()) for e in graph["edges"]
+                         if e.get("id", "").startswith("e-") and (m := re.search(r'\d+', e["id"]))]
         next_edge_num = max(existing_edges, default=0) + 1
         edge_id = f"e-{next_edge_num:03d}"
         target_source = next((n.get("source", "unknown") for n in graph["nodes"] if n["id"] == edge_to), "unknown")
@@ -100,8 +108,7 @@ try:
         # 신규 노드 제외한 기존 노드를 ID 번호 오름차순으로 정렬 (낮은 ID = 오래된 노드)
         other_nodes = [n for n in graph["nodes"]
                        if n["id"] != node_id and n["id"] != edge_to]
-        other_nodes.sort(key=lambda n: int(re.search(r'\d+', n["id"]).group())
-                         if re.search(r'\d+', n["id"]) else 9999)
+        other_nodes.sort(key=lambda n: int(m.group()) if (m := re.search(r'\d+', n["id"])) else 9999)
         # top-20% 오래된 노드 (최소 3개)
         old_cutoff = max(3, len(other_nodes) // 5)
         old_pool = other_nodes[:old_cutoff]
@@ -122,8 +129,8 @@ try:
             # 이미 동일 엣지 있으면 스킵
             existing_pairs = {(e.get("from", ""), e.get("to", "")) for e in graph["edges"]}
             if (node_id, old_target_id) not in existing_pairs:
-                existing_edges2 = [int(e["id"].split("-")[1]) for e in graph["edges"]
-                                   if e.get("id", "").startswith("e-")]
+                existing_edges2 = [int(m.group()) for e in graph["edges"]
+                                   if e.get("id", "").startswith("e-") and (m := re.search(r'\d+', e["id"]))]
                 next_edge_num2 = max(existing_edges2, default=0) + 1
                 bridge_edge_id = f"e-{next_edge_num2:03d}"
                 cross2 = (new_source != old_target.get("source", ""))
