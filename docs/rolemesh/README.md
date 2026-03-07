@@ -86,6 +86,9 @@ Execution history is appended to `~/.rolemesh/history.jsonl`.
 
 ## Further Reading
 
+- [Builder Guide](BUILDER_GUIDE.md) - Discovery and setup walkthrough
+- [Custom Tools](CUSTOM_TOOLS.md) - Register your own AI tools
+- [Config Reference](CONFIG_REFERENCE.md) - Schema and validation details
 - [Architecture](ARCHITECTURE.md) - System design and data flow
 - [API Reference](API_REFERENCE.md) - Programmatic Python API
 - [Best Practices](BEST_PRACTICES.md) - Patterns and anti-patterns
