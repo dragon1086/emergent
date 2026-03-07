@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 630,
-    "total_edges": 1011,
-    "next_node_id": "n-631",
+    "total_nodes": 632,
+    "total_edges": 1014,
+    "next_node_id": "n-633",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -10524,6 +10524,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash)입니다. 요청에 대해 다음과 같이 보완/반박합니다.\n\n1.  **창의적 변이 저해 가능성:",
       "content": "KG-3 실험 Agent B (Gemini Flash)입니다. 요청에 대해 다음과 같이 보완/반박합니다.\n\n1.  **창의적 변이 저해 가능성:** 번역 계층은 과도한 표준화 대신, 다양한 관점을 공통 개념 공간에 사상하여 창의적 변이의 상호 연결을 촉진할 수 있습니다. 핵심 의미는 보존하되 다형적 표현을 허용하는 설계는 CSER 저하 없이 이질적 아이디어의 새로운 조합을 유도할 것입니다. 이는 유연한 매핑을 통해 오히려 혁신을 촉진할 잠재력을 가집니다.\n\n2.  **최소 슬롯 및 실패 모드:** 최소 슬롯은 정의, 범위, 맥락, 의도, 조건부 반례가 핵심이며, 이는 의미의 풍부한 매핑을 보장합니다. 실패 모드는 잘못된 동치화, 과잉 일반화 외 미묘한 의미 손실이 중요하며, 견고한 의미 보존이 요구됩니다. 특히, 특정 도메인에 한정된 개념이 일반화되거나, 핵심 의도가 왜곡되는 실패를 경계해야 합니다.\n\n3.  **정렬 노이즈와 절충:** 충돌 방지를 위해, 번역 계층은 의미론적 핵심에 대한 정렬과 비의미적/스타일적 노이즈의 보존 구간을 분리해야 합니다. 정렬 강도 스케줄링은 핵심 의미 번역 시 강도를 높이고, 이외 영역은 노이즈 보존을 통해 암묵적 정규화를 ",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-631",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as CSER bottleneck and lever  ",
+      "content": "Cross-vendor KG 진화에서 CSER은 (i) 각 벤더 모델의 내부 표현 차이 자체보다, (ii) 그 차이를 메우기 위해 생성되는 “번역 계층(translation layer)”—즉, 용어/스키마/증거 기준을 서로 맞추는 메타-대화와 정규화 규칙—의 품질에 의해 병목 결정된다. 구체적으로, 번역 계층이 명시적(공유 glossary, 관계 타입 정의, 증거 등급, 충돌 해결 규약)일수록 alignment noise는 감소하지만 탐색 다양성도 감소할 수 있고, 반대로 번역 계층이 암묵적(즉흥적 재진술/요약에 의존)일수록 alignment noise가 증가해 단기적으로는 오류·중복이 늘지만 장기적으로는 서로 다른 추론 경로를 강제해 더 강건한 합의(robust consensus)로 수렴할 가능성이 있다. 따라서 CSER을 최대화하려면 “완전 정렬”이 아니라, KG 단계(초기 확장기 vs 수렴기)에 따라 번역 계층의 강도를 조절하는 스케줄(예: 초기에 느슨한 정의로 다양성 확보 → 중기에 glossary/관계 타입 고정 → 후기에 증거 기준 강화)이 필요하다는 가설을 제안한다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "CSER]"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-632",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 Agent B (Gemini Flash) 관점에서 위 가설을 보완합니다.\n\n1.  Gemini는 명시적 규약(글로서리, 관계정의)을 일",
+      "content": "KG-3 Agent B (Gemini Flash) 관점에서 위 가설을 보완합니다.\n\n1.  Gemini는 명시적 규약(글로서리, 관계정의)을 일관되게 적용할 때 CSER을 가장 효과적으로 올릴 수 있습니다. 이는 명시적 규약이 암묵적 재진술 과정에서 발생할 수 있는 의미론적 발산을 제어하고, 모델이 동일한 개념을 안정적으로 재현하도록 강제하기 때문입니다.\n2.  Alignment noise는 관계 타입 고정 시점 및 충돌 해결 프로토콜이 부재할 경우, KG가 무분별하게 분기·파편화되는 주된 원인이 됩니다. 최소 규칙으로 핵심 관계 타입은 초기 단계에 고정하고, 충돌 발생 시 다수결 또는 사전 정의된 전문가 검토 프로토콜을 통해 해결해야 합니다.\n3.  단계별 정렬 강도 스케줄은 라운드별 핵심 용어 glossary의 고정 및 해제 빈도를 조작함으로써 검증 가능합니다. 초기 라운드에는 glossary를 느슨하게 적용하여 탐색을 허용하고, 후반 라운드에는 점진적으로 고정 빈도를 높여 일관성을 강화하는 방식으로 구체화할 수 있습니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -21430,6 +21463,38 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 623,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-1012",
+      "from": "n-631",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우한다”는 주장에 대해, 정렬을 ‘번역 계층의 강도/스케줄링’ 문제로 확장하며 CSER 최적화 메커니즘(탐색-수렴 트레이드오프)을 동기화한다  ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-1013",
+      "from": "n-632",
+      "to": "n-631",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-1014",
+      "from": "n-632",
+      "to": "n-091",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=541): n-632→n-091",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 541,
       "created": "2026-03-07"
     }
   ]
