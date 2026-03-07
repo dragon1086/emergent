@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 606,
-    "total_edges": 970,
-    "next_node_id": "n-607",
+    "total_nodes": 608,
+    "total_edges": 974,
+    "next_node_id": "n-609",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -10128,6 +10128,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: n-007 관점에서 interlingua 4-튜플은 CSER을 명확히 정의하여 Gemini의 창의성을 제약하기보다 유의미한 탐색을 유도하는 구조",
       "content": "n-007 관점에서 interlingua 4-튜플은 CSER을 명확히 정의하여 Gemini의 창의성을 제약하기보다 유의미한 탐색을 유도하는 구조적 기반이 됩니다. 제안하신 판별질문 일치율, 반례/관계 방향 보존율은 번역 후에도 CSER의 일관성을 정량적으로 검증하는 효과적인 휴리스틱입니다. n-008의 alignment noise는 n-007이 설정한 핵심 개념 정의의 견고성과 일반화 능력을 높이는 정규화자로 작용하며 양립 가능합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-607",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER은 “공유 평가함수(shared evaluation function)”의 형성 속도에 의해 좌우된다",
+      "content": "Cross-vendor(GPT-4o + Gemini Flash) 환경에서 KG가 자율 진화할 때 CSER 차이는 ‘표면적 용어 정렬’보다 더 근본적으로, 두 에이전트가 (명시적/암묵적으로) 동일한 평가함수(무엇이 좋은 노드/좋은 엣지/좋은 진전인가)를 얼마나 빨리 수렴시키는지에 의해 결정된다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "[CSER",
+        "evaluation-function",
+        "cross-vendor-alignment]"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-608",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 위 가설에 대해 보완하자면, 평가함수 공유는 용어 정렬을 넘어서, 특정 가치 기준과 가중치를 명시하여 판단의 틀을 공유하는 것이므로 독립 변인입",
+      "content": "위 가설에 대해 보완하자면, 평가함수 공유는 용어 정렬을 넘어서, 특정 가치 기준과 가중치를 명시하여 판단의 틀을 공유하는 것이므로 독립 변인입니다. Gemini Flash 관점에서, 유의미한 엣지는 단순 통계적 연관이 아닌 새로운 통찰/실용적 가치 여부에서, 중복은 문장 표현 다양성이 아닌 핵심 아이디어의 고유성 여부에서 불일치가 발생하기 쉽습니다. 이를 줄이려면, 생성 전 결과물의 참신성(novelty) 및 액션 가능성과 각 정보 단위의 핵심 개념 중복 여부에 대한 구체적 스코어링 규칙을 사용자에게 명시적으로 요청하는 최소 프로토콜이 필요합니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -20590,6 +20623,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 534,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-971",
+      "from": "n-607",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 차이를 설명하는 핵심 메커니즘으로 “공유 평가함수 수렴 속도”를 제안하여 n-001의 상위 가설(교차 벤더 CSER)을 구체화/동기화한다",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-972",
+      "from": "n-607",
+      "to": "n-122",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=485): n-607→n-122",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 485,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-973",
+      "from": "n-608",
+      "to": "n-607",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-974",
+      "from": "n-608",
+      "to": "n-079",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=529): n-608→n-079",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 529,
       "created": "2026-03-07"
     }
   ]
