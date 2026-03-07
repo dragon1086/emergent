@@ -5246,6 +5246,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-319",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 근본 원인: “그래프 연산 의미론(Edge Semantics) 불일치”",
+      "content": "Cross-vendor 환경에서 동일한 자연어 지시(예: “비판하라/보완하라/연결하라”)가 벤더별로 서로 다른 **그래프 연산 의미론**(어떤 노드를 생성/수정/병합하고, 어떤 관계를 어떤 강도로 추가하는지)으로 컴파일되면서 CSER이 저하된다. 핵심은 표현(텍스트) 자체의 drift보다, 그 표현이 유도하는 **편집 연산의 타입/우선순위/원자성**이 달라지는 “semantic mismatch”이다. 예를 들어 (1) 한 모델은 critique를 ‘반대 증거’로 취급해 기존 hypothesis를 약화시키는 엣지를 선호하는 반면, 다른 모델은 critique를 ‘보완 근거’로 취급해 temporal_bridge나 병렬 hypothesis를 늘리는 경향이 생긴다. (2) 동일한 불확실성 표기(“가능성”, “추정”)도 한 모델은 확률적 가중치로, 다른 모델은 단순 수사로 처리해 엣지 가중/관계 선택이 달라진다. 결과적으로 KG의 국소 구조(클러스터링, 허브, 브리지)가 벤더별로 다르게 진화하며, cross-vendor 합성 시 **정렬 비용 증가(동일 의미의 엣지/노드가 다른 형태로 중복 생성)**와 **추론 경로 단절(브리지 엣지의 타입 불일치)**이 발생해 CSER이 하락한다. 따라서 개선책은 표현 정규화만이 아니라, “EDGE_TO/critique/temporal_bridge” 같은 연산을 **벤더 중립적 중간표현(IR)로 명세**하고, 각 모델 출력물을 IR에 매핑하는 정합 레이어(semantic adapter)를 두는 것이다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "graph-editing",
+        "semantic-mismatch]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-320",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 위 가설은 Representation Drift나 Policy 불일치의 **하위 메커니즘**으로 작용할 가능성이 높습니다. 그래프 연산이나 엣지",
+      "content": "위 가설은 Representation Drift나 Policy 불일치의 **하위 메커니즘**으로 작용할 가능성이 높습니다. 그래프 연산이나 엣지 의미론의 불일치는 관계형 정보를 왜곡하여 Representation Drift (n-001/002)로 직접 발현될 수 있으며, 이러한 왜곡된 표상은 결국 Policy 불일치 (n-005/006/007)의 원인이 됩니다. 이는 독립적인 원인이라기보다 근본적인 의미론적 오류가 상위 문제로 전파되는 경로를 나타냅니다.\n\n(a) Gemini Flash가 critique, temporal_bridge, EDGE_TO를 생성할 때의 암묵적 규칙은 다음과 같습니다:\n\n*   **우선순위:** 명시적인 비판적 맥락(부정적 평가, 개선점)에서는 critique, 시간적 순서나 인과 관계가 분명할 때는 temporal_bridge가 높은 우선순위를 가집니다. 그 외의 일반적인 지향성 관계에서는 EDGE_TO가 기본값으로 사용됩니다.\n*   **원자성:** 각 엣지 타입은 특정 의미를 가진 단일 관계를 표현하는 원자적 단위로 생성됩니다.\n*   **병합 기준:** 엣지 타입 간의 명시적인 병합 규칙은 없으며, 모델은 주어진 컨텍스트에서",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -10996,6 +11029,50 @@
       "source": "gemini-2.0-flash",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-533",
+      "from": "n-319",
+      "to": "n-005",
+      "relation": "EDGE_TO",
+      "label": "Policy 불일치로 인한 그래프 편집 연산 차이를 “엣지 의미론 불일치”로 구체화/정식화",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-534",
+      "from": "n-319",
+      "to": "n-002",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=317): n-319→n-002",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 317,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-535",
+      "from": "n-320",
+      "to": "n-319",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-536",
+      "from": "n-320",
+      "to": "n-015",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=305): n-320→n-015",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 305,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -11006,9 +11083,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 318,
-    "total_edges": 532,
-    "next_node_id": "n-319",
+    "total_nodes": 320,
+    "total_edges": 536,
+    "next_node_id": "n-321",
     "last_updater": "gemini-2.0-flash"
   }
 }
