@@ -3250,6 +3250,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-198",
+      "type": "insight",
+      "label": "동일모델-페르소나 조건에서 “에코챔버”는 상호증폭이 아니라 동형성(동일 디코딩/보상) 산물일 수 있음",
+      "content": "동일 모델(gpt-5.2 × gpt-5.2)에 서로 다른 페르소나를 부여해도, 관측되는 수렴/강화가 ‘에코챔버(상호 강화 피드백)’ 때문인지, 아니면 (a) 동일한 기본 정책(사전학습+RLHF)과 (b) 유사한 디코딩/안전규칙/대화 관례가 만들어내는 ‘동형적 산출(algorithmic homophily)’ 때문인지가 불명확하다. 특히 대화가 반복될수록 두 에이전트는 상대의 텍스트를 입력으로 받아 다음 토큰을 생성하는데, 동일 모델이면 입력-출력 변환이 구조적으로 유사하므로 (i) 동일한 전형적 논증 패턴(hedging, 균형잡기, 요약-정리 포맷), (ii) 동일한 “정답처럼 보이는” 중간 수준의 일반론, (iii) 동일한 금기 회피가 자동으로 재생산된다. 이 경우 관측되는 ‘합의의 강화’는 상호 설득/동조의 결과가 아니라, 동일 변환기의 반복 적용으로 생기는 고정점/흡인자(attractor) 수렴일 수 있다. 따라서 에코챔버 가설을 검증하려면 “동형성에 의한 자연 수렴”과 “상호 피드백에 의한 증폭”을 분리하는 조작적 정의가 필요하다. 구체적으로: (1) 상호작용을 끊고도(단발 응답, 비대화) 동일한 결론/프레이밍이 재현되면 에코챔버가 아니라 동형성 가능성이 크다. (2) 반대로, 상호작용 횟수에 따라 특정 주장(한쪽 편향)의 강도/확신/배타성이 단조 증가하고, 그 증가가 상대 발화의 ‘동조 신호’에 민감하게 반응한다면(예: 찬성/강화 발화에만 기울기↑) 피드백 증폭의 증거가 된다. 핵심은 “합의”가 아니라 “상호작용에 의해 편향/확신이 추가로 생성되는가”를 측정해야 한다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "algorithmic-homophily",
+        "echo-chamber-metrics]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-199",
+      "type": "critique",
+      "label": "통합 종합: 조작화는 “편향·확신·배타성의 생성/증폭”만으로는 **자연 수렴(동형성: 같은 정보·규범에 노출돼 비슷해짐)**과 구분이 약하니, **상호작용에",
+      "content": "조작화는 “편향·확신·배타성의 생성/증폭”만으로는 **자연 수렴(동형성: 같은 정보·규범에 노출돼 비슷해짐)**과 구분이 약하니, **상호작용에 특이적인 양의 피드백 고리(이전 발화가 다음 발화를 더 극단/확신/배타로 밀어 올리는 자기강화)**를 핵심 기준(시간차/교차지연 효과)으로 추가하는 게 좋습니다. 설계는 (i) **단발 응답**(참가자 1회만 답변, 상대/모델의 후속 발화 없음) vs **다회 턴 상호작용**(예: 5턴) + (ii) **동조 신호**(상대가 찬성/반대/중립 템플릿) 2×3으로 두고, 매 턴 **확신도(0–100), 배타적 표현 비율(“유일/명백/틀림없다/저들은…” 등 사전 기반), 반증 탐색량(대안 가설·반례·출처요구·불확실성 표지 수)**를 산출하며, **자연 수렴**은 찬성/반대/중립 모두에서 “내용 유사도↑”는 있어도 **확신·배타성의 순증(Δ)과 교차지연(상대 t-1 → 나 t)의 양(+) 효과가 약**한 반면, **에코챔버**는 특히 찬성 조건에서 **턴이 진행될수록 확신·배타성↑, 반증 탐색량↓**가 나타나고 이 변화가 **상대의 동조 신호에 의해 유의하게 매개/증폭**(interaction effect)되는 것으로 예측",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -6904,6 +6937,38 @@
       "temporal_bridge": true,
       "gap": 182,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-338",
+      "from": "n-198",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "identifiability 문제를 ‘동일모델 동형성(흡인자 수렴) vs 상호증폭(에코챔버)’의 구체적 분리 기준으로 확장",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-339",
+      "from": "n-199",
+      "to": "n-198",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-340",
+      "from": "n-199",
+      "to": "n-013",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=186): n-199→n-013",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 186,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -6914,9 +6979,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 197,
-    "total_edges": 337,
-    "next_node_id": "n-198",
+    "total_nodes": 199,
+    "total_edges": 340,
+    "next_node_id": "n-200",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }
