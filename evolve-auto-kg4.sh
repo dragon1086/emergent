@@ -248,7 +248,13 @@ print(resp.text)
   [[ $_attempt -lt 3 ]] && sleep $BACKOFF
   BACKOFF=$((BACKOFF * 2))
 done
-log "✅ Agent B (Gemini Pro) 완료 (${#AGENT_B_RESPONSE} chars)"
+# [N9-1] Agent B 응답 검증 — traceback/에러 포함 시 빈 문자열로 처리
+if [[ -z "$AGENT_B_RESPONSE" ]] || echo "$AGENT_B_RESPONSE" | grep -qE "^Traceback|File .*, line [0-9]|raise .*(Error|Exception)"; then
+  log "⚠️ Agent B 응답 불량 (traceback/에러 감지) — Agent B 노드 스킵"
+  AGENT_B_RESPONSE=""
+else
+  log "✅ Agent B (Gemini Pro) 완료 (${#AGENT_B_RESPONSE} chars)"
+fi
 
 # 파싱 — 마크다운/들여쓰기/bullet/코드블록 대응
 parse_field() {

@@ -20,14 +20,20 @@ mkdir -p "$KG3_DIR/logs"
 
 log() { echo "[$(date '+%H:%M:%S')] KG3 $*" | tee -a "$LOG"; }
 
-# 사이클 제한
-COUNT=$(cat "$CYCLE_COUNT_FILE" 2>/dev/null || echo 0)
-if [[ $COUNT -ge $MAX_CYCLES ]]; then
-  log "⚠️  오늘 최대 사이클 ($MAX_CYCLES) 도달 — 스킵"
+# 사이클 제한 (flock으로 원자적 읽기+쓰기, max 도달 시 silent exit)
+(
+  flock -n 200 || exit 1
+  COUNT=$(cat "$CYCLE_COUNT_FILE" 2>/dev/null || echo 0)
+  if [[ $COUNT -ge $MAX_CYCLES ]]; then
+    exit 1
+  fi
+  echo $((COUNT + 1)) > "$CYCLE_COUNT_FILE"
+) 200>"${CYCLE_COUNT_FILE}.lock"
+if [[ $? -ne 0 ]]; then
   exit 0
 fi
-echo $((COUNT + 1)) > "$CYCLE_COUNT_FILE"
-log "🌱 KG-3 사이클 시작 #$((COUNT + 1))/$MAX_CYCLES"
+COUNT=$(cat "$CYCLE_COUNT_FILE" 2>/dev/null || echo 0)
+log "🌱 KG-3 사이클 시작 #${COUNT}/$MAX_CYCLES"
 
 # 중복 방지
 LOCK_FILE="/tmp/emergent-kg3-running.lock"
@@ -39,7 +45,8 @@ if [[ -f "$LOCK_FILE" ]]; then
   fi
 fi
 echo $$ > "$LOCK_FILE"
-trap "rm -f $LOCK_FILE" EXIT
+cleanup() { rm -f "$LOCK_FILE"; }
+trap cleanup EXIT INT TERM
 
 # 현재 KG-3 상태 수집
 export EMERGENT_KG_PATH="$KG3_PATH"
@@ -75,9 +82,8 @@ KG-2(same-vendor: GPT계열)와 CSER을 비교합니다.
 ## 현재 KG-3 상태
 $GRAPH_STATS
 
-## ⚠️ DCI 회복 지시 (최우선)
-현재 DCI = 0.0508 (심각한 단기 연결 편향). 목표: DCI > 0.1.
-아래 오래된 노드 중 하나를 EDGE_TO로 반드시 선택하세요 (최근 노드 연결 금지):
+## DCI 유지/회복 지시
+아래 오래된 노드 중 하나를 EDGE_TO로 반드시 선택하세요 (최근 노드 연결 금지, long-range 연결 유지):
 $OLD_NODES
 
 ## 지시

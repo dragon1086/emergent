@@ -160,10 +160,11 @@ def save_log(data: dict) -> None:
 # --- 유틸 ---
 
 def node_num(nid: str) -> int:
-    try:
-        return int(nid.replace("n-", ""))
-    except ValueError:
-        return 0
+    """Extract trailing numeric suffix from any node ID format.
+    n-001 -> 1, n-tech-098 -> 98, n-execloop-188 -> 188
+    """
+    m = re.search(r"(\d+)$", nid)
+    return int(m.group(1)) if m else 0
 
 
 def tokenize(text: str) -> set:
@@ -178,6 +179,13 @@ def jaccard(a: set, b: set) -> float:
 
 def type_compat(t1: str, t2: str) -> float:
     return TYPE_COMPAT.get(tuple(sorted([t1, t2])), DEFAULT_COMPAT)
+
+
+def would_feed_dci(t1: str, t2: str) -> bool:
+    """Check if this type pair would produce a DCI-feeding relation (before remapping)."""
+    key = tuple(sorted([t1, t2]))
+    rel, _ = RELATION_HINT.get(key, DEFAULT_RELATION)
+    return rel in DCI_FEEDING_RELATIONS
 
 
 def infer_relation(t1: str, t2: str) -> tuple:
@@ -202,6 +210,13 @@ def is_cross_source(n1: dict, n2: dict) -> bool:
 
 # --- v5 핵심: age_contrib 독립 계산 ---
 
+def _node_order(node: dict) -> int:
+    """Temporal ordering: cycle field preferred, node suffix number as fallback."""
+    if "cycle" in node:
+        return node["cycle"]
+    return node_num(node["id"])
+
+
 def score_pair_v5(n1: dict, n2: dict, max_node_id: int, max_cycle: int) -> dict:
     """
     v5 점수 계산.
@@ -209,17 +224,18 @@ def score_pair_v5(n1: dict, n2: dict, max_node_id: int, max_cycle: int) -> dict:
 
     v4 버그 수정: age_contrib를 edge_span_norm에서 분리.
     age_contrib = (node_a.cycle + node_b.cycle) / 2 / max_cycle
+    v5.1 버그 수정: node_num() 비숫자 ID 대응 + _node_order() 통일
     """
-    id1  = node_num(n1["id"])
-    id2  = node_num(n2["id"])
-    span = abs(id1 - id2)
+    ord1 = _node_order(n1)
+    ord2 = _node_order(n2)
+    span = abs(ord1 - ord2)
 
     edge_span_norm = span / max_node_id if max_node_id > 0 else 0.0
 
     # v5 수정: age_contrib 독립 계산 (v4 버그 수정)
-    # 두 노드의 cycle 기반 나이 평균 / max_cycle
-    cycle_a = n1.get("cycle", id1)  # cycle 필드 없으면 node_id를 프록시로
-    cycle_b = n2.get("cycle", id2)
+    # v5.1: _node_order로 통일 (cycle 우선, suffix num fallback)
+    cycle_a = _node_order(n1)
+    cycle_b = _node_order(n2)
     age_contrib = ((cycle_a + cycle_b) / 2 / max_cycle) if max_cycle > 0 else 0.0
 
     cross = is_cross_source(n1, n2)
@@ -272,11 +288,11 @@ def rank_candidates(kg: dict, min_span: int) -> list:
     CSER 제약 없음. DCI feeding 관계만 필터. min_span은 CLI 옵션.
     """
     nodes      = [n for n in kg["nodes"] if n["id"].startswith("n-")]
-    max_nid    = max(node_num(n["id"]) for n in nodes)
+    orders     = [_node_order(n) for n in nodes]
+    max_nid    = max(orders) if orders else 1
 
-    # max_cycle 계산 (age_contrib 독립 계산용)
-    cycles = [n.get("cycle", node_num(n["id"])) for n in nodes]
-    max_cycle = max(cycles) if cycles else 1
+    # max_cycle 계산 (age_contrib 독립 계산용) — _node_order 통일
+    max_cycle = max_nid
 
     existing = set()
     for e in kg["edges"]:
@@ -289,7 +305,7 @@ def rank_candidates(kg: dict, min_span: int) -> list:
     for n1, n2 in combinations(nodes, 2):
         if (n1["id"], n2["id"]) in existing:
             continue
-        span = abs(node_num(n1["id"]) - node_num(n2["id"]))
+        span = abs(_node_order(n1) - _node_order(n2))
         if span < min_span:
             continue
 

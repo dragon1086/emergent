@@ -5,7 +5,7 @@
 
 REPO_DIR="$HOME/emergent"
 LOG="$REPO_DIR/logs/evolve-auto-$(date +%Y-%m-%d).log"
-CYCLE_COUNT_FILE="/tmp/emergent-cycles-$(date +%Y%m%d)"
+CYCLE_COUNT_FILE="$REPO_DIR/logs/emergent-cycles-$(date +%Y%m%d)"
 MAX_CYCLES=10
 OAUTH_FILE="$HOME/.claude/oauth-token"
 

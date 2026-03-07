@@ -130,7 +130,8 @@ try:
     import hashlib
     _seed_val = int(hashlib.md5(node_id.encode()).hexdigest()[:8], 16)
     _rng = random.Random(_seed_val)
-    if _rng.random() < 0.70 and len(graph["nodes"]) >= 10:
+    # [N9-2] 70%→40% — temporal_bridge 비율 39.5% 과잉 → edge_span 인위적 팽창 방지
+    if _rng.random() < 0.40 and len(graph["nodes"]) >= 10:
         # 신규 노드 제외한 기존 노드를 ID 번호 오름차순으로 정렬 (낮은 ID = 오래된 노드)
         other_nodes = [n for n in graph["nodes"]
                        if n["id"] != node_id and n["id"] != edge_to]

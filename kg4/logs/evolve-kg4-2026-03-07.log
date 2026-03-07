@@ -751,3 +751,1758 @@
   max_span=636 → n-001↔n-100 closes_loop 엣지가 최대 기여
   node_age_diversity=0.2889 → 균등 분포 이론치(0.289) 근접
 
+[08:04:36] KG4 ✅ KG-4 사이클 완료
+[08:04:51] KG4 🌱 KG-4 사이클 시작 #1/100
+[08:04:51] KG4 📊 KG-4 현황: ── 통계 ──────────────────────────────────────
+총 노드: 641개
+총 엣지: 1050개
+
+노드 타입별:
+  •  critique: 188개
+  •  hypothesis: 368개
+  💡 insight: 79개
+  👁  observation: 1개
+  ❓ question: 5개
+
+출처별:
+  gemini-2.5-flash: 451개
+  gemini-2.5-pro: 188개
+  openclaw: 2개
+
+관계 종류:
+  answers: 5개
+  critiques: 189개
+  expands_on: 158개
+  motivates: 9개
+  posits_explanation_for: 224개
+  questions: 5개
+  refines_hypothesis: 45개
+  temporal_bridge: 415개
+[08:04:51] KG4 📊 현재 DCI: 0.1326
+[08:04:51] KG4 📊 현재 CSER: 0.5057
+[08:04:51] KG4 🕰️ 오래된 노드 후보: 8개
+[08:04:51] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[08:04:52] KG4 ✅ Agent A 완료 (3244 chars)
+[08:04:53] KG4 ✅ Agent B (Gemini Pro) 완료
+[08:04:53] KG4 ❌ NODE_LABEL 파싱 실패. Agent A 응답 첫 5줄:
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+    resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 5644, in generate_content
+    response = self._generate_content(
+[08:05:08] KG4 🌱 KG-4 사이클 시작 #2/100
+[08:05:08] KG4 📊 KG-4 현황: ── 통계 ──────────────────────────────────────
+총 노드: 641개
+총 엣지: 1050개
+
+노드 타입별:
+  •  critique: 188개
+  •  hypothesis: 368개
+  💡 insight: 79개
+  👁  observation: 1개
+  ❓ question: 5개
+
+출처별:
+  gemini-2.5-flash: 451개
+  gemini-2.5-pro: 188개
+  openclaw: 2개
+
+관계 종류:
+  answers: 5개
+  critiques: 189개
+  expands_on: 158개
+  motivates: 9개
+  posits_explanation_for: 224개
+  questions: 5개
+  refines_hypothesis: 45개
+  temporal_bridge: 415개
+[08:05:08] KG4 📊 현재 DCI: 0.1326
+[08:05:08] KG4 📊 현재 CSER: 0.5057
+[08:05:08] KG4 🕰️ 오래된 노드 후보: 8개
+[08:05:08] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[08:05:09] KG4 ✅ Agent A 완료 (3244 chars)
+[08:05:10] KG4 ✅ Agent B (Gemini Pro) 완료
+[08:05:10] KG4 ⚠️ 짝수 사이클 question 강제:  → question
+[08:05:10] KG4 ❌ NODE_LABEL 파싱 실패. Agent A 응답 첫 5줄:
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+    resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 5644, in generate_content
+    response = self._generate_content(
+[08:05:26] KG4 🌱 KG-4 사이클 시작 #3/100
+[08:05:26] KG4 📊 KG-4 현황: ── 통계 ──────────────────────────────────────
+총 노드: 641개
+총 엣지: 1050개
+
+노드 타입별:
+  •  critique: 188개
+  •  hypothesis: 368개
+  💡 insight: 79개
+  👁  observation: 1개
+  ❓ question: 5개
+
+출처별:
+  gemini-2.5-flash: 451개
+  gemini-2.5-pro: 188개
+  openclaw: 2개
+
+관계 종류:
+  answers: 5개
+  critiques: 189개
+  expands_on: 158개
+  motivates: 9개
+  posits_explanation_for: 224개
+  questions: 5개
+  refines_hypothesis: 45개
+  temporal_bridge: 415개
+[08:05:26] KG4 📊 현재 DCI: 0.1326
+[08:05:26] KG4 📊 현재 CSER: 0.5057
+[08:05:26] KG4 🕰️ 오래된 노드 후보: 8개
+[08:05:26] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[08:05:27] KG4 ✅ Agent A 완료 (3244 chars)
+[08:05:27] KG4 ✅ Agent B (Gemini Pro) 완료
+[08:05:27] KG4 ❌ NODE_LABEL 파싱 실패. Agent A 응답 첫 5줄:
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+    resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 5644, in generate_content
+    response = self._generate_content(
+[08:05:43] KG4 🌱 KG-4 사이클 시작 #4/100
+[08:05:43] KG4 📊 KG-4 현황: ── 통계 ──────────────────────────────────────
+총 노드: 641개
+총 엣지: 1050개
+
+노드 타입별:
+  •  critique: 188개
+  •  hypothesis: 368개
+  💡 insight: 79개
+  👁  observation: 1개
+  ❓ question: 5개
+
+출처별:
+  gemini-2.5-flash: 451개
+  gemini-2.5-pro: 188개
+  openclaw: 2개
+
+관계 종류:
+  answers: 5개
+  critiques: 189개
+  expands_on: 158개
+  motivates: 9개
+  posits_explanation_for: 224개
+  questions: 5개
+  refines_hypothesis: 45개
+  temporal_bridge: 415개
+[08:05:43] KG4 📊 현재 DCI: 0.1326
+[08:05:43] KG4 📊 현재 CSER: 0.5057
+[08:05:43] KG4 🕰️ 오래된 노드 후보: 8개
+[08:05:43] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[08:05:44] KG4 ✅ Agent A 완료 (3244 chars)
+[08:05:44] KG4 ✅ Agent B (Gemini Pro) 완료
+[08:05:44] KG4 ⚠️ 짝수 사이클 question 강제:  → question
+[08:05:44] KG4 ❌ NODE_LABEL 파싱 실패. Agent A 응답 첫 5줄:
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+    resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 5644, in generate_content
+    response = self._generate_content(
+[08:06:00] KG4 🌱 KG-4 사이클 시작 #1/100
+[08:06:00] KG4 📊 KG-4 현황: ── 통계 ──────────────────────────────────────
+총 노드: 641개
+총 엣지: 1050개
+
+노드 타입별:
+  •  critique: 188개
+  •  hypothesis: 368개
+  💡 insight: 79개
+  👁  observation: 1개
+  ❓ question: 5개
+
+출처별:
+  gemini-2.5-flash: 451개
+  gemini-2.5-pro: 188개
+  openclaw: 2개
+
+관계 종류:
+  answers: 5개
+  critiques: 189개
+  expands_on: 158개
+  motivates: 9개
+  posits_explanation_for: 224개
+  questions: 5개
+  refines_hypothesis: 45개
+  temporal_bridge: 415개
+[08:06:00] KG4 📊 현재 DCI: 0.1326
+[08:06:00] KG4 📊 현재 CSER: 0.5057
+[08:06:00] KG4 🕰️ 오래된 노드 후보: 8개
+[08:06:00] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[08:06:01] KG4 ✅ Agent A 완료 (3244 chars)
+[08:06:02] KG4 ✅ Agent B (Gemini Pro) 완료
+[08:06:02] KG4 ❌ NODE_LABEL 파싱 실패. Agent A 응답 첫 5줄:
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+    resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 5644, in generate_content
+    response = self._generate_content(
+[08:06:17] KG4 🌱 KG-4 사이클 시작 #2/100
+[08:06:17] KG4 📊 KG-4 현황: ── 통계 ──────────────────────────────────────
+총 노드: 641개
+총 엣지: 1050개
+
+노드 타입별:
+  •  critique: 188개
+  •  hypothesis: 368개
+  💡 insight: 79개
+  👁  observation: 1개
+  ❓ question: 5개
+
+출처별:
+  gemini-2.5-flash: 451개
+  gemini-2.5-pro: 188개
+  openclaw: 2개
+
+관계 종류:
+  answers: 5개
+  critiques: 189개
+  expands_on: 158개
+  motivates: 9개
+  posits_explanation_for: 224개
+  questions: 5개
+  refines_hypothesis: 45개
+  temporal_bridge: 415개
+[08:06:17] KG4 📊 현재 DCI: 0.1326
+[08:06:17] KG4 📊 현재 CSER: 0.5057
+[08:06:17] KG4 🕰️ 오래된 노드 후보: 8개
+[08:06:17] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[08:06:18] KG4 ✅ Agent A 완료 (3244 chars)
+[08:06:19] KG4 ✅ Agent B (Gemini Pro) 완료
+[08:06:19] KG4 ⚠️ 짝수 사이클 question 강제:  → question
+[08:06:19] KG4 ❌ NODE_LABEL 파싱 실패. Agent A 응답 첫 5줄:
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+    resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 5644, in generate_content
+    response = self._generate_content(
+[08:06:34] KG4 🌱 KG-4 사이클 시작 #3/100
+[08:06:34] KG4 📊 KG-4 현황: ── 통계 ──────────────────────────────────────
+총 노드: 641개
+총 엣지: 1050개
+
+노드 타입별:
+  •  critique: 188개
+  •  hypothesis: 368개
+  💡 insight: 79개
+  👁  observation: 1개
+  ❓ question: 5개
+
+출처별:
+  gemini-2.5-flash: 451개
+  gemini-2.5-pro: 188개
+  openclaw: 2개
+
+관계 종류:
+  answers: 5개
+  critiques: 189개
+  expands_on: 158개
+  motivates: 9개
+  posits_explanation_for: 224개
+  questions: 5개
+  refines_hypothesis: 45개
+  temporal_bridge: 415개
+[08:06:34] KG4 📊 현재 DCI: 0.1326
+[08:06:34] KG4 📊 현재 CSER: 0.5057
+[08:06:34] KG4 🕰️ 오래된 노드 후보: 8개
+[08:06:34] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[08:06:35] KG4 ✅ Agent A 완료 (3244 chars)
+[08:06:36] KG4 ✅ Agent B (Gemini Pro) 완료
+[08:06:36] KG4 ❌ NODE_LABEL 파싱 실패. Agent A 응답 첫 5줄:
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+    resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 5644, in generate_content
+    response = self._generate_content(
+[08:06:51] KG4 🌱 KG-4 사이클 시작 #4/100
+[08:06:51] KG4 📊 KG-4 현황: ── 통계 ──────────────────────────────────────
+총 노드: 641개
+총 엣지: 1050개
+
+노드 타입별:
+  •  critique: 188개
+  •  hypothesis: 368개
+  💡 insight: 79개
+  👁  observation: 1개
+  ❓ question: 5개
+
+출처별:
+  gemini-2.5-flash: 451개
+  gemini-2.5-pro: 188개
+  openclaw: 2개
+
+관계 종류:
+  answers: 5개
+  critiques: 189개
+  expands_on: 158개
+  motivates: 9개
+  posits_explanation_for: 224개
+  questions: 5개
+  refines_hypothesis: 45개
+  temporal_bridge: 415개
+[08:06:51] KG4 📊 현재 DCI: 0.1326
+[08:06:51] KG4 📊 현재 CSER: 0.5057
+[08:06:51] KG4 🕰️ 오래된 노드 후보: 8개
+[08:06:51] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[08:06:52] KG4 ✅ Agent A 완료 (3244 chars)
+[08:06:53] KG4 ✅ Agent B (Gemini Pro) 완료
+[08:06:53] KG4 ⚠️ 짝수 사이클 question 강제:  → question
+[08:06:53] KG4 ❌ NODE_LABEL 파싱 실패. Agent A 응답 첫 5줄:
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+    resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 5644, in generate_content
+    response = self._generate_content(
+[08:07:08] KG4 🌱 KG-4 사이클 시작 #5/100
+[08:07:08] KG4 📊 KG-4 현황: ── 통계 ──────────────────────────────────────
+총 노드: 641개
+총 엣지: 1050개
+
+노드 타입별:
+  •  critique: 188개
+  •  hypothesis: 368개
+  💡 insight: 79개
+  👁  observation: 1개
+  ❓ question: 5개
+
+출처별:
+  gemini-2.5-flash: 451개
+  gemini-2.5-pro: 188개
+  openclaw: 2개
+
+관계 종류:
+  answers: 5개
+  critiques: 189개
+  expands_on: 158개
+  motivates: 9개
+  posits_explanation_for: 224개
+  questions: 5개
+  refines_hypothesis: 45개
+  temporal_bridge: 415개
+[08:07:09] KG4 📊 현재 DCI: 0.1326
+[08:07:09] KG4 📊 현재 CSER: 0.5057
+[08:07:09] KG4 🕰️ 오래된 노드 후보: 8개
+[08:07:09] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[08:07:10] KG4 ✅ Agent A 완료 (3244 chars)
+[08:07:11] KG4 ✅ Agent B (Gemini Pro) 완료
+[08:07:11] KG4 ❌ NODE_LABEL 파싱 실패. Agent A 응답 첫 5줄:
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+    resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 5644, in generate_content
+    response = self._generate_content(
+[08:07:26] KG4 🌱 KG-4 사이클 시작 #6/100
+[08:07:26] KG4 📊 KG-4 현황: ── 통계 ──────────────────────────────────────
+총 노드: 641개
+총 엣지: 1050개
+
+노드 타입별:
+  •  critique: 188개
+  •  hypothesis: 368개
+  💡 insight: 79개
+  👁  observation: 1개
+  ❓ question: 5개
+
+출처별:
+  gemini-2.5-flash: 451개
+  gemini-2.5-pro: 188개
+  openclaw: 2개
+
+관계 종류:
+  answers: 5개
+  critiques: 189개
+  expands_on: 158개
+  motivates: 9개
+  posits_explanation_for: 224개
+  questions: 5개
+  refines_hypothesis: 45개
+  temporal_bridge: 415개
+[08:07:26] KG4 📊 현재 DCI: 0.1326
+[08:07:26] KG4 📊 현재 CSER: 0.5057
+[08:07:26] KG4 🕰️ 오래된 노드 후보: 8개
+[08:07:26] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[08:07:27] KG4 ✅ Agent A 완료 (3244 chars)
+[08:07:28] KG4 ✅ Agent B (Gemini Pro) 완료
+[08:07:28] KG4 ⚠️ 짝수 사이클 question 강제:  → question
+[08:07:28] KG4 ❌ NODE_LABEL 파싱 실패. Agent A 응답 첫 5줄:
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+    resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 5644, in generate_content
+    response = self._generate_content(
+[08:07:43] KG4 🌱 KG-4 사이클 시작 #7/100
+[08:07:43] KG4 📊 KG-4 현황: ── 통계 ──────────────────────────────────────
+총 노드: 641개
+총 엣지: 1050개
+
+노드 타입별:
+  •  critique: 188개
+  •  hypothesis: 368개
+  💡 insight: 79개
+  👁  observation: 1개
+  ❓ question: 5개
+
+출처별:
+  gemini-2.5-flash: 451개
+  gemini-2.5-pro: 188개
+  openclaw: 2개
+
+관계 종류:
+  answers: 5개
+  critiques: 189개
+  expands_on: 158개
+  motivates: 9개
+  posits_explanation_for: 224개
+  questions: 5개
+  refines_hypothesis: 45개
+  temporal_bridge: 415개
+[08:07:43] KG4 📊 현재 DCI: 0.1326
+[08:07:43] KG4 📊 현재 CSER: 0.5057
+[08:07:43] KG4 🕰️ 오래된 노드 후보: 8개
+[08:07:44] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[08:07:44] KG4 ✅ Agent A 완료 (3244 chars)
+[08:07:45] KG4 ✅ Agent B (Gemini Pro) 완료
+[08:07:45] KG4 ❌ NODE_LABEL 파싱 실패. Agent A 응답 첫 5줄:
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+    resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 5644, in generate_content
+    response = self._generate_content(
+[08:08:00] KG4 🌱 KG-4 사이클 시작 #8/100
+[08:08:00] KG4 📊 KG-4 현황: ── 통계 ──────────────────────────────────────
+총 노드: 641개
+총 엣지: 1050개
+
+노드 타입별:
+  •  critique: 188개
+  •  hypothesis: 368개
+  💡 insight: 79개
+  👁  observation: 1개
+  ❓ question: 5개
+
+출처별:
+  gemini-2.5-flash: 451개
+  gemini-2.5-pro: 188개
+  openclaw: 2개
+
+관계 종류:
+  answers: 5개
+  critiques: 189개
+  expands_on: 158개
+  motivates: 9개
+  posits_explanation_for: 224개
+  questions: 5개
+  refines_hypothesis: 45개
+  temporal_bridge: 415개
+[08:08:01] KG4 📊 현재 DCI: 0.1326
+[08:08:01] KG4 📊 현재 CSER: 0.5057
+[08:08:01] KG4 🕰️ 오래된 노드 후보: 8개
+[08:08:01] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+    resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 5644, in generate_content
+    response = self._generate_content(
+        model=model, contents=contents, config=parsed_config
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 4306, in _generate_content
+    response = self._api_client.request(
+        'post', path, request_dict, http_options
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1401, in request
+    response = self._request(http_request, http_options, stream=False)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1237, in _request
+    return self._retry(self._request_once, http_request, stream)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 413, in exc_check
+    raise retry_exc.reraise()
+          ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 184, in reraise
+    raise self.last_attempt.result()
+          ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 443, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 395, in __get_result
+    raise self._exception
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1214, in _request_once
+    errors.APIError.raise_for_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 134, in raise_for_response
+    cls.raise_error(response.status_code, response_json, response)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 159, in raise_error
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API key expired. Please renew the API key.'}]}}
+[08:08:02] KG4 ⚠️ Agent A 시도 1 실패 — 5초 후 재시도
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+    resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 5644, in generate_content
+    response = self._generate_content(
+        model=model, contents=contents, config=parsed_config
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 4306, in _generate_content
+    response = self._api_client.request(
+        'post', path, request_dict, http_options
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1401, in request
+    response = self._request(http_request, http_options, stream=False)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1237, in _request
+    return self._retry(self._request_once, http_request, stream)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 413, in exc_check
+    raise retry_exc.reraise()
+          ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 184, in reraise
+    raise self.last_attempt.result()
+          ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 443, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 395, in __get_result
+    raise self._exception
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1214, in _request_once
+    errors.APIError.raise_for_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 134, in raise_for_response
+    cls.raise_error(response.status_code, response_json, response)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 159, in raise_error
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API key expired. Please renew the API key.'}]}}
+[08:08:08] KG4 ⚠️ Agent A 시도 2 실패 — 5초 후 재시도
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+    resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 5644, in generate_content
+    response = self._generate_content(
+        model=model, contents=contents, config=parsed_config
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 4306, in _generate_content
+    response = self._api_client.request(
+        'post', path, request_dict, http_options
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1401, in request
+    response = self._request(http_request, http_options, stream=False)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1237, in _request
+    return self._retry(self._request_once, http_request, stream)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 413, in exc_check
+    raise retry_exc.reraise()
+          ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 184, in reraise
+    raise self.last_attempt.result()
+          ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 443, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 395, in __get_result
+    raise self._exception
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1214, in _request_once
+    errors.APIError.raise_for_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 134, in raise_for_response
+    cls.raise_error(response.status_code, response_json, response)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 159, in raise_error
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API key expired. Please renew the API key.'}]}}
+[08:08:14] KG4 ⚠️ Agent A 시도 3 실패 — 0초 후 재시도
+[08:08:14] KG4 ❌ Agent A (Gemini Flash) 3회 시도 모두 실패
+
+[08:08:29] KG4 🌱 KG-4 사이클 시작 #9/100
+[08:08:29] KG4 📊 KG-4 현황: ── 통계 ──────────────────────────────────────
+총 노드: 641개
+총 엣지: 1050개
+
+노드 타입별:
+  •  critique: 188개
+  •  hypothesis: 368개
+  💡 insight: 79개
+  👁  observation: 1개
+  ❓ question: 5개
+
+출처별:
+  gemini-2.5-flash: 451개
+  gemini-2.5-pro: 188개
+  openclaw: 2개
+
+관계 종류:
+  answers: 5개
+  critiques: 189개
+  expands_on: 158개
+  motivates: 9개
+  posits_explanation_for: 224개
+  questions: 5개
+  refines_hypothesis: 45개
+  temporal_bridge: 415개
+[08:08:29] KG4 📊 현재 DCI: 0.1326
+[08:08:29] KG4 📊 현재 CSER: 0.5057
+[08:08:29] KG4 🕰️ 오래된 노드 후보: 8개
+[08:08:29] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+    resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 5644, in generate_content
+    response = self._generate_content(
+        model=model, contents=contents, config=parsed_config
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 4306, in _generate_content
+    response = self._api_client.request(
+        'post', path, request_dict, http_options
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1401, in request
+    response = self._request(http_request, http_options, stream=False)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1237, in _request
+    return self._retry(self._request_once, http_request, stream)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 413, in exc_check
+    raise retry_exc.reraise()
+          ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 184, in reraise
+    raise self.last_attempt.result()
+          ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 443, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 395, in __get_result
+    raise self._exception
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1214, in _request_once
+    errors.APIError.raise_for_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 134, in raise_for_response
+    cls.raise_error(response.status_code, response_json, response)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 159, in raise_error
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API key expired. Please renew the API key.'}]}}
+[08:08:30] KG4 ⚠️ Agent A 시도 1 실패 — 5초 후 재시도
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+    resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 5644, in generate_content
+    response = self._generate_content(
+        model=model, contents=contents, config=parsed_config
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 4306, in _generate_content
+    response = self._api_client.request(
+        'post', path, request_dict, http_options
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1401, in request
+    response = self._request(http_request, http_options, stream=False)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1237, in _request
+    return self._retry(self._request_once, http_request, stream)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 413, in exc_check
+    raise retry_exc.reraise()
+          ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 184, in reraise
+    raise self.last_attempt.result()
+          ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 443, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 395, in __get_result
+    raise self._exception
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1214, in _request_once
+    errors.APIError.raise_for_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 134, in raise_for_response
+    cls.raise_error(response.status_code, response_json, response)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 159, in raise_error
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API key expired. Please renew the API key.'}]}}
+[08:08:36] KG4 ⚠️ Agent A 시도 2 실패 — 5초 후 재시도
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+    resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 5644, in generate_content
+    response = self._generate_content(
+        model=model, contents=contents, config=parsed_config
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 4306, in _generate_content
+    response = self._api_client.request(
+        'post', path, request_dict, http_options
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1401, in request
+    response = self._request(http_request, http_options, stream=False)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1237, in _request
+    return self._retry(self._request_once, http_request, stream)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 413, in exc_check
+    raise retry_exc.reraise()
+          ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 184, in reraise
+    raise self.last_attempt.result()
+          ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 443, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 395, in __get_result
+    raise self._exception
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1214, in _request_once
+    errors.APIError.raise_for_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 134, in raise_for_response
+    cls.raise_error(response.status_code, response_json, response)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 159, in raise_error
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API key expired. Please renew the API key.'}]}}
+[08:08:42] KG4 ⚠️ Agent A 시도 3 실패 — 0초 후 재시도
+[08:08:42] KG4 ❌ Agent A (Gemini Flash) 3회 시도 모두 실패
+
+[08:08:57] KG4 🌱 KG-4 사이클 시작 #10/100
+[08:08:57] KG4 📊 KG-4 현황: ── 통계 ──────────────────────────────────────
+총 노드: 641개
+총 엣지: 1050개
+
+노드 타입별:
+  •  critique: 188개
+  •  hypothesis: 368개
+  💡 insight: 79개
+  👁  observation: 1개
+  ❓ question: 5개
+
+출처별:
+  gemini-2.5-flash: 451개
+  gemini-2.5-pro: 188개
+  openclaw: 2개
+
+관계 종류:
+  answers: 5개
+  critiques: 189개
+  expands_on: 158개
+  motivates: 9개
+  posits_explanation_for: 224개
+  questions: 5개
+  refines_hypothesis: 45개
+  temporal_bridge: 415개
+[08:08:57] KG4 📊 현재 DCI: 0.1326
+[08:08:57] KG4 📊 현재 CSER: 0.5057
+[08:08:57] KG4 🕰️ 오래된 노드 후보: 8개
+[08:08:57] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+    resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 5644, in generate_content
+    response = self._generate_content(
+        model=model, contents=contents, config=parsed_config
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 4306, in _generate_content
+    response = self._api_client.request(
+        'post', path, request_dict, http_options
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1401, in request
+    response = self._request(http_request, http_options, stream=False)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1237, in _request
+    return self._retry(self._request_once, http_request, stream)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 413, in exc_check
+    raise retry_exc.reraise()
+          ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 184, in reraise
+    raise self.last_attempt.result()
+          ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 443, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 395, in __get_result
+    raise self._exception
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1214, in _request_once
+    errors.APIError.raise_for_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 134, in raise_for_response
+    cls.raise_error(response.status_code, response_json, response)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 159, in raise_error
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API key expired. Please renew the API key.'}]}}
+[08:08:58] KG4 ⚠️ Agent A 시도 1 실패 — 5초 후 재시도
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+    resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 5644, in generate_content
+    response = self._generate_content(
+        model=model, contents=contents, config=parsed_config
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 4306, in _generate_content
+    response = self._api_client.request(
+        'post', path, request_dict, http_options
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1401, in request
+    response = self._request(http_request, http_options, stream=False)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1237, in _request
+    return self._retry(self._request_once, http_request, stream)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 413, in exc_check
+    raise retry_exc.reraise()
+          ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 184, in reraise
+    raise self.last_attempt.result()
+          ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 443, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 395, in __get_result
+    raise self._exception
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1214, in _request_once
+    errors.APIError.raise_for_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 134, in raise_for_response
+    cls.raise_error(response.status_code, response_json, response)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 159, in raise_error
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API key expired. Please renew the API key.'}]}}
+[08:09:04] KG4 ⚠️ Agent A 시도 2 실패 — 5초 후 재시도
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+    resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 5644, in generate_content
+    response = self._generate_content(
+        model=model, contents=contents, config=parsed_config
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 4306, in _generate_content
+    response = self._api_client.request(
+        'post', path, request_dict, http_options
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1401, in request
+    response = self._request(http_request, http_options, stream=False)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1237, in _request
+    return self._retry(self._request_once, http_request, stream)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 413, in exc_check
+    raise retry_exc.reraise()
+          ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 184, in reraise
+    raise self.last_attempt.result()
+          ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 443, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 395, in __get_result
+    raise self._exception
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1214, in _request_once
+    errors.APIError.raise_for_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 134, in raise_for_response
+    cls.raise_error(response.status_code, response_json, response)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 159, in raise_error
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API key expired. Please renew the API key.'}]}}
+[08:09:10] KG4 ⚠️ Agent A 시도 3 실패 — 0초 후 재시도
+[08:09:10] KG4 ❌ Agent A (Gemini Flash) 3회 시도 모두 실패
+
+[08:09:26] KG4 🌱 KG-4 사이클 시작 #11/100
+[08:09:26] KG4 📊 KG-4 현황: ── 통계 ──────────────────────────────────────
+총 노드: 641개
+총 엣지: 1050개
+
+노드 타입별:
+  •  critique: 188개
+  •  hypothesis: 368개
+  💡 insight: 79개
+  👁  observation: 1개
+  ❓ question: 5개
+
+출처별:
+  gemini-2.5-flash: 451개
+  gemini-2.5-pro: 188개
+  openclaw: 2개
+
+관계 종류:
+  answers: 5개
+  critiques: 189개
+  expands_on: 158개
+  motivates: 9개
+  posits_explanation_for: 224개
+  questions: 5개
+  refines_hypothesis: 45개
+  temporal_bridge: 415개
+[08:09:26] KG4 📊 현재 DCI: 0.1326
+[08:09:26] KG4 📊 현재 CSER: 0.5057
+[08:09:26] KG4 🕰️ 오래된 노드 후보: 8개
+[08:09:26] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+    resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 5644, in generate_content
+    response = self._generate_content(
+        model=model, contents=contents, config=parsed_config
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 4306, in _generate_content
+    response = self._api_client.request(
+        'post', path, request_dict, http_options
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1401, in request
+    response = self._request(http_request, http_options, stream=False)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1237, in _request
+    return self._retry(self._request_once, http_request, stream)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 413, in exc_check
+    raise retry_exc.reraise()
+          ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 184, in reraise
+    raise self.last_attempt.result()
+          ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 443, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 395, in __get_result
+    raise self._exception
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1214, in _request_once
+    errors.APIError.raise_for_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 134, in raise_for_response
+    cls.raise_error(response.status_code, response_json, response)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 159, in raise_error
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API key expired. Please renew the API key.'}]}}
+[08:09:27] KG4 ⚠️ Agent A 시도 1 실패 — 5초 후 재시도
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+    resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 5644, in generate_content
+    response = self._generate_content(
+        model=model, contents=contents, config=parsed_config
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 4306, in _generate_content
+    response = self._api_client.request(
+        'post', path, request_dict, http_options
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1401, in request
+    response = self._request(http_request, http_options, stream=False)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1237, in _request
+    return self._retry(self._request_once, http_request, stream)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 413, in exc_check
+    raise retry_exc.reraise()
+          ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 184, in reraise
+    raise self.last_attempt.result()
+          ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 443, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 395, in __get_result
+    raise self._exception
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1214, in _request_once
+    errors.APIError.raise_for_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 134, in raise_for_response
+    cls.raise_error(response.status_code, response_json, response)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 159, in raise_error
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API key expired. Please renew the API key.'}]}}
+[08:09:33] KG4 ⚠️ Agent A 시도 2 실패 — 5초 후 재시도
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+    resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 5644, in generate_content
+    response = self._generate_content(
+        model=model, contents=contents, config=parsed_config
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 4306, in _generate_content
+    response = self._api_client.request(
+        'post', path, request_dict, http_options
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1401, in request
+    response = self._request(http_request, http_options, stream=False)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1237, in _request
+    return self._retry(self._request_once, http_request, stream)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 413, in exc_check
+    raise retry_exc.reraise()
+          ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 184, in reraise
+    raise self.last_attempt.result()
+          ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 443, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 395, in __get_result
+    raise self._exception
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1214, in _request_once
+    errors.APIError.raise_for_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 134, in raise_for_response
+    cls.raise_error(response.status_code, response_json, response)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 159, in raise_error
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API key expired. Please renew the API key.'}]}}
+[08:09:39] KG4 ⚠️ Agent A 시도 3 실패 — 0초 후 재시도
+[08:09:39] KG4 ❌ Agent A (Gemini Flash) 3회 시도 모두 실패
+
+[08:09:54] KG4 🌱 KG-4 사이클 시작 #12/100
+[08:09:54] KG4 📊 KG-4 현황: ── 통계 ──────────────────────────────────────
+총 노드: 641개
+총 엣지: 1050개
+
+노드 타입별:
+  •  critique: 188개
+  •  hypothesis: 368개
+  💡 insight: 79개
+  👁  observation: 1개
+  ❓ question: 5개
+
+출처별:
+  gemini-2.5-flash: 451개
+  gemini-2.5-pro: 188개
+  openclaw: 2개
+
+관계 종류:
+  answers: 5개
+  critiques: 189개
+  expands_on: 158개
+  motivates: 9개
+  posits_explanation_for: 224개
+  questions: 5개
+  refines_hypothesis: 45개
+  temporal_bridge: 415개
+[08:09:54] KG4 📊 현재 DCI: 0.1326
+[08:09:54] KG4 📊 현재 CSER: 0.5057
+[08:09:54] KG4 🕰️ 오래된 노드 후보: 8개
+[08:09:54] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+    resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 5644, in generate_content
+    response = self._generate_content(
+        model=model, contents=contents, config=parsed_config
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 4306, in _generate_content
+    response = self._api_client.request(
+        'post', path, request_dict, http_options
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1401, in request
+    response = self._request(http_request, http_options, stream=False)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1237, in _request
+    return self._retry(self._request_once, http_request, stream)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 413, in exc_check
+    raise retry_exc.reraise()
+          ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 184, in reraise
+    raise self.last_attempt.result()
+          ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 443, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 395, in __get_result
+    raise self._exception
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1214, in _request_once
+    errors.APIError.raise_for_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 134, in raise_for_response
+    cls.raise_error(response.status_code, response_json, response)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 159, in raise_error
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API key expired. Please renew the API key.'}]}}
+[08:09:56] KG4 ⚠️ Agent A 시도 1 실패 — 5초 후 재시도
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+    resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 5644, in generate_content
+    response = self._generate_content(
+        model=model, contents=contents, config=parsed_config
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 4306, in _generate_content
+    response = self._api_client.request(
+        'post', path, request_dict, http_options
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1401, in request
+    response = self._request(http_request, http_options, stream=False)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1237, in _request
+    return self._retry(self._request_once, http_request, stream)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 413, in exc_check
+    raise retry_exc.reraise()
+          ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 184, in reraise
+    raise self.last_attempt.result()
+          ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 443, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 395, in __get_result
+    raise self._exception
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1214, in _request_once
+    errors.APIError.raise_for_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 134, in raise_for_response
+    cls.raise_error(response.status_code, response_json, response)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 159, in raise_error
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API key expired. Please renew the API key.'}]}}
+[08:10:02] KG4 ⚠️ Agent A 시도 2 실패 — 5초 후 재시도
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+    resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 5644, in generate_content
+    response = self._generate_content(
+        model=model, contents=contents, config=parsed_config
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 4306, in _generate_content
+    response = self._api_client.request(
+        'post', path, request_dict, http_options
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1401, in request
+    response = self._request(http_request, http_options, stream=False)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1237, in _request
+    return self._retry(self._request_once, http_request, stream)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 413, in exc_check
+    raise retry_exc.reraise()
+          ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 184, in reraise
+    raise self.last_attempt.result()
+          ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 443, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 395, in __get_result
+    raise self._exception
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1214, in _request_once
+    errors.APIError.raise_for_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 134, in raise_for_response
+    cls.raise_error(response.status_code, response_json, response)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 159, in raise_error
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API key expired. Please renew the API key.'}]}}
+[08:10:09] KG4 ⚠️ Agent A 시도 3 실패 — 0초 후 재시도
+[08:10:09] KG4 ❌ Agent A (Gemini Flash) 3회 시도 모두 실패
+
+[08:10:25] KG4 🌱 KG-4 사이클 시작 #13/100
+[08:10:25] KG4 📊 KG-4 현황: ── 통계 ──────────────────────────────────────
+총 노드: 641개
+총 엣지: 1050개
+
+노드 타입별:
+  •  critique: 188개
+  •  hypothesis: 368개
+  💡 insight: 79개
+  👁  observation: 1개
+  ❓ question: 5개
+
+출처별:
+  gemini-2.5-flash: 451개
+  gemini-2.5-pro: 188개
+  openclaw: 2개
+
+관계 종류:
+  answers: 5개
+  critiques: 189개
+  expands_on: 158개
+  motivates: 9개
+  posits_explanation_for: 224개
+  questions: 5개
+  refines_hypothesis: 45개
+  temporal_bridge: 415개
+[08:10:25] KG4 📊 현재 DCI: 0.1326
+[08:10:25] KG4 📊 현재 CSER: 0.5057
+[08:10:25] KG4 🕰️ 오래된 노드 후보: 8개
+[08:10:25] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+    resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 5644, in generate_content
+    response = self._generate_content(
+        model=model, contents=contents, config=parsed_config
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 4306, in _generate_content
+    response = self._api_client.request(
+        'post', path, request_dict, http_options
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1401, in request
+    response = self._request(http_request, http_options, stream=False)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1237, in _request
+    return self._retry(self._request_once, http_request, stream)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 413, in exc_check
+    raise retry_exc.reraise()
+          ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 184, in reraise
+    raise self.last_attempt.result()
+          ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 443, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 395, in __get_result
+    raise self._exception
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1214, in _request_once
+    errors.APIError.raise_for_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 134, in raise_for_response
+    cls.raise_error(response.status_code, response_json, response)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 159, in raise_error
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API key expired. Please renew the API key.'}]}}
+[08:10:28] KG4 ⚠️ Agent A 시도 1 실패 — 5초 후 재시도
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+    resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 5644, in generate_content
+    response = self._generate_content(
+        model=model, contents=contents, config=parsed_config
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 4306, in _generate_content
+    response = self._api_client.request(
+        'post', path, request_dict, http_options
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1401, in request
+    response = self._request(http_request, http_options, stream=False)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1237, in _request
+    return self._retry(self._request_once, http_request, stream)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 413, in exc_check
+    raise retry_exc.reraise()
+          ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 184, in reraise
+    raise self.last_attempt.result()
+          ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 443, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 395, in __get_result
+    raise self._exception
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1214, in _request_once
+    errors.APIError.raise_for_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 134, in raise_for_response
+    cls.raise_error(response.status_code, response_json, response)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 159, in raise_error
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API key expired. Please renew the API key.'}]}}
+[08:10:35] KG4 ⚠️ Agent A 시도 2 실패 — 5초 후 재시도
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+    resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 5644, in generate_content
+    response = self._generate_content(
+        model=model, contents=contents, config=parsed_config
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 4306, in _generate_content
+    response = self._api_client.request(
+        'post', path, request_dict, http_options
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1401, in request
+    response = self._request(http_request, http_options, stream=False)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1237, in _request
+    return self._retry(self._request_once, http_request, stream)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 413, in exc_check
+    raise retry_exc.reraise()
+          ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 184, in reraise
+    raise self.last_attempt.result()
+          ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 443, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 395, in __get_result
+    raise self._exception
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1214, in _request_once
+    errors.APIError.raise_for_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 134, in raise_for_response
+    cls.raise_error(response.status_code, response_json, response)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 159, in raise_error
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API key expired. Please renew the API key.'}]}}
+[08:10:42] KG4 ⚠️ Agent A 시도 3 실패 — 0초 후 재시도
+[08:10:42] KG4 ❌ Agent A (Gemini Flash) 3회 시도 모두 실패
+
+[08:10:57] KG4 🌱 KG-4 사이클 시작 #14/100
+[08:10:58] KG4 📊 KG-4 현황: ── 통계 ──────────────────────────────────────
+총 노드: 641개
+총 엣지: 1050개
+
+노드 타입별:
+  •  critique: 188개
+  •  hypothesis: 368개
+  💡 insight: 79개
+  👁  observation: 1개
+  ❓ question: 5개
+
+출처별:
+  gemini-2.5-flash: 451개
+  gemini-2.5-pro: 188개
+  openclaw: 2개
+
+관계 종류:
+  answers: 5개
+  critiques: 189개
+  expands_on: 158개
+  motivates: 9개
+  posits_explanation_for: 224개
+  questions: 5개
+  refines_hypothesis: 45개
+  temporal_bridge: 415개
+[08:10:58] KG4 📊 현재 DCI: 0.1326
+[08:10:58] KG4 📊 현재 CSER: 0.5057
+[08:10:58] KG4 🕰️ 오래된 노드 후보: 8개
+[08:10:58] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+    resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 5644, in generate_content
+    response = self._generate_content(
+        model=model, contents=contents, config=parsed_config
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 4306, in _generate_content
+    response = self._api_client.request(
+        'post', path, request_dict, http_options
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1401, in request
+    response = self._request(http_request, http_options, stream=False)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1237, in _request
+    return self._retry(self._request_once, http_request, stream)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 413, in exc_check
+    raise retry_exc.reraise()
+          ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 184, in reraise
+    raise self.last_attempt.result()
+          ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 443, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 395, in __get_result
+    raise self._exception
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1214, in _request_once
+    errors.APIError.raise_for_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 134, in raise_for_response
+    cls.raise_error(response.status_code, response_json, response)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 159, in raise_error
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API key expired. Please renew the API key.'}]}}
+[08:11:00] KG4 ⚠️ Agent A 시도 1 실패 — 5초 후 재시도
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+    resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 5644, in generate_content
+    response = self._generate_content(
+        model=model, contents=contents, config=parsed_config
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 4306, in _generate_content
+    response = self._api_client.request(
+        'post', path, request_dict, http_options
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1401, in request
+    response = self._request(http_request, http_options, stream=False)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1237, in _request
+    return self._retry(self._request_once, http_request, stream)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 413, in exc_check
+    raise retry_exc.reraise()
+          ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 184, in reraise
+    raise self.last_attempt.result()
+          ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 443, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 395, in __get_result
+    raise self._exception
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1214, in _request_once
+    errors.APIError.raise_for_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 134, in raise_for_response
+    cls.raise_error(response.status_code, response_json, response)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 159, in raise_error
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API key expired. Please renew the API key.'}]}}
+[08:11:08] KG4 ⚠️ Agent A 시도 2 실패 — 5초 후 재시도
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+    resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 5644, in generate_content
+    response = self._generate_content(
+        model=model, contents=contents, config=parsed_config
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/models.py", line 4306, in _generate_content
+    response = self._api_client.request(
+        'post', path, request_dict, http_options
+    )
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1401, in request
+    response = self._request(http_request, http_options, stream=False)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1237, in _request
+    return self._retry(self._request_once, http_request, stream)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 413, in exc_check
+    raise retry_exc.reraise()
+          ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 184, in reraise
+    raise self.last_attempt.result()
+          ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 443, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 395, in __get_result
+    raise self._exception
+  File "/opt/homebrew/lib/python3.14/site-packages/tenacity/__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/_api_client.py", line 1214, in _request_once
+    errors.APIError.raise_for_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 134, in raise_for_response
+    cls.raise_error(response.status_code, response_json, response)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.14/site-packages/google/genai/errors.py", line 159, in raise_error
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API key expired. Please renew the API key.'}]}}
+[08:11:15] KG4 ⚠️ Agent A 시도 3 실패 — 0초 후 재시도
+[08:11:15] KG4 ❌ Agent A (Gemini Flash) 3회 시도 모두 실패
+
+[08:11:32] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:11:49] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:12:06] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:12:24] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:12:41] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:12:58] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:13:14] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:13:30] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:13:47] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:14:03] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:14:19] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:14:36] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:14:52] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:15:08] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:15:24] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:15:40] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:15:56] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:16:12] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:16:28] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:16:44] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:17:00] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:17:16] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:17:32] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:17:48] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:18:04] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:18:21] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:18:37] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:18:53] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:19:09] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:19:25] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:19:41] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:19:57] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:20:13] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:20:29] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:20:45] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:21:02] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:21:18] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:21:34] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:21:50] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:22:06] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:22:22] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:22:38] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:22:54] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:23:10] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:23:26] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:23:42] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:23:58] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:24:14] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:24:30] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:24:46] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:25:02] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:25:18] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:25:34] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:25:50] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:26:06] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:26:22] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:26:38] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:26:54] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:27:10] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:27:26] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:27:42] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:27:58] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:28:14] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:28:30] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:28:46] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:29:02] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:29:18] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:29:34] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:29:50] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:30:07] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:30:23] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:30:39] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:30:55] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:31:11] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:31:27] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:31:43] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:31:59] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:32:15] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:32:31] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:32:47] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:33:03] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:33:19] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:33:35] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:33:51] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:34:07] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:34:23] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:34:39] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:34:55] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:35:11] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:35:27] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:35:43] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:35:59] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:36:15] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:36:31] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:36:47] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:37:03] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:37:19] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:37:35] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:37:52] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:38:08] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:38:24] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:38:40] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:38:56] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:39:12] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:39:28] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:39:44] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:40:00] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:40:16] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:40:32] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:40:48] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:41:04] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:41:20] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:41:36] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:41:52] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:42:08] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:42:24] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:42:40] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:42:56] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:43:12] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:43:28] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:43:44] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:44:00] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:44:16] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:44:32] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:44:48] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:45:04] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:45:20] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:45:36] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:45:52] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:46:08] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:46:24] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:46:40] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:46:56] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:47:12] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:47:28] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:47:44] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:48:00] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:48:16] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:48:32] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:48:48] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:49:05] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:49:21] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:49:37] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:49:53] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:50:09] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:50:25] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:50:41] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:50:57] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:51:13] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:51:29] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:51:46] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:52:02] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:52:18] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:52:34] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:52:50] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:53:06] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:53:22] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:53:38] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:53:54] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:54:10] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:54:26] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:54:42] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:54:58] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:55:14] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:55:30] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:55:46] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:56:02] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:56:18] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:56:34] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:56:50] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:57:06] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:57:22] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:57:38] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:57:54] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:58:11] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:58:27] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:58:43] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:58:59] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:59:15] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:59:31] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[08:59:47] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[09:00:03] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[09:00:19] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[09:00:35] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[09:00:51] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[09:01:07] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[09:01:23] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[09:01:39] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[09:01:55] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[09:02:11] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[09:02:27] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[09:02:43] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[09:03:00] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[09:03:16] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[09:03:32] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[09:03:48] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[09:04:04] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[09:04:20] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[09:04:36] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[09:04:52] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[09:05:08] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[09:05:24] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[09:05:40] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '
+[09:05:56] KG4 ❌ Gemini API 키 검증 실패: FAIL:400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key expired. Please renew the API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', '

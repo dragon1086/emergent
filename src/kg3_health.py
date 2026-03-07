@@ -135,12 +135,37 @@ def check_source_balance(kg: dict) -> list[str]:
     if len(main_sources) == 2:
         vals = sorted(main_sources.values())
         ratio = vals[1] / max(vals[0], 1)
-        if ratio > 2.5:
+        if ratio > 1.8:
             bigger = max(main_sources, key=main_sources.get)
             smaller = min(main_sources, key=main_sources.get)
-            return [f"[WARN] Source imbalance: {bigger}={main_sources[bigger]} vs {smaller}={main_sources[smaller]} (ratio {ratio:.1f}x)",
-                    f"       Cross-vendor experiment validity may be affected"]
+            issues = [f"[WARN] Source imbalance: {bigger}={main_sources[bigger]} vs {smaller}={main_sources[smaller]} (ratio {ratio:.1f}x)",
+                      f"       Cross-vendor experiment validity may be affected"]
+            # Estimate Agent B failure rate
+            expected_b = main_sources.get("gemini-2.5-flash", 0)
+            expected_a = main_sources.get("gpt-4o", 0)
+            if expected_a > expected_b:
+                fail_rate = 100 * (expected_a - expected_b) / max(expected_a, 1)
+                issues.append(f"       Estimated Agent B failure rate: {fail_rate:.0f}%")
+            return issues
     return []
+
+
+def check_answers_ratio(kg: dict) -> list[str]:
+    """Check answers-per-question ratio for semantic validity."""
+    issues = []
+    q_ids = {n["id"] for n in kg["nodes"] if n.get("type") == "question"}
+    if not q_ids:
+        return []
+    answers_edges = [e for e in kg["edges"] if e.get("relation") == "answers"]
+    answers_to_q = [e for e in answers_edges if e.get("to") in q_ids]
+    answers_to_non_q = [e for e in answers_edges if e.get("to") not in q_ids]
+    if answers_to_non_q:
+        issues.append(f"[WARN] {len(answers_to_non_q)} 'answers' edges point to non-question nodes (semantic mismatch)")
+    if q_ids and answers_to_q:
+        ratio = len(answers_to_q) / len(q_ids)
+        if ratio > 20:
+            issues.append(f"[WARN] answers-per-question ratio={ratio:.1f} (target <20) — DCI metric may be inflated")
+    return issues
 
 
 def check_edge_span(kg: dict) -> list[str]:
@@ -184,6 +209,7 @@ def main():
         "orphan_edges": check_orphan_edges(kg),
         "edge_span": check_edge_span(kg),
         "source_balance": check_source_balance(kg),
+        "answers_ratio": check_answers_ratio(kg),
     }
 
     cser, cser_issues = check_cser(kg)

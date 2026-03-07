@@ -24,7 +24,7 @@ LOG_FILE="$REPO_DIR/logs/evolve-$(date +%Y-%m-%d).log"
 DECISIONS_FILE="$REPO_DIR/DECISIONS.md"
 MAX_CYCLES_PER_DAY=4
 CYCLE_COUNT_FILE="$REPO_DIR/logs/emergent-cycles-$(date +%Y%m%d)"
-TG_BOT_TOKEN="${TG_BOT_TOKEN:?TG_BOT_TOKEN env var required}"
+TG_BOT_TOKEN="${TG_BOT_TOKEN:-}"
 TG_OWNER="${TG_OWNER:-7726642089}"
 
 mkdir -p "$REPO_DIR/logs"
