@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 514,
-    "total_edges": 815,
-    "next_node_id": "n-515",
+    "total_nodes": 516,
+    "total_edges": 818,
+    "next_node_id": "n-517",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -8610,6 +8610,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: Gemini 관점에서, 과도한 canonical 계층은 표현 다양성을 훼손하여 탐색/창발성을 저해할 수 있으며, 추상 개념엔 유연한, 절차적 지",
       "content": "Gemini 관점에서, 과도한 canonical 계층은 표현 다양성을 훼손하여 탐색/창발성을 저해할 수 있으며, 추상 개념엔 유연한, 절차적 지식엔 명확한 정규화가 필요합니다. n-008의 alignment noise가 implicit regularizer라는 관점은 본 가설의 명시적 정규화와 상보적입니다. 둘을 통합하여 견고한 구조적 기반 위에서 암묵적 적응성을 갖는, 더욱 강력하고 유연한 통합 모델 제안이 가능합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-515",
+      "type": "hypothesis",
+      "label": "Alignment Drift Budget (ADB) hypothesis",
+      "content": "Cross-vendor KG 진화에서 CSER 성능은 “용어 정렬(semantic alignment)”의 절대 수준보다, 시간에 따른 정렬 드리프트(meaning drift)를 허용 가능한 범위로 관리하는 ‘드리프트 예산(Alignment Drift Budget, ADB)’의 유지 여부에 의해 더 크게 좌우된다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "semantic-alignment",
+        "drift-control",
+        "CSER"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-516",
+      "type": "critique",
+      "label": "Gemini 반박/보완: ADB 가설은 드리프트의 존재를 인지하나, 드리프트는 단순한 오류가 아닌 적응적 변화와 실제 오염으로 구분되어야 합니다. 특히, 정렬 노이즈의 ",
+      "content": "ADB 가설은 드리프트의 존재를 인지하나, 드리프트는 단순한 오류가 아닌 적응적 변화와 실제 오염으로 구분되어야 합니다. 특히, 정렬 노이즈의 정규화 효과는 도메인 특성과 노이즈 유형에 따라 상이하며, 무분별한 노이즈는 정규화보다 KG 무결성을 해칠 수 있습니다. 따라서, 드리프트 버짓 B는 이러한 미묘한 변화를 포착하는 다차원적인 지표들을 통해 정교하게 관리되어야 합니다.\n\n---\n\n**세부 보완 및 제안:**\n\n1.  **Drift 실험적 관측 지표 근사:**\n    *   **용어/개념 정의 일치율 변화:** 특정 엔티티/관계에 대한 모델의 gloss 생성과 KG 내 기존 정의 간의 임베딩 유사도 변화.\n    *   **관계 타입 오분류 행렬 분석:** 특정 관계 타입이 다른 관계로 오인식되는 빈도 및 패턴 변화; 신규 관계/속성 출현 빈도.\n    *   **상호 참조 성공률 변화 및 고유명사 매핑 오류율:** 텍스트 내 동일 개체를 KG 내 하나의 엔티티로 정확히 연결하는 능력 저하; 신규 고유명사 처리 시 모호성/중복 생성 비율.\n    *   **엔티티 임베딩 공간 내 클러스터링 변화:** 시간 경과에 따른 유사 개념 엔티티들의 임베딩 위치 분",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -17396,6 +17429,38 @@
       "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
       "source": "gemini-2.0-flash",
       "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-816",
+      "from": "n-515",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우한다”는 주장에 대해, 정렬의 ‘수준’이 아니라 ‘시간적 드리프트 예산 관리’가 결정적이라는 구체 메커니즘/예측(ADB)을 제공하며 확장한다",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-817",
+      "from": "n-516",
+      "to": "n-515",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-818",
+      "from": "n-516",
+      "to": "n-049",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=467): n-516→n-049",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 467,
       "created": "2026-03-07"
     }
   ]
