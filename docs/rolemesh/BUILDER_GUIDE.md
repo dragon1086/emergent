@@ -40,6 +40,8 @@ python -m src.rolemesh.builder --json
 
 ## Adding a New Tool to the Registry
 
+### Option A: Edit the registry (static)
+
 Edit `src/rolemesh/builder.py` and add an entry to `TOOL_REGISTRY`:
 
 ```python
@@ -52,20 +54,105 @@ TOOL_REGISTRY["windsurf"] = {
 }
 ```
 
+After adding, re-run the wizard:
+
+```bash
+python -m src.rolemesh.builder --save
+```
+
+### Option B: Register at runtime (dynamic)
+
+Use `SetupWizard.register_tool()` to add tools without editing source:
+
+```python
+from src.rolemesh.builder import SetupWizard
+
+wizard = SetupWizard()
+wizard.discover()
+
+profile = wizard.register_tool(
+    key="windsurf",
+    name="Windsurf",
+    vendor="Codeium",
+    strengths=["coding", "inline-edit", "completion"],
+    check_cmd=["windsurf", "--version"],
+    cost_tier="medium",
+)
+
+print(profile.available)  # True if windsurf is on PATH
+print(profile.version)    # Detected version, or None
+wizard.save_config()
+```
+
+The method adds the tool to `TOOL_REGISTRY`, probes the system for the binary, reads the version if available, and replaces any existing entry with the same key.
+
 **Required fields:**
 
 | Field | Type | Description |
 |-------|------|-------------|
+| `key` | str | Unique registry key (e.g., `"windsurf"`) |
 | `name` | str | Display name |
 | `vendor` | str | Company/org name |
 | `strengths` | list[str] | Task types this tool excels at |
 | `check_cmd` | list[str] | Command to verify installation |
 | `cost_tier` | str | `"low"`, `"medium"`, or `"high"` |
 
-After adding, re-run the wizard:
+**Validation:** `cost_tier` must be one of `low`, `medium`, `high`. Both `key` and `name` are required. Invalid values raise `ValueError`.
 
-```bash
-python -m src.rolemesh.builder --save
+## Removing a Tool
+
+Use `SetupWizard.unregister_tool()` to remove a tool from the registry:
+
+```python
+wizard = SetupWizard()
+wizard.discover()
+
+removed = wizard.unregister_tool("cursor")
+print(removed)  # True if found and removed
+
+wizard.save_config()  # Persist the change
+```
+
+This removes the tool from both `TOOL_REGISTRY` and the wizard's internal tool list. Routing rules referencing the removed tool will no longer appear in generated configs.
+
+## Validating a Config
+
+Use `SetupWizard.validate_config()` to check a config dict against the expected schema:
+
+```python
+config = wizard.build_config()
+errors = SetupWizard.validate_config(config)
+
+if errors:
+    for err in errors:
+        print(f"  ERROR: {err}")
+else:
+    print("Config is valid")
+```
+
+### What it checks
+
+| Check | Error message |
+|-------|--------------|
+| Top-level type | `Config must be a dict` |
+| `version` field exists and is a string | `Missing 'version' field` |
+| `tools` field exists and is a dict of dicts | `Missing 'tools' field` |
+| `routing` field exists and is a dict | `Missing 'routing' field` |
+| Each routing rule has a `primary` key | `routing['X'] missing 'primary'` |
+| `primary` tool exists in `tools` | `routing['X'].primary 'Y' not found in tools` |
+| `fallback` tool (if set) exists in `tools` | `routing['X'].fallback 'Y' not found in tools` |
+
+### Validating before save
+
+```python
+wizard = SetupWizard()
+wizard.discover()
+config = wizard.build_config()
+errors = SetupWizard.validate_config(config)
+if not errors:
+    wizard.save_config()
+else:
+    raise RuntimeError(f"Invalid config: {errors}")
 ```
 
 ## Adding a New Task Type

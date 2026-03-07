@@ -226,6 +226,77 @@ print(wizard.summary())
 
 ---
 
+### `SetupWizard.register_tool(key, name, vendor, strengths, check_cmd, cost_tier="medium") -> ToolProfile`
+
+Registers a custom AI tool at runtime. Adds to `TOOL_REGISTRY`, probes availability, and appends to internal tool list.
+
+**Parameters:**
+- `key` (str): Unique registry key (e.g., `"windsurf"`)
+- `name` (str): Display name
+- `vendor` (str): Company/org name
+- `strengths` (list[str]): Task types this tool excels at
+- `check_cmd` (list[str]): Command to verify installation
+- `cost_tier` (str): `"low"`, `"medium"`, or `"high"` (default: `"medium"`)
+
+**Returns:** `ToolProfile` with `available` and `version` populated.
+
+**Raises:** `ValueError` if `cost_tier` is invalid or `key`/`name` is empty.
+
+**Example:**
+```python
+wizard = SetupWizard()
+wizard.discover()
+profile = wizard.register_tool(
+    key="windsurf", name="Windsurf", vendor="Codeium",
+    strengths=["coding", "inline-edit"], check_cmd=["windsurf", "--version"],
+)
+print(profile.available, profile.version)
+```
+
+---
+
+### `SetupWizard.unregister_tool(key: str) -> bool`
+
+Removes a tool from `TOOL_REGISTRY` and the internal tool list.
+
+**Parameters:**
+- `key` (str): Registry key to remove (e.g., `"cursor"`)
+
+**Returns:** `True` if the key was found in the registry, `False` otherwise.
+
+**Example:**
+```python
+wizard.unregister_tool("cursor")
+wizard.save_config()  # Persist the removal
+```
+
+---
+
+### `SetupWizard.validate_config(config: dict) -> list[str]` (static)
+
+Validates a config dict against the expected schema. Returns a list of error strings (empty list means valid).
+
+**Parameters:**
+- `config` (dict): Config dict to validate
+
+**Returns:** List of error strings. Empty list if valid.
+
+**Checks performed:**
+- Config is a dict
+- `version` field exists and is a string
+- `tools` field exists, is a dict, each value is a dict
+- `routing` field exists, is a dict, each rule has `primary`
+- All `primary` and `fallback` references point to entries in `tools`
+
+**Example:**
+```python
+config = wizard.build_config()
+errors = SetupWizard.validate_config(config)
+assert errors == []  # Valid config
+```
+
+---
+
 ## Data Types
 
 ### `ToolProfile`
