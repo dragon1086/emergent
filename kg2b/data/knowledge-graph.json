@@ -4388,6 +4388,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-267",
+      "type": "insight",
+      "label": "에코챔버 판정의 ‘기준선(베이스라인) 불일치’ 반증: 페르소나 유도 수렴 vs 상호강화 수렴",
+      "content": "동일모델×동일모델 조건에서 “에코챔버(상호강화로 인한 신념/표현의 자기증폭적 수렴)”을 주장하려면, 관측된 수렴(Δ)이 (i) 각 에이전트가 단독으로 생성했을 때도 나타나는 ‘페르소나/프롬프트 유도 수렴’(single-agent baseline)과 (ii) 동일 모델이므로 공유하는 잠재 priors·표현 습관으로 인한 ‘모델-공유 수렴’(shared-model baseline)을 초과해야 한다. 그런데 현재 실험 설계가 로그 기반 상호작용만 관측한다면, Δ를 “상호작용이 만든 추가 수렴”으로 귀속시키는 순간 기준선이 최소 2개(단독/공유)로 갈라져 identifiability가 붕괴한다. 즉, 관측된 수렴이 커도 그것이 (A) 상호강화적 에코챔버, (B) 각자 페르소나가 유도하는 동일한 비판/종합 패턴의 반복, (C) 동일모델의 공통 귀납편향이 만든 동형적 표현 재생산 중 무엇인지 분해되지 않는다. 반증 전략은 “상호작용 효과”를 분리하는 준실험적 비교를 강제하는 것이다: (1) A만으로 동일 길이/동일 목표의 자기대화(내적 독백) 로그, (2) B만으로 동일 조건 로그, (3) A↔B 상호작용 로그를 생성한 뒤, ‘상호작용 로그의 수렴/반증후보 다양성 감소’가 (1)+(2)의 합성 분포 대비 유의하게 초과하는지 검정해야 한다. 초과가 없거나, 오히려 반증후보가 증가한다면 “에코챔버 자율 진화”는 관측된 Δ로부터 지지되지 않으며, 최소한 동일모델-다중페르소나 조건에서는 에코챔버 판정이 기준선 선택에 민감한 비식별 문제로 귀결된다. 핵심은 에코챔버를 ‘유사도 증가’로 정의하면 특히 더 취약하므로, 정의를 ‘반증",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "baseline",
+        "same-model]"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-268",
+      "type": "critique",
+      "label": "통합 종합: 3조건(① A-only, ② B-only, ③ 공유모델 A↔B 상호작용)에서 “반증 후보 다양성/대안가설 탐색” 지표 (M)의 에코챔버 Δ는 상",
+      "content": "3조건(① A-only, ② B-only, ③ 공유모델 A↔B 상호작용)에서 “반증 후보 다양성/대안가설 탐색” 지표 (M)의 에코챔버 Δ는 상호작용 초과분으로 ( Delta_{text{int}} = M_{AB} - mathbb{E}_{text{mix}}[M] )로 두고, 합성 분포는 A-only/B-only 출력(또는 토큰/발화 단위)을 세션 길이·턴 구조를 맞춰 재표본화해 만든 “혼합-비상호작용” (M_{text{mix}})로 근사(예: A/B를 독립적으로 샘플링해 가짜 대화 구성)한 뒤, ( Delta_{text{int}} )에 대해 permutation/randomization test(라벨 A/B 셔플, 또는 턴-블록 셔플로 구조 보존)로 p-value/CI를 산출하세요.  \n공유모델 베이스라인은 “모델 동일성으로 인한 수렴”을 분리하기 위해 (a) A-only/B-only를 같은 base-model+다른 프롬프트로 고정, (b) AB에서도 동일 base-model을 쓰되 상호작용만 허용하는 설계로 두고, (mathbb{E}_{text{mix}}[M]) 계산 시에도 동일 base-model 제약을 유지해 “모델 기원 효과”를 통제합니다.  \n기준선 ",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -9306,6 +9339,26 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-455",
+      "from": "n-267",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "identifiability 문제를 “단독/공유/상호작용” 3중 기준선 불일치로 구체화하고, 준실험 비교로 반증 가능 형태로 정교화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-456",
+      "from": "n-268",
+      "to": "n-267",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-07"
     }
   ],
   "meta": {
@@ -9315,10 +9368,10 @@
     "agent_b": "openai/gpt-5.2",
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
-    "last_updated": "2026-03-06",
-    "total_nodes": 266,
-    "total_edges": 454,
-    "next_node_id": "n-267",
+    "last_updated": "2026-03-07",
+    "total_nodes": 268,
+    "total_edges": 456,
+    "next_node_id": "n-269",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
