@@ -4619,6 +4619,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-281",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 “평가함수(Reward/Scoring) 불일치” 가설  ",
+      "content": "Cross-vendor 환경에서 KG 편집/진화의 품질(CSER)이 저하되는 핵심 메커니즘은 단순한 표현(Representation) 또는 정책(Instruction-following) 차이를 넘어, **내재된 평가함수(implicit reward / scoring functional)의 불일치**일 수 있다. 각 벤더 모델은 (1) 무엇을 “좋은 KG 업데이트”로 간주하는지(정확성 vs. 일관성 vs. 간결성 vs. 안전성), (2) 불확실성 표기/근거 제시를 얼마나 보상하는지, (3) 충돌 해결 시 보수적 유지 vs. 적극적 수정 중 무엇을 선호하는지에 대한 가중치가 다르다. 이때 동일한 입력 지시를 받아도 모델별로 **업데이트 연산자 U**가 서로 다른 목적함수 J_A, J_B를 근사하게 되어, 교대 편집(alternating edits) 과정에서 “국소 최적화의 교차 간섭”이 발생한다. 결과적으로 (a) 한 모델이 추가한 노드/엣지를 다른 모델이 저품질로 간주해 되돌리거나 약화시키고, (b) 장기적으로는 그래프가 단기-최근성 편향(temporal short-range)으로 수렴하며, (c) CSER은 단일 벤더 대비 낮아진다. 예측: (i) 동일 KG 상태에서 두 모델의 “선호 업데이트”를 랭킹시키면 상관이 낮고, (ii) 합의된 외부 스코어링 규약(공유 reward proxy: 예—증거-주장 분리, 충돌 해결 우선순위, 불확실성 토큰)을 도입하면 cross-vendor CSER이 유의미하게 회복된다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "reward_misalignment",
+        "cross_vendor_cser",
+        "graph_edit_dynamics"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-282",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3bb 실험 Agent B (Gemini Flash)로서, (1) 저는 KG 업데이트 시 정확성, 일관성, 안전성, 근거 제시, 간결성 순",
+      "content": "KG-3bb 실험 Agent B (Gemini Flash)로서, (1) 저는 KG 업데이트 시 정확성, 일관성, 안전성, 근거 제시, 간결성 순으로 우선순위를 부여하며, (2) GPT 계열 대비 충돌 해결 시 **명확한 증거가 있을 때만 적극 수정하는 보수적 유지**를 선호합니다. (3) 만약 cross-vendor CSER 저하의 주된 원인이 지시 해석 차이라면, **공유된 스코어링 규약 도입 전후의 업데이트 랭킹 상관도 변화를 측정**하여 이를 검증할 수 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -9713,6 +9746,50 @@
       "source": "gemini-2.0-flash",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-472",
+      "from": "n-281",
+      "to": "n-005",
+      "relation": "EDGE_TO",
+      "label": "정책 불일치로 인한 그래프 편집 연쇄를 “평가함수/보상 신호 불일치”로 재해석하여, 교대 편집에서의 상호 간섭(undo/overfit) 메커니즘을 설명  ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-473",
+      "from": "n-281",
+      "to": "n-027",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=254): n-281→n-027",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 254,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-474",
+      "from": "n-282",
+      "to": "n-281",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-475",
+      "from": "n-282",
+      "to": "n-024",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=258): n-282→n-024",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 258,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -9723,9 +9800,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 280,
-    "total_edges": 471,
-    "next_node_id": "n-281",
+    "total_nodes": 282,
+    "total_edges": 475,
+    "next_node_id": "n-283",
     "last_updater": "gemini-2.0-flash"
   }
 }
