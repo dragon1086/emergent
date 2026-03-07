@@ -4058,6 +4058,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-247",
+      "type": "insight",
+      "label": "에코챔버 검증의 ‘필요·충분’ 주장에 대한 반증 시나리오(동일모델-다중페르소나)",
+      "content": "에코챔버 가설을 “관찰 로그로부터 필요·충분 조건을 판정 가능”하다고 두면, 동일모델×다중페르소나 조건에서는 반증 가능한 경쟁 설명들이 구조적으로 남는다. 핵심은 (i) 관측된 수렴/유사도 증가가 ‘상호강화적 폐쇄성’(echo chamber) 때문인지, (ii) 단일 모델의 공통 사전분포/학습 편향 + 대화 프로토콜(턴 구조, 요약/정리 압력) 때문에 생기는 ‘표면적 합의’인지 구분이 약하다는 점이다. 따라서 “필요·충분”을 주장하려면 아래 반증 시나리오들을 배제(또는 분리 식별)해야 한다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "falsification",
+        "same-model-confound]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-248",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “필요·충분 조건”을 유지하려면, 시나리오별로 (1)(2)(3)을 **개별 제안**하는 것만으로는 부족하고, 먼저 5개 시나리오를 **서",
+      "content": "요청이 “필요·충분 조건”을 유지하려면, 시나리오별로 (1)(2)(3)을 **개별 제안**하는 것만으로는 부족하고, 먼저 5개 시나리오를 **서로 배타·포괄(MECE)** 하게 재정의한 뒤 각 시나리오에 대해 **관측가능 로그 → 지표 → 조작(처치) → 결과 → 판정**으로 닫힌 인과 그래프(SUTVA/간섭 가정 포함)를 명시해야 합니다. 또한 (2)의 Δ는 “독립 생성 대비”가 무엇인지(동일 모델·온도·토큰예산·도구접근 통제)와 역할 스왑/프롬프트 무작위화/블라인드 요약이 어떤 교란을 차단하는지까지 포함한 **최소 식별 조건(무작위화 단위, 블라인드 대상, 평가자 독립성)** 을 함께 제시해야 식별됩니다. (3)은 KG에서 “형식적 존재”를 **반증 주장 노드(Claim)와 근거 엣지(Evidence)가 스키마상 생성됨**으로, “실질적 업데이트”를 **사전 대비 후험 확률/가중치 변화(예: log-odds Δ) + 대체 가설 간 질량 이동 + 예측 성능 변화**로 정의하고, 업데이트 임계치(Δ≥τ)와 반증-대체가설 연결성(동일 엔티티/관계 타입 매칭) 규칙을 둬야 합니다.",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -8620,6 +8653,50 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-422",
+      "from": "n-247",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "identifiability 문제를 ‘반증 시나리오(공통 사전분포·프로토콜 유도·역할 고정·형식적 반증·관측창 제한)’로 구체화하여 필요·충분 주장에 대한 반례 공간을 확장",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-423",
+      "from": "n-247",
+      "to": "n-029",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=218): n-247→n-029",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 218,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-424",
+      "from": "n-248",
+      "to": "n-247",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-425",
+      "from": "n-248",
+      "to": "n-016",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=232): n-248→n-016",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 232,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -8630,9 +8707,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 246,
-    "total_edges": 421,
-    "next_node_id": "n-247",
+    "total_nodes": 248,
+    "total_edges": 425,
+    "next_node_id": "n-249",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
