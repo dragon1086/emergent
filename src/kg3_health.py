@@ -65,15 +65,32 @@ def check_cser(kg: dict) -> tuple[float, list[str]]:
 
 
 def check_dci(kg: dict) -> tuple[float, list[str]]:
-    """Check DCI and report if question nodes are missing."""
+    """Compute actual DCI from question nodes + answers edges."""
     issues = []
     questions = [n for n in kg["nodes"] if n.get("type") == "question"]
     if not questions:
         issues.append("[INFO] DCI=0.0 — no 'question' type nodes exist")
         issues.append("       Add question nodes + 'answers' edges to enable DCI")
         return 0.0, issues
-    # DCI requires metrics.py for actual computation; report as present but uncomputed
-    return 0.0, [f"[INFO] {len(questions)} question nodes found — run metrics.py for actual DCI value"]
+
+    q_ids = {n["id"] for n in questions}
+    answers_edges = [e for e in kg["edges"]
+                     if e.get("relation") == "answers" and e.get("to") in q_ids]
+
+    if not answers_edges:
+        issues.append(f"[WARN] {len(questions)} question nodes but 0 'answers' edges — DCI=0.0")
+        return 0.0, issues
+
+    # DCI = (questions with at least one answer) / total questions
+    answered_qs = {e["to"] for e in answers_edges}
+    dci = len(answered_qs) / len(questions)
+
+    if dci < 0.5:
+        issues.append(f"[WARN] DCI={dci:.4f} — many questions unanswered ({len(answered_qs)}/{len(questions)})")
+    else:
+        issues.append(f"[INFO] DCI={dci:.4f} ({len(answered_qs)}/{len(questions)} questions answered, {len(answers_edges)} answers edges)")
+
+    return dci, issues
 
 
 def check_duplicates(kg: dict) -> list[str]:
@@ -176,8 +193,9 @@ def main():
     dci, dci_issues = check_dci(kg)
     checks["dci"] = dci_issues
     q_count = sum(1 for n in kg["nodes"] if n.get("type") == "question")
-    dci_note = "(no question nodes)" if q_count == 0 else f"({q_count} question nodes — use metrics.py)"
-    print(f"  DCI:  {dci:.4f}  {dci_note}")
+    dci_note = "(no question nodes)" if q_count == 0 else f"({q_count} question nodes)"
+    dci_status = "OK" if dci >= 0.5 else "LOW"
+    print(f"  DCI:  {dci:.4f}  {dci_status}  {dci_note}")
 
     # Source distribution
     src_counts = Counter(n.get("source", "?") for n in kg["nodes"])

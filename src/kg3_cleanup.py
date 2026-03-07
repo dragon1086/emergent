@@ -11,6 +11,7 @@ Usage:
   python3 src/kg3_cleanup.py --apply     # apply and save
 """
 import json
+import os
 import re
 import sys
 import argparse
@@ -19,7 +20,7 @@ from collections import Counter, defaultdict
 from datetime import datetime
 
 REPO = Path(__file__).parent.parent
-KG3_PATH = REPO / "kg3" / "data" / "knowledge-graph.json"
+KG3_PATH = Path(os.environ.get("EMERGENT_KG_PATH", str(REPO / "kg3" / "data" / "knowledge-graph.json")))
 
 SOURCE_MAP = {
     "gpt-5.2": "gpt-4o",

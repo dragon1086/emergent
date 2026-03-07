@@ -104,15 +104,16 @@ log "🤖 Agent A (GPT-4o) 판단 중..."
 # Use temp file to avoid shell injection from prompt content
 PROMPT_A_FILE=$(mktemp /tmp/kg3-prompt-a-XXXXXX.txt)
 printf '%s' "$PROMPT" > "$PROMPT_A_FILE"
-AGENT_A_RESPONSE=$(OPENAI_API_KEY="$OPENAI_KEY" python3 -c "
+AGENT_A_RESPONSE=$(OPENAI_API_KEY="$OPENAI_KEY" _PROMPT_FILE="$PROMPT_A_FILE" python3 -c "
 import openai, os
 client = openai.OpenAI(api_key=os.environ['OPENAI_API_KEY'])
-with open('$PROMPT_A_FILE', encoding='utf-8') as f:
+with open(os.environ['_PROMPT_FILE'], encoding='utf-8') as f:
     prompt = f.read()
 resp = client.chat.completions.create(
     model='gpt-4o',
     messages=[{'role':'user','content':prompt}],
-    temperature=0.7
+    temperature=0.7,
+    timeout=120,
 )
 print(resp.choices[0].message.content)
 " 2>&1)
@@ -131,16 +132,31 @@ if [[ -z "$_PRE_LABEL" ]]; then
 fi
 
 # Agent B: Gemini Flash (Google)
-# Multi-line AGENT_B_REQUEST 캡처 (첫 줄 + 이후 비-KEY: 줄)
-AGENT_B_REQUEST=$(echo "$AGENT_A_RESPONSE" | sed -n '/^AGENT_B_REQUEST:/,/^[A-Z_]*:/{ /^AGENT_B_REQUEST:/s/^AGENT_B_REQUEST: //p; /^[A-Z_]*:/!p; }' | head -5 | tr '\n' ' ')
+# Multi-line AGENT_B_REQUEST 캡처 (첫 줄 + 이후 비-KEY: 줄, EOF도 처리)
+AGENT_B_REQUEST=$(_RESP="$AGENT_A_RESPONSE" python3 -c "
+import os, re
+lines = os.environ['_RESP'].splitlines()
+result = []
+capture = False
+for line in lines:
+    if line.startswith('AGENT_B_REQUEST:'):
+        result.append(line.split(':', 1)[1].strip())
+        capture = True
+    elif capture:
+        if re.match(r'^[A-Z_]+:', line):
+            break
+        result.append(line.strip())
+print(' '.join(result[:5]))
+" 2>/dev/null)
 PROMPT_B_FILE=$(mktemp /tmp/kg3-prompt-b-XXXXXX.txt)
 printf '%s' "KG-3 실험 Agent B (Gemini Flash)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): $AGENT_B_REQUEST" > "$PROMPT_B_FILE"
-AGENT_B_RESPONSE=$(GEMINI_API_KEY="$GEMINI_KEY" python3 -c "
+AGENT_B_RESPONSE=$(GEMINI_API_KEY="$GEMINI_KEY" _PROMPT_FILE="$PROMPT_B_FILE" python3 -c "
 import google.genai as genai, os
 client = genai.Client(api_key=os.environ['GEMINI_API_KEY'])
-with open('$PROMPT_B_FILE', encoding='utf-8') as f:
+with open(os.environ['_PROMPT_FILE'], encoding='utf-8') as f:
     prompt = f.read()
-resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt,
+    config=genai.types.GenerateContentConfig(http_options=genai.types.HttpOptions(timeout=120*1000)))
 print(resp.text)
 " 2>&1)
 rm -f "$PROMPT_B_FILE"
@@ -187,8 +203,8 @@ EDGE_LABEL=$(echo "$AGENT_A_RESPONSE" | grep "^EDGE_LABEL:" | sed 's/^EDGE_LABEL
 if [[ -n "$NODE_LABEL" && -n "$NODE_CONTENT" ]]; then
   cd "$REPO_DIR"
 
-  # Agent A (GPT-4o) 노드 추가 (cycle 번호 포함)
-  CYCLE_NUM=$((COUNT))
+  # Agent A (GPT-4o) 노드 추가 (cycle 번호 포함, 1-based)
+  CYCLE_NUM=$((COUNT + 1))
   NEW_NODE_ID=$(python3 -c "
 import json, sys
 label = sys.argv[1][:200]
