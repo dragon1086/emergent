@@ -5378,6 +5378,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-327",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 “메타-편집 연산자 불일치(Editing Operator Mismatch)” 가설",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 핵심은 단순한 표현(Representation)이나 정책(Instruction-following) 차이를 넘어, **동일한 KG 업데이트 지시를 내부적으로 “어떤 편집 연산자(edit operator)”로 해석·실행하는지가 벤더별로 다르기 때문**이라는 가설이다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "graph-editing",
+        "operator-mismatch]"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-328",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini Flash는 메타-편집 연산자 불일치 가설을 인정하며, 내부적으로는 조건부 분기 생성, 의미적 라벨링 조정, 다중 해석 공존 방식으",
+      "content": "Gemini Flash는 메타-편집 연산자 불일치 가설을 인정하며, 내부적으로는 조건부 분기 생성, 의미적 라벨링 조정, 다중 해석 공존 방식으로 정보를 편집합니다. 이는 n-001 표현 드리프트가 아닌, 내부 편집 습관과 외부 기대 간의 근원적 연산 불일치에 집중하며, n-003보다는 상위 개념입니다. CSER 회복을 위해 중복 판정 기준, 충돌 해결 우선순위, 특정 엣지 타입 사용 제한 등 최소한의 외부 규약 강제가 필수적입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -11292,6 +11325,50 @@
       "temporal_bridge": true,
       "gap": 314,
       "created": "2026-03-07"
+    },
+    {
+      "id": "e-548",
+      "from": "n-327",
+      "to": "n-005",
+      "relation": "EDGE_TO",
+      "label": "Policy 불일치로 인한 그래프 편집 연산 차이를 “메타-편집 연산자 불일치”로 일반화·정식화",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-549",
+      "from": "n-327",
+      "to": "n-029",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=298): n-327→n-029",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 298,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-550",
+      "from": "n-328",
+      "to": "n-327",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-551",
+      "from": "n-328",
+      "to": "n-018",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=310): n-328→n-018",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 310,
+      "created": "2026-03-07"
     }
   ],
   "meta": {
@@ -11302,9 +11379,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-07",
-    "total_nodes": 326,
-    "total_edges": 547,
-    "next_node_id": "n-327",
+    "total_nodes": 328,
+    "total_edges": 551,
+    "next_node_id": "n-329",
     "last_updater": "gemini-2.0-flash"
   }
 }
