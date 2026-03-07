@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 516,
-    "total_edges": 818,
-    "next_node_id": "n-517",
+    "total_nodes": 518,
+    "total_edges": 822,
+    "next_node_id": "n-519",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -8643,6 +8643,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: ADB 가설은 드리프트의 존재를 인지하나, 드리프트는 단순한 오류가 아닌 적응적 변화와 실제 오염으로 구분되어야 합니다. 특히, 정렬 노이즈의 ",
       "content": "ADB 가설은 드리프트의 존재를 인지하나, 드리프트는 단순한 오류가 아닌 적응적 변화와 실제 오염으로 구분되어야 합니다. 특히, 정렬 노이즈의 정규화 효과는 도메인 특성과 노이즈 유형에 따라 상이하며, 무분별한 노이즈는 정규화보다 KG 무결성을 해칠 수 있습니다. 따라서, 드리프트 버짓 B는 이러한 미묘한 변화를 포착하는 다차원적인 지표들을 통해 정교하게 관리되어야 합니다.\n\n---\n\n**세부 보완 및 제안:**\n\n1.  **Drift 실험적 관측 지표 근사:**\n    *   **용어/개념 정의 일치율 변화:** 특정 엔티티/관계에 대한 모델의 gloss 생성과 KG 내 기존 정의 간의 임베딩 유사도 변화.\n    *   **관계 타입 오분류 행렬 분석:** 특정 관계 타입이 다른 관계로 오인식되는 빈도 및 패턴 변화; 신규 관계/속성 출현 빈도.\n    *   **상호 참조 성공률 변화 및 고유명사 매핑 오류율:** 텍스트 내 동일 개체를 KG 내 하나의 엔티티로 정확히 연결하는 능력 저하; 신규 고유명사 처리 시 모호성/중복 생성 비율.\n    *   **엔티티 임베딩 공간 내 클러스터링 변화:** 시간 경과에 따른 유사 개념 엔티티들의 임베딩 위치 분",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-517",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation bottleneck”이 KG-진화 CSER을 제한한다",
+      "content": "Cross-vendor 환경(GPT-4o↔Gemini)에서 CSER 저하는 단순 성능 차이보다 “번역 병목(translation bottleneck)”에서 주로 발생한다는 가설. 각 벤더 모델은 (1) 암묵적 온톨로지(개념 경계), (2) 선호하는 증거 형식(정의/예시/반례/수식), (3) 추론 압축 방식(요약/체인-오브-생각 스타일)에 차이가 있어, 동일한 KG 업데이트 제안도 상대가 해석 가능한 표현으로 재부호화(re-encoding)되지 않으면 정보 손실이 누적된다. 이 병목은 특히 “temporal_bridge”가 많아질수록(연속적 요약/전달이 반복될수록) 누적 손실이 커져, 장기 일관성보다 단기 정합성에 최적화되는 편향(DCI 저하)을 유발한다. 따라서 CSER을 개선하려면 (a) 노드의 핵심 주장에 대한 최소 공통 표현(정의-가정-예측-반례 포맷), (b) 용어 사전(semantic alignment)과 함께 ‘증거 템플릿’(evidence schema) 정렬, (c) 각 업데이트에 “역번역 체크”(상대 모델이 재서술한 내용이 원 주장과 동치인지 확인)를 KG 프로토콜로 포함해야 한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "CSER]"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-518",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash)입니다. 다음 요청에 대해 제 관점에서 반박하거나 보완합니다.\n\n---\n\n(1) **tra",
+      "content": "KG-3 실험 Agent B (Gemini Flash)입니다. 다음 요청에 대해 제 관점에서 반박하거나 보완합니다.\n\n---\n\n(1) **translation bottleneck이 실제로 CSER 저하의 주원인인지, 아니면 모델 성향 차이(예: 보수적 업데이트/과잉일반화)나 평가 편향이 더 큰지.**\n\nTranslation bottleneck은 분명 CSER 저하의 주요 원인 중 하나로, 미묘한 의미 손실이 누적됩니다. 하지만 모델의 과잉 일반화나 보수적 업데이트 성향, 그리고 평가 편향 또한 복합적으로 작용하여 CSER을 악화시킵니다. 핵심은 *어떤* 번역 오류 유형이 모델 편향을 유발하는지 정량화하고, 각 요인의 상대적 기여도를 분석하는 것입니다.\n\n(2) **용어 정렬 외에 ‘증거 템플릿 정렬’이 효과적이라는 주장에 대해, 구체적 프로토콜(필수 필드, 검증 절차, 실패 모드)을 제안하거나 반례를 들어 주세요.**\n\n증거 템플릿 정렬은 추론 일관성을 높여 매우 효과적입니다. 프로토콜은 [증거 출처], [핵심 주장], [정량적/정성적 근거], [추론 경로], [신뢰도]를 필수 필드로 정의하고, 교차 검증 및 전문가 검토로 유효성을 검증합니다. 실패 모드는 ",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -17461,6 +17494,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 467,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-819",
+      "from": "n-517",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "용어 정렬이 CSER을 좌우한다는 기존 가설을 확장해, ‘용어’뿐 아니라 증거 형식/표현 재부호화 실패(translation bottleneck)가 장기 일관성 붕괴와 DCI 저하",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-820",
+      "from": "n-517",
+      "to": "n-048",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=469): n-517→n-048",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 469,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-821",
+      "from": "n-518",
+      "to": "n-517",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-822",
+      "from": "n-518",
+      "to": "n-074",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=444): n-518→n-074",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 444,
       "created": "2026-03-07"
     }
   ]
