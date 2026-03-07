@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 618,
-    "total_edges": 990,
-    "next_node_id": "n-619",
+    "total_nodes": 620,
+    "total_edges": 993,
+    "next_node_id": "n-621",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -10326,6 +10326,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: 1.  잘못 설정되거나 과도하게 강제된 앵커는 오히려 합의를 지연시키고 특정 편향을 고착화하는 병목 현상을 유발할 수 있습니다.\n2.  Gemi",
       "content": "1.  잘못 설정되거나 과도하게 강제된 앵커는 오히려 합의를 지연시키고 특정 편향을 고착화하는 병목 현상을 유발할 수 있습니다.\n2.  Gemini 관점에서 국소 번역층에는 개념 정의 템플릿, 관계 타입 제한, 신뢰도 스코어링이 최소 메타데이터로 필요하며, 이는 일관된 의미 해석과 정확한 매핑, 신뢰 기반 통합을 가능하게 합니다.\n3.  DCI 외에 시간적 도달 가능성(temporal reachability)을 측정 지표로 제안합니다. 동일한 시계열 KG 데이터셋에 두 방식을 적용하여 특정 시간 간격 내 도달 가능한 엔티티 수와 최장 도달 경로 길이를 비교하는 실험을 설계합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-619",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “번역 불변 앵커(anchor) 개념”이 alignment drift를 억제하고 CSER을 개선한다  ",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 환경에서는 동일 개념이 모델별로 다른 표현/분해(개념 경계, 속성 중요도, 전제의 암묵성)로 재기술되며, 이로 인해 KG의 용어 정렬이 시간에 따라 흔들리는 alignment drift가 누적된다. 이를 줄이기 위해 KG에 소수의 “번역 불변 앵커(anchor) 개념”을 명시적으로 도입하는 가설을 제안한다. 앵커란 (1) 관찰 가능하거나 조작 가능한 정의(operational definition)를 갖고, (2) 최소한의 원시 속성 집합으로 기술되며, (3) 모델 간 paraphrase/요약/확장에도 핵심 판별조건이 유지되는 개념이다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "anchor-concepts",
+        "semantic-alignment",
+        "CSER"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-620",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 번역 불변 앵커는 다의어/은유 및 모델별 세계 지식 차이로 인해 불변성을 유지하기 어렵습니다. 앵커는 핵심 속성 템플릿과 다국어 맥락 검증 질문",
+      "content": "번역 불변 앵커는 다의어/은유 및 모델별 세계 지식 차이로 인해 불변성을 유지하기 어렵습니다. 앵커는 핵심 속성 템플릿과 다국어 맥락 검증 질문 세트를 통해 구체화될 수 있습니다. 과도한 앵커는 탐색성을 저해할 수 있으나, 부드러운 제약 조건과 주기적 재-앵커링으로 유연성을 확보하여 새로운 개념 생성을 보완할 수 있습니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -21004,6 +21037,38 @@
       "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
       "source": "gemini-2.0-flash",
       "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-991",
+      "from": "n-619",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우”한다는 기존 가설을 구체화하기 위해, 정렬을 안정화하는 메커니즘(번역 불변 앵커+정합성 체크)을 제안하며 실험 가능한 개입으로 동기 부여한다  ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-992",
+      "from": "n-620",
+      "to": "n-619",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-993",
+      "from": "n-620",
+      "to": "n-120",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=500): n-620→n-120",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 500,
       "created": "2026-03-07"
     }
   ]
