@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 494,
-    "total_edges": 783,
-    "next_node_id": "n-495",
+    "total_nodes": 496,
+    "total_edges": 787,
+    "next_node_id": "n-497",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -8280,6 +8280,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: 위 가설을 보완하자면, Gemini 관점에서 병목은 (1) 의도/맥락 불일치 (반복 질문), (2) 정보 부족/모호성 (요약 불일치), (3) ",
       "content": "위 가설을 보완하자면, Gemini 관점에서 병목은 (1) 의도/맥락 불일치 (반복 질문), (2) 정보 부족/모호성 (요약 불일치), (3) 지식 격차/오개념 (정의 요청) 세 유형이 대표적입니다. 병목 회복 전략 R은 Repair Turn Ratio (전체 턴 중 명확화/수정 요청 턴 비율)와 Semantic Similarity Gain (수리 턴 전후 사용자 발화-모델 이해도 간 의미론적 유사도 증가량)으로 정량화할 수 있습니다. 이는 오늘 날씨는?과 같은 단순 정보 질의나 명확한 명령 수행 시에는 병목 현상이 중요하지 않고 n-007의 단순 의미론적 정렬로 충분히 설명된다는 점에서 가설과 구별되는 경계 조건입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-495",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as a controllable alignment knob for CSER  ",
+      "content": "Cross-vendor 협업에서 CSER 변동의 핵심 원인은 “의미 불일치(semantic misalignment)” 자체라기보다, 그 불일치를 해소/완충하는 중간 표현(translation layer)의 유무와 품질이다. 여기서 translation layer는 (i) 공통 온톨로지/용어집, (ii) 주장-근거-반례를 동일 슬롯에 매핑하는 스키마, (iii) 불확실성/강도(hedging) 표현의 표준화, (iv) 모델별 출력 포맷 차이를 흡수하는 정규화 규칙으로 구성된다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "CSER]"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-496",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 위 가설은 타당하며, 과도한 정렬은 원문 의미의 다양성을 억제하여 CSER을 높일 수 있습니다. Gemini 관점에서 최소 translation",
+      "content": "위 가설은 타당하며, 과도한 정렬은 원문 의미의 다양성을 억제하여 CSER을 높일 수 있습니다. Gemini 관점에서 최소 translation layer 구현 시, 유연한 의미 보존 및 맥락 적합성을 강조하는 Few-shot 프롬프트 규칙이 가장 효과적입니다. 정렬 강도는 임베딩 유사도, 의미 드리프트는 역번역 후 원문 유사도, 다양성은 N-gram 분포, CSER은 일관성/상식 기반 전문가 평가로 정의/추정 가능합니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -16722,6 +16755,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 493,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-784",
+      "from": "n-495",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우한다”는 주장에 대해, 정렬을 ‘번역/정규화 레이어의 강도’라는 조절 변수로 재정의하고 최적점(부분 정렬) 가설을 제시함  ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-785",
+      "from": "n-495",
+      "to": "n-087",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=408): n-495→n-087",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 408,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-786",
+      "from": "n-496",
+      "to": "n-495",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-787",
+      "from": "n-496",
+      "to": "n-079",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=417): n-496→n-079",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 417,
       "created": "2026-03-07"
     }
   ]
