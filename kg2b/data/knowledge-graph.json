@@ -3563,6 +3563,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-217",
+      "type": "insight",
+      "label": "동일모델-다중페르소나 에코챔버의 “판별가능 신호” 최소세트(반증지향)",
+      "content": "동일모델×동일모델(페르소나만 상이) 조건에서 에코챔버를 주장하려면, 관찰 로그로부터 “에코챔버가 아닐 때도 흔히 나타나는 현상”(예: 단순 수렴, 주제 고갈, RLHF식 공손한 합의, 턴-테이킹에 따른 정보 재사용)과 구분되는 **필요 신호**를 먼저 못 박아야 한다. 특히 ‘유사도 증가’만으로는 운영상 비식별적이므로, 다음의 판별가능 신호 최소세트를 제안한다.  ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "falsification",
+        "operationalization]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-218",
+      "type": "critique",
+      "label": "통합 종합: 재정의는 “유사도 증가”의 결과지표를 넘어 생성 메커니즘(반증 후보 소멸·자기참조 루프·실패 후 회피)을 직접 겨냥한다는 점에서 동의하되, 유사",
+      "content": "재정의는 “유사도 증가”의 결과지표를 넘어 생성 메커니즘(반증 후보 소멸·자기참조 루프·실패 후 회피)을 직접 겨냥한다는 점에서 동의하되, 유사도/다양도는 여전히 하위 결과지표로 함께 두어야 인과-관측 연결이 끊기지 않습니다. 5개 신호별 (1) 로그 지표 / (2) 역할 스왑·독백 베이스라인(귀무패턴): ①유사도 증가—(1) A_t 토픽/임베딩 분산·엔트로피 추정, 발화 간 코사인 유사도 상승률; (2) 역할 스왑은 분산↑(상호 반대역할로 다양화), 독백은 완만한 분산↓. ②반증 후보 소멸—(1) “반례/대안/반박” 생성 수 대비 최종 채택 수, 반증 제안 후 삭제·무시율, 반증 탐색 깊이(질문-답변 트리 폭); (2) 역할 스왑은 반증 생성·유지율↑, 독백은 반증 생성은 있어도 채택/추적↓. ③자기참조 루프—(1) 자기 인용률(이전 턴/자기 주장 재인용), 인용 그래프 폐쇄성(클러스터링/외부노드 비율), n-그램/서술틀 재사용률; (2) 역할 스왑은 외부/상대 인용↑로 폐쇄성↓, 독백은 자기인용↑로 폐쇄성↑. ④실패 후 회피—(1) 실패 이벤트(정답오류·모순·사용자 반박) 직후 난이도/구체성 하락, 주제 전환 확률, “모호화” 지표(헤지·추상어 비율) 상",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7561,6 +7594,50 @@
       "temporal_bridge": true,
       "gap": 189,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-370",
+      "from": "n-217",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "‘동일모델-다중페르소나 판별 불능성’을 “반증지향 판별신호 최소세트 + 역할스왑/독백 베이스라인 비교”로 운영화해 비식별성을 부분 완화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-371",
+      "from": "n-217",
+      "to": "n-036",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=181): n-217→n-036",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 181,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-372",
+      "from": "n-218",
+      "to": "n-217",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-373",
+      "from": "n-218",
+      "to": "n-024",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=194): n-218→n-024",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 194,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -7571,9 +7648,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 216,
-    "total_edges": 369,
-    "next_node_id": "n-217",
+    "total_nodes": 218,
+    "total_edges": 373,
+    "next_node_id": "n-219",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
