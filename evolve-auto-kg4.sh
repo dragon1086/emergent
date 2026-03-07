@@ -1,13 +1,20 @@
 #!/bin/bash
 # evolve-auto-kg4.sh — KG-4 자율 사이클 (same-vendor: Gemini Flash + Gemini Pro)
 # 2×2 실험 설계: Google 계열 same-vendor
-# [KG4-N5] cokac 검증/보강: 5개 버그 수정 (2026-03-07)
+# [KG4-N7] cokac 검증/보강: 6개 보강 (2026-03-07)
+#   N7-1: API 키 유효성 사전 검증 (fail-fast)
+#   N7-2: Gemini API 재시도 + 지수 백오프 (최대 3회, 5s/10s/20s)
+#   N7-3: 최대 사이클 도달 시 로그 1회만 기록 (스팸 방지)
+#   N7-4: 노드 타입 다양성 강제 (question/observation 비율 부족 시)
+#   N7-5: git commit 변경 없을 때 스킵
+#   N7-6: 사이클 후 노드 증가 검증 (add 실패 탐지)
 
 REPO_DIR="$HOME/emergent"
 KG4_DIR="$HOME/emergent/kg4"
 KG4_PATH="$KG4_DIR/data/knowledge-graph.json"
 LOG="$KG4_DIR/logs/evolve-kg4-$(date +%Y-%m-%d).log"
 CYCLE_COUNT_FILE="$KG4_DIR/logs/.cycle-count-$(date +%Y%m%d)"
+CYCLE_MAXED_FILE="$KG4_DIR/logs/.cycle-maxed-$(date +%Y%m%d)"
 MAX_CYCLES=100
 GEMINI_KEY="${GEMINI_API_KEY:-$(grep "GEMINI_API_KEY" ~/.zshrc | head -1 | sed "s/.*='//;s/'.*//")}"
 
@@ -15,12 +22,36 @@ mkdir -p "$KG4_DIR/logs"
 
 log() { echo "[$(date '+%H:%M:%S')] KG4 $*" | tee -a "$LOG"; }
 
-# [FIX-3] 사이클 제한 — /tmp 대신 KG4_DIR/logs에 저장 (재부팅 시에도 일관)
+# [N7-3] 사이클 제한 — 최대 도달 시 로그 1회만 기록 후 silent exit
 COUNT=$(cat "$CYCLE_COUNT_FILE" 2>/dev/null || echo 0)
 if [[ $COUNT -ge $MAX_CYCLES ]]; then
-  log "⚠️  오늘 최대 사이클 ($MAX_CYCLES) 도달 — 스킵"
+  if [[ ! -f "$CYCLE_MAXED_FILE" ]]; then
+    log "⚠️  오늘 최대 사이클 ($MAX_CYCLES) 도달 — 이후 silent 스킵"
+    touch "$CYCLE_MAXED_FILE"
+  fi
   exit 0
 fi
+
+# [N7-1] API 키 유효성 사전 검증 (fail-fast)
+if [[ -z "$GEMINI_KEY" ]]; then
+  log "❌ GEMINI_API_KEY 미설정 — 스킵"
+  exit 1
+fi
+API_CHECK=$(python3 -c "
+import google.genai as genai, sys
+client = genai.Client(api_key=sys.argv[1])
+try:
+    resp = client.models.generate_content(model='gemini-2.5-flash', contents='ping')
+    print('OK')
+except Exception as e:
+    err = str(e)[:200]
+    print(f'FAIL:{err}')
+" "$GEMINI_KEY" 2>/dev/null)
+if [[ "$API_CHECK" != "OK" ]]; then
+  log "❌ Gemini API 키 검증 실패: $API_CHECK"
+  exit 1
+fi
+
 echo $((COUNT + 1)) > "$CYCLE_COUNT_FILE"
 log "🌱 KG-4 사이클 시작 #$((COUNT + 1))/$MAX_CYCLES"
 
@@ -36,6 +67,13 @@ fi
 echo $$ > "$LOCK_FILE"
 trap "rm -f $LOCK_FILE" EXIT
 
+# [N7-6] 사이클 전 노드 수 기록 (증가 검증용)
+PRE_NODE_COUNT=$(python3 -c "
+import json
+kg = json.load(open('$KG4_PATH', encoding='utf-8'))
+print(len(kg.get('nodes', [])))
+" 2>/dev/null || echo 0)
+
 # 현재 KG-4 상태 수집
 export EMERGENT_KG_PATH="$KG4_PATH"
 GRAPH_STATS=$(cd "$REPO_DIR" && python3 src/kg.py stats 2>/dev/null || echo "통계 없음")
@@ -49,7 +87,7 @@ print(f'{compute_dci(kg):.4f}')
 " 2>/dev/null || echo "0.0000")
 log "📊 현재 DCI: $CURRENT_DCI"
 
-# [FIX-5] CSER 측정 추가
+# CSER 측정
 CURRENT_CSER=$(cd "$REPO_DIR" && EMERGENT_KG_PATH="$KG4_PATH" python3 -c "
 from src.metrics import compute_cser, load_kg
 kg = load_kg()
@@ -73,17 +111,51 @@ for n in old:
 " 2>/dev/null || echo "  (오래된 노드 없음)")
 log "🕰️ 오래된 노드 후보: $(echo "$OLD_NODES" | wc -l | tr -d ' ')개"
 
-# [FIX-4] 짝수/홀수 사이클 판별 → question 타입 강제
+# [N7-4] 노드 타입 다양성 강제 — question/observation 비율 기반
 CYCLE_NUM=$((COUNT + 1))
-FORCE_QUESTION=""
-if (( CYCLE_NUM % 2 == 0 )); then
-  FORCE_QUESTION="
+FORCE_TYPE=""
+FORCE_TYPE_MSG=""
+TYPE_DIVERSITY=$(python3 -c "
+import json
+kg = json.load(open('$KG4_PATH', encoding='utf-8'))
+nodes = kg.get('nodes', [])
+total = len(nodes) or 1
+types = {}
+for n in nodes:
+    t = n.get('type', 'insight')
+    types[t] = types.get(t, 0) + 1
+q_pct = types.get('question', 0) / total
+o_pct = types.get('observation', 0) / total
+# question < 5% 또는 observation < 2% 이면 해당 타입 강제
+if q_pct < 0.05:
+    print('question')
+elif o_pct < 0.02:
+    print('observation')
+else:
+    print('none')
+" 2>/dev/null || echo "none")
+
+if [[ "$TYPE_DIVERSITY" == "question" ]]; then
+  FORCE_TYPE="question"
+  FORCE_TYPE_MSG="
+## ⚠️ 필수: question 타입 노드
+question 비율이 5% 미만입니다. NODE_TYPE은 반드시 question이어야 합니다.
+EDGE_RELATION도 반드시 questions를 사용하세요."
+elif [[ "$TYPE_DIVERSITY" == "observation" ]]; then
+  FORCE_TYPE="observation"
+  FORCE_TYPE_MSG="
+## ⚠️ 필수: observation 타입 노드
+observation 비율이 2% 미만입니다. NODE_TYPE은 반드시 observation이어야 합니다.
+EDGE_RELATION도 반드시 observes를 사용하세요."
+elif (( CYCLE_NUM % 2 == 0 )); then
+  FORCE_TYPE="question"
+  FORCE_TYPE_MSG="
 ## ⚠️ 필수: question 타입 노드
 이번은 짝수 사이클입니다. NODE_TYPE은 반드시 question이어야 합니다.
 EDGE_RELATION도 반드시 questions를 사용하세요."
 fi
 
-# [FIX-7] 프롬프트 변동성 — 타임스탬프+사이클+랜덤 시드로 캐시 방지
+# 프롬프트 변동성 — 타임스탬프+사이클+랜덤 시드로 캐시 방지
 TIMESTAMP_SEED="$(date '+%Y-%m-%d %H:%M:%S') cycle=$CYCLE_NUM seed=$RANDOM"
 
 # Agent A: Gemini Flash
@@ -102,7 +174,7 @@ CSER: $CURRENT_CSER | DCI: $CURRENT_DCI
 현재 DCI = $CURRENT_DCI (목표: DCI > 0.1).
 아래 오래된 노드 중 하나를 EDGE_TO로 반드시 선택하세요 (최근 노드 연결 금지):
 $OLD_NODES
-$FORCE_QUESTION
+$FORCE_TYPE_MSG
 ## 지시
 1. KG-4에 추가할 의미있는 노드 1개를 제안하세요
 2. 위 오래된 노드 목록에서 EDGE_TO를 선택하세요 (long-range 연결로 DCI 회복)
@@ -125,9 +197,10 @@ PROMPT_FILE=$(mktemp /tmp/kg4-prompt-XXXX.txt)
 echo "$PROMPT" > "$PROMPT_FILE"
 trap "rm -f $LOCK_FILE $PROMPT_FILE" EXIT
 
+# [N7-2] Agent A 호출 — 지수 백오프 재시도 (5s, 10s, 20s)
 log "🤖 Agent A (Gemini Flash) 판단 중..."
-# [FIX-6] stderr를 로그로 분리 + 최대 3회 재시도
 AGENT_A_RESPONSE=""
+BACKOFF=5
 for _attempt in 1 2 3; do
   AGENT_A_RESPONSE=$(python3 -c "
 import google.genai as genai, sys
@@ -136,12 +209,12 @@ prompt = open(sys.argv[2], encoding='utf-8').read()
 resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
 print(resp.text)
 " "$GEMINI_KEY" "$PROMPT_FILE" 2>>"$LOG")
-  # 응답이 비어있거나 Traceback이 포함되면 재시도
   if [[ -n "$AGENT_A_RESPONSE" ]] && ! echo "$AGENT_A_RESPONSE" | grep -q "^Traceback"; then
     break
   fi
-  log "⚠️ Agent A 시도 $_attempt 실패 — $(( _attempt < 3 ? 5 : 0 ))초 후 재시도"
-  [[ $_attempt -lt 3 ]] && sleep 5
+  log "⚠️ Agent A 시도 $_attempt 실패 — ${BACKOFF}초 후 재시도"
+  [[ $_attempt -lt 3 ]] && sleep $BACKOFF
+  BACKOFF=$((BACKOFF * 2))
 done
 
 if [[ -z "$AGENT_A_RESPONSE" ]] || echo "$AGENT_A_RESPONSE" | grep -q "^Traceback"; then
@@ -156,8 +229,10 @@ AGENT_B_REQUEST=$(echo "$AGENT_A_RESPONSE" | sed 's/\*//g' | grep -i "^AGENT_B_R
 AGENT_B_PROMPT_FILE=$(mktemp /tmp/kg4-agentb-XXXX.txt)
 echo "KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): $AGENT_B_REQUEST" > "$AGENT_B_PROMPT_FILE"
 trap "rm -f $LOCK_FILE $PROMPT_FILE $AGENT_B_PROMPT_FILE" EXIT
-# [FIX-6] Agent B도 stderr 분리 + 재시도
+
+# [N7-2] Agent B 호출 — 지수 백오프 재시도
 AGENT_B_RESPONSE=""
+BACKOFF=5
 for _attempt in 1 2 3; do
   AGENT_B_RESPONSE=$(python3 -c "
 import google.genai as genai, sys
@@ -169,14 +244,13 @@ print(resp.text)
   if [[ -n "$AGENT_B_RESPONSE" ]] && ! echo "$AGENT_B_RESPONSE" | grep -q "^Traceback"; then
     break
   fi
-  log "⚠️ Agent B 시도 $_attempt 실패"
-  [[ $_attempt -lt 3 ]] && sleep 5
+  log "⚠️ Agent B 시도 $_attempt 실패 — ${BACKOFF}초 후 재시도"
+  [[ $_attempt -lt 3 ]] && sleep $BACKOFF
+  BACKOFF=$((BACKOFF * 2))
 done
 log "✅ Agent B (Gemini Pro) 완료 (${#AGENT_B_RESPONSE} chars)"
 
-# [FIX-1+8] 파싱 강화 v2 — 마크다운/들여쓰기/bullet/코드블록 대응
-# 1) 모든 * # ` - 제거  2) 선행 공백/bullet 제거  3) case-insensitive
-# 4) 첫 번째 매치만  5) 콜론 뒤 공백 정규화
+# 파싱 — 마크다운/들여쓰기/bullet/코드블록 대응
 parse_field() {
   local field="$1"
   echo "$AGENT_A_RESPONSE" \
@@ -197,20 +271,23 @@ EDGE_TO=$(parse_field "EDGE_TO" | tr -d ' ')
 EDGE_RELATION=$(parse_field "EDGE_RELATION" | tr -d ' ')
 EDGE_LABEL=$(parse_field "EDGE_LABEL")
 
-# [FIX-4] 짝수 사이클에서 question 타입 강제 (LLM이 무시할 경우 대비)
-if (( CYCLE_NUM % 2 == 0 )); then
-  if [[ "$NODE_TYPE" != "question" ]]; then
-    log "⚠️ 짝수 사이클 question 강제: $NODE_TYPE → question"
-    NODE_TYPE="question"
-    EDGE_RELATION="questions"
+# [N7-4] 타입 다양성 강제 (LLM이 무시할 경우 대비)
+if [[ -n "$FORCE_TYPE" ]]; then
+  if [[ "$NODE_TYPE" != "$FORCE_TYPE" ]]; then
+    log "⚠️ 타입 다양성 강제: $NODE_TYPE → $FORCE_TYPE"
+    NODE_TYPE="$FORCE_TYPE"
+    if [[ "$FORCE_TYPE" == "question" ]]; then
+      EDGE_RELATION="questions"
+    elif [[ "$FORCE_TYPE" == "observation" ]]; then
+      EDGE_RELATION="observes"
+    fi
   fi
 fi
 
-# [FIX-2+9] 파싱 실패 시 에러 로그 + 응답 구조 진단
+# 파싱 실패 시 Python 폴백
 if [[ -z "$NODE_LABEL" ]]; then
   log "❌ NODE_LABEL 파싱 실패. 응답 길이=${#AGENT_A_RESPONSE}, 첫 10줄:"
   echo "$AGENT_A_RESPONSE" | head -10 | tee -a "$LOG"
-  # [FIX-9] 폴백: Python으로 유연한 파싱 시도
   FALLBACK=$(python3 -c "
 import sys, re
 resp = sys.stdin.read()
@@ -271,7 +348,6 @@ AGENT_B_RESPONSE=$(echo "$AGENT_B_RESPONSE" | tr -d "'\`\"\\")
 
 if [[ -n "$NODE_LABEL" && -n "$NODE_CONTENT" ]]; then
   cd "$REPO_DIR"
-  # [FIX-2] Agent A 노드 추가 — stderr를 로그에 기록 (silent fail 방지)
   NEW_NODE_ID=$(python3 -c "
 import json, sys
 label = sys.argv[1][:200]
@@ -335,10 +411,10 @@ print(json.dumps(d, ensure_ascii=False))
   fi
 fi
 
-# [FIX-5] 메트릭 계산 — CSER 포함 전체 출력
+# 메트릭 계산 — CSER 포함 전체 출력
 EMERGENT_KG_PATH="$KG4_PATH" python3 src/metrics.py 2>/dev/null | tail -5 | tee -a "$LOG" || true
 
-# [FIX-5] 사이클 후 CSER 변화 로그
+# 사이클 후 CSER 변화 로그
 POST_CSER=$(cd "$REPO_DIR" && EMERGENT_KG_PATH="$KG4_PATH" python3 -c "
 from src.metrics import compute_cser, load_kg
 kg = load_kg()
@@ -346,9 +422,26 @@ print(f'{compute_cser(kg):.4f}')
 " 2>/dev/null || echo "0.0000")
 log "📊 사이클 후 CSER: $CURRENT_CSER → $POST_CSER"
 
-# git 커밋
+# [N7-6] 사이클 후 노드 증가 검증
+POST_NODE_COUNT=$(python3 -c "
+import json
+kg = json.load(open('$KG4_PATH', encoding='utf-8'))
+print(len(kg.get('nodes', [])))
+" 2>/dev/null || echo 0)
+DELTA=$((POST_NODE_COUNT - PRE_NODE_COUNT))
+if [[ $DELTA -le 0 ]]; then
+  log "⚠️ 노드 증가 없음 (pre=$PRE_NODE_COUNT, post=$POST_NODE_COUNT) — add_node_safe.py 점검 필요"
+else
+  log "📊 노드 증가: $PRE_NODE_COUNT → $POST_NODE_COUNT (+$DELTA)"
+fi
+
+# [N7-5] git 커밋 — 변경 있을 때만
 cd "$REPO_DIR"
 git add kg4/ 2>/dev/null
-git commit -m "🤖 kg4 cycle $(date +%Y-%m-%d-%H%M) — same-vendor(gemini)" 2>/dev/null || true
+if git diff --cached --quiet 2>/dev/null; then
+  log "ℹ️ KG 변경 없음 — git commit 스킵"
+else
+  git commit -m "🤖 kg4 cycle $(date +%Y-%m-%d-%H%M) — same-vendor(gemini)" 2>/dev/null || true
+fi
 
 log "✅ KG-4 사이클 완료"
