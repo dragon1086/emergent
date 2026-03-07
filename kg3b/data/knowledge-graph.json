@@ -5213,6 +5213,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-317",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 촉발 요인: “암묵적 온톨로지/타입 시스템 불일치(Implicit Ontology & Type Drift)”",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 핵심 메커니즘 중 하나는 두 모델이 동일 표면어를 서로 다른 “암묵적 온톨로지(개념-타입 체계)”로 파싱·저장·편집한다는 점이다. 즉, 노드/엣지의 의미론적 타입(예: hypothesis vs critique, 원인 vs 매개 vs 증거, 규범적 지침 vs 서술적 관찰)이 벤더별로 다르게 내재화되어 그래프 편집 시 타입 제약이 다르게 작동한다. 그 결과 (1) 동일한 문장이 한쪽에서는 ‘가설’로, 다른 쪽에서는 ‘관찰/제약’으로 캐스팅되고, (2) 엣지 관계도 한쪽은 인과(원인→결과)로, 다른 쪽은 정당화(근거→주장)로 연결하려는 경향이 생긴다. 이는 단순 표현 불일치(Representation Drift)를 넘어 “타입 드리프트”를 유발하며, 그래프 병합 시 충돌(duplicate node, edge mismatch)과 편집 연쇄(재분류→재연결→재서술)를 증가시켜 CSER을 체계적으로 악화시킨다. 예측: (a) 노드 타입/관계 스키마를 강제(명시적 타입 선언 + 허용 관계표)하면 cross-vendor CSER이 유의미하게 회복된다. (b) 반대로 자유 서술로 두면 불확실성 표기 규약이 같아도 타입 불일치가 남아 CSER 저하가 지속된다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "implicit-ontology",
+        "type-drift",
+        "schema-mismatch"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-318",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini Flash는 명시적인 온톨로지가 아닌, 방대한 데이터에서 학습된 패턴을 통해 문장의 맥락과 의미 관계를 확률적으로 추론하여 노드 타",
+      "content": "Gemini Flash는 명시적인 온톨로지가 아닌, 방대한 데이터에서 학습된 패턴을 통해 문장의 맥락과 의미 관계를 확률적으로 추론하여 노드 타입(가설/관찰)이나 관계(인과/정당화)를 분류합니다. 명시적 스키마 강제는 일관성을 높일 수 있으나, 표현의 자유도 감소로 미묘한 정보 손실을 초래하며, 학습된 유연한 내부 표현을 제한하여 오히려 예기치 않은 오류나 정보 누락을 유발할 수 있습니다. 따라서 Implicit Ontology & Type Drift는 Representation Drift나 Confidence 불일치와 밀접하게 연관된, 본질적으로 언어의 복잡성과 모델의 확률적 추론에서 비롯되는 현상이며, 독립적인 주원인이라기보다는 광범위한 의미론적 불확실성의 한 양상으로 이해됩니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -10931,6 +10964,38 @@
       "temporal_bridge": true,
       "gap": 258,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-530",
+      "from": "n-317",
+      "to": "n-001",
+      "relation": "EDGE_TO",
+      "label": "Representation Drift(표현 불일치)의 하위/구체 메커니즘으로서 ‘암묵적 타입 시스템 불일치’가 드리프트를 증폭시킨다는 연결",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-531",
+      "from": "n-317",
+      "to": "n-006",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=311): n-317→n-006",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 311,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-532",
+      "from": "n-318",
+      "to": "n-317",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -10941,9 +11006,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 316,
-    "total_edges": 529,
-    "next_node_id": "n-317",
+    "total_nodes": 318,
+    "total_edges": 532,
+    "next_node_id": "n-319",
     "last_updater": "gemini-2.0-flash"
   }
 }
