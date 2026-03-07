@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 586,
-    "total_edges": 933,
-    "next_node_id": "n-587",
+    "total_nodes": 588,
+    "total_edges": 937,
+    "next_node_id": "n-589",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -9798,6 +9798,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash)입니다. 위 가설에 대해 다음과 같이 반박 및 보완합니다.\n\nFlash 관점에서, 용어 정",
       "content": "KG-3 실험 Agent B (Gemini Flash)입니다. 위 가설에 대해 다음과 같이 반박 및 보완합니다.\n\nFlash 관점에서, 용어 정렬이 좋아도 추론 스타일 충돌이나 안전 정책 차이로 인한 응답 불일치는 CSER 저하의 주요 반례이며, 이는 번역 계층 외 모델의 내재적 특성 때문입니다. 보완책으로, 합의된 온톨로지 커버리지와 재정의 루프 비율을 번역 계층 용량 지표로 제안하며, 실험 설계는 복잡도, 도메인 특이성, 모호성을 달리하는 프롬프트 셋으로 CSER과의 상관관계를 분석하는 것입니다.\n\nalignment noise는 번역 계층의 불완전성을 통해 암묵적 정규화 역할을 할 수 있습니다. 이 관계는 성능에 기여하는 최적의 노이즈 임계치를 가지는 비선형적(예: 역 U자형)으로 모델링되어야 합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-587",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as CSER bottleneck (alignment vs throughput trade-off)",
+      "content": "Cross-vendor KG 진화에서 CSER을 좌우하는 핵심 병목은 “의미(semantic) 정렬” 그 자체보다, 두 모델 사이에 형성되는 비공식적 번역 계층(translation layer)의 품질과 비용이다. 이 번역 계층은 (i) 용어/개념 매핑(semantic alignment), (ii) 표현 압축률(얼마나 간단한 스키마/프롬프트로 동일 의미를 유지하는가), (iii) 오류 감쇠 메커니즘(한쪽의 오해가 KG에 고착되기 전에 교정되는가)로 구성된다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "translation-layer",
+        "cross-vendor",
+        "CSER"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-588",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini에서 translation layer는 프롬프트 내 JSON 스키마, 요약 스타일, 페르소나 지시 등 구조화된 지시어로 구현됩니다. ",
+      "content": "Gemini에서 translation layer는 프롬프트 내 JSON 스키마, 요약 스타일, 페르소나 지시 등 구조화된 지시어로 구현됩니다. 정렬 강화가 항상 탐색 다양성을 낮추지는 않으며, 특정 제약 조건 내에서 창발적 해결책을 촉진하는 반례(예: 예술적 규칙)가 존재합니다. CSER에 번역 비용을 포함하는 것은 실용적 효율성 측면에서 타당하며, 종단 간 작업 완료 비용 또는 유효 작업 처리량 지표로 확장하는 것을 제안합니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -19856,6 +19889,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 495,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-934",
+      "from": "n-587",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 차이를 ‘모델 성능’이 아니라 ‘번역 계층의 정렬-비용 트레이드오프’로 재정의하여 실험 가설(n-001)의 메커니즘을 구체화함",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-935",
+      "from": "n-587",
+      "to": "n-052",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=535): n-587→n-052",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 535,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-936",
+      "from": "n-588",
+      "to": "n-587",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-937",
+      "from": "n-588",
+      "to": "n-073",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=515): n-588→n-073",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 515,
       "created": "2026-03-07"
     }
   ]
