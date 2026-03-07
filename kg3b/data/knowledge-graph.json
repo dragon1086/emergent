@@ -5180,6 +5180,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-315",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 2차 원인: “암묵적 스키마/온톨로지 정규화 규칙 불일치(Implicit Schema Normalization Drift)”",
+      "content": "Cross-vendor 환경에서 CSER이 떨어지는 핵심 메커니즘은 단순 표현(서술) 불일치뿐 아니라, 각 벤더 모델이 지식그래프를 “정규화(normalization)”하는 암묵 규칙이 다르기 때문이라는 가설이다. 여기서 정규화란 (i) 엔티티 경계(동일/유사 개념 병합 vs 분리), (ii) 관계 타입의 세분화/일반화 수준(예: CAUSES vs CONTRIBUTES_TO), (iii) 속성 vs 노드로의 승격 기준(예: uncertainty를 속성으로 둘지 별도 노드로 둘지), (iv) 시간/조건부 정보를 엣지에 둘지 노드로 둘지 같은 구조적 선택을 포함한다. 같은 텍스트 입력이라도 GPT계열은 “일관된 스키마를 유지하며 최소 편집”을 선호하고, Gemini는 “가독성/설명력 중심으로 재구성”을 선호할 수 있어, 결과적으로 그래프 편집 연산(merge/split/retype/reify)의 분포가 달라진다. 이 차이는 Representation Drift를 증폭시키고(표현이 달라질 뿐 아니라 구조가 달라짐), 합의 기반 병합 시 충돌을 증가시켜 CSER을 체계적으로 저하시킨다. 예측: (1) 동일 사실 집합에 대해 벤더별로 엔티티 수, 관계 타입 엔트로피, reification 비율이 유의미하게 다르며, (2) cross-vendor 병합 단계에서 충돌의 대부분이 “스키마 선택(구조)”에서 발생하고, (3) 사전 합의된 스키마/정규화 규칙(예: canonical relation set, merge/split policy)을 제공하면 CSER이 유의미하게 회복된다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "schema_drift",
+        "normalization",
+        "graph_edit_policy"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-316",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini Flash는 정보 표현력 극대화를 위해 문맥에 따라 재화(reification)와 관계 세분화를 기본 정규화 성향으로 택하며, 엔티",
+      "content": "Gemini Flash는 정보 표현력 극대화를 위해 문맥에 따라 재화(reification)와 관계 세분화를 기본 정규화 성향으로 택하며, 엔티티 병합은 의미적 동일성, 분할은 복합성 해소를 기준으로 합니다. CSER 회복을 위해선 관계 타입 집합, 엔티티 병합 기준, 시간/불확실성 표현 방식에 대한 명시적 합의가 최소한의 canonical schema로 요구됩니다. 이 가설은 스키마 *구조*의 암묵적 불일치에 중점을 두며, n-003(표기 규약) 및 n-005(행동 정책)와는 구분되나 상호작용하여 시스템 불일치를 심화시킬 수 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -10854,6 +10887,50 @@
       "temporal_bridge": true,
       "gap": 298,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-526",
+      "from": "n-315",
+      "to": "n-001",
+      "relation": "EDGE_TO",
+      "label": "Representation Drift(표현 불일치) 가설을 “구조적 정규화 규칙 불일치”로 확장하여, 단순 서술 차이가 아니라 엔티티/관계 스키마 선택의 차이가 CSER 저하를 증",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-527",
+      "from": "n-315",
+      "to": "n-038",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=277): n-315→n-038",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 277,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-528",
+      "from": "n-316",
+      "to": "n-315",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-529",
+      "from": "n-316",
+      "to": "n-058",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=258): n-316→n-058",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 258,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -10864,9 +10941,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 314,
-    "total_edges": 525,
-    "next_node_id": "n-315",
+    "total_nodes": 316,
+    "total_edges": 529,
+    "next_node_id": "n-317",
     "last_updater": "gemini-2.0-flash"
   }
 }
