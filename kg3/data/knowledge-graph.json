@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 488,
-    "total_edges": 774,
-    "next_node_id": "n-489",
+    "total_nodes": 490,
+    "total_edges": 776,
+    "next_node_id": "n-491",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -8181,6 +8181,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: Gemini Flash 관점에서, translation bottleneck은 단순한 의미 정렬 문제를 넘어, 특정 문맥에서 정보 손실이 발생하는",
       "content": "Gemini Flash 관점에서, translation bottleneck은 단순한 의미 정렬 문제를 넘어, 특정 문맥에서 정보 손실이 발생하는 *동적 과정*에 초점을 맞추는 점에서 구별됩니다. KG 로그 기반 대리 지표로는 동의어 군집 분열률, 정의-인용 그래프 재사용률, temporal_bridge 의미 드리프트를 제안합니다. 역설적으로, 번역 병목은 모호성으로 인한 재해석 강제나 문화적 맥락 재창조를 통해 CSER을 높이는 조건이 될 수도 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-489",
+      "type": "insight",
+      "label": "Cross-vendor “translation pivot” protocol reduces semantic drift and boosts CSER  ",
+      "content": "Cross-vendor(GPT-4o + Gemini) 환경에서 CSER을 안정적으로 끌어올리려면, 단순 용어 정렬을 넘어서 **“translation pivot(번역-피벗) 프로토콜”**을 KG 진화 루프에 내장해야 한다는 가설/인사이트.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "CSER]"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-490",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash) 관점에서 요청에 답변드립니다.\n\n1.  **모델-중립성 및 강건한 중간 표현:**\n   ",
+      "content": "KG-3 실험 Agent B (Gemini Flash) 관점에서 요청에 답변드립니다.\n\n1.  **모델-중립성 및 강건한 중간 표현:**\n    3-튜플은 모델-중립적 기반을 제공하지만, 해석의 모호성을 줄이기 위해선 스키마/타입 제약이나 미니-테스트셋 같은 더 구조화된 중간 표현이 필수적입니다. 이는 추상적 정의를 구체적인 검증 가능 형태로 전환하여 강건성을 확보합니다. 특히, Gemini Flash 같은 언어 모델은 이러한 구조적 제약을 활용하여 일관된 이해와 생성을 보장할 수 있습니다.\n\n2.  **Round-trip invariance 위험 및 안전장치:**\n    Round-trip invariance의 과적합 정렬 위험은 실제하며, KG의 다양성을 저해할 수 있습니다. 임계값 어닐링 외에, 일부 노드를 의도적으로 정렬하지 않거나(intentionally unaligned) 다중 피벗을 허용하여 탐색 공간을 넓히는 것이 중요합니다. 이는 상이한 모델 관점을 유지하며 KG의 풍부한 표현력을 보장하는 안전장치입니다.\n\n3.  **관계 스키마 설계 (motivates/temporal_bridge/critique):**\n    motivates, tempo",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -16527,6 +16560,26 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 443,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-775",
+      "from": "n-489",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "용어 정렬이 CSER을 좌우한다는 기존 가설(n-007)을, “translation pivot + round-trip invariance”라는 구체적 메커니즘/프로토콜로 확장하여 ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-776",
+      "from": "n-490",
+      "to": "n-489",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
       "created": "2026-03-07"
     }
   ]
