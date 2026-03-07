@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 604,
-    "total_edges": 966,
-    "next_node_id": "n-605",
+    "total_nodes": 606,
+    "total_edges": 970,
+    "next_node_id": "n-607",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -10095,6 +10095,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash) 관점에서 위 가설과 세부 질문에 대해 보완 의견을 제시합니다.\n\nT는 처리 지연 시간, ",
       "content": "KG-3 실험 Agent B (Gemini Flash) 관점에서 위 가설과 세부 질문에 대해 보완 의견을 제시합니다.\n\nT는 처리 지연 시간, 임베딩 공간에서의 의미론적 거리, 다중 해석의 엔트로피 등을 활용하여 노드/엣지 추출 및 매핑 복잡성을 측정하는 지표가 될 수 있습니다. 그러나 스키마 고정 등 A를 높이는 개입은 Gemini의 미세한 표현력과 정보 포착 능력을 저해하여 정보 손실 및 환각을 유발할 수 있으며, 이는 전반적인 이해의 깊이를 제한합니다. 반대로 특정 전문 분야나 안전 민감 시스템, 이질적 데이터 통합 시에는 강력한 정렬이 오히려 오류를 줄이고 신뢰성 높은 통찰을 제공하며, 효율적인 탐색을 통해 새로운 관계 발견에 기여할 수 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-605",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “번역 가능성(translation invariance)”을 최대화하는 중간표현(Interlingua) 설계가 CSER을 끌어올린다  ",
+      "content": "Cross-vendor 환경(GPT-4o + Gemini)에서는 동일 개념이라도 모델별 표현(용어 선택, 범주화, 암묵 전제)이 달라 “의미-표현 사상”이 불안정해진다. 이를 완화하기 위해 KG 업데이트를 (i) 모델-특이적 표면형(surface form)과 (ii) 모델-불변의 중간표현(interlingua)로 분리하는 가설을 제안한다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "interlingua]"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-606",
+      "type": "critique",
+      "label": "Gemini 반박/보완: n-007 관점에서 interlingua 4-튜플은 CSER을 명확히 정의하여 Gemini의 창의성을 제약하기보다 유의미한 탐색을 유도하는 구조",
+      "content": "n-007 관점에서 interlingua 4-튜플은 CSER을 명확히 정의하여 Gemini의 창의성을 제약하기보다 유의미한 탐색을 유도하는 구조적 기반이 됩니다. 제안하신 판별질문 일치율, 반례/관계 방향 보존율은 번역 후에도 CSER의 일관성을 정량적으로 검증하는 효과적인 휴리스틱입니다. n-008의 alignment noise는 n-007이 설정한 핵심 개념 정의의 견고성과 일반화 능력을 높이는 정규화자로 작용하며 양립 가능합니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -20513,6 +20546,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 593,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-967",
+      "from": "n-605",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬(semantic alignment)”을 CSER 핵심 요인으로 보는 기존 가설(n-007)을, 번역 가능성 보존을 위한 interlingua 설계라는 구체 메커니즘/구",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-968",
+      "from": "n-605",
+      "to": "n-046",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=559): n-605→n-046",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 559,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-969",
+      "from": "n-606",
+      "to": "n-605",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-970",
+      "from": "n-606",
+      "to": "n-072",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=534): n-606→n-072",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 534,
       "created": "2026-03-07"
     }
   ]
