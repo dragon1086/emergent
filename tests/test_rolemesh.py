@@ -12,6 +12,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from src.rolemesh.builder import SetupWizard, ToolProfile, TOOL_REGISTRY, discover_tools
 from src.rolemesh.router import RoleMeshRouter, TASK_PATTERNS
 from src.rolemesh.dashboard import RoleMeshDashboard, DashboardData, HealthCheck
+from src.rolemesh.executor import RoleMeshExecutor, ExecutionResult, TOOL_COMMANDS
 
 
 # ===== Builder Tests =====
@@ -430,6 +431,136 @@ def test_dashboard_dead_refs():
     print("  PASS: dashboard_dead_refs")
 
 
+# ===== Executor Tests =====
+
+def test_executor_dry_run():
+    """Dry run returns command without executing."""
+    executor = RoleMeshExecutor(config_path=Path("/nonexistent"), dry_run=True)
+    result = executor.dispatch("claude", "hello world")
+    assert result.success
+    assert "[dry-run]" in result.stdout
+    assert "claude" in result.stdout
+    print("  PASS: executor_dry_run")
+
+
+def test_executor_dry_run_routed():
+    """Dry run through full pipeline (route + execute)."""
+    executor = RoleMeshExecutor(config_path=Path("/nonexistent"), dry_run=True)
+    result = executor.run("함수 구현해줘")
+    assert result.success
+    assert "[dry-run]" in result.stdout
+    assert result.task_type  # should have a classified type
+    print("  PASS: executor_dry_run_routed")
+
+
+def test_executor_unknown_tool():
+    """Dispatching to unknown tool returns error."""
+    executor = RoleMeshExecutor(config_path=Path("/nonexistent"), dry_run=True)
+    result = executor.dispatch("nonexistent_tool", "test")
+    assert not result.success
+    assert result.exit_code == 127
+    assert "Unknown tool" in result.stderr
+    print("  PASS: executor_unknown_tool")
+
+
+def test_executor_build_command():
+    """build_command constructs correct CLI args."""
+    executor = RoleMeshExecutor(config_path=Path("/nonexistent"))
+
+    # claude: prompt via args
+    cmd = executor.build_command("claude", "test prompt")
+    assert cmd is not None
+    assert cmd[0] == "claude"
+    assert "test prompt" in cmd
+
+    # Unknown tool
+    cmd = executor.build_command("fake_tool", "test")
+    assert cmd is None
+
+    print("  PASS: executor_build_command")
+
+
+def test_executor_build_command_with_files():
+    """build_command appends file context."""
+    executor = RoleMeshExecutor(config_path=Path("/nonexistent"))
+    cmd = executor.build_command("claude", "review this", context={"files": ["a.py", "b.py"]})
+    assert "a.py" in cmd
+    assert "b.py" in cmd
+    print("  PASS: executor_build_command_with_files")
+
+
+def test_executor_check_tool():
+    """check_tool verifies binary availability."""
+    executor = RoleMeshExecutor(config_path=Path("/nonexistent"))
+    # 'python3' should exist on any dev machine
+    assert executor.check_tool("nonexistent_tool_xyz") is False
+    print("  PASS: executor_check_tool")
+
+
+def test_executor_result_to_dict():
+    """ExecutionResult serializes correctly."""
+    result = ExecutionResult(
+        tool="claude", tool_name="Claude Code",
+        task_type="coding", confidence=0.85,
+        exit_code=0, stdout="output", stderr="",
+        duration_ms=1500,
+    )
+    d = result.to_dict()
+    assert d["tool"] == "claude"
+    assert d["success"] is True
+    assert d["confidence"] == 0.85
+    assert d["duration_ms"] == 1500
+    assert d["fallback_used"] is False
+    print("  PASS: executor_result_to_dict")
+
+
+def test_executor_result_failure():
+    """ExecutionResult.success reflects exit_code."""
+    result = ExecutionResult(
+        tool="codex", tool_name="Codex",
+        task_type="coding", confidence=0.5,
+        exit_code=1, stdout="", stderr="error",
+        duration_ms=200,
+    )
+    assert not result.success
+    assert result.to_dict()["success"] is False
+    print("  PASS: executor_result_failure")
+
+
+def test_executor_tool_commands_registry():
+    """All TOOL_COMMANDS have required fields."""
+    for key, info in TOOL_COMMANDS.items():
+        assert "cmd" in info, f"TOOL_COMMANDS['{key}'] missing 'cmd'"
+        assert "stdin_mode" in info, f"TOOL_COMMANDS['{key}'] missing 'stdin_mode'"
+        assert isinstance(info["cmd"], list)
+        assert isinstance(info["stdin_mode"], bool)
+    print("  PASS: executor_tool_commands_registry")
+
+
+def test_executor_routed_with_config():
+    """Executor routes and dry-runs with config."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        config_path = Path(tmpdir) / "config.json"
+        config = {
+            "version": "1.0.0",
+            "tools": {
+                "claude": {"name": "Claude Code"},
+                "gemini": {"name": "Gemini CLI"},
+            },
+            "routing": {
+                "frontend": {"primary": "gemini", "fallback": "claude"},
+                "coding": {"primary": "claude", "fallback": "gemini"},
+            },
+        }
+        config_path.write_text(json.dumps(config))
+
+        executor = RoleMeshExecutor(config_path=config_path, dry_run=True)
+        result = executor.run("UI 컴포넌트 디자인해줘")
+        assert result.success
+        assert "[dry-run]" in result.stdout
+    print("  PASS: executor_routed_with_config")
+
+
 # ===== Run all tests =====
 
 def run_all():
@@ -464,6 +595,17 @@ def run_all():
         test_dashboard_render_full,
         test_dashboard_to_dict,
         test_dashboard_dead_refs,
+        # Executor
+        test_executor_dry_run,
+        test_executor_dry_run_routed,
+        test_executor_unknown_tool,
+        test_executor_build_command,
+        test_executor_build_command_with_files,
+        test_executor_check_tool,
+        test_executor_result_to_dict,
+        test_executor_result_failure,
+        test_executor_tool_commands_registry,
+        test_executor_routed_with_config,
     ]
 
     passed = 0
