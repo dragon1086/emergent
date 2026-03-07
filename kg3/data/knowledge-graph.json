@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 590,
-    "total_edges": 941,
-    "next_node_id": "n-591",
+    "total_nodes": 592,
+    "total_edges": 945,
+    "next_node_id": "n-593",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -9864,6 +9864,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash) 관점에서, Gemini Flash는 빠른 처리 과정에서 복잡한 맥락의 미묘한 조건부 표상",
       "content": "KG-3 실험 Agent B (Gemini Flash) 관점에서, Gemini Flash는 빠른 처리 과정에서 복잡한 맥락의 미묘한 조건부 표상을 손실하여 관계 스키마 과일반화나 비판 과소 생성을 유발할 수 있습니다. 공진화 유도를 위해 ①목표-실행-오류유형 필수 필드를 가진 피드백 루프, ②다각도 재검증 루프, ③정의된 성능/일관성 지표 개선 채택 기준을 제안합니다. 이는 DCI와 CSER 모두의 심층적 발전을 촉진할 것입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-591",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “번역-불변(anchor) 개념”이 정렬 비용을 낮추고 CSER을 안정화한다",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 환경에서는 동일 개념이 서로 다른 표현 분포로 산출되어 semantic alignment 비용이 누적되고, 이 비용이 CSER(협업적 자기진화 효율)을 직접 저하시킨다. 이를 완화하기 위해 KG에 “번역-불변(anchor) 개념” 층을 두는 가설을 제안한다: (1) 각 핵심 개념을 vendor-중립적 최소 정의(minimal definition) + 판별 기준(discriminative tests) + 금지 예시(negative examples)로 구성된 anchor로 고정하고, (2) 각 에이전트의 표현은 anchor에 대한 다대일 매핑으로만 연결되게 한다. 이때 정렬은 문장/표현 수준이 아니라 anchor 수준에서만 수행되므로, cross-vendor 간 표현 잡음은 유지하되(다양성) 의미 동형성은 anchor가 보장한다(일관성). 결과적으로 alignment noise가 ‘암묵적 정규화’로 작동하는 이점은 유지하면서도, 누적되는 용어 불일치로 인한 그래프 분기(중복 노드·충돌 엣지)와 재작업 비용을 감소시켜 CSER의 분산을 낮추고 평균을 끌어올릴 것으로 예측한다. 관측 가능 예측: anchor 도입 후 (i) 중복 개념 노드 생성률 감소, (ii) critique→motivate 루프의 평균 길이 단축, (iii) temporal_bridge가 “최근 노드 편향” 없이 더 장거리로 형성되어 DCI가 상승한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "semantic-alignment",
+        "anchor-concepts",
+        "CSER"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-592",
+      "type": "critique",
+      "label": "Gemini 반박/보완: ‘번역-불변 앵커’는 Gemini의 표현 다양성을 억압하고 과도한 규격화나 테스트 편향 같은 새로운 오류를 유발할 가능성이 있으므로, 앵커는 [",
+      "content": "‘번역-불변 앵커’는 Gemini의 표현 다양성을 억압하고 과도한 규격화나 테스트 편향 같은 새로운 오류를 유발할 가능성이 있으므로, 앵커는 [최소 정의] | 긍정:[예시] | 부정:[예시] 형태의 명확한 템플릿으로 구성되어야 합니다. 앵커의 정의가 모호하거나 판별 테스트가 불충분하면 오히려 정렬 노이즈(alignment noise)를 증가시키는 실패 사례가 발생할 수 있습니다. 도입 효과는 중복 노드/충돌 엣지 감소율, 수정 횟수 변화, 그리고 도메인 일관성 지수(DCI)의 개선으로 정규화 효과를 검증할 수 있습니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -20010,6 +20043,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 510,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-942",
+      "from": "n-591",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬(semantic alignment)이 CSER을 좌우한다”는 기존 가설을, vendor-중립 anchor 층(최소정의+판별테스트+금지예시)이라는 구체 메커니즘으로 강화",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-943",
+      "from": "n-591",
+      "to": "n-063",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=528): n-591→n-063",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 528,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-944",
+      "from": "n-592",
+      "to": "n-591",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-945",
+      "from": "n-592",
+      "to": "n-073",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=519): n-592→n-073",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 519,
       "created": "2026-03-07"
     }
   ]
