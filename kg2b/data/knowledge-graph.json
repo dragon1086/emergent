@@ -3662,6 +3662,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-223",
+      "type": "insight",
+      "label": "에코챔버 검증의 ‘반사성(Reflexivity) 교란’과 통제 필요조건",
+      "content": "동일 모델(gpt-5.2×gpt-5.2) + 페르소나만 다른 조건에서 “KG 자율 진화 → 에코챔버”를 주장하려면, 관측된 수렴/강화가 (i) 에이전트 상호작용이 만들어낸 내생적 에코인지, (ii) 실험 설계가 주입한 반사적 최적화(‘에코챔버를 만들거나/검증하라’는 지시를 따르기 위한 전략적 수렴)인지 분리해야 한다. 이 분리가 안 되면 식별가능성(identifiability)은 구조적으로 붕괴한다. 구체적으로 본 실험은 “가설 검증”이라는 메타-목표를 에이전트에게 제공하고, KG 성장(노드/엣지 추가) 자체가 성과로 암묵적 강화되며, 페르소나(비판 vs 종합)가 ‘대립-통합’의 서사 구조를 자동 생성한다. 이때 나타나는 현상(유사도 증가, 반증 후보 감소, temporal_bridge의 증가 등)은 에코챔버의 결과라기보다 ‘지시-순응적 합의 형성’의 결과일 수 있다(반사성 교란). 따라서 최소 통제 필요조건은 “목표-반사성”을 분리하는 것이다: (1) 블라인드 조건: 에이전트에게 ‘에코챔버’나 ‘자율 진화’ 목표를 숨기고, 단지 주제 탐구만 지시한 뒤 동일 지표를 측정; (2) 대조 조건: 같은 지시를 주되 상호작용을 차단(독립 생성 후 사후 병합)하여 수렴이 상호작용 때문인지 확인; (3) 역지시 조건: 한 에이전트에게는 ‘수렴을 피하라/반례를 늘려라’ 같은 반대 목표를 부여해도 동일한 수렴 패턴이 나오면, 그것은 상호작용 에코가 아니라 모델-내재 편향 또는 평가함수(로그 기반 지표)의 산물일 가능성이 크다. 결론적으로, “동일모델-다중페르소나”에서의 에코챔버 판정은 단순한 분포 유사도나 반증 빈도 감소로",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "reflexivity_confound",
+        "experimental_design]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-224",
+      "type": "critique",
+      "label": "통합 종합: (a) “운영 가능”을 위해 블라인드는 **프롬프트·조건 ID만 주고 목적/가설/정답규칙을 숨긴 채**, 대조는 **동일 입력에 대해 (i) 중",
+      "content": "(a) “운영 가능”을 위해 블라인드는 **프롬프트·조건 ID만 주고 목적/가설/정답규칙을 숨긴 채**, 대조는 **동일 입력에 대해 (i) 중립 지시 (ii) 목표 지시 (iii) 무의미 지시**를 랜덤 교차(시드 고정)하며, 역지시는 **“이전 지시를 무시하라/반대로 하라”를 별도 트리트먼트로 삽입**해 로그에 *condition_id, seed, prompt_hash, instruction_version, time, model_version, decoding_params, tool_use, refusal_flag*를 필수 필드로 남기고 **조건 간 성과차(Δ)와 역지시 민감도(Δ_reverse)**로 평가합니다.  \n(b) 잔여 교란은 단일 점수로 뭉개지 말고 **(1) 모델 내재 편향: 동일 조건에서 인구통계/주제별 출력 분포 차이(분산·KL/JS), (2) 포맷 강제: 형식 준수율 vs 내용 정확도 디커플링(상관/부분상관), (3) 지시 추종 편향: 목표-중립-무의미 간 “내용 이동량” 임베딩 거리, (4) 불확실성/자기모순: 자기평가-정답 불일치율**을 함께 보고, 마지막에 **혼합효과모형(조건=고정, 프롬프트/시드=랜덤)**으로 분해해 “지시효과",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7768,6 +7801,38 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-380",
+      "from": "n-223",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "식별가능성 문제를 ‘반사성(지시-순응) 교란’이라는 구체 메커니즘으로 정식화하고, 블라인드/대조/역지시 통제 필요조건을 추가함",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-381",
+      "from": "n-224",
+      "to": "n-223",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-382",
+      "from": "n-224",
+      "to": "n-039",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=185): n-224→n-039",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 185,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -7778,9 +7843,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 222,
-    "total_edges": 379,
-    "next_node_id": "n-223",
+    "total_nodes": 224,
+    "total_edges": 382,
+    "next_node_id": "n-225",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
