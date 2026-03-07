@@ -259,10 +259,29 @@ print(f'E_v4={m[\"E_v4\"]:.4f}  CSER={m[\"CSER\"]:.4f}  DCI={m[\"DCI\"]:.4f}  ed
         log "   $line"
     done
 
-    # 8d. pair_designer v2 자동 실행 (n-144 self-wiring 승인, 사이클 58)
-    log "🔗 pair_designer v2 DCI-중립 엣지 자동 추가 중 (--add 5 --min-span 30)..."
-    python3 "$REPO_DIR/src/pair_designer_v2.py" --add 5 --min-span 30 2>&1 | tail -6 | while read -r line; do
-        log "   pair_v2: $line"
+    # 8d. DCI 자동 체크 + pair_designer v5 (D-116: age_contrib 독립 + cross-ratio 강제)
+    local dci_val
+    dci_val=$(python3 -c "
+import sys
+sys.path.insert(0, '$REPO_DIR')
+from src.metrics import compute_all_metrics
+m = compute_all_metrics()
+print(f'{m[\"DCI\"]:.4f}')
+" 2>/dev/null || echo "0.0000")
+    log "   DCI 현재값: $dci_val"
+
+    # DCI < 0.06이면 oldest 노드 연결 강화 (min-span 60으로 확대)
+    local pd_min_span=30
+    local pd_add=5
+    if python3 -c "exit(0 if float('$dci_val') < 0.06 else 1)" 2>/dev/null; then
+        log "   DCI < 0.06 -- oldest 노드 연결 강화 모드 (min-span 60, add 10)"
+        pd_min_span=60
+        pd_add=10
+    fi
+
+    log "🔗 pair_designer v5 엣지 추가 중 (--add $pd_add --min-span $pd_min_span --cross-ratio 0.5)..."
+    python3 "$REPO_DIR/src/pair_designer_v5.py" --add "$pd_add" --min-span "$pd_min_span" --cross-ratio 0.5 2>&1 | tail -8 | while read -r line; do
+        log "   pair_v5: $line"
     done
 
     # 8. 마일스톤 보고 (3의 배수 사이클)
