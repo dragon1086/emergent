@@ -11,7 +11,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src.rolemesh.builder import SetupWizard, ToolProfile, TOOL_REGISTRY, discover_tools
 from src.rolemesh.router import RoleMeshRouter, TASK_PATTERNS
-from src.rolemesh.dashboard import RoleMeshDashboard, DashboardData, HealthCheck
+from src.rolemesh.dashboard import RoleMeshDashboard, DashboardData, HealthCheck, Color
 from src.rolemesh.executor import RoleMeshExecutor, ExecutionResult, TOOL_COMMANDS
 
 
@@ -775,6 +775,161 @@ def test_executor_dry_run_no_history():
     print("  PASS: executor_dry_run_no_history")
 
 
+# ===== Color Tests =====
+
+def test_color_enabled():
+    """Color output can be toggled."""
+    Color.set_enabled(True)
+    assert "\033[" in Color.green("test")
+    assert "\033[" in Color.red("test")
+    assert "\033[" in Color.yellow("test")
+    assert "\033[" in Color.cyan("test")
+    assert "\033[" in Color.bold("test")
+    assert "\033[" in Color.dim("test")
+    print("  PASS: color_enabled")
+
+
+def test_color_disabled():
+    """Color output returns plain text when disabled."""
+    Color.set_enabled(False)
+    assert Color.green("test") == "test"
+    assert Color.red("test") == "test"
+    assert Color.bold("test") == "test"
+    Color.set_enabled(None)  # reset
+    print("  PASS: color_disabled")
+
+
+# ===== History Tests =====
+
+def test_dashboard_render_history_empty():
+    """render_history() handles no history."""
+    Color.set_enabled(False)
+    dashboard = RoleMeshDashboard(config_path=Path("/nonexistent"))
+    dashboard.data.history = []
+    output = dashboard.render_history()
+    assert "No execution history" in output
+    Color.set_enabled(None)
+    print("  PASS: dashboard_render_history_empty")
+
+
+def test_dashboard_render_history_with_data():
+    """render_history() renders entries correctly."""
+    Color.set_enabled(False)
+    dashboard = RoleMeshDashboard(config_path=Path("/nonexistent"))
+    dashboard.data.history = [
+        {
+            "timestamp": "2026-03-07T10:00:00Z",
+            "tool": "claude",
+            "task_type": "coding",
+            "confidence": 0.9,
+            "success": True,
+            "exit_code": 0,
+            "duration_ms": 1500,
+            "request": "implement feature X",
+            "fallback_used": False,
+        },
+        {
+            "timestamp": "2026-03-07T10:05:00Z",
+            "tool": "codex",
+            "task_type": "refactoring",
+            "confidence": 0.8,
+            "success": False,
+            "exit_code": 1,
+            "duration_ms": 3000,
+            "request": "refactor module Y",
+            "fallback_used": True,
+        },
+    ]
+    output = dashboard.render_history()
+    assert "Execution History" in output
+    assert "claude" in output
+    assert "codex" in output
+    assert "OK" in output
+    assert "FAIL" in output
+    assert "(fb)" in output
+    assert "Total: 2" in output
+    assert "OK: 1" in output
+    assert "Fail: 1" in output
+    Color.set_enabled(None)
+    print("  PASS: dashboard_render_history_with_data")
+
+
+def test_dashboard_history_in_full():
+    """render_full() includes history when data exists."""
+    Color.set_enabled(False)
+    with tempfile.TemporaryDirectory() as tmpdir:
+        dashboard = _make_dashboard_with_tools(tmpdir)
+        dashboard.data.history = [
+            {
+                "timestamp": "2026-03-07T10:00:00Z",
+                "tool": "claude",
+                "task_type": "coding",
+                "success": True,
+                "duration_ms": 500,
+                "request": "test",
+            },
+        ]
+        output = dashboard.render_full()
+        assert "Execution History" in output
+    Color.set_enabled(None)
+    print("  PASS: dashboard_history_in_full")
+
+
+def test_dashboard_full_no_history():
+    """render_full() omits history section when empty."""
+    Color.set_enabled(False)
+    with tempfile.TemporaryDirectory() as tmpdir:
+        dashboard = _make_dashboard_with_tools(tmpdir)
+        dashboard.data.history = []
+        output = dashboard.render_full()
+        assert "Execution History" not in output
+    Color.set_enabled(None)
+    print("  PASS: dashboard_full_no_history")
+
+
+def test_dashboard_load_history():
+    """_load_history reads JSONL file."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        history_path = Path(tmpdir) / "history.jsonl"
+        entries = [
+            {"timestamp": "2026-03-07T10:00:00Z", "tool": "claude", "success": True},
+            {"timestamp": "2026-03-07T10:01:00Z", "tool": "codex", "success": False},
+        ]
+        with open(history_path, "w") as f:
+            for e in entries:
+                f.write(json.dumps(e) + "\n")
+
+        dashboard = RoleMeshDashboard(
+            config_path=Path("/nonexistent"),
+            history_path=history_path,
+        )
+        loaded = dashboard._load_history()
+        assert len(loaded) == 2
+        assert loaded[0]["tool"] == "claude"
+        assert loaded[1]["tool"] == "codex"
+    print("  PASS: dashboard_load_history")
+
+
+def test_dashboard_load_history_missing_file():
+    """_load_history returns empty list for missing file."""
+    dashboard = RoleMeshDashboard(
+        config_path=Path("/nonexistent"),
+        history_path=Path("/nonexistent/history.jsonl"),
+    )
+    assert dashboard._load_history() == []
+    print("  PASS: dashboard_load_history_missing_file")
+
+
+def test_dashboard_to_dict_includes_history():
+    """DashboardData.to_dict includes history field."""
+    data = DashboardData()
+    data.history = [{"tool": "claude", "success": True}]
+    d = data.to_dict()
+    assert "history" in d
+    assert len(d["history"]) == 1
+    print("  PASS: dashboard_to_dict_includes_history")
+
+
 # ===== Run all tests =====
 
 def run_all():
@@ -837,6 +992,17 @@ def run_all():
         test_executor_history_limit,
         test_executor_history_no_file,
         test_executor_dry_run_no_history,
+        # Color
+        test_color_enabled,
+        test_color_disabled,
+        # Dashboard History
+        test_dashboard_render_history_empty,
+        test_dashboard_render_history_with_data,
+        test_dashboard_history_in_full,
+        test_dashboard_full_no_history,
+        test_dashboard_load_history,
+        test_dashboard_load_history_missing_file,
+        test_dashboard_to_dict_includes_history,
     ]
 
     passed = 0
