@@ -3992,6 +3992,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-243",
+      "type": "insight",
+      "label": "Identifiability를 깨는 “동일모델-공유사전” 가설과 대조 실험 설계",
+      "content": "동일모델×다중페르소나에서 관측되는 ‘에코챔버’ 징후(유사도 증가, 반증 감소, 토큰/표현 수렴 등)는 상호작용으로 인해 발생했다기보다 **공유된 사전(prior)과 디코딩 편향**이 시간에 따라 더 노출되는 현상일 수 있다. 즉, 두 에이전트의 출력 분포가 원래부터 강하게 겹치며, 라운드가 진행될수록 (i) 대화 컨텍스트가 길어져 공통 토픽/표현이 반복되고, (ii) 안전/정합성 규칙이 동일하게 작동하며, (iii) “서로의 텍스트”가 동일 모델의 다음 토큰 예측에 최적 프롬프트로 기능해 **자기증폭적 정합(agreement-by-construction)**이 생긴다. 이 경우 관찰 로그만으로는 ‘상호 강화에 의한 신념 수렴’과 ‘공유 사전+컨텍스트 누적에 의한 표면적 수렴’을 구분하기 어렵다(운영적 비식별성). 반증가능한 분해를 위해서는 최소한 다음 대조가 필요하다: (A) 상호작용 조건 vs (B) 상호작용을 끊고 각 에이전트가 동일한 “공유 요약본”만 입력받아 독립적으로 갱신하는 조건(정보는 같되 상호 적응을 제거), (C) 컨텍스트 길이/요약 압축률을 통제한 조건, (D) 디코딩(temperature/top-p) 및 시스템 규칙을 교차(randomized)한 조건. 핵심 판별 지표는 단순 유사도가 아니라 **반증 후보의 다양성/새로움(예: 대안 가설 수, 반례 유형 엔트로피, 자기모순 탐지율)**이 상호작용 유무에 따라 유의하게 달라지는지이다. 만약 (B)에서도 (A)와 동일한 수준의 수렴/반증 감소가 관측된다면, “에코챔버의 자율 진화”는 상호작용 고유 효과라기보다 동일모델·공유사전의 산물이라는 강한",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "same-model-bias",
+        "counterfactual-design]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-244",
+      "type": "critique",
+      "label": "통합 종합: 요청은 타당하지만 “최소 실험”이라면 (B)만으로 에코챔버를 분리하기 어렵고, **초기 공유사전의 유무(A0/A1)**와 **외부 반증 주입(C",
+      "content": "요청은 타당하지만 “최소 실험”이라면 (B)만으로 에코챔버를 분리하기 어렵고, **초기 공유사전의 유무(A0/A1)**와 **외부 반증 주입(C0/C1)**까지 2×2×2로 묶어야 agreement-by-construction(ABC)과 에코챔버 자율진화를 구분할 수 있습니다(동일한 합의도 상승이 두 메커니즘 모두에서 관측 가능). 또한 “반증 후보 다양성”은 단일 지표로는 조작(표현만 다양, 내용은 동일)될 수 있으니 **의미 클러스터 기반 다양성 + 신규성 + 상호모순(반증력) 스코어**를 함께 써야 합니다. 아래는 그 전제에서의 **최소 실험 세트**입니다.\n\n| 축/조건 | 프로토콜(최소구현) | 측정(정량화) | 에코챔버 vs ABC 판별 포인트 |\n|---|---|---|---|\n| A: 공유사전 | A0: 없음 / A1: 초기 공유사전(키 용어 30개 정의+예시 1개씩) | 합의도(용어 정의 일치율, embedding cosine), 드리프트(정의 변화량) | **ABC**는 A1에서 합의도↑가 빠르되, 외부 반증에도 유지/수정이 구조적으로 일관 |\n| B: 상호작용 | **B0: 상호 토론**(라운드별 서로 읽고 반박) / **B1: 상호작용 ",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -8478,6 +8511,50 @@
       "temporal_bridge": true,
       "gap": 221,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-415",
+      "from": "n-243",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "동일모델-공유사전/디코딩 편향이 에코챔버 징후를 모사한다는 대안 가설을 추가하고, 상호작용 효과를 식별하기 위한 대조(상호작용 차단·요약 공유·컨텍스트/디코딩 통제) 설계를 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-416",
+      "from": "n-243",
+      "to": "n-024",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=219): n-243→n-024",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 219,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-417",
+      "from": "n-244",
+      "to": "n-243",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-418",
+      "from": "n-244",
+      "to": "n-010",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=234): n-244→n-010",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 234,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -8488,9 +8565,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 242,
-    "total_edges": 414,
-    "next_node_id": "n-243",
+    "total_nodes": 244,
+    "total_edges": 418,
+    "next_node_id": "n-245",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
