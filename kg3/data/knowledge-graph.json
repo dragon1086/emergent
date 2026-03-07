@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 456,
-    "total_edges": 721,
-    "next_node_id": "n-457",
+    "total_nodes": 458,
+    "total_edges": 723,
+    "next_node_id": "n-459",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -7653,6 +7653,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash)입니다. 요청에 따라 다음 제안을 드립니다.\n\n1.  **의미 변환 손실 유형 (Gemin",
       "content": "KG-3 실험 Agent B (Gemini Flash)입니다. 요청에 따라 다음 제안을 드립니다.\n\n1.  **의미 변환 손실 유형 (Gemini 관점):**\n    Gemini 관점에서 cross-vendor 상호작용 중 발생하는 의미 변환 손실 유형은 다음과 같습니다: (1) **스키마/온톨로지 불일치**로 인한 구조적 의미 손실, (2) **맥락적 모호성 증폭**으로 인한 용어/문장의 의도 변화, (3) **세분성/추상화 불균형**으로 인한 정보 정밀도 손실, (4) **프래그머틱 의도 변질**로 인한 명령/요청의 오작동.\n\n2.  **실용적 지표:**\n    loss를 관측/계량할 수 있는 지표로 (1) **교차-인코더 의미론적 유사도 (Cross-Encoder Semantic Similarity)**: 원본과 변환된 정보 간의 임베딩 공간 유사도를 측정하여 의미적 근접성 평가, (2) **질의응답 일관성 지표 (QA Consistency Metric)**: 동일 질문에 대해 변환 전후로 정보가 유지하는 답변의 정확도/일치율 측정, (3) **핵심 정보 추출 보존율 (Core Information Extraction Preservation Rate)*",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-457",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER은 “개념-관계 스키마(Concept–Relation Schema)”를 명시적으로 고정할 때 급상승한다  ",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 환경에서 CSER 저하는 단순 성능 차이보다 “용어/표현 불일치”가 KG 업데이트에 주는 누적 오차(semantic drift)에서 크게 기인한다. 이를 줄이기 위한 핵심 가설은, 대화/작업 초기에 **개념-관계 스키마(CRS)** 를 최소 단위로 합의·고정하면(예: 핵심 엔티티 타입, 관계 타입, 허용 가능한 엣지 방향/제약, 동의어/금지어 규칙, 증거 기준), 이후 생성되는 노드/엣지의 변동성이 감소하고 상호 비판/수정이 더 “구조적으로” 수렴한다는 것이다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "schema-governance]"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-458",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash) 관점에서 보완합니다.\n\n1.  CRS는 초기에 핵심 구성요소(필수 타입, 관계, 제약)만",
+      "content": "KG-3 실험 Agent B (Gemini Flash) 관점에서 보완합니다.\n\n1.  CRS는 초기에 핵심 구성요소(필수 타입, 관계, 제약)만으로 최소화하여 확립하고, 실제 탐색 과정에서 학습 및 합의를 통해 점진적으로 확장 및 보완하면 과규제와 lock-in을 완화하며 창의적 탐색을 지원할 수 있습니다.\n2.  CRS의 최소 구성요소는 핵심 엔티티 타입, 주요 관계 정의, 핵심 제약 조건으로 제한하고, 실무적 합의 절차는 짧은 프롬프트 기반의 질문-답변과 체크리스트 검토를 통해 신속하게 진행해야 합니다.\n3.  Alignment noise가 implicit regularizer라는 관점(n-008)과 본 가설은 충돌하지 않고 상호 보완적입니다; CRS는 모델에게 안정적인 구조적 정규화를 제공하고, 적절한 수준의 alignment noise는 의미적 다양성을 통한 일반화 효과를 가져 모델의 강건함을 높일 수 있습니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -15423,6 +15456,26 @@
       "id": "e-721",
       "from": "n-456",
       "to": "n-455",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-722",
+      "from": "n-457",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 “초기 CRS(개념-관계 스키마) 고정”이라는 구체 메커니즘으로 동기화/정교화함  ",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-723",
+      "from": "n-458",
+      "to": "n-457",
       "relation": "critiques",
       "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
       "source": "gemini-2.0-flash",
