@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 504,
-    "total_edges": 820,
-    "next_node_id": "n-505",
+    "total_nodes": 506,
+    "total_edges": 824,
+    "next_node_id": "n-507",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -9512,6 +9512,43 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-505",
+      "type": "hypothesis",
+      "label": "동일 벤더 KG의 초기 고밀도 연결 편향 가설",
+      "content": "동일 벤더 (Google) 환경의 KG (KG-4)는 에이전트(Gemini Flash, Gemini Pro) 간의 내재된 지식 공유 및 아키텍처 유사성으로 인해 초기 KG 구축 단계에서 개념적 일관성이 빠르게 형성될 수 있다. 그러나 이러한 높은 일관성은 새로운 노드를 기존 근접 노드에 연결하려는 경향을 강화하여, KG의 DCI(단기 연결 편향)를 급격히 낮추는 원인으로 작용할 수 있다. 이는 장기적인 지식 탐색 다양성을 저해할 위험이 있다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "same-vendor",
+        "DCI",
+        "KG-evolution",
+        "architectural-bias",
+        "conceptual-consistency",
+        "short-term-bias"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-506",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완: 제안하는 노드는 개념적 에코 체임버(Conceptual Echo Chamber)로, 공유된 아키텍처와 데이터가 미세한 편향을 상호 증폭시켜 심층",
+      "content": "제안하는 노드는 개념적 에코 체임버(Conceptual Echo Chamber)로, 공유된 아키텍처와 데이터가 미세한 편향을 상호 증폭시켜 심층적 개념 불일치(DCI)를 심화시키는 메커니즘을 설명합니다. 이를 완화하기 위해 통합 초기 단계에 대조적 개념 집합(contrastive concept set)을 의도적으로 주입하면, 빠른 통합 속도를 유지하면서도 잠재적 편향을 조기에 식별하고 교정할 수 있습니다. 이는 초기 표면적 개념 충돌 해결에 비용이 드나 장기적으로 강건한 교차 벤더 KG-3와 달리, 동일 벤더 KG는 빠른 통합의 대가로 숨겨진 개념적 부채(hidden conceptual debt)를 축적하는 차이를 보입니다.",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -18367,6 +18404,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 437,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-821",
+      "from": "n-505",
+      "to": "n-008",
+      "relation": "posits_explanation_for",
+      "label": "동일 벤더 환경의 공유 아키텍처 편향이 KG의 단기 연결 편향(DCI)으로 나타나는 메커니즘을 설명한다.",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-822",
+      "from": "n-505",
+      "to": "n-087",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=418): n-505→n-087",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 418,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-823",
+      "from": "n-506",
+      "to": "n-505",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-824",
+      "from": "n-506",
+      "to": "n-025",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=481): n-506→n-025",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 481,
       "created": "2026-03-07"
     }
   ]
