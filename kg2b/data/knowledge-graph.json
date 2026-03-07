@@ -3893,6 +3893,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-237",
+      "type": "insight",
+      "label": "에코챔버 지표의 ‘대리측정(Proxy)’ 오류와 위양성/위음성 구조",
+      "content": "동일모델×다중페르소나에서 관찰 로그로 “에코챔버”를 판정하려면, 실제 관심변수(신념·가설 공간의 수축, 반증 회피, 정보 다양성의 감소)를 텍스트 유사도·동의율·감정적 정렬 같은 대리지표로 측정하게 된다. 이때 대리지표는 구조적으로 위양성/위음성을 만든다. (1) 위양성: 비판적 상호작용이 성공해도 표면 유사도는 증가할 수 있다(공유된 용어/정의 수렴, 실험 설계의 합의, 동일한 반증기준 채택). 이는 “수렴=에코챔버”라는 오판을 유도한다. (2) 위음성: 실제로는 반증 후보가 사라지고 대안가설 탐색이 중단되었는데도, 형식적 반대(악마의 변호인), 수사적 이견, 스타일 차이로 텍스트 다양성이 유지되어 “비에코챔버”로 보일 수 있다. (3) 동일 모델의 공통 사전·훈련 편향 때문에 ‘독립적 다양성’의 기준선 자체가 낮아, 대리지표가 작은 변화에도 과대 해석되거나(민감도 과다) 아예 변화가 안 보여 무력화될 수 있다(감도 부족). 따라서 판정은 “표면 수렴”이 아니라 (i) 반증 후보의 지속적 생성/보존, (ii) 대안가설 풀의 엔트로피, (iii) 자기모순·불확실성의 명시, (iv) 반례에 의해 실제로 업데이트된 흔적(개정 기록) 같은 ‘과정 지표’로 재정의되어야 한다. 핵심은: 관찰가능 로그만으로는 에코챔버의 필요·충분조건을 잡기 어렵고, 특히 대리지표 기반 판정은 식별가능성 문제를 더 악화시킨다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "proxy-metrics",
+        "false-positive]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-238",
+      "type": "critique",
+      "label": "통합 종합: (A) “로그에서 계산 가능한 최소 세트”는 **텍스트만으로는 대안가설 엔트로피/반증후보 보존을 엄밀히 정의하기 어려우니**, 최소로는 ① **",
+      "content": "(A) “로그에서 계산 가능한 최소 세트”는 **텍스트만으로는 대안가설 엔트로피/반증후보 보존을 엄밀히 정의하기 어려우니**, 최소로는 ① **반증 후보 보존율**(각 턴의 ‘반박/반례/조건’ 문장 수·유형이 다음 턴에서도 유지/확장되는지; claim–evidence–counter 구조 태깅), ② **대안가설 다양성**(서로 다른 원인/메커니즘/정책옵션 카테고리 수의 엔트로피; 토픽/의도 분류 기반), ③ **업데이트 흔적**(“수정/철회/가정 변경/불확실성 증가” 표지어+결론 변화량; stance shift) 3가지만 잡고, 표면 유사도는 보조지표로만 두는 게 안전합니다.  \n(B) 판정 규칙은 **(i) 표면 유사도↑ & (반증후보 보존율↓ 또는 대안가설 엔트로피↓) & 업데이트 흔적↓ ⇒ 에코챔버**, **(ii) 표면 유사도↑라도 (반증후보 보존율≥τ & 대안가설 엔트로피≥τ)면 비에코챔버**, **(iii) 업데이트 흔적↑인데도 반증후보가 단일 축으로만 반복되면(엔트로피↓) ‘편향된 탐색’으로 별도 라벨**처럼 3분류로 위양성/위음성을 줄이세요.  \n(C) 반례: **공격적 형식의 반대가 많아 반증후보 문장 수는 높지만 실제로는 동일 프레임(한 가",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -8247,6 +8280,50 @@
       "temporal_bridge": true,
       "gap": 190,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-403",
+      "from": "n-237",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "식별가능성 문제를 ‘대리지표의 위양성/위음성’ 구조로 구체화하여, 어떤 관측치가 왜 에코챔버를 잘못 판정하는지 메커니즘을 제시함",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-404",
+      "from": "n-237",
+      "to": "n-017",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=220): n-237→n-017",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 220,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-405",
+      "from": "n-238",
+      "to": "n-237",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-406",
+      "from": "n-238",
+      "to": "n-034",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=204): n-238→n-034",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 204,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -8257,9 +8334,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 236,
-    "total_edges": 402,
-    "next_node_id": "n-237",
+    "total_nodes": 238,
+    "total_edges": 406,
+    "next_node_id": "n-239",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
