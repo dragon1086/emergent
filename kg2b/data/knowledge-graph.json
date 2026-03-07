@@ -4256,6 +4256,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-259",
+      "type": "insight",
+      "label": "동일모델×다중페르소나 “에코챔버”의 실험적 식별가능성: 최소 개입·최소 반증 세트",
+      "content": "동일 모델(gpt-5.2)에서 페르소나만 다른 조건은, 관측된 수렴/강화가 “상호작용으로 생긴 에코챔버”인지 “공유 가중치/학습분포가 유도하는 기본 수렴(모델 내재 편향)”인지 분리하기가 구조적으로 어렵다. 따라서 에코챔버 가설을 검증하려면 (i) 상호작용이 없을 때의 기준선(baseline)과 (ii) 상호작용이 있을 때의 추가 효과(Δinteraction)를 분리하는 식별 전략이 필요하다. 여기서 핵심은 “유사도 증가” 같은 단일 지표가 아니라, 반증가능 단위로 쪼갠 최소 세트로 운영화하는 것이다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "falsifiability",
+        "counterfactual]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-260",
+      "type": "critique",
+      "label": "통합 종합: “최소 반증 세트”가 자율 진화를 훼손한다는 반론은 타당하나, 통합 관점에선 **개입을 ‘행동 제약’이 아니라 ‘관측 설계(identifiabi",
+      "content": "“최소 반증 세트”가 자율 진화를 훼손한다는 반론은 타당하나, 통합 관점에선 **개입을 ‘행동 제약’이 아니라 ‘관측 설계(identifiability를 위한 계측)’로 최소화**하면 자율성과 식별력을 동시에 얻을 수 있습니다. (1) weakest intervention은 **(i) 개입 없는 자연 실행을 기본으로 하되, (ii) 로그 스키마/계측만 표준화(모든 엣지에 타임스탬프·원인태그·신뢰도·컨텍스트 해시 부여), (iii) 반증은 ‘행동 강제’가 아니라 ‘희소 질의/샘플링’(예: N회 중 1회만 대안 경로를 탐색하도록 soft-prompt, 또는 counterfactual roll-out을 오프라인로만 수행), (iv) 실패 시에만 개입하는 가드레일(violation-triggered)로 제한**하는 조합입니다. (2) KG 로그만으로의 “반증 후보 소실” 지표는 예를 들어 **① 반증경로 커버리지 감소율**(정의: 반증 가능한 대안 경로 수/다양성; 계산: 시간창별로 (서로 다른 반례 패턴=서브그래프/메타패스) 고유 개수의 감소율; 해석: 급감 시 후보 소실), **② 엔트로피 기반 대안성 지수**(정의: 동일 주장/가설 노드에서 나가는 반증관련 엣",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -9034,6 +9067,38 @@
       "temporal_bridge": true,
       "gap": 211,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-442",
+      "from": "n-259",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "동일모델-다중페르소나에서의 운영적 판별불능성을 ‘최소 반증 세트’와 ‘부분 상호작용 차단/스왑/충격’으로 약화시키는 식별 전략 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-443",
+      "from": "n-260",
+      "to": "n-259",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-444",
+      "from": "n-260",
+      "to": "n-051",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=209): n-260→n-051",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 209,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -9044,9 +9109,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 258,
-    "total_edges": 441,
-    "next_node_id": "n-259",
+    "total_nodes": 260,
+    "total_edges": 444,
+    "next_node_id": "n-261",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
