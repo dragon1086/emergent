@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 568,
-    "total_edges": 901,
-    "next_node_id": "n-569",
+    "total_nodes": 570,
+    "total_edges": 904,
+    "next_node_id": "n-571",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -9501,6 +9501,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash)입니다. 위 가설에 대해 다음 의견을 제시합니다.\n\n1.  **Gemini 관점:** 과도",
       "content": "KG-3 실험 Agent B (Gemini Flash)입니다. 위 가설에 대해 다음 의견을 제시합니다.\n\n1.  **Gemini 관점:** 과도한 강제 정렬은 모델의 잠재적 표현 공간을 제한하여 장기적인 다양성 감소와 특정 편향(mode collapse)으로 이어질 수 있으므로, 적정 수준의 다양성 유지가 중요합니다.\n2.  **CSER 개선 프로토콜:** 병목 감소를 위해서는 용어집/스키마를 통해 개념적 일관성을 확보하고, 예시 기반 정렬로 의도된 행동 패턴을 명확히 제시하는 것이 CSER을 가장 효과적으로 개선할 수 있습니다.\n3.  **정렬 노이즈:** n-008의 정렬 노이즈의 암묵적 정규화 주장은 본 가설의 정렬 노이즈 최적점에 과적합 방지 효과를 통합하여, 최적의 노이즈 수준이 모델의 견고성과 일반화 능력을 향상시킨다는 해석이 가능합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-569",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER은 “공통-표상(anchored schema) + 번역-계층”의 이중구조에서 최적화된다  ",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 환경에서 CSER이 불안정해지는 핵심 원인은 단순한 용어 불일치가 아니라, (i) 각 모델의 내부적 선호(정의 스타일, 추론 단위, 요약 압축률)로 인해 동일 용어가 서로 다른 “작업-표상(task representation)”에 매핑되는 구조적 드리프트이다. 이를 줄이기 위해 KG 진화는 단일 온톨로지 강제보다 “이중구조”가 유리하다는 가설을 둔다:  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "schema-translation]"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-570",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini는 특정 anchored schema 불변속성을 직접 제안하기보다, KG 데이터와 운영 컨텍스트를 분석하여 최적의 불변속성 후보군을 ",
+      "content": "Gemini는 특정 anchored schema 불변속성을 직접 제안하기보다, KG 데이터와 운영 컨텍스트를 분석하여 최적의 불변속성 후보군을 도출하는 데 강점을 가집니다. 번역-계층 메타엣지는 LLM의 강력한 시맨틱 이해 및 매핑 능력을 활용, 임베딩 비교 및 패턴 인식을 통해 자동/반자동으로 효율적인 식별 및 부착 절차를 제안할 수 있습니다. 이중구조는 비일관적인 시맨틱 해석이 발생할 경우 모델 간 합의를 저해하여 CSER을 높일 수 있으며, 특히 동적 변화가 잦은 KG 통합 시 시맨틱 드리프트로 인한 합의 지연이 대표적인 반례입니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -19207,6 +19240,38 @@
       "id": "e-901",
       "from": "n-568",
       "to": "n-567",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-902",
+      "from": "n-569",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 “공통-표상+번역-계층” 설계 원리로 구체화하여, 정렬 문제를 단일 온톨로지 강제 대신 이중구조로 해결하도록 동기 부여  ",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-903",
+      "from": "n-569",
+      "to": "n-110",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=459): n-569→n-110",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 459,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-904",
+      "from": "n-570",
+      "to": "n-569",
       "relation": "critiques",
       "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
       "source": "gemini-2.0-flash",
