@@ -42,9 +42,9 @@ GRAPH_STATS=$(cd "$REPO_DIR" && python3 src/kg.py stats 2>/dev/null || echo "통
 log "📊 KG-3 현황: $GRAPH_STATS"
 
 # D-098: DCI 회복 — 오래된 노드 목록 추출 (프롬프트에 포함)
-OLD_NODES=$(python3 -c "
-import json, sys
-kg = json.load(open('$KG3_PATH', encoding='utf-8'))
+OLD_NODES=$(KG3_JSON_PATH="$KG3_PATH" python3 -c "
+import json, sys, os
+kg = json.load(open(os.environ['KG3_JSON_PATH'], encoding='utf-8'))
 nodes = kg.get('nodes', [])
 # ID 번호 기준 오름차순 정렬 (낮은 번호 = 오래된 노드)
 import re
@@ -118,7 +118,8 @@ resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
 print(resp.text)
 " 2>&1)
 log "✅ Agent B (Gemini Flash) 완료"
-AGENT_B_RESPONSE=$(echo "$AGENT_B_RESPONSE" | tr -d "'\`\"\\")
+# Sanitize only shell-dangerous chars (backtick, backslash) — preserve Korean quotes
+AGENT_B_RESPONSE=$(echo "$AGENT_B_RESPONSE" | tr -d '\`\\')
 
 # KG-3에 노드/엣지 추가
 NODE_LABEL=$(echo "$AGENT_A_RESPONSE" | grep "^NODE_LABEL:" | sed 's/^NODE_LABEL: //' | tr -d "'\`\"\\")
@@ -128,9 +129,9 @@ NODE_TAGS=$(echo "$AGENT_A_RESPONSE" | grep "^NODE_TAGS:" | sed 's/^NODE_TAGS: /
 EDGE_TO=$(echo "$AGENT_A_RESPONSE" | grep "^EDGE_TO:" | sed 's/^EDGE_TO: //' | tr -d ' ')
 
 # D-100: HARD-FIX — EDGE_TO가 OLD_NODES 목록 밖이면 강제 대체
-OLD_NODE_IDS=$(python3 -c "
-import json, re
-kg = json.load(open('$KG3_PATH', encoding='utf-8'))
+OLD_NODE_IDS=$(KG3_JSON_PATH="$KG3_PATH" python3 -c "
+import json, re, os
+kg = json.load(open(os.environ['KG3_JSON_PATH'], encoding='utf-8'))
 nodes = kg.get('nodes', [])
 def node_num(n):
     m = re.search(r'\d+', n['id'])

@@ -72,7 +72,8 @@ def check_dci(kg: dict) -> tuple[float, list[str]]:
         issues.append("[INFO] DCI=0.0 — no 'question' type nodes exist")
         issues.append("       Add question nodes + 'answers' edges to enable DCI")
         return 0.0, issues
-    return -1.0, []  # let metrics.py compute actual DCI
+    # DCI requires metrics.py for actual computation; report as present but uncomputed
+    return 0.0, [f"[INFO] {len(questions)} question nodes found — run metrics.py for actual DCI value"]
 
 
 def check_duplicates(kg: dict) -> list[str]:
@@ -107,6 +108,22 @@ def check_orphan_edges(kg: dict) -> list[str]:
         for eid, ef, et in orphans[:5]:
             issues.append(f"       {eid}: {ef} -> {et}")
     return issues
+
+
+def check_source_balance(kg: dict) -> list[str]:
+    """Check vendor balance for cross-vendor experiment validity."""
+    src_counts = Counter(n.get("source", "?") for n in kg["nodes"])
+    # Only check the two main experiment sources
+    main_sources = {s: c for s, c in src_counts.items() if s in {"gpt-4o", "gemini-2.5-flash"}}
+    if len(main_sources) == 2:
+        vals = sorted(main_sources.values())
+        ratio = vals[1] / max(vals[0], 1)
+        if ratio > 2.5:
+            bigger = max(main_sources, key=main_sources.get)
+            smaller = min(main_sources, key=main_sources.get)
+            return [f"[WARN] Source imbalance: {bigger}={main_sources[bigger]} vs {smaller}={main_sources[smaller]} (ratio {ratio:.1f}x)",
+                    f"       Cross-vendor experiment validity may be affected"]
+    return []
 
 
 def check_edge_span(kg: dict) -> list[str]:
@@ -149,6 +166,7 @@ def main():
         "missing_fields": check_missing_fields(kg),
         "orphan_edges": check_orphan_edges(kg),
         "edge_span": check_edge_span(kg),
+        "source_balance": check_source_balance(kg),
     }
 
     cser, cser_issues = check_cser(kg)
@@ -157,7 +175,9 @@ def main():
 
     dci, dci_issues = check_dci(kg)
     checks["dci"] = dci_issues
-    print(f"  DCI:  {dci:.4f}  {'(no question nodes)' if dci == 0.0 else ''}")
+    q_count = sum(1 for n in kg["nodes"] if n.get("type") == "question")
+    dci_note = "(no question nodes)" if q_count == 0 else f"({q_count} question nodes — use metrics.py)"
+    print(f"  DCI:  {dci:.4f}  {dci_note}")
 
     # Source distribution
     src_counts = Counter(n.get("source", "?") for n in kg["nodes"])
