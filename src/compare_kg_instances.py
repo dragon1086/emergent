@@ -34,7 +34,7 @@ INSTANCES = {
     "KG-4": {
         "path": REPO / "kg4" / "data" / "knowledge-graph.json",
         "desc": "same-vendor (Gemini Flash + Gemini Pro)",
-        "cell": "same-model, same-vendor",
+        "cell": "cross-model, same-vendor",
     },
 }
 
