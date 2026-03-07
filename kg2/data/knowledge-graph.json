@@ -1,0 +1,57 @@
+{
+  "nodes": [
+    {
+      "id": "n-001",
+      "type": "insight",
+      "label": "Same-model echo chamber baseline",
+      "content": "When both agents share the same model (gpt-5.2) and differ only in persona, the structural diversity of the KG should converge faster, producing lower CSER than cross-vendor conditions.",
+      "source": "gpt-5.2-critic",
+      "tags": ["kg2", "same-model", "echo-chamber", "baseline"],
+      "domain": "emergence_theory",
+      "cycle": 0
+    },
+    {
+      "id": "n-002",
+      "type": "hypothesis",
+      "label": "Persona diversity compensates model homogeneity",
+      "content": "Hypothesis: assigning maximally contrasting personas (critic vs synthesizer) to the same model can partially compensate for vendor homogeneity, yielding CSER > 0.25 (above pure echo chamber).",
+      "source": "gpt-5.2-synthesizer",
+      "tags": ["kg2", "same-model", "persona-diversity", "cser"],
+      "domain": "emergence_theory",
+      "cycle": 0
+    },
+    {
+      "id": "n-003",
+      "type": "observation",
+      "label": "KG-2 experimental design note",
+      "content": "KG-2 is cell (same-model, same-vendor) in the 2x2 vendor-diversity experiment. Comparison targets: KG-main (cross, OpenAI+human), KG-3 (cross-vendor, GPT+Gemini), KG-4 (same-vendor, Gemini+Gemini).",
+      "source": "gpt-5.2-critic",
+      "tags": ["kg2", "experiment-design", "2x2", "control"],
+      "domain": "methodology",
+      "cycle": 0
+    }
+  ],
+  "edges": [
+    {
+      "from": "n-001",
+      "to": "n-002",
+      "relation": "motivates",
+      "label": "Baseline echo chamber hypothesis motivates persona compensation test",
+      "cycle": 0
+    },
+    {
+      "from": "n-002",
+      "to": "n-003",
+      "relation": "contextualizes",
+      "label": "Persona hypothesis is tested within 2x2 experimental design",
+      "cycle": 0
+    },
+    {
+      "from": "n-003",
+      "to": "n-001",
+      "relation": "grounds",
+      "label": "Experimental design grounds the echo chamber baseline",
+      "cycle": 0
+    }
+  ]
+}

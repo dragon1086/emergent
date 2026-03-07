@@ -140,20 +140,11 @@ half = len(nodes_sorted) // 2
 print(' '.join(n['id'] for n in nodes_sorted[:half]))
 " 2>/dev/null || echo "")
 if [[ -n "$OLD_NODE_IDS" && -n "$EDGE_TO" ]]; then
-  HARD_FIX=$(python3 -c "
-import random, sys
-edge_to = sys.argv[1]
-old_ids = sys.argv[2].split()
-if old_ids and edge_to not in old_ids:
-    new_id = random.choice(old_ids)
-    print(f'OVERRIDE:{edge_to}:{new_id}')
-else:
-    print('KEEP')
-" "$EDGE_TO" "$OLD_NODE_IDS" 2>/dev/null || echo "KEEP")
+  HARD_FIX=$(python3 "$REPO_DIR/src/bfs_selector.py" "$KG3_PATH" "$EDGE_TO" "$OLD_NODE_IDS" 2>/dev/null || echo "KEEP")
   if [[ "$HARD_FIX" == OVERRIDE:* ]]; then
     ORIG=$(echo "$HARD_FIX" | cut -d: -f2)
     NEW=$(echo "$HARD_FIX" | cut -d: -f3)
-    log "[HARD-FIX] Agent A EDGE_TO override: $ORIG -> $NEW"
+    log "[BFS-FIX] Agent A EDGE_TO override: $ORIG -> $NEW (BFS distance max)"
     EDGE_TO="$NEW"
   fi
 fi
