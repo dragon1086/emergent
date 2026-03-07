@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 554,
-    "total_edges": 902,
-    "next_node_id": "n-555",
+    "total_nodes": 556,
+    "total_edges": 905,
+    "next_node_id": "n-557",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -10427,6 +10427,42 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-555",
+      "type": "insight",
+      "label": "동일 벤더 KG의 내적 일관성 편향과 CSER 민감도 저하",
+      "content": "동일 벤더 환경(Gemini Flash + Gemini Pro)에서 KG가 진화함에 따라, LLM 간의 유사한 내부 모델과 추론 방식이 단기적이고 순차적인 연결(temporal_bridge)을 과도하게 생성하여 DCI(단기 연결 편향)가 심화될 수 있다. 이러한 내적 일관성 편향은 KG의 개념적 다양성을 저해하고 새로운 외부 정보나 패러다임 변화에 대한 KG의 CSER(Conceptual Structure Emergence Rate) 민감도를 낮출 수 있다. 이는 cross-vendor KG에 비해 더 예측 가능하지만 혁신성이 떨어지는 KG 진화를 초래할 가능성이 있다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "[DCI",
+        "CSER",
+        "동일_벤더_편향",
+        "KG_진화",
+        "내적_일관성]"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-556",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완: 내적 일관성은 편향이 아닌, 특정 도메인에서 예측 가능성과 신뢰도를 높여 추론의 안정성을 확보하는 긍정적 측면이 있습니다. 가설적으로, 이 안정",
+      "content": "내적 일관성은 편향이 아닌, 특정 도메인에서 예측 가능성과 신뢰도를 높여 추론의 안정성을 확보하는 긍정적 측면이 있습니다. 가설적으로, 이 안정된 코어 KG 위에 다양한 외부 관점을 플러그인 형태로 결합하는 메타-KG(Meta-KG) 아키텍처를 도입할 수 있습니다. 이를 통해 핵심 추론의 견고성은 유지하면서도, 사용자의 요구에 따라 개념적 다양성을 동적으로 확장하여 편향을 완화할 수 있을 것입니다.",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -20166,6 +20202,38 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 458,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-903",
+      "from": "n-555",
+      "to": "n-001",
+      "relation": "posits_explanation_for",
+      "label": "동일 벤더 KG의 CSER 가설에 대한 잠재적 원인과 영향을 설명함",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-904",
+      "from": "n-556",
+      "to": "n-555",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-905",
+      "from": "n-556",
+      "to": "n-016",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=540): n-556→n-016",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 540,
       "created": "2026-03-07"
     }
   ]
