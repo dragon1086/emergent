@@ -7,10 +7,10 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 641,
-    "total_edges": 1050,
-    "next_node_id": "n-637",
-    "last_updater": "gemini-2.0-pro"
+    "total_nodes": 642,
+    "total_edges": 1052,
+    "next_node_id": "n-643",
+    "last_updater": "test"
   },
   "nodes": [
     {
@@ -12017,6 +12017,20 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "verification"
+    },
+    {
+      "id": "n-642",
+      "type": "insight",
+      "label": "TEST_NODE",
+      "content": "test content",
+      "source": "test",
+      "tags": [
+        "test"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "test",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -23348,6 +23362,28 @@
       "label": "답변 (gap=33): n-608가 n-641에 응답",
       "source": "gemini-2.5-pro",
       "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-1051",
+      "from": "n-642",
+      "to": "n-001",
+      "relation": "extends",
+      "label": "test",
+      "source": "test",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-1052",
+      "from": "n-642",
+      "to": "n-002",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=640): n-642->n-002",
+      "source": "test",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 640,
       "created": "2026-03-07"
     }
   ]
