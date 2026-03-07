@@ -55,6 +55,9 @@ python -m src.rolemesh.dashboard
 | [INTEGRATION_GUIDE.md](INTEGRATION_GUIDE.md) | Using RoleMesh as a Python library |
 | [MIGRATION_GUIDE.md](MIGRATION_GUIDE.md) | Config versioning and upgrade paths |
 | [CHANGELOG.md](CHANGELOG.md) | Version history |
+| [SECURITY.md](SECURITY.md) | Trust model and operational security |
+| [COOKBOOK.md](COOKBOOK.md) | Practical recipes and usage patterns |
+| [FAQ.md](FAQ.md) | Frequently asked questions |
 
 ## Supported Tools
 
