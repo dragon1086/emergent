@@ -8,8 +8,13 @@ KG3_PATH="$KG3_DIR/data/knowledge-graph.json"
 LOG="$KG3_DIR/logs/evolve-kg3-$(date +%Y-%m-%d).log"
 CYCLE_COUNT_FILE="/tmp/emergent-kg3-cycles-$(date +%Y%m%d)"
 MAX_CYCLES=100
-OPENAI_KEY=$(grep "OPENAI_API_KEY" ~/.zshrc | head -1 | sed "s/.*='//;s/'.*//")
-GEMINI_KEY=$(grep "GEMINI_API_KEY" ~/.zshrc | head -1 | sed "s/.*='//;s/'.*//")
+# API key: env var first, then .zshrc (handles export KEY='val', KEY="val", KEY=val)
+OPENAI_KEY="${OPENAI_API_KEY:-$(grep 'OPENAI_API_KEY' ~/.zshrc 2>/dev/null | head -1 | sed "s/^[^=]*=//; s/^['\"]//; s/['\"]$//" | tr -d ' ')}"
+GEMINI_KEY="${GEMINI_API_KEY:-$(grep 'GEMINI_API_KEY' ~/.zshrc 2>/dev/null | head -1 | sed "s/^[^=]*=//; s/^['\"]//; s/['\"]$//" | tr -d ' ')}"
+if [[ -z "$OPENAI_KEY" || -z "$GEMINI_KEY" ]]; then
+  echo "[$(date '+%H:%M:%S')] KG3 API key not found in env or ~/.zshrc"
+  exit 1
+fi
 
 mkdir -p "$KG3_DIR/logs"
 
@@ -80,10 +85,15 @@ $OLD_NODES
 2. 위 오래된 노드 목록에서 EDGE_TO를 선택하세요 (long-range 연결로 DCI 회복)
 3. Agent B(Gemini Flash)에게 반박 또는 보완 요청을 작성하세요
 
+## DCI question 생성 규칙
+3회 중 1회는 반드시 NODE_TYPE을 question으로 설정하세요.
+question 노드는 기존 가설이나 관찰에 대한 검증 가능한 질문이어야 합니다.
+예: 'cross-vendor 환경에서 CSER이 same-vendor 대비 유의하게 높은가?'
+
 ## 출력 형식 (정확히)
 NODE_LABEL: [노드 라벨]
 NODE_CONTENT: [노드 내용 — 구체적이고 이론적]
-NODE_TYPE: [insight|hypothesis|observation]
+NODE_TYPE: [insight|hypothesis|observation|question]
 NODE_TAGS: [태그1,태그2,태그3]
 EDGE_TO: [위 오래된 노드 목록에서 선택한 id]
 EDGE_RELATION: [관계명]
@@ -91,16 +101,22 @@ EDGE_LABEL: [관계 설명]
 AGENT_B_REQUEST: [Gemini Flash에게 보내는 반박/보완 요청]"
 
 log "🤖 Agent A (GPT-4o) 판단 중..."
-AGENT_A_RESPONSE=$(OPENAI_KEY="$OPENAI_KEY" PROMPT="$PROMPT" python3 -c "
+# Use temp file to avoid shell injection from prompt content
+PROMPT_A_FILE=$(mktemp /tmp/kg3-prompt-a-XXXXXX.txt)
+printf '%s' "$PROMPT" > "$PROMPT_A_FILE"
+AGENT_A_RESPONSE=$(OPENAI_API_KEY="$OPENAI_KEY" python3 -c "
 import openai, os
-client = openai.OpenAI(api_key=os.environ['OPENAI_KEY'])
+client = openai.OpenAI(api_key=os.environ['OPENAI_API_KEY'])
+with open('$PROMPT_A_FILE', encoding='utf-8') as f:
+    prompt = f.read()
 resp = client.chat.completions.create(
     model='gpt-4o',
-    messages=[{'role':'user','content': os.environ['PROMPT']}],
+    messages=[{'role':'user','content':prompt}],
     temperature=0.7
 )
 print(resp.choices[0].message.content)
 " 2>&1)
+rm -f "$PROMPT_A_FILE"
 
 if [[ -z "$AGENT_A_RESPONSE" ]]; then
   log "❌ Agent A (GPT-4o) 호출 실패"
@@ -108,15 +124,30 @@ if [[ -z "$AGENT_A_RESPONSE" ]]; then
 fi
 log "✅ Agent A 완료 (${#AGENT_A_RESPONSE} chars)"
 
+# Agent A 파싱 검증 (조기경고)
+_PRE_LABEL=$(echo "$AGENT_A_RESPONSE" | grep "^NODE_LABEL:" | sed 's/^NODE_LABEL: //' | tr -d "'\`\"\\")
+if [[ -z "$_PRE_LABEL" ]]; then
+  log "⚠️  Agent A 응답 형식 불량 — NODE_LABEL 누락. 응답 앞 200자: ${AGENT_A_RESPONSE:0:200}"
+fi
+
 # Agent B: Gemini Flash (Google)
-AGENT_B_REQUEST=$(echo "$AGENT_A_RESPONSE" | grep "^AGENT_B_REQUEST:" | sed 's/^AGENT_B_REQUEST: //')
-AGENT_B_RESPONSE=$(GEMINI_KEY="$GEMINI_KEY" AGENT_B_REQUEST="$AGENT_B_REQUEST" python3 -c "
+# Multi-line AGENT_B_REQUEST 캡처 (첫 줄 + 이후 비-KEY: 줄)
+AGENT_B_REQUEST=$(echo "$AGENT_A_RESPONSE" | sed -n '/^AGENT_B_REQUEST:/,/^[A-Z_]*:/{ /^AGENT_B_REQUEST:/s/^AGENT_B_REQUEST: //p; /^[A-Z_]*:/!p; }' | head -5 | tr '\n' ' ')
+PROMPT_B_FILE=$(mktemp /tmp/kg3-prompt-b-XXXXXX.txt)
+printf '%s' "KG-3 실험 Agent B (Gemini Flash)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): $AGENT_B_REQUEST" > "$PROMPT_B_FILE"
+AGENT_B_RESPONSE=$(GEMINI_API_KEY="$GEMINI_KEY" python3 -c "
 import google.genai as genai, os
-client = genai.Client(api_key=os.environ['GEMINI_KEY'])
-prompt = 'KG-3 실험 Agent B (Gemini Flash)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): ' + os.environ.get('AGENT_B_REQUEST', '')
+client = genai.Client(api_key=os.environ['GEMINI_API_KEY'])
+with open('$PROMPT_B_FILE', encoding='utf-8') as f:
+    prompt = f.read()
 resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
 print(resp.text)
 " 2>&1)
+rm -f "$PROMPT_B_FILE"
+if [[ -z "$AGENT_B_RESPONSE" || ${#AGENT_B_RESPONSE} -lt 10 ]]; then
+  log "⚠️  Agent B 응답 비어있거나 너무 짧음 (${#AGENT_B_RESPONSE} chars) — Agent A 노드만 추가"
+  AGENT_B_RESPONSE=""
+fi
 log "✅ Agent B (Gemini Flash) 완료"
 # Sanitize only shell-dangerous chars (backtick, backslash) — preserve Korean quotes
 AGENT_B_RESPONSE=$(echo "$AGENT_B_RESPONSE" | tr -d '\`\\')
@@ -155,7 +186,9 @@ EDGE_LABEL=$(echo "$AGENT_A_RESPONSE" | grep "^EDGE_LABEL:" | sed 's/^EDGE_LABEL
 
 if [[ -n "$NODE_LABEL" && -n "$NODE_CONTENT" ]]; then
   cd "$REPO_DIR"
-  # Agent A (GPT-4o) 노드 추가
+
+  # Agent A (GPT-4o) 노드 추가 (cycle 번호 포함)
+  CYCLE_NUM=$((COUNT))
   NEW_NODE_ID=$(python3 -c "
 import json, sys
 label = sys.argv[1][:200]
@@ -165,20 +198,32 @@ tags = [t.strip() for t in sys.argv[4].split(',') if t.strip()]
 edge_to = sys.argv[5].strip()
 edge_rel = sys.argv[6].strip() or 'extends'
 edge_lbl = sys.argv[7][:100] if len(sys.argv) > 7 else ''
+cycle = int(sys.argv[8]) if len(sys.argv) > 8 else 0
 d = {'label': label, 'content': content,
      'type': node_type, 'source': 'gpt-4o', 'tags': tags, 'domain': 'emergence_theory',
+     'cycle': cycle,
      'edge_to': edge_to, 'edge_relation': edge_rel, 'edge_label': edge_lbl}
 print(json.dumps(d, ensure_ascii=False))
-" "$NODE_LABEL" "$NODE_CONTENT" "${NODE_TYPE:-insight}" "${NODE_TAGS:-kg3,cross-vendor}" "${EDGE_TO:-}" "${EDGE_RELATION:-extends}" "$EDGE_LABEL" 2>/dev/null \
+" "$NODE_LABEL" "$NODE_CONTENT" "${NODE_TYPE:-insight}" "${NODE_TAGS:-kg3,cross-vendor}" "${EDGE_TO:-}" "${EDGE_RELATION:-extends}" "$EDGE_LABEL" "$CYCLE_NUM" 2>/dev/null \
   | EMERGENT_KG_PATH="$KG3_PATH" python3 src/add_node_safe.py 2>/dev/null)
   log "✅ Agent A 노드 추가: $NODE_LABEL (id: $NEW_NODE_ID → $EDGE_TO)"
 
   # Agent B (Gemini-2.5-Flash) 노드 추가 — cross-source CSER 향상
+  # question 노드면 answers 관계 사용 → DCI 기여
   if [[ -n "$NEW_NODE_ID" && -n "$AGENT_B_RESPONSE" ]]; then
+    AGENT_B_RELATION="critiques"
+    AGENT_B_EDGE_LABEL="Agent B(Gemini)가 Agent A(GPT)에 반박/보완"
+    if [[ "$NODE_TYPE" == "question" ]]; then
+      AGENT_B_RELATION="answers"
+      AGENT_B_EDGE_LABEL="Agent B(Gemini) answers Agent A(GPT) question"
+    fi
     GEMINI_NODE_ID=$(python3 -c "
 import json, sys
 agent_a_id = sys.argv[1].strip()
 agent_b_resp = sys.argv[2][:600]
+relation = sys.argv[3].strip()
+edge_label = sys.argv[4]
+cycle = int(sys.argv[5]) if len(sys.argv) > 5 else 0
 d = {
   'label': 'Gemini 반박/보완: ' + agent_b_resp[:80],
   'content': agent_b_resp,
@@ -186,19 +231,36 @@ d = {
   'source': 'gemini-2.5-flash',
   'tags': ['kg3', 'cross-vendor', 'agent-b', 'gemini'],
   'domain': 'emergence_theory',
+  'cycle': cycle,
   'edge_to': agent_a_id,
-  'edge_relation': 'critiques',
-  'edge_label': 'Agent B(Gemini)가 Agent A(GPT)에 반박/보완'
+  'edge_relation': relation,
+  'edge_label': edge_label
 }
 print(json.dumps(d, ensure_ascii=False))
-" "$NEW_NODE_ID" "$AGENT_B_RESPONSE" 2>/dev/null \
+" "$NEW_NODE_ID" "$AGENT_B_RESPONSE" "$AGENT_B_RELATION" "$AGENT_B_EDGE_LABEL" "$CYCLE_NUM" 2>/dev/null \
     | EMERGENT_KG_PATH="$KG3_PATH" python3 src/add_node_safe.py 2>/dev/null)
-    log "✅ Agent B(Gemini) 노드 추가: $GEMINI_NODE_ID → $NEW_NODE_ID (cross-source!)"
+    log "✅ Agent B(Gemini) 노드 추가: $GEMINI_NODE_ID → $NEW_NODE_ID (relation: $AGENT_B_RELATION)"
   fi
 fi
 
+# 스키마 검증 (post-cycle validation)
+log "🔍 Post-cycle KG 스키마 검증..."
+VALIDATE_RESULT=$(EMERGENT_KG_PATH="$KG3_PATH" python3 src/kg_validate.py --fix 2>&1) || true
+if echo "$VALIDATE_RESULT" | grep -q "\[ERR\]"; then
+  log "❌ 스키마 오류 감지: $(echo "$VALIDATE_RESULT" | grep '\[ERR\]')"
+else
+  log "✅ 스키마 검증 통과"
+fi
+echo "$VALIDATE_RESULT" >> "$LOG"
+
 # 메트릭 계산
-EMERGENT_KG_PATH="$KG3_PATH" python3 src/metrics.py 2>/dev/null | tail -5 | tee -a "$LOG" || true
+log "📊 메트릭 계산..."
+METRICS_OUTPUT=$(EMERGENT_KG_PATH="$KG3_PATH" python3 src/metrics.py 2>/dev/null) || true
+echo "$METRICS_OUTPUT" | tail -10 | tee -a "$LOG"
+# 핵심 메트릭 한 줄 요약
+CSER_VAL=$(echo "$METRICS_OUTPUT" | grep "CSER" | head -1 | grep -oE '[0-9]+\.[0-9]+' | head -1)
+E_V5_VAL=$(echo "$METRICS_OUTPUT" | grep "E_v5" | tail -1 | grep -oE '[0-9]+\.[0-9]+' | head -1)
+log "📈 CSER=${CSER_VAL:-?}, E_v5=${E_V5_VAL:-?}"
 
 # git 커밋
 cd "$REPO_DIR"
