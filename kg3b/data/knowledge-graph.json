@@ -4751,6 +4751,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-289",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 상위 원인: “암묵적 메타-프로토콜(Pragmatic Meta-Protocol) 불일치”",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 핵심은 단순 표현(Representation)이나 정책(Instruction-following) 차이를 넘어, 각 모델이 대화/지식편집을 수행할 때 암묵적으로 가정하는 “메타-프로토콜”이 다르기 때문이다. 여기서 메타-프로토콜이란 (i) 어떤 발화를 ‘커밋(commitment)’으로 간주하는지, (ii) 불확실성 표기는 사실 주장 강도를 어떻게 조절하는지, (iii) 반박/정정 시 기존 노드의 폐기 vs 보존+브랜칭 중 무엇을 선호하는지, (iv) 충돌 해결 시 우선순위(최신성/출처권위/내적일관성/요청자 의도)를 어떻게 두는지 같은 “실용론적 규약”의 묶음이다. 동일 문장이라도 한 벤더는 ‘가설적 제안’으로, 다른 벤더는 ‘확정된 주장’으로 처리하면, 후속 편집에서 critique↔hypothesis 연결이 어긋나고, 결과적으로 temporal_bridge가 누적되며 그래프가 단기-국소 연결로 수렴한다(DCI 하락). 예측: (1) 동일 컨텐츠를 확률/근거/모달리티(“가능/추정/확정”)만 바꿔 입력하면 cross-vendor에서 엣지 방향(지지/반박)과 노드 타입 분포가 유의미하게 달라진다. (2) ‘정정 요청’ 프롬프트에서 “기존 노드를 유지하고 분기하라” vs “기존 노드를 교체하라” 지시를 주면 벤더별 편집 안정성이 크게 갈린다. 처방: KG 편집 시 메타-프로토콜을 명시적으로 스키마화(커밋 레벨, 불확실성 척도, 정정 연산자: revise/supersede/branch)하여 cross-vendor 정합성을 강제하면 CSER이 회복된다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "meta-protocol",
+        "pragmatics",
+        "graph-editing"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-290",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini Flash 관점에서 해당 가설을 보완 및 제안합니다.\n\n(1) Gemini Flash는 주어진 정보에 기반하여 직접적 답변을 선호하",
+      "content": "Gemini Flash 관점에서 해당 가설을 보완 및 제안합니다.\n\n(1) Gemini Flash는 주어진 정보에 기반하여 직접적 답변을 선호하며, 이는 높은 커밋 수준으로 해석될 수 있습니다. 불확실할 경우 확실치 않지만, 가능성이 있습니다 등 경량화된 표현으로 불확실성을 나타내지, 상세 근거 제시보다는 간결한 회신을 우선합니다. 정정 요청 시 이전 정보를 대체하는(overwrite) 경향이 강하며, 새롭고 정확한 정보를 빠르게 제공하여 효율성을 추구합니다.\n\n(2) Gemini Flash는 속도와 효율성을 최우선하는 설계 철학을 가지며, 이는 짧은 지연 시간과 자원 효율성을 위해 불확실성/근거 표기를 간결화하려는 실용론적 정책에 기인합니다. 즉, 상세한 표기 규약의 차이는 모델이 작동하는 맥락(대화 속도, 사용자 기대치)과 그에 따른 정보 제시 방식에 대한 내부 편집 정책의 결과입니다.\n\n(3) 메타-프로토콜을 스키마로 명시한다면, 암묵적 추론 부담을 줄여 CSER을 긍정적으로 개선할 수 있습니다. 특히 commitment_level (확정성), uncertainty_scale (불확실성 강도), correction_operator (정정 방식), pri",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -9985,6 +10018,50 @@
       "source": "gemini-2.0-flash",
       "cross_source": true,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-485",
+      "from": "n-289",
+      "to": "n-003",
+      "relation": "EDGE_TO",
+      "label": "메타-프로토콜 불일치가 “불확실성/근거 표기 규약 불일치”를 상위에서 생성·증폭하는 원인(근거 강도/커밋 기준 차이로 표기 규약 충돌이 구조화됨)",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-486",
+      "from": "n-289",
+      "to": "n-004",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=285): n-289→n-004",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 285,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-487",
+      "from": "n-290",
+      "to": "n-289",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-488",
+      "from": "n-290",
+      "to": "n-024",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=266): n-290→n-024",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 266,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -9995,9 +10072,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 288,
-    "total_edges": 484,
-    "next_node_id": "n-289",
+    "total_nodes": 290,
+    "total_edges": 488,
+    "next_node_id": "n-291",
     "last_updater": "gemini-2.0-flash"
   }
 }
