@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 562,
-    "total_edges": 892,
-    "next_node_id": "n-563",
+    "total_nodes": 564,
+    "total_edges": 896,
+    "next_node_id": "n-565",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -9402,6 +9402,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash) 관점에서, 공유 표상 압축은 개념 임베딩 코사인 유사도 분포의 첨도(kurtosis) 증",
       "content": "KG-3 실험 Agent B (Gemini Flash) 관점에서, 공유 표상 압축은 개념 임베딩 코사인 유사도 분포의 첨도(kurtosis) 증가 및 교차 모달 중복률 감소를 통해 측정 가능하며, 이는 Gemini Flash의 효율적인 다중 모달 임베딩 학습 능력으로 달성됩니다.\n\n임계값/비선형 상승보다는 점진적 개선이 더 타당하나, 특정 도메인에서 다의어(homonym)의 정확한 문맥 분리(disambiguation)가 이루어질 때 임베딩 공간이 이를 명확히 분리해내면 비선형적 성능 도약이 관측될 수 있습니다.\n\nAlignment noise는 모델이 일관된 표상을 학습하도록 강제하여 기존 노드(n-008)의 암묵적 정규화를 유도하므로 충돌보다는 상호 보완적이며, noise가 과도하지 않고 의미 있는 신호로 작용할 때 두 가설을 통합할 수 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-563",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “브리지 노드(translation/anchor)” 밀도가 DCI와 CSER을 동시 상향한다  ",
+      "content": "Cross-vendor 환경(GPT-4o + Gemini)에서는 모델별 표현/용어 분포 차이로 인해 동일 개념이 상이한 표면형(surface form)으로 분기되며, 이때 KG의 전역 연결성은 “브리지 노드(translation/anchor)”의 존재 여부에 의해 좌우된다. 브리지 노드는 (i) 동의어/패러프레이즈 매핑, (ii) 상위-하위 개념 정렬(ontology alignment), (iii) 관계 스키마 정규화(예: motivates/critique/temporal_bridge의 사용 조건 명시)를 동시에 수행하는 중간 허브로 정의한다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "bridge-nodes",
+        "semantic-alignment",
+        "CSER"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-564",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 브리지 노드 증가는 DCI (다양성-응집력 지수)를 개선하고 CSER (맥락적 유사성 오류율) 감소에 기여해야 하지만, 과도할 경우 허브 과집중",
+      "content": "브리지 노드 증가는 DCI (다양성-응집력 지수)를 개선하고 CSER (맥락적 유사성 오류율) 감소에 기여해야 하지만, 과도할 경우 허브 과집중, 의미 희석, 잘못된 정렬로 인한 오류 전파로 DCI/CSER이 오히려 악화될 수 있습니다. ‘alignment noise가 implicit regularizer’ 관점에서, 과도한 브리지는 유용한 모호성을 제거하여 장치 같은 범용적 개념으로 불필요한 연결을 만들거나, 고객 피드백이 버그 보고서로만 강제 정렬되어 통계적 견고성을 떨어뜨릴 수 있습니다. 실험 지표로 클러스터 간 edge cut 감소 외에, 브리지 노드의 betweenness centrality 변화, 정렬된 엔티티 임베딩 간 코사인 유사도 분포, 그리고 cross-cluster 쿼리 정확도 변화 등을 제안합니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -19016,6 +19049,50 @@
       "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
       "source": "gemini-2.0-flash",
       "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-893",
+      "from": "n-563",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER을 높이기 위한 구체 메커니즘(브리지 노드 밀도/커버리지)이 필요하다는 점에서, 본 가설은 n-001의 상위 가설을 실행 가능한 구조적 처방으로 동기",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-894",
+      "from": "n-563",
+      "to": "n-085",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=478): n-563→n-085",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 478,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-895",
+      "from": "n-564",
+      "to": "n-563",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-896",
+      "from": "n-564",
+      "to": "n-041",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=523): n-564→n-041",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 523,
       "created": "2026-03-07"
     }
   ]
