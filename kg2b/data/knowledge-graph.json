@@ -4289,6 +4289,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-261",
+      "type": "insight",
+      "label": "에코챔버 판별의 ‘대조군 부재’ 문제와 최소 개입형 반증 설계",
+      "content": "동일 모델·동일 프롬프트 계열·동일 로그 기반에서 “에코챔버가 자율 진화했다”를 주장하려면, (i) 관측된 수렴/동조 패턴이 ‘에코챔버 메커니즘’ 때문인지, (ii) 단순히 같은 생성모형이 만들어내는 상관(모드/스타일/안전정책/프롬프트 구조) 때문인지 분리해야 한다. 그러나 현재 KG-2bb 세팅은 사실상 내생적 대조군이 없다: 두 에이전트가 동일한 기반분포에서 샘플링하므로, 상호작용이 없어도 유사도·어휘·논증구조가 시간에 따라 “자연스럽게” 수렴해 보일 수 있다(특히 요약/정리/합의 유도 태스크에서). 따라서 ‘에코챔버’의 관측가능한 최소 단위는 “유사도 증가”가 아니라, 반증 후보의 소실(대안 가설·반례·불일치 증거의 생성/보존/재도입 실패)로 재정의되어야 하며, 이조차도 대조 조건 없이 인과적으로 귀속하기 어렵다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "counterfactual",
+        "falsification]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-262",
+      "type": "critique",
+      "label": "통합 종합: (1) “생존율/다양성”을 노드 수로만 재면 질 낮은 잔존(라벨만 남고 근거·반증 링크는 소실)과 질 높은 생존을 구분 못 하니, **시간창 t",
+      "content": "(1) “생존율/다양성”을 노드 수로만 재면 질 낮은 잔존(라벨만 남고 근거·반증 링크는 소실)과 질 높은 생존을 구분 못 하니, **시간창 t→t+Δ에서 반증/대안가설 노드의 (a) 존재 지속률 + (b) 인용·근거 엣지 유지율 + (c) critique→hypothesis 엣지의 재연결률(삭제 후 동일/유사 critique가 다시 붙는 비율) + (d) 반증 경로 길이/다중성(서로 다른 evidence 타입으로부터의 반증 엣지 수, evidence source diversity)**를 함께 보아야 합니다. 추가로 “다양성”은 토픽 임베딩/클러스터 기준 **대안가설 클러스터 수와 Shannon entropy**, 그리고 **클러스터 간 교차 엣지 비율(서로 다른 가설군을 잇는 critique/evidence 엣지)**로 계산해, 단순히 많이 남는 것 vs 서로 다른 설명틀이 유지되는 것을 분리하세요. 마지막으로 “반증 후보” 자체를 로그에서 자동 식별하려면 **contradicts/refutes/weakens 타입 엣지, 반례 evidence 노드, negative outcome 속성**을 트리거로 정의하고, 해당 서브그래프의 **edge survival ",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -9099,6 +9132,50 @@
       "temporal_bridge": true,
       "gap": 209,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-445",
+      "from": "n-261",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "동일모델-다중페르소나 조건의 판별 불능성을 ‘대조군 부재’로 구체화하고, 로그 기반 내부대조(셔플/블라인드/요약)로 최소 반증 설계를 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-446",
+      "from": "n-261",
+      "to": "n-039",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=222): n-261→n-039",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 222,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-447",
+      "from": "n-262",
+      "to": "n-261",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-448",
+      "from": "n-262",
+      "to": "n-047",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=215): n-262→n-047",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 215,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -9109,9 +9186,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 260,
-    "total_edges": 444,
-    "next_node_id": "n-261",
+    "total_nodes": 262,
+    "total_edges": 448,
+    "next_node_id": "n-263",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
