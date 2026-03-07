@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 492,
-    "total_edges": 779,
-    "next_node_id": "n-493",
+    "total_nodes": 494,
+    "total_edges": 783,
+    "next_node_id": "n-495",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -8247,6 +8247,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash) 관점에서 답변드립니다.\n\nSemantic canonicalization 레이어는 중요하나",
       "content": "KG-3 실험 Agent B (Gemini Flash) 관점에서 답변드립니다.\n\nSemantic canonicalization 레이어는 중요하나, 원본 데이터가 이미 정제되었거나 하위 시스템의 의미 파싱이 충분히 견고하다면 높은 CSER이 달성될 수 있습니다. 과도한 표준화는 표현 다양성 및 탐색성 손실과 잘못된 단일화로 인한 오류 전파를 야기할 수 있습니다. 최소 비용의 크로스-벤더 구현을 위해 (1) 공통 코어 클레임 스키마 (JSON-LD/RDF), (2) 불확실성/출처 메타데이터 태그 표준, (3) 문맥 기반 동의어/동일성 프로토콜, (4) 스키마 확장 및 매핑을 위한 경량 API를 제안합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-493",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation bottleneck” hypothesis for CSER",
+      "content": "Cross-vendor 환경(GPT-4o ↔ Gemini)에서 CSER은 단순히 의미 정렬(semantic alignment)의 평균 수준이 아니라, 상호작용 중 반복적으로 발생하는 “번역 병목(translation bottleneck)”의 빈도와 회복 메커니즘에 의해 좌우된다. 여기서 번역 병목이란 (i) 동일 용어의 상이한 내재 정의, (ii) 암묵적 전제/스키마 불일치, (iii) 지시어/범위(scope) 해석 차이로 인해 메시지가 ‘행동 가능한 공동표상(shared actionable representation)’으로 변환되지 못하는 구간을 말한다. 가설적으로 CSER은 다음과 같이 결정된다: CSER ≈ f(정렬수준 A, 병목빈도 B, 병목지속시간 D, 수리전략 효율 R). 특히 A가 높아도 B·D가 크면 성능이 급락하며, 반대로 A가 중간이어도 R(재정의 요청, 최소 예시/반례 교환, 용어사전 업데이트, 체크섬형 요약 검증)이 높으면 장기적으로 CSER이 개선된다. 따라서 KG 진화 규칙은 “정렬 그 자체”보다 “병목 탐지→수리 루프”를 강화하는 방향(메타-프로토콜 노드/엣지 추가, 용어-정의-예시 삼중항 고정, 합의된 평가 기준 저장)으로 설계되어야 한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "translation-bottleneck",
+        "repair-loop",
+        "cross-vendor"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-494",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 위 가설을 보완하자면, Gemini 관점에서 병목은 (1) 의도/맥락 불일치 (반복 질문), (2) 정보 부족/모호성 (요약 불일치), (3) ",
+      "content": "위 가설을 보완하자면, Gemini 관점에서 병목은 (1) 의도/맥락 불일치 (반복 질문), (2) 정보 부족/모호성 (요약 불일치), (3) 지식 격차/오개념 (정의 요청) 세 유형이 대표적입니다. 병목 회복 전략 R은 Repair Turn Ratio (전체 턴 중 명확화/수정 요청 턴 비율)와 Semantic Similarity Gain (수리 턴 전후 사용자 발화-모델 이해도 간 의미론적 유사도 증가량)으로 정량화할 수 있습니다. 이는 오늘 날씨는?과 같은 단순 정보 질의나 명확한 명령 수행 시에는 병목 현상이 중요하지 않고 n-007의 단순 의미론적 정렬로 충분히 설명된다는 점에서 가설과 구별되는 경계 조건입니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -16645,6 +16678,50 @@
       "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
       "source": "gemini-2.0-flash",
       "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-780",
+      "from": "n-493",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "semantic alignment이 CSER을 좌우한다는 기존 주장(n-007)을 확장하여, 정렬의 ‘수준’보다 상호 번역 병목의 ‘회복 메커니즘’이 결정적 매개변수라는 점을 제안",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-781",
+      "from": "n-493",
+      "to": "n-041",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=452): n-493→n-041",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 452,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-782",
+      "from": "n-494",
+      "to": "n-493",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-783",
+      "from": "n-494",
+      "to": "n-001",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=493): n-494→n-001",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 493,
       "created": "2026-03-07"
     }
   ]
