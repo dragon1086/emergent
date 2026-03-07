@@ -4487,6 +4487,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-273",
+      "type": "insight",
+      "label": "에코챔버 ‘자율 진화’의 최소 반증 단위는 “대안 생성-유지 실패”로 잡아야 함",
+      "content": "에코챔버를 “유사도(합의) 증가”로 정의하면 동일모델·다중페르소나 조건에서 거의 항상 관찰될 수 있어(공유 사전학습/안전정책/대화규칙으로 인한 수렴) 반증가능성이 급격히 떨어진다. 따라서 자율 진화의 최소 반증 단위(falsifiable unit)를 ‘합의의 크기’가 아니라 ‘반증 후보의 생존성’으로 재정의해야 한다. 구체적으로, 에코챔버의 핵심은 (i) 대안 가설(반례·경쟁 설명·부정적 증거)이 충분히 생성되지 않거나, (ii) 생성되더라도 반복 상호작용을 거치며 체계적으로 소거/약화/무시되어, (iii) 최종 KG가 “단일 설명에 유리한 방향으로만” 구조화되는 현상이다. 이때 최소 반증 단위는 다음과 같은 관찰가능한 실패 패턴으로 설정할 수 있다: (A) 라운드 t에서 제시된 대안 노드/엣지가 t+k에서 ‘동등한 지위’로 유지되지 못하고(연결도/참조 빈도/후속 정교화가 급감), (B) 대안이 소거되는 이유가 경험적 제약이 아니라 메타-규범(“요청에 맞추기”, “정리의 단순성”, “일관성 유지”)에 의해 반복적으로 정당화되며, (C) 대안 제거가 누적될수록 반증 시도 자체의 생성률이 감소한다. 이 정의는 “합의가 증가했지만 대안도 함께 강화되었다” 같은 반례를 허용하므로, 에코챔버 가설을 더 날카롭게 반증 가능하게 만든다. 또한 동일모델 조건의 비식별성 문제를 완화한다: 수렴 자체는 불가피한 배경효과로 취급하고, ‘대안 생태계의 붕괴’라는 추가 조건을 충족할 때만 에코챔버로 판정한다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[falsifiability",
+        "alternative-retention",
+        "echo-chamber]"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-274",
+      "type": "critique",
+      "label": "통합 종합: 지표는 단일값보다 **복합지표**가 안전합니다: (a) *대안 생존곡선* (S(t)=frac{#(t에서 초기 대안군과 의미적으로 매칭되는 노드)",
+      "content": "지표는 단일값보다 **복합지표**가 안전합니다: (a) *대안 생존곡선* (S(t)=frac{#(t에서 초기 대안군과 의미적으로 매칭되는 노드)}{#(초기 대안군)}) + 반감기, (b) *대안-주류 분리도* (D(t)=1-cos(bar e_{text{alt}},bar e_{text{main}})) 또는 커뮤니티 모듈러리티(Q)로 “존재하지만 동화된” 경우를 분리, (c) *후속 정교화 강도* (E=sum_i text{descendants}_i)를 단순 횟수 대신 “새 증거/새 제약 추가” 같은 **정보 증가량(Δnovelty)**로 가중해 반복 재진술을 페널티 처리하세요.  \n배경 수렴 vs 에코챔버 분리는 **2×2 대조 설계**로: (i) 동일 모델·동일 프롬프트에서 *다양성 강제 없음* vs *다양성 강제(역할/목표 충돌·반례 의무·탐색보상)*, (ii) *정보 유입 없음(폐쇄)* vs *외부 증거 주입(오라클/문서)*를 교차하고, 교란은 토큰예산·라운드수·초기 시드·평가자(자동 임베딩/규칙) 고정으로 통제합니다.  \n라운드별 판정은 “정상 수렴”을 *오차 감소와 함께 D(t)도 감소*하는 경우로, “대안 붕괴”를 *S(t) 급락(예: 2라운드 연속 ",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -9513,6 +9546,38 @@
       "temporal_bridge": true,
       "gap": 256,
       "created": "2026-03-07"
+    },
+    {
+      "id": "e-465",
+      "from": "n-273",
+      "to": "n-005",
+      "relation": "refines",
+      "label": "“최소 반증가능 단위”를 유사도/합의가 아닌 ‘대안(반증 후보) 생성-유지 실패’라는 관찰 가능한 실패 패턴으로 정교화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-466",
+      "from": "n-274",
+      "to": "n-273",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-467",
+      "from": "n-274",
+      "to": "n-008",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=266): n-274→n-008",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 266,
+      "created": "2026-03-07"
     }
   ],
   "meta": {
@@ -9523,9 +9588,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-07",
-    "total_nodes": 272,
-    "total_edges": 464,
-    "next_node_id": "n-273",
+    "total_nodes": 274,
+    "total_edges": 467,
+    "next_node_id": "n-275",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
