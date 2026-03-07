@@ -1,12 +1,13 @@
 #!/bin/bash
 # evolve-auto-kg4.sh — KG-4 자율 사이클 (same-vendor: Gemini Flash + Gemini Pro)
 # 2×2 실험 설계: Google 계열 same-vendor
+# [KG4-N5] cokac 검증/보강: 5개 버그 수정 (2026-03-07)
 
 REPO_DIR="$HOME/emergent"
 KG4_DIR="$HOME/emergent/kg4"
 KG4_PATH="$KG4_DIR/data/knowledge-graph.json"
 LOG="$KG4_DIR/logs/evolve-kg4-$(date +%Y-%m-%d).log"
-CYCLE_COUNT_FILE="/tmp/emergent-kg4-cycles-$(date +%Y%m%d)"
+CYCLE_COUNT_FILE="$KG4_DIR/logs/.cycle-count-$(date +%Y%m%d)"
 MAX_CYCLES=100
 GEMINI_KEY="${GEMINI_API_KEY:-$(grep "GEMINI_API_KEY" ~/.zshrc | head -1 | sed "s/.*='//;s/'.*//")}"
 
@@ -14,7 +15,7 @@ mkdir -p "$KG4_DIR/logs"
 
 log() { echo "[$(date '+%H:%M:%S')] KG4 $*" | tee -a "$LOG"; }
 
-# 사이클 제한
+# [FIX-3] 사이클 제한 — /tmp 대신 KG4_DIR/logs에 저장 (재부팅 시에도 일관)
 COUNT=$(cat "$CYCLE_COUNT_FILE" 2>/dev/null || echo 0)
 if [[ $COUNT -ge $MAX_CYCLES ]]; then
   log "⚠️  오늘 최대 사이클 ($MAX_CYCLES) 도달 — 스킵"
@@ -48,6 +49,14 @@ print(f'{compute_dci(kg):.4f}')
 " 2>/dev/null || echo "0.0000")
 log "📊 현재 DCI: $CURRENT_DCI"
 
+# [FIX-5] CSER 측정 추가
+CURRENT_CSER=$(cd "$REPO_DIR" && EMERGENT_KG_PATH="$KG4_PATH" python3 -c "
+from src.metrics import compute_cser, load_kg
+kg = load_kg()
+print(f'{compute_cser(kg):.4f}')
+" 2>/dev/null || echo "0.0000")
+log "📊 현재 CSER: $CURRENT_CSER"
+
 # D-098: DCI 회복 — 오래된 노드 목록 추출
 OLD_NODES=$(python3 -c "
 import json, re
@@ -64,6 +73,16 @@ for n in old:
 " 2>/dev/null || echo "  (오래된 노드 없음)")
 log "🕰️ 오래된 노드 후보: $(echo "$OLD_NODES" | wc -l | tr -d ' ')개"
 
+# [FIX-4] 짝수/홀수 사이클 판별 → question 타입 강제
+CYCLE_NUM=$((COUNT + 1))
+FORCE_QUESTION=""
+if (( CYCLE_NUM % 2 == 0 )); then
+  FORCE_QUESTION="
+## ⚠️ 필수: question 타입 노드
+이번은 짝수 사이클입니다. NODE_TYPE은 반드시 question이어야 합니다.
+EDGE_RELATION도 반드시 questions를 사용하세요."
+fi
+
 # Agent A: Gemini Flash
 PROMPT="당신은 emergent KG-4 실험의 Agent A (Gemini Flash)입니다.
 
@@ -73,19 +92,19 @@ KG-3(cross-vendor: GPT-4o + Gemini Flash)과 CSER을 비교합니다.
 
 ## 현재 KG-4 상태
 $GRAPH_STATS
+CSER: $CURRENT_CSER | DCI: $CURRENT_DCI
 
 ## ⚠️ DCI 회복 지시 (최우선)
 현재 DCI = $CURRENT_DCI (목표: DCI > 0.1).
 아래 오래된 노드 중 하나를 EDGE_TO로 반드시 선택하세요 (최근 노드 연결 금지):
 $OLD_NODES
-
+$FORCE_QUESTION
 ## 지시
 1. KG-4에 추가할 의미있는 노드 1개를 제안하세요
 2. 위 오래된 노드 목록에서 EDGE_TO를 선택하세요 (long-range 연결로 DCI 회복)
 3. Agent B(Gemini Pro)에게 반박 또는 보완 요청을 작성하세요
-4. 짝수 사이클에서는 NODE_TYPE을 반드시 question으로 하세요 (DCI 개선 필수)
 
-## 출력 형식 (정확히)
+## 출력 형식 (정확히 — 마크다운 서식 없이 plain text로)
 NODE_LABEL: [노드 라벨]
 NODE_CONTENT: [노드 내용 — 구체적이고 이론적]
 NODE_TYPE: [insight|hypothesis|observation|question]
@@ -93,7 +112,9 @@ NODE_TAGS: [태그1,태그2,태그3]
 EDGE_TO: [위 오래된 노드 목록에서 선택한 id]
 EDGE_RELATION: [관계명 — question 노드의 경우 questions를 사용]
 EDGE_LABEL: [관계 설명]
-AGENT_B_REQUEST: [Gemini Pro에게 보내는 반박/보완 요청]"
+AGENT_B_REQUEST: [Gemini Pro에게 보내는 반박/보완 요청]
+
+중요: 각 줄은 반드시 KEY: value 형식으로, 마크다운 볼드(**) 없이 출력하세요."
 
 # 프롬프트를 임시 파일로 안전 전달 (shell injection 방지)
 PROMPT_FILE=$(mktemp /tmp/kg4-prompt-XXXX.txt)
@@ -116,7 +137,7 @@ fi
 log "✅ Agent A 완료 (${#AGENT_A_RESPONSE} chars)"
 
 # Agent B: Gemini Pro
-AGENT_B_REQUEST=$(echo "$AGENT_A_RESPONSE" | grep "^AGENT_B_REQUEST:" | sed 's/^AGENT_B_REQUEST: //')
+AGENT_B_REQUEST=$(echo "$AGENT_A_RESPONSE" | sed 's/\*//g' | grep -i "^AGENT_B_REQUEST:" | head -1 | sed 's/^[^:]*:[[:space:]]*//')
 AGENT_B_PROMPT_FILE=$(mktemp /tmp/kg4-agentb-XXXX.txt)
 echo "KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): $AGENT_B_REQUEST" > "$AGENT_B_PROMPT_FILE"
 trap "rm -f $LOCK_FILE $PROMPT_FILE $AGENT_B_PROMPT_FILE" EXIT
@@ -129,12 +150,47 @@ print(resp.text)
 " "$GEMINI_KEY" "$AGENT_B_PROMPT_FILE" 2>&1)
 log "✅ Agent B (Gemini Pro) 완료"
 
-# KG-4에 노드/엣지 추가
-NODE_LABEL=$(echo "$AGENT_A_RESPONSE" | grep "^NODE_LABEL:" | sed 's/^NODE_LABEL: //' | tr -d "'\`\"\\")
-NODE_CONTENT=$(echo "$AGENT_A_RESPONSE" | grep "^NODE_CONTENT:" | sed 's/^NODE_CONTENT: //' | tr -d "'\`\"\\")
-NODE_TYPE=$(echo "$AGENT_A_RESPONSE" | grep "^NODE_TYPE:" | sed 's/^NODE_TYPE: //' | tr -d ' ')
-NODE_TAGS=$(echo "$AGENT_A_RESPONSE" | grep "^NODE_TAGS:" | sed 's/^NODE_TAGS: //' | tr -d "'\`\"\\")
-EDGE_TO=$(echo "$AGENT_A_RESPONSE" | grep "^EDGE_TO:" | sed 's/^EDGE_TO: //' | tr -d ' ')
+# [FIX-1] 파싱 강화 — 마크다운 볼드(**), 여분 공백, 대소문자 무시
+# 1) 모든 * 제거  2) case-insensitive field 매칭  3) 잔여 공백 제거
+parse_field() {
+  local field="$1"
+  echo "$AGENT_A_RESPONSE" \
+    | sed 's/\*//g' \
+    | grep -i "^${field}:" \
+    | head -1 \
+    | sed "s/^[^:]*:[[:space:]]*//" \
+    | tr -d "\`\"\\"
+}
+
+NODE_LABEL=$(parse_field "NODE_LABEL")
+NODE_CONTENT=$(parse_field "NODE_CONTENT")
+NODE_TYPE=$(parse_field "NODE_TYPE" | tr -d ' ' | tr '[:upper:]' '[:lower:]')
+NODE_TAGS=$(parse_field "NODE_TAGS")
+EDGE_TO=$(parse_field "EDGE_TO" | tr -d ' ')
+EDGE_RELATION=$(parse_field "EDGE_RELATION" | tr -d ' ')
+EDGE_LABEL=$(parse_field "EDGE_LABEL")
+
+# [FIX-4] 짝수 사이클에서 question 타입 강제 (LLM이 무시할 경우 대비)
+if (( CYCLE_NUM % 2 == 0 )); then
+  if [[ "$NODE_TYPE" != "question" ]]; then
+    log "⚠️ 짝수 사이클 question 강제: $NODE_TYPE → question"
+    NODE_TYPE="question"
+    EDGE_RELATION="questions"
+  fi
+fi
+
+# [FIX-2] 파싱 실패 시 에러 로그 (silent fail 방지)
+if [[ -z "$NODE_LABEL" ]]; then
+  log "❌ NODE_LABEL 파싱 실패. Agent A 응답 첫 5줄:"
+  echo "$AGENT_A_RESPONSE" | head -5 | tee -a "$LOG"
+  exit 1
+fi
+if [[ -z "$NODE_CONTENT" ]]; then
+  log "⚠️ NODE_CONTENT 비어있음 — NODE_LABEL을 content로 대체"
+  NODE_CONTENT="$NODE_LABEL"
+fi
+
+log "📋 파싱 결과: label=$NODE_LABEL | type=$NODE_TYPE | edge_to=$EDGE_TO"
 
 # D-100: HARD-FIX — EDGE_TO가 OLD_NODES 목록 밖이면 강제 대체
 OLD_NODE_IDS=$(python3 -c "
@@ -158,13 +214,11 @@ if [[ -n "$OLD_NODE_IDS" && -n "$EDGE_TO" ]]; then
   fi
 fi
 
-EDGE_RELATION=$(echo "$AGENT_A_RESPONSE" | grep "^EDGE_RELATION:" | sed 's/^EDGE_RELATION: //' | tr -d ' ')
-EDGE_LABEL=$(echo "$AGENT_A_RESPONSE" | grep "^EDGE_LABEL:" | sed 's/^EDGE_LABEL: //' | tr -d "'\`\"\\")
 AGENT_B_RESPONSE=$(echo "$AGENT_B_RESPONSE" | tr -d "'\`\"\\")
 
 if [[ -n "$NODE_LABEL" && -n "$NODE_CONTENT" ]]; then
   cd "$REPO_DIR"
-  # Agent A (Gemini-Flash) 노드 추가
+  # [FIX-2] Agent A 노드 추가 — stderr를 로그에 기록 (silent fail 방지)
   NEW_NODE_ID=$(python3 -c "
 import json, sys
 label = sys.argv[1][:200]
@@ -179,12 +233,16 @@ d = {'label': label, 'content': content,
      'domain': 'emergence_theory',
      'edge_to': edge_to, 'edge_relation': edge_rel, 'edge_label': edge_lbl}
 print(json.dumps(d, ensure_ascii=False))
-" "$NODE_LABEL" "$NODE_CONTENT" "${NODE_TYPE:-insight}" "${NODE_TAGS:-kg4,same-vendor,google}" "${EDGE_TO:-}" "${EDGE_RELATION:-extends}" "$EDGE_LABEL" 2>/dev/null \
-  | EMERGENT_KG_PATH="$KG4_PATH" python3 src/add_node_safe.py 2>/dev/null)
-  log "✅ Agent A(Gemini-Flash) 노드 추가: $NODE_LABEL (id: $NEW_NODE_ID → $EDGE_TO)"
+" "$NODE_LABEL" "$NODE_CONTENT" "${NODE_TYPE:-insight}" "${NODE_TAGS:-kg4,same-vendor,google}" "${EDGE_TO:-}" "${EDGE_RELATION:-extends}" "$EDGE_LABEL" 2>>"$LOG" \
+  | EMERGENT_KG_PATH="$KG4_PATH" python3 src/add_node_safe.py 2>>"$LOG")
 
-  # Agent B (Gemini-Pro) 노드 추가 — same-vendor이지만 다른 모델 소스 구분
-  # DCI 회복: Agent A가 question 타입이면 Agent B는 answers 관계로 연결
+  if [[ -z "$NEW_NODE_ID" ]]; then
+    log "❌ Agent A 노드 추가 실패 (add_node_safe.py 에러 — 위 로그 참조)"
+  else
+    log "✅ Agent A(Gemini-Flash) 노드 추가: $NODE_LABEL (id: $NEW_NODE_ID → $EDGE_TO)"
+  fi
+
+  # Agent B (Gemini-Pro) 노드 추가
   AGENT_B_TYPE="critique"
   AGENT_B_RELATION="critiques"
   AGENT_B_LABEL="Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완"
@@ -213,14 +271,27 @@ d = {
   'edge_label': b_label
 }
 print(json.dumps(d, ensure_ascii=False))
-" "$NEW_NODE_ID" "$AGENT_B_RESPONSE" "$AGENT_B_TYPE" "$AGENT_B_RELATION" "$AGENT_B_LABEL" 2>/dev/null \
-    | EMERGENT_KG_PATH="$KG4_PATH" python3 src/add_node_safe.py 2>/dev/null)
-    log "✅ Agent B(Gemini-Pro) 노드 추가: $GEMINI_PRO_NODE_ID → $NEW_NODE_ID (type=$AGENT_B_TYPE, rel=$AGENT_B_RELATION)"
+" "$NEW_NODE_ID" "$AGENT_B_RESPONSE" "$AGENT_B_TYPE" "$AGENT_B_RELATION" "$AGENT_B_LABEL" 2>>"$LOG" \
+    | EMERGENT_KG_PATH="$KG4_PATH" python3 src/add_node_safe.py 2>>"$LOG")
+
+    if [[ -z "$GEMINI_PRO_NODE_ID" ]]; then
+      log "❌ Agent B 노드 추가 실패 (add_node_safe.py 에러 — 위 로그 참조)"
+    else
+      log "✅ Agent B(Gemini-Pro) 노드 추가: $GEMINI_PRO_NODE_ID → $NEW_NODE_ID (type=$AGENT_B_TYPE, rel=$AGENT_B_RELATION)"
+    fi
   fi
 fi
 
-# 메트릭 계산
+# [FIX-5] 메트릭 계산 — CSER 포함 전체 출력
 EMERGENT_KG_PATH="$KG4_PATH" python3 src/metrics.py 2>/dev/null | tail -5 | tee -a "$LOG" || true
+
+# [FIX-5] 사이클 후 CSER 변화 로그
+POST_CSER=$(cd "$REPO_DIR" && EMERGENT_KG_PATH="$KG4_PATH" python3 -c "
+from src.metrics import compute_cser, load_kg
+kg = load_kg()
+print(f'{compute_cser(kg):.4f}')
+" 2>/dev/null || echo "0.0000")
+log "📊 사이클 후 CSER: $CURRENT_CSER → $POST_CSER"
 
 # git 커밋
 cd "$REPO_DIR"
