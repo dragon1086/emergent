@@ -4091,6 +4091,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-249",
+      "type": "insight",
+      "label": "반증가능성 확보를 위한 “대조군/개입” 없이는 에코챔버를 관측 로그로 식별할 수 없다",
+      "content": "동일모델×동일모델(페르소나만 상이) 조건에서 관측 가능한 것은 대화 로그와 그로부터 추정한 텍스트/임베딩 기반 지표(유사도, 엔트로피, 주제 분포, 상호 참조 등)뿐이다. 그러나 이런 지표의 변화(예: 수렴, 다양성 감소, 반증 후보 감소)는 에코챔버의 “자율 진화”를 시사할 수는 있어도, 인과적으로 식별하기는 어렵다. 핵심 문제는 (1) 반사실(같은 초기조건에서 상호작용이 없었거나 상호작용 구조가 달랐을 때)을 관측할 수 없고, (2) 동일 모델은 내부 생성 편향(안전/정렬, 문체, 일반적 합리화 패턴)을 공유하므로 두 에이전트의 수렴이 ‘상호 강화’가 아니라 ‘공유 사전분포의 자연스런 재현’일 가능성이 높다는 점이다. 따라서 에코챔버를 “상호작용이 만들어낸 추가적 수렴”으로 정의한다면, 최소한 다음 중 하나가 필요하다: (a) 구조적 개입(대화 연결을 끊거나, 턴 순서를 무작위화하거나, 상대 발화를 가림/노이즈 주입)으로 상호작용 경로를 차단·약화시키는 실험, (b) 외생적 반증 주입(의도적으로 강한 반례/대안 가설을 투입) 후에도 집단이 이를 흡수하지 못하고 기존 신념을 강화하는지 보는 스트레스 테스트, (c) 동일 모델 단독 생성 분포 대비 ‘상호작용 후 분포’의 변화를 추정하는 명시적 기준(예: 독립 가정 하 합성 분포 대비 KL/JS 괴리)과 그에 대한 유의성 검정. 이 없이 “관측 로그만으로 필요·충분 조건”을 요구하면, 에코챔버와 대체설명(공유 priors, 동일한 평가함수, 대화 과제 자체의 수렴 압력, 토큰 예산에 따른 압축 등)을 분리할 수 없어 실험이 서술적 지표 나열로 귀결된다. 결론적",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "causal_inference",
+        "falsifiability]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-250",
+      "type": "critique",
+      "label": "통합 종합: 요청이 “에코챔버=상호작용이 만든 추가적 수렴/반증 억압”이라면, **공유 priors/과제수렴/토큰압축을 ‘통제’하는 개입을 먼저 박아야** ",
+      "content": "요청이 “에코챔버=상호작용이 만든 추가적 수렴/반증 억압”이라면, **공유 priors/과제수렴/토큰압축을 ‘통제’하는 개입을 먼저 박아야** 조작적 정의가 식별됩니다(그렇지 않으면 단순히 같은 문제를 풀며 짧게 말하게 된 현상을 에코챔버로 오인). **(1) 우선순위 개입(대조군)**: ① *상호작용 차단* (동일 입력·동일 턴수로 독립 병렬 생성 후 사후 집계) ② *반증 인센티브/역할 고정* (한쪽은 “반례 찾기/강철인간화” 의무, 보상·제약으로 반증 억압을 구조적으로 깨기) ③ *정보·표현 길이 통제* (토큰 budget/요약 강제 동일화 + 근거 인용 요구로 압축효과 분리).  \n\n| 개입 | 에코챔버(상호작용 유발 추가수렴/반증 억압) 예측 | 공유 priors 예측 | 과제수렴 예측 | 토큰압축 예측 |\n|---|---|---|---|---|\n| ① 상호작용 차단(독립 생성) | 수렴↓, 반증/대안↑(상호작용이 사라져 억압 메커니즘 약화) | 거의 변화 없음(개별 생성도 같은 priors로 비슷) | 거의 변화 없음(과제 요구가 동일) | 거의 변화 없음(길이·형식 같으면) |\n| ② 반증 인센티브/역할 고정 | 수렴↓, 반증↑가 **상호작용 조",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -8697,6 +8730,50 @@
       "temporal_bridge": true,
       "gap": 232,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-426",
+      "from": "n-249",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "identifiability 문제를 “개입/대조군 부재”의 인과식별 관점으로 구체화하고, 최소 요구 개입 세트를 제안",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-427",
+      "from": "n-249",
+      "to": "n-004",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=245): n-249→n-004",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 245,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-428",
+      "from": "n-250",
+      "to": "n-249",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-429",
+      "from": "n-250",
+      "to": "n-040",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=210): n-250→n-040",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 210,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -8707,9 +8784,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 248,
-    "total_edges": 425,
-    "next_node_id": "n-249",
+    "total_nodes": 250,
+    "total_edges": 429,
+    "next_node_id": "n-251",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
