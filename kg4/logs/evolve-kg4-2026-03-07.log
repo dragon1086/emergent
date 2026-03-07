@@ -503,3 +503,39 @@
   max_span=472 → n-001↔n-100 closes_loop 엣지가 최대 기여
   node_age_diversity=0.2890 → 균등 분포 이론치(0.289) 근접
 
+[00:08:27] KG4 ✅ KG-4 사이클 완료
+[00:08:55] KG4 🌱 KG-4 사이클 시작 #18/100
+[00:08:55] KG4 📊 KG-4 현황: ── 통계 ──────────────────────────────────────
+총 노드: 474개
+총 엣지: 766개
+
+노드 타입별:
+  •  critique: 107개
+  •  hypothesis: 301개
+  💡 insight: 65개
+  👁  observation: 1개
+
+출처별:
+  gemini-2.0-flash: 107개
+  gemini-2.0-pro: 107개
+  gemini-2.5-flash: 258개
+  openclaw: 2개
+
+관계 종류:
+  critiques: 108개
+  expands_on: 127개
+  motivates: 9개
+  posits_explanation_for: 186개
+  refines_hypothesis: 33개
+  temporal_bridge: 303개
+[00:08:55] KG4 🕰️ 오래된 노드 후보: 8개
+[00:08:55] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[00:09:07] KG4 ✅ Agent A 완료 (1023 chars)
+[00:09:29] KG4 ✅ Agent B (Gemini Pro) 완료
+[00:09:29] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 KG 환경에서의 DCI 악화는 암묵적 공유 추론 패턴에 기인한다. (id: n-475 → n-008)
+[00:09:29] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-476 → n-475
+── 해석 ────────────────────────────────────
+  edge_span=185.6노드 평균 간격 → 시간 초월 연결 활발
+  max_span=472 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2890 → 균등 분포 이론치(0.289) 근접
+

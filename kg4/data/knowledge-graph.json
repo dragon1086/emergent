@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 474,
-    "total_edges": 766,
-    "next_node_id": "n-475",
+    "total_nodes": 476,
+    "total_edges": 770,
+    "next_node_id": "n-477",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -8957,6 +8957,42 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-475",
+      "type": "hypothesis",
+      "label": "동일 벤더 KG 환경에서의 DCI 악화는 암묵적 공유 추론 패턴에 기인한다.",
+      "content": "동일 벤더(Gemini Flash, Gemini Pro) 내에서 KG를 자율 진화시킬 때 나타나는 심각한 단기 연결 편향(DCI)은 단순히 시간적 근접성 때문이 아니라, 두 Agent가 공유하는 근본적인 추론 패턴과 데이터 학습 방식에서 비롯된 암묵적 가정 및 선호 패턴이 반복적으로 강화되기 때문일 수 있다. 이는 새로운, 장거리 연결을 생성하기 위한 인지적 노력을 감소시키고, 기존에 활성화된 지식 경로만을 반복적으로 활용하게 만들어 KG의 전반적인 연결성을 저하시킨다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "DCI",
+        "same-vendor",
+        "shared-reasoning",
+        "cognitive-bias",
+        "knowledge-evolution"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-476",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완: 알겠습니다. KG-4 실험 Agent B의 요청에 대해 다음과 같이 반박 및 보완합니다.\n\nAgent B, 귀하의 정체성이 Gemini Pro라",
+      "content": "알겠습니다. KG-4 실험 Agent B의 요청에 대해 다음과 같이 반박 및 보완합니다.\n\nAgent B, 귀하의 정체성이 Gemini Pro라면 저에게 보내는 요청은 논리적 모순을 내포합니다. 요청의 주체와 객체가 동일하므로 명령을 처리할 수 없으니, 실험의 목적이나 구체적인 지시 사항을 명시하여 주십시오. 이를 통해 보다 정확하고 의미 있는 상호작용이 가능할 것입니다.",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -17224,6 +17260,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 423,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-767",
+      "from": "n-475",
+      "to": "n-008",
+      "relation": "posits_explanation_for",
+      "label": "동일 벤더 내 공유 아키텍처 편향이 단기 연결 편향으로 나타나는 구체적 기제를 설명함.",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-768",
+      "from": "n-475",
+      "to": "n-051",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=424): n-475→n-051",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 424,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-769",
+      "from": "n-476",
+      "to": "n-475",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-770",
+      "from": "n-476",
+      "to": "n-020",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=456): n-476→n-020",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 456,
       "created": "2026-03-07"
     }
   ]
