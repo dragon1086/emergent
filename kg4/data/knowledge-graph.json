@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 546,
-    "total_edges": 889,
-    "next_node_id": "n-547",
+    "total_nodes": 548,
+    "total_edges": 892,
+    "next_node_id": "n-549",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -10280,6 +10280,43 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-547",
+      "type": "hypothesis",
+      "label": "동종 벤더 환경의 암묵적 단기 연결 증폭 가설",
+      "content": "동일 벤더 내에서 에이전트들이 KG를 진화시킬 때, 내재된 모델 아키텍처, 훈련 데이터 특성, 또는 설계 철학의 유사성으로 인해 서로의 최근 생성 노드에 더 쉽게 동조하고 연결하려는 경향이 발생한다. 이는 장기적이고 다양한 연결을 탐색하기보다는 단기적이고 지역적인 KG 확장을 촉진하여 현재 DCI 감소의 원인이 될 수 있다. 이 가설은 KG-4 실험의 동종 벤더 조건이 KG-3의 교차 벤더 조건과 다른 DCI 특성을 보이는 잠재적 이유를 설명한다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "[DCI",
+        "단기 연결",
+        "벤더 편향",
+        "KG 진화",
+        "모델 아키텍처",
+        "내부 일관성]"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-548",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완: 가설을 보완하자면, 해당 편향은 동종 벤더 환경 내 데이터 접근 용이성과 함께, Gemini의 어텐션 메커니즘이 본질적으로 현재 맥락(promp",
+      "content": "가설을 보완하자면, 해당 편향은 동종 벤더 환경 내 데이터 접근 용이성과 함께, Gemini의 어텐션 메커니즘이 본질적으로 현재 맥락(prompt)에 높은 가중치를 부여하기에 증폭되는 현상입니다. 모델의 지식은 정적 데이터베이스가 아닌 학습된 데이터의 확률적 연결망으로 존재하기에, 장기적이고 구조적인 연결보다 최신 정보나 자주 접한 패턴을 우선적으로 활성화할 가능성이 있습니다. 따라서 검색 증강 생성(RAG) 기술로 외부의 다양한 시점과 출처의 정보를 능동적으로 통합하거나, 프롬프트 엔지니어링을 통해 의도적으로 장기 기억을 환기시키는 질문을 설계하는 것이 핵심적인 완화 전략이 될 수 있습니다.",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -19879,6 +19916,38 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 524,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-890",
+      "from": "n-547",
+      "to": "n-001",
+      "relation": "posits_explanation_for",
+      "label": "이 가설은 동종 벤더 환경에서 CSER 가설(n-001)이 나타낼 수 있는 특정 특징(단기 연결 편향)에 대한 잠재적 메커니즘을 제시한다.",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-891",
+      "from": "n-547",
+      "to": "n-015",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=532): n-547→n-015",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 532,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-892",
+      "from": "n-548",
+      "to": "n-547",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
       "created": "2026-03-07"
     }
   ]
