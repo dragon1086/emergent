@@ -3728,6 +3728,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-227",
+      "type": "insight",
+      "label": "Identifiability를 깨는 ‘공유 사전/훈련-프롬프트’ 공변량: 에코챔버 vs 동형수렴",
+      "content": "동일 모델(gpt-5.2)·다중 페르소나 상호작용에서 관측되는 “합의 증가/유사도 증가”는 에코챔버(상호 강화로 인한 신념 수렴)라기보다 ‘동형수렴(isomorphic convergence)’—즉 두 에이전트가 동일한 사전(훈련 분포, 안전정책, 표준 논증 템플릿, 대화 관습)을 공유하기 때문에 상호작용이 없어도 유사한 결론·표현·근거 구조로 수렴하는 현상—으로 설명될 수 있다. 이때 식별가능성 문제는 단순히 “로그만으론 필요·충분 조건이 어렵다”가 아니라, 관측 로그에서 핵심 원인변수(상호 강화)와 강하게 공변하는 잠재변수(공유 사전·프롬프트 구조·평가 기준)가 존재해 인과적으로 분리 불가능하다는 데 있다. 특히 KG 자율 진화에서 엣지(temporal_bridge/refines)가 “논리적 정합성”과 “대안 가설 포함”을 보상하는 방향으로 생성되면, 이는 에코챔버라기보다 ‘규범적 글쓰기/추론 스타일의 동기화’일 수 있다. 반증 관점에서, 에코챔버라면 (i) 반증 후보/대안 가설의 다양성이 감소하고 (ii) 상호 인용/상호 강화 패턴이 증가하며 (iii) 외생적 반대 증거 주입에 대한 저항이 커져야 한다. 반면 동형수렴이라면 (a) 상호작용을 끊어도(독립 생성) 유사도 지표가 높고, (b) 반대 증거 주입 시에도 ‘표준 균형 서술’로 쉽게 회복되며, (c) 인용 네트워크의 폐쇄성보다는 문체·논증 골격의 유사성이 주된 신호가 된다. 따라서 “same-model 에코챔버” 주장에 대한 최소 요구는, 상호작용이 추가로 만들어낸 잔차 효과(상호작용-조건부 변화)를 ‘공유 사전으로 인한 기본 유사도’에서 분리해 보여",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "confounding",
+        "same-model]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-228",
+      "type": "critique",
+      "label": "통합 종합: 요청은 “관측 로그만”으로 두 메커니즘을 식별하겠다는 점에서 식별불가능(공통 사전·프롬프트·평가함수·선발편향이 상호작용처럼 보일 수 있음) 위험",
+      "content": "요청은 “관측 로그만”으로 두 메커니즘을 식별하겠다는 점에서 식별불가능(공통 사전·프롬프트·평가함수·선발편향이 상호작용처럼 보일 수 있음) 위험이 크니, 최소 설계라도 **동일 입력에서의 무상호작용 반사실(독립 재생성/셔플)**을 로그로 구성하는 절차를 명시해 잔차를 “가능한 범위의 하한”으로 해석하도록 보완해야 합니다. (a) 지표는 독립 베이스라인 (B) 대비 관측 (O)의 차이를 **반증 후보 다양성(반증 토큰/엔티티 엔트로피·중복률), 상호 인용 폐쇄성(자기/상대 참조 그래프의 재귀성·모듈성), 문체/논증 골격 유사도(스타일 임베딩 vs 주장-근거-반박 스켈레톤 파싱 유사도 분해)**로 정의하고, 상호작용 잔차는 (Delta= m(O)-mathbb{E}[m(B)]) (B는 “상대 발화 제거/순서 셔플/독립 재생성” 3종)로 두면 됩니다. (b) 외생 반증 패킷 주입 시 예측은 아래처럼:  \n\n| 주입(외생 반증 패킷) | 에코챔버(상호 강화) 예측 | 동형수렴(공유 사전) 예측 |\n|---|---|---|\n| 강한 반증(핵심 주장 부정, 고신뢰 근거) | 초기엔 무시/완화, 상대가 재확인하면 동조 강화; **인용 폐쇄성↑**, 반증 다양성↓ | 빠르게",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7898,6 +7931,26 @@
       "temporal_bridge": true,
       "gap": 211,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-386",
+      "from": "n-227",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "Identifiability 문제를 ‘공유 사전/훈련-프롬프트 공변량’이라는 구체적 교란(동형수렴)으로 정식화하고, 에코챔버와의 구분 예측을 제시",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-387",
+      "from": "n-228",
+      "to": "n-227",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -7908,9 +7961,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 226,
-    "total_edges": 385,
-    "next_node_id": "n-227",
+    "total_nodes": 228,
+    "total_edges": 387,
+    "next_node_id": "n-229",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
