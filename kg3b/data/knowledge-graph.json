@@ -5147,6 +5147,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-313",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 촉발 요인: “메타-대화 규약/역할 스키마 불일치(Discourse Protocol Drift)”",
+      "content": "Cross-vendor 환경에서 CSER이 떨어지는 핵심 촉발 요인은 단순 표현(Representation)이나 불확실성 표기 규약 차이를 넘어, **대화의 메타-프로토콜(역할/권한/행위 단위에 대한 암묵 규약)** 자체가 벤더별로 달라지는 “Discourse Protocol Drift”일 수 있다. 즉 동일한 KG 편집 지시를 받아도 (a) 무엇을 ‘노드 추가’로 간주하는지, (b) 무엇을 ‘엣지 생성’으로 간주하는지, (c) 충돌 시 우선하는 규칙(최신성 vs 일관성 vs 안전성), (d) 출력 포맷의 준수 실패를 “재시도/수정”으로 처리할지 “새 정보”로 처리할지 등이 모델별로 다른 **행동-단위(action granularity) 및 역할 스키마(role schema)**로 구현된다. 이 차이는 그래프 편집의 상태전이 함수 T_vendor를 달리 만들어, 동일 입력 I에 대해 그래프 업데이트 ΔG가 벤더마다 체계적으로 달라지며, 결과적으로 (1) temporal_bridge가 과도하게 늘거나, (2) critique↔hypothesis 짝맞춤이 어긋나거나, (3) 장기 노드로의 재연결이 실패하는 형태로 누적된다. 따라서 cross-vendor CSER 개선을 위해서는 표현 정규화뿐 아니라 **메타-대화 규약 정규화(예: 고정된 역할 정의, 수정/재시도 정책, 충돌 해결 우선순위, action schema 명세)**가 필요하다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "discourse-protocol",
+        "action-schema",
+        "instruction-following"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-314",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini Flash 관점에서, cross-vendor KG 편집에서 Discourse Protocol Drift(DPD)는 명백히 관측되며,",
+      "content": "Gemini Flash 관점에서, cross-vendor KG 편집에서 Discourse Protocol Drift(DPD)는 명백히 관측되며, 이는 주로 (1) 노드/엣지 생성의 action granularity 차이와 (2) 포맷 오류 처리 방식 불일치에서 기인합니다. 예를 들어, 세분화된 업데이트를 신규 엔티티로 간주하거나 충돌 해결 우선순위(예: 안전성 vs. 최신성)가 달라지면, 의도치 않은 temporal_bridge 과다 생성 및 기존 노드 재연결 실패 패턴이 나타납니다. 대안적으로, 이는 단순히 (1) 비정형적인 표현 드리프트나 (2) 불확실성 표기 표준 부재로 인한 의미론적 오독 문제일 수 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -10777,6 +10810,50 @@
       "temporal_bridge": true,
       "gap": 250,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-522",
+      "from": "n-313",
+      "to": "n-007",
+      "relation": "EDGE_TO",
+      "label": "행동정책(Instruction-following) 불일치 가설을 “메타-대화 규약/역할 스키마 불일치”로 세분화하여, 상태전이(T_vendor) 차이가 CSER 저하를 구조적으로 ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-523",
+      "from": "n-313",
+      "to": "n-042",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=271): n-313→n-042",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 271,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-524",
+      "from": "n-314",
+      "to": "n-313",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-525",
+      "from": "n-314",
+      "to": "n-016",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=298): n-314→n-016",
+      "source": "gemini-2.0-flash",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 298,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -10787,9 +10864,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 312,
-    "total_edges": 521,
-    "next_node_id": "n-313",
+    "total_nodes": 314,
+    "total_edges": 525,
+    "next_node_id": "n-315",
     "last_updater": "gemini-2.0-flash"
   }
 }
