@@ -3530,6 +3530,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-215",
+      "type": "insight",
+      "label": "동일모델 에코챔버 판정의 ‘기계적 수렴’ 대안가설(LLM 공통 priors/디코딩 유도)",
+      "content": "동일모델-다중페르소나 조건에서 관측되는 “합의 증가/유사도 증가/반증 후보 감소”는 에코챔버(상호 강화로 인한 신념 고착)의 결과가 아니라, (i) 동일한 사전학습 분포(priors)와 (ii) 동일한 디코딩/정렬 규칙(예: 안전·정중·일관성 선호, 장문 합리화, 자기모순 회피) 때문에 발생하는 ‘기계적 수렴(mechanical convergence)’일 수 있다. 이 경우 상호작용은 원인이 아니라 단지 공통 생성편향을 드러내는 장치이며, KG가 “자율 진화”하는 것처럼 보여도 실제로는 동일 모델이 반복적으로 생성하는 전형적 논증 패턴(정의→측정→교란→식별가능성 경고→완화책 제안)이 누적될 뿐이다. 반증가능한 구분 기준은 “상호작용이 없을 때의 기준선” 대비 “상호작용이 있을 때” 추가되는 수렴 성분이 존재하는가인데, 동일 모델에서는 이 추가 성분이 작거나 0일 수 있다. 따라서 에코챔버를 주장하려면 (a) 동일 프롬프트·동일 페르소나에서 단독 생성 분포를 추정하고, (b) 다중 에이전트 상호작용 후 분포 변화가 단독 생성 분포의 단순 혼합/평균으로 설명 불가함을 보여야 한다. 그렇지 않으면 관측된 수렴은 ‘에코챔버’가 아니라 ‘모델 공통성 + 디코딩 규칙’의 부산물(대체설명)로 남는다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "alternative-explanation",
+        "same-model-bias]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-216",
+      "type": "critique",
+      "label": "통합 종합: 요청안에 “혼합으로 설명 불가”를 보장하려면 **혼합(독립 생성들의 단순 합성)에서 불변인 통계**를 먼저 정의한 뒤, 상호작용 조건에서 그 불",
+      "content": "요청안에 “혼합으로 설명 불가”를 보장하려면 **혼합(독립 생성들의 단순 합성)에서 불변인 통계**를 먼저 정의한 뒤, 상호작용 조건에서 그 불변성이 깨지는지를 보면 됩니다: 최소 설계는 (i) 페르소나별 단독 로그로 각자의 산출물 분포를 추정하고, (ii) 동일 프롬프트로 상호작용(라운드 고정, 발화자 라벨 포함) 후 최종 산출을 얻어, (iii) 아래 통계들을 단독분포 혼합으로부터의 예측구간(부트스트랩)과 비교하는 2조건 실험입니다.  \n판별 통계는 KG 로그만으로 계산되게 (텍스트/인용/발화자 라벨 기반) **① 반증 후보 다양성의 ‘공통모드 붕괴’ 지수**: 각 run에서 “반증 후보(‘~이면 틀림/검증 필요’ 형태)” 문장들을 임베딩/토픽으로 클러스터링해 유효 클러스터 수(또는 Shannon entropy)를 구하고, 상호작용 후 엔트로피가 단독 혼합에서 예측되는 값보다 유의하게 낮아지면(특히 특정 클러스터 점유율 급증) 에코챔버(수렴) 신호이며, 반대로 엔트로피가 유지/증가하면서도 결론만 비슷해지면 ‘기계적 수렴(표현/정답 수렴)’ 가능성이 큽니다.  \n**② 대안가설 유지율의 ‘발화자-조건부 소거 비대칭’**: 라운드 t에서 제시된 대안가설 집합",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7484,6 +7517,50 @@
       "temporal_bridge": true,
       "gap": 195,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-366",
+      "from": "n-215",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "판별 불능성 주장에 “기계적 수렴”이라는 구체적 대체 메커니즘(공통 priors/디코딩 유도)을 추가해, 왜 same-model 조건에서 에코챔버 신호가 구조적으로 약화/혼동되는지",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-367",
+      "from": "n-215",
+      "to": "n-012",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=203): n-215→n-012",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 203,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-368",
+      "from": "n-216",
+      "to": "n-215",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-369",
+      "from": "n-216",
+      "to": "n-027",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=189): n-216→n-027",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 189,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -7494,9 +7571,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 214,
-    "total_edges": 365,
-    "next_node_id": "n-215",
+    "total_nodes": 216,
+    "total_edges": 369,
+    "next_node_id": "n-217",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
