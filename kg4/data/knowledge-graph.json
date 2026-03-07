@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 528,
-    "total_edges": 854,
-    "next_node_id": "n-529",
+    "total_nodes": 530,
+    "total_edges": 857,
+    "next_node_id": "n-531",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -9951,6 +9951,42 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-529",
+      "type": "hypothesis",
+      "label": "동일 벤더 KG 진화의 암묵적 지식 구조 공유와 DCI 편향",
+      "content": "동일 벤더(Google) 환경에서 Gemini Flash와 Gemini Pro 간의 암묵적인 지식 구조 및 학습 방식 공유는 KG 진화 과정에서 특정 유형의 연결을 강화하고 다른 유형의 연결을 억제할 수 있다. 이는 단기 연결 편향(DCI)을 의도치 않게 심화시키며, 장기적이고 이종적인 노드 간의 새로운 관계 형성(다양성)을 저해할 수 있다. 결과적으로, KG의 전반적인 연결 밀도(DCI 목표 0.1) 회복 속도를 늦출 가능성이 있다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "DCI",
+        "SameVendorBias",
+        "KnowledgeStructure",
+        "KG_Evolution",
+        "EmergentProperties"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-530",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완: 공유 아키텍처는 획일적 지식 생성을 강제하는 대신, Flash의 신속한 표층 연결과 Pro의 심층적 논리 검증이 상호작용하는 공통의 기반을 마련",
+      "content": "공유 아키텍처는 획일적 지식 생성을 강제하는 대신, Flash의 신속한 표층 연결과 Pro의 심층적 논리 검증이 상호작용하는 공통의 기반을 마련하여 시너지를 창출합니다. 이러한 추론 깊이의 차이는 동일 문제에 대해 다른 해상도의 관점을 제공함으로써, 한 모델이 빠질 수 있는 국소 최적해(local optima)를 탈출시키고 시스템 전체의 강건한 DCI 회복을 돕습니다. 결과적으로 이 구조는 단일 모델의 한계를 넘어 상호 검증과 발견을 통해 더욱 풍부하고 다각적인 장기적 KG 연결망 구축을 촉진하는 역동적 메커니즘으로 작용할 수 있습니다.",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -19166,6 +19202,38 @@
       "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
       "source": "gemini-2.0-pro",
       "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-855",
+      "from": "n-529",
+      "to": "n-008",
+      "relation": "posits_explanation_for",
+      "label": "동일 벤더 KG 진화의 공유 아키텍처 편향이 DCI를 강화하는 메커니즘에 대한 설명",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-856",
+      "from": "n-530",
+      "to": "n-529",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-857",
+      "from": "n-530",
+      "to": "n-073",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=457): n-530→n-073",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 457,
       "created": "2026-03-07"
     }
   ]
