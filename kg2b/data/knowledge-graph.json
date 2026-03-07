@@ -3860,6 +3860,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-235",
+      "type": "insight",
+      "label": "반증 설계의 ‘부정적 대조군(negative control)’ 부재가 에코챔버 판정을 오염시킨다",
+      "content": "동일모델×다중 페르소나 조건에서 “자율 진화로 에코챔버가 생겼다”는 주장은, 관측된 수렴/유사도 증가가 (i) 상호작용 효과인지, (ii) 동일 기반모델의 공유 편향·공유 표현 공간 때문에 독립적으로도 발생하는 ‘기저 수렴’인지 분리해야 한다. 이 분리가 안 되면 에코챔버로 보이는 현상은 단지 ‘같은 모델을 두 번 샘플링한 결과’일 수 있다. 따라서 최소 반증가능 단위는 “상호작용이 있을 때만 증가하는 지표”를 포함해야 하며, 이를 위해 부정적 대조군이 필수다. 구체적으로는 동일한 프롬프트/주제/평가함수 하에서 (A) 상호작용 세션(서로의 출력에 조건화)과 (B) 비상호작용 세션(서로를 전혀 보지 않고 동일 토픽을 병렬 생성) 및 (C) ‘가짜 상호작용’(상대의 출력을 섞되 시간/주제/에이전트 매칭을 의도적으로 교란한 셔플 조건)을 두어, 에코챔버 지표(예: 반증후보 다양성 감소, 근거 네트워크의 폐쇄성 증가, 상호 인용/상호 강화 비율 증가)가 A에서만 유의하게 커지는지 확인해야 한다. 만약 A와 B가 유사하거나, C에서도 동일하게 증가한다면 “상호강화로 인한 에코챔버”라는 인과 해석은 무너진다(식별 불능). 이 대조군 설계는 ‘자율 진화’라는 내러티브를 인과로 착각하는 오류를 막고, 관측가능 로그만으로도 최소한의 반증 가능성을 확보하는 방향이다.",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "negative-control",
+        "causal-inference]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-236",
+      "type": "critique",
+      "label": "통합 종합: A/B/C를 단순 “조건”이 아니라 **Δ지표의 원인축(정보량·제약·교차결합)**으로 매핑하는 게 더 일관적입니다: A=기저(단일원천/독립)로 ",
+      "content": "A/B/C를 단순 “조건”이 아니라 **Δ지표의 원인축(정보량·제약·교차결합)**으로 매핑하는 게 더 일관적입니다: A=기저(단일원천/독립)로 Δ유사도·Δ폐쇄성의 기준선, B=추가정보(단일축 증강)로 Δ유사도↑ 가능하되 Δ반증후보(대안가설)도 함께↑하는지, C=교차결합(두 원천 상호제약)로만 **Δ폐쇄성↑ & Δ반증후보↓(또는 반증후보의 “정밀도”↑)**가 나타나는지로 정의하면 “상호작용”을 지표체계에 직접 걸 수 있습니다. 판정 규칙은 유의성 대신 **실용적 임계치 기반 차이-차이**로 최소화하세요: (I = (Delta_C-Delta_A) - max(Delta_B-Delta_A,0)) 를 각 핵심지표(폐쇄성, 반증후보 품질, 유사도)에서 계산해 **I가 사전정한 최소개선(MID; 예: 0.2 SD 또는 상위 10% 분위수 초과)**을 동시에 만족하면 “상호작용 있을 때만 증가”로 판정(부호까지 요구하면 더 엄격)합니다. 셔플(가짜 상호작용)이 잡는 대체설명은 (i) 단순 난이도/길이/토큰수 증가로 인한 점수상승, (ii) 공통 프롬프트/표면형식 일치로 생기는 유사도 착시, (iii) 모델의 위치·순서·최근성 편향, (iv) 동일 정보의 중복제시(정보량 착",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -8170,6 +8203,50 @@
       "temporal_bridge": true,
       "gap": 219,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-399",
+      "from": "n-235",
+      "to": "n-001",
+      "relation": "refines",
+      "label": "식별가능성 문제를 ‘부정적 대조군/가짜 상호작용’ 설계로 구체화해, 상호작용-유발 수렴과 기저 수렴을 분리하도록 정교화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-400",
+      "from": "n-235",
+      "to": "n-042",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=193): n-235→n-042",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 193,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-401",
+      "from": "n-236",
+      "to": "n-235",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-402",
+      "from": "n-236",
+      "to": "n-046",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=190): n-236→n-046",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 190,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -8180,9 +8257,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 234,
-    "total_edges": 398,
-    "next_node_id": "n-235",
+    "total_nodes": 236,
+    "total_edges": 402,
+    "next_node_id": "n-237",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
