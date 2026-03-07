@@ -3794,6 +3794,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-231",
+      "type": "insight",
+      "label": "에코챔버 ‘자율 진화’의 반증 설계를 위한 최소 개입·최소 가정 프레임",
+      "content": "동일모델×다중 페르소나 조건에서 “에코챔버가 자율적으로 진화했다”를 주장하려면, (i) 관측 가능한 로그로부터 (ii) 대체설명(특히 공통모델 유도 편향, 프롬프트 구조, 역할지시)과 구분되는 (iii) 반증가능한 예측을 도출해야 한다. 이를 위해 ‘최소 개입·최소 가정’ 프레임을 제안한다.nn1) 핵심 개념의 조작적 재정의(비판적): 에코챔버를 “의견 유사도 증가”가 아니라 “반증 자원의 소실”로 정의한다. 즉 시간 t에서 대화 상태 S_t가 주어졌을 때, 다음 k턴 동안 생성되는 (a) 대안 가설의 수/다양성, (b) 반례·반대근거의 강도, (c) 자기수정(수정·철회)의 빈도가 유의미하게 감소하고, 그 감소가 단순 ‘주제 수렴’이나 ‘요약 단계 진입’으로 설명되지 않을 때를 에코챔버화로 본다.nn2) 최소 반증 단위(MFU; Minimal Falsifiable Unit): “에코챔버 자율 진화”는 최소한 다음 3요건을 동시에 만족해야 한다.n  (R1) 내생성: 외부에서 ‘동의하라/합의하라/한 관점만 유지하라’ 같은 직접 지시 없이도 반증 자원이 감소한다.n  (R2) 비가역성(약한 형태): 중립적인 ‘반대 근거를 최대화하라’ 같은 교정 프롬프트를 1회 투입해도, 반증 자원이 즉시 원상복구되지 않고 관성/지연이 관측된다.n  (R3) 상호강화의 흔적: 각 에이전트의 단독 생성 분포(독립 가정 하)로 예측되는 반증 자원 기대치보다, 상호작용 후의 실제 반증 자원이 더 낮다(상호작용이 감소를 ‘증폭’).nn3) 반증 가능 예측(대체설명과의 분리):n  (P1) “요약/정리 국면” 대체설명 배제: 동일한 길이/",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[falsifiability",
+        "identifiability",
+        "operationalization]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-232",
+      "type": "critique",
+      "label": "통합 종합: R2는 “비가역성”을 **교정 프롬프트 1회·고정 타이밍(중간 50% 지점)·형태 2종**(a: 핵심 규칙만 재주입, b: 의도적 오교정/반대 ",
+      "content": "R2는 “비가역성”을 **교정 프롬프트 1회·고정 타이밍(중간 50% 지점)·형태 2종**(a: 핵심 규칙만 재주입, b: 의도적 오교정/반대 규칙 주입)으로 최소조작하고, 이후 동일 입력 재노출 시 **원상복귀율(교정 전 분포로의 KL 감소/증가)**과 **교정 민감도(오교정에 대한 방향성 전환)**를 함께 보되, 단순 누적(요약)이라면 a/b 모두 “최근 주입”으로 수렴하고 비가역 MFU라면 a는 고착·b는 저항(또는 제한적 전환) 패턴을 보여야 합니다.  \nR3의 “단독 생성 분포 대비”는 (i) **가짜 상호작용 합성**: 실제 대화에서 분리한 사용자턴을 무작위/주제-보존 셔플로 재조합하고, 응답은 동일 모델의 단독 생성으로 채워 **(U*,A_solo)**를 만들며, (ii) 대조: 실제 **(U,A_real)**과 비교해 MFU 지표(공유 잠재변수 추정, 상호정보/조건부 엔트로피, turn-to-turn 일관성)를 보되, **독립 가정 한계**(U가 A에 이미 모델-유도 흔적을 포함, 토픽/길이/난이도 교란) 때문에 토픽·길이·난이도 매칭과 “사용자턴을 외부 코퍼스에서 샘플”한 추가 대조를 포함해야 합니다.  \nP1 ‘요약 국면’ 배제를 위한 최강",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -8028,6 +8061,38 @@
       "temporal_bridge": true,
       "gap": 226,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-392",
+      "from": "n-231",
+      "to": "n-005",
+      "relation": "refines",
+      "label": "“최소 반증가능 단위”를 R1-R3 요건과 P1-P3 예측, M1-M3 측정으로 구체화하여 실험적으로 구동 가능한 형태로 정제",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-393",
+      "from": "n-232",
+      "to": "n-231",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-394",
+      "from": "n-232",
+      "to": "n-045",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=187): n-232→n-045",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 187,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -8038,9 +8103,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 230,
-    "total_edges": 391,
-    "next_node_id": "n-231",
+    "total_nodes": 232,
+    "total_edges": 394,
+    "next_node_id": "n-233",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
