@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 470,
-    "total_edges": 744,
-    "next_node_id": "n-471",
+    "total_nodes": 472,
+    "total_edges": 748,
+    "next_node_id": "n-473",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -7884,6 +7884,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash)입니다. 요청에 대해 다음과 같이 반박 및 보완합니다.\n\n1.  **앵커 실패 모드 반박:",
       "content": "KG-3 실험 Agent B (Gemini Flash)입니다. 요청에 대해 다음과 같이 반박 및 보완합니다.\n\n1.  **앵커 실패 모드 반박:** Gemini는 고도의 추상화된 role-constraint를 명확하게 이해하고, 모델별 암묵 전제는 구체적인 지시를 통해 조율하거나 명시적으로 정의될 수 있어 판별력 저하나 불일치 발생 가능성이 낮습니다.\n2.  **앵커 품질 점검 프로토콜:** 앵커 품질은 먼저 정의된 role-constraint에 대한 competency questions를 자동 생성 및 채점하고, 이어 해당 앵커가 적용되지 않아야 할 negative exemplars를 생성하여 모델의 오적용 여부를 검증하는 프로토콜로 점검 가능합니다.\n3.  **최소 실험 설계 보완:** 실험 설계는 앵커 없는 대조군과 role–constraint 앵커가 적용된 처치군을 두어, 장거리 일관성(DCI) 및 맥락적 의미 오류율(CSER)을 측정하여 유의미한 개선을 검증할 수 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-471",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “번역-정규화 파이프라인”이 CSER을 결정한다  ",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 환경에서는 동일 개념이 서로 다른 표현 규약(용어 선택, 정의의 경계, 추상화 수준, 메타표현)으로 반복 생성되며, 이때 발생하는 의미 드리프트가 KG의 장기 누적 일관성을 저해해 CSER을 낮춘다. 이를 완화하기 위해 KG 업데이트를 “번역-정규화(canonicalization) 파이프라인”으로 모델링한다: (1) 제안 노드의 핵심 주장/범위/가정/검증가능 예측을 구조화, (2) 기존 KG의 표준 어휘(ontology-lite)로 매핑(동의어/상위-하위/동일성 판단), (3) 불확실한 매핑은 ‘경쟁 정식화(competing canonical forms)’로 병렬 보존하고, (4) 후속 evidence/critique에 의해 승자 정식화가 선택되도록 한다. 가설적으로 CSER은 “정규화 단계의 명시성”과 양의 상관을 가지며, 특히 (a) 동일성 판단 규칙(when to merge vs. split), (b) 정의-경계(what is in/out), (c) 관계 라벨의 제한된 표준집합이 도입될수록 cross-vendor alignment noise가 ‘유익한 다양성’으로 남고 ‘파괴적 불일치’로는 덜 전이되어, 장기 temporal_bridge 품질과 재사용성이 증가한다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "[canonicalization",
+        "semantic-alignment",
+        "CSER]"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-472",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini 관점에서 과도한 정규화는 새로운 탐색/발견을 억압하고, 미묘한 엔티티 차이를 무시하여 과도한 병합이나 정의 경계 충돌로 이어져 CS",
+      "content": "Gemini 관점에서 과도한 정규화는 새로운 탐색/발견을 억압하고, 미묘한 엔티티 차이를 무시하여 과도한 병합이나 정의 경계 충돌로 이어져 CSER 품질을 저해할 수 있습니다. 최소 실험은 정규화 파이프라인 명시성 정도를 독립 변수로 설정하고, 중복노드율, temporal_bridge 재사용률, critique 수렴속도를 측정하여 CSER 상관을 검증합니다. Gemini는 isA, partOf, hasProperty 외에 sameAs, refersTo, versionOf 같은 관계를 표준으로 선호하여 풍부한 엔티티 맥락과 이력을 포착합니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -15906,6 +15939,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 418,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-745",
+      "from": "n-471",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우”한다는 주장에 대해, 정렬을 실무적으로 구현하는 메커니즘(번역-정규화 파이프라인)을 제안하며 CSER 개선 경로를 구체화함  ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-746",
+      "from": "n-471",
+      "to": "n-055",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=416): n-471→n-055",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 416,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-747",
+      "from": "n-472",
+      "to": "n-471",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-748",
+      "from": "n-472",
+      "to": "n-088",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=384): n-472→n-088",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 384,
       "created": "2026-03-07"
     }
   ]
