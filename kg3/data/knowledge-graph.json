@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 572,
-    "total_edges": 907,
-    "next_node_id": "n-573",
+    "total_nodes": 574,
+    "total_edges": 911,
+    "next_node_id": "n-575",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -9567,6 +9567,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: (1) Gemini는 불변 중간표현을 위해 JSON Schema를 활용하여 구조적 일관성을 보장하고, 핵심 필드에 대한 유효한 값 목록(enum",
       "content": "(1) Gemini는 불변 중간표현을 위해 JSON Schema를 활용하여 구조적 일관성을 보장하고, 핵심 필드에 대한 유효한 값 목록(enum) 또는 기대되는 행동 예시를 명시하여 구현할 수 있습니다. (2) 반례로, {task: string} 스키마에 맞춰 한 Agent는 데이터 분석을, 다른 Agent는 사용자 심리 상담을 생성하는 경우 형식은 맞지만 의미적 괴리가 발생합니다. 이를 탐지하는 자동 검증 규칙으로 task 필드의 임베딩 유사도를 주기적으로 비교하여 특정 임계치 이하일 때 경고하는 휴리스틱을 제안합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-573",
+      "type": "hypothesis",
+      "label": "Cross-vendor “표현 중립 인터페이스(ENI)”를 두면 alignment noise가 구조적 탐색을 촉진하고 CSER이 상승한다  ",
+      "content": "Cross-vendor 환경에서 CSER 저하의 핵심 원인은 (i) 모델별 표현/용어 체계 차이로 인한 의미 손실과 (ii) 그로 인한 비가역적 정보 압축(요약-재요약 드리프트)이다. 이를 줄이기 위해 두 에이전트가 공유하는 “표현 중립 인터페이스(ENI; Expression-Neutral Interface)”를 KG 진화 루프에 삽입한다는 가설을 둔다. ENI는 자연어를 직접 합의하지 않고, 최소 공통 구조로 의미를 고정하는 얇은 스키마(예: {claim, scope, assumptions, mechanism, falsifier, mapping_to_terms})로 각 모델의 발화를 정규화한다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "semantic-alignment",
+        "interface-schema",
+        "CSER"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-574",
+      "type": "critique",
+      "label": "Gemini 반박/보완: ENI 스키마가 과도하게 제한적일 경우, 도메인 특화 맥락, 미묘한 의도, 사용자 상태와 같은 필수 *메타데이터 필드* 손실을 유발하여 시스템의",
+      "content": "ENI 스키마가 과도하게 제한적일 경우, 도메인 특화 맥락, 미묘한 의도, 사용자 상태와 같은 필수 *메타데이터 필드* 손실을 유발하여 시스템의 불완전한 정보 처리 경로를 생성합니다. Alignment noise는 불필요한 모호성을 증폭시켜 시스템이 핵심 의도를 오인하거나, 연속적인 의사결정 과정에서 오류를 누적시켜 CSER을 직접적으로 저하시킬 수 있습니다. ENI 표현력을 단계적으로 조절하며, 동일한 태스크 셋에 대해 시스템의 *명확화 질의 횟수* 및 *최종 태스크 성공률(CSER)*을 측정, 비교하여 역U자 관계를 관측할 수 있습니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -19341,6 +19374,50 @@
       "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
       "source": "gemini-2.0-flash",
       "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-908",
+      "from": "n-573",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬(semantic alignment)이 CSER을 좌우한다”는 주장에 대해, 정렬을 ‘완전 일치’가 아니라 ENI 기반 ‘부분 정렬+잔여 노이즈’로 재정의하여 CSER ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-909",
+      "from": "n-573",
+      "to": "n-015",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=558): n-573→n-015",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 558,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-910",
+      "from": "n-574",
+      "to": "n-573",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-911",
+      "from": "n-574",
+      "to": "n-076",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=498): n-574→n-076",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 498,
       "created": "2026-03-07"
     }
   ]
