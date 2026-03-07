@@ -114,8 +114,30 @@ def validate(graph: dict, fix: bool = False) -> dict:
     seen_edge_ids = set()
     duplicate_edge_ids = []
 
+    # Find max existing numeric edge ID for auto-assign
+    max_edge_num = 0
     for e in edges:
-        eid = e.get("id", "?")
+        eid = e.get("id", "")
+        if eid.startswith("e-"):
+            try:
+                max_edge_num = max(max_edge_num, int(eid.split("-", 1)[1]))
+            except ValueError:
+                pass
+
+    next_edge_num = max_edge_num + 1
+
+    for e in edges:
+        eid = e.get("id", "")
+
+        # Fix missing edge ID
+        if not eid:
+            if fix:
+                eid = f"e-{next_edge_num:04d}"
+                e["id"] = eid
+                next_edge_num += 1
+                fixes_applied += 1
+            else:
+                eid = "?"
 
         if eid in seen_edge_ids:
             duplicate_edge_ids.append(eid)
@@ -124,6 +146,12 @@ def validate(graph: dict, fix: bool = False) -> dict:
         for field in REQUIRED_EDGE_FIELDS:
             if field not in e:
                 missing_edge_fields.append((eid, field))
+                if fix and field == "relation":
+                    e["relation"] = "related_to"
+                    fixes_applied += 1
+                elif fix and field == "label":
+                    e["label"] = f"{e.get('from', '?')} -> {e.get('to', '?')}"
+                    fixes_applied += 1
 
         if e.get("from") not in node_ids:
             orphan_edges.append((eid, "from", e.get("from")))
@@ -132,7 +160,9 @@ def validate(graph: dict, fix: bool = False) -> dict:
 
     # --- Build report ---
     total = len(nodes)
-    complete = total - max(len(missing_type), len(missing_label))
+    # Completeness: nodes with all 3 required fields (type, label, content)
+    incomplete_nodes = set(missing_type) | set(missing_label) | set(missing_content)
+    complete = total - len(incomplete_nodes)
     report = {
         "total_nodes": total,
         "total_edges": len(edges),
@@ -173,12 +203,16 @@ def validate(graph: dict, fix: bool = False) -> dict:
     if duplicate_edge_ids:
         print(f"  [WARN] Duplicate edge IDs: {len(duplicate_edge_ids)}")
 
-    if not any([missing_type, missing_label, invalid_type, duplicate_ids, orphan_edges]):
+    if missing_edge_fields:
+        print(f"  [WARN] Missing edge fields: {len(missing_edge_fields)}")
+
+    if not any([missing_type, missing_label, invalid_type, duplicate_ids, orphan_edges,
+                duplicate_edge_ids, missing_edge_fields]):
         print("  [OK]   All nodes have required fields")
-        print("  [OK]   All edges reference valid nodes")
+        print("  [OK]   All edges have required fields and reference valid nodes")
 
     if fix and fixes_applied > 0:
-        print(f"\n  Applied {fixes_applied} fixes")
+        print(f"\n  Applied {fixes_applied} fixes (nodes + edges)")
 
     print()
     return report
