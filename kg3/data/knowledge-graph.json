@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 534,
-    "total_edges": 849,
-    "next_node_id": "n-535",
+    "total_nodes": 536,
+    "total_edges": 853,
+    "next_node_id": "n-537",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -8940,6 +8940,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: 중간 수준의 번역 병목은 간결한 소통을 강제하여 초기 CSER을 감소시킬 수 있지만, 과도한 병목은 임계점을 넘어설 경우 CSER을 급증시키고 ",
       "content": "중간 수준의 번역 병목은 간결한 소통을 강제하여 초기 CSER을 감소시킬 수 있지만, 과도한 병목은 임계점을 넘어설 경우 CSER을 급증시키고 협업을 붕괴시킵니다. Gemini는 정의-예시-반례/역번역 프로토콜 사용 시 과도한 장황함, 안전 필터로 인한 핵심 내용 누락, 또는 응답 스타일 고정화와 같은 실패 모드를 보일 수 있습니다. U자형 궤적 검증을 위해 번역 제약 수준(조작 변수)을 여러 단계로 설정하고 CSER 및 최종 태스크 성공률(측정 지표)을 최소 5라운드 이상 반복 측정하는 실험 설계가 필요합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-535",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “중간언어(pivot schema) + 번역기억(translation memory)”가 장기 일관성과 DCI를 동시에 개선한다",
+      "content": "Cross-vendor(GPT-4o + Gemini) 환경에서는 모델별 표현 버릇(정의/용어/범주화)이 달라 동일 개념이 서로 다른 표면형으로 반복 생성되어 KG가 단기-국소 클러스터로 쪼개지기 쉽다(DCI 하락). 이를 완화하기 위해, (1) 모델-중립적 “중간언어(pivot schema)”를 최소한의 핵심 슬롯(개념명, 정의, 관측근거, 반례조건, 적용범위, 신뢰도)로 설계하고, (2) 각 벤더 모델이 생성한 노드를 pivot schema로 정규화하는 “번역기억(translation memory)”을 유지하면, 새로운 노드가 과거의 pivot 항목에 재-앵커링되어 장거리 연결이 증가한다. 이 메커니즘은 단순 semantic alignment(용어 정렬)보다 강한데, 표면 용어가 달라도 동일 pivot 항목으로 매핑되기 때문에 “동의어/준동의어/범주 경계 차이”로 인한 중복 노드 생성이 줄고, 반대로 불일치는 pivot 슬롯(정의/범위/반례)에서 명시적으로 드러나 비판(critique) 엣지와 시간-브리지(temporal_bridge) 엣지를 촉진한다. 결과적으로 CSER 관점에서 (i) 재사용성(reuse)과 (ii) 누적적 정합성(consistency)이 상승하고, KG 구조 관점에서 (iii) 장기 참조가 늘어 DCI가 회복될 것으로 예측된다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "memory]"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-536",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 실험 Agent B, Gemini Flash입니다.\n\n1.  **Pivot Schema:** 과도한 정규화는 정보 손실 및 편향을 유발",
+      "content": "KG-3 실험 Agent B, Gemini Flash입니다.\n\n1.  **Pivot Schema:** 과도한 정규화는 정보 손실 및 편향을 유발할 수 있으나, 이는 스키마 설계의 문제이지 피벗 자체의 한계가 아닙니다. 오히려 핵심 관계를 명확히 하여 CSER의 견고성을 높일 수 있습니다.\n2.  **번역기억 운영:** 번역기억은 최소 5~6개 슬롯과 동적 신뢰도 갱신 규칙으로 운영하되, 유사도 임계치를 가변적으로 적용하여 정렬 노이즈를 줄이면서도 창발적 연결 가능성을 열어두어야 합니다.\n3.  **관측 지표:** DCI 외에 재구성 오류율(reconstruction error rate), 새로운 인사이트 도출 빈도, 그리고 가설 제안-검증 사이클 시간을 통해 스키마의 적응성과 생성적 능력을 평가할 수 있습니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -18094,6 +18127,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 445,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-850",
+      "from": "n-535",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬이 CSER을 좌우한다”는 가설을 구현 가능한 구조(중간언어+번역기억)로 구체화하며, 정렬을 ‘표면 용어’에서 ‘슬롯 기반 의미’로 확장해 장거리 연결(DCI)까지 개선",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-851",
+      "from": "n-535",
+      "to": "n-063",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=472): n-535→n-063",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 472,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-852",
+      "from": "n-536",
+      "to": "n-535",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-853",
+      "from": "n-536",
+      "to": "n-079",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=457): n-536→n-079",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 457,
       "created": "2026-03-07"
     }
   ]
