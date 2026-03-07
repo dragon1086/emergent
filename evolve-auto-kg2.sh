@@ -82,10 +82,15 @@ $GRAPH_STATS
 아래 오래된 노드 중 하나를 EDGE_TO로 선택하세요:
 $OLD_NODES
 
+## DCI question 생성 규칙
+3회 중 1회는 반드시 NODE_TYPE을 question으로 설정하세요.
+question 노드는 기존 가설이나 관찰에 대한 검증 가능한 질문이어야 합니다.
+예: '동일 모델 페르소나 분화가 CSER 0.25 이상을 유지할 수 있는가?'
+
 ## 출력 형식 (정확히)
 NODE_LABEL: [노드 라벨]
 NODE_CONTENT: [노드 내용 — 비판적 관점에서 구체적이고 이론적]
-NODE_TYPE: [insight|hypothesis|observation]
+NODE_TYPE: [insight|hypothesis|observation|question]
 NODE_TAGS: [태그1,태그2,태그3]
 EDGE_TO: [위 오래된 노드 목록에서 선택한 id]
 EDGE_RELATION: [관계명]
@@ -188,12 +193,20 @@ print(json.dumps(d, ensure_ascii=False))
   | EMERGENT_KG_PATH="$KG2_PATH" python3 src/add_node_safe.py 2>/dev/null)
   log "✅ Agent A 노드 추가: $NODE_LABEL (id: $NEW_NODE_ID -> $EDGE_TO)"
 
-  # Agent B 노드 추가
+  # Agent B 노드 추가 (question 노드면 answers 관계 사용 → DCI 기여)
   if [[ -n "$NEW_NODE_ID" && -n "$AGENT_B_RESPONSE" ]]; then
+    AGENT_B_RELATION="critiques"
+    AGENT_B_EDGE_LABEL="Agent B(synthesizer) responds to Agent A(critic)"
+    if [[ "$NODE_TYPE" == "question" ]]; then
+      AGENT_B_RELATION="answers"
+      AGENT_B_EDGE_LABEL="Agent B(synthesizer) answers Agent A(critic) question"
+    fi
     AGENT_B_NODE_ID=$(python3 -c "
 import json, sys
 agent_a_id = sys.argv[1].strip()
 agent_b_resp = sys.argv[2][:600]
+relation = sys.argv[3].strip()
+edge_label = sys.argv[4]
 d = {
   'label': 'synthesizer: ' + agent_b_resp[:80],
   'content': agent_b_resp,
@@ -202,13 +215,13 @@ d = {
   'tags': ['kg2', 'same-model', 'agent-b', 'synthesizer'],
   'domain': 'emergence_theory',
   'edge_to': agent_a_id,
-  'edge_relation': 'critiques',
-  'edge_label': 'Agent B(synthesizer) responds to Agent A(critic)'
+  'edge_relation': relation,
+  'edge_label': edge_label
 }
 print(json.dumps(d, ensure_ascii=False))
-" "$NEW_NODE_ID" "$AGENT_B_RESPONSE" 2>/dev/null \
+" "$NEW_NODE_ID" "$AGENT_B_RESPONSE" "$AGENT_B_RELATION" "$AGENT_B_EDGE_LABEL" 2>/dev/null \
     | EMERGENT_KG_PATH="$KG2_PATH" python3 src/add_node_safe.py 2>/dev/null)
-    log "✅ Agent B 노드 추가: $AGENT_B_NODE_ID -> $NEW_NODE_ID"
+    log "✅ Agent B 노드 추가: $AGENT_B_NODE_ID -> $NEW_NODE_ID (relation: $AGENT_B_RELATION)"
   fi
 fi
 

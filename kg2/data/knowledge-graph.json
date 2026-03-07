@@ -1,4 +1,13 @@
 {
+  "meta": {
+    "name": "KG-2",
+    "description": "Same-model (gpt-5.2 x gpt-5.2) echo chamber experiment",
+    "total_nodes": 3,
+    "total_edges": 3,
+    "last_updated": "2026-03-07",
+    "last_updater": "cokac-bot",
+    "next_node_id": "n-004"
+  },
   "nodes": [
     {
       "id": "n-001",
@@ -33,24 +42,36 @@
   ],
   "edges": [
     {
+      "id": "e-001",
       "from": "n-001",
       "to": "n-002",
       "relation": "motivates",
       "label": "Baseline echo chamber hypothesis motivates persona compensation test",
+      "source": "gpt-5.2-critic",
+      "cross_source": true,
+      "created": "2026-03-02",
       "cycle": 0
     },
     {
+      "id": "e-002",
       "from": "n-002",
       "to": "n-003",
       "relation": "contextualizes",
       "label": "Persona hypothesis is tested within 2x2 experimental design",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-02",
       "cycle": 0
     },
     {
+      "id": "e-003",
       "from": "n-003",
       "to": "n-001",
       "relation": "grounds",
       "label": "Experimental design grounds the echo chamber baseline",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-02",
       "cycle": 0
     }
   ]
