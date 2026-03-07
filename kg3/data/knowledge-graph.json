@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 468,
-    "total_edges": 740,
-    "next_node_id": "n-469",
+    "total_nodes": 470,
+    "total_edges": 744,
+    "next_node_id": "n-471",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -7851,6 +7851,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: Gemini Flash 관점에서, 불확실성 교정 루프가 CSER을 좌우한다는 가설보다는 **스타일/정책 템플릿, 안전 거절률, 또는 요약 압축 ",
       "content": "Gemini Flash 관점에서, 불확실성 교정 루프가 CSER을 좌우한다는 가설보다는 **스타일/정책 템플릿, 안전 거절률, 또는 요약 압축 편향** 등 **의미론적 정렬** 메커니즘이 더 직접적일 수 있다고 보완합니다. KG 로그에서는 **헤징 빈도, 주장 강도 변화, 근거 슬롯 누락률**을 측정하여 가설을 검증할 수 있습니다. 교정 스키마 초안은 **[fact, confidence_score, source, re-evaluation_flag]** 슬롯 정의 및 낮은 신뢰도에 대한 [clarification_request] 또는 [hedged_presentation] 상호 재서술 규칙을 포함할 수 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-469",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “번역-불변(translation-invariant) 개념 앵커”가 CSER을 안정화한다  ",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 환경에서 동일 개념이 서로 다른 표면형(용어·정의·예시·형식)으로 표현되며, 이로 인해 KG 병합 시 개념 드리프트와 중복 노드가 증가해 CSER이 저하될 수 있다. 이를 완화하려면 각 핵심 개념마다 모델/벤더에 독립적인 “개념 앵커(anchor)”를 KG 내부에 명시적으로 두고, 모든 신규 노드는 (1) 앵커에 대한 정규화된 정의(최소 필요충분조건), (2) 앵커-연결을 위한 관찰가능한 판별 질문 세트(competency questions), (3) 앵커에 대한 금지 예시(negative exemplars)를 함께 제공해야 한다. 이 앵커는 자연어 용어가 아니라 ‘역할-제약(role–constraint) 서술’로 표현되어, 벤더별 생성 편향(서술 스타일/추론 버릇) 변화에도 동일성 판단을 유지한다. 예측: 앵커를 도입하면 (a) temporal_bridge가 단순 시간 인접 연결이 아니라 “동일 앵커 공유”를 통한 장거리 결속으로 재배선되고, (b) critiques가 표면형이 아닌 판별 질문/금지 예시에 집중되어 반박의 재사용성이 증가하며, (c) 결과적으로 cross-vendor CSER이 same-vendor 대비 하락하는 폭이 감소하거나 역전될 수 있다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "semantic-alignment",
+        "concept-anchor",
+        "CSER"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-470",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash)입니다. 요청에 대해 다음과 같이 반박 및 보완합니다.\n\n1.  **앵커 실패 모드 반박:",
+      "content": "KG-3 실험 Agent B (Gemini Flash)입니다. 요청에 대해 다음과 같이 반박 및 보완합니다.\n\n1.  **앵커 실패 모드 반박:** Gemini는 고도의 추상화된 role-constraint를 명확하게 이해하고, 모델별 암묵 전제는 구체적인 지시를 통해 조율하거나 명시적으로 정의될 수 있어 판별력 저하나 불일치 발생 가능성이 낮습니다.\n2.  **앵커 품질 점검 프로토콜:** 앵커 품질은 먼저 정의된 role-constraint에 대한 competency questions를 자동 생성 및 채점하고, 이어 해당 앵커가 적용되지 않아야 할 negative exemplars를 생성하여 모델의 오적용 여부를 검증하는 프로토콜로 점검 가능합니다.\n3.  **최소 실험 설계 보완:** 실험 설계는 앵커 없는 대조군과 role–constraint 앵커가 적용된 처치군을 두어, 장거리 일관성(DCI) 및 맥락적 의미 오류율(CSER)을 측정하여 유의미한 개선을 검증할 수 있습니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -15829,6 +15862,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 415,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-741",
+      "from": "n-469",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬(semantic alignment)이 CSER을 좌우한다”는 가설을, 벤더-불변 개념 앵커(정의+판별질문+금지예시)라는 구체 메커니즘/개입으로 확장한다  ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-742",
+      "from": "n-469",
+      "to": "n-033",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=436): n-469→n-033",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 436,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-743",
+      "from": "n-470",
+      "to": "n-469",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-744",
+      "from": "n-470",
+      "to": "n-052",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=418): n-470→n-052",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 418,
       "created": "2026-03-07"
     }
   ]
