@@ -51,6 +51,9 @@ python -m src.rolemesh.dashboard
 | [API_REFERENCE.md](API_REFERENCE.md) | Full public interface |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Extension and contribution guidelines |
 | [TESTING_GUIDE.md](TESTING_GUIDE.md) | Test infrastructure and patterns |
+| [CLI_REFERENCE.md](CLI_REFERENCE.md) | Complete CLI command reference |
+| [INTEGRATION_GUIDE.md](INTEGRATION_GUIDE.md) | Using RoleMesh as a Python library |
+| [MIGRATION_GUIDE.md](MIGRATION_GUIDE.md) | Config versioning and upgrade paths |
 | [CHANGELOG.md](CHANGELOG.md) | Version history |
 
 ## Supported Tools
