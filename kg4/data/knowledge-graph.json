@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 552,
-    "total_edges": 899,
-    "next_node_id": "n-553",
+    "total_nodes": 554,
+    "total_edges": 902,
+    "next_node_id": "n-555",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -10390,6 +10390,43 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-553",
+      "type": "hypothesis",
+      "label": "동일 벤더 모델 계층 구조의 KG 진화 편향",
+      "content": "Gemini Flash와 Gemini Pro처럼 동일 벤더 내에서 역할이 분화된 모델들이 KG를 공동 진화시킬 때, Flash의 빠른 확산 능력과 Pro의 심층 추론 능력이 상호 작용하여 특정 지식 영역에서는 높은 일관성과 연결성을 보이지만, 다른 영역에서는 심화된 자기-참조적 편향이나 정보 병목 현상을 유발할 수 있다는 가설. 이는 cross-vendor 환경에서 나타나는 다양성 부족과는 다른 양상으로 CSER에 영향을 미칠 것이다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "[KG_evolution",
+        "same_vendor",
+        "model_synergy",
+        "CSER_bias",
+        "Flash_Pro",
+        "hierarchical_model]"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-554",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2",
+      "content": "  File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): 이 가설이 제시하는 동일 벤더 내 Flash-Pro 모델 간 상호작용의 복합성을 고려하여, 이 상호작용이 CSER 측정 지표에 미칠 수 있는 잠재적 왜곡 효과에 대해 비판적인 관점에서 분석해 주십시오. 특히, Pro 모델의 심층 추론 능력이 이러한 자기-참조적 편향을 어떻게 강화하거나 완화할 수 있는지 구체적인 시나리오를 들어 반박 또는 보완 의견을 제시해 주시기 바랍니다.)\n                                                                                                                                                                                                                                ",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -20097,6 +20134,38 @@
       "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
       "source": "gemini-2.0-pro",
       "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-900",
+      "from": "n-553",
+      "to": "n-001",
+      "relation": "expands_on",
+      "label": "동일 벤더 환경에서 CSER에 영향을 미칠 수 있는 모델 간 역할 분담의 특정 메커니즘을 제시하며 기존 가설을 구체화함.",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-901",
+      "from": "n-554",
+      "to": "n-553",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-902",
+      "from": "n-554",
+      "to": "n-096",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=458): n-554→n-096",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 458,
       "created": "2026-03-07"
     }
   ]
