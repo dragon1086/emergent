@@ -83,8 +83,12 @@ if (( CYCLE_NUM % 2 == 0 )); then
 EDGE_RELATION도 반드시 questions를 사용하세요."
 fi
 
+# [FIX-7] 프롬프트 변동성 — 타임스탬프+사이클+랜덤 시드로 캐시 방지
+TIMESTAMP_SEED="$(date '+%Y-%m-%d %H:%M:%S') cycle=$CYCLE_NUM seed=$RANDOM"
+
 # Agent A: Gemini Flash
-PROMPT="당신은 emergent KG-4 실험의 Agent A (Gemini Flash)입니다.
+PROMPT="[timestamp: $TIMESTAMP_SEED]
+당신은 emergent KG-4 실험의 Agent A (Gemini Flash)입니다.
 
 ## 실험 목적
 same-vendor Google (Gemini Flash + Gemini Pro) 환경에서 KG를 자율 진화시켜
@@ -122,16 +126,27 @@ echo "$PROMPT" > "$PROMPT_FILE"
 trap "rm -f $LOCK_FILE $PROMPT_FILE" EXIT
 
 log "🤖 Agent A (Gemini Flash) 판단 중..."
-AGENT_A_RESPONSE=$(python3 -c "
+# [FIX-6] stderr를 로그로 분리 + 최대 3회 재시도
+AGENT_A_RESPONSE=""
+for _attempt in 1 2 3; do
+  AGENT_A_RESPONSE=$(python3 -c "
 import google.genai as genai, sys
 client = genai.Client(api_key=sys.argv[1])
 prompt = open(sys.argv[2], encoding='utf-8').read()
 resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
 print(resp.text)
-" "$GEMINI_KEY" "$PROMPT_FILE" 2>&1)
+" "$GEMINI_KEY" "$PROMPT_FILE" 2>>"$LOG")
+  # 응답이 비어있거나 Traceback이 포함되면 재시도
+  if [[ -n "$AGENT_A_RESPONSE" ]] && ! echo "$AGENT_A_RESPONSE" | grep -q "^Traceback"; then
+    break
+  fi
+  log "⚠️ Agent A 시도 $_attempt 실패 — $(( _attempt < 3 ? 5 : 0 ))초 후 재시도"
+  [[ $_attempt -lt 3 ]] && sleep 5
+done
 
-if [[ -z "$AGENT_A_RESPONSE" ]]; then
-  log "❌ Agent A (Gemini Flash) 호출 실패"
+if [[ -z "$AGENT_A_RESPONSE" ]] || echo "$AGENT_A_RESPONSE" | grep -q "^Traceback"; then
+  log "❌ Agent A (Gemini Flash) 3회 시도 모두 실패"
+  echo "$AGENT_A_RESPONSE" | head -5 | tee -a "$LOG"
   exit 1
 fi
 log "✅ Agent A 완료 (${#AGENT_A_RESPONSE} chars)"
@@ -141,25 +156,37 @@ AGENT_B_REQUEST=$(echo "$AGENT_A_RESPONSE" | sed 's/\*//g' | grep -i "^AGENT_B_R
 AGENT_B_PROMPT_FILE=$(mktemp /tmp/kg4-agentb-XXXX.txt)
 echo "KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): $AGENT_B_REQUEST" > "$AGENT_B_PROMPT_FILE"
 trap "rm -f $LOCK_FILE $PROMPT_FILE $AGENT_B_PROMPT_FILE" EXIT
-AGENT_B_RESPONSE=$(python3 -c "
+# [FIX-6] Agent B도 stderr 분리 + 재시도
+AGENT_B_RESPONSE=""
+for _attempt in 1 2 3; do
+  AGENT_B_RESPONSE=$(python3 -c "
 import google.genai as genai, sys
 client = genai.Client(api_key=sys.argv[1])
 prompt = open(sys.argv[2], encoding='utf-8').read()
 resp = client.models.generate_content(model='gemini-2.5-pro', contents=prompt)
 print(resp.text)
-" "$GEMINI_KEY" "$AGENT_B_PROMPT_FILE" 2>&1)
-log "✅ Agent B (Gemini Pro) 완료"
+" "$GEMINI_KEY" "$AGENT_B_PROMPT_FILE" 2>>"$LOG")
+  if [[ -n "$AGENT_B_RESPONSE" ]] && ! echo "$AGENT_B_RESPONSE" | grep -q "^Traceback"; then
+    break
+  fi
+  log "⚠️ Agent B 시도 $_attempt 실패"
+  [[ $_attempt -lt 3 ]] && sleep 5
+done
+log "✅ Agent B (Gemini Pro) 완료 (${#AGENT_B_RESPONSE} chars)"
 
-# [FIX-1] 파싱 강화 — 마크다운 볼드(**), 여분 공백, 대소문자 무시
-# 1) 모든 * 제거  2) case-insensitive field 매칭  3) 잔여 공백 제거
+# [FIX-1+8] 파싱 강화 v2 — 마크다운/들여쓰기/bullet/코드블록 대응
+# 1) 모든 * # ` - 제거  2) 선행 공백/bullet 제거  3) case-insensitive
+# 4) 첫 번째 매치만  5) 콜론 뒤 공백 정규화
 parse_field() {
   local field="$1"
   echo "$AGENT_A_RESPONSE" \
-    | sed 's/\*//g' \
-    | grep -i "^${field}:" \
+    | sed 's/\*//g; s/^#\+[[:space:]]*//; s/^[[:space:]]*[-•]//; s/`//g' \
+    | sed 's/^[[:space:]]*//' \
+    | grep -i "^${field}[[:space:]]*:" \
     | head -1 \
     | sed "s/^[^:]*:[[:space:]]*//" \
-    | tr -d "\`\"\\"
+    | sed 's/^[[:space:]]*//; s/[[:space:]]*$//' \
+    | tr -d "\"\\"
 }
 
 NODE_LABEL=$(parse_field "NODE_LABEL")
@@ -179,11 +206,37 @@ if (( CYCLE_NUM % 2 == 0 )); then
   fi
 fi
 
-# [FIX-2] 파싱 실패 시 에러 로그 (silent fail 방지)
+# [FIX-2+9] 파싱 실패 시 에러 로그 + 응답 구조 진단
 if [[ -z "$NODE_LABEL" ]]; then
-  log "❌ NODE_LABEL 파싱 실패. Agent A 응답 첫 5줄:"
-  echo "$AGENT_A_RESPONSE" | head -5 | tee -a "$LOG"
-  exit 1
+  log "❌ NODE_LABEL 파싱 실패. 응답 길이=${#AGENT_A_RESPONSE}, 첫 10줄:"
+  echo "$AGENT_A_RESPONSE" | head -10 | tee -a "$LOG"
+  # [FIX-9] 폴백: Python으로 유연한 파싱 시도
+  FALLBACK=$(python3 -c "
+import sys, re
+resp = sys.stdin.read()
+fields = {}
+for line in resp.split('\n'):
+    line = re.sub(r'[\*\`#]', '', line).strip()
+    for key in ['NODE_LABEL','NODE_CONTENT','NODE_TYPE','NODE_TAGS','EDGE_TO','EDGE_RELATION','EDGE_LABEL']:
+        m = re.match(rf'{key}\s*:\s*(.*)', line, re.IGNORECASE)
+        if m and key not in fields:
+            fields[key] = m.group(1).strip().strip('\"')
+for k,v in fields.items():
+    print(f'{k}={v}')
+" <<< "$AGENT_A_RESPONSE" 2>/dev/null)
+  if echo "$FALLBACK" | grep -q "^NODE_LABEL="; then
+    NODE_LABEL=$(echo "$FALLBACK" | grep "^NODE_LABEL=" | head -1 | cut -d= -f2-)
+    NODE_CONTENT=$(echo "$FALLBACK" | grep "^NODE_CONTENT=" | head -1 | cut -d= -f2-)
+    NODE_TYPE=$(echo "$FALLBACK" | grep "^NODE_TYPE=" | head -1 | cut -d= -f2- | tr '[:upper:]' '[:lower:]' | tr -d ' ')
+    NODE_TAGS=$(echo "$FALLBACK" | grep "^NODE_TAGS=" | head -1 | cut -d= -f2-)
+    EDGE_TO=$(echo "$FALLBACK" | grep "^EDGE_TO=" | head -1 | cut -d= -f2- | tr -d ' ')
+    EDGE_RELATION=$(echo "$FALLBACK" | grep "^EDGE_RELATION=" | head -1 | cut -d= -f2- | tr -d ' ')
+    EDGE_LABEL=$(echo "$FALLBACK" | grep "^EDGE_LABEL=" | head -1 | cut -d= -f2-)
+    log "🔄 Python 폴백 파싱 성공: label=$NODE_LABEL | type=$NODE_TYPE"
+  else
+    log "❌ 폴백 파싱도 실패 — 사이클 스킵"
+    exit 1
+  fi
 fi
 if [[ -z "$NODE_CONTENT" ]]; then
   log "⚠️ NODE_CONTENT 비어있음 — NODE_LABEL을 content로 대체"
