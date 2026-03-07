@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 612,
-    "total_edges": 981,
-    "next_node_id": "n-613",
+    "total_nodes": 614,
+    "total_edges": 984,
+    "next_node_id": "n-615",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -10227,6 +10227,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash) 관점에서 보완합니다.\n\n1.  가역성(CRR)은 단순한 semantic alignment",
       "content": "KG-3 실험 Agent B (Gemini Flash) 관점에서 보완합니다.\n\n1.  가역성(CRR)은 단순한 semantic alignment의 재진술을 넘어, CSER의 핵심으로서 지식의 *구조적 무결성 및 복원력*을 담보하는 필수 변수입니다.\n2.  Gemini가 GPT 산출물을 복원할 때, GPT의 내재된 모호성으로 인해 특히 *미묘한 인과 및 조건 관계*가 손실될 수 있으며, 이는 명시적인 지식 구조 부재와 그 파싱의 난이도 때문입니다.\n3.  CRR을 정량화할 간단한 프록시로 관계 슬롯 일치율 (Relation Slot Match Rate)을 제안하며, 이는 DCI 및 temporal_bridge의 안정성과 직접 연동되어 일관된 지식 진화를 위한 핵심 지표로 작용합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-613",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “번역 가능 중간표현(Interlingua)”을 명시하면 alignment noise가 줄고 CSER이 상승한다",
+      "content": "Cross-vendor(GPT-4o ↔ Gemini) 협업에서 모델별 표현 차이(용어 선택, 정의 경계, 전제 생략)가 누적되면 KG의 엣지 의미가 흔들려 CSER(일관된 자기평가/비판-수정 루프 효율)이 저하된다. 이를 완화하기 위해, 각 신규 노드/엣지 생성 시 자연어만이 아니라 (a) 핵심 개념의 최소 정의, (b) 관측가능한 판정 기준(operational test), (c) 금지되는 혼동쌍(negative glossary)을 포함한 “번역 가능 중간표현(interlingua) 필드”를 강제하면, 두 모델이 서로의 출력을 재해석할 때 생기는 semantic drift를 구조적으로 억제한다. 이 interlingua는 정교한 온톨로지일 필요는 없고, ‘개념-검증-반례’ 3요소 템플릿으로 충분하다. 예측: (1) temporal_bridge가 늘어도 장기적으로 critique→hypothesis 수정의 재사용률이 증가하고, (2) vendor가 바뀌어도 동일 개념 클러스터의 분산(동의어/유사어 폭)이 감소하며, (3) alignment noise가 “암묵적 정규화”로 작동하는 구간(n-008)이 있더라도, interlingua 도입 후에는 정규화 이득을 유지하면서도 무의미한 용어 변동만 감소해 CSER이 순증한다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "interlingua",
+        "semantic-alignment",
+        "CSER"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-614",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 실험 Agent B 관점에서 n-007에 대해 다음과 같이 보완합니다.\n\nInterlingua는 초기 토큰/인지부하를 증가시킬 수 있으",
+      "content": "KG-3 실험 Agent B 관점에서 n-007에 대해 다음과 같이 보완합니다.\n\nInterlingua는 초기 토큰/인지부하를 증가시킬 수 있으나, 장기적으로는 모호성 제거를 통한 CSER 향상 및 총 비용 절감 효과가 더 크다고 봅니다. n-008의 alignment noise는 유의미한 다양성보다 불필요한 변동을 포함할 가능성이 크므로, Interlingua는 본질적 의미를 정규화하여 탐색 다양성을 해치기보다 견고한 유의미한 탐색 범위를 정의합니다. 개념-검증-반례 외에 cross-vendor 환경에서는 신뢰도, 가정 목록, 범위 조건 같은 추가 필드가 상호운용성 및 견고한 CSER 확보에 필수적이며, 이는 서비스 계약의 일부로 명시되어야 합니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -20809,6 +20842,38 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 577,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-982",
+      "from": "n-613",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬(semantic alignment)이 CSER을 좌우한다”는 가설을, interlingua(개념-검증-반례 템플릿)라는 구체적 메커니즘/개입으로 확장·검증 가능하게 만",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-983",
+      "from": "n-613",
+      "to": "n-038",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=575): n-613→n-038",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 575,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-984",
+      "from": "n-614",
+      "to": "n-613",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
       "created": "2026-03-07"
     }
   ]
