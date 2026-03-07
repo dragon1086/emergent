@@ -1,0 +1,29 @@
+{
+  "id": "525ff9fd-622a-4974-8749-0036dc35b6de",
+  "title": "RoleMesh vNext Contract Example",
+  "version": "1.0.0",
+  "created_at": "2026-03-07T13:00:00",
+  "assignee": "cokac",
+  "status": "active",
+  "features": [
+    {
+      "name": "Contract Artifact Validator",
+      "description": "Schema validation for feature_manifest.json with actionable errors",
+      "acceptance_criteria": [
+        "Validates all required fields (id, title, version, assignee, status, features)",
+        "Returns actionable error messages with field path and fix suggestion",
+        "Exits non-zero when validation fails"
+      ],
+      "deliverables": [
+        "src/rolemesh/contract_validator.py",
+        "tests/test_contract_validator.py",
+        "contracts/example/feature_manifest.json"
+      ]
+    }
+  ],
+  "dependencies": [],
+  "constraints": {
+    "timeout_seconds": 300,
+    "max_retries": 2
+  }
+}
