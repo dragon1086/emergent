@@ -10,13 +10,14 @@ kg_validate.py — KG 스키마 검증 + 자동 보강 스크립트
 """
 
 import json
+import os
 import sys
 import argparse
 from pathlib import Path
 from datetime import datetime
 
 REPO_DIR = Path(__file__).parent.parent
-KG_FILE = REPO_DIR / "data" / "knowledge-graph.json"
+KG_FILE = Path(os.environ.get("EMERGENT_KG_PATH", REPO_DIR / "data" / "knowledge-graph.json"))
 
 REQUIRED_NODE_FIELDS = ["id", "type", "label", "content", "source"]
 OPTIONAL_NODE_FIELDS = ["timestamp", "tags", "confidence", "ontology", "result", "verified_at", "note"]
@@ -25,6 +26,7 @@ CORE_TYPES = {"decision", "observation", "insight", "artifact", "question", "cod
 EXTENDED_TYPES = {
     "synthesis", "experiment", "tool", "finding", "concept",
     "persona", "anomaly", "evaluation", "analysis", "meta",
+    "hypothesis", "critique",
 }
 
 REQUIRED_EDGE_FIELDS = ["id", "from", "to", "relation", "label"]

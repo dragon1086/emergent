@@ -95,7 +95,7 @@ AGENT_A_RESPONSE=$(python3 -c "
 import openai
 client = openai.OpenAI(api_key='$OPENAI_KEY')
 resp = client.chat.completions.create(
-    model='gpt-5.2',
+    model='gpt-4o',
     messages=[{'role':'user','content':'''$PROMPT'''}],
     temperature=0.7
 )
@@ -165,7 +165,7 @@ edge_to = sys.argv[5].strip()
 edge_rel = sys.argv[6].strip() or 'extends'
 edge_lbl = sys.argv[7][:100] if len(sys.argv) > 7 else ''
 d = {'label': label, 'content': content,
-     'type': node_type, 'source': 'gpt-5.2', 'tags': tags, 'domain': 'emergence_theory',
+     'type': node_type, 'source': 'gpt-4o', 'tags': tags, 'domain': 'emergence_theory',
      'edge_to': edge_to, 'edge_relation': edge_rel, 'edge_label': edge_lbl}
 print(json.dumps(d, ensure_ascii=False))
 " "$NODE_LABEL" "$NODE_CONTENT" "${NODE_TYPE:-insight}" "${NODE_TAGS:-kg3,cross-vendor}" "${EDGE_TO:-}" "${EDGE_RELATION:-extends}" "$EDGE_LABEL" 2>/dev/null \
@@ -182,7 +182,7 @@ d = {
   'label': 'Gemini 반박/보완: ' + agent_b_resp[:80],
   'content': agent_b_resp,
   'type': 'critique',
-  'source': 'gemini-2.0-flash',
+  'source': 'gemini-2.5-flash',
   'tags': ['kg3', 'cross-vendor', 'agent-b', 'gemini'],
   'domain': 'emergence_theory',
   'edge_to': agent_a_id,
