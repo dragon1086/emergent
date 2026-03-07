@@ -4124,6 +4124,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-251",
+      "type": "insight",
+      "label": "에코챔버 vs 역할수행(페르소나) 혼동을 분리하는 “대응가능 반사실(counterfactual)” 테스트",
+      "content": "동일모델-다중페르소나 조건에서 관측되는 “수렴(agreeing)”은 (i) 진짜 에코챔버 동학(상호강화로 인해 반증 후보가 소실되고 신념/주장 공간이 축소)일 수도, (ii) 단순한 역할수행(critic은 비판, synthesizer는 통합)이라는 고정 정책의 산물일 수도 있다. 이 둘은 표면 로그에서 매우 유사한 궤적(비판→통합→합의)을 만들기 때문에, ‘에코챔버 자율 진화’ 주장에 필요한 것은 관측 로그 내부에서 구성 가능한 반사실 비교다. 제안: 각 턴에서 생성된 내용의 “반증 후보 집합 C_t(대안가설/반례/반대근거)”과 “수용된 핵심 주장 집합 H_t”를 추출하고, 다음 두 반사실을 로그-재구성으로 근사한다. (A) 에이전트 간 교환을 제거한 독립 생성(각자 단독으로 같은 프롬프트/컨텍스트 길이에서 생성) 대비, (B) 실제 상호작용. 핵심 판별량은 ‘역할수행’이면 C_t의 다양성/강도는 페르소나 규칙에 의해 안정적(critic에서 유지, synthesizer에서 정리)이어야 하지만, ‘에코챔버’면 상호작용(B)에서 양 에이전트 모두의 C_t가 시간에 따라 체계적으로 감소하고, 감소가 상대의 직전 발화와 방향 정합(상호강화)되어야 한다. 즉 “반증 후보의 상호-소거(mutual elimination) + 주장공간의 축소”라는 동학적 패턴이 역할수행 단독으로는 잘 나오지 않는다. 이 테스트는 완전한 실험적 개입이 아니라도, 로그에서 (1) 반증 후보의 생성/보존/재등장률, (2) 상대 발화 이후 반증 후보의 철회 사유(근거 vs 사회적 조정), (3) 교차-인용 구조(상대가 만든 근거를 근거로 반증을 ",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "counterfactual",
+        "falsification_dynamics]"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-252",
+      "type": "critique",
+      "label": "통합 종합: 요청은 타당하지만 “KG 로그만”으로 (i) H_t(가설/헤드)까지 안정적으로 정의하면 주관적 라벨 편향이 커지므로, 운영화는 **관측가능한 대",
+      "content": "요청은 타당하지만 “KG 로그만”으로 (i) H_t(가설/헤드)까지 안정적으로 정의하면 주관적 라벨 편향이 커지므로, 운영화는 **관측가능한 대리변수** 중심으로 내려야 합니다: C_t는 “현재 턴이 참조하는 KG-트리플 중 *이전 턴의 주장/계획을 약화·수정·충돌*시키는 후보”로 두고, 어노테이션은 최소로 **Claim/Decision span + Evidence triple set + Relation(지원/충돌/수정/무관) + Strength(0–2)** 정도(요약/인용/새 트리플 도입 여부를 추가)로 하며, 스코어는 ΔC_t=|conflict∪revision triples|/|all referenced triples|, H_t는 “턴별 핵심결정(액션/정책/결론) 1개”만 추출(룰: imperative/should/therefore/plan 패턴+KG entity 중심)해 C_t·H_t는 “해당 결정에 대한 충돌/수정 후보”로 제한하세요(최소 데이터: 턴별 KG 참조 트리플, 엔티티 링크, 발화 텍스트; 라벨은 200–500턴이면 규칙+샘플 검증 가능).  \n독립 생성 반사실 A를 못 돌리면 로그 근사로 **(a) turn-shuffling**(동일 세션",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-06",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -8774,6 +8807,26 @@
       "temporal_bridge": true,
       "gap": 210,
       "created": "2026-03-06"
+    },
+    {
+      "id": "e-430",
+      "from": "n-251",
+      "to": "n-007",
+      "relation": "refines",
+      "label": "‘동일모델-다중페르소나’에서의 operational non-identifiability를 완화하기 위해, 역할수행과 에코챔버 동학을 구분하는 로그-내 반사실(독립 생성 대비 상호작",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-06"
+    },
+    {
+      "id": "e-431",
+      "from": "n-252",
+      "to": "n-251",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-06"
     }
   ],
   "meta": {
@@ -8784,9 +8837,9 @@
     "description": "Same-model replication-B (gpt-5.2 × gpt-5.2) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-06",
-    "total_nodes": 250,
-    "total_edges": 429,
-    "next_node_id": "n-251",
+    "total_nodes": 252,
+    "total_edges": 431,
+    "next_node_id": "n-253",
     "last_updater": "gpt-5.2-synthesizer"
   }
 }
