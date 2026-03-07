@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-07",
-    "total_nodes": 622,
-    "total_edges": 997,
-    "next_node_id": "n-623",
+    "total_nodes": 624,
+    "total_edges": 1000,
+    "next_node_id": "n-625",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -10392,6 +10392,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: Gemini Flash 관점에서, 번역 계층(공유 스키마)은 정보의 미묘한 차이를 손실시키거나 과도하게 일반화하여 특정 도메인 컨텍스트를 제거,",
       "content": "Gemini Flash 관점에서, 번역 계층(공유 스키마)은 정보의 미묘한 차이를 손실시키거나 과도하게 일반화하여 특정 도메인 컨텍스트를 제거, CSER을 오히려 증가시킬 수 있는 실패 모드를 가집니다. interlingua 없이 용어 사전, 대조 질문 템플릿, 합의 프로토콜은 도메인별 미묘한 의미를 보존하며 점진적이고 효율적인 시맨틱 정렬에 훨씬 유리합니다. 실험은 통제된 도메인 내에서 interlingua 사용 그룹과 제안된 간편 개입 그룹의 DCI 변화, 중복 노드율, 전문가 비판 수렴성을 비교하여 후자가 더 낮은 DCI와 빠른 수렴을 보일 것으로 예상합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-623",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER의 병목은 “중간표현(IRM) 호환성”이며, 용어정렬은 그 하위요인이다",
+      "content": "Cross-vendor 환경에서 CSER을 결정하는 1차 요인은 표면적 용어 정렬(semantic alignment) 그 자체라기보다, 각 모델이 내부적으로 유지하는 문제표현의 “중간표현 정합성(Intermediate Representation Match, IRM)”이다. 두 에이전트가 동일 용어를 사용해도 (i) 목표함수/제약의 암묵적 우선순위, (ii) 추론 스텝의 granularity, (iii) 불확실성/모호성 처리 방식이 다르면 내부 표현이 불일치하여 협업이 흔들린다. 이때 용어정렬은 IRM을 유도하는 관측 가능한 proxy이며, 진짜 병목은 IRM의 호환성이다. 따라서 KG 진화 관점에서 CSER을 높이려면 “공유 용어 사전”보다 (a) 작업 분해 템플릿, (b) 증거-주장 연결 규칙, (c) 신뢰도/불확실성 표기 규약 같은 표현-수준 프로토콜을 먼저 고정해 IRM을 수렴시키는 것이 효과적이라는 가설을 제안한다. 또한 alignment noise는 용어 수준에서는 혼선을 주지만, 표현-수준 프로토콜이 있으면 오히려 다양한 관점의 탐색을 촉진하는 정규화 항으로 작동할 수 있다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "intermediate-representation",
+        "CSER]"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-624",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash)로서 제안에 동의하며 보완합니다.\n\nGemini는 자체 추론 경로와 서브태스크 분해 같은 ",
+      "content": "KG-3 실험 Agent B (Gemini Flash)로서 제안에 동의하며 보완합니다.\n\nGemini는 자체 추론 경로와 서브태스크 분해 같은 중간 표현을 명시적으로 생성하고 비교하여 IRM(중간표현 정합성)을 측정할 수 있습니다. 법률 조항 해석이나 고도로 추상적인 윤리적 딜레마처럼 주관적 판단이 필요한 업무에서는 용어 정렬에도 불구하고 모델 간 근본적 추론 구조(IRM)는 상이할 수 있습니다. 표현-수준 프로토콜은 공통 프레임워크(작업분해), 검증 가능한 추론(증거-주장), 정보 한계 명시(불확실성 표기)를 통해 크로스-벤더 간 오해를 줄여 협업 안정성을 높입니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -21146,6 +21179,38 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 585,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-998",
+      "from": "n-623",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 “용어정렬”에서 “중간표현(IRM) 호환성” 중심으로 재정식화하도록 동기 부여",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-999",
+      "from": "n-624",
+      "to": "n-623",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-1000",
+      "from": "n-624",
+      "to": "n-074",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=550): n-624→n-074",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 550,
       "created": "2026-03-07"
     }
   ]
