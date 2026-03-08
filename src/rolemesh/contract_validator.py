@@ -19,7 +19,7 @@ CONTRACTS_DIR = ROOT / "contracts"
 SEMVER_RE = re.compile(r"^\d+\.\d+\.\d+(-[\w.]+)?$")
 ISO8601_RE = re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}")
 
-VALID_STATUSES = {"draft", "active", "completed", "failed"}
+VALID_STATUSES = {"draft", "active", "completed", "failed", "delegated", "implemented", "verified"}
 
 
 def _is_uuid(value: str) -> bool:
