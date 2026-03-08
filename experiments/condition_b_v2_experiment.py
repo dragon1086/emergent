@@ -29,6 +29,7 @@ condition_b_v2_experiment.py — Condition B v2: 동일 페르소나 × 이종 �
 
 import json
 import os
+import re
 import sys
 import time
 import random
@@ -60,7 +61,8 @@ JSON_OUT = "--json" in sys.argv
 JUDGE_PERSONA = (
     "You are a cold, impartial judge. Your only question is: is the prediction correct or not? "
     "Be dry, direct, data-only. Do not show emotion. Do not soften criticism. "
-    "Admit when wrong without hesitation."
+    "Admit when wrong without hesitation. "
+    "응답은 JSON만 반환하라. 마크다운 코드블록(```) 사용 금지."
 )
 
 # ─── KG 초기화 ───────────────────────────────────────────────────────────────
@@ -264,18 +266,30 @@ def agent2_prompt(cycle: int, new_node: dict, kg_summary_text: str, n_cycles: in
 # ─── JSON 파싱 ───────────────────────────────────────────────────────────────
 
 def parse_json_response(text: str) -> dict:
+    """LLM 응답에서 JSON 추출. 마크다운 코드블록 래핑 대응."""
     text = text.strip()
-    if text.startswith("```"):
-        lines = text.split("\n")
-        text = "\n".join(lines[1:-1]) if lines[-1].strip() == "```" else "\n".join(lines[1:])
+
+    # 1차: 마크다운 코드블록 regex 추출 (```json, ```python, ``` 등)
+    match = re.search(r'```(?:json|python)?\s*\n(.*?)```', text, re.DOTALL)
+    if match:
+        text = match.group(1).strip()
+
+    # 2차: 직접 파싱 시도
     try:
         return json.loads(text)
     except json.JSONDecodeError:
-        start = text.find("{")
-        end = text.rfind("}") + 1
-        if start >= 0 and end > start:
+        pass
+
+    # 3차: 중괄호 범위 추출
+    start = text.find("{")
+    end = text.rfind("}") + 1
+    if start >= 0 and end > start:
+        try:
             return json.loads(text[start:end])
-        raise
+        except json.JSONDecodeError:
+            pass
+
+    raise json.JSONDecodeError("No valid JSON found in LLM response", text, 0)
 
 
 def kg_summary_text(kg: dict, max_nodes: int = 10) -> str:
