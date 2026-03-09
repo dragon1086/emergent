@@ -3,11 +3,12 @@
 RoleMesh CLI - Unified entry point for all rolemesh commands.
 
 Usage:
-    python -m src.rolemesh dashboard [--tools|--routing|--coverage|--health] [--json]
+    python -m src.rolemesh dashboard [--tools|--routing|--coverage|--health|--history] [--json] [--no-color]
     python -m src.rolemesh setup     [--save] [--interactive] [--json]
     python -m src.rolemesh route     <request> [--all] [--json]
     python -m src.rolemesh exec      <request> [--tool TOOL] [--dry-run] [--json]
-    python -m src.rolemesh status                # quick health summary
+    python -m src.rolemesh history   [--json] [--no-color]
+    python -m src.rolemesh status    [--no-color]         # quick health summary
     python -m src.rolemesh --help
 """
 
@@ -19,7 +20,10 @@ from pathlib import Path
 
 def cmd_dashboard(args):
     """Show system dashboard with tools, routing, coverage, and health."""
-    from .dashboard import RoleMeshDashboard
+    from .dashboard import RoleMeshDashboard, Color
+
+    if getattr(args, "no_color", False):
+        Color.set_enabled(False)
 
     config_path = Path(args.config) if args.config else None
     dashboard = RoleMeshDashboard(config_path=config_path)
@@ -29,7 +33,7 @@ def cmd_dashboard(args):
         print(json.dumps(dashboard.data.to_dict(), indent=2, ensure_ascii=False))
         return
 
-    specific = args.tools or args.routing or args.coverage or args.health
+    specific = args.tools or args.routing or args.coverage or args.health or args.history
     if specific:
         if args.tools:
             print(dashboard.render_tools())
@@ -39,6 +43,8 @@ def cmd_dashboard(args):
             print(dashboard.render_coverage())
         if args.health:
             print(dashboard.render_health())
+        if args.history:
+            print(dashboard.render_history())
     else:
         print(dashboard.render_full())
 
@@ -136,9 +142,29 @@ def cmd_exec(args):
             print(f"\nSTDERR: {result.stderr}")
 
 
+def cmd_history(args):
+    """Show execution history."""
+    from .dashboard import RoleMeshDashboard, Color
+
+    if getattr(args, "no_color", False):
+        Color.set_enabled(False)
+
+    config_path = Path(args.config) if args.config else None
+    dashboard = RoleMeshDashboard(config_path=config_path)
+    dashboard.collect()
+
+    if args.json_out:
+        print(json.dumps(dashboard.data.history, indent=2, ensure_ascii=False))
+    else:
+        print(dashboard.render_history())
+
+
 def cmd_status(args):
     """Quick health summary (one-liner)."""
-    from .dashboard import RoleMeshDashboard
+    from .dashboard import RoleMeshDashboard, Color
+
+    if getattr(args, "no_color", False):
+        Color.set_enabled(False)
 
     config_path = Path(args.config) if args.config else None
     dashboard = RoleMeshDashboard(config_path=config_path)
@@ -159,7 +185,7 @@ def cmd_status(args):
             "healthy": passed == total,
         }, indent=2, ensure_ascii=False))
     else:
-        health_icon = "OK" if passed == total else "!!"
+        health_icon = Color.green("OK") if passed == total else Color.red("!!")
         print(f"[{health_icon}] {len(available)} tools ({tool_names}) | health {passed}/{total}")
 
 
@@ -169,12 +195,14 @@ def main():
         description="RoleMesh - AI Tool Discovery & Task Routing CLI",
         epilog=(
             "Examples:\n"
-            "  python -m src.rolemesh dashboard          # full dashboard\n"
-            "  python -m src.rolemesh dashboard --health  # health only\n"
-            "  python -m src.rolemesh setup --save        # discover + save config\n"
-            "  python -m src.rolemesh route '코드 리팩토링'  # classify task\n"
+            "  python -m src.rolemesh dashboard           # full dashboard\n"
+            "  python -m src.rolemesh dashboard --health   # health only\n"
+            "  python -m src.rolemesh dashboard --history  # execution history\n"
+            "  python -m src.rolemesh setup --save         # discover + save config\n"
+            "  python -m src.rolemesh route '코드 리팩토링'   # classify task\n"
             "  python -m src.rolemesh exec --dry-run 'UI 수정'  # dry-run exec\n"
-            "  python -m src.rolemesh status              # quick health check\n"
+            "  python -m src.rolemesh history              # execution history\n"
+            "  python -m src.rolemesh status               # quick health check\n"
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
@@ -190,7 +218,9 @@ def main():
     p_dash.add_argument("--routing", action="store_true", help="Routing table only")
     p_dash.add_argument("--coverage", action="store_true", help="Coverage matrix only")
     p_dash.add_argument("--health", action="store_true", help="Health check only")
+    p_dash.add_argument("--history", action="store_true", help="Execution history only")
     p_dash.add_argument("--json", dest="json_out", action="store_true", help="JSON output")
+    p_dash.add_argument("--no-color", dest="no_color", action="store_true", help="Disable colors")
 
     # setup
     p_setup = sub.add_parser("setup", aliases=["s"],
@@ -220,10 +250,17 @@ def main():
                         help="Timeout in seconds (default: 120)")
     p_exec.add_argument("--json", dest="json_out", action="store_true", help="JSON output")
 
+    # history
+    p_history = sub.add_parser("history", aliases=["hist", "h"],
+                               help="Show execution history")
+    p_history.add_argument("--json", dest="json_out", action="store_true", help="JSON output")
+    p_history.add_argument("--no-color", dest="no_color", action="store_true", help="Disable colors")
+
     # status
     p_status = sub.add_parser("status", aliases=["st"],
                               help="Quick health summary")
     p_status.add_argument("--json", dest="json_out", action="store_true", help="JSON output")
+    p_status.add_argument("--no-color", dest="no_color", action="store_true", help="Disable colors")
 
     args = parser.parse_args()
 
@@ -237,6 +274,7 @@ def main():
         "setup": cmd_setup, "s": cmd_setup,
         "route": cmd_route, "r": cmd_route,
         "exec": cmd_exec, "x": cmd_exec,
+        "history": cmd_history, "hist": cmd_history, "h": cmd_history,
         "status": cmd_status, "st": cmd_status,
     }
 

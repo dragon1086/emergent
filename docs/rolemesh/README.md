@@ -49,6 +49,15 @@ python -m src.rolemesh.dashboard
 | [DASHBOARD_GUIDE.md](DASHBOARD_GUIDE.md) | Health checks and coverage matrix |
 | [EXECUTOR_GUIDE.md](EXECUTOR_GUIDE.md) | Subprocess dispatch and fallback |
 | [API_REFERENCE.md](API_REFERENCE.md) | Full public interface |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | Extension and contribution guidelines |
+| [TESTING_GUIDE.md](TESTING_GUIDE.md) | Test infrastructure and patterns |
+| [CLI_REFERENCE.md](CLI_REFERENCE.md) | Complete CLI command reference |
+| [INTEGRATION_GUIDE.md](INTEGRATION_GUIDE.md) | Using RoleMesh as a Python library |
+| [MIGRATION_GUIDE.md](MIGRATION_GUIDE.md) | Config versioning and upgrade paths |
+| [CHANGELOG.md](CHANGELOG.md) | Version history |
+| [SECURITY.md](SECURITY.md) | Trust model and operational security |
+| [COOKBOOK.md](COOKBOOK.md) | Practical recipes and usage patterns |
+| [FAQ.md](FAQ.md) | Frequently asked questions |
 
 ## Supported Tools
 

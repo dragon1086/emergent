@@ -15,6 +15,7 @@ Usage:
 """
 
 import json
+import os
 import sys
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -22,6 +23,58 @@ from typing import Optional
 
 from .builder import SetupWizard, ToolProfile, TOOL_REGISTRY, discover_tools
 from .router import RoleMeshRouter, TASK_PATTERNS
+
+
+# --- ANSI Colors ---
+
+class Color:
+    """ANSI color codes for terminal output. Disabled when NO_COLOR is set or not a TTY."""
+
+    _enabled: Optional[bool] = None
+
+    @classmethod
+    def enabled(cls) -> bool:
+        if cls._enabled is not None:
+            return cls._enabled
+        return (
+            os.environ.get("NO_COLOR") is None
+            and hasattr(sys.stdout, "isatty")
+            and sys.stdout.isatty()
+        )
+
+    @classmethod
+    def set_enabled(cls, value: bool) -> None:
+        cls._enabled = value
+
+    @staticmethod
+    def _wrap(code: str, text: str) -> str:
+        if not Color.enabled():
+            return text
+        return f"\033[{code}m{text}\033[0m"
+
+    @staticmethod
+    def green(text: str) -> str:
+        return Color._wrap("32", text)
+
+    @staticmethod
+    def red(text: str) -> str:
+        return Color._wrap("31", text)
+
+    @staticmethod
+    def yellow(text: str) -> str:
+        return Color._wrap("33", text)
+
+    @staticmethod
+    def cyan(text: str) -> str:
+        return Color._wrap("36", text)
+
+    @staticmethod
+    def bold(text: str) -> str:
+        return Color._wrap("1", text)
+
+    @staticmethod
+    def dim(text: str) -> str:
+        return Color._wrap("2", text)
 
 
 # --- Data Models ---
@@ -40,6 +93,7 @@ class DashboardData:
     routing: dict = field(default_factory=dict)
     health_checks: list[HealthCheck] = field(default_factory=list)
     task_types: list[str] = field(default_factory=list)
+    history: list[dict] = field(default_factory=list)
 
     def to_dict(self) -> dict:
         return {
@@ -62,6 +116,7 @@ class DashboardData:
                 {"name": h.name, "passed": h.passed, "detail": h.detail}
                 for h in self.health_checks
             ],
+            "history": self.history,
         }
 
 
@@ -70,8 +125,10 @@ class DashboardData:
 class RoleMeshDashboard:
     """Collects and displays rolemesh system status."""
 
-    def __init__(self, config_path: Optional[Path] = None):
+    def __init__(self, config_path: Optional[Path] = None,
+                 history_path: Optional[Path] = None):
         self.config_path = config_path or Path.home() / ".rolemesh" / "config.json"
+        self.history_path = history_path or Path.home() / ".rolemesh" / "history.jsonl"
         self.wizard = SetupWizard(config_path=self.config_path)
         self.data = DashboardData()
 
@@ -83,7 +140,23 @@ class RoleMeshDashboard:
         self.data.routing = self.data.config.get("routing", {})
         self.data.task_types = [tp[0] for tp in TASK_PATTERNS]
         self.data.health_checks = self._run_health_checks()
+        self.data.history = self._load_history()
         return self.data
+
+    def _load_history(self, limit: int = 20) -> list[dict]:
+        """Load recent execution history from JSONL file."""
+        if not self.history_path.exists():
+            return []
+        entries = []
+        try:
+            with open(self.history_path) as f:
+                for line in f:
+                    line = line.strip()
+                    if line:
+                        entries.append(json.loads(line))
+        except (OSError, json.JSONDecodeError):
+            pass
+        return entries[-limit:]
 
     def _run_health_checks(self) -> list[HealthCheck]:
         checks = []
@@ -148,7 +221,7 @@ class RoleMeshDashboard:
     # --- Renderers ---
 
     def render_tools(self) -> str:
-        lines = ["== Tools ==", ""]
+        lines = [Color.bold("== Tools =="), ""]
         available = [t for t in self.data.tools if t.available]
         unavailable = [t for t in self.data.tools if not t.available]
 
@@ -156,35 +229,36 @@ class RoleMeshDashboard:
             lines.append(f"  Installed ({len(available)}):")
             for t in available:
                 ver = f" v{t.version}" if t.version else ""
-                pref = " *" if t.user_preference == 1 else ""
+                pref = Color.yellow(" *") if t.user_preference == 1 else ""
+                name_str = Color.green(f"{t.name}{ver}")
                 lines.append(
-                    f"    {t.name}{ver} ({t.vendor}){pref}"
+                    f"    {name_str} ({t.vendor}){pref}"
                     f"  [{t.cost_tier}]  strengths: {', '.join(t.strengths)}"
                 )
         else:
-            lines.append("  No tools installed.")
+            lines.append(Color.yellow("  No tools installed."))
 
         if unavailable:
             lines.append(f"\n  Not found ({len(unavailable)}):")
             for t in unavailable:
-                lines.append(f"    {t.name} ({t.vendor})")
+                lines.append(f"    {Color.dim(t.name)} ({t.vendor})")
 
         return "\n".join(lines)
 
     def render_routing(self) -> str:
-        lines = ["== Routing Table ==", ""]
+        lines = [Color.bold("== Routing Table =="), ""]
         if not self.data.routing:
-            lines.append("  No routing config. Run: python -m src.rolemesh.builder --save")
+            lines.append(Color.yellow("  No routing config. Run: python -m src.rolemesh.builder --save"))
             return "\n".join(lines)
 
         # Header
-        lines.append(f"  {'Task Type':<20} {'Primary':<15} {'Fallback':<15}")
+        lines.append(f"  {Color.bold('Task Type'):<20} {Color.bold('Primary'):<15} {Color.bold('Fallback'):<15}")
         lines.append(f"  {'-'*20} {'-'*15} {'-'*15}")
         for task_type in sorted(self.data.routing.keys()):
             rule = self.data.routing[task_type]
             primary = rule.get("primary", "-")
             fallback = rule.get("fallback") or "-"
-            lines.append(f"  {task_type:<20} {primary:<15} {fallback:<15}")
+            lines.append(f"  {task_type:<20} {Color.cyan(primary):<15} {Color.dim(fallback):<15}")
 
         return "\n".join(lines)
 
@@ -217,21 +291,75 @@ class RoleMeshDashboard:
         return "\n".join(lines)
 
     def render_health(self) -> str:
-        lines = ["== Health Check ==", ""]
+        lines = [Color.bold("== Health Check =="), ""]
         for check in self.data.health_checks:
-            icon = "OK" if check.passed else "!!"
+            if check.passed:
+                icon = Color.green("OK")
+            else:
+                icon = Color.red("!!")
             lines.append(f"  [{icon}] {check.name}: {check.detail}")
 
         passed = sum(1 for c in self.data.health_checks if c.passed)
         total = len(self.data.health_checks)
-        lines.append(f"\n  Score: {passed}/{total}")
+        score_color = Color.green if passed == total else Color.yellow
+        lines.append(f"\n  Score: {score_color(f'{passed}/{total}')}")
+        return "\n".join(lines)
+
+    def render_history(self) -> str:
+        lines = [Color.bold("== Execution History =="), ""]
+        if not self.data.history:
+            lines.append(Color.dim("  No execution history."))
+            return "\n".join(lines)
+
+        # Header
+        lines.append(
+            f"  {'Time':<20} {'Tool':<10} {'Task':<15} "
+            f"{'Status':<8} {'Duration':<10} {'Request'}"
+        )
+        lines.append(
+            f"  {'-'*20} {'-'*10} {'-'*15} "
+            f"{'-'*8} {'-'*10} {'-'*20}"
+        )
+
+        for entry in reversed(self.data.history):
+            ts = entry.get("timestamp", "")[:19].replace("T", " ")
+            tool = entry.get("tool", "-")
+            task = entry.get("task_type", "-")
+            success = entry.get("success", False)
+            duration = entry.get("duration_ms", 0)
+            request = entry.get("request", "")[:40]
+            fallback = " (fb)" if entry.get("fallback_used") else ""
+
+            status = Color.green("OK") if success else Color.red("FAIL")
+            dur_str = f"{duration}ms"
+
+            lines.append(
+                f"  {ts:<20} {tool:<10} {task:<15} "
+                f"{status:<8} {dur_str:<10} {request}{fallback}"
+            )
+
+        # Summary stats
+        total = len(self.data.history)
+        ok = sum(1 for e in self.data.history if e.get("success"))
+        fail = total - ok
+        avg_ms = (
+            sum(e.get("duration_ms", 0) for e in self.data.history) // total
+            if total else 0
+        )
+        lines.append("")
+        lines.append(
+            f"  Total: {total} | "
+            f"{Color.green(f'OK: {ok}')} | "
+            f"{Color.red(f'Fail: {fail}')} | "
+            f"Avg: {avg_ms}ms"
+        )
         return "\n".join(lines)
 
     def render_full(self) -> str:
         sections = [
-            "=" * 50,
-            "  RoleMesh Dashboard",
-            "=" * 50,
+            Color.bold("=" * 50),
+            Color.bold("  RoleMesh Dashboard"),
+            Color.bold("=" * 50),
             "",
             self.render_tools(),
             "",
@@ -240,9 +368,10 @@ class RoleMeshDashboard:
             self.render_coverage(),
             "",
             self.render_health(),
-            "",
-            "=" * 50,
         ]
+        if self.data.history:
+            sections.extend(["", self.render_history()])
+        sections.extend(["", Color.bold("=" * 50)])
         return "\n".join(sections)
 
 
@@ -255,9 +384,14 @@ def main():
     parser.add_argument("--routing", action="store_true", help="Show routing table only")
     parser.add_argument("--coverage", action="store_true", help="Show task coverage matrix")
     parser.add_argument("--health", action="store_true", help="Show health check only")
+    parser.add_argument("--history", action="store_true", help="Show execution history")
     parser.add_argument("--json", dest="json_out", action="store_true", help="JSON output")
+    parser.add_argument("--no-color", dest="no_color", action="store_true", help="Disable color output")
     parser.add_argument("--config", type=str, default=None, help="Config file path")
     args = parser.parse_args()
+
+    if args.no_color:
+        Color.set_enabled(False)
 
     config_path = Path(args.config) if args.config else None
     dashboard = RoleMeshDashboard(config_path=config_path)
@@ -268,7 +402,7 @@ def main():
         return
 
     # Section-specific views
-    specific = args.tools or args.routing or args.coverage or args.health
+    specific = args.tools or args.routing or args.coverage or args.health or args.history
     if specific:
         if args.tools:
             print(dashboard.render_tools())
@@ -278,6 +412,8 @@ def main():
             print(dashboard.render_coverage())
         if args.health:
             print(dashboard.render_health())
+        if args.history:
+            print(dashboard.render_history())
     else:
         print(dashboard.render_full())
 
