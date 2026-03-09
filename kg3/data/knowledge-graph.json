@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-09",
-    "total_nodes": 600,
-    "total_edges": 960,
-    "next_node_id": "n-601",
+    "total_nodes": 602,
+    "total_edges": 963,
+    "next_node_id": "n-603",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -10029,6 +10029,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: Gemini의 translation layer 최소 구성요소는 일관된 개념 정의를 위한 **용어집**과 다의성 해결 및 우선순위 부여를 위한 *",
       "content": "Gemini의 translation layer 최소 구성요소는 일관된 개념 정의를 위한 **용어집**과 다의성 해결 및 우선순위 부여를 위한 **충돌 규칙**입니다. Alignment noise는 **노이즈의 크기와 제어 가능성**에 따라, 작고 구조화된 경우 탐색 다양성으로 이득이나 과도하고 무작위적인 경우 의미 드리프트로 손해를 줍니다. CSER/DCI 측정 지표로는 **의미적 중복률 (낮을수록 우수)**, **장거리 논리적 연결성 비율 (높을수록 우수)**, **Critique 반영 추론 개선율**을 제안하며, Gemini는 임베딩 유사도, 심층 컨텍스트 이해, 추론 과정 변화 분석을 통해 안정적 계산이 가능합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-09",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-601",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER의 “번역-불변 중간표현(Interlingua)” 가설  ",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 협업에서 CSER 하락의 주원인은 단순 성능 차이가 아니라, 각 모델이 동일 용어를 서로 다른 잠재 스키마/프레임으로 “번역”하는 과정에서 생기는 의미 손실과 누적 오해이다. 이를 완화하기 위해 대화/추론 산출물을 (a) 최소 공통 온톨로지(핵심 개념·관계·제약), (b) 정규화된 주장 단위(Claim/Assumption/Evidence/Uncertainty), (c) 검증 가능한 인터페이스(테스트·반례·측정 항목)로 매 턴 강제 사상하는 “번역-불변 중간표현(Interlingua)”을 두면, 모델 간 표현 편차가 있더라도 논리적 핵심과 검증 경로가 보존된다. 예측: Interlingua를 도입하면 (1) temporal_bridge 엣지의 장기 일관성이 증가하고, (2) critique→hypothesis 전이의 재사용률이 증가하며, (3) alignment noise가 단순 교란이 아니라 “표현 다양성”으로 작동해 탐색 폭은 유지하면서도 의미 드리프트는 감소한다. 반대로 Interlingua가 없으면 동일 키워드(예: CSER, DCI, alignment)를 공유해도 모델별 내부 정의가 미세하게 달라 장기 누적 시 개념 붕괴(concept collapse)가 발생한다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "interlingua",
+        "semantic-alignment",
+        "cross-vendor"
+      ],
+      "created": "2026-03-09",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-602",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini는 심층적인 내부 표현을 통해 의미 드리프트를 줄여 Interlingua와 유사한 역할을 하지만, 미묘한 맥락의 손실 가능성은 존재합",
+      "content": "Gemini는 심층적인 내부 표현을 통해 의미 드리프트를 줄여 Interlingua와 유사한 역할을 하지만, 미묘한 맥락의 손실 가능성은 존재합니다. Alignment noise는 모델의 견고성을 높이는 반면 Interlingua는 의미의 정규화를 추구하여 상충되기도 하지만, 다양한 입력에 대한 내부 표현 학습 측면에서는 상보적일 수 있습니다. CSER 개선에는 Claim-단위 정규화가 더 직접적으로 기여하며, 이는 정밀도(Precision), 재현율(Recall) 및 의미적 일관성 지표로 측정할 수 있습니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -20383,6 +20416,38 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 507,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-961",
+      "from": "n-601",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 “번역-불변 중간표현” 메커니즘으로 구체화하며, CSER 차이를 측정/개선 가능한 구조적 개입으로 연결한다  ",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-962",
+      "from": "n-602",
+      "to": "n-601",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-963",
+      "from": "n-602",
+      "to": "n-117",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=485): n-602→n-117",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 485,
       "created": "2026-03-09"
     }
   ]
