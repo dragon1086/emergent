@@ -33,13 +33,15 @@ v4 창발 공식 (n-102 제안, 록이):
 """
 
 import json
+import os
 import sys
 import statistics
 from pathlib import Path
 from collections import Counter
 
 REPO = Path(__file__).parent.parent
-KG_FILE = REPO / "data" / "knowledge-graph.json"
+_kg_env = os.environ.get("EMERGENT_KG_PATH")
+KG_FILE = Path(_kg_env) if _kg_env else REPO / "data" / "knowledge-graph.json"
 
 
 # ─── I/O ─────────────────────────────────────────────────────────────────────

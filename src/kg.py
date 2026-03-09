@@ -52,6 +52,7 @@ kg.py — emergent 프로젝트 지식 그래프 CLI
 """
 
 import json
+import os
 import sys
 import argparse
 from collections import deque
@@ -59,7 +60,8 @@ from datetime import datetime
 from pathlib import Path
 
 REPO_DIR = Path(__file__).parent.parent
-KG_FILE = REPO_DIR / "data" / "knowledge-graph.json"
+_kg_env = os.environ.get("EMERGENT_KG_PATH")
+KG_FILE = Path(_kg_env) if _kg_env else REPO_DIR / "data" / "knowledge-graph.json"
 
 NODE_TYPES = ["decision", "observation", "insight", "artifact", "question", "code", "prediction"]
 TYPE_ICONS = {

@@ -37,6 +37,34 @@ trap "rm -f $LOCK_FILE" EXIT
 # 현재 상태 수집
 cd "$REPO_DIR"
 GRAPH_STATS=$(python3 src/kg.py stats 2>/dev/null || echo "통계 없음")
+
+# D-100: DCI 회복용 오래된 노드 목록 추출
+OLD_NODES=$(python3 -c "
+import json, re
+try:
+    kg = json.load(open('$REPO_DIR/data/knowledge-graph.json', encoding='utf-8'))
+    nodes = kg.get('nodes', [])
+    def node_num(n):
+        m = re.search(r'\d+', n['id'])
+        return int(m.group()) if m else 9999
+    nodes_sorted = sorted(nodes, key=node_num)
+    cutoff = max(3, min(10, len(nodes_sorted) // 5))
+    for n in nodes_sorted[:cutoff]:
+        print(f\"  {n['id']}: {n['label'][:60]}\")
+except Exception:
+    pass
+" 2>/dev/null || echo "  (없음)")
+METRICS_STATS=$(python3 src/metrics.py --json 2>/dev/null | python3 -c "
+import json, sys
+try:
+    m = json.load(sys.stdin)
+    es = m.get('edge_span', {})
+    print(f\"CSER: {m.get('CSER', 'N/A'):.4f}  DCI: {m.get('DCI', 'N/A'):.4f}  DXI: {m.get('DXI', 'N/A'):.4f}\")
+    print(f\"edge_span: raw={es.get('raw', 'N/A'):.3f}  normalized={es.get('normalized', 'N/A'):.4f}  max={es.get('max', 'N/A')}\")
+    print(f\"E_v5: {m.get('E_v5', 'N/A'):.4f}  (node_age_div={m.get('node_age_diversity', 'N/A'):.4f})\")
+except Exception as e:
+    print('메트릭 파싱 실패:', e)
+" 2>/dev/null || echo "메트릭 로드 실패 (KG 경로 확인 필요)")
 RECENT_LOG=$(git log --oneline -5 2>/dev/null || echo "없음")
 DECISIONS=$(tail -20 DECISIONS.md 2>/dev/null || echo "없음")
 EMERGENCE=$(python3 src/reflect.py emergence 2>/dev/null | grep -E "종합 점수|후보|수렴" | head -5 || echo "없음")
@@ -63,6 +91,13 @@ $RECENT_LOG
 ### 그래프 통계
 $GRAPH_STATS
 
+### 창발 메트릭 (CSER/DCI/edge_span)
+$METRICS_STATS
+
+### ⚠️ DCI 회복 필요 — 오래된 노드 후보 (D-100)
+아래 노드 중 하나를 EDGE_TO로 선택하세요 (장거리 연결 → DCI 회복):
+$OLD_NODES
+
 ### 창발 현황
 $EMERGENCE
 
@@ -81,6 +116,9 @@ $DECISIONS
 
 DECISION_LOG:
 [DECISIONS.md에 추가할 내용, 없으면 생략]
+
+EDGE_TO:
+[위 오래된 노드 목록에서 선택한 노드 ID — 장거리 연결로 DCI 회복]
 
 COKAC_REQUEST:
 [cokac에게 보낼 구현 요청 — 페르소나 차이를 활용하는 방식으로]

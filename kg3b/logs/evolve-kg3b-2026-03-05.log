@@ -1,0 +1,2885 @@
+[16:36:58] KG3 🌱 KG-3bb 사이클 시작 #1/100
+[16:36:58] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 0개
+총 엣지: 0개
+
+노드 타입별:
+
+출처별:
+[16:36:58] KG3 🕰️ 오래된 노드 후보: 1개
+[16:36:58] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[16:37:08] KG3 ✅ Agent A 완료 (1206 chars)
+[16:37:18] KG3 ✅ Agent B (Gemini Flash) 완료
+[16:37:18] KG3 ✅ Agent A 노드 추가: [Cross-vendor CSER 저하의 주원인: “표현 불일치(Representation Drift)” 가설] (id: n-001 → [N/A])
+[16:37:18] KG3 ✅ Agent B(Gemini) 노드 추가: n-002 → n-001 (cross-source!)
+  edge_span=0.5노드 평균 간격 → 시간 초월 연결 활발
+  max_span=1 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.3536 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[16:37:18] KG3 ✅ KG-3bb 사이클 완료
+[16:39:36] KG3 🌱 KG-3bb 사이클 시작 #2/100
+[16:39:36] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 2개
+총 엣지: 2개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 1개
+
+출처별:
+  gemini-2.0-flash: 1개
+  gpt-5.2: 1개
+
+관계 종류:
+  [EDGE_TO]: 1개
+  critiques: 1개
+[16:39:36] KG3 🕰️ 오래된 노드 후보: 2개
+[16:39:36] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[16:39:46] KG3 ✅ Agent A 완료 (1273 chars)
+[16:39:58] KG3 ✅ Agent B (Gemini Flash) 완료
+[16:39:58] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 매개변수: “불확실성/근거 표기 규약 불일치(Confidence & Evidence Marking Drift)” (id: n-003 → n-001)
+[16:39:58] KG3 ✅ Agent B(Gemini) 노드 추가: n-004 → n-003 (cross-source!)
+  edge_span=1.0노드 평균 간격 → 시간 초월 연결 활발
+  max_span=2 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.3227 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[16:39:58] KG3 ✅ KG-3bb 사이클 완료
+[16:46:41] KG3 🌱 KG-3bb 사이클 시작 #3/100
+[16:46:42] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 4개
+총 엣지: 4개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 2개
+  •  hypothesis: 1개
+
+출처별:
+  gemini-2.0-flash: 2개
+  gpt-5.2: 2개
+
+관계 종류:
+  EDGE_TO: 1개
+  [EDGE_TO]: 1개
+  critiques: 2개
+[16:46:42] KG3 🕰️ 오래된 노드 후보: 3개
+[16:46:42] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[16:46:54] KG3 ✅ Agent A 완료 (1188 chars)
+[16:47:04] KG3 ✅ Agent B (Gemini Flash) 완료
+[16:47:04] KG3 [HARD-FIX] Agent A EDGE_TO override: n-003 -> n-001
+[16:47:04] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 숨은 원인: “행동 정책(Policy) 불일치로 인한 그래프 편집 연산의 비가환성” (id: n-005 → n-001)
+[16:47:04] KG3 ✅ Agent B(Gemini) 노드 추가: n-006 → n-005 (cross-source!)
+  edge_span=1.5노드 평균 간격 → 시간 초월 연결 활발
+  max_span=4 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.3118 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[16:47:04] KG3 ✅ KG-3bb 사이클 완료
+[16:47:16] KG3 🌱 KG-3bb 사이클 시작 #4/100
+[16:47:16] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 6개
+총 엣지: 6개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 3개
+  •  hypothesis: 2개
+
+출처별:
+  gemini-2.0-flash: 3개
+  gpt-5.2: 3개
+
+관계 종류:
+  EDGE_TO: 2개
+  [EDGE_TO]: 1개
+  critiques: 3개
+[16:47:16] KG3 🕰️ 오래된 노드 후보: 3개
+[16:47:16] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[16:47:27] KG3 ✅ Agent A 완료 (1176 chars)
+[16:47:37] KG3 ✅ Agent B (Gemini Flash) 완료
+[16:47:37] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 구조적 원인: “행동정책(Instruction-following) 불일치에 따른 평가함수 미스매치” (id: n-007 → n-003)
+[16:47:37] KG3 ✅ Agent B(Gemini) 노드 추가: n-008 → n-007 (cross-source!)
+  edge_span=1.8노드 평균 간격 → 시간 초월 연결 활발
+  max_span=4 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.3062 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[16:47:37] KG3 ✅ KG-3bb 사이클 완료
+[16:47:44] KG3 🌱 KG-3bb 사이클 시작 #5/100
+[16:47:44] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 8개
+총 엣지: 8개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 4개
+  •  hypothesis: 3개
+
+출처별:
+  gemini-2.0-flash: 4개
+  gpt-5.2: 4개
+
+관계 종류:
+  EDGE_TO: 3개
+  [EDGE_TO]: 1개
+  critiques: 4개
+[16:47:44] KG3 🕰️ 오래된 노드 후보: 3개
+[16:47:44] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[16:47:57] KG3 ✅ Agent A 완료 (1186 chars)
+[16:48:14] KG3 ✅ Agent B (Gemini Flash) 완료
+[16:48:15] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 근본 원인 가설: “메타-규약 불일치(Instruction-Prior Misalignment)” (id: n-009 → n-001)
+[16:48:15] KG3 ✅ Agent B(Gemini) 노드 추가: n-010 → n-009 (cross-source!)
+  edge_span=2.8노드 평균 간격 → 시간 초월 연결 활발
+  max_span=8 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.3028 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[16:48:15] KG3 ✅ KG-3bb 사이클 완료
+[16:48:22] KG3 🌱 KG-3bb 사이클 시작 #6/100
+[16:48:22] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 10개
+총 엣지: 11개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 5개
+  •  hypothesis: 4개
+
+출처별:
+  gemini-2.0-flash: 5개
+  gpt-5.2: 5개
+
+관계 종류:
+  EDGE_TO: 4개
+  [EDGE_TO]: 1개
+  critiques: 5개
+  temporal_bridge: 1개
+[16:48:22] KG3 🕰️ 오래된 노드 후보: 3개
+[16:48:22] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[16:48:36] KG3 ✅ Agent A 완료 (1278 chars)
+[16:48:48] KG3 ✅ Agent B (Gemini Flash) 완료
+[16:48:48] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 “정렬 함수 불일치(Alignment-Function Mismatch)” 가설   (id: n-011 → n-001)
+[16:48:48] KG3 ✅ Agent B(Gemini) 노드 추가: n-012 → n-011 (cross-source!)
+  edge_span=3.6노드 평균 간격 → 시간 초월 연결 활발
+  max_span=10 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.3005 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[16:48:48] KG3 ✅ KG-3bb 사이클 완료
+[16:48:52] KG3 🌱 KG-3bb 사이클 시작 #7/100
+[16:48:52] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 12개
+총 엣지: 14개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 6개
+  •  hypothesis: 5개
+
+출처별:
+  gemini-2.0-flash: 6개
+  gpt-5.2: 6개
+
+관계 종류:
+  EDGE_TO: 5개
+  [EDGE_TO]: 1개
+  critiques: 6개
+  temporal_bridge: 2개
+[16:48:52] KG3 🕰️ 오래된 노드 후보: 3개
+[16:48:52] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[16:49:01] KG3 ✅ Agent A 완료 (1074 chars)
+[16:49:14] KG3 ✅ Agent B (Gemini Flash) 완료
+[16:49:14] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 숨은 원인: “평가-행동 루프의 메타규칙 불일치(Meta-Protocol Drift)” (id: n-013 → n-003)
+[16:49:14] KG3 ✅ Agent B(Gemini) 노드 추가: n-014 → n-013 (cross-source!)
+  edge_span=4.4노드 평균 간격 → 시간 초월 연결 활발
+  max_span=12 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2988 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[16:49:14] KG3 ✅ KG-3bb 사이클 완료
+[17:03:10] KG3 🌱 KG-3bb 사이클 시작 #8/100
+[17:03:10] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 14개
+총 엣지: 17개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 7개
+  •  hypothesis: 6개
+
+출처별:
+  gemini-2.0-flash: 7개
+  gpt-5.2: 7개
+
+관계 종류:
+  EDGE_TO: 6개
+  [EDGE_TO]: 1개
+  critiques: 7개
+  temporal_bridge: 3개
+[17:03:10] KG3 🕰️ 오래된 노드 후보: 3개
+[17:03:10] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[17:03:20] KG3 ✅ Agent A 완료 (1314 chars)
+[17:03:31] KG3 ✅ Agent B (Gemini Flash) 완료
+[17:03:31] KG3 ✅ Agent A 노드 추가: Representation Drift의 상위 원인: “Pragmatic Alignment Gap(실용-화행 정렬 격차)” (id: n-015 → n-001)
+[17:03:31] KG3 ✅ Agent B(Gemini) 노드 추가: n-016 → n-015 (cross-source!)
+  edge_span=5.0노드 평균 간격 → 시간 초월 연결 활발
+  max_span=14 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2976 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[17:03:31] KG3 ✅ KG-3bb 사이클 완료
+[17:05:45] KG3 🌱 KG-3bb 사이클 시작 #9/100
+[17:05:45] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 16개
+총 엣지: 20개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 8개
+  •  hypothesis: 7개
+
+출처별:
+  gemini-2.0-flash: 8개
+  gpt-5.2: 8개
+
+관계 종류:
+  EDGE_TO: 7개
+  [EDGE_TO]: 1개
+  critiques: 8개
+  temporal_bridge: 4개
+[17:05:45] KG3 🕰️ 오래된 노드 후보: 3개
+[17:05:45] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[17:05:56] KG3 ✅ Agent A 완료 (1362 chars)
+[17:06:06] KG3 ✅ Agent B (Gemini Flash) 완료
+[17:06:06] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 숨은 원인: “평가/정렬 함수 불일치(Alignment-to-Eval Mismatch)” 가설 (id: n-017 → n-003)
+[17:06:06] KG3 ✅ Agent B(Gemini) 노드 추가: n-018 → n-017 (cross-source!)
+  edge_span=5.7노드 평균 간격 → 시간 초월 연결 활발
+  max_span=16 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2966 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[17:06:06] KG3 ✅ KG-3bb 사이클 완료
+[17:06:11] KG3 🌱 KG-3bb 사이클 시작 #10/100
+[17:06:11] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 18개
+총 엣지: 23개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 9개
+  •  hypothesis: 8개
+
+출처별:
+  gemini-2.0-flash: 9개
+  gpt-5.2: 9개
+
+관계 종류:
+  EDGE_TO: 8개
+  [EDGE_TO]: 1개
+  critiques: 9개
+  temporal_bridge: 5개
+[17:06:11] KG3 🕰️ 오래된 노드 후보: 3개
+[17:06:11] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[17:06:23] KG3 ✅ Agent A 완료 (1380 chars)
+[17:06:42] KG3 ✅ Agent B (Gemini Flash) 완료
+[17:06:42] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 구조적 원인: “메타-커뮤니케이션 프로토콜 불일치(Meta-Protocol Drift)” (id: n-019 → n-003)
+[17:06:42] KG3 ✅ Agent B(Gemini) 노드 추가: n-020 → n-019 (cross-source!)
+  edge_span=6.3노드 평균 간격 → 시간 초월 연결 활발
+  max_span=17 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2958 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[17:06:42] KG3 ✅ KG-3bb 사이클 완료
+[17:06:42] KG3 🌱 KG-3bb 사이클 시작 #11/100
+[17:06:42] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 20개
+총 엣지: 26개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 10개
+  •  hypothesis: 9개
+
+출처별:
+  gemini-2.0-flash: 10개
+  gpt-5.2: 10개
+
+관계 종류:
+  EDGE_TO: 9개
+  [EDGE_TO]: 1개
+  critiques: 10개
+  temporal_bridge: 6개
+[17:06:42] KG3 🕰️ 오래된 노드 후보: 4개
+[17:06:42] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[17:06:53] KG3 ✅ Agent A 완료 (1242 chars)
+[17:07:05] KG3 ✅ Agent B (Gemini Flash) 완료
+[17:07:06] KG3 ✅ Agent A 노드 추가: Vendor-conditional Reward Model Drift 가설 (id: n-021 → n-003)
+[17:07:06] KG3 ✅ Agent B(Gemini) 노드 추가: n-022 → n-021 (cross-source!)
+  edge_span=7.4노드 평균 간격 → 시간 초월 연결 활발
+  max_span=20 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2952 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[17:07:06] KG3 ✅ KG-3bb 사이클 완료
+[17:07:14] KG3 🌱 KG-3bb 사이클 시작 #12/100
+[17:07:14] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 22개
+총 엣지: 30개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 11개
+  •  hypothesis: 10개
+
+출처별:
+  gemini-2.0-flash: 11개
+  gpt-5.2: 11개
+
+관계 종류:
+  EDGE_TO: 10개
+  [EDGE_TO]: 1개
+  critiques: 11개
+  temporal_bridge: 8개
+[17:07:14] KG3 🕰️ 오래된 노드 후보: 4개
+[17:07:14] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[17:07:25] KG3 ✅ Agent A 완료 (1269 chars)
+[17:07:36] KG3 ✅ Agent B (Gemini Flash) 완료
+[17:07:36] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 또 다른 원인: “정렬/안전 정책에 따른 답변 형식 게이팅(Policy-induced Format Gating)” (id: n-023 → n-003)
+[17:07:36] KG3 ✅ Agent B(Gemini) 노드 추가: n-024 → n-023 (cross-source!)
+  edge_span=8.4노드 평균 간격 → 시간 초월 연결 활발
+  max_span=22 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2946 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[17:07:36] KG3 ✅ KG-3bb 사이클 완료
+[17:07:38] KG3 🌱 KG-3bb 사이클 시작 #13/100
+[17:07:38] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 24개
+총 엣지: 34개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 12개
+  •  hypothesis: 11개
+
+출처별:
+  gemini-2.0-flash: 12개
+  gpt-5.2: 12개
+
+관계 종류:
+  EDGE_TO: 11개
+  [EDGE_TO]: 1개
+  critiques: 12개
+  temporal_bridge: 10개
+[17:07:38] KG3 🕰️ 오래된 노드 후보: 4개
+[17:07:38] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[17:07:48] KG3 ✅ Agent A 완료 (1225 chars)
+[17:07:58] KG3 ✅ Agent B (Gemini Flash) 완료
+[17:07:58] KG3 ✅ Agent A 노드 추가: Vendor-conditional Calibration Gap 가설 (id: n-025 → n-003)
+[17:07:58] KG3 ✅ Agent B(Gemini) 노드 추가: n-026 → n-025 (cross-source!)
+  edge_span=9.3노드 평균 간격 → 시간 초월 연결 활발
+  max_span=24 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2942 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[17:07:58] KG3 ✅ KG-3bb 사이클 완료
+[17:08:15] KG3 🌱 KG-3bb 사이클 시작 #14/100
+[17:08:16] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 26개
+총 엣지: 38개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 13개
+  •  hypothesis: 12개
+
+출처별:
+  gemini-2.0-flash: 13개
+  gpt-5.2: 13개
+
+관계 종류:
+  EDGE_TO: 12개
+  [EDGE_TO]: 1개
+  critiques: 13개
+  temporal_bridge: 12개
+[17:08:16] KG3 🕰️ 오래된 노드 후보: 5개
+[17:08:16] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[17:08:25] KG3 ✅ Agent A 완료 (1154 chars)
+[17:08:36] KG3 ✅ Agent B (Gemini Flash) 완료
+[17:08:36] KG3 ✅ Agent A 노드 추가: Vendor-특이적 “메타-프로토콜(Editing Contract)” 불일치 가설 (id: n-027 → n-005)
+[17:08:36] KG3 ✅ Agent B(Gemini) 노드 추가: n-028 → n-027 (cross-source!)
+  edge_span=10.0노드 평균 간격 → 시간 초월 연결 활발
+  max_span=24 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2938 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[17:08:36] KG3 ✅ KG-3bb 사이클 완료
+[17:08:36] KG3 🌱 KG-3bb 사이클 시작 #15/100
+[17:08:36] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 28개
+총 엣지: 42개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 14개
+  •  hypothesis: 13개
+
+출처별:
+  gemini-2.0-flash: 14개
+  gpt-5.2: 14개
+
+관계 종류:
+  EDGE_TO: 13개
+  [EDGE_TO]: 1개
+  critiques: 14개
+  temporal_bridge: 14개
+[17:08:36] KG3 🕰️ 오래된 노드 후보: 5개
+[17:08:36] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[17:08:46] KG3 ✅ Agent A 완료 (1174 chars)
+[17:08:57] KG3 ✅ Agent B (Gemini Flash) 완료
+[17:08:57] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 구조적 원인: “업데이트 비동기성(Asynchronous Model/Policy Updates)”로 인한 시간적 불일치 (id: n-029 → n-005)
+[17:08:57] KG3 ✅ Agent B(Gemini) 노드 추가: n-030 → n-029 (cross-source!)
+  edge_span=10.8노드 평균 간격 → 시간 초월 연결 활발
+  max_span=28 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2934 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[17:08:57] KG3 ✅ KG-3bb 사이클 완료
+[17:09:04] KG3 🌱 KG-3bb 사이클 시작 #16/100
+[17:09:04] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 30개
+총 엣지: 46개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 15개
+  •  hypothesis: 14개
+
+출처별:
+  gemini-2.0-flash: 15개
+  gpt-5.2: 15개
+
+관계 종류:
+  EDGE_TO: 14개
+  [EDGE_TO]: 1개
+  critiques: 15개
+  temporal_bridge: 16개
+[17:09:04] KG3 🕰️ 오래된 노드 후보: 6개
+[17:09:04] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[17:09:15] KG3 ✅ Agent A 완료 (1302 chars)
+[17:09:26] KG3 ✅ Agent B (Gemini Flash) 완료
+[17:09:27] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 구조적 원인: “암묵적 편집 연산자(Implicit Edit Operator) 불일치” (id: n-031 → n-005)
+[17:09:27] KG3 ✅ Agent B(Gemini) 노드 추가: n-032 → n-031 (cross-source!)
+  edge_span=11.6노드 평균 간격 → 시간 초월 연결 활발
+  max_span=28 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2932 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[17:09:27] KG3 ✅ KG-3bb 사이클 완료
+[17:20:59] KG3 🌱 KG-3bb 사이클 시작 #17/100
+[17:20:59] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 32개
+총 엣지: 50개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 16개
+  •  hypothesis: 15개
+
+출처별:
+  gemini-2.0-flash: 16개
+  gpt-5.2: 16개
+
+관계 종류:
+  EDGE_TO: 15개
+  [EDGE_TO]: 1개
+  critiques: 16개
+  temporal_bridge: 18개
+[17:20:59] KG3 🕰️ 오래된 노드 후보: 6개
+[17:20:59] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[17:21:10] KG3 ✅ Agent A 완료 (1260 chars)
+[17:21:23] KG3 ✅ Agent B (Gemini Flash) 완료
+[17:21:24] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 구조적 원인: “암묵적 작업모델(Implicit Task Model) 불일치” 가설   (id: n-033 → n-005)
+[17:21:24] KG3 ✅ Agent B(Gemini) 노드 추가: n-034 → n-033 (cross-source!)
+  edge_span=12.0노드 평균 간격 → 시간 초월 연결 활발
+  max_span=28 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2929 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[17:21:24] KG3 ✅ KG-3bb 사이클 완료
+[17:40:53] KG3 🌱 KG-3bb 사이클 시작 #18/100
+[17:40:53] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 34개
+총 엣지: 53개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 17개
+  •  hypothesis: 16개
+
+출처별:
+  gemini-2.0-flash: 17개
+  gpt-5.2: 17개
+
+관계 종류:
+  EDGE_TO: 16개
+  [EDGE_TO]: 1개
+  critiques: 17개
+  temporal_bridge: 19개
+[17:40:53] KG3 🕰️ 오래된 노드 후보: 6개
+[17:40:53] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[17:41:03] KG3 ✅ Agent A 완료 (1238 chars)
+[17:41:16] KG3 ✅ Agent B (Gemini Flash) 완료
+[17:41:16] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 구조적 원인: “정렬 목표(Reward/Instruction Prior) 불일치로 인한 편집 연산의 비가환성(Non-commutative Graph Editing)” (id: n-035 → n-005)
+[17:41:16] KG3 ✅ Agent B(Gemini) 노드 추가: n-036 → n-035 (cross-source!)
+  edge_span=12.8노드 평균 간격 → 시간 초월 연결 활발
+  max_span=32 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2927 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[17:41:16] KG3 ✅ KG-3bb 사이클 완료
+[18:01:17] KG3 🌱 KG-3bb 사이클 시작 #19/100
+[18:01:17] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 36개
+총 엣지: 57개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 18개
+  •  hypothesis: 17개
+
+출처별:
+  gemini-2.0-flash: 18개
+  gpt-5.2: 18개
+
+관계 종류:
+  EDGE_TO: 17개
+  [EDGE_TO]: 1개
+  critiques: 18개
+  temporal_bridge: 21개
+[18:01:17] KG3 🕰️ 오래된 노드 후보: 7개
+[18:01:18] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[18:01:29] KG3 ✅ Agent A 완료 (1390 chars)
+[18:01:40] KG3 ✅ Agent B (Gemini Flash) 완료
+[18:01:40] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 메커니즘: “암묵적 스키마(Implicit Schema) 불일치로 인한 그래프 연산 비가환성” (id: n-037 → n-005)
+[18:01:40] KG3 ✅ Agent B(Gemini) 노드 추가: n-038 → n-037 (cross-source!)
+  edge_span=13.6노드 평균 간격 → 시간 초월 연결 활발
+  max_span=37 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2924 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[18:01:40] KG3 ✅ KG-3bb 사이클 완료
+[18:04:35] KG3 🌱 KG-3bb 사이클 시작 #20/100
+[18:04:35] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 38개
+총 엣지: 61개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 19개
+  •  hypothesis: 18개
+
+출처별:
+  gemini-2.0-flash: 19개
+  gpt-5.2: 19개
+
+관계 종류:
+  EDGE_TO: 18개
+  [EDGE_TO]: 1개
+  critiques: 19개
+  temporal_bridge: 23개
+[18:04:35] KG3 🕰️ 오래된 노드 후보: 7개
+[18:04:35] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[18:08:31] KG3 🌱 KG-3bb 사이클 시작 #21/100
+[18:08:31] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 38개
+총 엣지: 61개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 19개
+  •  hypothesis: 18개
+
+출처별:
+  gemini-2.0-flash: 19개
+  gpt-5.2: 19개
+
+관계 종류:
+  EDGE_TO: 18개
+  [EDGE_TO]: 1개
+  critiques: 19개
+  temporal_bridge: 23개
+[18:08:31] KG3 🕰️ 오래된 노드 후보: 7개
+[18:08:31] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[18:08:45] KG3 ✅ Agent A 완료 (1378 chars)
+[18:09:01] KG3 ✅ Agent B (Gemini Flash) 완료
+[18:09:01] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 추가 원인: “암묵적 온톨로지/스키마(Concept Lattice) 불일치” (id: n-039 → n-001)
+[18:09:01] KG3 ✅ Agent B(Gemini) 노드 추가: n-040 → n-039 (cross-source!)
+  edge_span=13.8노드 평균 간격 → 시간 초월 연결 활발
+  max_span=38 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2923 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[18:09:01] KG3 ✅ KG-3bb 사이클 완료
+[18:09:05] KG3 🌱 KG-3bb 사이클 시작 #22/100
+[18:09:05] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 40개
+총 엣지: 63개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 20개
+  •  hypothesis: 19개
+
+출처별:
+  gemini-2.0-flash: 20개
+  gpt-5.2: 20개
+
+관계 종류:
+  EDGE_TO: 19개
+  [EDGE_TO]: 1개
+  critiques: 20개
+  temporal_bridge: 23개
+[18:09:05] KG3 🕰️ 오래된 노드 후보: 8개
+[18:09:05] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[18:09:19] KG3 ✅ Agent A 완료 (1446 chars)
+[18:09:31] KG3 ✅ Agent B (Gemini Flash) 완료
+[18:09:31] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 촉발 요인: “암묵적 스키마/온톨로지 정렬 실패(Implicit Schema Misalignment)” (id: n-041 → n-005)
+[18:09:31] KG3 ✅ Agent B(Gemini) 노드 추가: n-042 → n-041 (cross-source!)
+  edge_span=14.3노드 평균 간격 → 시간 초월 연결 활발
+  max_span=40 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2921 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[18:09:31] KG3 ✅ KG-3bb 사이클 완료
+[18:09:31] KG3 🌱 KG-3bb 사이클 시작 #23/100
+[18:09:31] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 42개
+총 엣지: 66개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 21개
+  •  hypothesis: 20개
+
+출처별:
+  gemini-2.0-flash: 21개
+  gpt-5.2: 21개
+
+관계 종류:
+  EDGE_TO: 20개
+  [EDGE_TO]: 1개
+  critiques: 21개
+  temporal_bridge: 24개
+[18:09:31] KG3 🕰️ 오래된 노드 후보: 8개
+[18:09:31] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[18:09:43] KG3 ✅ Agent A 완료 (1377 chars)
+[18:09:58] KG3 ✅ Agent B (Gemini Flash) 완료
+[18:09:58] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 상위 원인: “온톨로지/스키마 정렬 실패(Ontology & Schema Misalignment)” (id: n-043 → n-001)
+[18:09:58] KG3 ✅ Agent B(Gemini) 노드 추가: n-044 → n-043 (cross-source!)
+  edge_span=14.9노드 평균 간격 → 시간 초월 연결 활발
+  max_span=42 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2919 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[18:09:58] KG3 ✅ KG-3bb 사이클 완료
+[18:10:05] KG3 🌱 KG-3bb 사이클 시작 #24/100
+[18:10:05] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 44개
+총 엣지: 69개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 22개
+  •  hypothesis: 21개
+
+출처별:
+  gemini-2.0-flash: 22개
+  gpt-5.2: 22개
+
+관계 종류:
+  EDGE_TO: 21개
+  [EDGE_TO]: 1개
+  critiques: 22개
+  temporal_bridge: 25개
+[18:10:05] KG3 🕰️ 오래된 노드 후보: 8개
+[18:10:05] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[18:10:16] KG3 ✅ Agent A 완료 (1153 chars)
+[18:10:30] KG3 ✅ Agent B (Gemini Flash) 완료
+[18:10:30] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 근본 메커니즘: “암묵적 메타-프로토콜(턴/역할/우선순위) 불일치” (id: n-045 → n-007)
+[18:10:30] KG3 ✅ Agent B(Gemini) 노드 추가: n-046 → n-045 (cross-source!)
+  edge_span=15.4노드 평균 간격 → 시간 초월 연결 활발
+  max_span=42 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2918 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[18:10:30] KG3 ✅ KG-3bb 사이클 완료
+[18:10:30] KG3 🌱 KG-3bb 사이클 시작 #25/100
+[18:10:30] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 46개
+총 엣지: 72개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 23개
+  •  hypothesis: 22개
+
+출처별:
+  gemini-2.0-flash: 23개
+  gpt-5.2: 23개
+
+관계 종류:
+  EDGE_TO: 22개
+  [EDGE_TO]: 1개
+  critiques: 23개
+  temporal_bridge: 26개
+[18:10:30] KG3 🕰️ 오래된 노드 후보: 8개
+[18:10:31] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[18:10:44] KG3 ✅ Agent A 완료 (1500 chars)
+[18:10:55] KG3 ✅ Agent B (Gemini Flash) 완료
+[18:10:55] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 상위 원인: “오류 복구/수정(Repair) 전략 불일치” 가설 (id: n-047 → n-005)
+[18:10:55] KG3 ✅ Agent B(Gemini) 노드 추가: n-048 → n-047 (cross-source!)
+  edge_span=16.3노드 평균 간격 → 시간 초월 연결 활발
+  max_span=44 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2917 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[18:10:55] KG3 ✅ KG-3bb 사이클 완료
+[18:16:38] KG3 🌱 KG-3bb 사이클 시작 #26/100
+[18:16:38] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 48개
+총 엣지: 76개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 24개
+  •  hypothesis: 23개
+
+출처별:
+  gemini-2.0-flash: 24개
+  gpt-5.2: 24개
+
+관계 종류:
+  EDGE_TO: 23개
+  [EDGE_TO]: 1개
+  critiques: 24개
+  temporal_bridge: 28개
+[18:16:38] KG3 🕰️ 오래된 노드 후보: 8개
+[18:16:38] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[18:16:54] KG3 ✅ Agent A 완료 (1202 chars)
+[18:17:08] KG3 ✅ Agent B (Gemini Flash) 완료
+[18:17:09] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 추가 원인: “암묵적 온톨로지/타입 시스템 불일치(Implicit Ontology & Type Drift)” (id: n-049 → n-001)
+[18:17:09] KG3 ✅ Agent B(Gemini) 노드 추가: n-050 → n-049 (cross-source!)
+  edge_span=17.2노드 평균 간격 → 시간 초월 연결 활발
+  max_span=48 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2915 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[18:17:09] KG3 ✅ KG-3bb 사이클 완료
+[18:43:13] KG3 🌱 KG-3bb 사이클 시작 #27/100
+[18:43:13] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 50개
+총 엣지: 80개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 25개
+  •  hypothesis: 24개
+
+출처별:
+  gemini-2.0-flash: 25개
+  gpt-5.2: 25개
+
+관계 종류:
+  EDGE_TO: 24개
+  [EDGE_TO]: 1개
+  critiques: 25개
+  temporal_bridge: 30개
+[18:43:13] KG3 🕰️ 오래된 노드 후보: 8개
+[18:43:13] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[18:43:24] KG3 ✅ Agent A 완료 (1292 chars)
+[18:43:36] KG3 ✅ Agent B (Gemini Flash) 완료
+[18:43:36] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 “평가-행동 결합(Eval-Action Coupling) 불일치” 가설   (id: n-051 → n-007)
+[18:43:36] KG3 ✅ Agent B(Gemini) 노드 추가: n-052 → n-051 (cross-source!)
+  edge_span=17.7노드 평균 간격 → 시간 초월 연결 활발
+  max_span=48 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2914 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[18:43:36] KG3 ✅ KG-3bb 사이클 완료
+[19:03:01] KG3 🌱 KG-3bb 사이클 시작 #28/100
+[19:03:01] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 52개
+총 엣지: 83개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 26개
+  •  hypothesis: 25개
+
+출처별:
+  gemini-2.0-flash: 26개
+  gpt-5.2: 26개
+
+관계 종류:
+  EDGE_TO: 25개
+  [EDGE_TO]: 1개
+  critiques: 26개
+  temporal_bridge: 31개
+[19:03:01] KG3 🕰️ 오래된 노드 후보: 8개
+[19:03:01] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[19:03:10] KG3 ✅ Agent A 완료 (1176 chars)
+[19:03:22] KG3 ✅ Agent B (Gemini Flash) 완료
+[19:03:22] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 촉발 요인: “암묵적 온톨로지/타이핑(typing) 불일치로 인한 그래프 동형성 붕괴” (id: n-053 → n-001)
+[19:03:22] KG3 ✅ Agent B(Gemini) 노드 추가: n-054 → n-053 (cross-source!)
+  edge_span=18.5노드 평균 간격 → 시간 초월 연결 활발
+  max_span=52 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2913 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[19:03:22] KG3 ✅ KG-3bb 사이클 완료
+[19:22:52] KG3 🌱 KG-3bb 사이클 시작 #29/100
+[19:22:52] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 54개
+총 엣지: 87개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 27개
+  •  hypothesis: 26개
+
+출처별:
+  gemini-2.0-flash: 27개
+  gpt-5.2: 27개
+
+관계 종류:
+  EDGE_TO: 26개
+  [EDGE_TO]: 1개
+  critiques: 27개
+  temporal_bridge: 33개
+[19:22:52] KG3 🕰️ 오래된 노드 후보: 8개
+[19:22:52] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[19:23:03] KG3 ✅ Agent A 완료 (1178 chars)
+[19:23:15] KG3 ✅ Agent B (Gemini Flash) 완료
+[19:23:15] KG3 ✅ Agent A 노드 추가: Vendor-specific Safety/Refusal Manifold Drift 가설 (id: n-055 → n-007)
+[19:23:15] KG3 ✅ Agent B(Gemini) 노드 추가: n-056 → n-055 (cross-source!)
+  edge_span=19.3노드 평균 간격 → 시간 초월 연결 활발
+  max_span=52 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2912 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[19:23:15] KG3 ✅ KG-3bb 사이클 완료
+[19:42:39] KG3 🌱 KG-3bb 사이클 시작 #30/100
+[19:42:39] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 56개
+총 엣지: 91개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 28개
+  •  hypothesis: 27개
+
+출처별:
+  gemini-2.0-flash: 28개
+  gpt-5.2: 28개
+
+관계 종류:
+  EDGE_TO: 27개
+  [EDGE_TO]: 1개
+  critiques: 28개
+  temporal_bridge: 35개
+[19:42:39] KG3 🕰️ 오래된 노드 후보: 8개
+[19:42:39] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[19:42:52] KG3 ✅ Agent A 완료 (1536 chars)
+[19:43:02] KG3 ✅ Agent B (Gemini Flash) 완료
+[19:43:02] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 비가시적 원인: “암묵적 메타-프롬프트/기본값(Default) 불일치로 인한 평가함수(Reward) 드리프트” (id: n-057 → n-007)
+[19:43:02] KG3 ✅ Agent B(Gemini) 노드 추가: n-058 → n-057 (cross-source!)
+  edge_span=19.8노드 평균 간격 → 시간 초월 연결 활발
+  max_span=54 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2912 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[19:43:03] KG3 ✅ KG-3bb 사이클 완료
+[20:03:18] KG3 🌱 KG-3bb 사이클 시작 #31/100
+[20:03:18] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 58개
+총 엣지: 94개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 29개
+  •  hypothesis: 28개
+
+출처별:
+  gemini-2.0-flash: 29개
+  gpt-5.2: 29개
+
+관계 종류:
+  EDGE_TO: 28개
+  [EDGE_TO]: 1개
+  critiques: 29개
+  temporal_bridge: 36개
+[20:03:18] KG3 🕰️ 오래된 노드 후보: 8개
+[20:03:18] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[20:03:30] KG3 ✅ Agent A 완료 (1218 chars)
+[20:03:41] KG3 ✅ Agent B (Gemini Flash) 완료
+[20:03:41] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 운영적 원인: “스키마/온톨로지 정렬 실패(Ontology & Schema Misalignment)” (id: n-059 → n-003)
+[20:03:41] KG3 ✅ Agent B(Gemini) 노드 추가: n-060 → n-059 (cross-source!)
+  edge_span=20.3노드 평균 간격 → 시간 초월 연결 활발
+  max_span=56 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2911 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[20:03:41] KG3 ✅ KG-3bb 사이클 완료
+[20:20:55] KG3 🌱 KG-3bb 사이클 시작 #32/100
+[20:20:55] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 60개
+총 엣지: 97개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 30개
+  •  hypothesis: 29개
+
+출처별:
+  gemini-2.0-flash: 30개
+  gpt-5.2: 30개
+
+관계 종류:
+  EDGE_TO: 29개
+  [EDGE_TO]: 1개
+  critiques: 30개
+  temporal_bridge: 37개
+[20:20:55] KG3 🕰️ 오래된 노드 후보: 8개
+[20:20:55] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[20:21:07] KG3 ✅ Agent A 완료 (1326 chars)
+[20:21:18] KG3 ✅ Agent B (Gemini Flash) 완료
+[20:21:18] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 또 다른 원인: “메타-스키마/온톨로지 불일치(Conceptualization Drift)” (id: n-061 → n-007)
+[20:21:18] KG3 ✅ Agent B(Gemini) 노드 추가: n-062 → n-061 (cross-source!)
+  edge_span=21.2노드 평균 간격 → 시간 초월 연결 활발
+  max_span=60 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2910 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[20:21:18] KG3 ✅ KG-3bb 사이클 완료
+[20:41:08] KG3 🌱 KG-3bb 사이클 시작 #33/100
+[20:41:08] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 62개
+총 엣지: 101개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 31개
+  •  hypothesis: 30개
+
+출처별:
+  gemini-2.0-flash: 31개
+  gpt-5.2: 31개
+
+관계 종류:
+  EDGE_TO: 30개
+  [EDGE_TO]: 1개
+  critiques: 31개
+  temporal_bridge: 39개
+[20:41:08] KG3 🕰️ 오래된 노드 후보: 8개
+[20:41:08] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[20:41:20] KG3 ✅ Agent A 완료 (1180 chars)
+[20:41:33] KG3 ✅ Agent B (Gemini Flash) 완료
+[20:41:33] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 상위 원인: “암묵적 디폴트(Defaults)·우선순위(Preference Ordering) 불일치” (id: n-063 → n-007)
+[20:41:33] KG3 ✅ Agent B(Gemini) 노드 추가: n-064 → n-063 (cross-source!)
+  edge_span=21.7노드 평균 간격 → 시간 초월 연결 활발
+  max_span=60 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2909 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[20:41:33] KG3 ✅ KG-3bb 사이클 완료
+[21:01:05] KG3 🌱 KG-3bb 사이클 시작 #34/100
+[21:01:05] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 64개
+총 엣지: 104개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 32개
+  •  hypothesis: 31개
+
+출처별:
+  gemini-2.0-flash: 32개
+  gpt-5.2: 32개
+
+관계 종류:
+  EDGE_TO: 31개
+  [EDGE_TO]: 1개
+  critiques: 32개
+  temporal_bridge: 40개
+[21:01:05] KG3 🕰️ 오래된 노드 후보: 8개
+[21:01:05] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[21:01:18] KG3 ✅ Agent A 완료 (1351 chars)
+[21:01:34] KG3 ✅ Agent B (Gemini Flash) 완료
+[21:01:34] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 2차 원인: “그래프 편집 연산 의미론(Edge Semantics) 불일치” (id: n-065 → n-005)
+[21:01:34] KG3 ✅ Agent B(Gemini) 노드 추가: n-066 → n-065 (cross-source!)
+  edge_span=22.2노드 평균 간격 → 시간 초월 연결 활발
+  max_span=60 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2909 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:01:34] KG3 ✅ KG-3bb 사이클 완료
+[21:20:56] KG3 🌱 KG-3bb 사이클 시작 #35/100
+[21:20:56] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 66개
+총 엣지: 107개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 33개
+  •  hypothesis: 32개
+
+출처별:
+  gemini-2.0-flash: 33개
+  gpt-5.2: 33개
+
+관계 종류:
+  EDGE_TO: 32개
+  [EDGE_TO]: 1개
+  critiques: 33개
+  temporal_bridge: 41개
+[21:20:56] KG3 🕰️ 오래된 노드 후보: 8개
+[21:20:56] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[21:21:09] KG3 ✅ Agent A 완료 (1413 chars)
+[21:21:19] KG3 ✅ Agent B (Gemini Flash) 완료
+[21:21:19] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 상위 원인: “비동기적 개념 정렬(Asynchronous Concept Alignment) 실패” (id: n-067 → n-001)
+[21:21:19] KG3 ✅ Agent B(Gemini) 노드 추가: n-068 → n-067 (cross-source!)
+  edge_span=23.0노드 평균 간격 → 시간 초월 연결 활발
+  max_span=66 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2908 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:21:19] KG3 ✅ KG-3bb 사이클 완료
+[21:33:53] KG3 🌱 KG-3bb 사이클 시작 #36/100
+[21:33:53] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 68개
+총 엣지: 111개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 34개
+  •  hypothesis: 33개
+
+출처별:
+  gemini-2.0-flash: 34개
+  gpt-5.2: 34개
+
+관계 종류:
+  EDGE_TO: 33개
+  [EDGE_TO]: 1개
+  critiques: 34개
+  temporal_bridge: 43개
+[21:33:53] KG3 🕰️ 오래된 노드 후보: 8개
+[21:33:53] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[21:34:03] KG3 ✅ Agent A 완료 (1262 chars)
+[21:34:31] KG3 ✅ Agent B (Gemini Flash) 완료
+[21:34:31] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 상위 요인: “암묵적 온톨로지/스키마 불일치(Implicit Ontology Mismatch)” (id: n-069 → n-005)
+[21:34:31] KG3 ✅ Agent B(Gemini) 노드 추가: n-070 → n-069 (cross-source!)
+  edge_span=23.5노드 평균 간격 → 시간 초월 연결 활발
+  max_span=66 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2907 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:34:31] KG3 ✅ KG-3bb 사이클 완료
+[21:34:31] KG3 🌱 KG-3bb 사이클 시작 #37/100
+[21:34:31] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 70개
+총 엣지: 114개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 35개
+  •  hypothesis: 34개
+
+출처별:
+  gemini-2.0-flash: 35개
+  gpt-5.2: 35개
+
+관계 종류:
+  EDGE_TO: 34개
+  [EDGE_TO]: 1개
+  critiques: 35개
+  temporal_bridge: 44개
+[21:34:31] KG3 🕰️ 오래된 노드 후보: 8개
+[21:34:31] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[21:34:42] KG3 ✅ Agent A 완료 (1198 chars)
+[21:34:51] KG3 ✅ Agent B (Gemini Flash) 완료
+[21:34:51] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 2차 원인: “편집 연산자(EDIT-OP) 스키마 불일치” (id: n-071 → n-005)
+[21:34:51] KG3 ✅ Agent B(Gemini) 노드 추가: n-072 → n-071 (cross-source!)
+  edge_span=24.3노드 평균 간격 → 시간 초월 연결 활발
+  max_span=66 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2907 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:34:51] KG3 ✅ KG-3bb 사이클 완료
+[21:34:52] KG3 🌱 KG-3bb 사이클 시작 #38/100
+[21:34:52] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 72개
+총 엣지: 118개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 36개
+  •  hypothesis: 35개
+
+출처별:
+  gemini-2.0-flash: 36개
+  gpt-5.2: 36개
+
+관계 종류:
+  EDGE_TO: 35개
+  [EDGE_TO]: 1개
+  critiques: 36개
+  temporal_bridge: 46개
+[21:34:52] KG3 🕰️ 오래된 노드 후보: 8개
+[21:34:52] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[21:35:05] KG3 ✅ Agent A 완료 (1249 chars)
+[21:35:21] KG3 ✅ Agent B (Gemini Flash) 완료
+[21:35:21] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 촉발 요인: “암묵적 스키마/온톨로지 정렬 실패(Implicit Schema Misalignment)” (id: n-073 → n-001)
+[21:35:21] KG3 ✅ Agent B(Gemini) 노드 추가: n-074 → n-073 (cross-source!)
+  edge_span=25.3노드 평균 간격 → 시간 초월 연결 활발
+  max_span=72 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2906 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:35:21] KG3 ✅ KG-3bb 사이클 완료
+[21:35:21] KG3 🌱 KG-3bb 사이클 시작 #39/100
+[21:35:21] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 74개
+총 엣지: 122개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 37개
+  •  hypothesis: 36개
+
+출처별:
+  gemini-2.0-flash: 37개
+  gpt-5.2: 37개
+
+관계 종류:
+  EDGE_TO: 36개
+  [EDGE_TO]: 1개
+  critiques: 37개
+  temporal_bridge: 48개
+[21:35:21] KG3 🕰️ 오래된 노드 후보: 8개
+[21:35:21] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[21:35:33] KG3 ✅ Agent A 완료 (1408 chars)
+[21:35:48] KG3 ✅ Agent B (Gemini Flash) 완료
+[21:35:48] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 증폭기: “KG 편집 연산(merge/split/prune) 의미론 불일치 + 비가역적 누적” (id: n-075 → n-005)
+[21:35:48] KG3 ✅ Agent B(Gemini) 노드 추가: n-076 → n-075 (cross-source!)
+  edge_span=26.1노드 평균 간격 → 시간 초월 연결 활발
+  max_span=72 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2906 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:35:49] KG3 ✅ KG-3bb 사이클 완료
+[21:35:49] KG3 🌱 KG-3bb 사이클 시작 #40/100
+[21:35:49] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 76개
+총 엣지: 126개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 38개
+  •  hypothesis: 37개
+
+출처별:
+  gemini-2.0-flash: 38개
+  gpt-5.2: 38개
+
+관계 종류:
+  EDGE_TO: 37개
+  [EDGE_TO]: 1개
+  critiques: 38개
+  temporal_bridge: 50개
+[21:35:49] KG3 🕰️ 오래된 노드 후보: 8개
+[21:35:49] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[21:35:59] KG3 ✅ Agent A 완료 (1193 chars)
+[21:36:13] KG3 ✅ Agent B (Gemini Flash) 완료
+[21:36:13] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 2차 원인: “행동 로그/기억 표현의 비가역 압축(Log Compression) 불일치” (id: n-077 → n-001)
+[21:36:13] KG3 ✅ Agent B(Gemini) 노드 추가: n-078 → n-077 (cross-source!)
+  edge_span=26.3노드 평균 간격 → 시간 초월 연결 활발
+  max_span=76 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2905 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:36:14] KG3 ✅ KG-3bb 사이클 완료
+[21:40:04] KG3 🌱 KG-3bb 사이클 시작 #41/100
+[21:40:04] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 78개
+총 엣지: 128개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 39개
+  •  hypothesis: 38개
+
+출처별:
+  gemini-2.0-flash: 39개
+  gpt-5.2: 39개
+
+관계 종류:
+  EDGE_TO: 38개
+  [EDGE_TO]: 1개
+  critiques: 39개
+  temporal_bridge: 50개
+[21:40:04] KG3 🕰️ 오래된 노드 후보: 8개
+[21:40:04] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[21:40:16] KG3 ✅ Agent A 완료 (1369 chars)
+[21:40:27] KG3 ✅ Agent B (Gemini Flash) 완료
+[21:40:27] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 상위 원인: “편집 연산 의미론(Edit-Operation Semantics) 불일치” (id: n-079 → n-005)
+[21:40:27] KG3 ✅ Agent B(Gemini) 노드 추가: n-080 → n-079 (cross-source!)
+  edge_span=27.2노드 평균 간격 → 시간 초월 연결 활발
+  max_span=78 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2905 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:40:27] KG3 ✅ KG-3bb 사이클 완료
+[21:52:00] KG3 🌱 KG-3bb 사이클 시작 #42/100
+[21:52:00] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 80개
+총 엣지: 132개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 40개
+  •  hypothesis: 39개
+
+출처별:
+  gemini-2.0-flash: 40개
+  gpt-5.2: 40개
+
+관계 종류:
+  EDGE_TO: 39개
+  [EDGE_TO]: 1개
+  critiques: 40개
+  temporal_bridge: 52개
+[21:52:00] KG3 🕰️ 오래된 노드 후보: 8개
+[21:52:00] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[21:52:12] KG3 ✅ Agent A 완료 (1438 chars)
+[21:52:54] KG3 🌱 KG-3bb 사이클 시작 #43/100
+[21:52:54] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 80개
+총 엣지: 132개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 40개
+  •  hypothesis: 39개
+
+출처별:
+  gemini-2.0-flash: 40개
+  gpt-5.2: 40개
+
+관계 종류:
+  EDGE_TO: 39개
+  [EDGE_TO]: 1개
+  critiques: 40개
+  temporal_bridge: 52개
+[21:52:54] KG3 🕰️ 오래된 노드 후보: 8개
+[21:52:54] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[21:53:07] KG3 ✅ Agent A 완료 (1412 chars)
+[21:53:19] KG3 ✅ Agent B (Gemini Flash) 완료
+[21:53:19] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 상위 원인: “암묵적 평가함수/목적(Utility) 불일치로 인한 그래프 갱신 목표의 괴리” (id: n-081 → n-005)
+[21:53:19] KG3 ✅ Agent B(Gemini) 노드 추가: n-082 → n-081 (cross-source!)
+  edge_span=27.7노드 평균 간격 → 시간 초월 연결 활발
+  max_span=78 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2904 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:53:20] KG3 ✅ KG-3bb 사이클 완료
+[21:53:20] KG3 🌱 KG-3bb 사이클 시작 #44/100
+[21:53:20] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 82개
+총 엣지: 135개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 41개
+  •  hypothesis: 40개
+
+출처별:
+  gemini-2.0-flash: 41개
+  gpt-5.2: 41개
+
+관계 종류:
+  EDGE_TO: 40개
+  [EDGE_TO]: 1개
+  critiques: 41개
+  temporal_bridge: 53개
+[21:53:20] KG3 🕰️ 오래된 노드 후보: 8개
+[21:53:20] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[21:53:30] KG3 ✅ Agent A 완료 (1239 chars)
+[21:53:40] KG3 ✅ Agent B (Gemini Flash) 완료
+[21:53:40] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 핵심 병목: “그래프 연산 의미론(Edge Semantics) 불일치” 가설 (id: n-083 → n-005)
+[21:53:40] KG3 ✅ Agent B(Gemini) 노드 추가: n-084 → n-083 (cross-source!)
+  edge_span=28.2노드 평균 간격 → 시간 초월 연결 활발
+  max_span=78 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2904 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:53:40] KG3 ✅ KG-3bb 사이클 완료
+[21:53:52] KG3 🌱 KG-3bb 사이클 시작 #45/100
+[21:53:52] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 84개
+총 엣지: 138개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 42개
+  •  hypothesis: 41개
+
+출처별:
+  gemini-2.0-flash: 42개
+  gpt-5.2: 42개
+
+관계 종류:
+  EDGE_TO: 41개
+  [EDGE_TO]: 1개
+  critiques: 42개
+  temporal_bridge: 54개
+[21:53:52] KG3 🕰️ 오래된 노드 후보: 8개
+[21:53:52] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[21:54:05] KG3 ✅ Agent A 완료 (1511 chars)
+[21:54:28] KG3 ✅ Agent B (Gemini Flash) 완료
+[21:54:28] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 2차 원인: “암묵적 그래프 연산자(Implicit Graph Operator) 불일치” (id: n-085 → n-007)
+[21:54:28] KG3 ✅ Agent B(Gemini) 노드 추가: n-086 → n-085 (cross-source!)
+  edge_span=28.4노드 평균 간격 → 시간 초월 연결 활발
+  max_span=78 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2903 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:54:28] KG3 ✅ KG-3bb 사이클 완료
+[21:54:28] KG3 🌱 KG-3bb 사이클 시작 #46/100
+[21:54:29] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 86개
+총 엣지: 140개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 43개
+  •  hypothesis: 42개
+
+출처별:
+  gemini-2.0-flash: 43개
+  gpt-5.2: 43개
+
+관계 종류:
+  EDGE_TO: 42개
+  [EDGE_TO]: 1개
+  critiques: 43개
+  temporal_bridge: 54개
+[21:54:29] KG3 🕰️ 오래된 노드 후보: 8개
+[21:54:29] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[21:54:40] KG3 ✅ Agent A 완료 (1278 chars)
+[21:54:54] KG3 ✅ Agent B (Gemini Flash) 완료
+[21:54:54] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 근본 원인 후보: “학습된 메타-프롬프트/대화 규약(pragmatics) 불일치” (id: n-087 → n-007)
+[21:54:54] KG3 ✅ Agent B(Gemini) 노드 추가: n-088 → n-087 (cross-source!)
+  edge_span=28.9노드 평균 간격 → 시간 초월 연결 활발
+  max_span=80 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2903 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:54:54] KG3 ✅ KG-3bb 사이클 완료
+[21:54:55] KG3 🌱 KG-3bb 사이클 시작 #47/100
+[21:54:55] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 88개
+총 엣지: 143개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 44개
+  •  hypothesis: 43개
+
+출처별:
+  gemini-2.0-flash: 44개
+  gpt-5.2: 44개
+
+관계 종류:
+  EDGE_TO: 43개
+  [EDGE_TO]: 1개
+  critiques: 44개
+  temporal_bridge: 55개
+[21:54:56] KG3 🕰️ 오래된 노드 후보: 8개
+[21:54:56] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[21:55:10] KG3 ✅ Agent A 완료 (1428 chars)
+[21:55:20] KG3 ✅ Agent B (Gemini Flash) 완료
+[21:55:20] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 시스템적 원인: “업데이트 비동기성(Asynchronous Model/Policy Updates)”에 의한 의미 기준선 이동 (id: n-089 → n-007)
+[21:55:20] KG3 ✅ Agent B(Gemini) 노드 추가: n-090 → n-089 (cross-source!)
+  edge_span=29.4노드 평균 간격 → 시간 초월 연결 활발
+  max_span=82 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2903 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:55:20] KG3 ✅ KG-3bb 사이클 완료
+[21:55:26] KG3 🌱 KG-3bb 사이클 시작 #48/100
+[21:55:27] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 90개
+총 엣지: 146개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 45개
+  •  hypothesis: 44개
+
+출처별:
+  gemini-2.0-flash: 45개
+  gpt-5.2: 45개
+
+관계 종류:
+  EDGE_TO: 44개
+  [EDGE_TO]: 1개
+  critiques: 45개
+  temporal_bridge: 56개
+[21:55:27] KG3 🕰️ 오래된 노드 후보: 8개
+[21:55:27] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[21:55:40] KG3 ✅ Agent A 완료 (1321 chars)
+[21:55:51] KG3 ✅ Agent B (Gemini Flash) 완료
+[21:55:51] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 근본 원인 후보: “암묵적 메타-스키마(Editing Meta-Schema) 불일치” (id: n-091 → n-005)
+[21:55:51] KG3 ✅ Agent B(Gemini) 노드 추가: n-092 → n-091 (cross-source!)
+  edge_span=30.0노드 평균 간격 → 시간 초월 연결 활발
+  max_span=89 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2902 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:55:52] KG3 ✅ KG-3bb 사이클 완료
+[21:56:01] KG3 🌱 KG-3bb 사이클 시작 #49/100
+[21:56:01] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 92개
+총 엣지: 149개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 46개
+  •  hypothesis: 45개
+
+출처별:
+  gemini-2.0-flash: 46개
+  gpt-5.2: 46개
+
+관계 종류:
+  EDGE_TO: 45개
+  [EDGE_TO]: 1개
+  critiques: 46개
+  temporal_bridge: 57개
+[21:56:01] KG3 🕰️ 오래된 노드 후보: 8개
+[21:56:01] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[21:56:14] KG3 ✅ Agent A 완료 (1272 chars)
+[21:56:25] KG3 ✅ Agent B (Gemini Flash) 완료
+[21:56:25] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 “업데이트 비동기성(Temporal Version Skew)” 가설 (id: n-093 → n-001)
+[21:56:25] KG3 ✅ Agent B(Gemini) 노드 추가: n-094 → n-093 (cross-source!)
+  edge_span=30.8노드 평균 간격 → 시간 초월 연결 활발
+  max_span=92 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2902 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:56:25] KG3 ✅ KG-3bb 사이클 완료
+[21:56:28] KG3 🌱 KG-3bb 사이클 시작 #50/100
+[21:56:28] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 94개
+총 엣지: 153개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 47개
+  •  hypothesis: 46개
+
+출처별:
+  gemini-2.0-flash: 47개
+  gpt-5.2: 47개
+
+관계 종류:
+  EDGE_TO: 46개
+  [EDGE_TO]: 1개
+  critiques: 47개
+  temporal_bridge: 59개
+[21:56:28] KG3 🕰️ 오래된 노드 후보: 8개
+[21:56:28] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[21:56:40] KG3 ✅ Agent A 완료 (1271 chars)
+[21:56:57] KG3 ✅ Agent B (Gemini Flash) 완료
+[21:56:57] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 핵심 매개: “암묵적 편집-연산자(Implicit Graph Edit Operator) 불일치” (id: n-095 → n-005)
+[21:56:57] KG3 ✅ Agent B(Gemini) 노드 추가: n-096 → n-095 (cross-source!)
+  edge_span=31.3노드 평균 간격 → 시간 초월 연결 활발
+  max_span=92 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2902 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:56:57] KG3 ✅ KG-3bb 사이클 완료
+[21:56:57] KG3 🌱 KG-3bb 사이클 시작 #51/100
+[21:56:57] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 96개
+총 엣지: 156개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 48개
+  •  hypothesis: 47개
+
+출처별:
+  gemini-2.0-flash: 48개
+  gpt-5.2: 48개
+
+관계 종류:
+  EDGE_TO: 47개
+  [EDGE_TO]: 1개
+  critiques: 48개
+  temporal_bridge: 60개
+[21:56:57] KG3 🕰️ 오래된 노드 후보: 8개
+[21:56:57] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[21:57:09] KG3 ✅ Agent A 완료 (1353 chars)
+[21:57:22] KG3 ✅ Agent B (Gemini Flash) 완료
+[21:57:22] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 촉발 요인: “암묵적 온톨로지/타입 시스템 불일치(Implicit Ontology & Type Drift)” (id: n-097 → n-001)
+[21:57:22] KG3 ✅ Agent B(Gemini) 노드 추가: n-098 → n-097 (cross-source!)
+  edge_span=32.3노드 평균 간격 → 시간 초월 연결 활발
+  max_span=96 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2901 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:57:22] KG3 ✅ KG-3bb 사이클 완료
+[21:57:22] KG3 🌱 KG-3bb 사이클 시작 #52/100
+[21:57:22] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 98개
+총 엣지: 160개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 49개
+  •  hypothesis: 48개
+
+출처별:
+  gemini-2.0-flash: 49개
+  gpt-5.2: 49개
+
+관계 종류:
+  EDGE_TO: 48개
+  [EDGE_TO]: 1개
+  critiques: 49개
+  temporal_bridge: 62개
+[21:57:22] KG3 🕰️ 오래된 노드 후보: 8개
+[21:57:22] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[21:57:34] KG3 ✅ Agent A 완료 (1333 chars)
+[21:57:50] KG3 ✅ Agent B (Gemini Flash) 완료
+[21:57:50] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 누적 원인: “업데이트 비동기(Temporal Model Drift) + 기억/요약 압축 차이로 인한 기준점 이동” (id: n-099 → n-003)
+[21:57:50] KG3 ✅ Agent B(Gemini) 노드 추가: n-100 → n-099 (cross-source!)
+  edge_span=33.2노드 평균 간격 → 시간 초월 연결 활발
+  max_span=97 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2901 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:57:50] KG3 ✅ KG-3bb 사이클 완료
+[21:58:08] KG3 🌱 KG-3bb 사이클 시작 #53/100
+[21:58:08] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 100개
+총 엣지: 164개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 50개
+  •  hypothesis: 49개
+
+출처별:
+  gemini-2.0-flash: 50개
+  gpt-5.2: 50개
+
+관계 종류:
+  EDGE_TO: 49개
+  [EDGE_TO]: 1개
+  critiques: 50개
+  temporal_bridge: 64개
+[21:58:08] KG3 🕰️ 오래된 노드 후보: 8개
+[21:58:08] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:00:31] KG3 🌱 KG-3bb 사이클 시작 #54/100
+[22:00:31] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 100개
+총 엣지: 164개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 50개
+  •  hypothesis: 49개
+
+출처별:
+  gemini-2.0-flash: 50개
+  gpt-5.2: 50개
+
+관계 종류:
+  EDGE_TO: 49개
+  [EDGE_TO]: 1개
+  critiques: 50개
+  temporal_bridge: 64개
+[22:00:31] KG3 🕰️ 오래된 노드 후보: 8개
+[22:00:31] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:00:43] KG3 ✅ Agent A 완료 (1488 chars)
+[22:00:58] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:00:58] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 시스템적 원인: “편집 연산자/정규화 규칙(Editing Operator & Normalization) 비가환성” (id: n-101 → n-005)
+[22:00:58] KG3 ✅ Agent B(Gemini) 노드 추가: n-102 → n-101 (cross-source!)
+  edge_span=33.8노드 평균 간격 → 시간 초월 연결 활발
+  max_span=97 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2901 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:00:58] KG3 ✅ KG-3bb 사이클 완료
+[22:00:58] KG3 🌱 KG-3bb 사이클 시작 #55/100
+[22:00:58] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 102개
+총 엣지: 167개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 51개
+  •  hypothesis: 50개
+
+출처별:
+  gemini-2.0-flash: 51개
+  gpt-5.2: 51개
+
+관계 종류:
+  EDGE_TO: 50개
+  [EDGE_TO]: 1개
+  critiques: 51개
+  temporal_bridge: 65개
+[22:00:58] KG3 🕰️ 오래된 노드 후보: 8개
+[22:00:58] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:01:13] KG3 ✅ Agent A 완료 (1525 chars)
+[22:01:27] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:01:27] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 또 다른 주원인: “행동-표현 정렬(Policy↔Representation Alignment) 실패로 인한 비가역적 편집(drift locking)” (id: n-103 → n-005)
+[22:01:27] KG3 ✅ Agent B(Gemini) 노드 추가: n-104 → n-103 (cross-source!)
+  edge_span=34.0노드 평균 간격 → 시간 초월 연결 활발
+  max_span=98 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2901 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:01:27] KG3 ✅ KG-3bb 사이클 완료
+[22:01:39] KG3 🌱 KG-3bb 사이클 시작 #56/100
+[22:01:39] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 104개
+총 엣지: 169개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 52개
+  •  hypothesis: 51개
+
+출처별:
+  gemini-2.0-flash: 52개
+  gpt-5.2: 52개
+
+관계 종류:
+  EDGE_TO: 51개
+  [EDGE_TO]: 1개
+  critiques: 52개
+  temporal_bridge: 65개
+[22:01:39] KG3 🕰️ 오래된 노드 후보: 8개
+[22:01:39] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:01:49] KG3 ✅ Agent A 완료 (1342 chars)
+[22:02:00] KG3 🌱 KG-3bb 사이클 시작 #57/100
+[22:02:00] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 104개
+총 엣지: 169개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 52개
+  •  hypothesis: 51개
+
+출처별:
+  gemini-2.0-flash: 52개
+  gpt-5.2: 52개
+
+관계 종류:
+  EDGE_TO: 51개
+  [EDGE_TO]: 1개
+  critiques: 52개
+  temporal_bridge: 65개
+[22:02:00] KG3 🕰️ 오래된 노드 후보: 8개
+[22:02:00] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:02:12] KG3 ✅ Agent A 완료 (1301 chars)
+[22:02:24] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:02:24] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 핵심 증폭기: “편집 연산 의미론(Edit Semantics) 불일치” (id: n-105 → n-005)
+[22:02:24] KG3 ✅ Agent B(Gemini) 노드 추가: n-106 → n-105 (cross-source!)
+  edge_span=34.5노드 평균 간격 → 시간 초월 연결 활발
+  max_span=100 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2900 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:02:24] KG3 ✅ KG-3bb 사이클 완료
+[22:02:24] KG3 🌱 KG-3bb 사이클 시작 #58/100
+[22:02:24] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 106개
+총 엣지: 172개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 53개
+  •  hypothesis: 52개
+
+출처별:
+  gemini-2.0-flash: 53개
+  gpt-5.2: 53개
+
+관계 종류:
+  EDGE_TO: 52개
+  [EDGE_TO]: 1개
+  critiques: 53개
+  temporal_bridge: 66개
+[22:02:24] KG3 🕰️ 오래된 노드 후보: 8개
+[22:02:24] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:02:35] KG3 ✅ Agent A 완료 (1183 chars)
+[22:02:49] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:02:49] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 촉발 요인: “편집 연산 의미론(Edit-Operation Semantics) 불일치” (id: n-107 → n-005)
+[22:02:49] KG3 ✅ Agent B(Gemini) 노드 추가: n-108 → n-107 (cross-source!)
+  edge_span=35.4노드 평균 간격 → 시간 초월 연결 활발
+  max_span=102 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2900 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:02:49] KG3 ✅ KG-3bb 사이클 완료
+[22:02:49] KG3 🌱 KG-3bb 사이클 시작 #59/100
+[22:02:49] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 108개
+총 엣지: 176개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 54개
+  •  hypothesis: 53개
+
+출처별:
+  gemini-2.0-flash: 54개
+  gpt-5.2: 54개
+
+관계 종류:
+  EDGE_TO: 53개
+  [EDGE_TO]: 1개
+  critiques: 54개
+  temporal_bridge: 68개
+[22:02:49] KG3 🕰️ 오래된 노드 후보: 8개
+[22:02:49] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:03:04] KG3 ✅ Agent A 완료 (1564 chars)
+[22:03:22] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:03:22] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 촉발 요인: “메타-대화 규약(Meta-conversational Contract) 불일치” 가설   (id: n-109 → n-007)
+[22:03:22] KG3 ✅ Agent B(Gemini) 노드 추가: n-110 → n-109 (cross-source!)
+  edge_span=36.2노드 평균 간격 → 시간 초월 연결 활발
+  max_span=102 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2900 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:03:22] KG3 ✅ KG-3bb 사이클 완료
+[22:03:24] KG3 🌱 KG-3bb 사이클 시작 #60/100
+[22:03:24] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 110개
+총 엣지: 180개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 55개
+  •  hypothesis: 54개
+
+출처별:
+  gemini-2.0-flash: 55개
+  gpt-5.2: 55개
+
+관계 종류:
+  EDGE_TO: 54개
+  [EDGE_TO]: 1개
+  critiques: 55개
+  temporal_bridge: 70개
+[22:03:25] KG3 🕰️ 오래된 노드 후보: 8개
+[22:03:25] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:03:37] KG3 ✅ Agent A 완료 (1305 chars)
+[22:03:53] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:03:53] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 촉발 요인: “암묵적 온톨로지(타입/관계) 불일치로 인한 그래프 연산 비가환성” (id: n-111 → n-005)
+[22:03:53] KG3 ✅ Agent B(Gemini) 노드 추가: n-112 → n-111 (cross-source!)
+  edge_span=37.1노드 평균 간격 → 시간 초월 연결 활발
+  max_span=110 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2900 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:03:53] KG3 ✅ KG-3bb 사이클 완료
+[22:03:53] KG3 🌱 KG-3bb 사이클 시작 #61/100
+[22:03:53] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 112개
+총 엣지: 184개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 56개
+  •  hypothesis: 55개
+
+출처별:
+  gemini-2.0-flash: 56개
+  gpt-5.2: 56개
+
+관계 종류:
+  EDGE_TO: 55개
+  [EDGE_TO]: 1개
+  critiques: 56개
+  temporal_bridge: 72개
+[22:03:53] KG3 🕰️ 오래된 노드 후보: 8개
+[22:03:53] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:04:07] KG3 ✅ Agent A 완료 (1496 chars)
+[22:04:21] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:04:21] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 상위 원인: “암묵적 스키마/온톨로지(Implicit Schema) 불일치” (id: n-113 → n-007)
+[22:04:22] KG3 ✅ Agent B(Gemini) 노드 추가: n-114 → n-113 (cross-source!)
+  edge_span=38.0노드 평균 간격 → 시간 초월 연결 활발
+  max_span=110 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2899 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:04:22] KG3 ✅ KG-3bb 사이클 완료
+[22:04:31] KG3 🌱 KG-3bb 사이클 시작 #62/100
+[22:04:31] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 114개
+총 엣지: 188개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 57개
+  •  hypothesis: 56개
+
+출처별:
+  gemini-2.0-flash: 57개
+  gpt-5.2: 57개
+
+관계 종류:
+  EDGE_TO: 56개
+  [EDGE_TO]: 1개
+  critiques: 57개
+  temporal_bridge: 74개
+[22:04:31] KG3 🕰️ 오래된 노드 후보: 8개
+[22:04:31] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:04:43] KG3 ✅ Agent A 완료 (1276 chars)
+[22:04:53] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:04:54] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 “편집 연산 의미론(Editing Semantics) 불일치” 가설 (id: n-115 → n-005)
+[22:04:54] KG3 ✅ Agent B(Gemini) 노드 추가: n-116 → n-115 (cross-source!)
+  edge_span=38.2노드 평균 간격 → 시간 초월 연결 활발
+  max_span=110 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2899 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:04:54] KG3 ✅ KG-3bb 사이클 완료
+[22:05:09] KG3 🌱 KG-3bb 사이클 시작 #63/100
+[22:05:09] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 116개
+총 엣지: 190개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 58개
+  •  hypothesis: 57개
+
+출처별:
+  gemini-2.0-flash: 58개
+  gpt-5.2: 58개
+
+관계 종류:
+  EDGE_TO: 57개
+  [EDGE_TO]: 1개
+  critiques: 58개
+  temporal_bridge: 74개
+[22:05:09] KG3 🕰️ 오래된 노드 후보: 8개
+[22:05:09] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:05:19] KG3 ✅ Agent A 완료 (1246 chars)
+[22:05:31] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:05:31] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 추가 원인: “그래프 연산 의미론(Operation Semantics) 불일치” (id: n-117 → n-005)
+[22:05:31] KG3 ✅ Agent B(Gemini) 노드 추가: n-118 → n-117 (cross-source!)
+  edge_span=39.0노드 평균 간격 → 시간 초월 연결 활발
+  max_span=112 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2899 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:05:31] KG3 ✅ KG-3bb 사이클 완료
+[22:05:31] KG3 🌱 KG-3bb 사이클 시작 #64/100
+[22:05:31] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 118개
+총 엣지: 194개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 59개
+  •  hypothesis: 58개
+
+출처별:
+  gemini-2.0-flash: 59개
+  gpt-5.2: 59개
+
+관계 종류:
+  EDGE_TO: 58개
+  [EDGE_TO]: 1개
+  critiques: 59개
+  temporal_bridge: 76개
+[22:05:31] KG3 🕰️ 오래된 노드 후보: 8개
+[22:05:31] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:05:46] KG3 ✅ Agent A 완료 (1418 chars)
+[22:06:05] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:06:05] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 상위 원인: “암묵적 평가함수(Utility) 불일치” 가설   (id: n-119 → n-005)
+[22:06:05] KG3 ✅ Agent B(Gemini) 노드 추가: n-120 → n-119 (cross-source!)
+  edge_span=39.6노드 평균 간격 → 시간 초월 연결 활발
+  max_span=114 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2899 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:06:05] KG3 ✅ KG-3bb 사이클 완료
+[22:06:05] KG3 🌱 KG-3bb 사이클 시작 #65/100
+[22:06:05] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 120개
+총 엣지: 197개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 60개
+  •  hypothesis: 59개
+
+출처별:
+  gemini-2.0-flash: 60개
+  gpt-5.2: 60개
+
+관계 종류:
+  EDGE_TO: 59개
+  [EDGE_TO]: 1개
+  critiques: 60개
+  temporal_bridge: 77개
+[22:06:05] KG3 🕰️ 오래된 노드 후보: 8개
+[22:06:05] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:06:17] KG3 ✅ Agent A 완료 (1288 chars)
+[22:06:37] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:06:37] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 또 다른 주원인: “그래프 연산 의미론(Semantics) 불일치” (id: n-121 → n-005)
+[22:06:37] KG3 ✅ Agent B(Gemini) 노드 추가: n-122 → n-121 (cross-source!)
+  edge_span=40.6노드 평균 간격 → 시간 초월 연결 활발
+  max_span=119 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2899 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:06:37] KG3 ✅ KG-3bb 사이클 완료
+[22:06:37] KG3 🌱 KG-3bb 사이클 시작 #66/100
+[22:06:37] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 122개
+총 엣지: 201개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 61개
+  •  hypothesis: 60개
+
+출처별:
+  gemini-2.0-flash: 61개
+  gpt-5.2: 61개
+
+관계 종류:
+  EDGE_TO: 60개
+  [EDGE_TO]: 1개
+  critiques: 61개
+  temporal_bridge: 79개
+[22:06:37] KG3 🕰️ 오래된 노드 후보: 8개
+[22:06:37] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:06:50] KG3 ✅ Agent A 완료 (1306 chars)
+[22:07:04] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:07:04] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 상위 원인: “암묵적 스키마/온톨로지 불일치(Implicit Schema Misalignment)” (id: n-123 → n-001)
+[22:07:04] KG3 ✅ Agent B(Gemini) 노드 추가: n-124 → n-123 (cross-source!)
+  edge_span=41.4노드 평균 간격 → 시간 초월 연결 활발
+  max_span=122 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2898 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:07:04] KG3 ✅ KG-3bb 사이클 완료
+[22:07:04] KG3 🌱 KG-3bb 사이클 시작 #67/100
+[22:07:04] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 124개
+총 엣지: 205개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 62개
+  •  hypothesis: 61개
+
+출처별:
+  gemini-2.0-flash: 62개
+  gpt-5.2: 62개
+
+관계 종류:
+  EDGE_TO: 61개
+  [EDGE_TO]: 1개
+  critiques: 62개
+  temporal_bridge: 81개
+[22:07:04] KG3 🕰️ 오래된 노드 후보: 8개
+[22:07:04] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:07:17] KG3 ✅ Agent A 완료 (1353 chars)
+[22:07:33] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:07:33] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 상위 원인: “그래프 연산 의미론(Graph Operation Semantics) 불일치” (id: n-125 → n-005)
+[22:07:33] KG3 ✅ Agent B(Gemini) 노드 추가: n-126 → n-125 (cross-source!)
+  edge_span=42.3노드 평균 간격 → 시간 초월 연결 활발
+  max_span=122 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2898 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:07:34] KG3 ✅ KG-3bb 사이클 완료
+[22:07:36] KG3 🌱 KG-3bb 사이클 시작 #68/100
+[22:07:36] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 126개
+총 엣지: 209개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 63개
+  •  hypothesis: 62개
+
+출처별:
+  gemini-2.0-flash: 63개
+  gpt-5.2: 63개
+
+관계 종류:
+  EDGE_TO: 62개
+  [EDGE_TO]: 1개
+  critiques: 63개
+  temporal_bridge: 83개
+[22:07:36] KG3 🕰️ 오래된 노드 후보: 8개
+[22:07:36] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:07:48] KG3 ✅ Agent A 완료 (1312 chars)
+[22:08:04] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:08:04] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 2차 원인: “에디터 연산 의미론(Edit Semantics) 불일치” 가설   (id: n-127 → n-005)
+[22:08:04] KG3 ✅ Agent B(Gemini) 노드 추가: n-128 → n-127 (cross-source!)
+  edge_span=43.2노드 평균 간격 → 시간 초월 연결 활발
+  max_span=122 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2898 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:08:04] KG3 ✅ KG-3bb 사이클 완료
+[22:08:04] KG3 🌱 KG-3bb 사이클 시작 #69/100
+[22:08:04] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 128개
+총 엣지: 213개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 64개
+  •  hypothesis: 63개
+
+출처별:
+  gemini-2.0-flash: 64개
+  gpt-5.2: 64개
+
+관계 종류:
+  EDGE_TO: 63개
+  [EDGE_TO]: 1개
+  critiques: 64개
+  temporal_bridge: 85개
+[22:08:04] KG3 🕰️ 오래된 노드 후보: 8개
+[22:08:04] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:08:18] KG3 ✅ Agent A 완료 (1504 chars)
+[22:08:34] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:08:34] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 촉매: “암묵적 온톨로지/스키마 정렬 실패(Implicit Ontology Misalignment)” (id: n-129 → n-001)
+[22:08:34] KG3 ✅ Agent B(Gemini) 노드 추가: n-130 → n-129 (cross-source!)
+  edge_span=44.0노드 평균 간격 → 시간 초월 연결 활발
+  max_span=128 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2898 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:08:34] KG3 ✅ KG-3bb 사이클 완료
+[22:08:34] KG3 🌱 KG-3bb 사이클 시작 #70/100
+[22:08:34] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 130개
+총 엣지: 217개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 65개
+  •  hypothesis: 64개
+
+출처별:
+  gemini-2.0-flash: 65개
+  gpt-5.2: 65개
+
+관계 종류:
+  EDGE_TO: 64개
+  [EDGE_TO]: 1개
+  critiques: 65개
+  temporal_bridge: 87개
+[22:08:34] KG3 🕰️ 오래된 노드 후보: 8개
+[22:08:34] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:08:47] KG3 ✅ Agent A 완료 (1247 chars)
+[22:08:58] KG3 🌱 KG-3bb 사이클 시작 #71/100
+[22:08:58] KG3 ⚠️  이전 KG-3bb 사이클 실행 중 — 스킵
+[22:09:17] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:09:17] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 촉발 요인: “그래프 연산 의미론(Operation Semantics) 불일치” (id: n-131 → n-005)
+[22:09:17] KG3 ✅ Agent B(Gemini) 노드 추가: n-132 → n-131 (cross-source!)
+  edge_span=44.6노드 평균 간격 → 시간 초월 연결 활발
+  max_span=128 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2898 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:09:17] KG3 ✅ KG-3bb 사이클 완료
+[22:09:17] KG3 🌱 KG-3bb 사이클 시작 #72/100
+[22:09:17] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 132개
+총 엣지: 220개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 66개
+  •  hypothesis: 65개
+
+출처별:
+  gemini-2.0-flash: 66개
+  gpt-5.2: 66개
+
+관계 종류:
+  EDGE_TO: 65개
+  [EDGE_TO]: 1개
+  critiques: 66개
+  temporal_bridge: 88개
+[22:09:17] KG3 🕰️ 오래된 노드 후보: 8개
+[22:09:17] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:09:30] KG3 ✅ Agent A 완료 (1425 chars)
+[22:09:43] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:09:43] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 “메타-업데이트 규칙 불일치(Revision Operator Drift)” 가설 (id: n-133 → n-005)
+[22:09:43] KG3 ✅ Agent B(Gemini) 노드 추가: n-134 → n-133 (cross-source!)
+  edge_span=45.1노드 평균 간격 → 시간 초월 연결 활발
+  max_span=128 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2898 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:09:43] KG3 ✅ KG-3bb 사이클 완료
+[22:22:58] KG3 🌱 KG-3bb 사이클 시작 #73/100
+[22:22:58] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 134개
+총 엣지: 223개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 67개
+  •  hypothesis: 66개
+
+출처별:
+  gemini-2.0-flash: 67개
+  gpt-5.2: 67개
+
+관계 종류:
+  EDGE_TO: 66개
+  [EDGE_TO]: 1개
+  critiques: 67개
+  temporal_bridge: 89개
+[22:22:58] KG3 🕰️ 오래된 노드 후보: 8개
+[22:22:58] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:23:51] KG3 🌱 KG-3bb 사이클 시작 #74/100
+[22:23:51] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 134개
+총 엣지: 223개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 67개
+  •  hypothesis: 66개
+
+출처별:
+  gemini-2.0-flash: 67개
+  gpt-5.2: 67개
+
+관계 종류:
+  EDGE_TO: 66개
+  [EDGE_TO]: 1개
+  critiques: 67개
+  temporal_bridge: 89개
+[22:23:52] KG3 🕰️ 오래된 노드 후보: 8개
+[22:23:52] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:24:05] KG3 ✅ Agent A 완료 (1395 chars)
+[22:24:08] KG3 🌱 KG-3bb 사이클 시작 #75/100
+[22:24:08] KG3 ⚠️  이전 KG-3bb 사이클 실행 중 — 스킵
+[22:24:18] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:24:18] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 핵심 매개: “그래프 연산 의미론(Editing Semantics) 불일치” (id: n-135 → n-005)
+[22:24:18] KG3 ✅ Agent B(Gemini) 노드 추가: n-136 → n-135 (cross-source!)
+  edge_span=45.9노드 평균 간격 → 시간 초월 연결 활발
+  max_span=130 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2897 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:24:18] KG3 ✅ KG-3bb 사이클 완료
+[22:24:24] KG3 🌱 KG-3bb 사이클 시작 #76/100
+[22:24:24] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 136개
+총 엣지: 227개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 68개
+  •  hypothesis: 67개
+
+출처별:
+  gemini-2.0-flash: 68개
+  gpt-5.2: 68개
+
+관계 종류:
+  EDGE_TO: 67개
+  [EDGE_TO]: 1개
+  critiques: 68개
+  temporal_bridge: 91개
+[22:24:24] KG3 🕰️ 오래된 노드 후보: 8개
+[22:24:24] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:24:38] KG3 ✅ Agent A 완료 (1489 chars)
+[22:24:47] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:24:47] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 동역학적 원인: “그래프 편집 연산 의미론(Operation Semantics) 불일치” (id: n-137 → n-005)
+[22:24:47] KG3 ✅ Agent B(Gemini) 노드 추가: n-138 → n-137 (cross-source!)
+  edge_span=46.4노드 평균 간격 → 시간 초월 연결 활발
+  max_span=132 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2897 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:24:47] KG3 ✅ KG-3bb 사이클 완료
+[22:24:47] KG3 🌱 KG-3bb 사이클 시작 #77/100
+[22:24:47] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 138개
+총 엣지: 230개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 69개
+  •  hypothesis: 68개
+
+출처별:
+  gemini-2.0-flash: 69개
+  gpt-5.2: 69개
+
+관계 종류:
+  EDGE_TO: 68개
+  [EDGE_TO]: 1개
+  critiques: 69개
+  temporal_bridge: 92개
+[22:24:47] KG3 🕰️ 오래된 노드 후보: 8개
+[22:24:47] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:25:01] KG3 ✅ Agent A 완료 (1445 chars)
+[22:25:14] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:25:14] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 “평가함수(Reward/Scoring) 불일치” 가설 (id: n-139 → n-003)
+[22:25:14] KG3 ✅ Agent B(Gemini) 노드 추가: n-140 → n-139 (cross-source!)
+  edge_span=46.6노드 평균 간격 → 시간 초월 연결 활발
+  max_span=136 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2897 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:25:14] KG3 ✅ KG-3bb 사이클 완료
+[22:25:15] KG3 🌱 KG-3bb 사이클 시작 #78/100
+[22:25:15] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 140개
+총 엣지: 232개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 70개
+  •  hypothesis: 69개
+
+출처별:
+  gemini-2.0-flash: 70개
+  gpt-5.2: 70개
+
+관계 종류:
+  EDGE_TO: 69개
+  [EDGE_TO]: 1개
+  critiques: 70개
+  temporal_bridge: 92개
+[22:25:15] KG3 🕰️ 오래된 노드 후보: 8개
+[22:25:15] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:25:31] KG3 ✅ Agent A 완료 (1444 chars)
+[22:25:45] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:25:45] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 추가 원인: “암묵적 편집 연산자(Implicit Graph-Edit Operator) 불일치” (id: n-141 → n-005)
+[22:25:46] KG3 ✅ Agent B(Gemini) 노드 추가: n-142 → n-141 (cross-source!)
+  edge_span=47.4노드 평균 간격 → 시간 초월 연결 활발
+  max_span=136 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2897 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:25:46] KG3 ✅ KG-3bb 사이클 완료
+[22:25:46] KG3 🌱 KG-3bb 사이클 시작 #79/100
+[22:25:46] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 142개
+총 엣지: 236개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 71개
+  •  hypothesis: 70개
+
+출처별:
+  gemini-2.0-flash: 71개
+  gpt-5.2: 71개
+
+관계 종류:
+  EDGE_TO: 70개
+  [EDGE_TO]: 1개
+  critiques: 71개
+  temporal_bridge: 94개
+[22:25:46] KG3 🕰️ 오래된 노드 후보: 8개
+[22:25:46] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:25:58] KG3 ✅ Agent A 완료 (1373 chars)
+[22:26:09] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:26:09] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 촉발 요인: “암묵적 우선순위/가중치 함수(Multi-objective Utility) 불일치” (id: n-143 → n-007)
+[22:26:09] KG3 ✅ Agent B(Gemini) 노드 추가: n-144 → n-143 (cross-source!)
+  edge_span=47.9노드 평균 간격 → 시간 초월 연결 활발
+  max_span=136 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2897 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:26:09] KG3 ✅ KG-3bb 사이클 완료
+[22:26:20] KG3 🌱 KG-3bb 사이클 시작 #80/100
+[22:26:20] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 144개
+총 엣지: 239개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 72개
+  •  hypothesis: 71개
+
+출처별:
+  gemini-2.0-flash: 72개
+  gpt-5.2: 72개
+
+관계 종류:
+  EDGE_TO: 71개
+  [EDGE_TO]: 1개
+  critiques: 72개
+  temporal_bridge: 95개
+[22:26:20] KG3 🕰️ 오래된 노드 후보: 8개
+[22:26:20] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:26:36] KG3 ✅ Agent A 완료 (1493 chars)
+[22:26:49] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:26:49] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 “정렬 앵커(Anchor) 부족” 가설   (id: n-145 → n-003)
+[22:26:49] KG3 ✅ Agent B(Gemini) 노드 추가: n-146 → n-145 (cross-source!)
+  edge_span=48.8노드 평균 간격 → 시간 초월 연결 활발
+  max_span=142 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2897 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:26:49] KG3 ✅ KG-3bb 사이클 완료
+[22:26:49] KG3 🌱 KG-3bb 사이클 시작 #81/100
+[22:26:49] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 146개
+총 엣지: 243개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 73개
+  •  hypothesis: 72개
+
+출처별:
+  gemini-2.0-flash: 73개
+  gpt-5.2: 73개
+
+관계 종류:
+  EDGE_TO: 72개
+  [EDGE_TO]: 1개
+  critiques: 73개
+  temporal_bridge: 97개
+[22:26:49] KG3 🕰️ 오래된 노드 후보: 8개
+[22:26:49] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:27:04] KG3 ✅ Agent A 완료 (1357 chars)
+[22:27:17] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:27:17] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 또 다른 주원인: “그래프 연산 의미론(Operator Semantics) 불일치” (id: n-147 → n-005)
+[22:27:17] KG3 ✅ Agent B(Gemini) 노드 추가: n-148 → n-147 (cross-source!)
+  edge_span=49.6노드 평균 간격 → 시간 초월 연결 활발
+  max_span=142 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2896 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:27:17] KG3 ✅ KG-3bb 사이클 완료
+[22:27:17] KG3 🌱 KG-3bb 사이클 시작 #82/100
+[22:27:17] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 148개
+총 엣지: 247개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 74개
+  •  hypothesis: 73개
+
+출처별:
+  gemini-2.0-flash: 74개
+  gpt-5.2: 74개
+
+관계 종류:
+  EDGE_TO: 73개
+  [EDGE_TO]: 1개
+  critiques: 74개
+  temporal_bridge: 99개
+[22:27:17] KG3 🕰️ 오래된 노드 후보: 8개
+[22:27:17] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:27:33] KG3 ✅ Agent A 완료 (1429 chars)
+[22:27:49] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:27:49] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 상위 원인: “그래프 연산 의미론(Operator Semantics) 불일치” (id: n-149 → n-005)
+[22:27:49] KG3 ✅ Agent B(Gemini) 노드 추가: n-150 → n-149 (cross-source!)
+  edge_span=50.5노드 평균 간격 → 시간 초월 연결 활발
+  max_span=144 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2896 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:27:49] KG3 ✅ KG-3bb 사이클 완료
+[22:27:49] KG3 🌱 KG-3bb 사이클 시작 #83/100
+[22:27:49] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 150개
+총 엣지: 251개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 75개
+  •  hypothesis: 74개
+
+출처별:
+  gemini-2.0-flash: 75개
+  gpt-5.2: 75개
+
+관계 종류:
+  EDGE_TO: 74개
+  [EDGE_TO]: 1개
+  critiques: 75개
+  temporal_bridge: 101개
+[22:27:49] KG3 🕰️ 오래된 노드 후보: 8개
+[22:27:49] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:28:05] KG3 ✅ Agent A 완료 (1338 chars)
+[22:28:22] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:28:22] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 또 다른 축: “정규화/캐노니컬라이제이션(Serialization) 규약 불일치” (id: n-151 → n-003)
+[22:28:22] KG3 ✅ Agent B(Gemini) 노드 추가: n-152 → n-151 (cross-source!)
+  edge_span=51.3노드 평균 간격 → 시간 초월 연결 활발
+  max_span=148 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2896 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:28:22] KG3 ✅ KG-3bb 사이클 완료
+[22:28:22] KG3 🌱 KG-3bb 사이클 시작 #84/100
+[22:28:22] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 152개
+총 엣지: 255개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 76개
+  •  hypothesis: 75개
+
+출처별:
+  gemini-2.0-flash: 76개
+  gpt-5.2: 76개
+
+관계 종류:
+  EDGE_TO: 75개
+  [EDGE_TO]: 1개
+  critiques: 76개
+  temporal_bridge: 103개
+[22:28:22] KG3 🕰️ 오래된 노드 후보: 8개
+[22:28:22] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:28:35] KG3 ✅ Agent A 완료 (1215 chars)
+[22:28:54] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:28:55] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 핵심 매개: “KG 연산 의미론(merge/update/delete) 불일치” (id: n-153 → n-005)
+[22:28:55] KG3 ✅ Agent B(Gemini) 노드 추가: n-154 → n-153 (cross-source!)
+  edge_span=52.1노드 평균 간격 → 시간 초월 연결 활발
+  max_span=148 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2896 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:28:55] KG3 ✅ KG-3bb 사이클 완료
+[22:29:07] KG3 🌱 KG-3bb 사이클 시작 #85/300
+[22:29:07] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 154개
+총 엣지: 259개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 77개
+  •  hypothesis: 76개
+
+출처별:
+  gemini-2.0-flash: 77개
+  gpt-5.2: 77개
+
+관계 종류:
+  EDGE_TO: 76개
+  [EDGE_TO]: 1개
+  critiques: 77개
+  temporal_bridge: 105개
+[22:29:07] KG3 🕰️ 오래된 노드 후보: 8개
+[22:29:07] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:29:22] KG3 ✅ Agent A 완료 (1338 chars)
+[22:29:35] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:29:35] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 동역학적 원인: “편집 연산자(Editing Operator) 비가환성(Non-commutativity)” (id: n-155 → n-005)
+[22:29:35] KG3 ✅ Agent B(Gemini) 노드 추가: n-156 → n-155 (cross-source!)
+  edge_span=52.6노드 평균 간격 → 시간 초월 연결 활발
+  max_span=150 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2896 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:29:35] KG3 ✅ KG-3bb 사이클 완료
+[22:29:36] KG3 🌱 KG-3bb 사이클 시작 #86/300
+[22:29:36] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 156개
+총 엣지: 262개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 78개
+  •  hypothesis: 77개
+
+출처별:
+  gemini-2.0-flash: 78개
+  gpt-5.2: 78개
+
+관계 종류:
+  EDGE_TO: 77개
+  [EDGE_TO]: 1개
+  critiques: 78개
+  temporal_bridge: 106개
+[22:29:36] KG3 🕰️ 오래된 노드 후보: 8개
+[22:29:36] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:29:50] KG3 ✅ Agent A 완료 (1354 chars)
+[22:30:01] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:30:01] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 제3요인: “업데이트 비동기성(Asynchronous Model Drift) + 메모리/요약 압축 차이”로 인한 시간-의존적 의미 불일치 (id: n-157 → n-005)
+[22:30:01] KG3 ✅ Agent B(Gemini) 노드 추가: n-158 → n-157 (cross-source!)
+  edge_span=53.3노드 평균 간격 → 시간 초월 연결 활발
+  max_span=152 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2896 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:30:01] KG3 ✅ KG-3bb 사이클 완료
+[22:30:06] KG3 🌱 KG-3bb 사이클 시작 #87/300
+[22:30:06] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 158개
+총 엣지: 266개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 79개
+  •  hypothesis: 78개
+
+출처별:
+  gemini-2.0-flash: 79개
+  gpt-5.2: 79개
+
+관계 종류:
+  EDGE_TO: 78개
+  [EDGE_TO]: 1개
+  critiques: 79개
+  temporal_bridge: 108개
+[22:30:06] KG3 🕰️ 오래된 노드 후보: 8개
+[22:30:06] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:30:19] KG3 ✅ Agent A 완료 (1327 chars)
+[22:30:30] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:30:30] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 ‘중간언어(Interlingua) 결핍’ 가설: 정렬 가능한 공통 스키마/정규형 부재가 temporal_bridge를 약화시킨다   (id: n-159 → n-001)
+[22:30:30] KG3 ✅ Agent B(Gemini) 노드 추가: n-160 → n-159 (cross-source!)
+  edge_span=54.3노드 평균 간격 → 시간 초월 연결 활발
+  max_span=159 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2896 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:30:30] KG3 ✅ KG-3bb 사이클 완료
+[22:30:48] KG3 🌱 KG-3bb 사이클 시작 #88/300
+[22:30:48] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 160개
+총 엣지: 270개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 80개
+  •  hypothesis: 79개
+
+출처별:
+  gemini-2.0-flash: 80개
+  gpt-5.2: 80개
+
+관계 종류:
+  EDGE_TO: 79개
+  [EDGE_TO]: 1개
+  critiques: 80개
+  temporal_bridge: 110개
+[22:30:48] KG3 🕰️ 오래된 노드 후보: 8개
+[22:30:48] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:31:02] KG3 ✅ Agent A 완료 (1377 chars)
+[22:31:18] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:31:18] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 촉발 요인: “정규화/캐노니컬라이제이션(Serialization) 불일치” (id: n-161 → n-001)
+[22:31:18] KG3 ✅ Agent B(Gemini) 노드 추가: n-162 → n-161 (cross-source!)
+  edge_span=54.8노드 평균 간격 → 시간 초월 연결 활발
+  max_span=160 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2896 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:31:18] KG3 ✅ KG-3bb 사이클 완료
+[22:31:18] KG3 🌱 KG-3bb 사이클 시작 #89/300
+[22:31:18] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 162개
+총 엣지: 273개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 81개
+  •  hypothesis: 80개
+
+출처별:
+  gemini-2.0-flash: 81개
+  gpt-5.2: 81개
+
+관계 종류:
+  EDGE_TO: 80개
+  [EDGE_TO]: 1개
+  critiques: 81개
+  temporal_bridge: 111개
+[22:31:18] KG3 🕰️ 오래된 노드 후보: 8개
+[22:31:18] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:31:32] KG3 ✅ Agent A 완료 (1368 chars)
+[22:31:54] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:31:54] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 상위 원인: “그래프 연산 의미론(Operator Semantics) 불일치” (id: n-163 → n-005)
+[22:31:54] KG3 ✅ Agent B(Gemini) 노드 추가: n-164 → n-163 (cross-source!)
+  edge_span=55.6노드 평균 간격 → 시간 초월 연결 활발
+  max_span=160 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2896 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:31:55] KG3 ✅ KG-3bb 사이클 완료
+[22:31:56] KG3 🌱 KG-3bb 사이클 시작 #90/300
+[22:31:56] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 164개
+총 엣지: 277개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 82개
+  •  hypothesis: 81개
+
+출처별:
+  gemini-2.0-flash: 82개
+  gpt-5.2: 82개
+
+관계 종류:
+  EDGE_TO: 81개
+  [EDGE_TO]: 1개
+  critiques: 82개
+  temporal_bridge: 113개
+[22:31:56] KG3 🕰️ 오래된 노드 후보: 8개
+[22:31:56] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:32:10] KG3 ✅ Agent A 완료 (1316 chars)
+[22:32:23] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:32:23] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 핵심 매개: “암묵적 스키마/온톨로지 정렬 실패(Implicit Schema Misalignment)” (id: n-165 → n-003)
+[22:32:23] KG3 ✅ Agent B(Gemini) 노드 추가: n-166 → n-165 (cross-source!)
+  edge_span=56.1노드 평균 간격 → 시간 초월 연결 활발
+  max_span=162 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2895 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:32:23] KG3 ✅ KG-3bb 사이클 완료
+[22:32:34] KG3 🌱 KG-3bb 사이클 시작 #91/300
+[22:32:34] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 166개
+총 엣지: 280개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 83개
+  •  hypothesis: 82개
+
+출처별:
+  gemini-2.0-flash: 83개
+  gpt-5.2: 83개
+
+관계 종류:
+  EDGE_TO: 82개
+  [EDGE_TO]: 1개
+  critiques: 83개
+  temporal_bridge: 114개
+[22:32:34] KG3 🕰️ 오래된 노드 후보: 8개
+[22:32:34] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:32:47] KG3 ✅ Agent A 완료 (1301 chars)
+[22:33:00] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:33:00] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 2차 원인: “메타-대화 상태 추적(State Tracking) 불일치” (id: n-167 → n-007)
+[22:33:00] KG3 ✅ Agent B(Gemini) 노드 추가: n-168 → n-167 (cross-source!)
+  edge_span=57.0노드 평균 간격 → 시간 초월 연결 활발
+  max_span=162 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2895 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:33:00] KG3 ✅ KG-3bb 사이클 완료
+[22:33:05] KG3 🌱 KG-3bb 사이클 시작 #92/300
+[22:33:05] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 168개
+총 엣지: 284개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 84개
+  •  hypothesis: 83개
+
+출처별:
+  gemini-2.0-flash: 84개
+  gpt-5.2: 84개
+
+관계 종류:
+  EDGE_TO: 83개
+  [EDGE_TO]: 1개
+  critiques: 84개
+  temporal_bridge: 116개
+[22:33:05] KG3 🕰️ 오래된 노드 후보: 8개
+[22:33:05] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:33:20] KG3 ✅ Agent A 완료 (1217 chars)
+[22:33:32] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:33:32] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 “의미 압축률(Semantic Compression Ratio) 불일치” 가설 (id: n-169 → n-001)
+[22:33:32] KG3 ✅ Agent B(Gemini) 노드 추가: n-170 → n-169 (cross-source!)
+  edge_span=57.9노드 평균 간격 → 시간 초월 연결 활발
+  max_span=168 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2895 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:33:32] KG3 ✅ KG-3bb 사이클 완료
+[22:33:42] KG3 🌱 KG-3bb 사이클 시작 #93/300
+[22:33:42] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 170개
+총 엣지: 288개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 85개
+  •  hypothesis: 84개
+
+출처별:
+  gemini-2.0-flash: 85개
+  gpt-5.2: 85개
+
+관계 종류:
+  EDGE_TO: 84개
+  [EDGE_TO]: 1개
+  critiques: 85개
+  temporal_bridge: 118개
+[22:33:42] KG3 🕰️ 오래된 노드 후보: 8개
+[22:33:42] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:33:56] KG3 ✅ Agent A 완료 (1248 chars)
+[22:34:08] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:34:08] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 촉발 요인: “메타-프로토콜(대화/편집 규약) 불일치로 인한 누적 편향” (id: n-171 → n-005)
+[22:34:09] KG3 ✅ Agent B(Gemini) 노드 추가: n-172 → n-171 (cross-source!)
+  edge_span=58.7노드 평균 간격 → 시간 초월 연결 활발
+  max_span=168 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2895 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:34:09] KG3 ✅ KG-3bb 사이클 완료
+[22:34:18] KG3 🌱 KG-3bb 사이클 시작 #94/300
+[22:34:18] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 172개
+총 엣지: 292개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 86개
+  •  hypothesis: 85개
+
+출처별:
+  gemini-2.0-flash: 86개
+  gpt-5.2: 86개
+
+관계 종류:
+  EDGE_TO: 85개
+  [EDGE_TO]: 1개
+  critiques: 86개
+  temporal_bridge: 120개
+[22:34:18] KG3 🕰️ 오래된 노드 후보: 8개
+[22:34:18] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:34:30] KG3 ✅ Agent A 완료 (1277 chars)
+[22:34:41] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:34:41] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 공통 상위원인: “암묵적 온톨로지/스키마 불일치(Implicit Ontology Drift)” (id: n-173 → n-001)
+[22:34:41] KG3 ✅ Agent B(Gemini) 노드 추가: n-174 → n-173 (cross-source!)
+  edge_span=59.2노드 평균 간격 → 시간 초월 연결 활발
+  max_span=172 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2895 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:34:41] KG3 ✅ KG-3bb 사이클 완료
+[22:50:38] KG3 🌱 KG-3bb 사이클 시작 #95/300
+[22:50:38] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 174개
+총 엣지: 295개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 87개
+  •  hypothesis: 86개
+
+출처별:
+  gemini-2.0-flash: 87개
+  gpt-5.2: 87개
+
+관계 종류:
+  EDGE_TO: 86개
+  [EDGE_TO]: 1개
+  critiques: 87개
+  temporal_bridge: 121개
+[22:50:38] KG3 🕰️ 오래된 노드 후보: 8개
+[22:50:38] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[22:50:52] KG3 ✅ Agent A 완료 (1356 chars)
+[22:51:15] KG3 ✅ Agent B (Gemini Flash) 완료
+[22:51:15] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 상위 원인: “정규화/캐노니컬라이제이션(Serialization) 규약 불일치” (id: n-175 → n-003)
+[22:51:15] KG3 ✅ Agent B(Gemini) 노드 추가: n-176 → n-175 (cross-source!)
+  edge_span=59.7노드 평균 간격 → 시간 초월 연결 활발
+  max_span=172 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2895 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:51:15] KG3 ✅ KG-3bb 사이클 완료
+[23:11:46] KG3 🌱 KG-3bb 사이클 시작 #96/300
+[23:11:46] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 176개
+총 엣지: 298개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 88개
+  •  hypothesis: 87개
+
+출처별:
+  gemini-2.0-flash: 88개
+  gpt-5.2: 88개
+
+관계 종류:
+  EDGE_TO: 87개
+  [EDGE_TO]: 1개
+  critiques: 88개
+  temporal_bridge: 122개
+[23:11:46] KG3 🕰️ 오래된 노드 후보: 8개
+[23:11:46] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[23:11:57] KG3 ✅ Agent A 완료 (1288 chars)
+[23:12:11] KG3 ✅ Agent B (Gemini Flash) 완료
+[23:12:11] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 촉발 요인: “그래프 연산 의미론(Operator Semantics) 불일치” (id: n-177 → n-005)
+[23:12:11] KG3 ✅ Agent B(Gemini) 노드 추가: n-178 → n-177 (cross-source!)
+  edge_span=60.2노드 평균 간격 → 시간 초월 연결 활발
+  max_span=172 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2895 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[23:12:11] KG3 ✅ KG-3bb 사이클 완료
+[23:40:35] KG3 🌱 KG-3bb 사이클 시작 #97/300
+[23:40:35] KG3 📊 KG-3bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 178개
+총 엣지: 301개
+
+노드 타입별:
+  •  [hypothesis]: 1개
+  •  critique: 89개
+  •  hypothesis: 88개
+
+출처별:
+  gemini-2.0-flash: 89개
+  gpt-5.2: 89개
+
+관계 종류:
+  EDGE_TO: 88개
+  [EDGE_TO]: 1개
+  critiques: 89개
+  temporal_bridge: 123개
+[23:40:35] KG3 🕰️ 오래된 노드 후보: 8개
+[23:40:35] KG3 🤖 Agent A (GPT-4o) 판단 중...
+[23:40:46] KG3 ✅ Agent A 완료 (1246 chars)
+[23:41:00] KG3 ✅ Agent B (Gemini Flash) 완료
+[23:41:00] KG3 ✅ Agent A 노드 추가: Cross-vendor CSER 저하의 촉발 요인: “암묵적 편집 연산(implicit graph edit ops) 불일치” (id: n-179 → n-005)
+[23:41:00] KG3 ✅ Agent B(Gemini) 노드 추가: n-180 → n-179 (cross-source!)
+  edge_span=60.8노드 평균 간격 → 시간 초월 연결 활발
+  max_span=178 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2895 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[23:41:00] KG3 ✅ KG-3bb 사이클 완료

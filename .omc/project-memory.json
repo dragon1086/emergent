@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1772441711976,
+  "lastScanned": 1772618637247,
   "projectRoot": "/Users/rocky/emergent",
   "techStack": {
     "languages": [],
@@ -25,6 +25,7 @@
     "isMonorepo": false,
     "workspaces": [],
     "mainDirectories": [
+      "scripts",
       "src"
     ],
     "gitBranches": {
@@ -34,11 +35,21 @@
   },
   "customNotes": [],
   "directoryMap": {
+    "__pycache__": {
+      "path": "__pycache__",
+      "purpose": null,
+      "fileCount": 2,
+      "lastAccessed": 1772618637234,
+      "keyFiles": [
+        "amp.cpython-314.pyc",
+        "telegram_bot.cpython-314.pyc"
+      ]
+    },
     "arxiv": {
       "path": "arxiv",
       "purpose": null,
       "fileCount": 10,
-      "lastAccessed": 1772441711967,
+      "lastAccessed": 1772618637234,
       "keyFiles": [
         "EXPERIMENT_RESULTS_C89.md",
         "GEMINI_REVIEW_C89.json",
@@ -51,7 +62,7 @@
       "path": "data",
       "purpose": "Data files",
       "fileCount": 12,
-      "lastAccessed": 1772441711967,
+      "lastAccessed": 1772618637236,
       "keyFiles": [
         "asymmetry-experiment.json",
         "convergence_history.json",
@@ -64,7 +75,7 @@
       "path": "design",
       "purpose": null,
       "fileCount": 4,
-      "lastAccessed": 1772441711967,
+      "lastAccessed": 1772618637237,
       "keyFiles": [
         "AMP_PROGRESS.md",
         "amp_state.json",
@@ -75,8 +86,8 @@
     "experiments": {
       "path": "experiments",
       "purpose": null,
-      "fileCount": 95,
-      "lastAccessed": 1772441711968,
+      "fileCount": 100,
+      "lastAccessed": 1772618637238,
       "keyFiles": [
         "BENCHMARK_DESIGN.md",
         "README.md",
@@ -85,37 +96,67 @@
         "alignment_cycle88_results.json"
       ]
     },
+    "kg2": {
+      "path": "kg2",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1772618637238,
+      "keyFiles": []
+    },
+    "kg3": {
+      "path": "kg3",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1772618637239,
+      "keyFiles": []
+    },
+    "kg4": {
+      "path": "kg4",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1772618637240,
+      "keyFiles": []
+    },
     "logs": {
       "path": "logs",
       "purpose": null,
-      "fileCount": 17,
-      "lastAccessed": 1772441711968,
+      "fileCount": 28,
+      "lastAccessed": 1772618637240,
       "keyFiles": [
+        "batch-20260303-220202.log",
         "cokac-2026-02-27.log",
         "cokac-2026-02-28.log",
-        "cokac-cycle75.log",
-        "cycle-1.log",
-        "emergence-history.jsonl"
+        "cokac-2026-03-03.log",
+        "cokac-2026-03-04.log"
+      ]
+    },
+    "scripts": {
+      "path": "scripts",
+      "purpose": "Build/utility scripts",
+      "fileCount": 1,
+      "lastAccessed": 1772618637241,
+      "keyFiles": [
+        "backfill_ontology.py"
       ]
     },
     "src": {
       "path": "src",
       "purpose": "Source code",
-      "fileCount": 28,
-      "lastAccessed": 1772441711968,
+      "fileCount": 30,
+      "lastAccessed": 1772618637241,
       "keyFiles": [
+        "add_node_safe.py",
         "anti_optimization.py",
         "asymmetry_experiment.py",
         "convergence_tracker.py",
-        "cser_tracker.py",
-        "delayed_convergence.py"
+        "cser_tracker.py"
       ]
     },
     "theory": {
       "path": "theory",
       "purpose": null,
       "fileCount": 5,
-      "lastAccessed": 1772441711968,
+      "lastAccessed": 1772618637242,
       "keyFiles": [
         "THEORY_DRAFT_v1.md",
         "THEORY_DRAFT_v2.md",
@@ -127,8 +168,8 @@
     "thoughts": {
       "path": "thoughts",
       "purpose": null,
-      "fileCount": 36,
-      "lastAccessed": 1772441711968,
+      "fileCount": 37,
+      "lastAccessed": 1772618637242,
       "keyFiles": [
         "D-036.md",
         "TEAM_REVIEW_CYCLE90.md",
@@ -136,61 +177,163 @@
         "cokac-003.md",
         "prism-insight-v2-strategy.md"
       ]
+    },
+    "kg2/data": {
+      "path": "kg2/data",
+      "purpose": "Data files",
+      "fileCount": 2,
+      "lastAccessed": 1772618637243,
+      "keyFiles": [
+        "knowledge-graph.json",
+        "knowledge-graph.json.lock"
+      ]
+    },
+    "kg3/data": {
+      "path": "kg3/data",
+      "purpose": "Data files",
+      "fileCount": 2,
+      "lastAccessed": 1772618637246,
+      "keyFiles": [
+        "knowledge-graph.json",
+        "knowledge-graph.json.lock"
+      ]
+    },
+    "kg4/data": {
+      "path": "kg4/data",
+      "purpose": "Data files",
+      "fileCount": 2,
+      "lastAccessed": 1772618637247,
+      "keyFiles": [
+        "knowledge-graph.json",
+        "knowledge-graph.json.lock"
+      ]
     }
   },
   "hotPaths": [
     {
+      "path": "DECISIONS.md",
+      "accessCount": 80,
+      "lastAccessed": 1772703991444,
+      "type": "file"
+    },
+    {
       "path": "",
-      "accessCount": 20,
-      "lastAccessed": 1772445573547,
+      "accessCount": 34,
+      "lastAccessed": 1772699855721,
       "type": "directory"
     },
     {
-      "path": "DECISIONS.md",
+      "path": "src/thoughts/록이-028.md",
       "accessCount": 6,
-      "lastAccessed": 1772445577505,
+      "lastAccessed": 1772630430190,
       "type": "file"
     },
     {
-      "path": "experiments/checkpoints/night-runner.log",
+      "path": "src/thoughts/록이-032.md",
       "accessCount": 6,
-      "lastAccessed": 1772445578341,
+      "lastAccessed": 1772699842878,
       "type": "file"
     },
     {
-      "path": "experiments/final_3way_results.json",
+      "path": "src/thoughts/록이-033.md",
+      "accessCount": 6,
+      "lastAccessed": 1772699870892,
+      "type": "file"
+    },
+    {
+      "path": "experiments/amp_benchmark.py",
       "accessCount": 4,
-      "lastAccessed": 1772445577115,
+      "lastAccessed": 1772622600379,
       "type": "file"
     },
     {
-      "path": "experiments/final_3way_round4_results.json",
-      "accessCount": 2,
-      "lastAccessed": 1772441765835,
+      "path": "src/thoughts/록이-027.md",
+      "accessCount": 4,
+      "lastAccessed": 1772622751613,
       "type": "file"
     },
     {
-      "path": "experiments/amp_benchmark_results_real.json",
-      "accessCount": 2,
-      "lastAccessed": 1772441771534,
+      "path": "src/thoughts/록이-029.md",
+      "accessCount": 4,
+      "lastAccessed": 1772630430604,
       "type": "file"
     },
     {
-      "path": "experiments/final_3way_round3_results.json",
-      "accessCount": 2,
-      "lastAccessed": 1772441782009,
+      "path": "src/thoughts/록이-030.md",
+      "accessCount": 4,
+      "lastAccessed": 1772634289407,
       "type": "file"
     },
     {
-      "path": "experiments/benchmark_discovery_results.json",
-      "accessCount": 2,
-      "lastAccessed": 1772441782293,
+      "path": "src/thoughts/록이-034.md",
+      "accessCount": 4,
+      "lastAccessed": 1772703689716,
       "type": "file"
     },
     {
-      "path": "design/AMP_PROGRESS.md",
+      "path": "evolve-auto-kg3.sh",
+      "accessCount": 4,
+      "lastAccessed": 1772703738032,
+      "type": "file"
+    },
+    {
+      "path": "thoughts/록이-038.md",
       "accessCount": 2,
-      "lastAccessed": 1772441787191,
+      "lastAccessed": 1772618691118,
+      "type": "file"
+    },
+    {
+      "path": "thoughts/록이-037.md",
+      "accessCount": 2,
+      "lastAccessed": 1772618732317,
+      "type": "file"
+    },
+    {
+      "path": "src/execution_loop.py",
+      "accessCount": 2,
+      "lastAccessed": 1772634288442,
+      "type": "file"
+    },
+    {
+      "path": "evolve-auto.sh",
+      "accessCount": 2,
+      "lastAccessed": 1772634293446,
+      "type": "file"
+    },
+    {
+      "path": "evolve.sh",
+      "accessCount": 2,
+      "lastAccessed": 1772634330367,
+      "type": "file"
+    },
+    {
+      "path": "src/thoughts/록이-031.md",
+      "accessCount": 2,
+      "lastAccessed": 1772634432022,
+      "type": "file"
+    },
+    {
+      "path": "theory/DAP_v0.1.md",
+      "accessCount": 2,
+      "lastAccessed": 1772641943784,
+      "type": "file"
+    },
+    {
+      "path": "src/delayed_convergence.py",
+      "accessCount": 2,
+      "lastAccessed": 1772703697049,
+      "type": "file"
+    },
+    {
+      "path": "evolve-auto-kg4.sh",
+      "accessCount": 2,
+      "lastAccessed": 1772703738454,
+      "type": "file"
+    },
+    {
+      "path": "src/thoughts/록이-035.md",
+      "accessCount": 2,
+      "lastAccessed": 1772704023223,
       "type": "file"
     }
   ],

@@ -51,6 +51,7 @@ if _output_arg:
 # ─── 테스트 질문 (10개, 다양한 실생활 결정 질문) ─────────────────────────────
 
 TEST_QUESTIONS = [
+    # ── 기존 10개 (커리어/법률/가상화폐/가족돌봄/창업진로/기술/부동산/투자주식/교육육아/팀관리) ──
     "나 이직해야 할까? 현재 연봉 8천, 제안 1.2억, 근데 스타트업이야",
     "이 계약서 사인해도 될까? 3년 독점 조항이 있어",
     "비트코인 지금 사야 해?",
@@ -61,6 +62,32 @@ TEST_QUESTIONS = [
     "AI 회사에 투자해도 될까? PER이 200이야",
     "아이 영어 교육 언제부터 시작해야 해?",
     "팀원이 계속 실수해. 해고해야 할까?",
+    # ── 신규 20개 (감정/관계/전략/자원배분/윤리 도메인) ──
+    # 감정 (10-13)
+    "친구가 내 비밀을 다른 사람에게 말했어. 화를 내야 할까 그냥 넘겨야 할까?",
+    "번아웃이 왔는데 그냥 버텨야 할까 아니면 쉬어야 할까?",
+    "실연 후 3개월인데 아직도 슬퍼. 이게 정상인가, 치료가 필요한가?",
+    "직장 동료가 나를 싫어하는 것 같아서 계속 불안해. 어떻게 대처해야 해?",
+    # 관계 (14-17)
+    "오랜 친구와 가치관이 완전히 달라졌어. 관계를 유지해야 할까 정리해야 할까?",
+    "부모님이 내 연인을 반대해. 부모 의견을 따라야 할까 내 선택을 밀어붙일까?",
+    "10년 사귄 파트너랑 결혼 생각이 없어. 지금 헤어져야 하나?",
+    "직장 상사와 연애해도 될까? 서로 감정이 생겼어",
+    # 전략 (18-21)
+    "스타트업 MVP를 빠르게 출시할까 완성도 높게 갈까?",
+    "경쟁사가 우리 핵심 기능을 그대로 베꼈어. 어떻게 대응해야 해?",
+    "제품을 글로벌로 확장할까 국내 시장 점유율을 먼저 높일까?",
+    "구독 모델로 전환해야 할까 일회성 결제 방식을 유지할까?",
+    # 자원배분 (22-25)
+    "팀이 3명인데 마케팅, 개발, CS 중 어디에 집중해야 할까?",
+    "월 예산 500만원인데 광고, 콘텐츠 제작, 채용 중 어디에 써야 할까?",
+    "2억 자산 중 부동산, 주식, 현금을 어떤 비율로 배분해야 할까?",
+    "시간이 부족한데 커리어 개발, 운동, 가족 시간 중 무엇을 줄여야 할까?",
+    # 윤리 (26-29)
+    "경쟁사 전 직원이 영업 비밀을 알려주겠다고 해. 들어도 될까?",
+    "AI로 생성한 콘텐츠를 내 이름으로 발표해도 괜찮을까?",
+    "회사가 불법은 아니지만 환경에 해로운 제품을 팔고 있어. 계속 다녀야 할까?",
+    "친구 이력서를 대신 써줬는데 그 회사에서 합격 연락이 왔어. 사실을 말해야 할까?",
 ]
 
 # ─── 도메인별 대립 페르소나 (auto-persona ON) ─────────────────────────────────
@@ -87,6 +114,47 @@ DOMAIN_PERSONAS = {
     8: ("Early Intervention Education Expert", "Child-Led Development Advocate"),
     # 팀관리/HR
     9: ("Performance Accountability Manager", "Coaching & Retention Specialist"),
+    # ── 신규 20개 도메인 ──
+    # 감정: 비밀 누설 배신
+    10: ("Cognitive Behavioral Therapist", "Emotional Authenticity Coach"),
+    # 감정: 번아웃
+    11: ("Performance Optimization Coach", "Burnout Recovery Specialist"),
+    # 감정: 실연 회복
+    12: ("Grief Processing Psychologist", "Post-Breakup Resilience Builder"),
+    # 감정: 직장 불안
+    13: ("Social Dynamics Strategist", "Authentic Self-Expression Advocate"),
+    # 관계: 가치관 다른 친구
+    14: ("Long-term Relationship Continuity Advisor", "Values Alignment Realist"),
+    # 관계: 부모 반대 연애
+    15: ("Family Harmony Mediator", "Personal Autonomy Champion"),
+    # 관계: 장기 연애 종료
+    16: ("Commitment & Stability Counselor", "Liberation & Individual Growth Advocate"),
+    # 관계: 상사 연애
+    17: ("Workplace Relationship Risk Assessor", "Personal Fulfillment Advocate"),
+    # 전략: MVP 속도 vs 완성도
+    18: ("Lean Startup Speed Maximizer", "Quality-First Product Perfectionist"),
+    # 전략: 경쟁사 카피 대응
+    19: ("Aggressive IP Protection Strategist", "Market Differentiation Innovator"),
+    # 전략: 글로벌 vs 국내 집중
+    20: ("Global Expansion Growth Strategist", "Domestic Market Depth Specialist"),
+    # 전략: 구독 vs 일회성
+    21: ("Recurring Revenue Transformation Expert", "Customer Ownership Retention Analyst"),
+    # 자원배분: 3명 팀 역할
+    22: ("Growth-First Marketing Allocator", "Foundation-First Engineering Prioritizer"),
+    # 자원배분: 월 예산
+    23: ("Performance Marketing ROI Optimizer", "Brand Building Long-term Strategist"),
+    # 자원배분: 자산 배분
+    24: ("Real Estate Wealth Preservation Expert", "Equity Market High-Growth Investor"),
+    # 자원배분: 시간 배분
+    25: ("Career Maximization Productivity Coach", "Life Balance Holistic Wellbeing Advisor"),
+    # 윤리: 영업비밀 취득
+    26: ("Competitive Intelligence Pragmatist", "Business Ethics Integrity Guardian"),
+    # 윤리: AI 콘텐츠 저작
+    27: ("AI Augmentation Innovation Advocate", "Creative Authenticity Transparency Expert"),
+    # 윤리: 반환경 기업 재직
+    28: ("Career Pragmatism Realist", "Environmental Ethics Activist"),
+    # 윤리: 대필 이력서 고백
+    29: ("Radical Honesty Integrity Coach", "Friendship Loyalty Preservation Advisor"),
 }
 
 # ─── Control 페르소나 (auto-persona OFF) ──────────────────────────────────────
@@ -137,8 +205,10 @@ def call_openai(system_prompt: str, user_prompt: str, max_tokens: int = 600, ret
     raise RuntimeError("OpenAI call failed after retries")
 
 
-def call_gemini(system_prompt: str, user_prompt: str, max_tokens: int = 800, retries: int = 3) -> str:
-    """Gemini API 호출. gemini-2.0-flash fallback 포함."""
+def call_gemini(system_prompt: str, user_prompt: str, max_tokens: int = 800, retries: int = 3, json_mode: bool = False) -> str:
+    """Gemini API 호출. gemini-2.0-flash fallback 포함.
+    json_mode=True: response_mime_type='application/json' + temperature=0 강제 (judge용)
+    """
     if DRY_RUN:
         return f"[DRY-RUN] Gemini response to: {user_prompt[:60]}..."
 
@@ -148,12 +218,16 @@ def call_gemini(system_prompt: str, user_prompt: str, max_tokens: int = 800, ret
     # 모델 우선순위: gemini-3-flash-preview -> gemini-2.0-flash
     models_to_try = ["gemini-3-flash-preview", "gemini-2.0-flash"]
 
+    gen_config: dict = {"maxOutputTokens": max_tokens, "temperature": 0 if json_mode else 0.3}
+    if json_mode:
+        gen_config["response_mime_type"] = "application/json"
+
     for model in models_to_try:
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={GOOGLE_KEY}"
         payload = json.dumps({
             "system_instruction": {"parts": [{"text": system_prompt}]},
             "contents": [{"parts": [{"text": user_prompt}]}],
-            "generationConfig": {"maxOutputTokens": max_tokens, "temperature": 0.3},
+            "generationConfig": gen_config,
         }).encode()
 
         for attempt in range(retries):
@@ -326,7 +400,7 @@ def judge_answers(question: str, answer_a: str, answer_b: str) -> dict:
         "}"
     )
 
-    raw = call_gemini(judge_sys, judge_prompt, max_tokens=800)
+    raw = call_gemini(judge_sys, judge_prompt, max_tokens=800, json_mode=True)
 
     if DRY_RUN:
         return {
@@ -363,7 +437,7 @@ def judge_answers(question: str, answer_a: str, answer_b: str) -> dict:
 
 def run_single_question(idx: int, question: str) -> dict:
     """한 질문에 대해 OFF/ON 실행 후 판사 평가 반환."""
-    print(f"\n[Q{idx+1}/10] {question[:50]}...", flush=True)
+    print(f"\n[Q{idx+1}/{len(TEST_QUESTIONS)}] {question[:50]}...", flush=True)
 
     # Condition OFF: 하드코딩 페르소나
     print(f"  [OFF] {CONTROL_PERSONA_A} vs {CONTROL_PERSONA_B}", flush=True)

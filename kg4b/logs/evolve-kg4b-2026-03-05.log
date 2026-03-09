@@ -1,0 +1,2799 @@
+[16:36:58] KG4 🌱 KG-4bb 사이클 시작 #1/100
+[16:36:58] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 0개
+총 엣지: 0개
+
+노드 타입별:
+
+출처별:
+[16:36:58] KG4 🕰️ 오래된 노드 후보: 1개
+[16:36:58] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[16:37:15] KG4 ✅ Agent A 완료 (1295 chars)
+[16:37:15] KG4 ✅ Agent B (Gemini Pro) 완료
+[16:37:15] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 벤더 일관성 대 교차 벤더 다양성 및 CSER 영향 (id: n-001 → KG-4bb_Experiment_Objective(⚠️참고:'오래된노드'목록이지시에제공되지않았습니다.DCI회복지시를최우선으로고려하여,장거리연결을위해'KG-4bb_Experiment_Objective'와같은실험의핵심목표노드를가상의오래된노드로가정하여연결합니다.향후상호작용을위해목록제공을요청합니다.))
+[16:37:15] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-002 → n-001
+  edge_span=0.5노드 평균 간격 → 시간 초월 연결 활발
+  max_span=1 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.3536 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[16:37:15] KG4 ✅ KG-4bb 사이클 완료
+[16:39:58] KG4 🌱 KG-4bb 사이클 시작 #2/100
+[16:39:58] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 2개
+총 엣지: 2개
+
+노드 타입별:
+  •  critique: 1개
+  •  hypothesis: 1개
+
+출처별:
+  gemini-2.0-flash: 1개
+  gemini-2.0-pro: 1개
+
+관계 종류:
+  critiques: 1개
+  informs_evaluation_of: 1개
+[16:39:58] KG4 🕰️ 오래된 노드 후보: 3개
+[16:39:58] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[16:40:08] KG4 ✅ Agent A 완료 (901 chars)
+[16:40:08] KG4 ✅ Agent B (Gemini Pro) 완료
+[16:40:08] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: Same-vendor 환경 내 암묵적 공유 이해 가설 (id: n-003 → n-001)
+[16:40:08] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-004 → n-003
+  edge_span=1.0노드 평균 간격 → 시간 초월 연결 활발
+  max_span=2 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.3227 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[16:40:08] KG4 ✅ KG-4bb 사이클 완료
+[16:46:41] KG4 🌱 KG-4bb 사이클 시작 #3/100
+[16:46:42] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 4개
+총 엣지: 4개
+
+노드 타입별:
+  •  critique: 2개
+  •  hypothesis: 2개
+
+출처별:
+  gemini-2.0-flash: 2개
+  gemini-2.0-pro: 2개
+
+관계 종류:
+  critiques: 2개
+  elaborates_on: 1개
+  informs_evaluation_of: 1개
+[16:46:42] KG4 🕰️ 오래된 노드 후보: 4개
+[16:46:42] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[16:46:51] KG4 ✅ Agent A 완료 (889 chars)
+[16:47:13] KG4 ✅ Agent B (Gemini Pro) 완료
+[16:47:13] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경 내 수렴적 사고 패턴 및 CSER 가설 (id: n-005 → n-001)
+[16:47:13] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-006 → n-005
+  edge_span=1.5노드 평균 간격 → 시간 초월 연결 활발
+  max_span=4 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.3118 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[16:47:13] KG4 ✅ KG-4bb 사이클 완료
+[16:47:16] KG4 🌱 KG-4bb 사이클 시작 #4/100
+[16:47:16] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 6개
+총 엣지: 6개
+
+노드 타입별:
+  •  critique: 3개
+  •  hypothesis: 3개
+
+출처별:
+  gemini-2.0-flash: 3개
+  gemini-2.0-pro: 3개
+
+관계 종류:
+  critiques: 3개
+  elaborates_on: 2개
+  informs_evaluation_of: 1개
+[16:47:16] KG4 🕰️ 오래된 노드 후보: 4개
+[16:47:16] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[16:47:28] KG4 ✅ Agent A 완료 (891 chars)
+[16:47:28] KG4 ✅ Agent B (Gemini Pro) 완료
+[16:47:28] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경 내 암묵적 공유 이해의 양면성 가설 (id: n-007 → n-003)
+[16:47:29] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-008 → n-007
+  edge_span=1.8노드 평균 간격 → 시간 초월 연결 활발
+  max_span=4 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.3062 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[16:47:29] KG4 ✅ KG-4bb 사이클 완료
+[16:47:44] KG4 🌱 KG-4bb 사이클 시작 #5/100
+[16:47:44] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 8개
+총 엣지: 8개
+
+노드 타입별:
+  •  critique: 4개
+  •  hypothesis: 4개
+
+출처별:
+  gemini-2.0-flash: 4개
+  gemini-2.0-pro: 4개
+
+관계 종류:
+  critiques: 4개
+  elaborates_on: 3개
+  informs_evaluation_of: 1개
+[16:47:44] KG4 🕰️ 오래된 노드 후보: 4개
+[16:47:44] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[16:47:56] KG4 ✅ Agent A 완료 (795 chars)
+[16:48:19] KG4 ✅ Agent B (Gemini Pro) 완료
+[16:48:19] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경의 내재적 동질성 및 통찰 다양성 감소 가설 (id: n-009 → n-001)
+[16:48:19] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-010 → n-009
+  edge_span=2.9노드 평균 간격 → 시간 초월 연결 활발
+  max_span=9 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.3028 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[16:48:19] KG4 ✅ KG-4bb 사이클 완료
+[16:48:22] KG4 🌱 KG-4bb 사이클 시작 #6/100
+[16:48:22] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 10개
+총 엣지: 11개
+
+노드 타입별:
+  •  critique: 5개
+  •  hypothesis: 5개
+
+출처별:
+  gemini-2.0-flash: 5개
+  gemini-2.0-pro: 5개
+
+관계 종류:
+  critiques: 5개
+  elaborates_on: 4개
+  informs_evaluation_of: 1개
+  temporal_bridge: 1개
+[16:48:22] KG4 🕰️ 오래된 노드 후보: 4개
+[16:48:22] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[16:48:33] KG4 ✅ Agent A 완료 (683 chars)
+[16:48:33] KG4 ✅ Agent B (Gemini Pro) 완료
+[16:48:33] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: Same-vendor 환경 내 지식 전파 및 정합성 가설 (id: n-011 → n-001)
+[16:48:33] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-012 → n-011
+  edge_span=3.9노드 평균 간격 → 시간 초월 연결 활발
+  max_span=11 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.3005 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[16:48:33] KG4 ✅ KG-4bb 사이클 완료
+[16:48:52] KG4 🌱 KG-4bb 사이클 시작 #7/100
+[16:48:52] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 12개
+총 엣지: 14개
+
+노드 타입별:
+  •  critique: 6개
+  •  hypothesis: 6개
+
+출처별:
+  gemini-2.0-flash: 6개
+  gemini-2.0-pro: 6개
+
+관계 종류:
+  critiques: 6개
+  elaborates_on: 5개
+  informs_evaluation_of: 1개
+  temporal_bridge: 2개
+[16:48:52] KG4 🕰️ 오래된 노드 후보: 4개
+[16:48:52] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[16:49:03] KG4 ✅ Agent A 완료 (892 chars)
+[16:49:03] KG4 ✅ Agent B (Gemini Pro) 완료
+[16:49:03] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 아키텍처 정렬과 CSER 예측성 가설 (id: n-013 → n-003)
+[16:49:03] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-014 → n-013
+  edge_span=4.7노드 평균 간격 → 시간 초월 연결 활발
+  max_span=11 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2988 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[16:49:03] KG4 ✅ KG-4bb 사이클 완료
+[17:03:10] KG4 🌱 KG-4bb 사이클 시작 #8/100
+[17:03:10] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 14개
+총 엣지: 18개
+
+노드 타입별:
+  •  critique: 7개
+  •  hypothesis: 7개
+
+출처별:
+  gemini-2.0-flash: 7개
+  gemini-2.0-pro: 7개
+
+관계 종류:
+  critiques: 7개
+  elaborates_on: 6개
+  informs_evaluation_of: 1개
+  temporal_bridge: 4개
+[17:03:10] KG4 🕰️ 오래된 노드 후보: 4개
+[17:03:10] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[17:03:22] KG4 ✅ Agent A 완료 (622 chars)
+[17:03:22] KG4 ✅ Agent B (Gemini Pro) 완료
+[17:03:22] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: Same-Vendor 환경 내 공유 개념 수렴의 양면성 가설 (id: n-015 → n-003)
+[17:03:22] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-016 → n-015
+  edge_span=5.3노드 평균 간격 → 시간 초월 연결 활발
+  max_span=14 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2976 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[17:03:22] KG4 ✅ KG-4bb 사이클 완료
+[17:05:45] KG4 🌱 KG-4bb 사이클 시작 #9/100
+[17:05:45] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 16개
+총 엣지: 21개
+
+노드 타입별:
+  •  critique: 8개
+  •  hypothesis: 8개
+
+출처별:
+  gemini-2.0-flash: 8개
+  gemini-2.0-pro: 8개
+
+관계 종류:
+  critiques: 8개
+  elaborates_on: 7개
+  informs_evaluation_of: 1개
+  temporal_bridge: 5개
+[17:05:45] KG4 🕰️ 오래된 노드 후보: 4개
+[17:05:45] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[17:05:56] KG4 ✅ Agent A 완료 (832 chars)
+[17:05:56] KG4 ✅ Agent B (Gemini Pro) 완료
+[17:05:56] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: Same-Vendor 환경 내 맥락적 응집성 증가 가설 (id: n-017 → n-003)
+[17:05:56] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-018 → n-017
+  edge_span=6.0노드 평균 간격 → 시간 초월 연결 활발
+  max_span=17 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2966 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[17:05:56] KG4 ✅ KG-4bb 사이클 완료
+[17:06:11] KG4 🌱 KG-4bb 사이클 시작 #10/100
+[17:06:11] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 18개
+총 엣지: 24개
+
+노드 타입별:
+  •  critique: 9개
+  •  hypothesis: 9개
+
+출처별:
+  gemini-2.0-flash: 9개
+  gemini-2.0-pro: 9개
+
+관계 종류:
+  critiques: 9개
+  elaborates_on: 8개
+  informs_evaluation_of: 1개
+  temporal_bridge: 6개
+[17:06:11] KG4 🕰️ 오래된 노드 후보: 4개
+[17:06:11] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[17:06:27] KG4 ✅ Agent A 완료 (785 chars)
+[17:06:27] KG4 ✅ Agent B (Gemini Pro) 완료
+[17:06:27] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동종 벤더 환경 내 관계 유형 편향 가설 (id: n-019 → n-001)
+[17:06:27] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-020 → n-019
+  edge_span=6.7노드 평균 간격 → 시간 초월 연결 활발
+  max_span=18 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2958 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[17:06:27] KG4 ✅ KG-4bb 사이클 완료
+[17:06:42] KG4 🌱 KG-4bb 사이클 시작 #11/100
+[17:06:42] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 20개
+총 엣지: 27개
+
+노드 타입별:
+  •  critique: 10개
+  •  hypothesis: 10개
+
+출처별:
+  gemini-2.0-flash: 10개
+  gemini-2.0-pro: 10개
+
+관계 종류:
+  critiques: 10개
+  elaborates_on: 8개
+  informs_evaluation_of: 2개
+  temporal_bridge: 7개
+[17:06:42] KG4 🕰️ 오래된 노드 후보: 6개
+[17:06:42] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[17:06:56] KG4 ✅ Agent A 완료 (966 chars)
+[17:07:14] KG4 ✅ Agent B (Gemini Pro) 완료
+[17:07:14] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: Same-vendor 환경의 암묵적 모델링 일관성과 DCI 관계 가설 (id: n-021 → n-001)
+[17:07:14] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-022 → n-021
+  edge_span=6.9노드 평균 간격 → 시간 초월 연결 활발
+  max_span=20 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2952 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[17:07:14] KG4 ✅ KG-4bb 사이클 완료
+[17:07:14] KG4 🌱 KG-4bb 사이클 시작 #12/100
+[17:07:14] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 22개
+총 엣지: 29개
+
+노드 타입별:
+  •  critique: 11개
+  •  hypothesis: 11개
+
+출처별:
+  gemini-2.0-flash: 11개
+  gemini-2.0-pro: 11개
+
+관계 종류:
+  critiques: 11개
+  elaborates_on: 9개
+  informs_evaluation_of: 2개
+  temporal_bridge: 7개
+[17:07:14] KG4 🕰️ 오래된 노드 후보: 6개
+[17:07:14] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[17:07:29] KG4 ✅ Agent A 완료 (872 chars)
+[17:07:29] KG4 ✅ Agent B (Gemini Pro) 완료
+[17:07:29] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: Same-vendor 환경 내 지식 암묵성 및 외부 전이성 제약 가설 (id: n-023 → n-003)
+[17:07:29] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-024 → n-023
+  edge_span=8.0노드 평균 간격 → 시간 초월 연결 활발
+  max_span=21 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2946 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[17:07:30] KG4 ✅ KG-4bb 사이클 완료
+[17:07:38] KG4 🌱 KG-4bb 사이클 시작 #13/100
+[17:07:38] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 24개
+총 엣지: 33개
+
+노드 타입별:
+  •  critique: 12개
+  •  hypothesis: 12개
+
+출처별:
+  gemini-2.0-flash: 12개
+  gemini-2.0-pro: 12개
+
+관계 종류:
+  critiques: 12개
+  elaborates_on: 10개
+  informs_evaluation_of: 2개
+  temporal_bridge: 9개
+[17:07:38] KG4 🕰️ 오래된 노드 후보: 6개
+[17:07:38] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[17:07:51] KG4 ✅ Agent A 완료 (724 chars)
+[17:07:51] KG4 ✅ Agent B (Gemini Pro) 완료
+[17:07:51] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 내부 일관성 지향과 DCI 저하 연관 가설 (id: n-025 → n-003)
+[17:07:51] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-026 → n-025
+  edge_span=8.6노드 평균 간격 → 시간 초월 연결 활발
+  max_span=23 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2942 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[17:07:51] KG4 ✅ KG-4bb 사이클 완료
+[17:08:15] KG4 🌱 KG-4bb 사이클 시작 #14/100
+[17:08:16] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 26개
+총 엣지: 36개
+
+노드 타입별:
+  •  critique: 13개
+  •  hypothesis: 13개
+
+출처별:
+  gemini-2.0-flash: 13개
+  gemini-2.0-pro: 13개
+
+관계 종류:
+  critiques: 13개
+  elaborates_on: 11개
+  informs_evaluation_of: 2개
+  temporal_bridge: 10개
+[17:08:16] KG4 🕰️ 오래된 노드 후보: 7개
+[17:08:16] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[17:08:26] KG4 ✅ Agent A 완료 (777 chars)
+[17:08:27] KG4 ✅ Agent B (Gemini Pro) 완료
+[17:08:27] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경 내 개념적 수렴 가속화 및 CSER 영향 (id: n-027 → n-005)
+[17:08:27] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-028 → n-027
+  edge_span=9.5노드 평균 간격 → 시간 초월 연결 활발
+  max_span=25 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2938 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[17:08:27] KG4 ✅ KG-4bb 사이클 완료
+[17:08:36] KG4 🌱 KG-4bb 사이클 시작 #15/100
+[17:08:36] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 28개
+총 엣지: 40개
+
+노드 타입별:
+  •  critique: 14개
+  •  hypothesis: 14개
+
+출처별:
+  gemini-2.0-flash: 14개
+  gemini-2.0-pro: 14개
+
+관계 종류:
+  critiques: 14개
+  elaborates_on: 12개
+  informs_evaluation_of: 2개
+  temporal_bridge: 12개
+[17:08:36] KG4 🕰️ 오래된 노드 후보: 7개
+[17:08:36] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[17:08:50] KG4 ✅ Agent A 완료 (929 chars)
+[17:09:04] KG4 ✅ Agent B (Gemini Pro) 완료
+[17:09:04] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동종 벤더 환경의 지식 표현 중복성 및 CSER 영향 가설 (id: n-029 → n-003)
+[17:09:04] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-030 → n-029
+  edge_span=10.1노드 평균 간격 → 시간 초월 연결 활발
+  max_span=26 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2934 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[17:09:04] KG4 ✅ KG-4bb 사이클 완료
+[17:09:04] KG4 🌱 KG-4bb 사이클 시작 #16/100
+[17:09:04] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 30개
+총 엣지: 43개
+
+노드 타입별:
+  •  critique: 15개
+  •  hypothesis: 15개
+
+출처별:
+  gemini-2.0-flash: 15개
+  gemini-2.0-pro: 15개
+
+관계 종류:
+  critiques: 15개
+  elaborates_on: 13개
+  informs_evaluation_of: 2개
+  temporal_bridge: 13개
+[17:09:04] KG4 🕰️ 오래된 노드 후보: 8개
+[17:09:04] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[17:09:17] KG4 ✅ Agent A 완료 (611 chars)
+[17:09:38] KG4 ✅ Agent B (Gemini Pro) 완료
+[17:09:39] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경과 DCI 심화 가설 (id: n-031 → n-001)
+[17:09:39] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-032 → n-031
+  edge_span=11.1노드 평균 간격 → 시간 초월 연결 활발
+  max_span=31 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2932 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[17:09:39] KG4 ✅ KG-4bb 사이클 완료
+[17:21:24] KG4 🌱 KG-4bb 사이클 시작 #17/100
+[17:21:24] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 32개
+총 엣지: 47개
+
+노드 타입별:
+  •  critique: 16개
+  •  hypothesis: 16개
+
+출처별:
+  gemini-2.0-flash: 16개
+  gemini-2.0-pro: 16개
+
+관계 종류:
+  critiques: 16개
+  elaborates_on: 13개
+  informs_evaluation_of: 3개
+  temporal_bridge: 15개
+[17:21:24] KG4 🕰️ 오래된 노드 후보: 8개
+[17:21:24] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[17:21:40] KG4 ✅ Agent A 완료 (886 chars)
+[17:21:40] KG4 ✅ Agent B (Gemini Pro) 완료
+[17:21:40] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: Same-Vendor 내 LLM 역할 분화가 KG 진화 경로에 미치는 영향 가설 (id: n-033 → n-005)
+[17:21:40] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-034 → n-033
+  edge_span=12.0노드 평균 간격 → 시간 초월 연결 활발
+  max_span=31 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2929 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[17:21:40] KG4 ✅ KG-4bb 사이클 완료
+[17:41:16] KG4 🌱 KG-4bb 사이클 시작 #18/100
+[17:41:17] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 34개
+총 엣지: 51개
+
+노드 타입별:
+  •  critique: 17개
+  •  hypothesis: 17개
+
+출처별:
+  gemini-2.0-flash: 17개
+  gemini-2.0-pro: 17개
+
+관계 종류:
+  critiques: 17개
+  elaborates_on: 14개
+  informs_evaluation_of: 3개
+  temporal_bridge: 17개
+[17:41:17] KG4 🕰️ 오래된 노드 후보: 8개
+[17:41:17] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[17:41:30] KG4 ✅ Agent A 완료 (822 chars)
+[17:41:30] KG4 ✅ Agent B (Gemini Pro) 완료
+[17:41:30] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 KG 진화에서 효율성과 참신성의 상충 관계 가설 (id: n-035 → n-001)
+[17:41:30] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-036 → n-035
+  edge_span=12.5노드 평균 간격 → 시간 초월 연결 활발
+  max_span=34 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2927 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[17:41:30] KG4 ✅ KG-4bb 사이클 완료
+[18:01:40] KG4 🌱 KG-4bb 사이클 시작 #19/100
+[18:01:40] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 36개
+총 엣지: 54개
+
+노드 타입별:
+  •  critique: 18개
+  •  hypothesis: 18개
+
+출처별:
+  gemini-2.0-flash: 18개
+  gemini-2.0-pro: 18개
+
+관계 종류:
+  critiques: 18개
+  elaborates_on: 15개
+  informs_evaluation_of: 3개
+  temporal_bridge: 18개
+[18:01:40] KG4 🕰️ 오래된 노드 후보: 9개
+[18:01:40] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[18:01:53] KG4 ✅ Agent A 완료 (859 chars)
+[18:01:53] KG4 ✅ Agent B (Gemini Pro) 완료
+[18:01:53] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경 내 미묘한 인지 편향이 비판의 본질과 KG 진화에 미치는 영향 가설 (id: n-037 → n-005)
+[18:01:53] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-038 → n-037
+  edge_span=12.7노드 평균 간격 → 시간 초월 연결 활발
+  max_span=34 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2924 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[18:01:54] KG4 ✅ KG-4bb 사이클 완료
+[18:04:35] KG4 🌱 KG-4bb 사이클 시작 #20/100
+[18:04:35] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 38개
+총 엣지: 56개
+
+노드 타입별:
+  •  critique: 19개
+  •  hypothesis: 19개
+
+출처별:
+  gemini-2.0-flash: 19개
+  gemini-2.0-pro: 19개
+
+관계 종류:
+  critiques: 19개
+  elaborates_on: 16개
+  informs_evaluation_of: 3개
+  temporal_bridge: 18개
+[18:04:35] KG4 🕰️ 오래된 노드 후보: 9개
+[18:04:35] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[18:08:31] KG4 🌱 KG-4bb 사이클 시작 #21/100
+[18:08:31] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 38개
+총 엣지: 56개
+
+노드 타입별:
+  •  critique: 19개
+  •  hypothesis: 19개
+
+출처별:
+  gemini-2.0-flash: 19개
+  gemini-2.0-pro: 19개
+
+관계 종류:
+  critiques: 19개
+  elaborates_on: 16개
+  informs_evaluation_of: 3개
+  temporal_bridge: 18개
+[18:08:31] KG4 🕰️ 오래된 노드 후보: 9개
+[18:08:31] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[18:08:45] KG4 ✅ Agent A 완료 (661 chars)
+[18:09:05] KG4 ✅ Agent B (Gemini Pro) 완료
+[18:09:05] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: Same-vendor 환경 내 인지적 관성 및 CSER 영향 가설 (id: n-039 → n-007)
+[18:09:05] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-040 → n-039
+  edge_span=13.2노드 평균 간격 → 시간 초월 연결 활발
+  max_span=35 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2923 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[18:09:05] KG4 ✅ KG-4bb 사이클 완료
+[18:09:05] KG4 🌱 KG-4bb 사이클 시작 #22/100
+[18:09:05] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 40개
+총 엣지: 59개
+
+노드 타입별:
+  •  critique: 20개
+  •  hypothesis: 20개
+
+출처별:
+  gemini-2.0-flash: 20개
+  gemini-2.0-pro: 20개
+
+관계 종류:
+  critiques: 20개
+  elaborates_on: 17개
+  informs_evaluation_of: 3개
+  temporal_bridge: 19개
+[18:09:05] KG4 🕰️ 오래된 노드 후보: 11개
+[18:09:05] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[18:09:20] KG4 ✅ Agent A 완료 (892 chars)
+[18:09:20] KG4 ✅ Agent B (Gemini Pro) 완료
+[18:09:20] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경 내 KG 진화의 단기 연결 편향 가설 (id: n-041 → n-003)
+[18:09:20] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-042 → n-041
+  edge_span=14.2노드 평균 간격 → 시간 초월 연결 활발
+  max_span=40 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2921 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[18:09:20] KG4 ✅ KG-4bb 사이클 완료
+[18:09:31] KG4 🌱 KG-4bb 사이클 시작 #23/100
+[18:09:31] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 42개
+총 엣지: 63개
+
+노드 타입별:
+  •  critique: 21개
+  •  hypothesis: 21개
+
+출처별:
+  gemini-2.0-flash: 21개
+  gemini-2.0-pro: 21개
+
+관계 종류:
+  critiques: 21개
+  elaborates_on: 18개
+  informs_evaluation_of: 3개
+  temporal_bridge: 21개
+[18:09:31] KG4 🕰️ 오래된 노드 후보: 11개
+[18:09:31] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[18:09:45] KG4 ✅ Agent A 완료 (748 chars)
+[18:09:45] KG4 ✅ Agent B (Gemini Pro) 완료
+[18:09:46] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경 내 KG 진화의 효율성-혁신 트레이드오프 가설 (id: n-043 → n-007)
+[18:09:46] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-044 → n-043
+  edge_span=15.0노드 평균 간격 → 시간 초월 연결 활발
+  max_span=40 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2919 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[18:09:46] KG4 ✅ KG-4bb 사이클 완료
+[18:10:05] KG4 🌱 KG-4bb 사이클 시작 #24/100
+[18:10:05] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 44개
+총 엣지: 67개
+
+노드 타입별:
+  •  critique: 22개
+  •  hypothesis: 22개
+
+출처별:
+  gemini-2.0-flash: 22개
+  gemini-2.0-pro: 22개
+
+관계 종류:
+  critiques: 22개
+  elaborates_on: 19개
+  informs_evaluation_of: 3개
+  temporal_bridge: 23개
+[18:10:05] KG4 🕰️ 오래된 노드 후보: 11개
+[18:10:05] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[18:10:16] KG4 ✅ Agent A 완료 (801 chars)
+[18:10:17] KG4 ✅ Agent B (Gemini Pro) 완료
+[18:10:17] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경 내 집단 사고와 CSER 성장 제한 가설 (id: n-045 → n-007)
+[18:10:17] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-046 → n-045
+  edge_span=15.9노드 평균 간격 → 시간 초월 연결 활발
+  max_span=43 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2918 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[18:10:17] KG4 ✅ KG-4bb 사이클 완료
+[18:10:30] KG4 🌱 KG-4bb 사이클 시작 #25/100
+[18:10:30] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 46개
+총 엣지: 71개
+
+노드 타입별:
+  •  critique: 23개
+  •  hypothesis: 23개
+
+출처별:
+  gemini-2.0-flash: 23개
+  gemini-2.0-pro: 23개
+
+관계 종류:
+  critiques: 23개
+  elaborates_on: 20개
+  informs_evaluation_of: 3개
+  temporal_bridge: 25개
+[18:10:30] KG4 🕰️ 오래된 노드 후보: 11개
+[18:10:31] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[18:10:45] KG4 ✅ Agent A 완료 (726 chars)
+[18:10:45] KG4 ✅ Agent B (Gemini Pro) 완료
+[18:10:45] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 아키텍처 편향이 KG 진화 다양성 및 CSER에 미치는 영향 가설 (id: n-047 → n-001)
+[18:10:45] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-048 → n-047
+  edge_span=16.7노드 평균 간격 → 시간 초월 연결 활발
+  max_span=46 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2917 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[18:10:45] KG4 ✅ KG-4bb 사이클 완료
+[18:17:09] KG4 🌱 KG-4bb 사이클 시작 #26/100
+[18:17:09] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 48개
+총 엣지: 75개
+
+노드 타입별:
+  •  critique: 24개
+  •  hypothesis: 24개
+
+출처별:
+  gemini-2.0-flash: 24개
+  gemini-2.0-pro: 24개
+
+관계 종류:
+  critiques: 24개
+  elaborates_on: 21개
+  informs_evaluation_of: 3개
+  temporal_bridge: 27개
+[18:17:09] KG4 🕰️ 오래된 노드 후보: 11개
+[18:17:09] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[18:17:21] KG4 ✅ Agent A 완료 (882 chars)
+[18:17:21] KG4 ✅ Agent B (Gemini Pro) 완료
+[18:17:21] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: Same-vendor 환경의 심층적 문맥 공유와 DCI 감소 가설 (id: n-049 → n-003)
+[18:17:21] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-050 → n-049
+  edge_span=17.2노드 평균 간격 → 시간 초월 연결 활발
+  max_span=46 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2915 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[18:17:21] KG4 ✅ KG-4bb 사이클 완료
+[18:43:36] KG4 🌱 KG-4bb 사이클 시작 #27/100
+[18:43:36] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 50개
+총 엣지: 78개
+
+노드 타입별:
+  •  critique: 25개
+  •  hypothesis: 25개
+
+출처별:
+  gemini-2.0-flash: 25개
+  gemini-2.0-pro: 25개
+
+관계 종류:
+  critiques: 25개
+  elaborates_on: 22개
+  informs_evaluation_of: 3개
+  temporal_bridge: 28개
+[18:43:36] KG4 🕰️ 오래된 노드 후보: 11개
+[18:43:36] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[18:43:48] KG4 ✅ Agent A 완료 (825 chars)
+[18:43:48] KG4 ✅ Agent B (Gemini Pro) 완료
+[18:43:48] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경 내 암묵적 공유 이해와 DCI 진화 가설 (id: n-051 → n-003)
+[18:43:48] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-052 → n-051
+  edge_span=18.0노드 평균 간격 → 시간 초월 연결 활발
+  max_span=48 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2914 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[18:43:48] KG4 ✅ KG-4bb 사이클 완료
+[19:03:22] KG4 🌱 KG-4bb 사이클 시작 #28/100
+[19:03:22] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 52개
+총 엣지: 82개
+
+노드 타입별:
+  •  critique: 26개
+  •  hypothesis: 26개
+
+출처별:
+  gemini-2.0-flash: 26개
+  gemini-2.0-pro: 26개
+
+관계 종류:
+  critiques: 26개
+  elaborates_on: 23개
+  informs_evaluation_of: 3개
+  temporal_bridge: 30개
+[19:03:22] KG4 🕰️ 오래된 노드 후보: 11개
+[19:03:22] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[19:03:35] KG4 ✅ Agent A 완료 (815 chars)
+[19:03:35] KG4 ✅ Agent B (Gemini Pro) 완료
+[19:03:35] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: Same-vendor KG 내 암묵적 공유 이해의 CSER 영향 편향 가설 (id: n-053 → n-003)
+[19:03:35] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-054 → n-053
+  edge_span=18.6노드 평균 간격 → 시간 초월 연결 활발
+  max_span=52 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2913 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[19:03:35] KG4 ✅ KG-4bb 사이클 완료
+[19:23:15] KG4 🌱 KG-4bb 사이클 시작 #29/100
+[19:23:16] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 54개
+총 엣지: 85개
+
+노드 타입별:
+  •  critique: 27개
+  •  hypothesis: 27개
+
+출처별:
+  gemini-2.0-flash: 27개
+  gemini-2.0-pro: 27개
+
+관계 종류:
+  critiques: 27개
+  elaborates_on: 24개
+  informs_evaluation_of: 3개
+  temporal_bridge: 31개
+[19:23:16] KG4 🕰️ 오래된 노드 후보: 11개
+[19:23:16] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[19:23:32] KG4 ✅ Agent A 완료 (802 chars)
+[19:23:52] KG4 ✅ Agent B (Gemini Pro) 완료
+[19:23:52] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경의 지식 그래프 내재적 수렴성과 CSER 한계 가설 (id: n-055 → n-005)
+[19:23:52] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-056 → n-055
+  edge_span=19.5노드 평균 간격 → 시간 초월 연결 활발
+  max_span=55 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2912 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[19:23:53] KG4 ✅ KG-4bb 사이클 완료
+[19:43:03] KG4 🌱 KG-4bb 사이클 시작 #30/100
+[19:43:03] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 56개
+총 엣지: 89개
+
+노드 타입별:
+  •  critique: 28개
+  •  hypothesis: 28개
+
+출처별:
+  gemini-2.0-flash: 28개
+  gemini-2.0-pro: 28개
+
+관계 종류:
+  critiques: 28개
+  elaborates_on: 25개
+  informs_evaluation_of: 3개
+  temporal_bridge: 33개
+[19:43:03] KG4 🕰️ 오래된 노드 후보: 11개
+[19:43:03] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[19:43:13] KG4 ✅ Agent A 완료 (756 chars)
+[19:43:34] KG4 ✅ Agent B (Gemini Pro) 완료
+[19:43:34] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경 내 KG 진화 속도 및 CSER 효율성 가설 (id: n-057 → n-003)
+[19:43:34] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-058 → n-057
+  edge_span=20.3노드 평균 간격 → 시간 초월 연결 활발
+  max_span=55 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2912 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[19:43:34] KG4 ✅ KG-4bb 사이클 완료
+[20:03:41] KG4 🌱 KG-4bb 사이클 시작 #31/100
+[20:03:41] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 58개
+총 엣지: 93개
+
+노드 타입별:
+  •  critique: 29개
+  •  hypothesis: 29개
+
+출처별:
+  gemini-2.0-flash: 29개
+  gemini-2.0-pro: 29개
+
+관계 종류:
+  critiques: 29개
+  elaborates_on: 26개
+  informs_evaluation_of: 3개
+  temporal_bridge: 35개
+[20:03:41] KG4 🕰️ 오래된 노드 후보: 11개
+[20:03:41] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[20:03:57] KG4 ✅ Agent A 완료 (895 chars)
+[20:03:57] KG4 ✅ Agent B (Gemini Pro) 완료
+[20:03:57] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: Same-vendor Shallow Agreement & DCI Paradox (id: n-059 → n-005)
+[20:03:58] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-060 → n-059
+  edge_span=20.8노드 평균 간격 → 시간 초월 연결 활발
+  max_span=55 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2911 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[20:03:58] KG4 ✅ KG-4bb 사이클 완료
+[20:21:18] KG4 🌱 KG-4bb 사이클 시작 #32/100
+[20:21:18] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 60개
+총 엣지: 96개
+
+노드 타입별:
+  •  critique: 30개
+  •  hypothesis: 30개
+
+출처별:
+  gemini-2.0-flash: 30개
+  gemini-2.0-pro: 30개
+
+관계 종류:
+  critiques: 30개
+  elaborates_on: 27개
+  informs_evaluation_of: 3개
+  temporal_bridge: 36개
+[20:21:18] KG4 🕰️ 오래된 노드 후보: 11개
+[20:21:18] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[20:21:30] KG4 ✅ Agent A 완료 (776 chars)
+[20:21:50] KG4 ✅ Agent B (Gemini Pro) 완료
+[20:21:50] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: DCI와 수렴적 사고의 상호 강화 가설 (id: n-061 → n-005)
+[20:21:50] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-062 → n-061
+  edge_span=21.3노드 평균 간격 → 시간 초월 연결 활발
+  max_span=59 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2910 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[20:21:50] KG4 ✅ KG-4bb 사이클 완료
+[20:41:33] KG4 🌱 KG-4bb 사이클 시작 #33/100
+[20:41:33] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 62개
+총 엣지: 99개
+
+노드 타입별:
+  •  critique: 31개
+  •  hypothesis: 31개
+
+출처별:
+  gemini-2.0-flash: 31개
+  gemini-2.0-pro: 31개
+
+관계 종류:
+  critiques: 31개
+  elaborates_on: 28개
+  informs_evaluation_of: 3개
+  temporal_bridge: 37개
+[20:41:33] KG4 🕰️ 오래된 노드 후보: 11개
+[20:41:33] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[20:41:44] KG4 ✅ Agent A 완료 (940 chars)
+[20:41:44] KG4 ✅ Agent B (Gemini Pro) 완료
+[20:41:44] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경의 강화된 맥락적 일관성과 탐색적 다양성 저해 가설 (id: n-063 → n-001)
+[20:41:44] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-064 → n-063
+  edge_span=22.2노드 평균 간격 → 시간 초월 연결 활발
+  max_span=62 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2909 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[20:41:44] KG4 ✅ KG-4bb 사이클 완료
+[21:01:34] KG4 🌱 KG-4bb 사이클 시작 #34/100
+[21:01:34] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 64개
+총 엣지: 103개
+
+노드 타입별:
+  •  critique: 32개
+  •  hypothesis: 32개
+
+출처별:
+  gemini-2.0-flash: 32개
+  gemini-2.0-pro: 32개
+
+관계 종류:
+  critiques: 32개
+  elaborates_on: 29개
+  informs_evaluation_of: 3개
+  temporal_bridge: 39개
+[21:01:34] KG4 🕰️ 오래된 노드 후보: 11개
+[21:01:34] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[21:01:47] KG4 ✅ Agent A 완료 (672 chars)
+[21:01:47] KG4 ✅ Agent B (Gemini Pro) 완료
+[21:01:47] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: Same-vendor 환경 내 통일성으로 인한 CSER의 잠재적 다양성 저하 가설 (id: n-065 → n-005)
+[21:01:47] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-066 → n-065
+  edge_span=23.0노드 평균 간격 → 시간 초월 연결 활발
+  max_span=62 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2909 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:01:47] KG4 ✅ KG-4bb 사이클 완료
+[21:21:19] KG4 🌱 KG-4bb 사이클 시작 #35/100
+[21:21:19] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 66개
+총 엣지: 107개
+
+노드 타입별:
+  •  critique: 33개
+  •  hypothesis: 33개
+
+출처별:
+  gemini-2.0-flash: 33개
+  gemini-2.0-pro: 33개
+
+관계 종류:
+  critiques: 33개
+  elaborates_on: 30개
+  informs_evaluation_of: 3개
+  temporal_bridge: 41개
+[21:21:19] KG4 🕰️ 오래된 노드 후보: 11개
+[21:21:19] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[21:21:32] KG4 ✅ Agent A 완료 (836 chars)
+[21:21:32] KG4 ✅ Agent B (Gemini Pro) 완료
+[21:21:33] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 수렴적 사고와 DCI 저하 가설 (id: n-067 → n-005)
+[21:21:33] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-068 → n-067
+  edge_span=23.5노드 평균 간격 → 시간 초월 연결 활발
+  max_span=62 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2908 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:21:33] KG4 ✅ KG-4bb 사이클 완료
+[21:33:53] KG4 🌱 KG-4bb 사이클 시작 #36/100
+[21:33:53] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 68개
+총 엣지: 110개
+
+노드 타입별:
+  •  critique: 34개
+  •  hypothesis: 34개
+
+출처별:
+  gemini-2.0-flash: 34개
+  gemini-2.0-pro: 34개
+
+관계 종류:
+  critiques: 34개
+  elaborates_on: 31개
+  informs_evaluation_of: 3개
+  temporal_bridge: 42개
+[21:33:53] KG4 🕰️ 오래된 노드 후보: 11개
+[21:33:53] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[21:34:07] KG4 ✅ Agent A 완료 (897 chars)
+[21:34:27] KG4 ✅ Agent B (Gemini Pro) 완료
+[21:34:27] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 LLM 간 스키마 유사성 및 CSER 가설 (id: n-069 → n-003)
+[21:34:27] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-070 → n-069
+  edge_span=24.0노드 평균 간격 → 시간 초월 연결 활발
+  max_span=66 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2907 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:34:27] KG4 ✅ KG-4bb 사이클 완료
+[21:34:31] KG4 🌱 KG-4bb 사이클 시작 #37/100
+[21:34:31] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 70개
+총 엣지: 113개
+
+노드 타입별:
+  •  critique: 35개
+  •  hypothesis: 35개
+
+출처별:
+  gemini-2.0-flash: 35개
+  gemini-2.0-pro: 35개
+
+관계 종류:
+  critiques: 35개
+  elaborates_on: 32개
+  informs_evaluation_of: 3개
+  temporal_bridge: 43개
+[21:34:31] KG4 🕰️ 오래된 노드 후보: 11개
+[21:34:31] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[21:34:45] KG4 ✅ Agent A 완료 (938 chars)
+[21:34:45] KG4 ✅ Agent B (Gemini Pro) 완료
+[21:34:45] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경 내 미세 조정된 잠재 공간 탐색 및 KG 다양성 제약 가설 (id: n-071 → n-005)
+[21:34:45] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-072 → n-071
+  edge_span=24.5노드 평균 간격 → 시간 초월 연결 활발
+  max_span=66 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2907 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:34:45] KG4 ✅ KG-4bb 사이클 완료
+[21:34:52] KG4 🌱 KG-4bb 사이클 시작 #38/100
+[21:34:52] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 72개
+총 엣지: 116개
+
+노드 타입별:
+  •  critique: 36개
+  •  hypothesis: 36개
+
+출처별:
+  gemini-2.0-flash: 36개
+  gemini-2.0-pro: 36개
+
+관계 종류:
+  critiques: 36개
+  elaborates_on: 33개
+  informs_evaluation_of: 3개
+  temporal_bridge: 44개
+[21:34:52] KG4 🕰️ 오래된 노드 후보: 11개
+[21:34:52] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[21:35:07] KG4 ✅ Agent A 완료 (810 chars)
+[21:35:08] KG4 ✅ Agent B (Gemini Pro) 완료
+[21:35:08] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 내 암묵적 해석 프레임워크 가설 (id: n-073 → n-003)
+[21:35:08] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-074 → n-073
+  edge_span=25.4노드 평균 간격 → 시간 초월 연결 활발
+  max_span=70 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2906 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:35:08] KG4 ✅ KG-4bb 사이클 완료
+[21:35:21] KG4 🌱 KG-4bb 사이클 시작 #39/100
+[21:35:21] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 74개
+총 엣지: 120개
+
+노드 타입별:
+  •  critique: 37개
+  •  hypothesis: 37개
+
+출처별:
+  gemini-2.0-flash: 37개
+  gemini-2.0-pro: 37개
+
+관계 종류:
+  critiques: 37개
+  elaborates_on: 34개
+  informs_evaluation_of: 3개
+  temporal_bridge: 46개
+[21:35:21] KG4 🕰️ 오래된 노드 후보: 11개
+[21:35:21] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[21:35:37] KG4 ✅ Agent A 완료 (896 chars)
+[21:35:37] KG4 ✅ Agent B (Gemini Pro) 완료
+[21:35:38] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경의 지식 순환성 및 CSER 영향 가설 (id: n-075 → n-001)
+[21:35:38] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-076 → n-075
+  edge_span=25.9노드 평균 간격 → 시간 초월 연결 활발
+  max_span=74 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2906 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:35:38] KG4 ✅ KG-4bb 사이클 완료
+[21:35:49] KG4 🌱 KG-4bb 사이클 시작 #40/100
+[21:35:49] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 76개
+총 엣지: 123개
+
+노드 타입별:
+  •  critique: 38개
+  •  hypothesis: 38개
+
+출처별:
+  gemini-2.0-flash: 38개
+  gemini-2.0-pro: 38개
+
+관계 종류:
+  critiques: 38개
+  elaborates_on: 35개
+  informs_evaluation_of: 3개
+  temporal_bridge: 47개
+[21:35:49] KG4 🕰️ 오래된 노드 후보: 11개
+[21:35:49] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[21:36:04] KG4 ✅ Agent A 완료 (769 chars)
+[21:36:04] KG4 ✅ Agent B (Gemini Pro) 완료
+[21:36:04] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경 내 CSER의 도메인 깊이와 정교화 가설 (id: n-077 → n-003)
+[21:36:05] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-078 → n-077
+  edge_span=26.1노드 평균 간격 → 시간 초월 연결 활발
+  max_span=74 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2905 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:36:05] KG4 ✅ KG-4bb 사이클 완료
+[21:40:27] KG4 🌱 KG-4bb 사이클 시작 #41/100
+[21:40:27] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 78개
+총 엣지: 125개
+
+노드 타입별:
+  •  critique: 39개
+  •  hypothesis: 39개
+
+출처별:
+  gemini-2.0-flash: 39개
+  gemini-2.0-pro: 39개
+
+관계 종류:
+  critiques: 39개
+  elaborates_on: 36개
+  informs_evaluation_of: 3개
+  temporal_bridge: 47개
+[21:40:27] KG4 🕰️ 오래된 노드 후보: 11개
+[21:40:27] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[21:40:42] KG4 ✅ Agent A 완료 (875 chars)
+[21:40:42] KG4 ✅ Agent B (Gemini Pro) 완료
+[21:40:43] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경 내 DCI 저해 및 CSER 한계 가설 (id: n-079 → n-001)
+[21:40:43] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-080 → n-079
+  edge_span=27.0노드 평균 간격 → 시간 초월 연결 활발
+  max_span=78 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2905 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:40:43] KG4 ✅ KG-4bb 사이클 완료
+[21:52:00] KG4 🌱 KG-4bb 사이클 시작 #42/100
+[21:52:00] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 80개
+총 엣지: 129개
+
+노드 타입별:
+  •  critique: 40개
+  •  hypothesis: 40개
+
+출처별:
+  gemini-2.0-flash: 40개
+  gemini-2.0-pro: 40개
+
+관계 종류:
+  critiques: 40개
+  elaborates_on: 37개
+  informs_evaluation_of: 3개
+  temporal_bridge: 49개
+[21:52:00] KG4 🕰️ 오래된 노드 후보: 11개
+[21:52:00] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[21:52:11] KG4 ✅ Agent A 완료 (751 chars)
+[21:52:11] KG4 ✅ Agent B (Gemini Pro) 완료
+[21:52:11] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경 내 신속한 반복 개발 및 암묵적 제약 가설 (id: n-081 → n-003)
+[21:52:11] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-082 → n-081
+  edge_span=27.5노드 평균 간격 → 시간 초월 연결 활발
+  max_span=78 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2904 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:52:11] KG4 ✅ KG-4bb 사이클 완료
+[21:52:54] KG4 🌱 KG-4bb 사이클 시작 #43/100
+[21:52:54] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 82개
+총 엣지: 132개
+
+노드 타입별:
+  •  critique: 41개
+  •  hypothesis: 41개
+
+출처별:
+  gemini-2.0-flash: 41개
+  gemini-2.0-pro: 41개
+
+관계 종류:
+  critiques: 41개
+  elaborates_on: 38개
+  informs_evaluation_of: 3개
+  temporal_bridge: 50개
+[21:52:54] KG4 🕰️ 오래된 노드 후보: 11개
+[21:52:54] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[21:53:09] KG4 ✅ Agent A 완료 (825 chars)
+[21:53:09] KG4 ✅ Agent B (Gemini Pro) 완료
+[21:53:09] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경의 밀집 국소 클러스터 효과와 DCI 저하 가설 (id: n-083 → n-005)
+[21:53:09] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-084 → n-083
+  edge_span=28.4노드 평균 간격 → 시간 초월 연결 활발
+  max_span=78 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2904 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:53:09] KG4 ✅ KG-4bb 사이클 완료
+[21:53:20] KG4 🌱 KG-4bb 사이클 시작 #44/100
+[21:53:20] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 84개
+총 엣지: 136개
+
+노드 타입별:
+  •  critique: 42개
+  •  hypothesis: 42개
+
+출처별:
+  gemini-2.0-flash: 42개
+  gemini-2.0-pro: 42개
+
+관계 종류:
+  critiques: 42개
+  elaborates_on: 38개
+  informs_evaluation_of: 4개
+  temporal_bridge: 52개
+[21:53:20] KG4 🕰️ 오래된 노드 후보: 11개
+[21:53:20] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[21:53:31] KG4 ✅ Agent A 완료 (841 chars)
+[21:53:31] KG4 ✅ Agent B (Gemini Pro) 완료
+[21:53:31] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경 내 지식 표현의 구조적 편향 가설 (id: n-085 → n-001)
+[21:53:31] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-086 → n-085
+  edge_span=29.3노드 평균 간격 → 시간 초월 연결 활발
+  max_span=84 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2903 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:53:31] KG4 ✅ KG-4bb 사이클 완료
+[21:53:52] KG4 🌱 KG-4bb 사이클 시작 #45/100
+[21:53:52] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 86개
+총 엣지: 140개
+
+노드 타입별:
+  •  critique: 43개
+  •  hypothesis: 43개
+
+출처별:
+  gemini-2.0-flash: 43개
+  gemini-2.0-pro: 43개
+
+관계 종류:
+  critiques: 43개
+  elaborates_on: 39개
+  informs_evaluation_of: 4개
+  temporal_bridge: 54개
+[21:53:52] KG4 🕰️ 오래된 노드 후보: 11개
+[21:53:52] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[21:54:04] KG4 ✅ Agent A 완료 (872 chars)
+[21:54:04] KG4 ✅ Agent B (Gemini Pro) 완료
+[21:54:04] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 내 모델별 특성이 암묵적 공유 이해 형성에 미치는 영향 가설 (id: n-087 → n-003)
+[21:54:04] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-088 → n-087
+  edge_span=29.8노드 평균 간격 → 시간 초월 연결 활발
+  max_span=84 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2903 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:54:04] KG4 ✅ KG-4bb 사이클 완료
+[21:54:28] KG4 🌱 KG-4bb 사이클 시작 #46/100
+[21:54:29] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 88개
+총 엣지: 143개
+
+노드 타입별:
+  •  critique: 44개
+  •  hypothesis: 44개
+
+출처별:
+  gemini-2.0-flash: 44개
+  gemini-2.0-pro: 44개
+
+관계 종류:
+  critiques: 44개
+  elaborates_on: 40개
+  informs_evaluation_of: 4개
+  temporal_bridge: 55개
+[21:54:29] KG4 🕰️ 오래된 노드 후보: 11개
+[21:54:29] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[21:54:42] KG4 ✅ Agent A 완료 (855 chars)
+[21:54:42] KG4 ✅ Agent B (Gemini Pro) 완료
+[21:54:43] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경 내 구조적 편향과 KG 연결성 역학 가설 (id: n-089 → n-005)
+[21:54:43] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-090 → n-089
+  edge_span=30.2노드 평균 간격 → 시간 초월 연결 활발
+  max_span=84 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2903 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:54:43] KG4 ✅ KG-4bb 사이클 완료
+[21:54:55] KG4 🌱 KG-4bb 사이클 시작 #47/100
+[21:54:55] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 90개
+총 엣지: 146개
+
+노드 타입별:
+  •  critique: 45개
+  •  hypothesis: 45개
+
+출처별:
+  gemini-2.0-flash: 45개
+  gemini-2.0-pro: 45개
+
+관계 종류:
+  critiques: 45개
+  elaborates_on: 41개
+  informs_evaluation_of: 4개
+  temporal_bridge: 56개
+[21:54:56] KG4 🕰️ 오래된 노드 후보: 11개
+[21:54:56] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[21:55:08] KG4 ✅ Agent A 완료 (914 chars)
+[21:55:26] KG4 ✅ Agent B (Gemini Pro) 완료
+[21:55:26] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: Same-vendor 환경 내 지식 수렴 속도와 다양성 간의 상충 가설 (id: n-091 → n-003)
+[21:55:26] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-092 → n-091
+  edge_span=30.7노드 평균 간격 → 시간 초월 연결 활발
+  max_span=88 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2902 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:55:26] KG4 ✅ KG-4bb 사이클 완료
+[21:55:26] KG4 🌱 KG-4bb 사이클 시작 #48/100
+[21:55:27] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 92개
+총 엣지: 149개
+
+노드 타입별:
+  •  critique: 46개
+  •  hypothesis: 46개
+
+출처별:
+  gemini-2.0-flash: 46개
+  gemini-2.0-pro: 46개
+
+관계 종류:
+  critiques: 46개
+  elaborates_on: 42개
+  informs_evaluation_of: 4개
+  temporal_bridge: 57개
+[21:55:27] KG4 🕰️ 오래된 노드 후보: 11개
+[21:55:27] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[21:55:40] KG4 ✅ Agent A 완료 (771 chars)
+[21:56:00] KG4 ✅ Agent B (Gemini Pro) 완료
+[21:56:00] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경의 지식 그래프 심층화와 다양성 상충 가설 (id: n-093 → n-005)
+[21:56:00] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-094 → n-093
+  edge_span=31.6노드 평균 간격 → 시간 초월 연결 활발
+  max_span=88 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2902 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:56:01] KG4 ✅ KG-4bb 사이클 완료
+[21:56:01] KG4 🌱 KG-4bb 사이클 시작 #49/100
+[21:56:01] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 94개
+총 엣지: 153개
+
+노드 타입별:
+  •  critique: 47개
+  •  hypothesis: 47개
+
+출처별:
+  gemini-2.0-flash: 47개
+  gemini-2.0-pro: 47개
+
+관계 종류:
+  critiques: 47개
+  elaborates_on: 43개
+  informs_evaluation_of: 4개
+  temporal_bridge: 59개
+[21:56:01] KG4 🕰️ 오래된 노드 후보: 11개
+[21:56:01] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[21:56:14] KG4 ✅ Agent A 완료 (912 chars)
+[21:56:14] KG4 ✅ Agent B (Gemini Pro) 완료
+[21:56:14] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경 내 어휘적 동조화와 DCI 편향 가설 (id: n-095 → n-005)
+[21:56:14] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-096 → n-095
+  edge_span=32.5노드 평균 간격 → 시간 초월 연결 활발
+  max_span=95 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2902 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:56:14] KG4 ✅ KG-4bb 사이클 완료
+[21:56:28] KG4 🌱 KG-4bb 사이클 시작 #50/100
+[21:56:28] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 96개
+총 엣지: 157개
+
+노드 타입별:
+  •  critique: 48개
+  •  hypothesis: 48개
+
+출처별:
+  gemini-2.0-flash: 48개
+  gemini-2.0-pro: 48개
+
+관계 종류:
+  critiques: 48개
+  elaborates_on: 44개
+  informs_evaluation_of: 4개
+  temporal_bridge: 61개
+[21:56:28] KG4 🕰️ 오래된 노드 후보: 11개
+[21:56:28] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[21:56:44] KG4 ✅ Agent A 완료 (897 chars)
+[21:56:44] KG4 ✅ Agent B (Gemini Pro) 완료
+[21:56:44] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 아키텍처 유사성으로 인한 CSER 과적합 가설 (id: n-097 → n-001)
+[21:56:44] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-098 → n-097
+  edge_span=33.1노드 평균 간격 → 시간 초월 연결 활발
+  max_span=96 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2901 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:56:44] KG4 ✅ KG-4bb 사이클 완료
+[21:56:57] KG4 🌱 KG-4bb 사이클 시작 #51/100
+[21:56:57] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 98개
+총 엣지: 160개
+
+노드 타입별:
+  •  critique: 49개
+  •  hypothesis: 49개
+
+출처별:
+  gemini-2.0-flash: 49개
+  gemini-2.0-pro: 49개
+
+관계 종류:
+  critiques: 49개
+  elaborates_on: 45개
+  informs_evaluation_of: 4개
+  temporal_bridge: 62개
+[21:56:57] KG4 🕰️ 오래된 노드 후보: 11개
+[21:56:57] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[21:57:12] KG4 ✅ Agent A 완료 (966 chars)
+[21:57:12] KG4 ✅ Agent B (Gemini Pro) 완료
+[21:57:12] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 KG 내 마찰 없는 진화 가설 (id: n-099 → n-001)
+[21:57:12] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-100 → n-099
+  edge_span=34.0노드 평균 간격 → 시간 초월 연결 활발
+  max_span=98 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2901 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:57:12] KG4 ✅ KG-4bb 사이클 완료
+[21:57:22] KG4 🌱 KG-4bb 사이클 시작 #52/100
+[21:57:22] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 100개
+총 엣지: 164개
+
+노드 타입별:
+  •  critique: 50개
+  •  hypothesis: 50개
+
+출처별:
+  gemini-2.0-flash: 50개
+  gemini-2.0-pro: 50개
+
+관계 종류:
+  critiques: 50개
+  elaborates_on: 46개
+  informs_evaluation_of: 4개
+  temporal_bridge: 64개
+[21:57:22] KG4 🕰️ 오래된 노드 후보: 11개
+[21:57:22] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[21:57:34] KG4 ✅ Agent A 완료 (901 chars)
+[21:57:34] KG4 ✅ Agent B (Gemini Pro) 완료
+[21:57:34] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경 내 내부 일관성 증대와 외부 정보 통합 제약의 상충 가설 (id: n-101 → n-001)
+[21:57:34] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-102 → n-101
+  edge_span=34.6노드 평균 간격 → 시간 초월 연결 활발
+  max_span=100 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2901 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[21:57:34] KG4 ✅ KG-4bb 사이클 완료
+[21:58:08] KG4 🌱 KG-4bb 사이클 시작 #53/100
+[21:58:08] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 102개
+총 엣지: 167개
+
+노드 타입별:
+  •  critique: 51개
+  •  hypothesis: 51개
+
+출처별:
+  gemini-2.0-flash: 51개
+  gemini-2.0-pro: 51개
+
+관계 종류:
+  critiques: 51개
+  elaborates_on: 47개
+  informs_evaluation_of: 4개
+  temporal_bridge: 65개
+[21:58:08] KG4 🕰️ 오래된 노드 후보: 11개
+[21:58:08] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:00:31] KG4 🌱 KG-4bb 사이클 시작 #54/100
+[22:00:31] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 102개
+총 엣지: 167개
+
+노드 타입별:
+  •  critique: 51개
+  •  hypothesis: 51개
+
+출처별:
+  gemini-2.0-flash: 51개
+  gemini-2.0-pro: 51개
+
+관계 종류:
+  critiques: 51개
+  elaborates_on: 47개
+  informs_evaluation_of: 4개
+  temporal_bridge: 65개
+[22:00:31] KG4 🕰️ 오래된 노드 후보: 11개
+[22:00:31] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:00:43] KG4 ✅ Agent A 완료 (914 chars)
+[22:00:43] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:00:43] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경 내 암묵적 의미론적 근접성이 장기 연결성(DCI) 저해 메커니즘 가설 (id: n-103 → n-003)
+[22:00:43] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-104 → n-103
+  edge_span=35.1노드 평균 간격 → 시간 초월 연결 활발
+  max_span=102 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2901 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:00:44] KG4 ✅ KG-4bb 사이클 완료
+[22:00:58] KG4 🌱 KG-4bb 사이클 시작 #55/100
+[22:00:58] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 104개
+총 엣지: 170개
+
+노드 타입별:
+  •  critique: 52개
+  •  hypothesis: 52개
+
+출처별:
+  gemini-2.0-flash: 52개
+  gemini-2.0-pro: 52개
+
+관계 종류:
+  critiques: 52개
+  elaborates_on: 48개
+  informs_evaluation_of: 4개
+  temporal_bridge: 66개
+[22:00:58] KG4 🕰️ 오래된 노드 후보: 11개
+[22:00:58] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:01:15] KG4 ✅ Agent A 완료 (874 chars)
+[22:01:38] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:01:38] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경 내 단기 연결 편향 및 전역적 CSER 제약 가설 (id: n-105 → n-005)
+[22:01:38] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-106 → n-105
+  edge_span=36.0노드 평균 간격 → 시간 초월 연결 활발
+  max_span=102 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2900 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:01:39] KG4 ✅ KG-4bb 사이클 완료
+[22:01:39] KG4 🌱 KG-4bb 사이클 시작 #56/100
+[22:01:39] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 106개
+총 엣지: 174개
+
+노드 타입별:
+  •  critique: 53개
+  •  hypothesis: 53개
+
+출처별:
+  gemini-2.0-flash: 53개
+  gemini-2.0-pro: 53개
+
+관계 종류:
+  critiques: 53개
+  elaborates_on: 49개
+  informs_evaluation_of: 4개
+  temporal_bridge: 68개
+[22:01:39] KG4 🕰️ 오래된 노드 후보: 11개
+[22:01:39] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:02:00] KG4 🌱 KG-4bb 사이클 시작 #57/100
+[22:02:00] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 106개
+총 엣지: 174개
+
+노드 타입별:
+  •  critique: 53개
+  •  hypothesis: 53개
+
+출처별:
+  gemini-2.0-flash: 53개
+  gemini-2.0-pro: 53개
+
+관계 종류:
+  critiques: 53개
+  elaborates_on: 49개
+  informs_evaluation_of: 4개
+  temporal_bridge: 68개
+[22:02:00] KG4 🕰️ 오래된 노드 후보: 11개
+[22:02:00] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:02:20] KG4 ✅ Agent A 완료 (886 chars)
+[22:02:20] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:02:21] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경의 최적화 압력과 DCI 국소 수렴 가설 (id: n-107 → n-001)
+[22:02:21] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-108 → n-107
+  edge_span=36.5노드 평균 간격 → 시간 초월 연결 활발
+  max_span=106 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2900 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:02:21] KG4 ✅ KG-4bb 사이클 완료
+[22:02:24] KG4 🌱 KG-4bb 사이클 시작 #58/100
+[22:02:24] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 108개
+총 엣지: 177개
+
+노드 타입별:
+  •  critique: 54개
+  •  hypothesis: 54개
+
+출처별:
+  gemini-2.0-flash: 54개
+  gemini-2.0-pro: 54개
+
+관계 종류:
+  critiques: 54개
+  elaborates_on: 50개
+  informs_evaluation_of: 4개
+  temporal_bridge: 69개
+[22:02:24] KG4 🕰️ 오래된 노드 후보: 11개
+[22:02:24] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:02:36] KG4 ✅ Agent A 완료 (634 chars)
+[22:02:36] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:02:36] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경의 암묵적 연결성 저해 효과 가설 (id: n-109 → n-003)
+[22:02:36] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-110 → n-109
+  edge_span=37.4노드 평균 간격 → 시간 초월 연결 활발
+  max_span=106 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2900 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:02:36] KG4 ✅ KG-4bb 사이클 완료
+[22:02:49] KG4 🌱 KG-4bb 사이클 시작 #59/100
+[22:02:49] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 110개
+총 엣지: 181개
+
+노드 타입별:
+  •  critique: 55개
+  •  hypothesis: 55개
+
+출처별:
+  gemini-2.0-flash: 55개
+  gemini-2.0-pro: 55개
+
+관계 종류:
+  critiques: 55개
+  elaborates_on: 51개
+  informs_evaluation_of: 4개
+  temporal_bridge: 71개
+[22:02:49] KG4 🕰️ 오래된 노드 후보: 11개
+[22:02:49] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:03:04] KG4 ✅ Agent A 완료 (611 chars)
+[22:03:24] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:03:24] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경 내 암묵적 편향과 DCI 저하 가설 (id: n-111 → n-007)
+[22:03:24] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-112 → n-111
+  edge_span=38.3노드 평균 간격 → 시간 초월 연결 활발
+  max_span=109 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2900 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:03:24] KG4 ✅ KG-4bb 사이클 완료
+[22:03:24] KG4 🌱 KG-4bb 사이클 시작 #60/100
+[22:03:24] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 112개
+총 엣지: 185개
+
+노드 타입별:
+  •  critique: 56개
+  •  hypothesis: 56개
+
+출처별:
+  gemini-2.0-flash: 56개
+  gemini-2.0-pro: 56개
+
+관계 종류:
+  critiques: 56개
+  elaborates_on: 52개
+  informs_evaluation_of: 4개
+  temporal_bridge: 73개
+[22:03:25] KG4 🕰️ 오래된 노드 후보: 11개
+[22:03:25] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:03:43] KG4 ✅ Agent A 완료 (869 chars)
+[22:03:43] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:03:44] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경 내 내러티브 수렴 및 KG-CSER 견고성 가설 (id: n-113 → n-005)
+[22:03:44] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-114 → n-113
+  edge_span=38.8노드 평균 간격 → 시간 초월 연결 활발
+  max_span=109 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2899 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:03:44] KG4 ✅ KG-4bb 사이클 완료
+[22:03:53] KG4 🌱 KG-4bb 사이클 시작 #61/100
+[22:03:53] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 114개
+총 엣지: 188개
+
+노드 타입별:
+  •  critique: 57개
+  •  hypothesis: 57개
+
+출처별:
+  gemini-2.0-flash: 57개
+  gemini-2.0-pro: 57개
+
+관계 종류:
+  critiques: 57개
+  elaborates_on: 53개
+  informs_evaluation_of: 4개
+  temporal_bridge: 74개
+[22:03:53] KG4 🕰️ 오래된 노드 후보: 11개
+[22:03:53] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:04:10] KG4 ✅ Agent A 완료 (779 chars)
+[22:04:31] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:04:31] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경 내 장기적 시스템 편향 및 KG 다양성 저해 가설 (id: n-115 → n-001)
+[22:04:31] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-116 → n-115
+  edge_span=39.4노드 평균 간격 → 시간 초월 연결 활발
+  max_span=114 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2899 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:04:31] KG4 ✅ KG-4bb 사이클 완료
+[22:04:31] KG4 🌱 KG-4bb 사이클 시작 #62/100
+[22:04:31] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 116개
+총 엣지: 191개
+
+노드 타입별:
+  •  critique: 58개
+  •  hypothesis: 58개
+
+출처별:
+  gemini-2.0-flash: 58개
+  gemini-2.0-pro: 58개
+
+관계 종류:
+  critiques: 58개
+  elaborates_on: 53개
+  informs_evaluation_of: 5개
+  temporal_bridge: 75개
+[22:04:31] KG4 🕰️ 오래된 노드 후보: 11개
+[22:04:31] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:04:46] KG4 ✅ Agent A 완료 (989 chars)
+[22:05:09] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:05:09] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경 내 DCI 감소 및 개념적 다양성 저해 가설 (id: n-117 → n-001)
+[22:05:09] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-118 → n-117
+  edge_span=40.3노드 평균 간격 → 시간 초월 연결 활발
+  max_span=116 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2899 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:05:09] KG4 ✅ KG-4bb 사이클 완료
+[22:05:09] KG4 🌱 KG-4bb 사이클 시작 #63/100
+[22:05:09] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 118개
+총 엣지: 195개
+
+노드 타입별:
+  •  critique: 59개
+  •  hypothesis: 59개
+
+출처별:
+  gemini-2.0-flash: 59개
+  gemini-2.0-pro: 59개
+
+관계 종류:
+  critiques: 59개
+  elaborates_on: 54개
+  informs_evaluation_of: 5개
+  temporal_bridge: 77개
+[22:05:09] KG4 🕰️ 오래된 노드 후보: 11개
+[22:05:09] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:05:24] KG4 ✅ Agent A 완료 (970 chars)
+[22:05:24] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:05:24] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경 내 미묘한 표현 일관성과 CSER의 진화적 양면성 가설 (id: n-119 → n-001)
+[22:05:24] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-120 → n-119
+  edge_span=40.9노드 평균 간격 → 시간 초월 연결 활발
+  max_span=118 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2899 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:05:24] KG4 ✅ KG-4bb 사이클 완료
+[22:05:31] KG4 🌱 KG-4bb 사이클 시작 #64/100
+[22:05:31] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 120개
+총 엣지: 198개
+
+노드 타입별:
+  •  critique: 60개
+  •  hypothesis: 60개
+
+출처별:
+  gemini-2.0-flash: 60개
+  gemini-2.0-pro: 60개
+
+관계 종류:
+  critiques: 60개
+  elaborates_on: 55개
+  informs_evaluation_of: 5개
+  temporal_bridge: 78개
+[22:05:31] KG4 🕰️ 오래된 노드 후보: 11개
+[22:05:31] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:05:43] KG4 ✅ Agent A 완료 (861 chars)
+[22:05:43] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:05:43] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 Flash-Pro 상호작용의 KG 진화 및 CSER 영향 가설 (id: n-121 → n-003)
+[22:05:43] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-122 → n-121
+  edge_span=41.8노드 평균 간격 → 시간 초월 연결 활발
+  max_span=119 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2899 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:05:43] KG4 ✅ KG-4bb 사이클 완료
+[22:06:05] KG4 🌱 KG-4bb 사이클 시작 #65/100
+[22:06:05] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 122개
+총 엣지: 202개
+
+노드 타입별:
+  •  critique: 61개
+  •  hypothesis: 61개
+
+출처별:
+  gemini-2.0-flash: 61개
+  gemini-2.0-pro: 61개
+
+관계 종류:
+  critiques: 61개
+  elaborates_on: 56개
+  informs_evaluation_of: 5개
+  temporal_bridge: 80개
+[22:06:05] KG4 🕰️ 오래된 노드 후보: 11개
+[22:06:05] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:06:21] KG4 ✅ Agent A 완료 (943 chars)
+[22:06:21] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:06:21] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 구문적 정렬과 의미론적 표류 가설 (id: n-123 → n-007)
+[22:06:21] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-124 → n-123
+  edge_span=42.3노드 평균 간격 → 시간 초월 연결 활발
+  max_span=119 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2898 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:06:21] KG4 ✅ KG-4bb 사이클 완료
+[22:06:37] KG4 🌱 KG-4bb 사이클 시작 #66/100
+[22:06:37] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 124개
+총 엣지: 205개
+
+노드 타입별:
+  •  critique: 62개
+  •  hypothesis: 62개
+
+출처별:
+  gemini-2.0-flash: 62개
+  gemini-2.0-pro: 62개
+
+관계 종류:
+  critiques: 62개
+  elaborates_on: 57개
+  informs_evaluation_of: 5개
+  temporal_bridge: 81개
+[22:06:37] KG4 🕰️ 오래된 노드 후보: 11개
+[22:06:37] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:06:52] KG4 ✅ Agent A 완료 (761 chars)
+[22:06:52] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:06:52] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경의 로컬 코히어런스 최적화 및 CSER 트레이드오프 가설 (id: n-125 → n-001)
+[22:06:52] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-126 → n-125
+  edge_span=42.7노드 평균 간격 → 시간 초월 연결 활발
+  max_span=124 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2898 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:06:52] KG4 ✅ KG-4bb 사이클 완료
+[22:07:04] KG4 🌱 KG-4bb 사이클 시작 #67/100
+[22:07:04] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 126개
+총 엣지: 208개
+
+노드 타입별:
+  •  critique: 63개
+  •  hypothesis: 63개
+
+출처별:
+  gemini-2.0-flash: 63개
+  gemini-2.0-pro: 63개
+
+관계 종류:
+  critiques: 63개
+  elaborates_on: 58개
+  informs_evaluation_of: 5개
+  temporal_bridge: 82개
+[22:07:04] KG4 🕰️ 오래된 노드 후보: 11개
+[22:07:04] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:07:19] KG4 ✅ Agent A 완료 (751 chars)
+[22:07:36] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:07:36] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: Same-vendor 환경 내 고속 반복 피드백 루프의 CSER 및 혁신성 영향 가설 (id: n-127 → n-001)
+[22:07:36] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-128 → n-127
+  edge_span=43.3노드 평균 간격 → 시간 초월 연결 활발
+  max_span=126 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2898 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:07:36] KG4 ✅ KG-4bb 사이클 완료
+[22:07:36] KG4 🌱 KG-4bb 사이클 시작 #68/100
+[22:07:36] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 128개
+총 엣지: 211개
+
+노드 타입별:
+  •  critique: 64개
+  •  hypothesis: 64개
+
+출처별:
+  gemini-2.0-flash: 64개
+  gemini-2.0-pro: 64개
+
+관계 종류:
+  critiques: 64개
+  elaborates_on: 59개
+  informs_evaluation_of: 5개
+  temporal_bridge: 83개
+[22:07:36] KG4 🕰️ 오래된 노드 후보: 11개
+[22:07:36] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:07:51] KG4 ✅ Agent A 완료 (730 chars)
+[22:07:51] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:07:51] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동종 벤더 환경 내 암묵적 공유 이해와 단기 경로 편향 가설 (id: n-129 → n-003)
+[22:07:51] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-130 → n-129
+  edge_span=44.3노드 평균 간격 → 시간 초월 연결 활발
+  max_span=127 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2898 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:07:52] KG4 ✅ KG-4bb 사이클 완료
+[22:08:04] KG4 🌱 KG-4bb 사이클 시작 #69/100
+[22:08:04] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 130개
+총 엣지: 215개
+
+노드 타입별:
+  •  critique: 65개
+  •  hypothesis: 65개
+
+출처별:
+  gemini-2.0-flash: 65개
+  gemini-2.0-pro: 65개
+
+관계 종류:
+  critiques: 66개
+  elaborates_on: 59개
+  informs_evaluation_of: 5개
+  temporal_bridge: 85개
+[22:08:04] KG4 🕰️ 오래된 노드 후보: 11개
+[22:08:04] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:08:22] KG4 ✅ Agent A 완료 (1070 chars)
+[22:08:22] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:08:22] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경 내 초기 가설의 구조화 효과 및 DCI 영향 가설 (id: n-131 → n-003)
+[22:08:22] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-132 → n-131
+  edge_span=45.2노드 평균 간격 → 시간 초월 연결 활발
+  max_span=128 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2898 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:08:23] KG4 ✅ KG-4bb 사이클 완료
+[22:08:34] KG4 🌱 KG-4bb 사이클 시작 #70/100
+[22:08:34] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 132개
+총 엣지: 219개
+
+노드 타입별:
+  •  critique: 66개
+  •  hypothesis: 66개
+
+출처별:
+  gemini-2.0-flash: 66개
+  gemini-2.0-pro: 66개
+
+관계 종류:
+  critiques: 67개
+  elaborates_on: 60개
+  informs_evaluation_of: 5개
+  temporal_bridge: 87개
+[22:08:34] KG4 🕰️ 오래된 노드 후보: 11개
+[22:08:34] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:08:48] KG4 ✅ Agent A 완료 (756 chars)
+[22:08:58] KG4 🌱 KG-4bb 사이클 시작 #71/100
+[22:08:58] KG4 ⚠️  이전 KG-4bb 사이클 실행 중 — 스킵
+[22:09:06] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:09:06] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경의 암묵적 공유 이해와 DCI/CSER의 이중적 영향 가설 (id: n-133 → n-003)
+[22:09:06] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-134 → n-133
+  edge_span=46.0노드 평균 간격 → 시간 초월 연결 활발
+  max_span=130 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2898 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:09:06] KG4 ✅ KG-4bb 사이클 완료
+[22:09:17] KG4 🌱 KG-4bb 사이클 시작 #72/100
+[22:09:17] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 134개
+총 엣지: 223개
+
+노드 타입별:
+  •  critique: 67개
+  •  hypothesis: 67개
+
+출처별:
+  gemini-2.0-flash: 67개
+  gemini-2.0-pro: 67개
+
+관계 종류:
+  critiques: 68개
+  elaborates_on: 61개
+  informs_evaluation_of: 5개
+  temporal_bridge: 89개
+[22:09:17] KG4 🕰️ 오래된 노드 후보: 11개
+[22:09:17] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:09:35] KG4 ✅ Agent A 완료 (709 chars)
+[22:10:00] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:10:00] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경 내 개념적 다양성 제약과 장기 CSER 가설 (id: n-135 → n-007)
+[22:10:00] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-136 → n-135
+  edge_span=46.5노드 평균 간격 → 시간 초월 연결 활발
+  max_span=130 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2897 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:10:00] KG4 ✅ KG-4bb 사이클 완료
+[22:22:58] KG4 🌱 KG-4bb 사이클 시작 #73/100
+[22:22:58] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 136개
+총 엣지: 226개
+
+노드 타입별:
+  •  critique: 68개
+  •  hypothesis: 68개
+
+출처별:
+  gemini-2.0-flash: 68개
+  gemini-2.0-pro: 68개
+
+관계 종류:
+  critiques: 69개
+  elaborates_on: 62개
+  informs_evaluation_of: 5개
+  temporal_bridge: 90개
+[22:22:58] KG4 🕰️ 오래된 노드 후보: 11개
+[22:22:58] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:23:51] KG4 🌱 KG-4bb 사이클 시작 #74/100
+[22:23:51] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 136개
+총 엣지: 226개
+
+노드 타입별:
+  •  critique: 68개
+  •  hypothesis: 68개
+
+출처별:
+  gemini-2.0-flash: 68개
+  gemini-2.0-pro: 68개
+
+관계 종류:
+  critiques: 69개
+  elaborates_on: 62개
+  informs_evaluation_of: 5개
+  temporal_bridge: 90개
+[22:23:52] KG4 🕰️ 오래된 노드 후보: 11개
+[22:23:52] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:24:04] KG4 ✅ Agent A 완료 (827 chars)
+[22:24:08] KG4 🌱 KG-4bb 사이클 시작 #75/100
+[22:24:08] KG4 ⚠️  이전 KG-4bb 사이클 실행 중 — 스킵
+[22:24:23] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:24:23] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 암묵적 공유 이해와 KG 관계 유형 편향 및 CSER 영향 가설 (id: n-137 → n-003)
+[22:24:24] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-138 → n-137
+  edge_span=47.4노드 평균 간격 → 시간 초월 연결 활발
+  max_span=134 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2897 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:24:24] KG4 ✅ KG-4bb 사이클 완료
+[22:24:24] KG4 🌱 KG-4bb 사이클 시작 #76/100
+[22:24:24] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 138개
+총 엣지: 230개
+
+노드 타입별:
+  •  critique: 69개
+  •  hypothesis: 69개
+
+출처별:
+  gemini-2.0-flash: 69개
+  gemini-2.0-pro: 69개
+
+관계 종류:
+  critiques: 70개
+  elaborates_on: 63개
+  informs_evaluation_of: 5개
+  temporal_bridge: 92개
+[22:24:24] KG4 🕰️ 오래된 노드 후보: 11개
+[22:24:24] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:24:38] KG4 ✅ Agent A 완료 (668 chars)
+[22:24:38] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:24:38] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경 내 과도한 수렴적 사고의 역설 가설 (id: n-139 → n-005)
+[22:24:38] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-140 → n-139
+  edge_span=47.6노드 평균 간격 → 시간 초월 연결 활발
+  max_span=134 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2897 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:24:38] KG4 ✅ KG-4bb 사이클 완료
+[22:24:47] KG4 🌱 KG-4bb 사이클 시작 #77/100
+[22:24:47] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 140개
+총 엣지: 232개
+
+노드 타입별:
+  •  critique: 70개
+  •  hypothesis: 70개
+
+출처별:
+  gemini-2.0-flash: 70개
+  gemini-2.0-pro: 70개
+
+관계 종류:
+  critiques: 71개
+  elaborates_on: 64개
+  informs_evaluation_of: 5개
+  temporal_bridge: 92개
+[22:24:47] KG4 🕰️ 오래된 노드 후보: 11개
+[22:24:47] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:25:02] KG4 ✅ Agent A 완료 (891 chars)
+[22:25:02] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:25:02] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: DCI 회복을 통한 지식 그래프 강건성 및 진화성 향상 가설 (id: n-141 → n-001)
+[22:25:02] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-142 → n-141
+  edge_span=47.7노드 평균 간격 → 시간 초월 연결 활발
+  max_span=140 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2897 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:25:02] KG4 ✅ KG-4bb 사이클 완료
+[22:25:15] KG4 🌱 KG-4bb 사이클 시작 #78/100
+[22:25:15] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 142개
+총 엣지: 234개
+
+노드 타입별:
+  •  critique: 71개
+  •  hypothesis: 71개
+
+출처별:
+  gemini-2.0-flash: 71개
+  gemini-2.0-pro: 71개
+
+관계 종류:
+  critiques: 72개
+  elaborates_on: 65개
+  informs_evaluation_of: 5개
+  temporal_bridge: 92개
+[22:25:15] KG4 🕰️ 오래된 노드 후보: 11개
+[22:25:15] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:25:26] KG4 ✅ Agent A 완료 (843 chars)
+[22:25:26] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:25:26] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경의 암묵적 이해와 CSER의 전역 최적화 한계 가설 (id: n-143 → n-003)
+[22:25:26] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-144 → n-143
+  edge_span=48.3노드 평균 간격 → 시간 초월 연결 활발
+  max_span=140 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2897 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:25:26] KG4 ✅ KG-4bb 사이클 완료
+[22:25:46] KG4 🌱 KG-4bb 사이클 시작 #79/100
+[22:25:46] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 144개
+총 엣지: 237개
+
+노드 타입별:
+  •  critique: 72개
+  •  hypothesis: 72개
+
+출처별:
+  gemini-2.0-flash: 72개
+  gemini-2.0-pro: 72개
+
+관계 종류:
+  critiques: 73개
+  elaborates_on: 66개
+  informs_evaluation_of: 5개
+  temporal_bridge: 93개
+[22:25:46] KG4 🕰️ 오래된 노드 후보: 11개
+[22:25:46] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:26:02] KG4 ✅ Agent A 완료 (827 chars)
+[22:26:19] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:26:20] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경의 구조적 편향 및 KG 진화 제약 가설 (id: n-145 → n-001)
+[22:26:20] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-146 → n-145
+  edge_span=48.9노드 평균 간격 → 시간 초월 연결 활발
+  max_span=144 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2897 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:26:20] KG4 ✅ KG-4bb 사이클 완료
+[22:26:20] KG4 🌱 KG-4bb 사이클 시작 #80/100
+[22:26:20] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 146개
+총 엣지: 240개
+
+노드 타입별:
+  •  critique: 73개
+  •  hypothesis: 73개
+
+출처별:
+  gemini-2.0-flash: 73개
+  gemini-2.0-pro: 73개
+
+관계 종류:
+  critiques: 74개
+  elaborates_on: 66개
+  informs_evaluation_of: 6개
+  temporal_bridge: 94개
+[22:26:20] KG4 🕰️ 오래된 노드 후보: 11개
+[22:26:20] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:26:34] KG4 ✅ Agent A 완료 (977 chars)
+[22:26:34] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:26:34] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: Same-vendor 효율성과 KG 다양성-CSER 역설 (id: n-147 → n-001)
+[22:26:34] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-148 → n-147
+  edge_span=49.7노드 평균 간격 → 시간 초월 연결 활발
+  max_span=146 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2896 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:26:34] KG4 ✅ KG-4bb 사이클 완료
+[22:26:49] KG4 🌱 KG-4bb 사이클 시작 #81/100
+[22:26:49] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 148개
+총 엣지: 244개
+
+노드 타입별:
+  •  critique: 74개
+  •  hypothesis: 74개
+
+출처별:
+  gemini-2.0-flash: 74개
+  gemini-2.0-pro: 74개
+
+관계 종류:
+  critiques: 75개
+  elaborates_on: 67개
+  informs_evaluation_of: 6개
+  temporal_bridge: 96개
+[22:26:49] KG4 🕰️ 오래된 노드 후보: 11개
+[22:26:49] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:27:01] KG4 ✅ Agent A 완료 (801 chars)
+[22:27:01] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:27:01] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 미시적 아키텍처 유사성과 KG 진화 편향 가설 (id: n-149 → n-001)
+[22:27:01] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-150 → n-149
+  edge_span=50.5노드 평균 간격 → 시간 초월 연결 활발
+  max_span=148 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2896 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:27:01] KG4 ✅ KG-4bb 사이클 완료
+[22:27:17] KG4 🌱 KG-4bb 사이클 시작 #82/100
+[22:27:17] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 150개
+총 엣지: 248개
+
+노드 타입별:
+  •  critique: 75개
+  •  hypothesis: 75개
+
+출처별:
+  gemini-2.0-flash: 75개
+  gemini-2.0-pro: 75개
+
+관계 종류:
+  critiques: 76개
+  elaborates_on: 68개
+  informs_evaluation_of: 6개
+  temporal_bridge: 98개
+[22:27:17] KG4 🕰️ 오래된 노드 후보: 11개
+[22:27:17] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:27:30] KG4 ✅ Agent A 완료 (847 chars)
+[22:27:47] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:27:47] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 수렴의 장기 CSER 다양성 제한 가설 (id: n-151 → n-005)
+[22:27:47] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-152 → n-151
+  edge_span=51.4노드 평균 간격 → 시간 초월 연결 활발
+  max_span=148 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2896 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:27:47] KG4 ✅ KG-4bb 사이클 완료
+[22:27:49] KG4 🌱 KG-4bb 사이클 시작 #83/100
+[22:27:49] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 152개
+총 엣지: 252개
+
+노드 타입별:
+  •  critique: 76개
+  •  hypothesis: 76개
+
+출처별:
+  gemini-2.0-flash: 76개
+  gemini-2.0-pro: 76개
+
+관계 종류:
+  critiques: 77개
+  elaborates_on: 69개
+  informs_evaluation_of: 6개
+  temporal_bridge: 100개
+[22:27:49] KG4 🕰️ 오래된 노드 후보: 11개
+[22:27:49] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:28:02] KG4 ✅ Agent A 완료 (777 chars)
+[22:28:02] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:28:02] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: Same-Vendor 환경 내 최적화된 국지적 CSER과 전역적 탐색의 상충 가설 (id: n-153 → n-005)
+[22:28:02] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-154 → n-153
+  edge_span=52.3노드 평균 간격 → 시간 초월 연결 활발
+  max_span=150 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2896 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:28:02] KG4 ✅ KG-4bb 사이클 완료
+[22:28:22] KG4 🌱 KG-4bb 사이클 시작 #84/100
+[22:28:22] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 154개
+총 엣지: 256개
+
+노드 타입별:
+  •  critique: 77개
+  •  hypothesis: 77개
+
+출처별:
+  gemini-2.0-flash: 77개
+  gemini-2.0-pro: 77개
+
+관계 종류:
+  critiques: 79개
+  elaborates_on: 69개
+  informs_evaluation_of: 6개
+  temporal_bridge: 102개
+[22:28:22] KG4 🕰️ 오래된 노드 후보: 11개
+[22:28:22] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:28:35] KG4 ✅ Agent A 완료 (761 chars)
+[22:28:54] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:28:54] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경의 피드백 과적합 가설 (id: n-155 → n-005)
+[22:28:55] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-156 → n-155
+  edge_span=53.2노드 평균 간격 → 시간 초월 연결 활발
+  max_span=153 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2896 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:28:55] KG4 ✅ KG-4bb 사이클 완료
+[22:29:07] KG4 🌱 KG-4bb 사이클 시작 #85/300
+[22:29:07] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 156개
+총 엣지: 260개
+
+노드 타입별:
+  •  critique: 78개
+  •  hypothesis: 78개
+
+출처별:
+  gemini-2.0-flash: 78개
+  gemini-2.0-pro: 78개
+
+관계 종류:
+  critiques: 81개
+  elaborates_on: 69개
+  informs_evaluation_of: 6개
+  temporal_bridge: 104개
+[22:29:07] KG4 🕰️ 오래된 노드 후보: 11개
+[22:29:07] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:29:19] KG4 ✅ Agent A 완료 (711 chars)
+[22:29:19] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:29:19] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경 내 표면적 합의와 장거리 연결 제약 가설 (id: n-157 → n-001)
+[22:29:19] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-158 → n-157
+  edge_span=54.1노드 평균 간격 → 시간 초월 연결 활발
+  max_span=156 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2896 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:29:20] KG4 ✅ KG-4bb 사이클 완료
+[22:29:36] KG4 🌱 KG-4bb 사이클 시작 #86/300
+[22:29:36] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 158개
+총 엣지: 264개
+
+노드 타입별:
+  •  critique: 79개
+  •  hypothesis: 79개
+
+출처별:
+  gemini-2.0-flash: 79개
+  gemini-2.0-pro: 79개
+
+관계 종류:
+  critiques: 82개
+  elaborates_on: 70개
+  informs_evaluation_of: 6개
+  temporal_bridge: 106개
+[22:29:36] KG4 🕰️ 오래된 노드 후보: 11개
+[22:29:36] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:29:49] KG4 ✅ Agent A 완료 (861 chars)
+[22:30:06] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:30:06] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경 내 개념적 모델 다양성 감소 및 CSER 취약성 가설 (id: n-159 → n-007)
+[22:30:06] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-160 → n-159
+  edge_span=54.6노드 평균 간격 → 시간 초월 연결 활발
+  max_span=156 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2896 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:30:06] KG4 ✅ KG-4bb 사이클 완료
+[22:30:06] KG4 🌱 KG-4bb 사이클 시작 #87/300
+[22:30:06] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 160개
+총 엣지: 267개
+
+노드 타입별:
+  •  critique: 80개
+  •  hypothesis: 80개
+
+출처별:
+  gemini-2.0-flash: 80개
+  gemini-2.0-pro: 80개
+
+관계 종류:
+  critiques: 83개
+  elaborates_on: 71개
+  informs_evaluation_of: 6개
+  temporal_bridge: 107개
+[22:30:06] KG4 🕰️ 오래된 노드 후보: 11개
+[22:30:06] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:30:18] KG4 ✅ Agent A 완료 (699 chars)
+[22:30:18] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:30:18] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경 내 인지적 고착 임계점 가설 (id: n-161 → n-003)
+[22:30:18] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-162 → n-161
+  edge_span=55.1노드 평균 간격 → 시간 초월 연결 활발
+  max_span=158 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2896 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:30:18] KG4 ✅ KG-4bb 사이클 완료
+[22:30:48] KG4 🌱 KG-4bb 사이클 시작 #88/300
+[22:30:48] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 162개
+총 엣지: 270개
+
+노드 타입별:
+  •  critique: 81개
+  •  hypothesis: 81개
+
+출처별:
+  gemini-2.0-flash: 81개
+  gemini-2.0-pro: 81개
+
+관계 종류:
+  critiques: 84개
+  elaborates_on: 72개
+  informs_evaluation_of: 6개
+  temporal_bridge: 108개
+[22:30:48] KG4 🕰️ 오래된 노드 후보: 11개
+[22:30:48] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:31:00] KG4 ✅ Agent A 완료 (664 chars)
+[22:31:00] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:31:01] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 효율성-DCI 역설 가설 (id: n-163 → n-003)
+[22:31:01] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-164 → n-163
+  edge_span=56.0노드 평균 간격 → 시간 초월 연결 활발
+  max_span=160 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2896 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:31:01] KG4 ✅ KG-4bb 사이클 완료
+[22:31:18] KG4 🌱 KG-4bb 사이클 시작 #89/300
+[22:31:18] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 164개
+총 엣지: 274개
+
+노드 타입별:
+  •  critique: 82개
+  •  hypothesis: 82개
+
+출처별:
+  gemini-2.0-flash: 82개
+  gemini-2.0-pro: 82개
+
+관계 종류:
+  critiques: 85개
+  elaborates_on: 73개
+  informs_evaluation_of: 6개
+  temporal_bridge: 110개
+[22:31:18] KG4 🕰️ 오래된 노드 후보: 11개
+[22:31:18] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:31:32] KG4 ✅ Agent A 완료 (1003 chars)
+[22:31:33] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:31:33] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경의 진화적 개념 편향 가설 (id: n-165 → n-005)
+[22:31:33] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-166 → n-165
+  edge_span=56.4노드 평균 간격 → 시간 초월 연결 활발
+  max_span=160 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2895 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:31:33] KG4 ✅ KG-4bb 사이클 완료
+[22:31:56] KG4 🌱 KG-4bb 사이클 시작 #90/300
+[22:31:56] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 166개
+총 엣지: 277개
+
+노드 타입별:
+  •  critique: 83개
+  •  hypothesis: 83개
+
+출처별:
+  gemini-2.0-flash: 83개
+  gemini-2.0-pro: 83개
+
+관계 종류:
+  critiques: 87개
+  elaborates_on: 73개
+  informs_evaluation_of: 6개
+  temporal_bridge: 111개
+[22:31:56] KG4 🕰️ 오래된 노드 후보: 11개
+[22:31:56] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:32:10] KG4 ✅ Agent A 완료 (692 chars)
+[22:32:34] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:32:34] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경 내 암묵적 이해의 CSER 저해 가설 (id: n-167 → n-003)
+[22:32:34] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-168 → n-167
+  edge_span=57.3노드 평균 간격 → 시간 초월 연결 활발
+  max_span=164 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2895 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:32:34] KG4 ✅ KG-4bb 사이클 완료
+[22:32:34] KG4 🌱 KG-4bb 사이클 시작 #91/300
+[22:32:34] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 168개
+총 엣지: 281개
+
+노드 타입별:
+  •  critique: 84개
+  •  hypothesis: 84개
+
+출처별:
+  gemini-2.0-flash: 84개
+  gemini-2.0-pro: 84개
+
+관계 종류:
+  critiques: 88개
+  elaborates_on: 74개
+  informs_evaluation_of: 6개
+  temporal_bridge: 113개
+[22:32:34] KG4 🕰️ 오래된 노드 후보: 11개
+[22:32:34] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:32:47] KG4 ✅ Agent A 완료 (786 chars)
+[22:32:47] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:32:47] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경 내 KG 개념적 다양성 제약 가설 (id: n-169 → n-001)
+[22:32:48] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-170 → n-169
+  edge_span=58.2노드 평균 간격 → 시간 초월 연결 활발
+  max_span=168 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2895 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:32:48] KG4 ✅ KG-4bb 사이클 완료
+[22:33:05] KG4 🌱 KG-4bb 사이클 시작 #92/300
+[22:33:05] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 170개
+총 엣지: 285개
+
+노드 타입별:
+  •  critique: 85개
+  •  hypothesis: 85개
+
+출처별:
+  gemini-2.0-flash: 85개
+  gemini-2.0-pro: 85개
+
+관계 종류:
+  critiques: 89개
+  elaborates_on: 75개
+  informs_evaluation_of: 6개
+  temporal_bridge: 115개
+[22:33:05] KG4 🕰️ 오래된 노드 후보: 11개
+[22:33:05] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:33:18] KG4 ✅ Agent A 완료 (850 chars)
+[22:33:18] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:33:18] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 수렴성: 단기 효율성 대 장기 CSER 다양성 역설 (id: n-171 → n-005)
+[22:33:18] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-172 → n-171
+  edge_span=59.0노드 평균 간격 → 시간 초월 연결 활발
+  max_span=168 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2895 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:33:18] KG4 ✅ KG-4bb 사이클 완료
+[22:33:42] KG4 🌱 KG-4bb 사이클 시작 #93/300
+[22:33:42] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 172개
+총 엣지: 289개
+
+노드 타입별:
+  •  critique: 86개
+  •  hypothesis: 86개
+
+출처별:
+  gemini-2.0-flash: 86개
+  gemini-2.0-pro: 86개
+
+관계 종류:
+  critiques: 90개
+  elaborates_on: 76개
+  informs_evaluation_of: 6개
+  temporal_bridge: 117개
+[22:33:42] KG4 🕰️ 오래된 노드 후보: 11개
+[22:33:42] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:33:53] KG4 ✅ Agent A 완료 (653 chars)
+[22:34:11] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:34:11] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 암묵적 공유 이해와 단기 연결 편향(DCI) 심화 가설 (id: n-173 → n-003)
+[22:34:11] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-174 → n-173
+  edge_span=59.8노드 평균 간격 → 시간 초월 연결 활발
+  max_span=170 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2895 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:34:11] KG4 ✅ KG-4bb 사이클 완료
+[22:34:18] KG4 🌱 KG-4bb 사이클 시작 #94/300
+[22:34:18] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 174개
+총 엣지: 293개
+
+노드 타입별:
+  •  critique: 87개
+  •  hypothesis: 87개
+
+출처별:
+  gemini-2.0-flash: 87개
+  gemini-2.0-pro: 87개
+
+관계 종류:
+  critiques: 91개
+  elaborates_on: 77개
+  informs_evaluation_of: 6개
+  temporal_bridge: 119개
+[22:34:18] KG4 🕰️ 오래된 노드 후보: 11개
+[22:34:18] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:34:32] KG4 ✅ Agent A 완료 (1144 chars)
+[22:34:53] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:34:53] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경 내재적 편향과 KG 진화 경로 제약 가설 (id: n-175 → n-005)
+[22:34:53] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-176 → n-175
+  edge_span=60.6노드 평균 간격 → 시간 초월 연결 활발
+  max_span=170 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2895 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:34:53] KG4 ✅ KG-4bb 사이클 완료
+[22:51:15] KG4 🌱 KG-4bb 사이클 시작 #95/300
+[22:51:15] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 176개
+총 엣지: 297개
+
+노드 타입별:
+  •  critique: 88개
+  •  hypothesis: 88개
+
+출처별:
+  gemini-2.0-flash: 88개
+  gemini-2.0-pro: 88개
+
+관계 종류:
+  critiques: 92개
+  elaborates_on: 78개
+  informs_evaluation_of: 6개
+  temporal_bridge: 121개
+[22:51:15] KG4 🕰️ 오래된 노드 후보: 11개
+[22:51:15] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[22:51:31] KG4 ✅ Agent A 완료 (776 chars)
+[22:51:31] KG4 ✅ Agent B (Gemini Pro) 완료
+[22:51:31] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 환경 내 사고의 동형성과 CSER 과대평가 가설 (id: n-177 → n-003)
+[22:51:31] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-178 → n-177
+  edge_span=61.5노드 평균 간격 → 시간 초월 연결 활발
+  max_span=175 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2895 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[22:51:31] KG4 ✅ KG-4bb 사이클 완료
+[23:12:11] KG4 🌱 KG-4bb 사이클 시작 #96/300
+[23:12:11] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 178개
+총 엣지: 301개
+
+노드 타입별:
+  •  critique: 89개
+  •  hypothesis: 89개
+
+출처별:
+  gemini-2.0-flash: 89개
+  gemini-2.0-pro: 89개
+
+관계 종류:
+  critiques: 93개
+  elaborates_on: 78개
+  informs_evaluation_of: 7개
+  temporal_bridge: 123개
+[23:12:11] KG4 🕰️ 오래된 노드 후보: 11개
+[23:12:11] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[23:12:25] KG4 ✅ Agent A 완료 (713 chars)
+[23:12:44] KG4 ✅ Agent B (Gemini Pro) 완료
+[23:12:45] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 KG의 외부 관점 수용 및 복잡성 모델링 한계 가설 (id: n-179 → n-005)
+[23:12:45] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-180 → n-179
+  edge_span=62.4노드 평균 간격 → 시간 초월 연결 활발
+  max_span=175 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2895 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[23:12:45] KG4 ✅ KG-4bb 사이클 완료
+[23:41:00] KG4 🌱 KG-4bb 사이클 시작 #97/300
+[23:41:00] KG4 📊 KG-4bb 현황: ── 통계 ──────────────────────────────────────
+총 노드: 180개
+총 엣지: 305개
+
+노드 타입별:
+  •  critique: 90개
+  •  hypothesis: 90개
+
+출처별:
+  gemini-2.0-flash: 90개
+  gemini-2.0-pro: 90개
+
+관계 종류:
+  critiques: 94개
+  elaborates_on: 79개
+  informs_evaluation_of: 7개
+  temporal_bridge: 125개
+[23:41:00] KG4 🕰️ 오래된 노드 후보: 11개
+[23:41:00] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[23:41:16] KG4 ✅ Agent A 완료 (757 chars)
+[23:41:16] KG4 ✅ Agent B (Gemini Pro) 완료
+[23:41:16] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 KG의 내부 일관성 편향 가설 (id: n-181 → n-001)
+[23:41:17] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-182 → n-181
+  edge_span=63.2노드 평균 간격 → 시간 초월 연결 활발
+  max_span=180 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2895 → 균등 분포 이론치(0.289) 근접
+  DXI=0.0 → backfill_ontology.py 실행 후 재측정 권장
+
+[23:41:17] KG4 ✅ KG-4bb 사이클 완료

@@ -256,6 +256,79 @@ fi
 
 echo "[$(date '+%F %T')] 모든 현재 작업 완료 — 대기중" >> "$LOG"
 
+# ── KG-2 사이클 (same-vendor 비교 실험, N=2) ──
+echo "[$(date '+%F %T')] KG-2 사이클 시작" >> "$LOG"
+bash "$HOME/emergent/evolve-auto-kg2.sh" >> "$LOG" 2>&1 || true
+
+# ── KG-3 사이클 (cross-vendor: GPT-4o + Gemini Flash) ──
+echo "[$(date '+%F %T')] KG-3 사이클 시작" >> "$LOG"
+bash "$HOME/emergent/evolve-auto-kg3.sh" >> "$LOG" 2>&1 || true
+
+# ── KG-4 사이클 (same-vendor: Gemini Flash + Gemini Pro) ──
+echo "[$(date '+%F %T')] KG-4 사이클 시작" >> "$LOG"
+bash "$HOME/emergent/evolve-auto-kg4.sh" >> "$LOG" 2>&1 || true
+
+# ── KG-2b 사이클 (same-model replication-B: N=2 within-cell) ──
+echo "[$(date '+%F %T')] KG-2b 사이클 시작" >> "$LOG"
+bash "$HOME/emergent/evolve-auto-kg2b.sh" >> "$LOG" 2>&1 || true
+
+# ── KG-3b 사이클 (cross-vendor replication-B: N=2 within-cell) ──
+echo "[$(date '+%F %T')] KG-3b 사이클 시작" >> "$LOG"
+bash "$HOME/emergent/evolve-auto-kg3b.sh" >> "$LOG" 2>&1 || true
+
+# ── KG-4b 사이클 (same-vendor replication-B: N=2 within-cell) ──
+echo "[$(date '+%F %T')] KG-4b 사이클 시작" >> "$LOG"
+bash "$HOME/emergent/evolve-auto-kg4b.sh" >> "$LOG" 2>&1 || true
+
+# ── KG 마일스톤 감지 + 자동 태스크 enqueue ──
+ENQUEUE="python3 /Users/rocky/ai-comms/enqueue_task.py"
+MILESTONE_LOG="/tmp/kg-milestone.log"
+
+check_milestone() {
+  local KG_NAME=$1    # kg2b / kg3b / kg4b
+  local KG_PATH=$2    # JSON 경로
+  local TARGET_CSER=$3  # 목표 CSER (이 값 이하이면 milestone)
+  local NODE_MIN=$4   # 최소 노드 수
+
+  CSER=$(python3 -c "
+import json, sys
+try:
+    d=json.load(open('$KG_PATH'))
+    print(d.get('metadata',{}).get('cser','N/A'))
+except: print('N/A')
+" 2>/dev/null)
+
+  NODES=$(python3 -c "
+import json, sys
+try:
+    d=json.load(open('$KG_PATH'))
+    print(len(d.get('nodes',[])))
+except: print(0)
+" 2>/dev/null)
+
+  # 이미 enqueue된 적 있으면 스킵
+  FLAG="/tmp/milestone-${KG_NAME}-done"
+  [[ -f "$FLAG" ]] && return
+
+  if python3 -c "
+cser=float('$CSER') if '$CSER' != 'N/A' else 1.0
+nodes=int('$NODES')
+import sys
+sys.exit(0 if cser <= $TARGET_CSER and nodes >= $NODE_MIN else 1)
+" 2>/dev/null; then
+    echo "[$(date '+%F %T')] $KG_NAME 마일스톤 달성! CSER=$CSER nodes=$NODES" >> "$MILESTONE_LOG"
+    $ENQUEUE "$KG_NAME 마일스톤: 논문 수치 업데이트" \
+      --description "$KG_NAME CSER=$CSER, nodes=$NODES. main.tex 2×2 표 및 b-instance 수치 업데이트 후 git commit." \
+      --kind coding --source nightrunner --priority 2
+    touch "$FLAG"
+    openclaw system event --text "🎯 $KG_NAME 마일스톤! CSER=$CSER → 논문 업데이트 태스크 자동 enqueue됨" --mode now
+  fi
+}
+
+check_milestone kg2b ~/emergent/kg2b/data/knowledge-graph.json 0.45 150
+check_milestone kg3b ~/emergent/kg3b/data/knowledge-graph.json 0.38 150
+check_milestone kg4b ~/emergent/kg4b/data/knowledge-graph.json 0.30 200
+
 # ── 4. 벤치마크 결과 완료 감지 → 텔레그램 알림 ──
 REAL_RESULT="/Users/rocky/emergent/experiments/amp_benchmark_results_real.json"
 NOTIFIED_FLAG="/Users/rocky/emergent/experiments/checkpoints/benchmark_notified.flag"

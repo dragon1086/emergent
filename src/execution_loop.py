@@ -18,6 +18,7 @@ Emergent Execution Loop — D-067 실용성 트랙
 from __future__ import annotations
 
 import json
+import os
 import time
 import hashlib
 from dataclasses import dataclass, field
@@ -25,7 +26,8 @@ from pathlib import Path
 from typing import Optional
 
 # KG 로더 — 기존 인프라 재사용
-KG_PATH = Path(__file__).parent.parent / "data" / "knowledge-graph.json"
+_kg_env = os.environ.get("EMERGENT_KG_PATH")
+KG_PATH = Path(_kg_env) if _kg_env else Path(__file__).parent.parent / "data" / "knowledge-graph.json"
 
 
 # ---------------------------------------------------------------------------
