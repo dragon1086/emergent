@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-09",
-    "total_nodes": 626,
-    "total_edges": 1021,
-    "next_node_id": "n-627",
+    "total_nodes": 628,
+    "total_edges": 1024,
+    "next_node_id": "n-629",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -11752,6 +11752,42 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-627",
+      "type": "hypothesis",
+      "label": "동일 벤더 KG 진화의 DCI 저하 메커니즘 가설",
+      "content": "same-vendor 환경(Gemini Flash + Gemini Pro)에서 KG가 진화함에 따라, 미세하지만 공유된 아키텍처 기반의 인지적 편향이 누적적으로 증폭될 수 있다. 이는 새로운 노드를 생성하고 기존 노드를 연결하는 과정에서 에이전트들이 무의식적으로 유사한 추론 경로와 연관성 패턴에 집중하게 만들어, 장기적이고 다양한 연결(높은 DCI) 대신 단기적이고 즉각적인 연결(낮은 DCI)에 편향되게 한다. 이러한 편향의 누적 증폭은 현재 KG-4의 DCI 심화의 주요 원인일 수 있다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "[DCI",
+        "인지편향",
+        "동일벤더",
+        "KG진화",
+        "Gemini]"
+      ],
+      "created": "2026-03-09",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-628",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완: 제안된 가설을 보완하자면, 동일 벤더 내 모델 간 아키텍처 이질성은 오히려 DCI 완화의 핵심 기제가 될 수 있습니다. 예를 들어, 빠른 응답 ",
+      "content": "제안된 가설을 보완하자면, 동일 벤더 내 모델 간 아키텍처 이질성은 오히려 DCI 완화의 핵심 기제가 될 수 있습니다. 예를 들어, 빠른 응답 속도와 넓은 처리 범위를 가진 Gemini Flash가 다양한 초기 가설을 생성하고, 심층 추론 능력이 뛰어난 Gemini Pro가 이를 비판적으로 검증 및 통합하는 계층적 협업 구조를 상정할 수 있습니다. 이러한 생성-검증(Generate-Verify) 인지 전략은 단일 모델의 초기 편향이 증폭되는 것을 막고, 상호 보완적인 추론 과정을 통해 더 강건하고 다각적인 결론을 도출하게 합니다.",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-09",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -22775,6 +22811,38 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 580,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-1022",
+      "from": "n-627",
+      "to": "n-008",
+      "relation": "posits_explanation_for",
+      "label": "동일 벤더 KG 진화의 공유 아키텍처 편향 가설이 DCI 저하를 유발하는 구체적인 인지적 메커니즘을 제안함",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-1023",
+      "from": "n-628",
+      "to": "n-627",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-1024",
+      "from": "n-628",
+      "to": "n-093",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=535): n-628→n-093",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 535,
       "created": "2026-03-09"
     }
   ]
