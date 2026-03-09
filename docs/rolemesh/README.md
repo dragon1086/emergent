@@ -38,12 +38,12 @@ All commands accept `--json` for machine-readable output and `--config <path>` t
 
 | Tool | Vendor | Strengths | Cost |
 |---|---|---|---|
-| Claude Code | Anthropic | coding, refactoring, analysis, architecture, reasoning, explain, pair-programming | high |
-| Codex CLI | OpenAI | coding, refactoring, quick-edit, completion, git-integration | medium |
-| Gemini CLI | Google | coding, multimodal, search, explain, frontend, analysis | medium |
-| Aider | Community | coding, refactoring, quick-edit, git-integration | low |
-| GitHub Copilot CLI | GitHub | coding, completion, explain | medium |
-| Cursor | Cursor | coding, refactoring, frontend, completion | medium |
+| Claude Code | Anthropic | coding, analysis, reasoning, architecture | high |
+| Codex CLI | OpenAI | coding, refactoring, quick-edit | medium |
+| Gemini CLI | Google | multimodal, search, ui-design, frontend | medium |
+| Aider | Community | coding, git-integration, pair-programming | low |
+| GitHub Copilot CLI | GitHub | completion, quick-edit, explain | low |
+| Cursor | Cursor | coding, ui, inline-edit | medium |
 
 ## Task Types
 
@@ -59,26 +59,6 @@ Config is stored at `~/.rolemesh/config.json` after running `setup --save`. It c
 - **routing**: task-type-to-tool mapping with primary + fallback
 
 Execution history is logged to `~/.rolemesh/history.jsonl`.
-
-## Custom Tools
-
-Register custom AI tools programmatically:
-
-```python
-from src.rolemesh.builder import SetupWizard
-
-wizard = SetupWizard()
-wizard.discover()
-wizard.register_tool(
-    key="my-tool",
-    name="My Custom Tool",
-    vendor="Internal",
-    strengths=["coding", "analysis"],
-    check_cmd=["my-tool", "--version"],
-    cost_tier="low",
-)
-wizard.save_config()
-```
 
 ## Further Reading
 

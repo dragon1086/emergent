@@ -11,17 +11,25 @@ Probes the system for all known AI CLI tools. Checks binary availability via `sh
 ```python
 @dataclass
 class ToolProfile:
-    key: str                        # registry key (e.g. "claude")
-    name: str                       # display name (e.g. "Claude Code")
-    vendor: str                     # vendor name (e.g. "Anthropic")
-    strengths: list[str]            # task types this tool excels at
-    cost_tier: str                  # "low" | "medium" | "high"
-    available: bool = False         # True if binary found on PATH
-    version: Optional[str] = None   # version string from CLI
-    user_preference: Optional[int] = None  # user ranking override
+    key: str                       # registry key (e.g. "claude")
+    name: str                      # display name (e.g. "Claude Code")
+    vendor: str                    # vendor name (e.g. "Anthropic")
+    strengths: list[str]           # task types this tool excels at
+    cost_tier: str                 # "low" | "medium" | "high"
+    available: bool = False        # True if binary found on PATH
+    version: Optional[str] = None  # version string from CLI
+    user_preference: int = 0       # 0=neutral, 1=preferred, -1=avoid
 ```
 
+Methods:
+- `to_dict() -> dict` — serialize to dictionary via `dataclasses.asdict`
+
 ### `SetupWizard`
+
+```python
+wizard = SetupWizard()
+wizard.config_path  # default: ~/.rolemesh/config.json
+```
 
 | Method | Returns | Description |
 |---|---|---|
@@ -30,11 +38,22 @@ class ToolProfile:
 | `rank_tools(task_type)` | `list[ToolProfile]` | Rank tools for a task type (best first) |
 | `build_config()` | `dict` | Generate routing config from discovered tools |
 | `save_config(path?)` | `Path` | Persist config to `~/.rolemesh/config.json` |
-| `load_config(path?)` | `dict \| None` | Load existing config from disk |
-| `validate_config(config)` | `list[str]` | Validate config schema; returns error list |
-| `register_tool(key, name, vendor, strengths, check_cmd, cost_tier)` | `ToolProfile` | Register and discover a custom tool |
-| `unregister_tool(key)` | `bool` | Remove a custom tool |
+| `load_config(path?)` | `dict` | Load existing config from disk |
 | `summary()` | `str` | Human-readable summary of discovered tools |
+
+#### Ranking algorithm
+
+`rank_tools(task_type)` scores each available tool:
+
+- +10.0 if `task_type` is in the tool's `strengths`
+- +5.0 / -5.0 based on `user_preference` (1 = preferred, -1 = avoid)
+- +2.0 / +1.0 / +0.0 based on `cost_tier` (low / medium / high)
+
+Tools are sorted by descending score.
+
+### `TOOL_REGISTRY`
+
+Built-in dictionary of known AI CLI tools. Each entry has: `name`, `vendor`, `strengths`, `check_cmd`, `cost_tier`.
 
 ---
 
@@ -52,6 +71,8 @@ router = RoleMeshRouter(config_path=None)  # loads ~/.rolemesh/config.json
 | `route(request)` | `RouteResult` | Route to the single best tool |
 | `route_multi(request)` | `list[RouteResult]` | Return suggestions for all matched task types |
 
+If no config is loaded, routes default to `claude` as `DEFAULT_TOOL`.
+
 ### `RouteResult`
 
 ```python
@@ -65,14 +86,22 @@ class RouteResult:
     reason: str            # human-readable routing explanation
 ```
 
+Methods:
+- `to_dict() -> dict` — serialize to dictionary
+
 ### Task Pattern Matching
 
 Classification uses regex patterns against the request string. Each task type has 2 pattern groups; confidence = (matched groups / total groups). Patterns support both Korean and English keywords.
 
 Confidence levels:
-- `>= 0.8`: Strong match
-- `>= 0.5`: Good match
-- `< 0.5`: Weak match (consider specifying task type)
+- `>= 0.8`: Strong match — "Strong match for '{task_type}'"
+- `>= 0.5`: Good match — includes alternative suggestions
+- `< 0.5`: Weak match — "consider specifying task type"
+- No match: defaults to `("coding", 0.3)`
+
+### `TASK_PATTERNS`
+
+List of `(task_type, [regex_pattern, ...])` tuples defining 13 task categories.
 
 ---
 
@@ -82,20 +111,15 @@ Confidence levels:
 
 ```python
 executor = RoleMeshExecutor(
-    config_path=None,      # routing config path
-    timeout=120,           # subprocess timeout (seconds)
-    dry_run=False,         # if True, show command without executing
-    history_path=None,     # JSONL log path (default: ~/.rolemesh/history.jsonl)
+    config_path=None,   # routing config path
+    dry_run=False,      # if True, show command without executing
 )
 ```
 
 | Method | Returns | Description |
 |---|---|---|
-| `run(request, context?)` | `ExecutionResult` | Full pipeline: classify + route + execute (with fallback) |
-| `dispatch(tool_key, prompt, context?)` | `ExecutionResult` | Direct dispatch to a specific tool (skip routing) |
-| `check_tool(tool_key)` | `bool` | Check if tool binary is on PATH |
-| `build_command(tool_key, prompt, context?)` | `list[str]` | Build CLI command for a tool |
-| `get_history(limit=50)` | `list[dict]` | Read recent execution history |
+| `dispatch(task, tool?)` | `ExecutionResult` | Classify + route + execute (optionally force a specific tool) |
+| `run(tool_key, task, route_result)` | `ExecutionResult` | Execute a task with a specific tool |
 
 ### `ExecutionResult`
 
@@ -106,30 +130,33 @@ class ExecutionResult:
     tool_name: str         # display name
     task_type: str         # classified task type
     confidence: float      # routing confidence
-    exit_code: int         # subprocess exit code
+    exit_code: int         # subprocess exit code (0 = success)
+    success: bool          # exit_code == 0
+    duration_ms: int       # execution time in milliseconds
+    fallback_used: bool    # True if primary tool failed
     stdout: str            # captured stdout
     stderr: str            # captured stderr
-    duration_ms: int       # execution time
-    fallback_used: bool    # True if primary tool failed
-
-    @property
-    def success(self) -> bool:  # exit_code == 0
 ```
 
-### Context dict
+### `TOOL_COMMANDS`
 
-The optional `context` parameter accepts:
+Maps tool keys to CLI command templates:
 
-| Key | Type | Description |
+| Tool | Command | Mode |
 |---|---|---|
-| `files` | `list[str]` | File paths to pass as CLI arguments |
-| `cwd` | `str` | Working directory for subprocess |
+| `claude` | `claude -p <prompt>` | arg |
+| `codex` | `codex -p <prompt>` | arg |
+| `gemini` | `gemini -p <prompt>` | arg |
+| `aider` | `aider --message <prompt>` | arg |
+| `copilot` | `gh copilot -p <prompt>` | arg |
+| `cursor` | `cursor -p <prompt>` | arg |
 
-### Fallback behavior
+### Execution behavior
 
-1. If primary tool is not installed: try fallback tool
-2. If primary tool fails (non-zero exit): try fallback tool
-3. If neither is available: return exit code 127
+- Subprocess timeout: 300 seconds
+- History logged to `~/.rolemesh/history.jsonl` (JSONL format)
+- Each history entry: `timestamp`, `tool`, `task_type`, `success`, `duration_ms`
+- Unknown tool key returns exit code 1 with stderr message
 
 ---
 
@@ -150,7 +177,8 @@ dashboard.collect()  # gather all data
 | `render_routing()` | `str` | Routing table |
 | `render_coverage()` | `str` | Task type x tool coverage matrix |
 | `render_health()` | `str` | Health check results |
-| `render_history()` | `str` | Execution history table |
+| `render_history()` | `str` | Last 10 execution history entries |
+| `to_json()` | `dict` | Machine-readable dashboard data |
 
 ### Health Checks
 
@@ -165,3 +193,21 @@ dashboard.collect()  # gather all data
 ### `Color`
 
 ANSI color helper. Respects `NO_COLOR` env var and non-TTY detection. Can be force-disabled via `Color.set_enabled(False)`.
+
+### `DashboardData`
+
+```python
+@dataclass
+class DashboardData:
+    tools: list              # list of ToolProfile
+    config: Optional[dict]   # loaded config or None
+    routing: dict            # routing rules from config
+    health: list             # list of HealthCheck
+    history: list            # parsed JSONL history entries
+```
+
+---
+
+## __main__.py — CLI Entry Point
+
+Unified CLI with argparse subcommands. Dispatches to `cmd_dashboard`, `cmd_setup`, `cmd_route`, `cmd_exec`, `cmd_status`. All subcommands support `--json` output.

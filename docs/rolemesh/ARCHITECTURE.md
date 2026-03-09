@@ -44,13 +44,13 @@ __main__.py  (CLI entry point, subcommand dispatch)
 TOOL_REGISTRY (built-in)
      |
      v
-discover_tools()          # shutil.which + --version probe
+discover_tools()           # shutil.which + --version probe
      |
      v
-SetupWizard.build_config()  # rank tools, generate routing rules
+SetupWizard.build_config() # rank tools per task type, generate routing rules
      |
      v
-~/.rolemesh/config.json   # persisted config
+~/.rolemesh/config.json    # persisted config
 ```
 
 ### Runtime (per request)
@@ -59,19 +59,19 @@ SetupWizard.build_config()  # rank tools, generate routing rules
 request string
      |
      v
-classify_task()           # regex pattern matching -> [(task_type, confidence)]
+classify_task()            # regex pattern matching -> [(task_type, confidence)]
      |
      v
-route()                   # lookup config routing table -> RouteResult
+route()                    # lookup config routing table -> RouteResult
      |
      v
-build_command()           # construct CLI args
+TOOL_COMMANDS[key]         # construct CLI args (e.g. ["claude", "-p", prompt])
      |
      v
-subprocess.run()          # execute with timeout
+subprocess.run()           # execute with 300s timeout
      |
      v
-~/.rolemesh/history.jsonl # append execution record
+~/.rolemesh/history.jsonl  # append execution record
 ```
 
 ## Design Decisions
@@ -95,15 +95,6 @@ AI CLI tools are invoked via `subprocess.run()` rather than importing their SDKs
 2. **Isolation** — tool crashes don't affect RoleMesh
 3. **Simple** — no version coupling between RoleMesh and tool SDKs
 
-### Fallback strategy
-
-The executor implements two-level fallback:
-
-1. **Pre-execution**: if primary tool binary is not on PATH, try fallback
-2. **Post-execution**: if primary tool returns non-zero exit code, try fallback
-
-This ensures tasks complete even when a preferred tool is temporarily unavailable or fails.
-
 ### Config schema
 
 Config uses a flat JSON structure with version field for future migration:
@@ -112,15 +103,36 @@ Config uses a flat JSON structure with version field for future migration:
 {
   "version": "1.0.0",
   "tools": {
-    "<key>": { "key", "name", "vendor", "strengths", "cost_tier", "available", "version" }
+    "<key>": {
+      "key": "claude",
+      "name": "Claude Code",
+      "vendor": "Anthropic",
+      "strengths": ["coding", "analysis", "reasoning", "architecture"],
+      "cost_tier": "high",
+      "available": true,
+      "version": "1.2.3"
+    }
   },
   "routing": {
-    "<task_type>": { "primary": "<tool_key>", "fallback": "<tool_key>" }
+    "<task_type>": {
+      "primary": "<tool_key>",
+      "fallback": "<tool_key> | null"
+    }
   }
 }
 ```
 
-Validation (`SetupWizard.validate_config`) checks schema integrity and dead references.
+### Ranking formula
+
+For a given task type, each tool is scored:
+
+```
+score = (10.0 if task_type in strengths else 0)
+      + (user_preference * 5.0)
+      + cost_bonus  # low=2.0, medium=1.0, high=0.0
+```
+
+This balances capability match, user preference, and cost efficiency.
 
 ## Extension Points
 
@@ -129,8 +141,6 @@ Validation (`SetupWizard.validate_config`) checks schema integrity and dead refe
 1. Add entry to `TOOL_REGISTRY` in `builder.py` with name, vendor, strengths, check_cmd, cost_tier
 2. Add command config to `TOOL_COMMANDS` in `executor.py`
 3. Run `setup --save` to regenerate config
-
-Or use the `SetupWizard.register_tool()` API for runtime registration.
 
 ### Adding a new task type
 
