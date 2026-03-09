@@ -1,102 +1,187 @@
 # RoleMesh Architecture
 
-> Auto-Persona matching engine for amp's 2-agent debate system
+> AI Tool Discovery & Task-to-Tool Routing Engine
 
 ## Overview
 
-RoleMesh is the persona selection and opposition-verification layer within amp. It takes a user question, identifies the decision domain, and returns two genuinely opposed expert personas for the debate loop.
+RoleMesh is a task routing layer that discovers installed AI CLI tools on the user's system, profiles their capabilities, and automatically routes user requests to the best-fit tool. It consists of four components: **Builder** (tool discovery + config generation), **Router** (task classification + routing), **Dashboard** (system status + health checks), and **Executor** (subprocess dispatch + fallback).
 
 ## Core Pipeline
 
 ```
-User Question
+User Request (natural language)
      |
      v
-[1] Domain Classifier
-     |  - Embedding-based topic detection
-     |  - Maps to one of 10 preset domains (or "custom")
+[1] Task Classifier (router.py)
+     |  - Regex-based keyword matching against 13 task categories
+     |  - Scores each category by pattern match ratio
+     |  - Returns ranked list of (task_type, confidence)
      v
-[2] Persona Selector
-     |  - Preset domains: lookup from persona_presets.py
-     |  - Custom domains: LLM-generated pair via persona_dynamic.py
+[2] Config Lookup (router.py)
+     |  - Loads routing config from ~/.rolemesh/config.json
+     |  - Maps task_type -> primary tool + fallback
+     |  - No config: defaults to "claude"
      v
-[3] Opposition Verifier
-     |  - Compute cosine distance between persona embeddings
-     |  - Threshold: distance >= 0.35 (tuned via benchmark)
-     |  - If below threshold: regenerate until opposition confirmed
-     v
-[4] Persona Pair Output
-     - agent_a: {name, role, system_prompt, stance}
-     - agent_b: {name, role, system_prompt, stance}
+[3] RouteResult Output
+     - tool: tool key (e.g., "claude", "gemini")
+     - tool_name: display name (e.g., "Claude Code")
+     - task_type: classified category
+     - confidence: match strength (0.0 - 1.0)
+     - fallback: backup tool if primary unavailable
+     - reason: human-readable routing explanation
 ```
 
 ## Components
 
-### Domain Classifier
+### Task Classifier
 
-Classifies user input into one of the following domains:
+Classifies user input into one of 13 task categories using regex pattern matching:
 
-| Domain | Trigger patterns |
-|--------|-----------------|
-| Career | job, promotion, resign, career change |
-| Relationship | partner, marriage, breakup, family |
-| Business | startup, revenue, strategy, launch |
-| Investment | stock, portfolio, fund, valuation |
-| Legal | contract, lawsuit, compliance, rights |
-| Technology | architecture, stack, migration, security |
-| Health | diagnosis, treatment, lifestyle, symptoms |
-| Education | degree, course, certification, learning |
-| Conflict | dispute, negotiation, confrontation |
-| Creative | writing, design, art, publishing |
+| Task Type | Example Triggers |
+|-----------|-----------------|
+| coding | code, implement, function, class, create |
+| refactoring | refactor, cleanup, improve, split, extract |
+| quick-edit | typo, fix, change, rename, delete |
+| analysis | analyze, investigate, cause, debug, error |
+| architecture | architect, design, structure, migration, strategy |
+| reasoning | reason, logic, judge, evaluate, compare |
+| frontend | ui, ux, screen, layout, style, component |
+| multimodal | image, photo, screenshot, graph, chart |
+| search | search, find, lookup, docs, latest |
+| explain | explain, understand, tell, meaning |
+| git-integration | commit, branch, merge, PR, rebase |
+| completion | autocomplete, fill, continue, next |
+| pair-programming | together, pair, help, code review |
 
-Unmatched inputs fall through to dynamic persona generation.
+Supports both Korean and English keywords. Unmatched inputs default to `coding` with 0.3 confidence.
 
-### Persona Selector
+### Builder (SetupWizard)
 
-Two paths:
+Discovers installed AI CLI tools and generates a routing configuration:
 
-1. **Preset path** (`persona_presets.py`): Hardcoded opposing expert pairs per domain. Fast, deterministic, no LLM call.
-2. **Dynamic path** (`persona_dynamic.py`): Generates a custom pair via single LLM call. Slower but handles any domain.
+```
+SetupWizard.discover()
+     |  - Probes PATH for known AI CLIs (claude, codex, gemini, aider, copilot, cursor)
+     |  - Runs --version to confirm availability
+     v
+SetupWizard.rank_tools(task_type)
+     |  - Ranks available tools by: strength match + user preference + cost tier
+     v
+SetupWizard.build_config()
+     |  - Generates routing rules: task_type -> primary + fallback
+     v
+SetupWizard.save_config()
+     -> ~/.rolemesh/config.json
+```
 
-### Opposition Verifier
+### Tool Registry
 
-Uses `text-embedding-3-small` to embed both persona descriptions, then computes cosine distance. This prevents degenerate pairs where both agents argue from similar positions.
+Six AI CLI tools are registered with their capability profiles:
 
-```python
-# Verification logic (simplified)
-emb_a = embed(persona_a.description)
-emb_b = embed(persona_b.description)
-distance = 1 - cosine_similarity(emb_a, emb_b)
+| Tool | Vendor | Strengths | Cost Tier |
+|------|--------|-----------|-----------|
+| Claude Code | Anthropic | coding, analysis, reasoning, architecture | high |
+| Codex CLI | OpenAI | coding, refactoring, quick-edit | medium |
+| Gemini CLI | Google | multimodal, search, ui-design, frontend | medium |
+| Aider | Community | coding, git-integration, pair-programming | low |
+| GitHub Copilot | GitHub | completion, quick-edit, explain | low |
+| Cursor | Cursor | coding, ui, inline-edit | medium |
 
-if distance < OPPOSITION_THRESHOLD:
-    regenerate()  # up to 3 retries
+### Dashboard
+
+Collects and displays a unified view of the system:
+
+```
+RoleMeshDashboard.collect()
+     |  - Runs discover_tools()
+     |  - Loads routing config
+     |  - Enumerates all 13 task types
+     v
+_run_health_checks()
+     |  - config_file: exists?
+     |  - tools_available: >=1 on PATH?
+     |  - routing_coverage: all 13 task types routed?
+     |  - config_version: v1.0.0?
+     |  - no_dead_refs: all routing targets valid?
+     v
+render_full()
+     -> Tools list + Routing table + Coverage matrix + Health score
+```
+
+### Executor
+
+Dispatches tasks to AI CLI tools via subprocess:
+
+```
+RoleMeshExecutor.run(request)
+     |  - Router classifies + routes the request
+     |  - Checks primary tool on PATH
+     |  - Builds CLI command (args or stdin mode)
+     v
+subprocess.run(cmd, timeout=120)
+     |  - On success: return ExecutionResult
+     |  - On failure: try fallback tool
+     |  - On timeout: return exit_code=-1
+     v
+ExecutionResult(tool, stdout, stderr, exit_code, duration_ms)
 ```
 
 ## Data Flow
 
 ```
-amp.py (entry)
-  -> orchestrator.py
-       -> rolemesh.select_personas(question)
-            -> domain_classifier.classify(question)
-            -> persona_selector.get_pair(domain)
-            -> opposition_verifier.verify(pair)
-       <- (persona_a, persona_b)
-       -> agents.py (construct prompts with personas)
-       -> debate loop
+Full pipeline (route + execute):
+  -> RoleMeshExecutor.run(request)
+       -> RoleMeshRouter.route(request)
+            -> classify_task(request)           # regex matching
+            -> load config (~/.rolemesh/config.json)
+            -> lookup routing[task_type]        # primary + fallback
+            <- RouteResult(tool, task_type, confidence, ...)
+       -> check_tool(tool_key)                  # binary on PATH?
+       -> build_command(tool_key, prompt)        # CLI args
+       -> subprocess.run(cmd)                    # dispatch
+       <- ExecutionResult(stdout, stderr, exit_code, duration_ms)
+
+Route only (no execution):
+  -> RoleMeshRouter.route(request)
+       <- RouteResult(tool, task_type, confidence, ...)
+
+Config generation (one-time):
+  -> SetupWizard.discover()               # probe system
+  -> SetupWizard.build_config()           # generate routing rules
+  -> SetupWizard.save_config()            # persist to disk
+
+Status check:
+  -> RoleMeshDashboard.collect()           # tools + config + health
+  -> dashboard.render_full()               # formatted output
 ```
-
-## Configuration
-
-| Parameter | Default | Description |
-|-----------|---------|-------------|
-| `OPPOSITION_THRESHOLD` | 0.35 | Minimum cosine distance for valid pair |
-| `MAX_REGEN_ATTEMPTS` | 3 | Retries before falling back to generic pair |
-| `EMBEDDING_MODEL` | text-embedding-3-small | Model for opposition verification |
-| `DYNAMIC_PERSONA_MODEL` | gpt-4o | Model for custom persona generation |
 
 ## Design Decisions
 
-1. **Embedding verification over prompt-only**: Prompt instructions alone cannot guarantee genuine opposition. Embedding distance is a measurable, reproducible metric.
-2. **Preset-first, dynamic-fallback**: Presets are faster and more reliable for common domains. Dynamic generation handles the long tail.
-3. **Stateless selection**: RoleMesh does not retain state between questions. KG context is injected upstream by the orchestrator, not by RoleMesh itself.
+1. **Regex over LLM classification**: Task classification uses regex patterns, not LLM calls. This keeps routing instant (~1ms) and free of API costs.
+2. **Config-driven routing**: Routing rules are persisted to disk so they survive across sessions. The wizard runs once; the router reads the config every time.
+3. **Cost-aware ranking**: When multiple tools can handle a task type, cheaper tools rank higher by default. User preferences override cost ranking.
+4. **Bilingual patterns**: All regex patterns include both Korean and English keywords to support bilingual users.
+5. **Graceful degradation**: No config file → default to Claude. No pattern match → assume coding with low confidence. No available tools → informative error message.
+
+## File Structure
+
+```
+src/rolemesh/
+  __init__.py          # Public exports: SetupWizard, ToolProfile, discover_tools,
+                       #   RoleMeshRouter, RoleMeshDashboard, DashboardData,
+                       #   HealthCheck, RoleMeshExecutor, ExecutionResult
+  builder.py           # Tool discovery, SetupWizard, config generation
+  router.py            # Task classification, routing logic, CLI
+  dashboard.py         # System status, health checks, coverage matrix
+  executor.py          # Subprocess dispatch, fallback logic, CLI
+
+tests/
+  test_rolemesh.py     # Builder + Router + Dashboard tests (27 test cases)
+
+docs/rolemesh/
+  ARCHITECTURE.md      # This file
+  BUILDER_GUIDE.md     # How to extend and customize
+  API_REFERENCE.md     # Public interface documentation
+  DASHBOARD_GUIDE.md   # System status and health monitoring
+  EXECUTOR_GUIDE.md    # Task dispatch and execution
+```

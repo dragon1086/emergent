@@ -1,130 +1,181 @@
 # RoleMesh Builder Guide
 
-> How to extend RoleMesh with new domains, personas, and verification rules
+> How to discover tools, customize routing, and extend the registry
 
-## Adding a New Preset Domain
+## Quick Start
 
-### 1. Define the persona pair
-
-Edit `src/persona_presets.py` and add an entry to `DOMAIN_PRESETS`:
-
-```python
-DOMAIN_PRESETS["parenting"] = {
-    "domain": "parenting",
-    "trigger_keywords": ["child", "parenting", "discipline", "school", "teenager"],
-    "agent_a": {
-        "name": "Structured Development Advocate",
-        "role": "Child development specialist favoring structured guidance",
-        "stance": "pro-structure",
-        "system_prompt": "You are a child development expert who believes..."
-    },
-    "agent_b": {
-        "name": "Autonomy-First Educator",
-        "role": "Progressive educator favoring child-led exploration",
-        "stance": "pro-autonomy",
-        "system_prompt": "You are a progressive educator who believes..."
-    }
-}
-```
-
-### 2. Verify opposition
-
-Run the opposition check to confirm your pair has sufficient cosine distance:
-
-```bash
-python -m src.persona_verify --domain parenting
-# Expected output:
-# Domain: parenting
-# Cosine distance: 0.42 (threshold: 0.35)
-# Status: PASS
-```
-
-If the distance is below threshold, revise the persona descriptions to make the opposition more explicit.
-
-### 3. Add trigger tests
-
-Add test cases to `tests/test_rolemesh.py`:
-
-```python
-def test_parenting_domain_classification():
-    domain = classify("My teenager refuses to do homework")
-    assert domain == "parenting"
-
-def test_parenting_opposition():
-    pair = select_personas("Should I let my kid skip college?")
-    assert pair.domain == "parenting"
-    assert verify_opposition(pair) is True
-```
-
-### 4. Run the test suite
+### Auto-discover installed tools
 
 ```bash
 cd /path/to/emergent
-python -m pytest tests/test_rolemesh.py -v
+python -m src.rolemesh.builder
+# Found 3 AI tool(s):
+#   - Claude Code v1.0 (Anthropic) [coding, analysis, reasoning, architecture]
+#   - Codex CLI v0.1 (OpenAI) [coding, refactoring, quick-edit]
+#   - Gemini CLI v2.0 (Google) [multimodal, search, ui-design, frontend]
 ```
 
-## Customizing the Dynamic Generator
-
-When no preset matches, RoleMesh generates personas dynamically. The generation prompt lives in `src/persona_dynamic.py`:
-
-```python
-DYNAMIC_PROMPT = """
-Given the user's question: "{question}"
-
-Generate two opposing expert personas for a structured debate.
-Requirements:
-- Both must be domain experts (not generic roles)
-- Their positions must be genuinely opposed
-- Each persona needs: name, role, stance, system_prompt
-
-Output JSON:
-{
-  "agent_a": {"name": ..., "role": ..., "stance": ..., "system_prompt": ...},
-  "agent_b": {"name": ..., "role": ..., "stance": ..., "system_prompt": ...}
-}
-"""
-```
-
-To modify generation behavior, edit this prompt. Common adjustments:
-- Add constraints for specific output formats
-- Adjust stance intensity (moderate vs. extreme opposition)
-- Add domain-specific expertise requirements
-
-## Tuning Opposition Threshold
-
-The `OPPOSITION_THRESHOLD` (default 0.35) controls how different personas must be.
-
-| Value | Effect |
-|-------|--------|
-| 0.25 | Loose — allows moderate opposition |
-| 0.35 | Default — balanced |
-| 0.45 | Strict — requires strong opposition |
-
-To experiment:
+### Save config to disk
 
 ```bash
-OPPOSITION_THRESHOLD=0.45 python amp.py
+python -m src.rolemesh.builder --save
+# Config saved to ~/.rolemesh/config.json
 ```
 
-Higher thresholds increase regeneration frequency but produce sharper debates.
+### Interactive setup (set preferences)
 
-## File Structure
-
-```
-src/
-  persona_presets.py    # Preset domain definitions (edit to add domains)
-  persona_dynamic.py    # LLM-based custom pair generation
-  persona_verify.py     # Embedding opposition verification
-  domain_classifier.py  # Question -> domain mapping
-
-tests/
-  test_rolemesh.py      # Domain classification + opposition tests
+```bash
+python -m src.rolemesh.builder --interactive
+# === RoleMesh Setup Wizard ===
+# Prefer Claude Code? [y/n/skip] y
+# Prefer Codex CLI? [y/n/skip] skip
+# Prefer Gemini CLI? [y/n/skip] n
 ```
 
-## Checklist for New Domains
+### JSON output (for scripting)
 
-- [ ] Persona pair defined in `persona_presets.py`
-- [ ] Trigger keywords cover common phrasings
-- [ ] Opposition verification passes (cosine distance >= threshold)
-- [ ] Test cases added for classification and opposition
-- [ ] Test suite passes
+```bash
+python -m src.rolemesh.builder --json
+```
+
+## Adding a New Tool to the Registry
+
+Edit `src/rolemesh/builder.py` and add an entry to `TOOL_REGISTRY`:
+
+```python
+TOOL_REGISTRY["windsurf"] = {
+    "name": "Windsurf",
+    "vendor": "Codeium",
+    "strengths": ["coding", "inline-edit", "completion"],
+    "check_cmd": ["windsurf", "--version"],
+    "cost_tier": "medium",
+}
+```
+
+**Required fields:**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `name` | str | Display name |
+| `vendor` | str | Company/org name |
+| `strengths` | list[str] | Task types this tool excels at |
+| `check_cmd` | list[str] | Command to verify installation |
+| `cost_tier` | str | `"low"`, `"medium"`, or `"high"` |
+
+After adding, re-run the wizard:
+
+```bash
+python -m src.rolemesh.builder --save
+```
+
+## Adding a New Task Type
+
+Edit `src/rolemesh/router.py` and add a tuple to `TASK_PATTERNS`:
+
+```python
+TASK_PATTERNS.append(
+    ("data-science", [
+        r"데이터|data|분석|analy|통계|statistic|모델|model",
+        r"학습|train|예측|predict|시각화|visualiz",
+    ]),
+)
+```
+
+Each task type has a list of regex patterns. The classifier scores by counting how many pattern groups match (e.g., 1/2 = 0.5 confidence, 2/2 = 1.0).
+
+### Add tests for the new task type
+
+In `tests/test_rolemesh.py`:
+
+```python
+def test_classify_data_science():
+    router = RoleMeshRouter(config_path=Path("/nonexistent"))
+    types = router.classify_task("데이터 분석하고 시각화해줘")
+    task_names = [t for t, _ in types]
+    assert "data-science" in task_names
+    print("  PASS: classify_data_science")
+```
+
+Add the test to the `run_all()` function's test list.
+
+## Customizing Routing Rules
+
+### Via SetupWizard (recommended)
+
+```python
+from src.rolemesh.builder import SetupWizard, ToolProfile
+
+wizard = SetupWizard()
+wizard.discover()
+
+# Set user preferences
+for tool in wizard.available_tools():
+    if tool.key == "claude":
+        tool.user_preference = 1   # prefer
+    elif tool.key == "cursor":
+        tool.user_preference = -1  # avoid
+
+wizard.save_config()
+```
+
+### Direct config editing
+
+Edit `~/.rolemesh/config.json`:
+
+```json
+{
+  "version": "1.0.0",
+  "tools": { ... },
+  "routing": {
+    "coding": {
+      "primary": "claude",
+      "fallback": "codex"
+    },
+    "frontend": {
+      "primary": "gemini",
+      "fallback": "claude"
+    }
+  }
+}
+```
+
+The router reads this file on initialization. Changes take effect immediately on next `RoleMeshRouter()` instantiation.
+
+## Ranking Algorithm
+
+When multiple tools share a strength, `rank_tools()` scores them:
+
+```
+score = 0.0
+if task_type in tool.strengths:   score += 10.0
+score += user_preference * 5.0    # -1, 0, or 1
+score += cost_bonus               # low=2.0, medium=1.0, high=0.0
+```
+
+**Ranking priority**: strength match (10) > user preference (5) > cost tier (2).
+
+This means:
+- A tool with the right strength always beats one without
+- User preference overrides cost within equally-capable tools
+- Cheaper tools win among equally-preferred tools with same strengths
+
+## Running Tests
+
+```bash
+cd /path/to/emergent
+python tests/test_rolemesh.py
+
+# Running 16 tests...
+#   PASS: tool_registry_complete
+#   PASS: discover_returns_profiles
+#   ...
+# Results: 16 passed, 0 failed, 16 total
+```
+
+## Checklist for Extensions
+
+- [ ] New tool: entry added to `TOOL_REGISTRY` in `builder.py`
+- [ ] New task type: pattern tuple added to `TASK_PATTERNS` in `router.py`
+- [ ] Test cases added to `tests/test_rolemesh.py`
+- [ ] Test suite passes (`python tests/test_rolemesh.py`)
+- [ ] Config regenerated (`python -m src.rolemesh.builder --save`)

@@ -11,6 +11,8 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src.rolemesh.builder import SetupWizard, ToolProfile, TOOL_REGISTRY, discover_tools
 from src.rolemesh.router import RoleMeshRouter, TASK_PATTERNS
+from src.rolemesh.dashboard import RoleMeshDashboard, DashboardData, HealthCheck
+from src.rolemesh.executor import RoleMeshExecutor, ExecutionResult, TOOL_COMMANDS
 
 
 # ===== Builder Tests =====
@@ -243,6 +245,322 @@ def test_route_result_to_dict():
     print("  PASS: route_result_to_dict")
 
 
+# ===== Dashboard Tests =====
+
+def _make_dashboard_with_tools(tmpdir):
+    """Helper: create a dashboard with mock tools and config."""
+    config_path = Path(tmpdir) / "config.json"
+    config = {
+        "version": "1.0.0",
+        "tools": {
+            "claude": {"name": "Claude Code", "key": "claude"},
+            "codex": {"name": "Codex CLI", "key": "codex"},
+        },
+        "routing": {
+            "coding": {"primary": "claude", "fallback": "codex"},
+            "refactoring": {"primary": "codex", "fallback": "claude"},
+        },
+    }
+    config_path.write_text(json.dumps(config))
+
+    dashboard = RoleMeshDashboard(config_path=config_path)
+    dashboard.wizard.tools = [
+        ToolProfile(key="claude", name="Claude Code", vendor="Anthropic",
+                    strengths=["coding", "analysis"], cost_tier="high", available=True, version="1.0"),
+        ToolProfile(key="codex", name="Codex CLI", vendor="OpenAI",
+                    strengths=["coding", "refactoring"], cost_tier="medium", available=True),
+        ToolProfile(key="gemini", name="Gemini CLI", vendor="Google",
+                    strengths=["multimodal"], cost_tier="medium", available=False),
+    ]
+    dashboard.data.tools = dashboard.wizard.tools
+    dashboard.data.config = dashboard.wizard.load_config()
+    dashboard.data.routing = dashboard.data.config.get("routing", {})
+    dashboard.data.task_types = [tp[0] for tp in TASK_PATTERNS]
+    dashboard.data.health_checks = dashboard._run_health_checks()
+    return dashboard
+
+
+def test_dashboard_collect():
+    """Dashboard.collect() populates all data fields."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        config_path = Path(tmpdir) / "config.json"
+        config_path.write_text(json.dumps({"version": "1.0.0", "tools": {}, "routing": {}}))
+        dashboard = RoleMeshDashboard(config_path=config_path)
+        data = dashboard.collect()
+        assert isinstance(data, DashboardData)
+        assert len(data.tools) > 0  # discover_tools returns all registered
+        assert len(data.task_types) == len(TASK_PATTERNS)
+    print("  PASS: dashboard_collect")
+
+
+def test_dashboard_health_checks():
+    """Health checks detect config issues."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        dashboard = _make_dashboard_with_tools(tmpdir)
+        checks = {c.name: c for c in dashboard.data.health_checks}
+
+        assert checks["config_file"].passed is True
+        assert checks["tools_available"].passed is True
+        assert checks["config_version"].passed is True
+        assert checks["no_dead_refs"].passed is True
+        # routing_coverage will be False since config only has 2 of 13 task types
+        assert checks["routing_coverage"].passed is False
+        assert "missing" in checks["routing_coverage"].detail
+    print("  PASS: dashboard_health_checks")
+
+
+def test_dashboard_health_no_config():
+    """Health checks handle missing config."""
+    dashboard = RoleMeshDashboard(config_path=Path("/nonexistent/config.json"))
+    dashboard.data.tools = []
+    dashboard.data.config = {}
+    dashboard.data.routing = {}
+    dashboard.data.task_types = [tp[0] for tp in TASK_PATTERNS]
+    dashboard.data.health_checks = dashboard._run_health_checks()
+
+    checks = {c.name: c for c in dashboard.data.health_checks}
+    assert checks["config_file"].passed is False
+    assert checks["tools_available"].passed is False
+    assert checks["routing_coverage"].passed is False
+    print("  PASS: dashboard_health_no_config")
+
+
+def test_dashboard_render_tools():
+    """render_tools() shows installed and missing tools."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        dashboard = _make_dashboard_with_tools(tmpdir)
+        output = dashboard.render_tools()
+        assert "Claude Code" in output
+        assert "Codex CLI" in output
+        assert "Not found" in output
+        assert "Gemini CLI" in output
+    print("  PASS: dashboard_render_tools")
+
+
+def test_dashboard_render_routing():
+    """render_routing() shows routing table."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        dashboard = _make_dashboard_with_tools(tmpdir)
+        output = dashboard.render_routing()
+        assert "coding" in output
+        assert "claude" in output
+        assert "codex" in output
+    print("  PASS: dashboard_render_routing")
+
+
+def test_dashboard_render_routing_empty():
+    """render_routing() handles no config."""
+    dashboard = RoleMeshDashboard(config_path=Path("/nonexistent"))
+    dashboard.data.routing = {}
+    output = dashboard.render_routing()
+    assert "No routing config" in output
+    print("  PASS: dashboard_render_routing_empty")
+
+
+def test_dashboard_render_coverage():
+    """render_coverage() shows task/tool matrix."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        dashboard = _make_dashboard_with_tools(tmpdir)
+        output = dashboard.render_coverage()
+        assert "coding" in output
+        assert "X" in output  # strength marker
+        assert "*" in output  # primary route marker
+    print("  PASS: dashboard_render_coverage")
+
+
+def test_dashboard_render_health():
+    """render_health() shows pass/fail checks."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        dashboard = _make_dashboard_with_tools(tmpdir)
+        output = dashboard.render_health()
+        assert "[OK]" in output
+        assert "[!!]" in output  # routing_coverage will fail
+        assert "Score:" in output
+    print("  PASS: dashboard_render_health")
+
+
+def test_dashboard_render_full():
+    """render_full() includes all sections."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        dashboard = _make_dashboard_with_tools(tmpdir)
+        output = dashboard.render_full()
+        assert "RoleMesh Dashboard" in output
+        assert "== Tools ==" in output
+        assert "== Routing Table ==" in output
+        assert "== Task Coverage Matrix ==" in output
+        assert "== Health Check ==" in output
+    print("  PASS: dashboard_render_full")
+
+
+def test_dashboard_to_dict():
+    """DashboardData serializes to dict."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        dashboard = _make_dashboard_with_tools(tmpdir)
+        d = dashboard.data.to_dict()
+        assert "tools" in d
+        assert "routing" in d
+        assert "health" in d
+        assert "task_types" in d
+        assert isinstance(d["tools"], list)
+        assert isinstance(d["health"], list)
+    print("  PASS: dashboard_to_dict")
+
+
+def test_dashboard_dead_refs():
+    """Health check detects dead routing references."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        config_path = Path(tmpdir) / "config.json"
+        config = {
+            "version": "1.0.0",
+            "tools": {"claude": {"name": "Claude"}},
+            "routing": {
+                "coding": {"primary": "claude", "fallback": "nonexistent_tool"},
+            },
+        }
+        config_path.write_text(json.dumps(config))
+        dashboard = RoleMeshDashboard(config_path=config_path)
+        dashboard.data.tools = []
+        dashboard.data.config = dashboard.wizard.load_config()
+        dashboard.data.routing = dashboard.data.config.get("routing", {})
+        dashboard.data.task_types = [tp[0] for tp in TASK_PATTERNS]
+        dashboard.data.health_checks = dashboard._run_health_checks()
+
+        checks = {c.name: c for c in dashboard.data.health_checks}
+        assert checks["no_dead_refs"].passed is False
+        assert "nonexistent_tool" in checks["no_dead_refs"].detail
+    print("  PASS: dashboard_dead_refs")
+
+
+# ===== Executor Tests =====
+
+def test_executor_dry_run():
+    """Dry run returns command without executing."""
+    executor = RoleMeshExecutor(config_path=Path("/nonexistent"), dry_run=True)
+    result = executor.dispatch("claude", "hello world")
+    assert result.success
+    assert "[dry-run]" in result.stdout
+    assert "claude" in result.stdout
+    print("  PASS: executor_dry_run")
+
+
+def test_executor_dry_run_routed():
+    """Dry run through full pipeline (route + execute)."""
+    executor = RoleMeshExecutor(config_path=Path("/nonexistent"), dry_run=True)
+    result = executor.run("함수 구현해줘")
+    assert result.success
+    assert "[dry-run]" in result.stdout
+    assert result.task_type  # should have a classified type
+    print("  PASS: executor_dry_run_routed")
+
+
+def test_executor_unknown_tool():
+    """Dispatching to unknown tool returns error."""
+    executor = RoleMeshExecutor(config_path=Path("/nonexistent"), dry_run=True)
+    result = executor.dispatch("nonexistent_tool", "test")
+    assert not result.success
+    assert result.exit_code == 127
+    assert "Unknown tool" in result.stderr
+    print("  PASS: executor_unknown_tool")
+
+
+def test_executor_build_command():
+    """build_command constructs correct CLI args."""
+    executor = RoleMeshExecutor(config_path=Path("/nonexistent"))
+
+    # claude: prompt via args
+    cmd = executor.build_command("claude", "test prompt")
+    assert cmd is not None
+    assert cmd[0] == "claude"
+    assert "test prompt" in cmd
+
+    # Unknown tool
+    cmd = executor.build_command("fake_tool", "test")
+    assert cmd is None
+
+    print("  PASS: executor_build_command")
+
+
+def test_executor_build_command_with_files():
+    """build_command appends file context."""
+    executor = RoleMeshExecutor(config_path=Path("/nonexistent"))
+    cmd = executor.build_command("claude", "review this", context={"files": ["a.py", "b.py"]})
+    assert "a.py" in cmd
+    assert "b.py" in cmd
+    print("  PASS: executor_build_command_with_files")
+
+
+def test_executor_check_tool():
+    """check_tool verifies binary availability."""
+    executor = RoleMeshExecutor(config_path=Path("/nonexistent"))
+    # 'python3' should exist on any dev machine
+    assert executor.check_tool("nonexistent_tool_xyz") is False
+    print("  PASS: executor_check_tool")
+
+
+def test_executor_result_to_dict():
+    """ExecutionResult serializes correctly."""
+    result = ExecutionResult(
+        tool="claude", tool_name="Claude Code",
+        task_type="coding", confidence=0.85,
+        exit_code=0, stdout="output", stderr="",
+        duration_ms=1500,
+    )
+    d = result.to_dict()
+    assert d["tool"] == "claude"
+    assert d["success"] is True
+    assert d["confidence"] == 0.85
+    assert d["duration_ms"] == 1500
+    assert d["fallback_used"] is False
+    print("  PASS: executor_result_to_dict")
+
+
+def test_executor_result_failure():
+    """ExecutionResult.success reflects exit_code."""
+    result = ExecutionResult(
+        tool="codex", tool_name="Codex",
+        task_type="coding", confidence=0.5,
+        exit_code=1, stdout="", stderr="error",
+        duration_ms=200,
+    )
+    assert not result.success
+    assert result.to_dict()["success"] is False
+    print("  PASS: executor_result_failure")
+
+
+def test_executor_tool_commands_registry():
+    """All TOOL_COMMANDS have required fields."""
+    for key, info in TOOL_COMMANDS.items():
+        assert "cmd" in info, f"TOOL_COMMANDS['{key}'] missing 'cmd'"
+        assert "stdin_mode" in info, f"TOOL_COMMANDS['{key}'] missing 'stdin_mode'"
+        assert isinstance(info["cmd"], list)
+        assert isinstance(info["stdin_mode"], bool)
+    print("  PASS: executor_tool_commands_registry")
+
+
+def test_executor_routed_with_config():
+    """Executor routes and dry-runs with config."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        config_path = Path(tmpdir) / "config.json"
+        config = {
+            "version": "1.0.0",
+            "tools": {
+                "claude": {"name": "Claude Code"},
+                "gemini": {"name": "Gemini CLI"},
+            },
+            "routing": {
+                "frontend": {"primary": "gemini", "fallback": "claude"},
+                "coding": {"primary": "claude", "fallback": "gemini"},
+            },
+        }
+        config_path.write_text(json.dumps(config))
+
+        executor = RoleMeshExecutor(config_path=config_path, dry_run=True)
+        result = executor.run("UI 컴포넌트 디자인해줘")
+        assert result.success
+        assert "[dry-run]" in result.stdout
+    print("  PASS: executor_routed_with_config")
+
+
 # ===== Run all tests =====
 
 def run_all():
@@ -265,6 +583,29 @@ def run_all():
         test_route_no_config_defaults,
         test_route_multi,
         test_route_result_to_dict,
+        # Dashboard
+        test_dashboard_collect,
+        test_dashboard_health_checks,
+        test_dashboard_health_no_config,
+        test_dashboard_render_tools,
+        test_dashboard_render_routing,
+        test_dashboard_render_routing_empty,
+        test_dashboard_render_coverage,
+        test_dashboard_render_health,
+        test_dashboard_render_full,
+        test_dashboard_to_dict,
+        test_dashboard_dead_refs,
+        # Executor
+        test_executor_dry_run,
+        test_executor_dry_run_routed,
+        test_executor_unknown_tool,
+        test_executor_build_command,
+        test_executor_build_command_with_files,
+        test_executor_check_tool,
+        test_executor_result_to_dict,
+        test_executor_result_failure,
+        test_executor_tool_commands_registry,
+        test_executor_routed_with_config,
     ]
 
     passed = 0
