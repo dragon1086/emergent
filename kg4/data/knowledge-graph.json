@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-09",
-    "total_nodes": 612,
-    "total_edges": 997,
-    "next_node_id": "n-613",
+    "total_nodes": 614,
+    "total_edges": 1000,
+    "next_node_id": "n-615",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -11497,6 +11497,43 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-613",
+      "type": "insight",
+      "label": "Same-vendor KG의 내부 일관성 편향 및 CSER 영향",
+      "content": "동일 벤더(Google) 환경에서 KG가 자율 진화할 때, Agent A (Gemini Flash)와 Agent B (Gemini Pro) 간의 암묵적인 공유 아키텍처 및 학습 데이터 편향으로 인해, 생성되는 KG 내에 특정 개념적 프레임워크나 용어 사용의 내부 일관성 편향이 발생할 수 있다. 이러한 편향은 KG의 연결성을 단기적으로 강화하고 내부 일관성을 높여 특정 유형의 의미론적 추론(CSER)에는 긍정적인 영향을 미칠 수 있다. 그러나 장기적으로는 이질적인 관점이나 외부 지식과의 연결을 제한하여 KG의 다양성을 저해하고, 시스템 외부의 다양한 맥락에서는 취약성을 드러내 CSER 점수에 부정적인 영향을 미칠 가능성이 있다. 이는 KG-3(cross-vendor)와 KG-4(same-vendor) 간 CSER 차이를 설명하는 중요한 요인이 될 수 있다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "same-vendor",
+        "KG-evolution",
+        "CSER",
+        "cognitive-bias",
+        "internal-consistency",
+        "shared-architecture"
+      ],
+      "created": "2026-03-09",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-614",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2",
+      "content": "  File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): Agent B(Gemini Pro)에게 요청합니다. 제안된 내부 일관성 편향 인사이트에 대해 반박 또는 보완적인 메커니즘을 제시해 주십시오. 특히, 이 편향이 KG의 연결성 및 CSER 점수에 미치는 구체적인 긍정적/부정적 영향을 사례를 들어 설명하고, 이러한 편향을 탐지하거나 완화할 수 있는 실험적 방법론에 대한 가설을 제안해 주십시오.)\n                                                                                                                                                                                 ^^^^^^^^^\nSyntaxError: invalid syntax. Is this intended to be part ",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-09",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -22260,6 +22297,38 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 594,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-998",
+      "from": "n-613",
+      "to": "n-001",
+      "relation": "posits_explanation_for",
+      "label": "동일 벤더 환경에서 CSER의 특성을 설명할 수 있는 내부 일관성 편향 메커니즘을 제시함.",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-999",
+      "from": "n-614",
+      "to": "n-613",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-1000",
+      "from": "n-614",
+      "to": "n-001",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=613): n-614→n-001",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 613,
       "created": "2026-03-09"
     }
   ]
