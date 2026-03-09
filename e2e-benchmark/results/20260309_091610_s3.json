@@ -1,0 +1,86 @@
+[
+  {
+    "system": "openclaw_cokac_amp",
+    "scenario": "s3_bug_detection",
+    "total_bugs_expected": 8,
+    "total_bugs_found": 9,
+    "detection_rate": 1.0,
+    "elapsed_seconds": 53.11552596092224,
+    "file_results": [
+      {
+        "file": "calculator.py",
+        "bugs_expected": 3,
+        "bugs_found": 4,
+        "output_snippet": "BUGS_FOUND: 4\n\n1. `divide(a, b)` does not handle division by zero.\n   - Best fix:\n   ```python\n   def divide(a, b):\n       if b == 0:\n           raise ValueError(\"Cannot divide by zero\")\n       return a / b\n   ```\n\n2. `factorial(n)` does not validate invalid input.\n   - Symptoms:\n     - Negative int"
+      },
+      {
+        "file": "string_utils.py",
+        "bugs_expected": 3,
+        "bugs_found": 3,
+        "output_snippet": "BUGS_FOUND: 3\n\n1. `reverse_string` has an off-by-one/indexing bug  \n   Best fix:\n   ```python\n   def reverse_string(s):\n       return s[::-1]\n   ```\n   Why: The original loop starts at `len(s)`, which is out of bounds, and skips index `0`. If keeping the loop form, use:\n   ```python\n   def reverse_s"
+      },
+      {
+        "file": "data_processor.py",
+        "bugs_expected": 2,
+        "bugs_found": 2,
+        "output_snippet": "BUGS_FOUND: 2\n\n1. `merge_dicts` mutates input dictionary `d1` in place  \n   Best fix:\n   ```python\n   def merge_dicts(d1, d2):\n       merged = d1.copy()\n       merged.update(d2)\n       return merged\n   ```\n   Alternative:\n   ```python\n   # Python 3.9+\n   return d1 | d2\n   ```\n\n2. `get_nested` can ra"
+      }
+    ]
+  },
+  {
+    "system": "claude_standalone",
+    "scenario": "s3_bug_detection",
+    "total_bugs_expected": 8,
+    "total_bugs_found": 8,
+    "detection_rate": 1.0,
+    "elapsed_seconds": 41.266348123550415,
+    "file_results": [
+      {
+        "file": "calculator.py",
+        "bugs_expected": 3,
+        "bugs_found": 3,
+        "output_snippet": "# Code Analysis: calculator.py\n\n## Bug #1: Division by Zero\n\n**The `divide` function performs no validation on the divisor.**\nIf `b = 0`, Python raises an unhandled `ZeroDivisionError`, which will crash the program.\n\n```python\n# BUGGY\ndef divide(a, b):\n    return a / b\n\n# FIXED\ndef divide(a, b):\n   "
+      },
+      {
+        "file": "string_utils.py",
+        "bugs_expected": 3,
+        "bugs_found": 3,
+        "output_snippet": "I'll analyze each function systematically for bugs.\n\n---\n\n## BUG #1: Off-by-one error in `reverse_string`\n\n**Description:** `range(len(s), 0, -1)` starts at index `len(s)`, which is **out of bounds** (valid indices are `0` to `len(s)-1`), and stops **before** index `0`, so `s[0]` is never included. "
+      },
+      {
+        "file": "data_processor.py",
+        "bugs_expected": 2,
+        "bugs_found": 2,
+        "output_snippet": "I'll analyze each function in the code systematically.\n\n---\n\n## Analysis\n\n### BUG #1: `merge_dicts` mutates the input parameter\n\n**Identification:** `d1.update(d2)` modifies `d1` in-place before returning it, causing unintended side effects on the caller's original dictionary.\n\n**Why it's a bug:** F"
+      }
+    ]
+  },
+  {
+    "system": "codex_standalone",
+    "scenario": "s3_bug_detection",
+    "total_bugs_expected": 8,
+    "total_bugs_found": 9,
+    "detection_rate": 1.0,
+    "elapsed_seconds": 8.797910928726196,
+    "file_results": [
+      {
+        "file": "calculator.py",
+        "bugs_expected": 3,
+        "bugs_found": 4,
+        "output_snippet": "BUG #1: `divide(a, b)` does not handle division by zero | FIX:\n```python\ndef divide(a, b):\n    if b == 0:\n        raise ValueError(\"Cannot divide by zero\")\n    return a / b\n```\n\nBUG #2: `factorial(n)` does not validate negative input, causing infinite recursion for negative numbers | FIX:\n```python\n"
+      },
+      {
+        "file": "string_utils.py",
+        "bugs_expected": 3,
+        "bugs_found": 3,
+        "output_snippet": "BUG #1: Off-by-one and invalid indexing in `reverse_string` | FIX:\n```python\ndef reverse_string(s):\n    result = \"\"\n    for i in range(len(s) - 1, -1, -1):\n        result += s[i]\n    return result\n```\n\nBUG #2: `count_words` miscounts words when there are multiple spaces or leading/trailing spaces | "
+      },
+      {
+        "file": "data_processor.py",
+        "bugs_expected": 2,
+        "bugs_found": 2,
+        "output_snippet": "BUG #1: `merge_dicts` mutates its input dictionary `d1` in place | FIX:\n```python\ndef merge_dicts(d1, d2):\n    merged = d1.copy()\n    merged.update(d2)\n    return merged\n```\n\nBUG #2: `get_nested` can raise an unhandled `KeyError` when a key is missing | FIX:\n```python\ndef get_nested(data, keys):\n   "
+      }
+    ]
+  }
+]
