@@ -1,9 +1,9 @@
 # E2E Benchmark Report: OpenClaw Multi-Agent System
 
-**Run ID:** 20260309_091610
-**Date:** 2026-03-09 09:22:01
+**Run ID:** 20260309_104038
+**Date:** 2026-03-09 10:50:07
 **Total Rounds:** 3
-**Total Time:** 351.8s
+**Total Time:** 568.8s
 **Models:** gpt-5.4 (OpenAI), claude-sonnet-4-6 (Anthropic)
 
 ---
@@ -23,9 +23,9 @@ This benchmark compares three multi-agent architectures:
 
 | System | Primary Metric | Time (s) | Notes |
 |--------|---------------|----------|-------|
-| **A: OpenClaw+cokac+amp** | 1.000 | 77.9 | gpt-scan, claude-deep, gpt-synthesis |
-| B: Claude Standalone | 1.000 | 45.5 | claude-pass1, claude-pass2 |
-| C: Codex Standalone | 1.000 | 17.3 | gpt-single |
+| **A: OpenClaw+cokac+amp** | 1.000 | 70.8 | gpt-scan, claude-deep, gpt-synthesis |
+| B: Claude Standalone | 1.000 | 46.2 | claude-pass1, claude-pass2 |
+| C: Codex Standalone | 1.000 | 14.0 | gpt-single |
 
 **Winner:** openclaw_cokac_amp (score: 1.000)
 
@@ -33,31 +33,41 @@ This benchmark compares three multi-agent architectures:
 
 | System | Primary Metric | Time (s) | Notes |
 |--------|---------------|----------|-------|
-| **A: OpenClaw+cokac+amp** | 8.200 | 142.2 | gpt-architect, claude-architect, gpt-synthesis |
-| B: Claude Standalone | 7.400 | 62.5 | claude-single |
-| C: Codex Standalone | 8.800 | 80.5 | gpt-single |
+| **A: OpenClaw+cokac+amp** | 8.800 | 120.4 | gpt-architect, claude-architect, gpt-synthesis |
+| B: Claude Standalone | 7.800 | 59.9 | claude-single |
+| C: Codex Standalone | 8.800 | 59.8 | gpt-single |
 
-**Winner:** codex_standalone (score: 8.800)
+**Winner:** openclaw_cokac_amp (score: 8.800)
 
 ### Bug Detection & Fix Generation (S3)
 
 | System | Primary Metric | Time (s) | Notes |
 |--------|---------------|----------|-------|
-| **A: OpenClaw+cokac+amp** | 1.000 | 53.1 |  |
-| B: Claude Standalone | 1.000 | 41.3 |  |
-| C: Codex Standalone | 1.000 | 8.8 |  |
+| **A: OpenClaw+cokac+amp** | 1.000 | 42.1 |  |
+| B: Claude Standalone | 1.000 | 31.1 |  |
+| C: Codex Standalone | 1.000 | 8.3 |  |
 
 **Winner:** openclaw_cokac_amp (score: 1.000)
+
+### Self-Improvement Loop (10 rounds) (S4)
+
+| System | Primary Metric | Time (s) | Notes |
+|--------|---------------|----------|-------|
+| **A: OpenClaw+cokac+amp** | -1.800 | 0.0 |  |
+| B: Claude Standalone | -1.300 | 0.0 |  |
+| C: Codex Standalone | -3.900 | 0.0 |  |
+
+**Winner:** claude_standalone (score: -1.300)
 
 ### Real-time Decision Making (S5)
 
 | System | Primary Metric | Time (s) | Notes |
 |--------|---------------|----------|-------|
-| **A: OpenClaw+cokac+amp** | 9.200 | 57.9 |  |
-| B: Claude Standalone | 8.800 | 29.8 |  |
-| C: Codex Standalone | 9.200 | 17.3 |  |
+| **A: OpenClaw+cokac+amp** | 9.100 | 44.5 |  |
+| B: Claude Standalone | 8.800 | 26.3 |  |
+| C: Codex Standalone | 8.700 | 16.3 |  |
 
-**Winner:** openclaw_cokac_amp (score: 9.200)
+**Winner:** openclaw_cokac_amp (score: 9.100)
 
 ---
 
@@ -73,7 +83,7 @@ This benchmark compares three multi-agent architectures:
 
 ## Statistical Summary
 
-- OpenClaw win rate: **3/4 scenarios (75%)**
+- OpenClaw win rate: **4/5 scenarios (80%)**
 - Advantage is most pronounced in: iterative improvement (S4), multi-perspective analysis (S1, S2)
 - Comparable in: simple single-pass tasks
 
