@@ -1,182 +1,159 @@
 # RoleMesh Architecture
 
-> System design, module responsibilities, and data flow
+## Overview
 
-## Module Overview
+RoleMesh is a 4-layer pipeline that turns a natural-language task request into an executed AI CLI command:
 
 ```
-src/rolemesh/
-  __main__.py    # Unified CLI entry point (argparse subcommands)
-  builder.py     # Tool discovery & config generation
-  router.py      # Task classification & tool routing
-  executor.py    # Subprocess dispatch & fallback
-  dashboard.py   # Status visualization & health checks
+User Request
+     |
+     v
+[1. Builder]    discover installed tools, build config
+     |
+     v
+[2. Router]     classify task type, select best tool
+     |
+     v
+[3. Executor]   dispatch via subprocess, handle fallback
+     |
+     v
+[4. Dashboard]  visualize status, health, history
+```
+
+Each layer is independent and can be used standalone.
+
+## Module Dependency Graph
+
+```
+__main__.py  (CLI entry point, subcommand dispatch)
+     |
+     +--- builder.py   (no internal deps)
+     |
+     +--- router.py    (no internal deps)
+     |
+     +--- executor.py  (imports router)
+     |
+     +--- dashboard.py (imports builder, router)
 ```
 
 ## Data Flow
 
-```
-User Request
-    |
-    v
-[__main__.py]  CLI parser -> dispatches to subcommand handler
-    |
-    +--> setup   -> [builder.py]    discover_tools() -> build_config() -> save_config()
-    |
-    +--> route   -> [router.py]     classify_task() -> route() -> RouteResult
-    |
-    +--> exec    -> [executor.py]   route() -> check_tool() -> dispatch() -> ExecutionResult
-    |                                   |           |
-    |                                   |           +--> fallback on failure
-    |                                   |
-    |                                   +--> _log_history() -> history.jsonl
-    |
-    +--> dashboard -> [dashboard.py] collect() -> render_*()
-    |
-    +--> status  -> [dashboard.py]  collect() -> one-line summary
-```
-
-## Module Details
-
-### builder.py - Discovery & Config
-
-**Responsibility**: Detect which AI CLI tools are installed and generate a routing config.
-
-Key types:
-- `TOOL_REGISTRY` - Static registry of known tools with check commands and strengths
-- `ToolProfile` - Dataclass representing a discovered tool (key, name, vendor, strengths, cost_tier, available, version, user_preference)
-- `SetupWizard` - Orchestrates discovery, ranking, config build/save/validate
-
-Flow:
-1. `discover_tools()` iterates `TOOL_REGISTRY`, runs `shutil.which()` + version check via subprocess
-2. `rank_tools(task_type)` sorts available tools by strength match, user preference, then cost (prefer cheaper)
-3. `build_config()` maps each task type to primary + fallback tool
-4. `validate_config()` checks schema integrity and dead references
-
-### router.py - Classification & Routing
-
-**Responsibility**: Classify a natural-language task request and select the best tool.
-
-Key types:
-- `TASK_PATTERNS` - 13 task types, each with bilingual regex patterns (Korean + English)
-- `RouteResult` - Dataclass with tool, tool_name, task_type, confidence, fallback, reason
-- `RoleMeshRouter` - Loads config, classifies requests, returns routing decisions
-
-Classification algorithm:
-1. Lowercase the request text
-2. For each task type, count how many of its regex patterns match
-3. Confidence = matched_patterns / total_patterns
-4. Return all matches sorted by confidence (descending)
-
-Routing:
-1. Take the highest-confidence task type
-2. Look up `config.routing[task_type]` for primary and fallback tools
-3. If no match, default to `claude`
-
-### executor.py - Dispatch & Fallback
-
-**Responsibility**: Execute routed tasks via subprocess with timeout and fallback.
-
-Key types:
-- `TOOL_COMMANDS` - Maps tool keys to CLI command names and stdin modes
-- `ExecutionResult` - Dataclass with tool, exit_code, stdout, stderr, duration_ms, fallback_used
-- `RoleMeshExecutor` - Full pipeline: route -> check availability -> dispatch -> fallback -> log
-
-Execution pipeline:
-1. Router classifies and routes the request
-2. Check if primary tool binary exists on PATH
-3. Build CLI command (`<tool> -p "<prompt>"`)
-4. Run subprocess with timeout
-5. On failure (non-zero exit): try fallback tool
-6. Append result to `history.jsonl`
-
-Exit codes: `0` success, `1-125` tool error, `126` OS error, `127` tool not found, `-1` timeout.
-
-### dashboard.py - Visualization & Health
-
-**Responsibility**: Collect system status and render human-readable or JSON output.
-
-Key types:
-- `HealthCheck` - name, passed, detail
-- `DashboardData` - Aggregates tools, config, routing, health checks, history
-- `RoleMeshDashboard` - Collects data and renders 5 views (tools, routing, coverage, health, history)
-- `Color` - ANSI color helper respecting `NO_COLOR` env var and TTY detection
-
-Health checks (5):
-1. `config_file` - config.json exists
-2. `tools_available` - at least 1 tool on PATH
-3. `routing_coverage` - all 13 task types have routing rules
-4. `config_version` - version is "1.0.0"
-5. `no_dead_refs` - all routing rules reference existing tools
-
-### __main__.py - CLI Entry Point
-
-**Responsibility**: Unified argparse CLI dispatching to module handlers.
-
-Subcommands: `dashboard` (d), `setup` (s), `route` (r), `exec` (x), `status` (st).
-
-## Configuration Schema
+### Setup (one-time)
 
 ```
-~/.rolemesh/
-  config.json      # Generated by builder, consumed by router/executor/dashboard
-  history.jsonl    # Append-only execution log, consumed by dashboard
+TOOL_REGISTRY (built-in)
+     |
+     v
+discover_tools()          # shutil.which + --version probe
+     |
+     v
+SetupWizard.build_config()  # rank tools, generate routing rules
+     |
+     v
+~/.rolemesh/config.json   # persisted config
 ```
 
-### config.json
+### Runtime (per request)
+
+```
+request string
+     |
+     v
+classify_task()           # regex pattern matching -> [(task_type, confidence)]
+     |
+     v
+route()                   # lookup config routing table -> RouteResult
+     |
+     v
+build_command()           # construct CLI args
+     |
+     v
+subprocess.run()          # execute with timeout
+     |
+     v
+~/.rolemesh/history.jsonl # append execution record
+```
+
+## Design Decisions
+
+### Why regex over LLM for classification?
+
+Task classification uses regex pattern matching instead of an LLM call because:
+
+1. **Zero latency** — no API call, no network dependency
+2. **Deterministic** — same input always produces same routing
+3. **Offline** — works without API keys or internet
+4. **Auditable** — patterns are visible in `TASK_PATTERNS`
+
+The confidence score (matched pattern groups / total groups) provides a simple but effective ranking signal.
+
+### Why subprocess over SDK?
+
+AI CLI tools are invoked via `subprocess.run()` rather than importing their SDKs because:
+
+1. **Universal** — any CLI tool can be integrated without SDK dependency
+2. **Isolation** — tool crashes don't affect RoleMesh
+3. **Simple** — no version coupling between RoleMesh and tool SDKs
+
+### Fallback strategy
+
+The executor implements two-level fallback:
+
+1. **Pre-execution**: if primary tool binary is not on PATH, try fallback
+2. **Post-execution**: if primary tool returns non-zero exit code, try fallback
+
+This ensures tasks complete even when a preferred tool is temporarily unavailable or fails.
+
+### Config schema
+
+Config uses a flat JSON structure with version field for future migration:
 
 ```json
 {
   "version": "1.0.0",
   "tools": {
-    "<key>": {
-      "key": "string",
-      "name": "string",
-      "vendor": "string",
-      "strengths": ["string"],
-      "cost_tier": "low|medium|high",
-      "available": true,
-      "version": "string|null",
-      "user_preference": 0
-    }
+    "<key>": { "key", "name", "vendor", "strengths", "cost_tier", "available", "version" }
   },
   "routing": {
-    "<task_type>": {
-      "primary": "<tool_key>",
-      "fallback": "<tool_key>"
-    }
+    "<task_type>": { "primary": "<tool_key>", "fallback": "<tool_key>" }
   }
 }
 ```
 
-### history.jsonl
+Validation (`SetupWizard.validate_config`) checks schema integrity and dead references.
 
-Each line is a JSON record:
+## Extension Points
 
-```json
-{
-  "timestamp": "ISO 8601",
-  "request": "first 200 chars",
-  "tool": "tool_key",
-  "task_type": "string",
-  "confidence": 0.0-1.0,
-  "success": true,
-  "exit_code": 0,
-  "duration_ms": 0,
-  "fallback_used": false
-}
+### Adding a new tool
+
+1. Add entry to `TOOL_REGISTRY` in `builder.py` with name, vendor, strengths, check_cmd, cost_tier
+2. Add command config to `TOOL_COMMANDS` in `executor.py`
+3. Run `setup --save` to regenerate config
+
+Or use the `SetupWizard.register_tool()` API for runtime registration.
+
+### Adding a new task type
+
+1. Add pattern tuple to `TASK_PATTERNS` in `router.py`
+2. Add the task type string to relevant tools' `strengths` lists in `TOOL_REGISTRY`
+3. Regenerate config
+
+### Custom routing logic
+
+Subclass `RoleMeshRouter` and override `route()` for custom logic (e.g., cost-aware routing, time-of-day rules, user preference weighting).
+
+## File Layout
+
 ```
+src/rolemesh/
+  __init__.py       # package docstring
+  __main__.py       # CLI entry point (argparse subcommands)
+  builder.py        # TOOL_REGISTRY, ToolProfile, SetupWizard, discover_tools()
+  router.py         # TASK_PATTERNS, RouteResult, RoleMeshRouter
+  executor.py       # TOOL_COMMANDS, ExecutionResult, RoleMeshExecutor
+  dashboard.py      # Color, HealthCheck, DashboardData, RoleMeshDashboard
 
-## Design Decisions
-
-1. **Subprocess isolation**: Tools run as external processes, not imported as libraries. This provides process isolation, language independence, and crash safety.
-
-2. **Regex classification over LLM**: Task classification uses fast regex matching instead of an LLM call. This keeps routing latency near zero and avoids recursive tool invocation.
-
-3. **Fallback chain**: Each task type supports a primary + fallback tool. The executor automatically retries with the fallback on primary failure, improving reliability without user intervention.
-
-4. **Bilingual patterns**: All 13 task types include both Korean and English regex patterns, supporting natural mixed-language input without translation overhead.
-
-5. **Config-driven routing**: Routing rules are stored in a JSON config rather than hardcoded, allowing per-user customization and per-environment overrides via `ROLEMESH_CONFIG`.
-
-6. **Append-only history**: Execution logs use JSONL format for easy streaming writes, tail-based rotation, and simple integration with external tools (jq, CSV export, webhooks).
+~/.rolemesh/
+  config.json       # routing config (generated by setup)
+  history.jsonl     # execution log (appended by executor)
+```

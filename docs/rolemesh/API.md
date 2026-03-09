@@ -4,7 +4,7 @@
 
 ### `discover_tools() -> list[ToolProfile]`
 
-Probes the system for all known AI CLI tools. Checks binary availability via `shutil.which` and extracts version strings from `--version` output (first line, max 80 chars). Returns a `ToolProfile` for every entry in `TOOL_REGISTRY`, with `available=True` only for tools found on PATH.
+Probes the system for all known AI CLI tools. Checks binary availability via `shutil.which` and extracts version strings from `--version` output.
 
 ### `ToolProfile`
 
@@ -25,19 +25,16 @@ class ToolProfile:
 
 | Method | Returns | Description |
 |---|---|---|
-| `discover()` | `None` | Probe system for installed tools (populates internal list) |
+| `discover()` | `list[ToolProfile]` | Probe system for installed tools |
 | `available_tools()` | `list[ToolProfile]` | Filter to available only |
-| `rank_tools(task_type)` | `list[ToolProfile]` | Rank available tools for a task type (best first) |
+| `rank_tools(task_type)` | `list[ToolProfile]` | Rank tools for a task type (best first) |
 | `build_config()` | `dict` | Generate routing config from discovered tools |
-| `save_config(path?)` | `None` | Persist config to `~/.rolemesh/config.json` |
+| `save_config(path?)` | `Path` | Persist config to `~/.rolemesh/config.json` |
 | `load_config(path?)` | `dict \| None` | Load existing config from disk |
 | `validate_config(config)` | `list[str]` | Validate config schema; returns error list |
 | `register_tool(key, name, vendor, strengths, check_cmd, cost_tier)` | `ToolProfile` | Register and discover a custom tool |
-| `unregister_tool(key)` | `bool` | Remove a custom tool from registry and internal list |
-| `interactive_setup()` | `dict` | Interactive CLI wizard with user ranking prompts |
+| `unregister_tool(key)` | `bool` | Remove a custom tool |
 | `summary()` | `str` | Human-readable summary of discovered tools |
-
-Ranking score for `rank_tools()`: `(task_type match, user_preference, cost_tier)` — lower is better. Task-type match is binary (0 if in strengths, 1 otherwise), then user preference (default 999), then cost (low=0, medium=1, high=2).
 
 ---
 
@@ -51,50 +48,31 @@ router = RoleMeshRouter(config_path=None)  # loads ~/.rolemesh/config.json
 
 | Method | Returns | Description |
 |---|---|---|
-| `classify_task(request)` | `list[tuple[str, float]]` | Classify request into task types with confidence scores (sorted desc) |
+| `classify_task(request)` | `list[tuple[str, float]]` | Classify request into task types with confidence scores |
 | `route(request)` | `RouteResult` | Route to the single best tool |
-| `route_multi(request)` | `list[RouteResult]` | Return all matched task types with their routed tools |
+| `route_multi(request)` | `list[RouteResult]` | Return suggestions for all matched task types |
 
 ### `RouteResult`
 
 ```python
 @dataclass
 class RouteResult:
-    tool_name: str              # tool key (e.g. "claude")
-    task_type: str              # classified task type
-    confidence: float           # 0.0 - 1.0
-    fallback: Optional[str] = None   # fallback tool key
-    reason: Optional[str] = None     # routing explanation (set when no config/no match)
+    tool: str              # tool key (e.g. "claude")
+    tool_name: str         # display name
+    task_type: str         # classified task type
+    confidence: float      # 0.0 - 1.0
+    fallback: str | None   # fallback tool key
+    reason: str            # human-readable routing explanation
 ```
 
 ### Task Pattern Matching
 
-Classification uses regex patterns against the lowercased request string. Each task type has 2 pattern groups (tuples of regex); confidence = (matched groups / total groups). Patterns support both Korean and English keywords.
-
-13 task types with dual-language patterns:
-
-| Task Type | Pattern Group 1 (examples) | Pattern Group 2 (examples) |
-|---|---|---|
-| `coding` | 코드, code, implement, function | write, build, create, add |
-| `refactoring` | 리팩토링, refactor, cleanup | split, extract, simplify |
-| `quick-edit` | typo, fix, change, rename | delete, remove |
-| `analysis` | 분석, analyze, debug, error | investigate, cause, why |
-| `architecture` | 아키텍처, architect, design | migrate, strategy, system |
-| `reasoning` | 추론, reason, logic, evaluate | compare, choose, decide |
-| `frontend` | ui, ux, layout, style, css | component, design, responsive |
-| `multimodal` | image, photo, screenshot | graph, chart, visual |
-| `search` | 검색, search, find, lookup | latest, news, info |
-| `explain` | 설명, explain, understand | meaning, what is, how |
-| `git-integration` | commit, branch, merge, pr | git, rebase, cherry-pick |
-| `completion` | 자동완성, complete, fill | next, continue, rest |
-| `pair-programming` | pair, together, help, review | code review, check |
+Classification uses regex patterns against the request string. Each task type has 2 pattern groups; confidence = (matched groups / total groups). Patterns support both Korean and English keywords.
 
 Confidence levels:
-- `1.0`: Both pattern groups matched
-- `0.5`: One pattern group matched
-- `0.0`: No match (task type not returned)
-
-When no pattern matches at all, `route()` defaults to `claude` with `confidence=0.0`.
+- `>= 0.8`: Strong match
+- `>= 0.5`: Good match
+- `< 0.5`: Weak match (consider specifying task type)
 
 ---
 
@@ -104,59 +82,54 @@ When no pattern matches at all, `route()` defaults to `claude` with `confidence=
 
 ```python
 executor = RoleMeshExecutor(
-    config_path=None,   # routing config path
-    dry_run=False,      # if True, show command without executing
+    config_path=None,      # routing config path
+    timeout=120,           # subprocess timeout (seconds)
+    dry_run=False,         # if True, show command without executing
+    history_path=None,     # JSONL log path (default: ~/.rolemesh/history.jsonl)
 )
 ```
 
 | Method | Returns | Description |
 |---|---|---|
-| `dispatch(task, tool?)` | `ExecutionResult` | Full pipeline: route + execute (with automatic fallback) |
-| `run(tool_key, task, route_result?)` | `ExecutionResult` | Direct execution of a specific tool |
+| `run(request, context?)` | `ExecutionResult` | Full pipeline: classify + route + execute (with fallback) |
+| `dispatch(tool_key, prompt, context?)` | `ExecutionResult` | Direct dispatch to a specific tool (skip routing) |
+| `check_tool(tool_key)` | `bool` | Check if tool binary is on PATH |
+| `build_command(tool_key, prompt, context?)` | `list[str]` | Build CLI command for a tool |
+| `get_history(limit=50)` | `list[dict]` | Read recent execution history |
 
 ### `ExecutionResult`
 
 ```python
 @dataclass
 class ExecutionResult:
-    tool_name: str          # tool key used
-    task_type: str          # classified task type
-    confidence: float       # routing confidence
-    success: bool           # True if exit_code == 0
-    exit_code: int          # subprocess exit code (-1 for errors)
-    duration_ms: int        # execution time in milliseconds
-    stdout: str = ""        # captured stdout
-    stderr: str = ""        # captured stderr
-    fallback_used: bool = False  # True if primary failed and fallback was used
+    tool: str              # tool key used
+    tool_name: str         # display name
+    task_type: str         # classified task type
+    confidence: float      # routing confidence
+    exit_code: int         # subprocess exit code
+    stdout: str            # captured stdout
+    stderr: str            # captured stderr
+    duration_ms: int       # execution time
+    fallback_used: bool    # True if primary tool failed
+
+    @property
+    def success(self) -> bool:  # exit_code == 0
 ```
 
-### Tool Commands
+### Context dict
 
-Each tool maps to a CLI invocation pattern (`TOOL_COMMANDS`):
+The optional `context` parameter accepts:
 
-| Tool Key | Command | Notes |
+| Key | Type | Description |
 |---|---|---|
-| `claude` | `claude -p "<task>"` | Anthropic Claude Code |
-| `codex` | `codex -p "<task>"` | OpenAI Codex CLI |
-| `gemini` | `gemini -p "<task>"` | Google Gemini CLI |
-| `aider` | `aider --message "<task>"` | Aider |
-| `copilot` | `gh copilot -p "<task>"` | GitHub Copilot CLI |
-| `cursor` | `cursor -p "<task>"` | Cursor |
+| `files` | `list[str]` | File paths to pass as CLI arguments |
+| `cwd` | `str` | Working directory for subprocess |
 
-### Fallback Behavior
+### Fallback behavior
 
-1. `dispatch()` routes the task via `RoleMeshRouter`
-2. Primary tool executes via `subprocess.run()` (timeout: 300s)
-3. If primary fails (non-zero exit) and a fallback tool exists, fallback executes
-4. `fallback_used=True` is set on the result when fallback was triggered
-
-### Execution History
-
-Each execution appends a JSON line to `~/.rolemesh/history.jsonl`:
-
-```json
-{"timestamp": "2026-03-07T12:00:00", "tool": "claude", "task_type": "coding", "success": true, "duration_ms": 1234}
-```
+1. If primary tool is not installed: try fallback tool
+2. If primary tool fails (non-zero exit): try fallback tool
+3. If neither is available: return exit code 127
 
 ---
 
@@ -177,8 +150,7 @@ dashboard.collect()  # gather all data
 | `render_routing()` | `str` | Routing table |
 | `render_coverage()` | `str` | Task type x tool coverage matrix |
 | `render_health()` | `str` | Health check results |
-| `render_history()` | `str` | Last 10 execution entries |
-| `to_json()` | `dict` | Full dashboard data as JSON-serializable dict |
+| `render_history()` | `str` | Execution history table |
 
 ### Health Checks
 
