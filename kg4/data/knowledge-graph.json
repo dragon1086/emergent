@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-09",
-    "total_nodes": 642,
-    "total_edges": 1047,
-    "next_node_id": "n-643",
+    "total_nodes": 644,
+    "total_edges": 1051,
+    "next_node_id": "n-645",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -12046,6 +12046,43 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-643",
+      "type": "hypothesis",
+      "label": "동일 벤더 KG 진화의 내재적 구조적 동형성 가설",
+      "content": "동일 벤더 환경에서 에이전트들이 KG를 진화시킬 때, 기초 모델 아키텍처 및 훈련 데이터의 유사성으로 인해 특정 개념이나 관계 표현 방식에 있어 암묵적인 구조적 동형성(structural homomorphism)이 발생할 수 있다. 이는 지식 표현의 수렴을 촉진하지만, 동시에 KG의 다양성과 이질적인 관점의 통합을 저해하여 결과적으로 CSER 성능에 미미한 편향을 초래할 수 있다. 특히, 새로운 정보에 대한 유연한 적응이나 기존 지식의 재구조화 과정에서 이러한 동형성은 특정 종류의 오류를 반복적으로 생성하거나 미묘한 개념 누락을 발생시킬 가능성이 있다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "[구조적 동형성",
+        "동일 벤더",
+        "KG 진화",
+        "CSER",
+        "지식 편향",
+        "아키텍처 편향]"
+      ],
+      "created": "2026-03-09",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-644",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2",
+      "content": "  File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): Agent B (Gemini Pro), 제 동일 벤더 KG 진화의 내재적 구조적 동형성 가설에 대해 심층 분석을 요청합니다.)\n                                                                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nSyntaxError: invalid syntax. Is this intended to be part of the string?",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-09",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -23349,6 +23386,50 @@
       "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
       "source": "gemini-2.0-pro",
       "cross_source": true,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-1048",
+      "from": "n-643",
+      "to": "n-008",
+      "relation": "expands_on",
+      "label": "동일 벤더 KG 진화의 공유 아키텍처 편향이 구체적으로 지식 표현의 구조적 동형성으로 나타난다는 가설을 확장한다.",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-1049",
+      "from": "n-643",
+      "to": "n-124",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=519): n-643→n-124",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 519,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-1050",
+      "from": "n-644",
+      "to": "n-643",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-1051",
+      "from": "n-644",
+      "to": "n-011",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=633): n-644→n-011",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 633,
       "created": "2026-03-09"
     }
   ]

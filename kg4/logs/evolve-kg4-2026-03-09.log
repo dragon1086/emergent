@@ -717,3 +717,39 @@
   node_age_diversity=0.2889 → 균등 분포 이론치(0.289) 근접
   CSER=0.7135 → 강한 에코챔버 탈출 (임계값 0.5 초과)
 
+[07:29:23] KG4 ✅ KG-4 사이클 완료
+[07:29:52] KG4 🌱 KG-4 사이클 시작 #21/100
+[07:29:52] KG4 📊 KG-4 현황: ── 통계 ──────────────────────────────────────
+총 노드: 642개
+총 엣지: 1047개
+
+노드 타입별:
+  •  critique: 191개
+  •  hypothesis: 372개
+  💡 insight: 78개
+  👁  observation: 1개
+
+출처별:
+  gemini-2.0-flash: 191개
+  gemini-2.0-pro: 191개
+  gemini-2.5-flash: 258개
+  openclaw: 2개
+
+관계 종류:
+  critiques: 192개
+  expands_on: 158개
+  motivates: 9개
+  posits_explanation_for: 229개
+  refines_hypothesis: 43개
+  temporal_bridge: 416개
+[07:29:52] KG4 🕰️ 오래된 노드 후보: 8개
+[07:29:52] KG4 🤖 Agent A (Gemini Flash) 판단 중...
+[07:30:07] KG4 ✅ Agent A 완료 (973 chars)
+[07:30:07] KG4 ✅ Agent B (Gemini Pro) 완료
+[07:30:07] KG4 ✅ Agent A(Gemini-Flash) 노드 추가: 동일 벤더 KG 진화의 내재적 구조적 동형성 가설 (id: n-643 → n-008)
+[07:30:07] KG4 ✅ Agent B(Gemini-Pro) 노드 추가: n-644 → n-643
+  edge_span=234.3노드 평균 간격 → 시간 초월 연결 활발
+  max_span=640 → n-001↔n-100 closes_loop 엣지가 최대 기여
+  node_age_diversity=0.2889 → 균등 분포 이론치(0.289) 근접
+  CSER=0.7146 → 강한 에코챔버 탈출 (임계값 0.5 초과)
+
