@@ -64,7 +64,7 @@ class ToolProfile:
     key: str
     name: str
     vendor: str
-    strengths: list[str]
+    strengths: list
     cost_tier: str
     available: bool = False
     version: Optional[str] = None
@@ -72,7 +72,6 @@ class ToolProfile:
 
 
 def discover_tools() -> list[ToolProfile]:
-    """Probe the system for all known AI CLI tools."""
     tools = []
     for key, info in TOOL_REGISTRY.items():
         profile = ToolProfile(
@@ -87,10 +86,11 @@ def discover_tools() -> list[ToolProfile]:
             profile.available = True
             try:
                 result = subprocess.run(
-                    check_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+                    check_cmd, capture_output=True, timeout=5,
+                    stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                 )
-                version = result.stdout.strip().split(b"\n")[0].decode()
-                profile.version = version[:80] if version else None
+                version = result.stdout.decode().strip().split("\n")[0][:80]
+                profile.version = version if version else None
             except Exception:
                 pass
         tools.append(profile)
@@ -99,29 +99,25 @@ def discover_tools() -> list[ToolProfile]:
 
 class SetupWizard:
     CONFIG_DIR = Path.home() / ".rolemesh"
-    CONFIG_PATH = Path.home() / ".rolemesh" / "config.json"
+    CONFIG_PATH = CONFIG_DIR / "config.json"
 
     def __init__(self):
         self._tools: list[ToolProfile] = []
-        self._custom_tools: list[str] = []
+        self._custom_tools: dict = {}
 
-    def discover(self) -> list[ToolProfile]:
+    def discover(self):
         self._tools = discover_tools()
-        return self._tools
 
     def available_tools(self) -> list[ToolProfile]:
         return [t for t in self._tools if t.available]
 
     def rank_tools(self, task_type: str) -> list[ToolProfile]:
-        cost_order = {"low": 0, "medium": 1, "high": 2}
-
         def score(t: ToolProfile) -> tuple:
             return (
                 0 if task_type in t.strengths else 1,
-                t.user_preference if t.user_preference is not None else 999,
-                cost_order.get(t.cost_tier, 1),
+                t.user_preference or 999,
+                {"low": 0, "medium": 1, "high": 2}.get(t.cost_tier, 1),
             )
-
         return sorted(self.available_tools(), key=score)
 
     def build_config(self) -> dict:
@@ -149,18 +145,13 @@ class SetupWizard:
                 "fallback": ranked[1].key if len(ranked) > 1 else None,
             }
 
-        return {
-            "version": "1.0.0",
-            "tools": tools_dict,
-            "routing": routing,
-        }
+        return {"version": "1.0.0", "tools": tools_dict, "routing": routing}
 
-    def save_config(self, path: Optional[Path] = None) -> Path:
+    def save_config(self, path: Optional[Path] = None):
         path = path or self.CONFIG_PATH
         path.parent.mkdir(parents=True, exist_ok=True)
         config = self.build_config()
-        path.write_text(json.dumps(config, indent=2))
-        return path
+        path.write_text(json.dumps(config, indent=2, ensure_ascii=False))
 
     def load_config(self, path: Optional[Path] = None) -> Optional[dict]:
         path = path or self.CONFIG_PATH
@@ -177,27 +168,19 @@ class SetupWizard:
         if "routing" not in config:
             errors.append("missing 'routing' field")
 
-        if "routing" in config and "tools" in config:
-            tool_keys = set(config["tools"].keys())
-            for task_type, rule in config["routing"].items():
-                primary = rule.get("primary")
-                fallback = rule.get("fallback")
-                if primary and primary not in tool_keys:
-                    errors.append(f"routing[{task_type}].primary '{primary}' not in tools")
-                if fallback and fallback not in tool_keys:
-                    errors.append(f"routing[{task_type}].fallback '{fallback}' not in tools")
-
+        tool_keys = set(config.get("tools", {}).keys())
+        for task_type, rule in config.get("routing", {}).items():
+            primary = rule.get("primary")
+            fallback = rule.get("fallback")
+            if primary and primary not in tool_keys:
+                errors.append(f"routing[{task_type}].primary '{primary}' not in tools")
+            if fallback and fallback not in tool_keys:
+                errors.append(f"routing[{task_type}].fallback '{fallback}' not in tools")
         return errors
 
-    def register_tool(
-        self,
-        key: str,
-        name: str,
-        vendor: str,
-        strengths: list[str],
-        check_cmd: list[str],
-        cost_tier: str,
-    ) -> ToolProfile:
+    def register_tool(self, key: str, name: str, vendor: str,
+                      strengths: list, check_cmd: list,
+                      cost_tier: str = "medium") -> ToolProfile:
         profile = ToolProfile(
             key=key, name=name, vendor=vendor,
             strengths=strengths, cost_tier=cost_tier,
@@ -206,14 +189,15 @@ class SetupWizard:
             profile.available = True
             try:
                 result = subprocess.run(
-                    check_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+                    check_cmd, capture_output=True, timeout=5,
+                    stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                 )
-                version = result.stdout.strip().split(b"\n")[0].decode()
-                profile.version = version[:80] if version else None
+                version = result.stdout.decode().strip().split("\n")[0][:80]
+                profile.version = version if version else None
             except Exception:
                 pass
         self._tools.append(profile)
-        self._custom_tools.append(key)
+        self._custom_tools[key] = True
         TOOL_REGISTRY[key] = {
             "name": name, "vendor": vendor,
             "strengths": strengths, "check_cmd": check_cmd,
@@ -223,50 +207,33 @@ class SetupWizard:
 
     def unregister_tool(self, key: str) -> bool:
         self._tools = [t for t in self._tools if t.key != key]
-        self._custom_tools = [k for k in self._custom_tools if k != key]
+        self._custom_tools.pop(key, None)
         TOOL_REGISTRY.pop(key, None)
         return True
 
     def interactive_setup(self) -> dict:
-        """Run interactive setup: discover tools, let user set preferences, save config."""
         self.discover()
         available = self.available_tools()
-
-        print("\n=== RoleMesh Interactive Setup ===\n")
         print(self.summary())
 
-        if not available:
-            print("\nNo AI CLI tools found. Install at least one tool and re-run.")
-            return self.build_config()
-
-        print(f"\nFound {len(available)} tool(s). Set preference order (1=highest).")
-        print("Press Enter to skip (auto-rank by capability match).\n")
-
         for tool in available:
-            prompt = f"  Preference for {tool.name} [{tool.vendor}] (1-{len(available)}, Enter=auto): "
+            prompt = f"\n  Rank for {tool.name} ({tool.vendor})? [1-{len(available)}, Enter=skip]: "
             try:
                 val = input(prompt).strip()
             except (EOFError, KeyboardInterrupt):
-                print("\nSkipping preferences.")
                 break
-            if val.isdigit():
+            if val and val.isdigit():
                 tool.user_preference = int(val)
 
         config = self.build_config()
         errors = self.validate_config(config)
         if errors:
-            print(f"\nWarnings: {errors}")
+            print(f"  Warnings: {errors}")
 
-        try:
-            save_prompt = input("\nSave config? [Y/n]: ").strip().lower()
-        except (EOFError, KeyboardInterrupt):
-            save_prompt = "n"
-
-        if save_prompt in ("", "y", "yes"):
+        save_prompt = input("\n  Save config? [y/N]: ").strip().lower()
+        if save_prompt == "y":
             path = self.save_config()
-            print(f"Config saved to: {path}")
-        else:
-            print("Config not saved.")
+            print(f"  Saved to {self.CONFIG_PATH}")
 
         return config
 
@@ -274,9 +241,9 @@ class SetupWizard:
         available = self.available_tools()
         lines = [f"RoleMesh: {len(available)}/{len(self._tools)} tools available"]
         for t in self._tools:
-            status = "OK" if t.available else "--"
+            status = "[OK]" if t.available else "[--]"
             ver = f" ({t.version})" if t.version else ""
-            lines.append(f"  [{status}] {t.name}{ver} — {t.vendor}, {t.cost_tier}")
+            lines.append(f"  {status} {t.name}{ver} — {t.vendor}, {t.cost_tier}")
         return "\n".join(lines)
 
 

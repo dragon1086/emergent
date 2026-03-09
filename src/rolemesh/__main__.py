@@ -2,11 +2,11 @@
 RoleMesh CLI - Unified entry point for all rolemesh commands.
 
 Usage:
-    python -m src.rolemesh dashboard [--tools|--routing|--coverage|--health|--history] [--json]
-    python -m src.rolemesh setup [--save] [--interactive]
-    python -m src.rolemesh route "task description" [--all] [--json]
-    python -m src.rolemesh exec "task description" [--tool X] [--dry-run]
-    python -m src.rolemesh status [--json]
+    python -m src.rolemesh dashboard [--tools|--routing|--coverage|--health|--history|--json]
+    python -m src.rolemesh setup [--save|--interactive]
+    python -m src.rolemesh route "<task>" [--all|--json]
+    python -m src.rolemesh exec "<task>" [--tool TOOL|--dry-run|--json]
+    python -m src.rolemesh status
 """
 
 import argparse
@@ -26,7 +26,7 @@ def cmd_dashboard(args):
     dash.collect()
 
     if args.json:
-        print(json.dumps(dash.to_json(), indent=2))
+        print(json.dumps(dash.to_json(), indent=2, ensure_ascii=False))
     elif args.tools:
         print(dash.render_tools())
     elif args.routing:
@@ -43,28 +43,22 @@ def cmd_dashboard(args):
 
 def cmd_setup(args):
     wizard = SetupWizard()
-
-    if args.interactive:
-        wizard.interactive_setup()
-        return
-
     wizard.discover()
     print(wizard.summary())
 
     if args.save:
         path = wizard.save_config()
-        print(f"\nConfig saved to: {path}")
-
         config = wizard.build_config()
         errors = wizard.validate_config(config)
         if errors:
-            print(f"\nValidation warnings: {errors}")
+            for e in errors:
+                print(f"  WARN: {e}")
 
 
 def cmd_route(args):
     task = " ".join(args.task)
     if not task:
-        print("Error: provide a task description", file=sys.stderr)
+        print("Error: no task provided", file=sys.stderr)
         sys.exit(1)
 
     router = RoleMeshRouter()
@@ -73,36 +67,35 @@ def cmd_route(args):
         results = router.route_multi(task)
         if args.json:
             print(json.dumps([
-                {
-                    "tool": r.tool, "tool_name": r.tool_name,
-                    "task_type": r.task_type, "confidence": r.confidence,
-                    "fallback": r.fallback, "reason": r.reason,
-                }
+                {"tool": r.tool_name, "task_type": r.task_type,
+                 "confidence": r.confidence, "fallback": r.fallback}
                 for r in results
             ], indent=2))
         else:
             for r in results:
-                print(f"  {r.task_type:<20} -> {r.tool_name:<16} ({r.confidence:.0%})")
+                print(f"  {r.task_type:<20s} → {r.tool_name}"
+                      f" (conf={r.confidence:.2f}, fallback={r.fallback})")
     else:
         result = router.route(task)
         if args.json:
             print(json.dumps({
-                "tool": result.tool, "tool_name": result.tool_name,
-                "task_type": result.task_type, "confidence": result.confidence,
-                "fallback": result.fallback, "reason": result.reason,
+                "tool": result.tool_name, "task_type": result.task_type,
+                "confidence": result.confidence, "fallback": result.fallback,
+                "reason": result.reason,
             }, indent=2))
         else:
-            print(f"Task:       {task}")
-            print(f"Type:       {result.task_type} ({result.confidence:.0%})")
-            print(f"Tool:       {result.tool_name}")
-            print(f"Fallback:   {result.fallback}")
-            print(f"Reason:     {result.reason}")
+            print(f"  Route: {result.tool_name} ({result.task_type},"
+                  f" conf={result.confidence:.2f})")
+            if result.fallback:
+                print(f"  Fallback: {result.fallback}")
+            if result.reason:
+                print(f"  Reason: {result.reason}")
 
 
 def cmd_exec(args):
     task = " ".join(args.task)
     if not task:
-        print("Error: provide a task description", file=sys.stderr)
+        print("Error: no task provided", file=sys.stderr)
         sys.exit(1)
 
     executor = RoleMeshExecutor(dry_run=args.dry_run)
@@ -110,24 +103,17 @@ def cmd_exec(args):
 
     if args.json:
         print(json.dumps({
-            "tool": result.tool, "tool_name": result.tool_name,
-            "task_type": result.task_type, "confidence": result.confidence,
-            "exit_code": result.exit_code, "success": result.success,
-            "duration_ms": result.duration_ms, "fallback_used": result.fallback_used,
-            "stdout": result.stdout, "stderr": result.stderr,
+            "tool": result.tool_name, "task_type": result.task_type,
+            "confidence": result.confidence, "exit_code": result.exit_code,
+            "success": result.success, "duration_ms": result.duration_ms,
+            "fallback_used": result.fallback_used,
         }, indent=2))
     else:
         status = Color.green("OK") if result.success else Color.red("FAIL")
-        print(f"Tool:       {result.tool_name}")
-        print(f"Task:       {result.task_type} ({result.confidence:.0%})")
-        print(f"Status:     {status} (exit {result.exit_code})")
-        print(f"Duration:   {result.duration_ms}ms")
-        if result.fallback_used:
-            print("Fallback:   used")
-        if result.stdout.strip():
-            print(f"\n--- stdout ---\n{result.stdout.strip()}")
-        if result.stderr.strip():
-            print(f"\n--- stderr ---\n{result.stderr.strip()}")
+        print(f"  Tool: {result.tool_name} | Type: {result.task_type}"
+              f" | [{status}] | {result.duration_ms}ms")
+        if result.stdout:
+            print(result.stdout)
 
 
 def cmd_status(args):
@@ -142,51 +128,55 @@ def cmd_status(args):
             "tools_available": len(available),
             "tools_total": total,
             "config_loaded": config is not None,
-            "tools": [{"key": t.key, "name": t.name} for t in available],
+            "tool_names": [t.name for t in available],
         }, indent=2))
     else:
-        names = ", ".join(t.name for t in available) if available else "none"
-        status_icon = Color.green("OK") if available else Color.yellow("!!")
+        names = ", ".join(t.name for t in available)
+        status_icon = Color.green("ready") if config else Color.yellow("no config")
+        print(f"  RoleMesh: {len(available)}/{total} tools | {status_icon}")
+        if names:
+            print(f"  Available: {names}")
         config_status = "loaded" if config else "missing (run: setup --save)"
-        print(f"[{status_icon}] RoleMesh: {len(available)}/{total} tools ({names}) | config: {config_status}")
+        print(f"  Config: {config_status}")
 
 
 def main():
-    parser = argparse.ArgumentParser(prog="rolemesh", description="RoleMesh - AI tool discovery, routing, and execution")
-    parser.add_argument("--config", type=str, help="Config path override")
-    parser.add_argument("--json", action="store_true", help="JSON output")
-
-    subparsers = parser.add_subparsers(dest="command", help="Available commands")
+    parser = argparse.ArgumentParser(
+        prog="rolemesh",
+        description="RoleMesh - AI tool discovery, routing, and execution",
+    )
+    subparsers = parser.add_subparsers(dest="command")
 
     # dashboard
-    dash_parser = subparsers.add_parser("dashboard", help="Visual system dashboard")
-    dash_parser.add_argument("--tools", action="store_true")
-    dash_parser.add_argument("--routing", action="store_true")
-    dash_parser.add_argument("--coverage", action="store_true")
-    dash_parser.add_argument("--health", action="store_true")
-    dash_parser.add_argument("--history", action="store_true")
-    dash_parser.add_argument("--json", action="store_true", dest="json")
+    dash_parser = subparsers.add_parser("dashboard", help="Show dashboard")
+    dash_parser.add_argument("--config", type=str, help="Config file path")
+    dash_parser.add_argument("--json", action="store_true", help="JSON output")
+    dash_parser.add_argument("--tools", action="store_true", help="Tools only")
+    dash_parser.add_argument("--routing", action="store_true", help="Routing table")
+    dash_parser.add_argument("--coverage", action="store_true", help="Coverage matrix")
+    dash_parser.add_argument("--health", action="store_true", help="Health checks")
+    dash_parser.add_argument("--history", action="store_true", help="Execution history")
 
     # setup
-    setup_parser = subparsers.add_parser("setup", help="Discover tools, build config")
-    setup_parser.add_argument("--save", action="store_true", help="Save config to disk")
-    setup_parser.add_argument("--interactive", action="store_true")
+    setup_parser = subparsers.add_parser("setup", help="Discover tools & save config")
+    setup_parser.add_argument("--save", action="store_true", help="Save config")
+    setup_parser.add_argument("--interactive", action="store_true", help="Interactive mode")
 
     # route
     route_parser = subparsers.add_parser("route", help="Classify and route a task")
-    route_parser.add_argument("task", nargs="*")
+    route_parser.add_argument("task", nargs="*", help="Task description")
     route_parser.add_argument("--all", action="store_true", help="Show all matches")
-    route_parser.add_argument("--json", action="store_true", dest="json")
+    route_parser.add_argument("--json", action="store_true", help="JSON output")
 
     # exec
-    exec_parser = subparsers.add_parser("exec", help="Route and execute a task")
-    exec_parser.add_argument("task", nargs="*")
+    exec_parser = subparsers.add_parser("exec", help="Execute a task via routed tool")
+    exec_parser.add_argument("task", nargs="*", help="Task description")
     exec_parser.add_argument("--tool", type=str, help="Force specific tool")
-    exec_parser.add_argument("--dry-run", action="store_true")
-    exec_parser.add_argument("--json", action="store_true", dest="json")
+    exec_parser.add_argument("--dry-run", action="store_true", help="Dry run")
+    exec_parser.add_argument("--json", action="store_true", help="JSON output")
 
     # status
-    subparsers.add_parser("status", help="One-line health summary")
+    subparsers.add_parser("status", help="Quick status overview")
 
     args = parser.parse_args()
 

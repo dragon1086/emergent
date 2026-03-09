@@ -2,7 +2,7 @@
 rolemesh/executor.py - Task Executor
 
 Dispatches tasks to AI CLI tools based on routing decisions.
-Completes the pipeline: discover -> route -> execute.
+Completes the pipeline: classify -> route -> execute.
 """
 
 import json
@@ -12,7 +12,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Optional
 
-from . import router as router
+from . import router
 from .router import RoleMeshRouter
 
 
@@ -28,39 +28,37 @@ TOOL_COMMANDS = {
 
 @dataclass
 class ExecutionResult:
-    tool: str
     tool_name: str
     task_type: str
     confidence: float
-    exit_code: int
     success: bool
+    exit_code: int
     duration_ms: int
-    fallback_used: bool
-    stdout: str
-    stderr: str
+    stdout: str = ""
+    stderr: str = ""
+    fallback_used: bool = False
 
 
 class RoleMeshExecutor:
     def __init__(self, config_path: Optional[Path] = None, dry_run: bool = False):
-        self._router = RoleMeshRouter(config_path=config_path)
+        self._router = RoleMeshRouter(config_path)
         self._dry_run = dry_run
         self._history_path = Path.home() / ".rolemesh" / "history.jsonl"
 
     def dispatch(self, task: str, tool: Optional[str] = None) -> ExecutionResult:
         route_result = self._router.route(task)
-        tool_key = tool or route_result.tool
 
+        tool_key = tool or route_result.tool_name
         if tool_key not in TOOL_COMMANDS:
             return ExecutionResult(
-                tool=tool_key, tool_name=route_result.tool_name,
-                task_type=route_result.task_type, confidence=route_result.confidence,
-                exit_code=1, success=False, duration_ms=0, fallback_used=False,
-                stdout="", stderr=f"Unknown tool: {tool_key}",
+                tool_name=tool_key, task_type=route_result.task_type,
+                confidence=route_result.confidence,
+                success=False, exit_code=-1, duration_ms=0,
+                stderr=f"Unknown tool: {tool_key}",
             )
 
         result = self.run(tool_key, task, route_result)
-
-        if not result.success and not tool and route_result.fallback:
+        if not result.success and route_result.fallback:
             fallback_key = route_result.fallback
             if fallback_key in TOOL_COMMANDS:
                 fallback_result = self.run(fallback_key, task, route_result)
@@ -69,41 +67,51 @@ class RoleMeshExecutor:
 
         return result
 
-    def run(self, tool_key: str, task: str, route_result) -> ExecutionResult:
-        cmd_info = TOOL_COMMANDS[tool_key]
+    def run(self, tool_key: str, task: str, route_result=None) -> ExecutionResult:
+        cmd_info = TOOL_COMMANDS.get(tool_key)
+        if not cmd_info:
+            return ExecutionResult(
+                tool_name=tool_key, task_type="unknown",
+                confidence=0.0, success=False, exit_code=-1,
+                duration_ms=0, stderr=f"No command for {tool_key}",
+            )
+
         cmd = cmd_info["cmd"] + [task]
 
         if self._dry_run:
             return ExecutionResult(
-                tool=tool_key, tool_name=route_result.tool_name,
-                task_type=route_result.task_type, confidence=route_result.confidence,
-                exit_code=0, success=True, duration_ms=0, fallback_used=False,
-                stdout=f"[dry-run] {' '.join(cmd)}", stderr="",
+                tool_name=tool_key,
+                task_type=route_result.task_type if route_result else "unknown",
+                confidence=route_result.confidence if route_result else 0.0,
+                success=True, exit_code=0, duration_ms=0,
+                stdout=f"[dry-run] would execute: {' '.join(cmd)}",
             )
 
         start = time.time()
         try:
             proc = subprocess.run(
-                cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=300,
+                cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                timeout=300,
             )
             duration_ms = int((time.time() - start) * 1000)
-
             result = ExecutionResult(
-                tool=tool_key, tool_name=route_result.tool_name,
-                task_type=route_result.task_type, confidence=route_result.confidence,
-                exit_code=proc.returncode, success=proc.returncode == 0,
-                duration_ms=duration_ms, fallback_used=False,
-                stdout=proc.stdout.decode(errors="replace"),
-                stderr=proc.stderr.decode(errors="replace"),
+                tool_name=tool_key,
+                task_type=route_result.task_type if route_result else "unknown",
+                confidence=route_result.confidence if route_result else 0.0,
+                success=proc.returncode == 0,
+                exit_code=proc.returncode,
+                duration_ms=duration_ms,
+                stdout=proc.stdout.decode(),
+                stderr=proc.stderr.decode(),
             )
         except Exception as e:
             duration_ms = int((time.time() - start) * 1000)
             result = ExecutionResult(
-                tool=tool_key, tool_name=route_result.tool_name,
-                task_type=route_result.task_type, confidence=route_result.confidence,
-                exit_code=1, success=False,
-                duration_ms=duration_ms, fallback_used=False,
-                stdout="", stderr=str(e),
+                tool_name=tool_key,
+                task_type=route_result.task_type if route_result else "unknown",
+                confidence=route_result.confidence if route_result else 0.0,
+                success=False, exit_code=-1,
+                duration_ms=duration_ms, stderr=str(e),
             )
 
         self._log_history(result)
@@ -113,8 +121,8 @@ class RoleMeshExecutor:
         try:
             self._history_path.parent.mkdir(parents=True, exist_ok=True)
             entry = {
-                "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
-                "tool": result.tool,
+                "timestamp": time.strftime("%Y-%m-%dT%H:%M:%S"),
+                "tool": result.tool_name,
                 "task_type": result.task_type,
                 "success": result.success,
                 "duration_ms": result.duration_ms,
@@ -127,15 +135,15 @@ class RoleMeshExecutor:
 
 def main():
     import sys
-    task = " ".join(sys.argv[1:]) if len(sys.argv) > 1 else "코드 리팩토링해줘"
-    executor = RoleMeshExecutor(dry_run=True)
+    if len(sys.argv) < 2:
+        return
+    task = " ".join(sys.argv[1:])
+    executor = RoleMeshExecutor()
     result = executor.dispatch(task)
-    print(f"Tool: {result.tool_name}")
-    print(f"Task: {result.task_type} ({result.confidence:.0%})")
-    print(f"Status: {'OK' if result.success else 'FAIL'} (exit {result.exit_code})")
-    print(f"Duration: {result.duration_ms}ms")
+    print(f"Tool: {result.tool_name} | Type: {result.task_type} | Conf: {result.confidence:.2f}")
+    print(f"Success: {result.success} | Exit: {result.exit_code} | Time: {result.duration_ms}ms")
     if result.stdout:
-        print(f"\n--- stdout ---\n{result.stdout}")
+        print(result.stdout)
 
 
 if __name__ == "__main__":
