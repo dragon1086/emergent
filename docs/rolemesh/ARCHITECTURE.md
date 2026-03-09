@@ -70,13 +70,33 @@ SetupWizard.rank_tools(task_type)
 SetupWizard.build_config()
      |  - Generates routing rules: task_type -> primary + fallback
      v
+SetupWizard.validate_config(config)
+     |  - Schema validation: version, tools, routing, cross-references
+     |  - Returns list of errors (empty = valid)
+     v
 SetupWizard.save_config()
      -> ~/.rolemesh/config.json
 ```
 
+**Runtime extensibility:**
+
+```
+SetupWizard.register_tool(key, name, vendor, strengths, check_cmd, cost_tier)
+     |  - Adds to TOOL_REGISTRY at runtime (no source edit needed)
+     |  - Probes binary availability + reads version
+     |  - Replaces existing entry if same key
+     v
+SetupWizard.unregister_tool(key)
+     |  - Removes from TOOL_REGISTRY + internal tool list
+     |  - Subsequent build_config() excludes the removed tool
+     v
+SetupWizard.save_config()
+     -> Updated config reflects additions/removals
+```
+
 ### Tool Registry
 
-Six AI CLI tools are registered with their capability profiles:
+Six built-in AI CLI tools are registered with their capability profiles (extensible via `register_tool`):
 
 | Tool | Vendor | Strengths | Cost Tier |
 |------|--------|-----------|-----------|
