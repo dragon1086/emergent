@@ -18,30 +18,25 @@ from pathlib import Path
 from typing import Optional
 
 
-# ─── Tool Registry ──────────────────────────────────────────────────────────
-
 TOOL_REGISTRY: dict[str, dict] = {
     "claude": {
         "name": "Claude Code",
         "vendor": "Anthropic",
-        "strengths": ["coding", "refactoring", "analysis", "architecture",
-                       "reasoning", "explain", "pair-programming"],
+        "strengths": ["coding", "refactoring", "analysis", "architecture", "reasoning", "explain", "pair-programming"],
         "check_cmd": ["claude", "--version"],
         "cost_tier": "high",
     },
     "codex": {
         "name": "Codex CLI",
         "vendor": "OpenAI",
-        "strengths": ["coding", "refactoring", "quick-edit", "completion",
-                       "git-integration"],
+        "strengths": ["coding", "refactoring", "quick-edit", "completion", "git-integration"],
         "check_cmd": ["codex", "--version"],
         "cost_tier": "medium",
     },
     "gemini": {
         "name": "Gemini CLI",
         "vendor": "Google",
-        "strengths": ["coding", "multimodal", "search", "explain",
-                       "frontend", "analysis"],
+        "strengths": ["coding", "multimodal", "search", "explain", "frontend", "analysis"],
         "check_cmd": ["gemini", "--version"],
         "cost_tier": "medium",
     },
@@ -69,8 +64,6 @@ TOOL_REGISTRY: dict[str, dict] = {
 }
 
 
-# ─── Data Classes ────────────────────────────────────────────────────────────
-
 @dataclass
 class ToolProfile:
     """Profile of a discovered AI tool."""
@@ -81,13 +74,11 @@ class ToolProfile:
     cost_tier: str
     available: bool = False
     version: Optional[str] = None
-    user_preference: int = 0
+    user_preference: Optional[int] = None
 
     def to_dict(self) -> dict:
         return asdict(self)
 
-
-# ─── Setup Wizard ────────────────────────────────────────────────────────────
 
 @dataclass
 class SetupWizard:
@@ -101,9 +92,7 @@ class SetupWizard:
       4. save_config() - persist to ~/.rolemesh/config.json
     """
     tools: list[ToolProfile] = field(default_factory=list)
-    config_path: Path = field(
-        default_factory=lambda: Path.home() / ".rolemesh" / "config.json"
-    )
+    config_path: Path = field(default_factory=lambda: Path.home() / ".rolemesh" / "config.json")
 
     def discover(self) -> list[ToolProfile]:
         """Probe system for installed AI tools."""
@@ -123,8 +112,8 @@ class SetupWizard:
             available,
             key=lambda t: (
                 task_type in t.strengths,
-                t.user_preference,
-                -["low", "medium", "high"].index(t.cost_tier),
+                t.user_preference or 0,
+                t.cost_tier == "low",
             ),
             reverse=True,
         )
@@ -139,13 +128,10 @@ class SetupWizard:
         routing = {}
         for task_type in sorted(all_types):
             ranked = self.rank_tools(task_type)
-            if len(ranked) >= 2:
-                routing[task_type] = {
-                    "primary": ranked[0].key,
-                    "fallback": ranked[1].key,
-                }
-            elif len(ranked) == 1:
+            if ranked:
                 routing[task_type] = {"primary": ranked[0].key}
+                if len(ranked) > 1:
+                    routing[task_type]["fallback"] = ranked[1].key
 
         return {
             "version": "1.0.0",
@@ -153,19 +139,20 @@ class SetupWizard:
             "routing": routing,
         }
 
-    def save_config(self, path: Optional[Path] = None) -> None:
+    def save_config(self, path: Optional[Path] = None) -> Path:
         """Persist config to disk."""
         path = path or self.config_path
         path.parent.mkdir(parents=True, exist_ok=True)
         config = self.build_config()
-        path.write_text(json.dumps(config, ensure_ascii=False, indent=2))
+        path.write_text(json.dumps(config, indent=2, ensure_ascii=False))
+        return path
 
-    def load_config(self, path: Optional[Path] = None) -> dict:
+    def load_config(self, path: Optional[Path] = None) -> dict | None:
         """Load existing config."""
         path = path or self.config_path
         if path.exists():
             return json.loads(path.read_text())
-        return {}
+        return None
 
     @staticmethod
     def validate_config(config: dict) -> list[str]:
@@ -192,17 +179,14 @@ class SetupWizard:
                 if not isinstance(val, dict):
                     errors.append(f"tools['{key}'] must be a dict")
 
+        tool_keys = set(config.get("tools", {}).keys())
         if "routing" in config:
-            tool_keys = set(config.get("tools", {}).keys())
-            for task_type, rule in config.get("routing", {}).items():
+            for task_type, rule in config["routing"].items():
                 if isinstance(rule, dict):
-                    for role in ("primary", "fallback"):
-                        ref = rule.get(role)
-                        if ref and ref not in tool_keys:
-                            errors.append(
-                                f"routing['{task_type}'].{role} references "
-                                f"unknown tool '{ref}'"
-                            )
+                    for role, ref in rule.items():
+                        if ref not in tool_keys:
+                            errors.append(f"routing['{task_type}'].{role} references unknown tool '{ref}'")
+
         return errors
 
     def register_tool(
@@ -231,30 +215,29 @@ class SetupWizard:
             "cost_tier": cost_tier,
         }
 
-        available = bool(shutil.which(check_cmd[0]))
+        available = bool(shutil.which(check_cmd[0])) if check_cmd else False
         version = None
-        if available:
+        if available and check_cmd:
             try:
-                result = subprocess.run(
-                    check_cmd, capture_output=True, text=True, timeout=5
-                )
+                result = subprocess.run(check_cmd, capture_output=True, text=True)
                 parts = result.stdout.strip().split("\n")
-                version = next(
-                    (p for p in parts if any(c.isdigit() for c in p)),
-                    None,
-                )
-                if version:
-                    for prefix in ("v", ","):
-                        version = version.lstrip(prefix)
+                for prefix in parts:
+                    if any(any(c.isdigit() for c in p) for p in prefix.split()):
+                        version = prefix.strip()
+                        break
             except Exception:
                 pass
 
         profile = ToolProfile(
-            key=key, name=name, vendor=vendor,
-            strengths=strengths, cost_tier=cost_tier,
-            available=available, version=version,
+            key=key,
+            name=name,
+            vendor=vendor,
+            strengths=strengths,
+            cost_tier=cost_tier,
+            available=available,
+            version=version,
         )
-        # Replace if exists, append if new
+
         self.tools = [t for t in self.tools if t.key != key]
         self.tools.append(profile)
         return profile
@@ -262,27 +245,22 @@ class SetupWizard:
     def unregister_tool(self, key: str) -> bool:
         """Remove a custom tool from the registry. Returns True if found."""
         before = len(self.tools)
-        TOOL_REGISTRY.pop(key, None)
         self.tools = [t for t in self.tools if t.key != key]
+        TOOL_REGISTRY.pop(key, None)
         return len(self.tools) < before
 
     def summary(self) -> str:
         """Human-readable summary of discovered tools."""
         available = self.available_tools()
         if not available:
-            return ("No AI tools found. Install claude, codex, gemini, "
-                    "or aider to get started.")
-        lines = [f"Found {len(available)} AI tool(s):"]
+            return "No AI tools found. Install claude, codex, gemini, or aider to get started."
+
+        lines: list[str] = [f"Found {len(available)} AI tool(s):"]
         for t in available:
             ver = f" v{t.version}" if t.version else ""
-            lines.append(
-                f"  - {t.name} ({t.vendor}) "
-                f"[{', '.join(t.strengths)}]{ver}"
-            )
+            lines.append(f"  - {t.name} ({t.vendor}){ver} [{', '.join(t.strengths)}]")
         return "\n".join(lines)
 
-
-# ─── Standalone discover ─────────────────────────────────────────────────────
 
 def discover_tools() -> list[ToolProfile]:
     """
@@ -291,22 +269,18 @@ def discover_tools() -> list[ToolProfile]:
     """
     results: list[ToolProfile] = []
     for key, info in TOOL_REGISTRY.items():
-        check_cmd = info["check_cmd"]
-        available = bool(shutil.which(check_cmd[0]))
+        check_cmd = info.get("check_cmd", [])
+        available = bool(shutil.which(check_cmd[0])) if check_cmd else False
         version = None
-        if available:
+
+        if available and check_cmd:
             try:
-                proc = subprocess.run(
-                    check_cmd, capture_output=True, text=True, timeout=5
-                )
+                proc = subprocess.run(check_cmd, capture_output=True, text=True)
                 parts = proc.stdout.strip().split("\n")
-                version = next(
-                    (p for p in parts if any(c.isdigit() for c in p)),
-                    None,
-                )
-                if version:
-                    for prefix in ("v", ","):
-                        version = version.lstrip(prefix)
+                for prefix in parts:
+                    if any(any(c.isdigit() for c in p) for p in prefix.lstrip().split()):
+                        version = prefix.strip()
+                        break
             except Exception:
                 pass
 
@@ -322,21 +296,12 @@ def discover_tools() -> list[ToolProfile]:
     return results
 
 
-# ─── CLI ─────────────────────────────────────────────────────────────────────
-
-def main() -> None:
+def main():
     import argparse
-
-    parser = argparse.ArgumentParser(
-        prog="rolemesh-builder",
-        description="AI Tool Discovery & Setup Wizard",
-    )
-    parser.add_argument("--save", action="store_true",
-                        help="Save config to disk")
-    parser.add_argument("--config", type=str,
-                        help="Config file path")
-    parser.add_argument("--json", dest="json_out", action="store_true",
-                        help="JSON output")
+    parser = argparse.ArgumentParser("rolemesh-builder", description="AI Tool Discovery & Setup Wizard")
+    parser.add_argument("--save", action="store_true", help="Save config to disk")
+    parser.add_argument("--config", type=str, help="Config file path")
+    parser.add_argument("--json", dest="json_out", action="store_true", help="JSON output")
     args = parser.parse_args()
 
     wizard = SetupWizard()
@@ -346,7 +311,7 @@ def main() -> None:
 
     if args.json_out:
         config = wizard.build_config()
-        print(json.dumps(config, ensure_ascii=False, indent=2))
+        print(json.dumps(config, indent=2, ensure_ascii=False))
     else:
         print(wizard.summary())
 
