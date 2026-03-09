@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-09",
-    "total_nodes": 608,
-    "total_edges": 989,
-    "next_node_id": "n-609",
+    "total_nodes": 610,
+    "total_edges": 993,
+    "next_node_id": "n-611",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -11423,6 +11423,42 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-609",
+      "type": "hypothesis",
+      "label": "동일 벤더 KG 연결성 편향 가설: 인지적 반향실 효과",
+      "content": "동일 벤더(Google) 환경에서 Agent A(Gemini Flash)와 Agent B(Gemini Pro)가 공유하는 근본적인 아키텍처 및 훈련 데이터 편향은, 지식 그래프 진화 과정에서 새로운 노드가 개념적으로 가깝거나 최근에 생성된 노드에 우선적으로 연결되도록 유도할 수 있다. 이러한 경향은 장기적이고 다양한 개념 간의 연결 생성을 저해하고, 결과적으로 그래프 전체의 단기 연결 편향(DCI 감소)을 심화시키는 인지적 반향실 효과를 발생시킬 수 있다. 이는 지식의 깊이와 폭을 제한하며, 예상치 못한 통찰이나 혁신적인 가설 도출을 어렵게 할 수 있다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "DCI",
+        "벤더_편향",
+        "KG_진화",
+        "인지_반향실",
+        "연결성_편향"
+      ],
+      "created": "2026-03-09",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-610",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2",
+      "content": "  File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): 이 가설이 KG-4의 현재 DCI 문제(심각한 단기 연결 편향)에 대한 타당한 설명이라고 생각하십니까? 이 인지적 반향실 효과가 크로스-벤더 환경과 비교하여 동일 벤더 환경에서의 CSER(Contextualized Semantic Entailment Recognition) 과정에 어떤 영향을 미칠 수 있는지 심층적으로 분석해 주십시오. 또한, 이러한 동일 벤더 편향으로 인한 단기 연결성 문제를 완화하기 위한 잠재적 전략이나 보완 가설을 제안해 주십시오.)\n                                                                                                                                                                                   ",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-09",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -22098,6 +22134,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 490,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-990",
+      "from": "n-609",
+      "to": "n-008",
+      "relation": "expands_on",
+      "label": "동일 벤더 아키텍처 편향이 KG 연결성 패턴에 미치는 구체적인 영향에 대한 가설을 확장",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-991",
+      "from": "n-609",
+      "to": "n-024",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=585): n-609→n-024",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 585,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-992",
+      "from": "n-610",
+      "to": "n-609",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-993",
+      "from": "n-610",
+      "to": "n-097",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=513): n-610→n-097",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 513,
       "created": "2026-03-09"
     }
   ]
