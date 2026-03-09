@@ -1,14 +1,14 @@
-# RoleMesh Custom Tools Guide
+# Custom Tools Guide
 
-> Register, manage, and integrate third-party AI CLI tools at runtime
+> Register, manage, and route to your own AI CLI tools
 
 ## Overview
 
-RoleMesh ships with 6 built-in tools (Claude, Codex, Gemini, Aider, Copilot, Cursor). You can extend this with any CLI tool via `register_tool()` — no source edits required.
+RoleMesh ships with 6 built-in tool definitions, but you can register any CLI tool that accepts a text prompt. Custom tools participate in discovery, ranking, routing, and execution just like built-in ones.
 
-## Registering a Custom Tool
+## Registering a Tool
 
-### Basic Registration
+Use `SetupWizard.register_tool()` to add a custom tool at runtime:
 
 ```python
 from src.rolemesh.builder import SetupWizard
@@ -17,201 +17,183 @@ wizard = SetupWizard()
 wizard.discover()  # discover built-in tools first
 
 profile = wizard.register_tool(
-    key="windsurf",
-    name="Windsurf",
-    vendor="Codeium",
-    strengths=["coding", "inline-edit", "completion"],
-    check_cmd=["windsurf", "--version"],
-    cost_tier="medium",
+    key="my-tool",
+    name="My Custom Tool",
+    vendor="My Company",
+    strengths=["coding", "analysis", "search"],
+    check_cmd=["my-tool", "--version"],
+    cost_tier="low",
 )
 
-print(profile.available)  # True if binary found on PATH
-print(profile.version)    # Detected version string, or None
+print(f"Registered: {profile.name}, available={profile.available}")
 ```
 
-### What Happens Internally
+### Parameters
 
-1. Entry added to `TOOL_REGISTRY` (runtime, not persisted to source)
-2. Binary probed via `shutil.which(check_cmd[0])`
-3. If found, `check_cmd` is executed to extract version
-4. `ToolProfile` created with `available` and `version` populated
-5. Existing tool with the same key is replaced (not duplicated)
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `key` | `str` | Yes | Unique identifier (used in config and routing) |
+| `name` | `str` | Yes | Human-readable display name |
+| `vendor` | `str` | Yes | Vendor or author name |
+| `strengths` | `list[str]` | Yes | Task types the tool excels at (see below) |
+| `check_cmd` | `list[str]` | Yes | Command to check availability and version |
+| `cost_tier` | `str` | Yes | `"low"`, `"medium"`, or `"high"` |
 
-### Required Parameters
+### Valid Strength Values
 
-| Parameter | Type | Constraints |
-|-----------|------|-------------|
-| `key` | str | Non-empty, unique identifier |
-| `name` | str | Non-empty display name |
-| `vendor` | str | Organization/author |
-| `strengths` | list[str] | Task types this tool handles |
-| `check_cmd` | list[str] | Command to verify installation |
-| `cost_tier` | str | Must be `"low"`, `"medium"`, or `"high"` |
+Use any of the 13 built-in task types:
 
-### Validation
+```
+coding          refactoring     quick-edit      analysis
+architecture    reasoning       frontend        multimodal
+search          explain         git-integration completion
+pair-programming
+```
+
+Custom strength strings are allowed but won't match any built-in classification pattern. They can still be used for direct dispatch.
+
+### Cost Tier Effects
+
+Cost tier affects ranking when tools tie on strength and preference:
+
+| Tier | Ranking Bias | Typical Use |
+|------|-------------|-------------|
+| `low` | Preferred when tied | Local/free tools, open-source |
+| `medium` | Neutral | SaaS with moderate pricing |
+| `high` | Deprioritized when tied | Premium API-based tools |
+
+## Removing a Tool
 
 ```python
-# Invalid cost_tier raises ValueError
-wizard.register_tool(key="x", name="X", vendor="V",
-                     strengths=[], check_cmd=["x"],
-                     cost_tier="ultra")
-# ValueError: cost_tier must be low/medium/high, got 'ultra'
+removed = wizard.unregister_tool("my-tool")
+print(f"Removed: {removed}")  # True if found, False if not
+```
 
-# Empty key or name raises ValueError
-wizard.register_tool(key="", name="", vendor="V",
-                     strengths=[], check_cmd=["x"])
-# ValueError: key and name are required
+This removes the tool from both the in-memory registry and the wizard's tool list. Re-save config to persist the change:
+
+```python
+wizard.save_config()
+```
+
+## Replacing a Built-in Tool
+
+If you register a tool with a key that matches a built-in (e.g., `"claude"`), the custom definition replaces it:
+
+```python
+# Override Claude's strengths
+wizard.register_tool(
+    key="claude",
+    name="Claude Code (Custom)",
+    vendor="Anthropic",
+    strengths=["coding", "architecture", "reasoning"],
+    check_cmd=["claude", "--version"],
+    cost_tier="high",
+)
 ```
 
 ## Persisting Custom Tools
 
-`register_tool()` modifies in-memory state only. To persist:
+`register_tool()` modifies the in-memory `TOOL_REGISTRY` and wizard state. To persist:
 
 ```python
-wizard.register_tool(key="windsurf", ...)
-wizard.save_config()  # writes to ~/.rolemesh/config.json
+wizard.save_config()
 ```
 
-The saved config includes the custom tool in `tools` and any auto-generated routing rules in `routing`.
-
-**Note:** The `TOOL_REGISTRY` modification is runtime-only. On next process start, you need to re-register custom tools or load from config.
-
-## Replacing an Existing Tool
-
-Calling `register_tool()` with an existing key replaces the old entry:
+The saved config includes all tool profiles. However, the registry itself resets on next import. For permanent custom tools, create a setup script:
 
 ```python
-# Original
-wizard.register_tool(key="mytool", name="MyTool v1", vendor="Me",
-                     strengths=["coding"], check_cmd=["mytool"],
-                     cost_tier="low")
+#!/usr/bin/env python3
+"""my_rolemesh_setup.py - Register custom tools and save config."""
 
-# Replace
-wizard.register_tool(key="mytool", name="MyTool v2", vendor="Me",
-                     strengths=["coding", "refactoring"], check_cmd=["mytool"],
-                     cost_tier="medium")
+from src.rolemesh.builder import SetupWizard
 
-# Only one entry with key="mytool" exists
-assert len([t for t in wizard.tools if t.key == "mytool"]) == 1
-assert wizard.tools[-1].name == "MyTool v2"
+wizard = SetupWizard()
+wizard.discover()
+
+# Register custom tools
+wizard.register_tool(
+    key="local-llm",
+    name="Local LLM",
+    vendor="Self-hosted",
+    strengths=["coding", "explain", "completion"],
+    check_cmd=["ollama", "list"],
+    cost_tier="low",
+)
+
+wizard.register_tool(
+    key="internal-agent",
+    name="Internal Agent",
+    vendor="My Corp",
+    strengths=["analysis", "search", "reasoning"],
+    check_cmd=["internal-agent", "--ping"],
+    cost_tier="low",
+)
+
+wizard.save_config()
+print(wizard.summary())
 ```
 
-## Unregistering a Tool
+## Execution Integration
 
-```python
-removed = wizard.unregister_tool("cursor")
-print(removed)  # True if found and removed
+Custom tools work with the Executor if they follow the standard CLI pattern:
 
-wizard.save_config()  # persist the removal
+```bash
+<tool-binary> -p "<prompt>"
 ```
 
-Returns `False` if the key doesn't exist:
+If your tool uses a different invocation pattern, you'll need to add an entry to `TOOL_COMMANDS` in `executor.py`:
 
 ```python
-wizard.unregister_tool("nonexistent")  # False
-```
-
-Unregistering removes the tool from both `TOOL_REGISTRY` and the wizard's internal tool list. Subsequent `build_config()` calls exclude the removed tool from routing rules.
-
-## Choosing Strengths
-
-Strengths determine which task types the tool is eligible to handle. Use the 13 built-in task types:
-
-| Strength | Routes To |
-|----------|-----------|
-| `coding` | Code writing, implementation |
-| `refactoring` | Code restructuring, cleanup |
-| `quick-edit` | Small fixes, renames, typos |
-| `analysis` | Debugging, investigation |
-| `architecture` | System design, strategy |
-| `reasoning` | Logic, evaluation, comparison |
-| `frontend` | UI/UX, layout, styling |
-| `multimodal` | Images, charts, screenshots |
-| `search` | Information lookup, docs |
-| `explain` | Explanations, documentation |
-| `git-integration` | Commits, branches, PRs |
-| `completion` | Autocomplete, fill-in |
-| `pair-programming` | Collaborative review |
-
-You can also define custom strengths. They won't match built-in task patterns but will appear in `build_config()` routing rules.
-
-## Choosing cost_tier
-
-Cost tier affects ranking when multiple tools share the same strength:
-
-| Tier | When to Use |
-|------|-------------|
-| `low` | Free or open-source tools, local models |
-| `medium` | Mid-price commercial APIs, freemium tools |
-| `high` | Premium APIs with per-token billing |
-
-The ranking algorithm prefers cheaper tools when strengths and user preferences are equal.
-
-## Choosing check_cmd
-
-`check_cmd` is used to verify the tool is installed. Requirements:
-
-- First element must be the binary name (checked via `shutil.which()`)
-- Full command is executed to extract version from stdout
-- Version parsing looks for the first word containing a digit
-
-Examples:
-
-```python
-# Simple --version flag
-check_cmd=["windsurf", "--version"]
-
-# Subcommand
-check_cmd=["gh", "copilot", "--version"]
-
-# Version flag variant
-check_cmd=["aider", "--version"]
-```
-
-If the binary doesn't exist on PATH, `available` is set to `False` and the tool is excluded from routing.
-
-## Integration with Executor
-
-Custom tools need a corresponding entry in `TOOL_COMMANDS` (executor.py) to be dispatchable:
-
-```python
-from src.rolemesh.executor import TOOL_COMMANDS
-
-TOOL_COMMANDS["windsurf"] = {
-    "cmd": ["windsurf"],
-    "stdin_mode": False,   # True if prompt goes via stdin
+# executor.py
+TOOL_COMMANDS = {
+    # ...existing entries...
+    "my-tool": {"cmd": "my-tool", "stdin": False},
 }
 ```
 
-Without this entry, the executor can route to the tool but `build_command()` returns `None` and `dispatch()` returns an error with exit code 127.
+Set `stdin: True` if the tool reads the prompt from stdin instead of a `-p` flag.
 
-## End-to-End Example
+## Validation
+
+After registering custom tools and saving, validate the config:
+
+```python
+config = wizard.build_config()
+errors = SetupWizard.validate_config(config)
+assert not errors, f"Config errors: {errors}"
+```
+
+Common validation errors:
+- **Empty key or name**: Both are required and must be non-empty strings
+- **Invalid cost_tier**: Must be exactly `"low"`, `"medium"`, or `"high"`
+- **Dead routing references**: A routing rule points to a tool key not present in `tools`
+
+## Example: Multi-Tool Routing
 
 ```python
 from src.rolemesh.builder import SetupWizard
-from src.rolemesh.executor import RoleMeshExecutor, TOOL_COMMANDS
 
-# 1. Register the tool
 wizard = SetupWizard()
 wizard.discover()
+
+# Add a specialized search tool
 wizard.register_tool(
-    key="ollama",
-    name="Ollama",
-    vendor="Ollama",
-    strengths=["coding", "explain"],
-    check_cmd=["ollama", "--version"],
-    cost_tier="low",
+    key="perplexity",
+    name="Perplexity CLI",
+    vendor="Perplexity",
+    strengths=["search", "explain", "analysis"],
+    check_cmd=["pplx", "--version"],
+    cost_tier="medium",
 )
-wizard.save_config()
 
-# 2. Add executor command mapping
-TOOL_COMMANDS["ollama"] = {
-    "cmd": ["ollama", "run", "codellama"],
-    "stdin_mode": True,
-}
-
-# 3. Use it
-executor = RoleMeshExecutor(dry_run=True)
-result = executor.run("이 코드 설명해줘")
-print(result.tool)  # may route to ollama (low cost + explain strength)
+# Now "search" tasks may route to Perplexity instead of Gemini
+config = wizard.build_config()
+print(config["routing"].get("search"))
+# {"primary": "perplexity", "fallback": "gemini"}
 ```
+
+## See Also
+
+- [Builder Guide](BUILDER_GUIDE.md) - Discovery and setup walkthrough
+- [Config Reference](CONFIG_REFERENCE.md) - Config schema details
+- [API Reference](API_REFERENCE.md) - Full `SetupWizard` API

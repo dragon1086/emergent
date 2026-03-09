@@ -1,98 +1,74 @@
 # RoleMesh Changelog
 
-> Version history and notable changes
+All notable changes to the RoleMesh module are documented in this file.
 
-## v1.0.0 (2026-03-07)
+Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-### Components
+## [1.0.0] - 2026-03-07
 
-#### Builder (`builder.py`)
-- Tool discovery via PATH probing for 6 AI CLIs: Claude Code, Codex CLI, Gemini CLI, Aider, GitHub Copilot, Cursor
-- `SetupWizard`: orchestrates discovery, ranking, config generation
-- `discover_tools()`: probes system for all registered tools
-- `rank_tools()`: scores tools by strength match (+10), user preference (+5/-5), cost tier (+0/+1/+2)
-- `build_config()`: generates routing rules mapping 13 task types to best tools
-- `save_config()` / `load_config()`: persist to `~/.rolemesh/config.json`
-- `register_tool()`: runtime tool registration without source edits
-- `unregister_tool()`: runtime tool removal
-- `validate_config()`: schema validation with cross-reference checks
-- Interactive wizard with user preference prompts
-- CLI: `python -m src.rolemesh.builder [--save] [--interactive] [--json]`
+### Added
 
-#### Router (`router.py`)
-- 13 bilingual task categories (Korean + English regex patterns)
-- `classify_task()`: regex-based classification with confidence scoring (~1ms)
-- `route()`: maps classified task to primary tool + fallback via config
-- `route_multi()`: returns routing suggestions for all matched categories
-- Default fallback: `"claude"` when no config or no match (0.3 confidence)
-- `RouteResult` dataclass with `to_dict()` serialization
-- CLI: `python -m src.rolemesh.router "request" [--json] [--all]`
+- **Builder** (`builder.py`)
+  - `TOOL_REGISTRY` with 6 built-in AI CLI tools: Claude, Codex, Gemini, Aider, Copilot, Cursor
+  - `ToolProfile` dataclass for discovered tool metadata
+  - `SetupWizard` with full discovery pipeline: `discover()` -> `rank_tools()` -> `build_config()` -> `save_config()`
+  - `discover_tools()` standalone function for quick system probing
+  - `register_tool()` / `unregister_tool()` for custom tool management
+  - `validate_config()` static method for config schema validation
+  - Interactive setup wizard (`--interactive` flag) with user preference prompts
+  - Config file at `~/.rolemesh/config.json` with `ROLEMESH_CONFIG` env override
+  - `--json` output mode for scripting
 
-#### Dashboard (`dashboard.py`)
-- `RoleMeshDashboard.collect()`: unified data gathering
-- 5 health checks: config_file, tools_available, routing_coverage, config_version, no_dead_refs
-- `render_tools()`: installed/missing tool display
-- `render_routing()`: task-to-tool routing table
-- `render_coverage()`: task/tool matrix with strength (X) and route (*) markers
-- `render_health()`: pass/fail indicators with score
-- `render_full()`: combined dashboard view
-- `DashboardData.to_dict()` for JSON export
-- CLI: `python -m src.rolemesh.dashboard [--json]`
+- **Router** (`router.py`)
+  - `TASK_PATTERNS` with 13 bilingual (Korean/English) task type classifiers
+  - `RouteResult` dataclass with tool, task_type, confidence, fallback, and reason
+  - `RoleMeshRouter.classify_task()` - regex-based confidence scoring
+  - `RoleMeshRouter.route()` - single best-match routing with fallback
+  - `RoleMeshRouter.route_multi()` - multi-match routing for complex requests
+  - Default tool fallback to Claude when no config exists
 
-#### Executor (`executor.py`)
-- `RoleMeshExecutor.run()`: full pipeline — classify, route, check, execute
-- `dispatch()`: direct tool dispatch (skip router)
-- `build_command()`: CLI command construction with file context support
-- `check_tool()`: binary availability check via `shutil.which()`
-- Automatic fallback on primary tool failure
-- Subprocess timeout (default 120s) with exit code -1 on timeout
-- Dry-run mode: preview commands without execution
-- Execution history: JSONL logging with `get_history(limit=N)`
-- `ExecutionResult` dataclass with `success` property and `to_dict()`
-- CLI: `python -m src.rolemesh.executor "request" [--dry-run] [--tool KEY]`
+- **Executor** (`executor.py`)
+  - `TOOL_COMMANDS` mapping tool keys to CLI invocation patterns
+  - `ExecutionResult` dataclass with exit_code, stdout, stderr, duration_ms
+  - `RoleMeshExecutor.run()` - full pipeline: route -> check -> dispatch -> fallback -> log
+  - `RoleMeshExecutor.dispatch()` - direct tool dispatch bypassing router
+  - `build_command()` for CLI command construction
+  - `check_tool()` for runtime availability verification
+  - Automatic fallback on primary tool failure
+  - `--dry-run` mode for safe testing
+  - Configurable timeout (default: 120s)
+  - Execution history logging to `~/.rolemesh/history.jsonl`
+  - `get_history()` for reading recent execution records
+  - Exit code semantics: 0 (success), 1-125 (tool error), 126 (OS error), 127 (not found), -1 (timeout)
 
-### Task Categories (13)
+- **Dashboard** (`dashboard.py`)
+  - `RoleMeshDashboard.collect()` aggregates tools, config, health, and history
+  - 5 health checks: config_file, tools_available, routing_coverage, config_version, no_dead_refs
+  - 5 render views: tools, routing, coverage matrix, health, history
+  - `render_full()` combined dashboard view
+  - `Color` ANSI helper respecting `NO_COLOR` env var and TTY detection
+  - `--history` subcommand for execution history display
 
-| Category | Example Keywords |
-|----------|-----------------|
-| coding | code, implement, function, class |
-| refactoring | refactor, cleanup, improve, extract |
-| quick-edit | typo, fix, change, rename |
-| analysis | analyze, investigate, debug, error |
-| architecture | architect, design, structure, migration |
-| reasoning | reason, logic, judge, evaluate |
-| frontend | ui, ux, screen, layout, component |
-| multimodal | image, photo, screenshot, chart |
-| search | search, find, lookup, docs |
-| explain | explain, understand, tell, meaning |
-| git-integration | commit, branch, merge, PR |
-| completion | autocomplete, fill, continue |
-| pair-programming | together, pair, help, review |
+- **CLI** (`__main__.py`)
+  - Unified entry point: `python -m src.rolemesh <command>`
+  - Subcommands: `dashboard` (d), `setup` (s), `route` (r), `exec` (x), `status` (st)
+  - Global `--config` flag for custom config paths
+  - `--json` output on all subcommands
 
-### Test Coverage
+- **Documentation**
+  - README.md - Project overview and quick start
+  - BUILDER_GUIDE.md - Discovery pipeline walkthrough
+  - CUSTOM_TOOLS.md - Custom tool registration guide
+  - CONFIG_REFERENCE.md - Config schema and validation rules
+  - API_REFERENCE.md - Full Python API documentation
+  - ARCHITECTURE.md - System design and data flow
+  - BEST_PRACTICES.md - Patterns and anti-patterns
+  - MONITORING_GUIDE.md - Metrics, alerting, and log rotation
+  - DEPLOYMENT_GUIDE.md - Docker, CI/CD, and team setup
+  - TROUBLESHOOTING.md - Common issues and solutions
+  - CONTRIBUTING.md - Contribution guidelines
+  - CHANGELOG.md - This file
 
-- 51 test cases across all components
-- Zero external dependencies (stdlib only)
-- Covers: registry validation, discovery, ranking, routing, config I/O, health checks, rendering, execution, tool registration, config validation, execution history
-
-### Documentation
-
-- README.md — project overview and quick example
-- QUICKSTART.md — setup in 5 minutes
-- ARCHITECTURE.md — system design and data flow
-- BUILDER_GUIDE.md — tool discovery and config customization
-- ROUTER_GUIDE.md — task classification and routing logic
-- DASHBOARD_GUIDE.md — health checks and coverage matrix
-- EXECUTOR_GUIDE.md — subprocess dispatch and fallback
-- API_REFERENCE.md — full public interface
-- CONTRIBUTING.md — extension and contribution guidelines
-- TESTING_GUIDE.md — test infrastructure and patterns
-- CHANGELOG.md — this file
-
-### Design Decisions
-
-- Regex over LLM classification for instant, cost-free routing
-- Config-driven routing with one-time wizard setup
-- Cost-aware ranking favoring cheaper tools among equals
-- Bilingual patterns for Korean + English user bases
-- Graceful degradation at every layer (no config, no tools, no match)
+- **Testing**
+  - Unit tests for builder, router, executor, and dashboard modules
+  - Isolated config paths via `tempfile` for test safety

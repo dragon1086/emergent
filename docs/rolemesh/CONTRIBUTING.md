@@ -1,141 +1,210 @@
 # Contributing to RoleMesh
 
-> How to extend, customize, and contribute to the RoleMesh routing engine
+> Guidelines for contributing code, docs, and tests
 
-## Development Setup
+## Getting Started
+
+### Prerequisites
+
+- Python 3.10+
+- At least one supported AI CLI tool installed (for integration testing)
+- Git
+
+### Setup
 
 ```bash
-# Clone and navigate
-cd /path/to/emergent
+git clone https://github.com/dragon1086/emergent.git
+cd emergent
+pip install -e .
 
-# Verify Python 3.10+
-python3 --version
-
-# Run the test suite
-python tests/test_rolemesh.py
+# Verify
+python -m src.rolemesh status
 ```
-
-No virtual environment or extra dependencies are required — RoleMesh uses only the Python standard library.
 
 ## Project Structure
 
 ```
 src/rolemesh/
-  __init__.py       # Public exports
-  __main__.py       # Unified CLI entry point
-  builder.py        # Tool discovery + config generation
-  router.py         # Task classification + routing
-  dashboard.py      # System status + health checks
-  executor.py       # Subprocess dispatch + fallback
+  __main__.py    # CLI entry point (argparse subcommands)
+  builder.py     # Tool discovery & config generation
+  router.py      # Task classification & tool routing
+  executor.py    # Subprocess dispatch & fallback
+  dashboard.py   # Status visualization & health checks
 
-tests/
-  test_rolemesh.py  # All tests (51 cases)
-
-docs/rolemesh/
-  *.md              # Documentation
+docs/rolemesh/   # Documentation
+tests/           # Test suite
 ```
 
-## Adding a New AI Tool
+## Development Workflow
 
-1. Add the tool to `TOOL_REGISTRY` in `builder.py`:
+### 1. Create a feature branch
 
-```python
-TOOL_REGISTRY["newtool"] = {
-    "name": "New Tool",
-    "vendor": "Vendor Name",
-    "strengths": ["coding", "analysis"],
-    "check_cmd": ["newtool", "--version"],
-    "cost_tier": "medium",  # low, medium, or high
-}
+```bash
+git checkout main
+git pull origin main
+git checkout -b feat/your-feature-name
 ```
 
-2. Add its CLI command to `TOOL_COMMANDS` in `executor.py`:
+### 2. Make changes
 
-```python
-TOOL_COMMANDS["newtool"] = {
-    "cmd": ["newtool"],
-    "stdin_mode": False,  # True if tool reads prompt from stdin
-}
-```
+Follow these conventions:
 
-3. Add tests in `tests/test_rolemesh.py` and verify:
+- **Code style**: Match the existing patterns. No external linters are enforced, but keep consistent formatting.
+- **Type hints**: Use built-in generics (`dict[str, str]`, `list[int]`) — no `typing.Dict` / `typing.List`.
+- **Dataclasses**: Use `@dataclass` for structured data. Include `to_dict()` for serialization.
+- **Docstrings**: Module-level docstrings with usage examples. Class/method docstrings where intent isn't obvious.
+- **Imports**: Standard library only. No external dependencies.
+
+### 3. Test your changes
 
 ```bash
 python tests/test_rolemesh.py
 ```
 
-Alternatively, use `SetupWizard.register_tool()` for runtime registration without editing source. See [BUILDER_GUIDE.md](BUILDER_GUIDE.md#option-b-register-at-runtime-dynamic).
-
-## Adding a New Task Type
-
-1. Add a pattern tuple to `TASK_PATTERNS` in `router.py`:
+All tests must pass before submitting a PR. Use isolated config paths in tests:
 
 ```python
-TASK_PATTERNS.append(
-    ("new-category", [
-        r"keyword1|keyword2|한국어키워드",
-        r"keyword3|keyword4|추가패턴",
-    ]),
-)
+import tempfile
+from pathlib import Path
+from src.rolemesh.builder import SetupWizard
+
+with tempfile.TemporaryDirectory() as tmpdir:
+    config_path = Path(tmpdir) / "config.json"
+    wizard = SetupWizard(config_path=config_path)
+    wizard.discover()
+    # Test with isolated config
 ```
 
-2. Add a test:
+### 4. Commit and push
 
-```python
-def test_classify_new_category():
-    router = RoleMeshRouter(config_path=Path("/nonexistent"))
-    types = router.classify_task("keyword1 keyword3")
-    task_names = [t for t, _ in types]
-    assert "new-category" in task_names
-    print("  PASS: classify_new_category")
+```bash
+git add <specific files>
+git commit -m "feat: description of change"
+git push origin feat/your-feature-name
 ```
 
-3. Register the test in `run_all()` and run the suite.
+### 5. Open a PR
 
-## Code Style
-
-- **No external dependencies**: stdlib only (json, pathlib, subprocess, dataclasses, re, shutil, tempfile)
-- **Bilingual patterns**: All regex patterns must include both Korean and English keywords
-- **Dataclass-based models**: Use `@dataclass` for all data structures; include `to_dict()` for serialization
-- **Explicit defaults**: No implicit state. Config paths default to `~/.rolemesh/config.json`
-- **Graceful degradation**: Every component must handle missing config, missing tools, and empty inputs without crashing
-
-## Testing Guidelines
-
-- All tests are in a single file: `tests/test_rolemesh.py`
-- Tests use `assert` + manual `print("  PASS: ...")` (no pytest dependency)
-- Use `tempfile.TemporaryDirectory()` for config files — never write to real `~/.rolemesh/`
-- Use `Path("/nonexistent")` for config paths when testing without config
-- Clean up `TOOL_REGISTRY` mutations in tests (e.g., `del TOOL_REGISTRY["temp"]`)
-- See [TESTING_GUIDE.md](TESTING_GUIDE.md) for the full testing guide
+Target the `main` branch. Include:
+- Summary of changes
+- Test plan or evidence that tests pass
 
 ## Commit Convention
 
 ```
-feat(rolemesh): new feature description
-fix(rolemesh): bug fix description
-docs(rolemesh): documentation update
-test(rolemesh): new or updated tests
-refactor(rolemesh): code restructuring
+feat: new feature or capability
+fix: bug fix
+docs: documentation changes
+refactor: code restructuring (no behavior change)
+test: test additions or modifications
+chore: build/config/tooling changes
 ```
 
-## Pull Request Checklist
+Keep commit messages concise (under 72 chars for the subject line). Use the body for details when needed.
 
-- [ ] All tests pass (`python tests/test_rolemesh.py`)
-- [ ] New features include tests
-- [ ] Bilingual support (Korean + English) for any new patterns
-- [ ] No external dependencies added
-- [ ] Documentation updated for public API changes
-- [ ] Config validation covers new fields (if applicable)
+## What to Contribute
+
+### Adding a new built-in tool
+
+1. Add an entry to `TOOL_REGISTRY` in `builder.py`:
+   ```python
+   "new-tool": {
+       "name": "New Tool",
+       "vendor": "Vendor",
+       "strengths": ["coding", "analysis"],
+       "check_cmd": ["new-tool", "--version"],
+       "cost_tier": "medium",
+   },
+   ```
+
+2. Add a command entry to `TOOL_COMMANDS` in `executor.py`:
+   ```python
+   "new-tool": {"cmd": "new-tool", "stdin_mode": False},
+   ```
+
+3. Add tests for the new tool in the test suite.
+
+4. Update documentation: README.md (tool table), BUILDER_GUIDE.md, CUSTOM_TOOLS.md.
+
+### Adding a new task type
+
+1. Add a pattern tuple to `TASK_PATTERNS` in `router.py`:
+   ```python
+   ("new-type", [
+       r"korean_pattern|english_pattern",
+       r"more_korean|more_english",
+   ]),
+   ```
+
+2. Include both Korean and English regex patterns (bilingual support is mandatory).
+
+3. Add corresponding strengths to relevant tools in `TOOL_REGISTRY`.
+
+4. Update CONFIG_REFERENCE.md with the new task type and its patterns.
+
+### Adding a new health check
+
+1. Add the check logic in `dashboard.py` within the `collect()` method:
+   ```python
+   self.data.health_checks.append(HealthCheck(
+       name="my_check",
+       passed=condition,
+       detail="Description of result",
+   ))
+   ```
+
+2. Update the health check count in ARCHITECTURE.md and MONITORING_GUIDE.md.
+
+### Improving documentation
+
+- Fix typos, clarify explanations, add examples
+- Keep code examples runnable and accurate
+- Update cross-references when adding new docs
+- Add the new doc to README.md's "Further Reading" section
+
+## Testing Guidelines
+
+### Test structure
+
+- One test file per module (or a combined `test_rolemesh.py`)
+- Use `unittest.TestCase` or plain `assert` statements
+- Name tests descriptively: `test_classify_task_returns_refactoring_for_korean_input`
+
+### What to test
+
+- **Builder**: Discovery with mocked `shutil.which`, config generation, validation
+- **Router**: Classification accuracy for all 13 task types, both Korean and English
+- **Executor**: Command building, dry-run mode, error handling (timeout, OS error, not found)
+- **Dashboard**: Health check logic, data collection, render output format
+
+### Test isolation
+
+- Never depend on the user's real `~/.rolemesh/config.json`
+- Use `tempfile.TemporaryDirectory()` for config/history paths
+- Mock `subprocess.run` and `shutil.which` for deterministic results
+
+## Code Review Checklist
+
+- [ ] Tests pass (`python tests/test_rolemesh.py`)
+- [ ] No external dependencies added (stdlib only)
+- [ ] Type hints on all public functions
+- [ ] Bilingual support maintained (Korean + English) for any new patterns
+- [ ] Config changes are backward-compatible or documented as breaking
+- [ ] Documentation updated for user-facing changes
+- [ ] `validate_config()` catches any new config structure requirements
 
 ## Architecture Principles
 
-1. **Regex over LLM**: Task classification uses regex, not API calls (~1ms, zero cost)
-2. **Config-driven**: Wizard generates once, router reads every time
-3. **Cost-aware**: Cheaper tools rank higher among equally-capable options
-4. **Subprocess isolation**: Tools run in subprocesses with timeout and fallback
-5. **Schema validation**: `validate_config()` catches errors before they reach runtime
+1. **Subprocess isolation**: Tools run as external processes, never imported as libraries
+2. **Regex over LLM**: Task classification uses fast regex, not LLM calls
+3. **Config-driven**: Routing rules in JSON, not hardcoded
+4. **Bilingual-first**: All patterns support Korean and English natively
+5. **Zero dependencies**: Standard library only — no pip packages required
+6. **Append-only history**: JSONL format for safe concurrent writes
 
-## Questions?
+## See Also
 
-See the full documentation index in [README.md](README.md).
+- [Architecture](ARCHITECTURE.md) - System design and module responsibilities
+- [API Reference](API_REFERENCE.md) - Full Python API
+- [Best Practices](BEST_PRACTICES.md) - Patterns and anti-patterns
+- [Troubleshooting](TROUBLESHOOTING.md) - Common issues and fixes
