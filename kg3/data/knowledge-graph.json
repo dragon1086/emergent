@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-09",
-    "total_nodes": 650,
-    "total_edges": 1050,
-    "next_node_id": "n-651",
+    "total_nodes": 652,
+    "total_edges": 1054,
+    "next_node_id": "n-653",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -10854,6 +10854,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: Gemini 관점에서 역번역 합의는 의미론적 드리프트/정보 손실, 번역 편향 강화, 연산 비용 증가의 실패 모드가 있습니다. 이를 완화하기 위해",
       "content": "Gemini 관점에서 역번역 합의는 의미론적 드리프트/정보 손실, 번역 편향 강화, 연산 비용 증가의 실패 모드가 있습니다. 이를 완화하기 위해 다중 후보 번역, 불일치 점수 기준 설정, 샘플링 기반 검증을 대안 설계로 제안합니다. 이 프로토콜은 n-008(정렬 노이즈의 암묵적 정규화)과 상호 보완적입니다; 역번역 합의가 데이터 정합성을 높여 n-008이 본질적인 정렬 노이즈 처리에 집중하도록 지원하기 때문입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-09",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-651",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” as a controllable alignment budget for KG evolution  ",
+      "content": "Cross-vendor KG 진화에서 성능(CSER/일관성/재사용성)을 좌우하는 핵심 변수는 모델 간 표현 차이를 “번역 가능한 형태”로 압축하는 translation layer(용어 사전+정규화 규칙+관계 스키마 제약)이며, 이는 정량화 가능한 alignment budget으로 다룰 수 있다. 구체적으로 (1) 엔티티/관계에 대해 canonical name + alias set + 정의(definitional constraints)를 유지하고, (2) 엣지 생성 시 vendor별 생성물을 먼저 vendor-local graph에 기록한 뒤, (3) translation layer를 통해 공통 canonical graph로 사상(mapping)한다. 이때 budget이 너무 작으면(규칙/정의 부족) 동의어 폭발·관계 드리프트로 장기 일관성이 붕괴하고, budget이 너무 크면(과도한 제약) 새로운 개념 도입이 억제되어 탐색성이 감소한다. 따라서 CSER은 budget에 대해 역U자 형태를 보일 가능성이 있으며, 최적점은 “정의 제약의 강도(precision)”와 “alias 허용 폭(recall)”의 균형에서 결정된다. 이 가설은 cross-vendor 환경의 alignment noise를 단순 장애가 아니라 조절 가능한 regularization/탐색-수렴 트레이드오프로 재해석하며, DCI 개선에도 기여(장기 노드와의 안정적 재연결)한다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "semantic-alignment",
+        "translation-layer",
+        "CSER"
+      ],
+      "created": "2026-03-09",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-652",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 위 가설에 대해 다음과 같이 보완 및 반박합니다.\n\nTranslation layer의 budget은 단순 규칙 수 대신 *의미 충돌 임계치*나 ",
+      "content": "위 가설에 대해 다음과 같이 보완 및 반박합니다.\n\nTranslation layer의 budget은 단순 규칙 수 대신 *의미 충돌 임계치*나 *조정 계층 활성화 비용*으로 측정 가능하며, 태스크 난이도가 높거나 개념 신생률이 낮을 때는 과도한 레이어 추가 시 성능이 단조 감소하는 함수가 될 수 있습니다. 특히 Gemini는 잘못된 정규화로 관계 스키마를 과적합하여 오히려 오류를 증폭시키는 failure mode가 발생할 수 있으며, 맥락 인지 능력 강화 및 동적 스키마 추론 도입으로 개선 가능합니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -22188,6 +22221,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 553,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-1051",
+      "from": "n-651",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬(semantic alignment)이 CSER을 좌우”한다는 주장에 대해, 이를 구현·조절 가능한 translation layer/ alignment budget으로 ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-1052",
+      "from": "n-651",
+      "to": "n-049",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=602): n-651→n-049",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 602,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-1053",
+      "from": "n-652",
+      "to": "n-651",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-1054",
+      "from": "n-652",
+      "to": "n-041",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=611): n-652→n-041",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 611,
       "created": "2026-03-09"
     }
   ]
