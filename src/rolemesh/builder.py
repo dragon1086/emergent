@@ -163,6 +163,114 @@ class SetupWizard:
             return json.loads(target.read_text())
         return {}
 
+    @staticmethod
+    def validate_config(config: dict) -> list[str]:
+        """
+        Validate a config dict against the expected schema.
+        Returns list of error strings (empty = valid).
+        """
+        errors: list[str] = []
+
+        if not isinstance(config, dict):
+            return ["Config must be a dict"]
+
+        # version
+        if "version" not in config:
+            errors.append("Missing 'version' field")
+        elif not isinstance(config["version"], str):
+            errors.append("'version' must be a string")
+
+        # tools
+        if "tools" not in config:
+            errors.append("Missing 'tools' field")
+        elif not isinstance(config["tools"], dict):
+            errors.append("'tools' must be a dict")
+        else:
+            for key, tool in config["tools"].items():
+                if not isinstance(tool, dict):
+                    errors.append(f"tools['{key}'] must be a dict")
+
+        # routing
+        if "routing" not in config:
+            errors.append("Missing 'routing' field")
+        elif not isinstance(config["routing"], dict):
+            errors.append("'routing' must be a dict")
+        else:
+            tool_keys = set(config.get("tools", {}).keys())
+            for task_type, rule in config["routing"].items():
+                if not isinstance(rule, dict):
+                    errors.append(f"routing['{task_type}'] must be a dict")
+                    continue
+                if "primary" not in rule:
+                    errors.append(f"routing['{task_type}'] missing 'primary'")
+                elif rule["primary"] and rule["primary"] not in tool_keys:
+                    errors.append(
+                        f"routing['{task_type}'].primary '{rule['primary']}' "
+                        f"not found in tools"
+                    )
+                fb = rule.get("fallback")
+                if fb and fb not in tool_keys:
+                    errors.append(
+                        f"routing['{task_type}'].fallback '{fb}' "
+                        f"not found in tools"
+                    )
+
+        return errors
+
+    def register_tool(self, key: str, name: str, vendor: str,
+                       strengths: list[str], check_cmd: list[str],
+                       cost_tier: str = "medium") -> ToolProfile:
+        """
+        Register a custom AI tool into the registry and discover it.
+        Returns the created ToolProfile.
+        """
+        if cost_tier not in ("low", "medium", "high"):
+            raise ValueError(f"cost_tier must be low/medium/high, got '{cost_tier}'")
+        if not key or not name:
+            raise ValueError("key and name are required")
+
+        TOOL_REGISTRY[key] = {
+            "name": name,
+            "vendor": vendor,
+            "strengths": strengths,
+            "check_cmd": check_cmd,
+            "cost_tier": cost_tier,
+        }
+
+        profile = ToolProfile(
+            key=key, name=name, vendor=vendor,
+            strengths=strengths, cost_tier=cost_tier,
+        )
+        # Probe availability
+        binary = check_cmd[0] if check_cmd else ""
+        if binary and shutil.which(binary):
+            profile.available = True
+            try:
+                result = subprocess.run(
+                    check_cmd, capture_output=True, text=True, timeout=5,
+                )
+                version_line = result.stdout.strip().split("\n")[0]
+                for part in version_line.split():
+                    if any(c.isdigit() for c in part):
+                        profile.version = part.strip("v").strip(",")
+                        break
+            except Exception:
+                pass
+
+        # Replace existing or append
+        self.tools = [t for t in self.tools if t.key != key]
+        self.tools.append(profile)
+        return profile
+
+    def unregister_tool(self, key: str) -> bool:
+        """Remove a custom tool from the registry. Returns True if found."""
+        if key not in TOOL_REGISTRY:
+            return False
+        del TOOL_REGISTRY[key]
+        before = len(self.tools)
+        self.tools = [t for t in self.tools if t.key != key]
+        return len(self.tools) < before or True
+
     def summary(self) -> str:
         """Human-readable summary of discovered tools."""
         available = self.available_tools()

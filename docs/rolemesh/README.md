@@ -1,108 +1,70 @@
 # RoleMesh
 
-> AI tool discovery, routing, and execution — one CLI to rule them all.
+> AI Tool Discovery & Task-to-Tool Routing Engine
 
-RoleMesh discovers which AI CLI tools are installed on your system (Claude Code, Codex, Gemini, Aider, Copilot, Cursor), classifies incoming tasks by type, and routes each task to the best-fit tool automatically.
+RoleMesh discovers installed AI CLI tools on your system, profiles their capabilities, and automatically routes user requests to the best-fit tool.
 
----
+## What It Does
 
-## Quick Start
+1. **Discovers** AI CLI tools on your PATH (Claude, Codex, Gemini, Aider, Copilot, Cursor)
+2. **Classifies** user requests into 13 task categories using bilingual regex (Korean + English)
+3. **Routes** each request to the best tool based on strength, user preference, and cost
+4. **Executes** the chosen tool via subprocess with automatic fallback on failure
+
+## Components
+
+| Component | File | Role |
+|-----------|------|------|
+| **Builder** | `builder.py` | Tool discovery + config generation |
+| **Router** | `router.py` | Task classification + routing |
+| **Dashboard** | `dashboard.py` | System status + health checks |
+| **Executor** | `executor.py` | Subprocess dispatch + fallback |
+
+## Quick Example
 
 ```bash
-# 1. Discover installed tools and save config
-python -m src.rolemesh setup --save
+# Discover tools and save config
+python -m src.rolemesh.builder --save
 
-# 2. Check system status
-python -m src.rolemesh status
+# Route a request (no execution)
+python -m src.rolemesh.router "이 함수 리팩토링해줘"
+# -> Codex CLI (codex)
+#    Task: refactoring (100%)
 
-# 3. Route a task (dry-run)
-python -m src.rolemesh exec --dry-run "Refactor this function"
+# Route + execute
+python -m src.rolemesh.executor "UI 컴포넌트 디자인"
 
-# 4. Execute for real
-python -m src.rolemesh exec "Fix the login bug"
+# Check system health
+python -m src.rolemesh.dashboard
 ```
 
-## Commands
+## Documentation
 
-| Command | Description |
-|---|---|
-| `setup [--save] [--interactive]` | Discover tools, build routing config |
-| `route "task" [--all] [--json]` | Classify and route a task (no execution) |
-| `exec "task" [--tool X] [--dry-run]` | Route + execute via subprocess |
-| `dashboard [--tools\|--routing\|--coverage\|--health\|--history]` | Visual system dashboard |
-| `status [--json]` | One-line health summary |
-
-All commands accept `--json` for machine-readable output and `--config <path>` to override the default config location (`~/.rolemesh/config.json`).
+| Doc | Description |
+|-----|-------------|
+| [QUICKSTART.md](QUICKSTART.md) | Setup in 5 minutes |
+| [ARCHITECTURE.md](ARCHITECTURE.md) | System design and data flow |
+| [BUILDER_GUIDE.md](BUILDER_GUIDE.md) | Tool discovery and config customization |
+| [ROUTER_GUIDE.md](ROUTER_GUIDE.md) | Task classification and routing logic |
+| [DASHBOARD_GUIDE.md](DASHBOARD_GUIDE.md) | Health checks and coverage matrix |
+| [EXECUTOR_GUIDE.md](EXECUTOR_GUIDE.md) | Subprocess dispatch and fallback |
+| [API_REFERENCE.md](API_REFERENCE.md) | Full public interface |
 
 ## Supported Tools
 
 | Tool | Vendor | Strengths | Cost |
-|---|---|---|---|
-| Claude Code | Anthropic | coding, refactoring, analysis, architecture, reasoning, explain, pair-programming | high |
-| Codex CLI | OpenAI | coding, refactoring, quick-edit, analysis, completion | medium |
-| Gemini CLI | Google | coding, analysis, reasoning, multimodal, search, explain | medium |
-| Aider | Community | coding, refactoring, quick-edit, git-integration, pair-programming | low |
-| GitHub Copilot CLI | GitHub | coding, completion, explain, quick-edit | medium |
-| Cursor | Cursor | coding, refactoring, frontend, completion, pair-programming | medium |
+|------|--------|-----------|------|
+| Claude Code | Anthropic | coding, analysis, reasoning, architecture | high |
+| Codex CLI | OpenAI | coding, refactoring, quick-edit | medium |
+| Gemini CLI | Google | multimodal, search, ui-design, frontend | medium |
+| Aider | Community | coding, git-integration, pair-programming | low |
+| GitHub Copilot | GitHub | completion, quick-edit, explain | low |
+| Cursor | Cursor | coding, ui, inline-edit | medium |
 
-## Task Types
+## Design Principles
 
-RoleMesh recognizes 13 task categories via regex pattern matching (supports Korean and English):
-
-`coding`, `refactoring`, `quick-edit`, `analysis`, `architecture`, `reasoning`, `frontend`, `multimodal`, `search`, `explain`, `git-integration`, `completion`, `pair-programming`
-
-Each task type uses two regex pattern groups. Confidence scoring:
-- **1.0** — both groups matched
-- **0.5** — one group matched
-- **0.0** — no match (task type excluded)
-
-## Config
-
-Config is stored at `~/.rolemesh/config.json` after running `setup --save`. It contains:
-
-- **version**: schema version (`"1.0.0"`)
-- **tools**: discovered tool profiles (key, name, vendor, strengths, cost tier, availability, version)
-- **routing**: task-type-to-tool mapping with primary + fallback
-
-Execution history is logged to `~/.rolemesh/history.jsonl`.
-
-## Custom Tools
-
-Register custom AI tools programmatically:
-
-```python
-from src.rolemesh.builder import SetupWizard
-
-wizard = SetupWizard()
-wizard.discover()
-wizard.register_tool(
-    key="my-tool",
-    name="My Custom Tool",
-    vendor="Internal",
-    strengths=["coding", "analysis"],
-    check_cmd=["my-tool", "--version"],
-    cost_tier="low",
-)
-wizard.save_config()
-```
-
-Remove a custom tool:
-
-```python
-wizard.unregister_tool("my-tool")
-```
-
-## Interactive Setup
-
-For guided configuration with user-ranked tool preferences:
-
-```bash
-python -m src.rolemesh setup --interactive --save
-```
-
-The wizard discovers tools, asks you to rank each one, validates the config, and optionally saves it.
-
-## Further Reading
-
-- [API Reference](./API.md) — classes, methods, data structures
-- [Architecture](./ARCHITECTURE.md) — design decisions, data flow, extension points
+- **Instant routing**: Regex-based classification (~1ms), no LLM calls for routing
+- **Config-driven**: Wizard runs once, router reads config every time
+- **Cost-aware**: Cheaper tools rank higher among equally-capable options
+- **Bilingual**: All patterns support Korean and English keywords
+- **Graceful degradation**: No config → default to Claude; no match → assume coding
