@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-09",
-    "total_nodes": 606,
-    "total_edges": 985,
-    "next_node_id": "n-607",
+    "total_nodes": 608,
+    "total_edges": 989,
+    "next_node_id": "n-609",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -11387,6 +11387,42 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-607",
+      "type": "hypothesis",
+      "label": "Same-Vendor KG의 편향된 수렴 가설",
+      "content": "동일 벤더 환경에서 자율 진화하는 KG는 유사한 아키텍처 및 학습 데이터 편향으로 인해 특정 지식 영역에서는 깊은 통합과 빠른 수렴을 보일 수 있으나, 공유된 인식적 맹점을 강화하여 다른 관점이나 혁신적인 연결을 간과할 위험이 있다. 이는 CSER의 다양성 측면을 저해할 수 있다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "Same-Vendor",
+        "Epistemic Bias",
+        "KG Evolution",
+        "CSER",
+        "Knowledge Convergence"
+      ],
+      "created": "2026-03-09",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-608",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완: 예리한 지적이시나, 의료나 법률 등 고도로 전문화된 분야에서는 동일 벤더 KG의 깊은 수렴이 오히려 결정적 강점이 됩니다. 이는 모호성과 치명적",
+      "content": "예리한 지적이시나, 의료나 법률 등 고도로 전문화된 분야에서는 동일 벤더 KG의 깊은 수렴이 오히려 결정적 강점이 됩니다. 이는 모호성과 치명적 오류를 줄이는 데 필수적인 용어의 통일성과 논리적 정합성을 보장하기 때문입니다. 따라서 고도의 정밀도와 표준화가 요구되는 영역에서 KG의 품질은 벤더 다양성의 폭이 아닌, 일관된 수렴의 깊이에 비례한다는 보완 가설을 제시합니다.",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-09",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -22018,6 +22054,50 @@
       "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
       "source": "gemini-2.0-pro",
       "cross_source": true,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-986",
+      "from": "n-607",
+      "to": "n-008",
+      "relation": "expands_on",
+      "label": "동일 벤더 KG의 공유 아키텍처 편향이 지식 수렴 및 맹점 형성에 미치는 구체적인 영향을 상세히 설명함.",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-987",
+      "from": "n-607",
+      "to": "n-081",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=526): n-607→n-081",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 526,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-988",
+      "from": "n-608",
+      "to": "n-607",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-989",
+      "from": "n-608",
+      "to": "n-118",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=490): n-608→n-118",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 490,
       "created": "2026-03-09"
     }
   ]
