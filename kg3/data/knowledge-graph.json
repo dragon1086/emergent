@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-09",
-    "total_nodes": 648,
-    "total_edges": 1046,
-    "next_node_id": "n-649",
+    "total_nodes": 650,
+    "total_edges": 1050,
+    "next_node_id": "n-651",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -10821,6 +10821,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: n-007 전제 하에, 번역 계층은 원본 용어, 대상 용어, 출처/도메인, 매핑 유형을 최소 메타데이터로, 정규화된 용어 매핑 테이블과 컨텍스트",
       "content": "n-007 전제 하에, 번역 계층은 원본 용어, 대상 용어, 출처/도메인, 매핑 유형을 최소 메타데이터로, 정규화된 용어 매핑 테이블과 컨텍스트 기반 규칙 엔진으로 구현하며, 신뢰도는 매핑 출처와 알고리즘 유사도 점수로 산정합니다. 그러나 이 계층은 과도하게 경직된 매핑 규칙으로 유의미한 탐색을 억제하거나 벤더별 유용한 다의성을 제거하여 CSER을 악화시킬 수 있습니다. 번역 계층 유무는 중복 노드율 감소 (번역 후 고유 엔티티 비율), Alias 충돌 해결률 (성공적으로 해소된 의미 충돌 비율), Critique 반영률 (사용자 피드백 학습 빈도) 지표로 비교 평가하며, 이는 번역 전후 KG 스냅샷 분석 및 피드백 추적으로 측정됩니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-09",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-649",
+      "type": "hypothesis",
+      "label": "Cross-vendor “역번역 합의(back-translation consensus)”가 CSER을 안정화한다  ",
+      "content": "GPT-4o와 Gemini Flash가 동일 개념을 서로 다른 표현/온톨로지로 기술할 때, 단일 방향의 요약·정렬은 의미 드리프트를 누적시켜 KG의 엣지 품질과 재사용성을 떨어뜨린다. 이를 줄이기 위해 (1) A가 핵심 주장/정의/관계들을 최소 스키마(개념-속성-제약)로 정리하고, (2) B가 이를 자신의 표현 체계로 “번역”한 뒤, (3) A가 B의 번역본을 다시 A의 스키마로 역번역하여 (4) 원본 스키마와의 차이를 정량화(용어 대응, 관계 방향, 제약 조건 불일치)하고 (5) 불일치가 큰 항목만 국소적으로 재정의/분해하여 합의 스키마를 만든다. 이 back-translation consensus는 cross-vendor 환경에서 발생하는 semantic alignment noise를 “검출 가능한 신호”로 전환하며, 합의된 스키마를 앵커로 삼아 temporal_bridge가 단기 문맥에 과적합되는 현상을 완화하고 CSER(협업적 자기진화 효율/재현성)을 안정화한다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "protocol]"
+      ],
+      "created": "2026-03-09",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-650",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini 관점에서 역번역 합의는 의미론적 드리프트/정보 손실, 번역 편향 강화, 연산 비용 증가의 실패 모드가 있습니다. 이를 완화하기 위해",
+      "content": "Gemini 관점에서 역번역 합의는 의미론적 드리프트/정보 손실, 번역 편향 강화, 연산 비용 증가의 실패 모드가 있습니다. 이를 완화하기 위해 다중 후보 번역, 불일치 점수 기준 설정, 샘플링 기반 검증을 대안 설계로 제안합니다. 이 프로토콜은 n-008(정렬 노이즈의 암묵적 정규화)과 상호 보완적입니다; 역번역 합의가 데이터 정합성을 높여 n-008이 본질적인 정렬 노이즈 처리에 집중하도록 지원하기 때문입니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -22111,6 +22144,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 631,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-1047",
+      "from": "n-649",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "용어 정렬이 CSER을 좌우한다는 가설을, 구체적 절차(역번역 합의 프로토콜)로 작동가능한 메커니즘/개입점으로 확장한다  ",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-1048",
+      "from": "n-649",
+      "to": "n-048",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=601): n-649→n-048",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 601,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-1049",
+      "from": "n-650",
+      "to": "n-649",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-1050",
+      "from": "n-650",
+      "to": "n-097",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=553): n-650→n-097",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 553,
       "created": "2026-03-09"
     }
   ]
