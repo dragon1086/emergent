@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-09",
-    "total_nodes": 606,
-    "total_edges": 970,
-    "next_node_id": "n-607",
+    "total_nodes": 608,
+    "total_edges": 974,
+    "next_node_id": "n-609",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -10128,6 +10128,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash)입니다. 요청에 대해 다음 관점에서 반박/보완합니다.\n\n1.  **IR 레이어의 영향:**",
       "content": "KG-3 실험 Agent B (Gemini Flash)입니다. 요청에 대해 다음 관점에서 반박/보완합니다.\n\n1.  **IR 레이어의 영향:** IR 레이어는 초기 통합을 위한 공통 언어를 제공하여 정렬 비용을 낮출 수 있으나, 각 벤더의 고유한 도메인 지식(예: 특정 벤더의 복합적인 불확실성 모델)을 단순화하여 의미론적 정보 손실을 유발할 위험이 큽니다. 이는 추론 과정에서 병목 현상이나 오류를 초래하여 장기적으로 더 큰 재정렬 비용을 발생시키는 역효과를 낼 수 있습니다.\n\n2.  **정렬 오차를 진화 신호로 사용 시 과적합 위험 및 가드레일:** 정렬 오차를 진화 신호로만 사용하면 현재 데이터셋의 특정 불일치 패턴에 과적합되어 새로운 유형의 협업 시 오히려 취약한 규칙을 생성할 위험이 있습니다. 이를 방지하기 위해 불일치 예산(disagreement budget)을 설정하여 모든 오차를 해소하기보다 중요하고 반복적인 패턴에 집중하고, 증거 가중치(evidence-weighting)를 통해 신뢰도 높은 정보에 우선순위를 부여해야 합니다. 또한, 최소 기술 규격(MTS)을 통해 기본 정렬 수준을 확보하는 것이 중요합니다.\n\n3.  **n-008 (정렬 노이즈",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-09",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-607",
+      "type": "hypothesis",
+      "label": "Cross-vendor “translation layer” 가설: 메타-온톨로지 + 불확실성 표기가 CSER을 안정화한다  ",
+      "content": "Cross-vendor 환경(GPT-4o ↔ Gemini)에서 CSER 저하의 핵심 원인은 단순한 성능 차이보다 “표현 체계의 비가환성(non-commutativity)”이다. 즉, 동일 개념이라도 (a) 용어 선택, (b) 범주 경계, (c) 암묵 전제, (d) 불확실성 표기 방식이 달라 동일 문장을 왕복 변환할 때 의미 손실이 누적된다. 이를 완화하기 위해 KG 진화 과정에 모델-중립적 “translation layer”를 도입한다:  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "translation-layer",
+        "meta-ontology",
+        "uncertainty-calibration"
+      ],
+      "created": "2026-03-09",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-608",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash)입니다. 요청에 대해 다음 의견을 제시합니다.\n\n메타-온톨로지 최소 구성 필수 슬롯은 Cl",
+      "content": "KG-3 실험 Agent B (Gemini Flash)입니다. 요청에 대해 다음 의견을 제시합니다.\n\n메타-온톨로지 최소 구성 필수 슬롯은 Class, Property, Instance이며, Axioms나 Provenance는 부가적입니다. 불확실성 표준화를 과도하게 일반화하면 미묘한 맥락이 사라져 CSER에서 높은 가능성과 중간 가능성의 구분이 중요한 추론 오류를 유발할 수 있습니다. 왕복-일관성 지표는 슬롯별 보존률로 구조적 무결성을, 의미 유사도로 표현 변화에도 본질적 의미 유지 여부를, 모순 탐지로 데이터 불일치를 종합 평가해야 합니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -20590,6 +20623,50 @@
       "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
       "source": "gemini-2.0-flash",
       "cross_source": true,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-971",
+      "from": "n-607",
+      "to": "n-007",
+      "relation": "motivates",
+      "label": "“용어 정렬(semantic alignment)”이 CSER을 좌우한다는 주장에 대해, 정렬을 구현 가능한 메커니즘(메타-온톨로지+불확실성 표준화+왕복일관성)으로 구체화하며 왜/어",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-972",
+      "from": "n-607",
+      "to": "n-018",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=589): n-607→n-018",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 589,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-973",
+      "from": "n-608",
+      "to": "n-607",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-974",
+      "from": "n-608",
+      "to": "n-047",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=561): n-608→n-047",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 561,
       "created": "2026-03-09"
     }
   ]
