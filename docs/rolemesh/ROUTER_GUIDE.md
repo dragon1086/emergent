@@ -1,42 +1,78 @@
-# RoleMesh Router Guide
+# Router Guide
 
-> Task classification, routing logic, and customization
+> Classify tasks and route them to the best AI tool
 
 ## Overview
 
-The Router is the core decision engine: it takes a natural language request, classifies it into task categories, and maps each category to the best available AI tool using the routing config.
-
-```
-User Request (Korean or English)
-     |
-     v
-classify_task()  →  [(task_type, confidence), ...]
-     |
-     v
-route()  →  RouteResult(tool, task_type, confidence, fallback, reason)
-```
+The Router module (`src/rolemesh/router.py`) takes a natural-language task description, classifies it into one or more task types using regex patterns, and maps it to the best AI CLI tool based on the config built by the [Builder](BUILDER_GUIDE.md).
 
 ## Quick Start
 
-### CLI
-
 ```bash
-# Route a single request
-python -m src.rolemesh.router "이 함수 구현해줘"
-# -> Claude Code (claude)
-#    Task: coding (100%)
-#    Strong match for 'coding'
+# Route a single task
+python -m src.rolemesh.router "코드 리팩토링해줘"
 
-# JSON output
-python -m src.rolemesh.router "UI 디자인" --json
+# JSON output for scripting
+python -m src.rolemesh.router --json "UI 컴포넌트 수정"
 
-# Show all matching task types
-python -m src.rolemesh.router "코드 리팩토링 개선해줘" --all
-#   [100%] refactoring -> Codex CLI (codex)
-#   [ 50%] coding -> Claude Code (claude)
+# Show all matching task types (multi-route)
+python -m src.rolemesh.router --all "이 코드 리팩토링하고 UI도 수정해줘"
 ```
 
-### Programmatic
+## How Routing Works
+
+```
+User Request -> classify_task() -> route() -> RouteResult
+     |               |                |            |
+  "리팩토링해줘"   regex match     config lookup   tool + fallback
+                  + confidence     primary/fallback
+```
+
+### Step 1: Task Classification
+
+`classify_task(request)` matches the input against regex patterns for each task type. Each task type has multiple patterns; the confidence score is the ratio of matched patterns to total patterns.
+
+Supported task types:
+
+| Task Type | Example Triggers (KR/EN) |
+|-----------|--------------------------|
+| `coding` | 코드, code, 구현, implement, 함수, function |
+| `refactoring` | 리팩토링, refactor, 정리, cleanup |
+| `quick-edit` | 오타, typo, 수정, fix, 바꿔, change |
+| `analysis` | 분석, analyze, 디버그, debug, 버그, bug |
+| `architecture` | 아키텍처, architect, 설계, design |
+| `reasoning` | 추론, reason, 비교, compare, 결정, decide |
+| `frontend` | ui, ux, 화면, screen, 컴포넌트, component |
+| `multimodal` | 이미지, image, 스크린샷, screenshot |
+| `search` | 검색, search, 찾아, find, 문서, doc |
+| `explain` | 설명, explain, 이해, understand |
+| `git-integration` | 커밋, commit, 브랜치, branch, merge, pr |
+| `completion` | 자동완성, complete, 이어서, continue |
+| `pair-programming` | 같이, together, 페어, pair, 코드리뷰 |
+
+### Step 2: Config Lookup
+
+The router loads `~/.rolemesh/config.json` (built by the [Builder](BUILDER_GUIDE.md)) and looks up the routing rule for the top-ranked task type. Each rule specifies a `primary` tool and an optional `fallback`.
+
+### Step 3: RouteResult
+
+The result includes:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `tool` | `str` | Tool key (e.g., `"claude"`) |
+| `tool_name` | `str` | Display name (e.g., `"Claude Code"`) |
+| `task_type` | `str` | Classified task type |
+| `confidence` | `float` | 0.0–1.0 match confidence |
+| `fallback` | `str?` | Fallback tool key (if available) |
+| `reason` | `str` | Human-readable routing explanation |
+
+Confidence levels:
+- `>= 0.8`: **Strong match** — high certainty on task type
+- `>= 0.5`: **Good match** — reasonable certainty
+- `< 0.5`: **Weak match** — consider specifying task type explicitly
+
+## Programmatic Usage
 
 ```python
 from src.rolemesh.router import RoleMeshRouter
@@ -45,149 +81,39 @@ router = RoleMeshRouter()
 
 # Single best route
 result = router.route("이 함수 리팩토링해줘")
-print(result.tool)        # "codex"
-print(result.task_type)   # "refactoring"
-print(result.confidence)  # 1.0
-print(result.fallback)    # "claude"
+print(f"{result.tool_name} ({result.confidence:.0%})")
+# -> Claude Code (100%)
 
-# All matching categories
-results = router.route_multi("코드 리팩토링 개선해줘")
+# Classify without routing
+types = router.classify_task("코드 리팩토링하고 UI도 수정해줘")
+for task_type, confidence in types:
+    print(f"  {task_type}: {confidence:.0%}")
+
+# Multi-route for complex requests
+results = router.route_multi("코드 리팩토링하고 UI도 수정해줘")
 for r in results:
     print(f"  [{r.confidence:.0%}] {r.task_type} -> {r.tool_name}")
-```
-
-## Task Classification
-
-The classifier uses regex pattern matching against 13 task categories. Each category has 2 pattern groups; the confidence score is the ratio of matched groups.
-
-| Task Type | Pattern Group 1 | Pattern Group 2 |
-|-----------|----------------|----------------|
-| coding | code, implement, function, class | write, build, create, add |
-| refactoring | refactor, cleanup, improve | split, extract, simplify |
-| quick-edit | typo, fix, change, rename | delete, remove |
-| analysis | analyze, investigate, cause, why | debug, error, bug |
-| architecture | architect, design, structure | migration, strategy, system |
-| reasoning | reason, logic, judge, evaluate | compare, choose, decide |
-| frontend | ui, ux, screen, layout, style, css | component, design, responsive |
-| multimodal | image, photo, screenshot | graph, chart, visual |
-| search | search, find, lookup, docs | latest, news, info |
-| explain | explain, understand, tell | meaning, what is, how |
-| git-integration | commit, branch, merge, PR | git, rebase, cherry-pick |
-| completion | complete, fill, continue | next, rest |
-| pair-programming | together, pair, help, review | code review, check |
-
-All patterns include Korean equivalents (e.g., `코드|code`, `리팩토링|refactor`).
-
-### Confidence Scoring
-
-```
-matched_groups / total_groups = confidence
-
-Example: "이 함수 리팩토링해줘"
-  refactoring group 1: "리팩토링" matches  → 1
-  refactoring group 2: no match            → 0
-  confidence = 1/2 = 0.5
-
-Example: "코드 리팩토링 개선해줘"
-  refactoring group 1: "리팩토링", "개선" → 1
-  refactoring group 2: (no match)         → 0
-  Wait — "개선|improve" is in group 1, so confidence = 1/2 = 0.5
-
-  But "리팩토링" alone matches group 1, and if group 2 also matches:
-  confidence = 2/2 = 1.0
-```
-
-When no patterns match at all, the classifier returns `[("coding", 0.3)]` as a safe default.
-
-### Reason Messages
-
-The router generates a human-readable reason based on confidence:
-
-| Confidence | Reason |
-|-----------|--------|
-| >= 0.8 | `"Strong match for '{task_type}'"` |
-| >= 0.5 | `"Good match for '{task_type}' (also considered: ...)"` |
-| < 0.5 | `"Weak match for '{task_type}' - consider specifying task type"` |
-
-## Routing Config
-
-The router reads `~/.rolemesh/config.json` (generated by the Builder). Structure:
-
-```json
-{
-  "version": "1.0.0",
-  "tools": {
-    "claude": { "key": "claude", "name": "Claude Code", "strengths": [...] },
-    "codex": { "key": "codex", "name": "Codex CLI", "strengths": [...] }
-  },
-  "routing": {
-    "coding": { "primary": "claude", "fallback": "codex" },
-    "refactoring": { "primary": "codex", "fallback": "claude" },
-    "frontend": { "primary": "gemini", "fallback": "claude" }
-  }
-}
-```
-
-### Routing Lookup
-
-1. Classify the request → get `(task_type, confidence)`
-2. Look up `config.routing[task_type]` → get `primary` + `fallback`
-3. Resolve tool name from `config.tools[primary].name`
-4. Build `RouteResult`
-
-If no config exists or the task type has no routing rule, defaults to `tool="claude"`.
-
-## RouteResult
-
-```python
-@dataclass
-class RouteResult:
-    tool: str              # Tool key (e.g., "claude")
-    tool_name: str         # Display name (e.g., "Claude Code")
-    task_type: str         # Classified category
-    confidence: float      # 0.0 - 1.0
-    fallback: Optional[str]  # Backup tool key
-    reason: str            # Human-readable explanation
-```
-
-## Adding a New Task Type
-
-1. Add a pattern tuple to `TASK_PATTERNS` in `src/rolemesh/router.py`:
-
-```python
-TASK_PATTERNS.append(
-    ("data-science", [
-        r"데이터|data|분석|analy|통계|statistic|모델|model",
-        r"학습|train|예측|predict|시각화|visualiz",
-    ]),
-)
-```
-
-2. Add test cases in `tests/test_rolemesh.py`:
-
-```python
-def test_classify_data_science():
-    router = RoleMeshRouter(config_path=Path("/nonexistent"))
-    types = router.classify_task("데이터 분석하고 시각화해줘")
-    task_names = [t for t, _ in types]
-    assert "data-science" in task_names
-```
-
-3. Re-run the builder to update routing config:
-
-```bash
-python -m src.rolemesh.builder --save
 ```
 
 ## Custom Config Path
 
 ```python
 from pathlib import Path
-router = RoleMeshRouter(config_path=Path("/custom/path/config.json"))
+router = RoleMeshRouter(config_path=Path("/custom/config.json"))
 ```
 
-Or for testing without any config (all requests route to Claude):
+If no config file exists, the router defaults all tasks to `claude`.
 
-```python
-router = RoleMeshRouter(config_path=Path("/nonexistent"))
-```
+## Default Behavior
+
+When no task pattern matches (confidence = 0), the router falls back to:
+- Tool: `claude` (Claude Code)
+- Task type: `coding`
+- Reason: "No task pattern matched, defaulting to Claude"
+
+## See Also
+
+- [Builder Guide](BUILDER_GUIDE.md) — Generate the routing config
+- [Executor Guide](EXECUTOR_GUIDE.md) — Execute routed tasks
+- [Config Reference](CONFIG_REFERENCE.md) — Config schema details
+- [API Reference](API_REFERENCE.md) — Full Python API
