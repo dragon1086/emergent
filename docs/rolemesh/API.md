@@ -4,7 +4,7 @@
 
 ### `discover_tools() -> list[ToolProfile]`
 
-Probes the system for all known AI CLI tools. Checks binary availability via `shutil.which` and extracts version strings from `--version` output.
+Probes the system for all known AI CLI tools. Checks binary availability via `shutil.which` and extracts version strings from `--version` output (first line, max 80 chars). Returns a `ToolProfile` for every entry in `TOOL_REGISTRY`, with `available=True` only for tools found on PATH.
 
 ### `ToolProfile`
 
@@ -33,11 +33,11 @@ class ToolProfile:
 | `load_config(path?)` | `dict \| None` | Load existing config from disk |
 | `validate_config(config)` | `list[str]` | Validate config schema; returns error list |
 | `register_tool(key, name, vendor, strengths, check_cmd, cost_tier)` | `ToolProfile` | Register and discover a custom tool |
-| `unregister_tool(key)` | `bool` | Remove a custom tool |
+| `unregister_tool(key)` | `bool` | Remove a custom tool from registry and internal list |
 | `interactive_setup()` | `dict` | Interactive CLI wizard with user ranking prompts |
 | `summary()` | `str` | Human-readable summary of discovered tools |
 
-Ranking score for `rank_tools()`: `(task_type match, user_preference, cost_tier)` — lower is better. Task-type match is binary (0 if in strengths, 1 otherwise), then user preference, then cost (low=0, medium=1, high=2).
+Ranking score for `rank_tools()`: `(task_type match, user_preference, cost_tier)` — lower is better. Task-type match is binary (0 if in strengths, 1 otherwise), then user preference (default 999), then cost (low=0, medium=1, high=2).
 
 ---
 
@@ -51,7 +51,7 @@ router = RoleMeshRouter(config_path=None)  # loads ~/.rolemesh/config.json
 
 | Method | Returns | Description |
 |---|---|---|
-| `classify_task(request)` | `list[tuple[str, float]]` | Classify request into task types with confidence scores |
+| `classify_task(request)` | `list[tuple[str, float]]` | Classify request into task types with confidence scores (sorted desc) |
 | `route(request)` | `RouteResult` | Route to the single best tool |
 | `route_multi(request)` | `list[RouteResult]` | Return all matched task types with their routed tools |
 
@@ -70,6 +70,24 @@ class RouteResult:
 ### Task Pattern Matching
 
 Classification uses regex patterns against the lowercased request string. Each task type has 2 pattern groups (tuples of regex); confidence = (matched groups / total groups). Patterns support both Korean and English keywords.
+
+13 task types with dual-language patterns:
+
+| Task Type | Pattern Group 1 (examples) | Pattern Group 2 (examples) |
+|---|---|---|
+| `coding` | 코드, code, implement, function | write, build, create, add |
+| `refactoring` | 리팩토링, refactor, cleanup | split, extract, simplify |
+| `quick-edit` | typo, fix, change, rename | delete, remove |
+| `analysis` | 분석, analyze, debug, error | investigate, cause, why |
+| `architecture` | 아키텍처, architect, design | migrate, strategy, system |
+| `reasoning` | 추론, reason, logic, evaluate | compare, choose, decide |
+| `frontend` | ui, ux, layout, style, css | component, design, responsive |
+| `multimodal` | image, photo, screenshot | graph, chart, visual |
+| `search` | 검색, search, find, lookup | latest, news, info |
+| `explain` | 설명, explain, understand | meaning, what is, how |
+| `git-integration` | commit, branch, merge, pr | git, rebase, cherry-pick |
+| `completion` | 자동완성, complete, fill | next, continue, rest |
+| `pair-programming` | pair, together, help, review | code review, check |
 
 Confidence levels:
 - `1.0`: Both pattern groups matched

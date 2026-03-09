@@ -16,10 +16,10 @@ python -m src.rolemesh setup --save
 python -m src.rolemesh status
 
 # 3. Route a task (dry-run)
-python -m src.rolemesh exec --dry-run "이 함수 리팩토링해줘"
+python -m src.rolemesh exec --dry-run "Refactor this function"
 
 # 4. Execute for real
-python -m src.rolemesh exec "코드 리팩토링해줘"
+python -m src.rolemesh exec "Fix the login bug"
 ```
 
 ## Commands
@@ -51,11 +51,17 @@ RoleMesh recognizes 13 task categories via regex pattern matching (supports Kore
 
 `coding`, `refactoring`, `quick-edit`, `analysis`, `architecture`, `reasoning`, `frontend`, `multimodal`, `search`, `explain`, `git-integration`, `completion`, `pair-programming`
 
+Each task type uses two regex pattern groups. Confidence scoring:
+- **1.0** — both groups matched
+- **0.5** — one group matched
+- **0.0** — no match (task type excluded)
+
 ## Config
 
 Config is stored at `~/.rolemesh/config.json` after running `setup --save`. It contains:
 
-- **tools**: discovered tool profiles (name, vendor, version, strengths, cost tier)
+- **version**: schema version (`"1.0.0"`)
+- **tools**: discovered tool profiles (key, name, vendor, strengths, cost tier, availability, version)
 - **routing**: task-type-to-tool mapping with primary + fallback
 
 Execution history is logged to `~/.rolemesh/history.jsonl`.
@@ -79,6 +85,22 @@ wizard.register_tool(
 )
 wizard.save_config()
 ```
+
+Remove a custom tool:
+
+```python
+wizard.unregister_tool("my-tool")
+```
+
+## Interactive Setup
+
+For guided configuration with user-ranked tool preferences:
+
+```bash
+python -m src.rolemesh setup --interactive --save
+```
+
+The wizard discovers tools, asks you to rank each one, validates the config, and optionally saves it.
 
 ## Further Reading
 

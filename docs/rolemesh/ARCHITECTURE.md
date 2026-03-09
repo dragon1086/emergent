@@ -41,16 +41,16 @@ __main__.py  (CLI entry point, subcommand dispatch)
 ### Setup (one-time)
 
 ```
-TOOL_REGISTRY (built-in)
+TOOL_REGISTRY (built-in dict in builder.py)
      |
      v
-discover_tools()          # shutil.which + --version probe
+discover_tools()          # shutil.which + --version probe for each tool
      |
      v
-SetupWizard.build_config()  # rank tools, generate routing rules
+SetupWizard.build_config()  # rank tools per task type, generate routing rules
      |
      v
-~/.rolemesh/config.json   # persisted config
+~/.rolemesh/config.json   # persisted config (version, tools, routing)
 ```
 
 ### Runtime (per request)
@@ -71,7 +71,7 @@ TOOL_COMMANDS[key]        # construct CLI args (e.g. ["claude", "-p", task])
 subprocess.run()          # execute with 300s timeout
      |
      v
-~/.rolemesh/history.jsonl # append execution record
+~/.rolemesh/history.jsonl # append execution record (timestamp, tool, type, success, duration)
 ```
 
 ## Design Decisions
@@ -137,7 +137,7 @@ Config uses a flat JSON structure with version field for future migration:
 }
 ```
 
-Validation (`SetupWizard.validate_config`) checks for missing fields and dead references in routing rules.
+Validation (`SetupWizard.validate_config`) checks for missing fields (`version`, `tools`, `routing`) and dead references in routing rules (primary/fallback pointing to non-existent tool keys).
 
 ## Extension Points
 
@@ -151,7 +151,7 @@ Or use the `SetupWizard.register_tool()` API for runtime registration.
 
 ### Adding a new task type
 
-1. Add pattern tuple to `TASK_PATTERNS` in `router.py`
+1. Add pattern tuple to `TASK_PATTERNS` in `router.py` (each tuple: task_type name + two regex group strings)
 2. Add the task type string to relevant tools' `strengths` lists in `TOOL_REGISTRY`
 3. Regenerate config
 
