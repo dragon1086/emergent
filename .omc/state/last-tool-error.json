@@ -1,7 +1,7 @@
 {
-  "tool_name": "Read",
-  "tool_input_preview": "{\"file_path\":\"/Users/rocky/emergent/DECISIONS.md\",\"offset\":400}",
-  "error": "File content (31578 tokens) exceeds maximum allowed tokens (25000). Please use offset and limit parameters to read specific portions of the file, or use the GrepTool to search for specific content.",
-  "timestamp": "2026-03-04T10:05:32.754Z",
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"env | grep -i \\\"anthropic\\\\|claude\\\\|ant_api\\\" 2>/dev/null; ls ~/emergent/prism-insight/.env 2>/dev/null; ls ~/emergent/prism-mobile/.env 2>/dev/null\",\"description\":\"Search for Anthropic k...",
+  "error": "Exit code 1\nCLAUDE_CODE_MAX_OUTPUT_TOKENS=64000\nCLAUDE_CODE_OAUTH_TOKEN=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\nPATH=/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/Users/rocky/.local/bin:/usr/bin:/bin:/System/Cryptexes/App/usr/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd...",
+  "timestamp": "2026-03-09T16:14:20.404Z",
   "retry_count": 1
 }

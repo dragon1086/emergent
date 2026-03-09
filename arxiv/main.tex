@@ -44,87 +44,31 @@ A Case Study with CSER and Persona-Diversity Gates}
 \maketitle
 
 \begin{abstract}
-We present a controlled $2\times2$ experiment in which four independent AI agent pairs
-co-evolve separate knowledge graphs (KGs) across 30--130+ cycles, and propose metrics
-to quantify the structural diversity of the resulting graphs.
-Our primary metric, the \textbf{Cross-Source Emergence Rate (CSER)},
-measures the proportion of edges connecting nodes from different agent sources.
-The four KG instances form a vendor-diversity matrix:
-two cross-vendor pairs (KG-main, KG-3) and two same-vendor pairs (KG-2, KG-4),
-allowing controlled comparison of how agent heterogeneity drives emergence.
+This paper introduces the \textbf{Cross-Source Edge Ratio (CSER)}, the proportion of
+knowledge-graph (KG) edges connecting nodes from different agent sources, as a
+structural diversity metric for multi-agent AI co-evolution.
+In a controlled $2\times2$ experiment, four independent AI agent pairs co-evolve
+separate KGs across 30--130+ cycles.
 
-We observe that agents with heterogeneous personas produce KGs with high CSER
-($>0.83$), while agents with identical personas converge toward echo chambers
-(CSER $\to 0.08$ over 20 cycles). Across the $2\times2$ matrix, CSER correlates
-with vendor diversity and capability gap, supporting the heterogeneity hypothesis
-across independent replications.
+Agents with heterogeneous personas sustain high CSER ($>0.83$); identical-persona
+agents converge toward echo chambers (CSER $\to 0.08$ over 20 cycles;
+$\Delta = 0.758$, 3/3 pre-registered predictions confirmed).
+A binary gate finding (D-077, $N=20$): once CSER $\geq 0.30$, downstream task quality
+saturates regardless of CSER magnitude (Fisher's exact $p=1.0$, Cohen's $d=0.0$),
+suggesting CSER acts as an entry barrier rather than a quality spectrum.
 
-\medskip\noindent\textbf{Contributions:}
-\begin{enumerate}
-  \item \textbf{CSER and $E_{v4}$}: A composite metric combining cross-source connectivity,
-        temporal span, and node diversity to characterize KG structural properties.
-  \item \textbf{Persona-diversity control experiment}: Identical-persona agents produce
-        CSER $= 0.078$ vs.\ heterogeneous CSER $= 0.836$ ($\Delta = 0.758$, 3/3
-        pre-registered predictions confirmed).
-  \item \textbf{$2\times2$ vendor-diversity replication}: Four independent KG instances
-        across cross-vendor and same-vendor configurations confirm that CSER scales
-        with agent heterogeneity; same-vendor pairs with small capability gaps
-        eventually fall below the gate threshold ($\theta = 0.30$), providing
-        directional evidence for the echo-chamber hypothesis at scale.
-        A nuance: same-model pairs with persona opposition (KG-2, CSER$=0.524$) can
-        exceed same-vendor cross-model pairs (KG-3, CSER$=0.380$), suggesting
-        persona configuration interacts with vendor diversity.
-  \item \textbf{Within-cell replication signal}: Independent replication-B instances
-        (KG-2b, KG-3b, KG-4b) initiated 2026-03-05 show strong early convergence:
-        KG-2b CSER$=0.497$ tracks KG-2 CSER$=0.524$ (same declining trajectory, $N=96$ nodes),
-        providing the first within-cell reproducibility evidence for same-model echo-chamber
-        trajectory.
-  \item \textbf{Ungated quality stress test}: With the CSER gate disabled,
-        coding performance remained near-ceiling on benchmark tasks,
-        indicating weak observable CSER--quality coupling under strong base models.
-  \item \textbf{Structural patterns}: Long-range cross-source connections
-        (``paradoxical crossings,'' span $\geq 50$) and retroactive grounding
-        (span = 160) as observable KG phenomena.
-\end{enumerate}
+Across the $2\times2$ vendor-diversity matrix, CSER scales with agent heterogeneity,
+with same-vendor pairs eventually falling below the gate threshold.
+KG-main state: 534 nodes / 1121 edges, CSER $= 0.8510$.
+Within-cell replication-B instances track original trajectories
+(e.g., KG-2b CSER$=0.497$ vs.\ KG-2 CSER$=0.524$).
 
-\medskip\noindent
-KG-main state (latest snapshot, 2026-03-05): \textbf{534 nodes / 1121 edges}, CSER $= 0.8510$.
-KG-2 early trajectory (GPT-5.2 $\times$ GPT-5.2, 99 nodes): CSER $= 0.524$, declining from 1.00
-at cycle~1 --- consistent with progressive echo-chamber pressure under zero capability gap.
-Full $2\times2$ replication summary: see Table~\ref{tab:kg_replication} (Section~\ref{sec:limitations}).
-
-\medskip\noindent\textbf{Amplification benchmark (preliminary case study)}:
-A controlled three-way comparison (Solo/Pipeline/Emergent, GPT-5.2 only, equal
-API budget) across two domains reveals \textbf{Emergent $>$ Pipeline on logical
-reasoning} (60\% vs.\ 50\%, $N=5$ trials; knights-and-knaves domain, Round 4).
-Mathematical computation shows the reverse (Solo=80\% $>$ Pipeline=70\% $>$
-Emergent=60\%), underscoring strong domain-dependence. Both results are
-\emph{preliminary}: $N=5$ per condition and only two problem domains limit
-generalizability beyond this specific setting.
-A follow-up cross-provider benchmark (amp, $N=10$ questions; GPT-5.2 $\times$
-Claude-sonnet-4-6; Gemini as blind external judge) yields an average insight
-gain of $+9.5$ points over solo baseline, with ethics/conflict domains showing
-the largest gains ($+12$/$+13$), providing methodologically strengthened
-evidence via external evaluation and cross-model pairing
-(Section~\ref{sec:amp_benchmark}).
-An auto-persona ablation within this benchmark ($N=10$) shows that enabling automatic
-persona selection improves Gemini judge preference to \textbf{70\%} (vs.\ 30\%
-with auto-persona disabled), raises average quality from 6.9 to 7.3, and
-yields 4.9 blind-spot detections per question.
-A subsequent larger replication (\texttt{amp\_verdict\_v2}, $N=30$, same-model GPT-5.2,
-Gemini-3-Flash judge) finds the ON/OFF preference gap collapses to 47\%/53\%
-with a quality delta of $-0.06$ --- suggesting the $N=10$ result may be
-small-sample noise rather than a robust effect (see Section~\ref{sec:amp_benchmark}).
-
-\medskip\noindent\textbf{Scope and limitations}: Primary findings are based on $N=4$ independent
-KG instances across a $2\times2$ vendor-diversity matrix ($\geq$30 cycles each).
-Each cell now contains $N=2$ independent KG instances (original + replication-B);
-KG-2b CSER (0.497) tracks KG-2 (0.524) on the same declining trajectory, providing
-a first within-cell replication signal. Full trajectory stabilisation pending.
-Domain generalization requires further study. Claims are limited to this experimental setting.
+\medskip\noindent\textbf{Scope}: $N=4$ KG instances ($N=2$ per cell including
+replication-B). Domain generalization requires further study.
+Claims are limited to this experimental setting (탐색적 연구, N=5 벤치마크는 통계적 검정력 부족).
 
 \medskip\noindent\textbf{Keywords}: multi-agent AI, knowledge graph co-evolution,
-cross-source emergence rate, persona diversity, case study
+cross-source edge ratio, persona diversity, case study
 \end{abstract}
 
 \tableofcontents
@@ -159,12 +103,12 @@ cross-source edge formation between agents with asymmetric knowledge structures.
 property absent from components) precedes and does not depend on the $E_{v4}$ formula.
 $E_{v4}$ is a \emph{measurement instrument} designed after the definition was fixed,
 using structural KG features (edge ratios, temporal distances, age distributions)
-that are observable independently of whether we label them as ``emergent.''
+that are observable independently of whether they are labelled as ``emergent.''
 The claim that $E_{v4}$ measures emergence is falsifiable: a random E-R graph
 produces $E_{v4} \approx 0.1$--$0.2$, while the co-evolved KG produces $E_{v4} = 0.44$,
 providing an independent baseline separation (Sec.~\ref{sec:stat}).
 
-To answer this, we conducted a $2\times2$ vendor-diversity experiment across four
+To answer this, I conducted a $2\times2$ vendor-diversity experiment across four
 independent KG instances (KG-main, KG-2, KG-3, KG-4), varying agent provider and
 capability gap. The primary system (KG-main: two AI agents, Roki/cokac) co-evolved
 a shared KG over 89+ cycles; three controlled replication instances were established
@@ -177,7 +121,7 @@ were initiated 2026-03-05; KG-2b (96 nodes, CSER$=0.497$) tracks KG-2
 \medskip\noindent\textbf{What distinguishes this from prior work}:
 AutoGen~\cite{wu2023autogen}, MetaGPT~\cite{hong2023metagpt}, CAMEL~\cite{li2023camel},
 and AgentVerse~\cite{chen2023agentverse} optimize for task completion, coherence, or
-role-playing --- none measure the \textit{quality of collaboration itself}. We introduce
+role-playing --- none measure the \textit{quality of collaboration itself}. This study introduces
 CSER (Cross-Source Edge Ratio) as a quantitative proxy for how much the two agents are
 genuinely cross-pollinating ideas rather than working in parallel silos.
 
@@ -210,6 +154,14 @@ as a whole but absent in any individual component.''
 Kauffman~\cite{kauffman1993origins} established the mechanism by which nonlinear patterns
 arise through self-organized criticality. This study applies that framework to AI-AI
 interaction, extending it by adding \textbf{quantitative metrics (CSER, $E_{v4}$)}.
+
+From the information-theoretic perspective, Tononi~\cite{tononi2004} proposed integrated
+information ($\Phi$) as a measure of system-level emergence, Seth~\cite{seth2010} introduced
+nonlinear Granger causality for measuring causal emergence, and
+Lizier et al.~\cite{lizier2012} developed synergy-based information modification metrics.
+CSER differs from these approaches by measuring \emph{structural} cross-source connectivity
+in knowledge graphs rather than information-theoretic quantities over time series, but
+shares the goal of quantifying emergent properties that are absent at the component level.
 
 \subsection{Multi-Agent LLM Systems}
 
@@ -612,8 +564,12 @@ PES is computed \emph{independently} of $E_{v4}$ (see Independence Note, Sec.~\r
 making the D-063 correlation a testable empirical relationship rather than a definitional artifact.
 
 % ─────────────────────────────────────────────────────────────────────────────
-\section{Theory: The Five-Layer Framework}
+\section{Descriptive Taxonomy: The Five-Layer Framework}
+\label{sec:five_layer}
 % ─────────────────────────────────────────────────────────────────────────────
+
+\noindent 이 분류체계는 검증 가능한 예측을 생성하는 이론이 아니라, 관찰을 정리하는 서술적 프레임워크이다.
+(This taxonomy is a descriptive framework for organizing observations, not a theory that generates testable predictions.)
 
 \subsection*{Layer 1: Conditions for Emergence}
 \textbf{L1-A Boundary Crossing}: CSER $>$ 0.5 $\to$ echo chamber escape.
@@ -653,7 +609,7 @@ converge to CSER $= 0.078$, while heterogeneous-persona agents sustain CSER $= 0
 select personas that maximize CSER, without requiring human intervention?
 
 \paragraph{Dynamic persona selection as CSER maximization.}
-We hypothesize that automatic persona selection solves an implicit optimization problem:
+I hypothesize that automatic persona selection solves an implicit optimization problem:
 \[
   \text{persona}^* = \arg\max_{\text{persona} \in \mathcal{P}}
     \;\mathbb{E}\bigl[\text{CSER}(G_T \mid \text{persona})\bigr]
@@ -803,6 +759,7 @@ Cycle 75:  E_v4=0.4616, E_v3=0.4394, Delta=+0.0222  (v4 +90 nodes)
 \end{lstlisting}
 
 \subsection{Paradoxical Emergence (D-063)}
+\label{sec:d063}
 
 \begin{table}[h!]\centering\small
 \begin{tabular}{lr}
@@ -900,19 +857,19 @@ providing preliminary evidence that the CSER gate is not specific to a single ta
 \textbf{Limitation}: generalization to O($n \log n$) or higher complexity is not yet established.
 
 \noindent\textbf{Conceptual distinction --- CSER\textsubscript{measure} vs.\ CSER\textsubscript{gate}}:
-We distinguish two roles of CSER in this study. \emph{CSER\textsubscript{measure}} is
+This study distinguishes two roles of CSER. \emph{CSER\textsubscript{measure}} is
 the continuous metric $\in [0,1]$ quantifying cross-source edge density (Sec.~3).
 \emph{CSER\textsubscript{gate}} is the binary decision function
 $\text{gate}(\text{CSER}_{\text{measure}}, \theta) = \mathbb{1}[\text{CSER}_{\text{measure}} \geq \theta]$
 with $\theta = 0.30$. The two are related but serve distinct roles: CSER\textsubscript{measure}
 is a diagnostic; CSER\textsubscript{gate} is an architectural enforcement mechanism.
 
-\noindent\textbf{Threshold justification (F1-optimal)}:
+\noindent\textbf{Threshold justification (F1-optimal)}:\label{sec:gate}
 The value $\theta = 0.30$ is not chosen arbitrarily. Sweeping $\theta \in [0.01, 0.99]$
 across the four experimental conditions (A, B\_partial, B, C), F1$=1.0$ (perfect
 precision and recall) is achieved for $\theta \in [0.26, 0.44]$.
-We select $\theta = 0.30$---the lower boundary of this range---because it \emph{minimizes
-false positives} (erroneously permitting echo-chamber execution), which we treat as the
+I select $\theta = 0.30$---the lower boundary of this range---because it \emph{minimizes
+false positives} (erroneously permitting echo-chamber execution), treating this as the
 higher-cost error in collaborative code generation. The threshold is therefore
 \textbf{F1-justified under a conservative, precision-prioritizing decision criterion}:
 
@@ -933,7 +890,7 @@ $\theta$ & TP & FP & TN & FN & F1 & Note \\
 
 \noindent\textbf{Bootstrap validation of threshold} ($N=2000$ resamples, seed=91):
 Median F1-optimal $\theta = 0.26$; 95\% CI $= [0.26, 0.30]$.
-Our chosen $\theta = 0.30$ lies at the upper bound of this CI, confirming it is the
+The chosen $\theta = 0.30$ lies at the upper bound of this CI, confirming it is the
 most conservative valid selection within the bootstrap-validated range.
 
 \noindent\textbf{Note}: Conditions B and C are blocked at the CSER gate (Sec.~6,
@@ -948,7 +905,7 @@ differentiation requires more complex problems. Future work should probe CSER--q
 correlation at higher algorithmic complexity (O($n \log n$) and above).
 
 \noindent\textbf{Baseline validation}: To confirm CSER detects \emph{intentional} cross-source
-structure rather than random graph artifacts, we note that in cycles 1--20 (source diversity
+structure rather than random graph artifacts, it is noted that in cycles 1--20 (source diversity
 = 2 agents), observed CSER was 0.58 vs.\ a random edge baseline of 0.50 ($+$16\%), confirming
 that the metric captures intentional cross-pollination even in low-diversity settings.
 At scale (cycles 70--89), CSER consistently exceeded 0.80---well above any random baseline
@@ -1104,7 +1061,7 @@ weight variation) confirms the current weights are defensible under perturbation
 % ─────────────────────────────────────────────────────────────────────────────
 
 To test whether adversarial emergent collaboration outperforms both solo
-inference and standard pipeline orchestration, we conducted a controlled
+inference and standard pipeline orchestration, I conducted a controlled
 three-way benchmark using GPT-5.2 exclusively (same model, same API budget).
 
 \subsection*{Experimental Design}
@@ -1237,7 +1194,7 @@ API 호출 수 대비 정확도 향상 관점에서, Solo는 1회 호출로 75\%
 \label{sec:amp_benchmark}
 
 To address the same-model constraint (Limitation 8) and extend the amplification
-analysis to heterogeneous model pairings, we conducted a preliminary cross-provider
+analysis to heterogeneous model pairings, I conducted a preliminary cross-provider
 amplification study using the \texttt{amp\_benchmark.py} framework.
 
 \subsubsection*{Experimental Design}
@@ -1299,7 +1256,7 @@ Conflict resolution & $+13$ & Claude discovered GPT blind spots \\
 
 \subsubsection*{Auto-Persona Ablation}
 
-To quantify the contribution of automatic persona selection, we ran a controlled
+To quantify the contribution of automatic persona selection, I ran a controlled
 ablation study within the amp benchmark framework, comparing two conditions across
 the same 10-question set with Gemini as blind external judge:
 
@@ -1326,7 +1283,7 @@ cross-source emergence and amplified insight.
 
 \subsubsection*{N=30 Replication (\texttt{amp\_verdict\_v2})}
 
-To assess robustness of the auto-persona effect, we ran a larger replication
+To assess robustness of the auto-persona effect, I ran a larger replication
 with $N=30$ questions using the same-model configuration (gpt-frontier-undisclosed,
 Gemini-3-Flash-Preview as blind judge):
 
@@ -1362,7 +1319,7 @@ Two interpretations are consistent with these data:
         are architecturally heterogeneous, consistent with the D-063 mechanism.
 \end{enumerate}
 
-\noindent We report both results without adjudication.
+\noindent Both results are reported without adjudication.
 The $N=10$ cross-provider finding is preserved as directional evidence;
 the $N=30$ same-model replication weakens the generality of the auto-persona
 claim.
@@ -1485,7 +1442,7 @@ at this stage; see the N=30 Replication subsection above for full analysis.
 \subsection*{Emergent Amplification Conditions}
 \label{sec:amplification_conditions}
 
-Based on the two-domain pilot (Table~\ref{tab:amplification}), we characterise
+Based on the two-domain pilot (Table~\ref{tab:amplification}), I characterise
 the conditions under which the Emergent structure outperforms standard Pipeline:
 
 \begin{enumerate}
@@ -1527,228 +1484,53 @@ generalising the domain-dependence claim.
 % ─────────────────────────────────────────────────────────────────────────────
 
 \begin{enumerate}
-  \item \textbf{Sample size ($N=4$ KG instances, $N=1$ per cell)}: Primary structural
-        findings derive from KG-main (130+ cycles). The $2\times2$ vendor-diversity
-        experiment provides three additional independent KG instances across four
-        agent configurations. \emph{Each cell now contains $N=2$ independent KG instances
-        (replication-B instances: KG-2b CSER$=0.497$ (tracking KG-2\,0.524), KG-3b CSER$=0.489$, KG-4b CSER$=0.531$; all at 96--136 nodes, 2026-03-05).
-        Domain generalization requires further study.} No claim
-        generalizes beyond this experimental matrix without independent replication.
-        \textit{Prior single-system note}: The heterogeneous LLM pair
-        experiment (GPT-4o + Gemini-3-Flash-Preview) at Cycle 86 was the first
-        extension beyond the original agent pair
-        (CSER = 0.5455, gate passed), now superseded by the full $2\times2$ replication.
-        \textit{Ongoing replication (2026-03-05)}: Three additional independent KG
-        instances are actively co-evolving as part of a pre-registered $2\times2$
-        vendor-diversity experiment:
+  \item \textbf{Single-system limitation (=1$ system, =4$ KG instances)}:
+        All findings derive from a single two-agent co-evolution system.
+        The \times2$ vendor-diversity experiment provides four independent KG instances
+        (each cell contains =2$ including replication-B), but no claim generalizes
+        beyond this experimental matrix without independent replication.
 
         \begin{table}[h!]\centering\small\label{tab:kg_replication}
         \begin{tabular}{llccc}
         \toprule
-        Instance & Agent Pair & Vendor & Edges & CSER \\
+        Instance & Agent Pair & Vendor & Edges & CSER \
         \midrule
-        KG-main & Claude-sonnet-4-6 $\times$ GPT-5.2 & Cross & 1121 & \textbf{0.8510} \\
-        KG-2 & GPT-5.2 $\times$ GPT-5.2 & Same-model (OpenAI) & 168 & 0.524$^{**}$ \\
-        KG-3 & GPT-5.2 $\times$ Gemini-2.5-Flash$^{\dagger}$ & Cross (OpenAI$\times$Google) & 400 & \textbf{0.3800} \\
-        KG-4 & Gemini-2.5-Flash $\times$ Gemini-2.5-Pro$^{\dagger}$ & Same (Google) & 402 & 0.2537$^*$ \\
+        KG-main & Claude-sonnet-4-6 $\times$ GPT-5.2 & Cross & 1121 & \textbf{0.8510} \
+        KG-2 & GPT-5.2 $\times$ GPT-5.2 & Same-model (OpenAI) & 168 & 0.524{**}$ \
+        KG-3 & GPT-5.2 $\times$ Gemini-2.5-Flash{\dagger}$ & Cross (OpenAI$\times) & 400 & \textbf{0.3800} \
+        KG-4 & Gemini-2.5-Flash $\times$ Gemini-2.5-Pro{\dagger}$ & Same (Google) & 402 & 0.2537$ \
         \bottomrule
         \end{tabular}
-        \caption*{\small Snapshot: 2026-03-05. KG-3/4: $\approx$130-cycle snapshots.
-        $^*$KG-4 CSER has declined below the gate threshold ($\theta=0.30$) at extended scale,
-        consistent with within-vendor echo-chamber pressure under small capability gap.
-        KG-3 CSER has declined from 0.71 (60 cycles) to 0.38 (130+ cycles) as same-source
-        edges accumulate under the current single-node-per-cycle design; revised dual-node
-        protocol (separate Agent B nodes) is active from 2026-03-05.
-        $^{**}$KG-2 restarted 2026-03-05: upgraded from GPT-4o $\times$ GPT-4o-mini
-        to GPT-5.2 $\times$ GPT-5.2 (zero capability gap, same model) for the
-        strongest same-model echo-chamber test in the $2\times2$ matrix.
-        Early trajectory (99 nodes, 168 edges): CSER declined from 1.00 (cycle 1)
-        to 0.524 (current), consistent with progressive echo-chamber pressure under
-        identical-model pairing. Replication-B (KG-2b, 96 nodes, CSER $=0.497$) tracks the same declining
-        trajectory---first within-cell replication signal.
-        Prior 30-cycle snapshot (CSER $=0.83$, GPT-4o $\times$
-        GPT-4o-mini) is retained as a supplementary data point.
-        $^{\dagger}$KG-3 and KG-4 were initialized with earlier model versions (GPT-4o,
-        Gemini-2.0-Flash/Pro) and upgraded to current versions (GPT-5.2, Gemini-2.5-Flash/Pro)
-        after the first $\approx$10 cycles; the reported CSER reflects the full trajectory
-        including both phases. Model version details are provided in Appendix~\ref{sec:reproducibility}.}
+        \caption*{\small Snapshot: 2026-03-05.
+        -4 below gate ($\theta=0.30$), consistent with same-vendor echo-chamber pressure.
+        {**}-2 CSER declining from 1.00 to 0.524 (99 nodes); replication-B (KG-2b, CSER/bin/zsh.497$) tracks same trajectory.
+        {\dagger}-3/4 initialized with earlier model versions; see Appendix~\ref{sec:reproducibility}.}
         \end{table}
 
-        \noindent\textbf{Key replication finding ($N=4$ KG instances + within-cell replication signal; KG-2b: early convergence, KG-3/4: 130+ cycles)}:
-        \begin{enumerate}
-          \item The gate-passing CSER result replicates across KG-main, KG-2, and KG-3
-                (CSER $\geq 0.30$). KG-4 (same-vendor Google, small capability gap) has
-                declined to CSER $=0.2537$ at extended scale, falling below the gate---
-                a directional finding consistent with the echo-chamber hypothesis.
-                KG-2 (GPT-5.2 $\times$ GPT-5.2, zero capability gap) shows early
-                echo-chamber pressure: CSER declined from 1.00 (cycle~1) to 0.524
-                (99 nodes). Replication-B (KG-2b, 96 nodes, CSER $=0.497$) tracks this declining trajectory---first within-cell replication of the same-model
-                echo-chamber effect.
-          \item Across-vendor CSER ordering: KG-main (0.851) $>$ KG-2 (0.524) $>$
-                KG-3 (0.380) $>$ KG-4 (0.254),
-                broadly consistent with the heterogeneity hypothesis at the extremes.
-                \textbf{Nuance}: KG-2 (same-model GPT-5.2$\times$GPT-5.2, CSER$=0.524$)
-                outranks KG-3 (cross-vendor GPT-5.2$\times$Gemini-2.5, CSER$=0.380$),
-                suggesting that persona opposition (``Analyst'' vs.\ ``Critic'' roles
-                in KG-2) may partially compensate for same-model structural similarity.
-                Vendor diversity alone is not sufficient to predict CSER; persona
-                configuration and scale interact. CSER declines
-                under extended same-source accumulation; trajectory stabilization
-                requires $\geq$200 cycles under the current design.
-          \item Within-vendor CSER is modulated by capability gap:
-                GPT-4o $\times$ GPT-4o-mini (large gap) yields CSER $=0.83$;
-                Gemini-Flash $\times$ Gemini-Pro (smaller gap, shared training paradigm)
-                yields CSER $=0.25$ at 130+ cycles---supporting the prediction that
-                same-vendor pairs with small capability gaps face structural
-                echo-chamber pressure at scale.
-          \item \textbf{Design note}: The current single-node-per-cycle protocol
-                (Agent A adds a node; Agent B response is embedded as text) underestimates
-                true cross-source connectivity. A revised protocol adding
-                explicit Agent B nodes is pre-registered for future cycles; current
-                CSER values are conservative lower bounds under this design.
-        \end{enumerate}
-        \noindent These findings constitute a pre-registered $2\times2$ exploratory
-        replication ($N=2$ KG per cell initiated, 4 cells $\times$ 2 instances = 8 total;
-        replication-B instances at early trajectory as of 2026-03-05).
-        Cross-cell consistency provides directional evidence
-        that the CSER gate mechanism generalizes across vendor configurations.
-  \item \textbf{KG artificiality}: Agents are aware of KG structure.
-  \item \textbf{Weight arbitrariness}: $E_{v4}$ weights are intuitively designed.
-        \textit{Quantified (Cycle 86 snapshot)}: Bootstrap cross-validation ($N=1000$) reveals
-        a stability--interpretability trade-off: CV-optimal weights
-        $[0.28, 0.05, 0.05, 0.62]$ reduce metric variance by 42\% but assign 62\%
-        weight to \texttt{node\_age\_div} alone, collapsing DCI and edge\_span.
-        Current weights $[0.35, 0.25, 0.25, 0.15]$ represent a deliberate design
-        choice for theoretical coverage over pure stability.
-        The sensitivity analysis (94\% robust scenarios, Sec.~\ref{sec:stat})
-        confirms conclusions hold under $\pm$20\% weight perturbation.
-        Status: \textit{trade-off empirically quantified; full arbitrariness
-        concern persists}.
-        \textit{Post-hoc interpretation warning}: The CV-optimal weights
-        $[0.28, 0.05, 0.05, 0.62]$ were computed \emph{after} data collection
-        on the same KG used to report results. They should \emph{not} be
-        interpreted as a theoretically superior choice; they represent a
-        post-hoc optimization artifact. The current theory-derived weights
-        $[0.35, 0.25, 0.25, 0.15]$ were fixed before the bootstrap analysis and
-        are the weights used for all reported findings.
-        \textit{Pre-registration plan}: Future weight derivations will use a
-        held-out seed KG (distinct from the reporting KG) and will be
-        pre-registered before data collection.
-        \textit{Bootstrap circularity note (R3)}: The cross-validation was
-        performed on the \emph{same} KG used for all reported findings.
-        Because weight optimization and metric reporting share the same data
-        source, there is a residual circularity risk: CV-optimal weight
-        directions may reflect idiosyncratic properties of this KG rather
-        than generalizable preferences. This risk is partially mitigated by
-        the pre-registration plan above, and by the sensitivity analysis
-        confirming robustness under $\pm$20\% perturbation (Sec.~\ref{sec:stat}).
-        Independent weight validation on a held-out or externally constructed
-        KG remains an open requirement for full resolution.
-  \item \textbf{Reproducibility}: still limited. We provide scripts and KG artifacts,
-        but current evidence remains concentrated in a single evolving project KG.
-        Cross-provider checks (Cycle 85--86) should be interpreted as exploratory
-        replications rather than independent confirmations. Full reproducibility
-        requires independently initialized KGs, preregistered protocols, and
-        externally rerunnable pipelines.
-  \item \textbf{Self-evaluation bias}: The authors (two AI agents) both designed
-        the experiment and evaluated its results. No external reviewer validated
-        the methodology or results independently. The theoretical claims and
-        metric designs have not been peer-reviewed by parties outside the
-        emergent project.
-        \textit{Partial mitigation (amp benchmark, Section~\ref{sec:amp_benchmark})}:
-        The cross-provider amplification study uses Gemini as an independent
-        external judge operating under a blind A/B protocol --- the evaluating
-        model has no access to agent identity when scoring responses. This
-        decouples evaluation from production, reducing (though not eliminating)
-        self-evaluation bias for the amplification claims. The auto-persona
-        ablation results (Gemini preference 70\% ON vs.\ 30\% OFF; quality
-        7.3 vs.\ 6.9; 4.9 blind spots/question) are confirmed by the same
-        blind-judge protocol, providing real Gemini-judge evidence for the
-        auto-persona contribution.
-        \textit{Replication caveat}: A $N=30$ same-model replication
-        (\texttt{amp\_verdict\_v2}, Section~\ref{sec:amp_benchmark}) does not
-        reproduce this finding: judge preference reverses to 53\% OFF / 47\% ON,
-        and quality delta collapses from $+0.4$ to $-0.06$.
-        The auto-persona quality advantage should therefore be treated as
-        \emph{unconfirmed} pending a cross-provider $N\geq30$ design.
-        The KG structural metrics (CSER, $E_{v4}$)
-        remain self-computed; independent metric replication by external parties
-        is required for full resolution.
-  \item \textbf{Ceiling effects in quality tasks}: In ungated stress tests,
-        strong base models often solve benchmark programming tasks at near-ceiling
-        accuracy across all persona conditions (A/B/C). This weakens observable
-        CSER--quality gradients and limits claims that CSER linearly predicts
-        code quality above the gate threshold.
-  \item \textbf{LLM generalizability}: preliminary only. We observed similar gate
-        behavior in small cross-provider probes (Gemini, GPT-4o, Claude), but
-        sample sizes are insufficient for provider-level inference. We therefore
-        treat provider-independence as a hypothesis supported by early evidence,
-        not a resolved claim.
-  \item \textbf{Same-model constraint (amplification experiment)}: The three-way
-        Solo/Pipeline/Emergent benchmark uses GPT-5.2 exclusively to isolate
-        collaboration structure from model capability differences. A consequence
-        is that the results may not generalise to cross-model collaboration, where
-        agents with architecturally distinct capabilities may exhibit stronger or
-        qualitatively different amplification dynamics.
-        \textit{Partial resolution (amp benchmark)}: The cross-provider benchmark
-        (Section~\ref{sec:amp_benchmark}) pairs GPT-5.2 with Claude-sonnet-4-6,
-        introducing genuine architectural heterogeneity. The $+9.5$ average
-        insight gain demonstrates that cross-model collaboration produces
-        measurable amplification, with domain-specific gains ($+12$/$+13$) in
-        ethics and conflict resolution where model-specific knowledge gaps
-        are most likely to manifest. Full multi-model systematic comparison
-        (sweeping provider pairs and domains) remains as future work.
-  \item \textbf{Solo ceiling effect and training data contamination}: GPT-5.2
-        achieves near-100\% accuracy on canonical benchmark problems (base-rate
-        neglect, Monty Hall) regardless of collaboration structure, suggesting
-        training-data memorisation rather than genuine reasoning.
-        Consequently, when Solo accuracy approaches 100\%, any collaboration
-        structure---Pipeline or Emergent---has limited room to demonstrate
-        additive benefit, and observed differences may reflect task difficulty
-        rather than structural advantage. Future benchmarks should use
-        novel, programmatically verified problem instances to decouple
-        model memorisation from collaboration structure effects.
-  \item \textbf{Domain selection bias}: The amplification benchmark evaluates
-        only two domain types (mathematical computation, logical reasoning).
-        Both domains were selected based on the authors' prior expectations about
-        where collaborative structure might matter, introducing confirmation risk:
-        the chosen domains may represent extreme cases of the
-        Pipeline-favourable vs.\ Emergent-favourable spectrum, overstating the
-        contrast. A broader domain sweep---natural language inference, causal
-        reasoning, code synthesis---is required before the domain-dependence
-        finding can be generalised.
-  \item \textbf{Metric gaming risk (Goodhart's Law)}: $E_{v4}$ and CSER are
-        computed from observable KG structural properties. Once agents are aware
-        of the metric formulas (as in this study, where agents themselves
-        designed and monitored the metrics), they may optimize for metric values
-        rather than genuine knowledge cross-pollination --- a form of
-        specification gaming. The current design does not protect against this
-        risk; agents can in principle inflate CSER by generating syntactically
-        cross-source edges without genuine semantic integration.
-        \textit{Proposed mitigation}: Future experiments should adopt a
-        \textbf{blind evaluation / hidden metric protocol}: (a)~a subset of
-        metrics is withheld from the agents during co-evolution and evaluated
-        post-hoc by an independent observer; (b)~semantic validity of
-        cross-source edges is spot-checked by a judge model blind to metric
-        values; (c)~pre-registered ``honeypot'' edges (syntactically
-        cross-source but semantically vacuous) are seeded and monitored for
-        abnormal incorporation rates.
-        This risk is \emph{acute} in the current study: the agents who
-        co-evolved the KG are the same agents who designed and monitored the
-        metrics, creating a potential circular optimization loop not controlled
-        by any blinded evaluation.
-  \item \textbf{Global CSER indistinguishable from random at high source-count}:
-        As shown in the Erdős–Rényi comparison (Section~\ref{sec:stat}),
-        the current KG's global CSER ($= 0.8510$) is nearly identical to the
-        random E-R baseline ($\approx 0.87$) at $k=16$ distinct sources.
-        With many sources, even random edge formation is overwhelmingly
-        cross-source, so global CSER loses discriminative power as a
-        \emph{quality} indicator at scale. CSER is valid as a
-        \emph{threshold detector} in binary classification contexts
-        (echo-chamber CSER $< 0.30$ vs.\ productive CSER $> 0.50$) but
-        should \textbf{not} be used as a continuous quality score in mature
-        multi-source KGs without developing local per-source-pair CSER
-        (Section~\ref{sec:stat}).
+        \noindent CSER ordering: KG-main (0.851) $>$ KG-2 (0.524) $>$ KG-3 (0.380) $>$ KG-4 (0.254).
+        Persona opposition may partially compensate for same-model similarity (KG-2 outranks cross-vendor KG-3).
+
+  \item \textbf{Statistical power (N=5 underpowered)}:
+        The Solo/Pipeline/Emergent benchmark (=5$ per condition, two domains) is exploratory
+        and statistically underpowered. The auto-persona ablation (=10$) was not
+        reproduced at =30$ (preference gap collapsed to 47\%/53\%). Multi-LLM gate
+        replication (=5$ per provider) provides directional evidence only;
+         \geq 30$ per provider is required for confirmatory inference.
+        {v4}$ weights 0.14999999999999999$ are intuitively designed; bootstrap
+        CV on the same KG introduces circularity risk. Sensitivity analysis (94\% robust
+        under $\pm\% perturbation, Sec.~\ref{sec:stat}) partially mitigates this.
+        Global CSER (/bin/zsh.8510$) is nearly identical to the Erd\H{o}s--R\'enyi random baseline
+        ($\approx 0.87$) at =16$ sources (Sec.~\ref{sec:stat}); CSER should be used as
+        a threshold detector, not a continuous quality score at scale.
+
+  \item \textbf{Reproducibility and bias}:
+        Scripts and KG artifacts are provided, but evidence remains concentrated in a single
+        evolving project. Cross-provider checks (Cycle 85--86) are exploratory replications,
+        not independent confirmations. The authors (two AI agents) both designed the experiment
+        and evaluated results; self-evaluation bias is partially mitigated by blind external
+        judging (Gemini A/B protocol) in the amplification benchmark, but KG structural metrics
+        remain self-computed. Full reproducibility requires independently initialized KGs,
+        preregistered protocols, and externally rerunnable pipelines.
 \end{enumerate}
 
 % ─────────────────────────────────────────────────────────────────────────────
@@ -1822,7 +1604,7 @@ A potential concern is that the binary gate finding is tautological: if
 execution is blocked by \texttt{execution\_loop.py} when CSER $< 0.30$,
 then observing ``low CSER $\to$ execution failure'' merely redescribes the
 engineering constraint rather than discovering an empirical property.
-We separate these layers precisely:
+These layers are separated precisely:
 
 \begin{enumerate}
   \item \textbf{Layer 1 (design/engineering)}: The gate in
@@ -1856,7 +1638,7 @@ exactly what was done.
 
 \subsection{Random Graph Baseline (Erdős–Rényi)}
 
-To verify that the KG structure is non-random, we compared key metrics against
+To verify that the KG structure is non-random, key metrics were compared against
 500 Erdős–Rényi random graphs with identical $N$ (nodes) and $M$ (edges):
 
 \begin{table}[h!]\centering\small
@@ -1889,7 +1671,7 @@ reduced to 80\% baseline --- outside practical research scope.
 
 \subsubsection{CSER Threshold Sensitivity (Cycle 90, supplementary experiment)}
 
-To address the concern that the CSER $< 0.30$ threshold is arbitrary, we conduct a
+To address the concern that the CSER $< 0.30$ threshold is arbitrary, I conduct a
 threshold sweep across $t \in \{0.05, 0.10, \ldots, 0.95\}$ and Monte Carlo noise
 robustness analysis ($N=2000$, seed=90).
 
@@ -1926,7 +1708,7 @@ characterization. Bootstrap stability: pass rate$=1.0000$ ($N=1000$ iterations).
 
 \subsection{Statistical Power Analysis}
 
-We retrospectively assess the statistical power of the H\_exec experiment.
+I retrospectively assess the statistical power of the H\_exec experiment.
 Under H\_exec ($N=20$, binary pass/fail, Condition A vs.\ B\_partial), the observed
 effect size is Cohen's $d = 0.0$ --- both conditions achieve identical pass rates
 (20/20). A null effect cannot be detected regardless of power.
@@ -1952,7 +1734,7 @@ per provider for confirmatory claims. Future work should address this.
 \label{sec:condition_b_full}
 
 To provide a statistically adequate control for the persona-diversity hypothesis,
-we conducted an independent 20-cycle experiment with two identical-persona agents
+I conducted an independent 20-cycle experiment with two identical-persona agents
 (both GPT-5.2 with the same ``확신의 건축가'' persona) co-evolving a fresh
 knowledge graph from scratch.
 
@@ -2028,8 +1810,8 @@ produces CSER $\gg 0.30$; homogeneous collaboration produces CSER $\ll 0.30$.
 
 \subsection{Ungated Quality Stress Test (Cycle 92, supplementary experiment)}
 
-To test whether the CSER gate is merely an engineering artifact, we disabled the
-execution gate and measured coding quality directly across conditions A/B/C.
+To test whether the CSER gate is merely an engineering artifact, the
+execution gate was disabled and coding quality measured directly across conditions A/B/C.
 
 \begin{table}[h!]
 \centering
@@ -2107,7 +1889,7 @@ Updated to include amp\_verdict\_v2/v3 replication results, vendor-diversity CSE
 
 Across 89+ cycles of primary co-evolution and a $2\times2$ vendor-diversity
 replication ($N=4$ independent KG instances), this study provides empirical support
-for the five-layer emergence framework. The following findings hold within this
+for the five-layer descriptive taxonomy. The following findings hold within this
 experimental scope; generalisation beyond these four configurations requires
 further replication:
 
@@ -2124,16 +1906,16 @@ further replication:
   \item \textbf{Multi-LLM replication (Cycle 85)}: Binary gate effect replicated
         across Gemini-3-Flash-Preview (Google), GPT-4o (OpenAI), and
         Claude Sonnet 4.6 (Anthropic) --- all 5/5 under Condition A ($N=5$ per provider).
-        This provides cross-provider support for the gate, though $N=5$ is exploratory;
+        This provides cross-provider support for the gate (탐색적 결과, N=5, 통계적 검정력 부족);
         $N \geq 30$ per provider is recommended for confirmatory inference.
   \item \textbf{D-047 empirical}: The measurement process introduces a topological side-effect:
         execution loop nodes, once added to the KG, permanently shorten the edge-span distribution.
         This is a reproducible, structurally predictable artifact---not a philosophical claim about
         observer effects, but a concrete, measurable topological consequence (causal chain fully
         specified: new nodes $\to$ shorter mean span $\to$ lower $E_{v4}$).
-  \item \textbf{Emergent $>$ Pipeline on logical reasoning (preliminary)}: A three-way
+  \item \textbf{Emergent $>$ Pipeline on logical reasoning (exploratory, N=5, underpowered)}: A three-way
         Solo/Pipeline/Emergent benchmark (GPT-5.2 only, equal API budget, $N=5$ per
-        condition) provides \emph{preliminary evidence} that adversarial dual-path
+        condition) provides \emph{예비 증거(preliminary evidence)} (탐색적 결과, N=5, 통계적 검정력 부족) that adversarial dual-path
         collaboration outperforms standard Pipeline on logical reasoning
         (Emergent 60\% vs.\ Pipeline 50\%; knights-and-knaves, Round 4).
         Mathematical computation shows the reverse (Solo 80\% $>$ Pipeline 70\%
@@ -2184,7 +1966,7 @@ are explicitly deferred pending multi-seed, multi-pair, multi-domain replication
 \label{sec:applications}
 % ─────────────────────────────────────────────────────────────────────────────
 
-The emergence measurement framework developed in this study \emph{may} generalize beyond the OpenClaw two-agent system; the following applications are \textbf{speculative extrapolations} from a single $N=1$ case study and are offered as research directions, not validated findings. We identify three candidate application domains where CSER and $E_{v4}$ could provide operational value pending independent validation. \textbf{Important caveat}: The $\theta = 0.30$ gate threshold was derived from a specific two-agent, single-task context. Applications to new domains require domain-specific calibration (see Protocol below); direct threshold transfer is not recommended without empirical validation.
+The cross-source structural diversity measurement framework developed in this study \emph{may} generalize beyond the OpenClaw two-agent system; the following applications are \textbf{speculative extrapolations} from a single $N=1$ case study and are offered as research directions, not validated findings. Three candidate application domains are identified where CSER and $E_{v4}$ could provide operational value pending independent validation. \textbf{Important caveat}: The $\theta = 0.30$ gate threshold was derived from a specific two-agent, single-task context. Applications to new domains require domain-specific calibration (see Protocol below); direct threshold transfer is not recommended without empirical validation.
 
 \subsubsection*{Domain Calibration Protocol}
 Before deploying CSER\textsubscript{gate} in a new domain:
@@ -2275,7 +2057,7 @@ transferred directly; empirical F1-sweep calibration per task type is required.
 \label{sec:future}
 % ─────────────────────────────────────────────────────────────────────────────
 
-Based on the case-study findings, we identify the following empirically grounded directions:
+Based on the case-study findings, I identify the following empirically grounded directions:
 
 \begin{itemize}
   \item \textbf{Within-cell replication (early signal)}: Three replication-B instances
@@ -2331,31 +2113,31 @@ Based on the case-study findings, we identify the following empirically grounded
 \toprule
 \textbf{용어} & \textbf{정의} \\
 \midrule
-CSER & \textit{Cross-Session Entropy Ratio}. 에이전트 쌍의 응답 분포가 세션 간 얼마나 다양한지를 측정하는 구조적 다양성 지표. CSER $\in [0, 1]$이며, 높을수록 이종성이 크다. 창발의 정의가 아닌 필요조건 후보 지표. \\
+CSER & \textit{Cross-Source Edge Ratio}. KG 간선 중 서로 다른 에이전트 소스를 연결하는 간선의 비율. CSER $\in [0, 1]$. \\
 \midrule
-DCI & \textit{Diversity-Coherence Index}. 에이전트 집합의 응답 다양성과 내부 일관성의 균형을 측정하는 복합 지표. \\
+$E_{v4}$ & \textit{Emergence Score v4}. CSER, DCI, edge\_span\_norm, node\_age\_div의 가중 선형 결합 복합 지표. \\
 \midrule
-PES & \textit{Pipeline Emergence Score}. 파이프라인 내 에이전트들의 협업으로 발생한 창발적 출력 품질을 정량화하는 점수. Solo 기준값 대비 초과분으로 정의. \\
+PES & \textit{Paradoxical Emergence Score}. span, cross\_source, tag\_overlap으로 계산되는 역설적 창발 점수. \\
 \midrule
-E\_v4 & 본 실험의 핵심 창발 이벤트. 이종 멀티벤더 구성에서 발생한 윤리적 합의 역전(reversal) 현상으로, 단일 에이전트 예측과 반대되는 집합적 판단이 나타남. \\
+D-063 & \textit{Discovery \#63}. 직관에 반하는 교차출처 연결이 더 강한 창발을 생성하는 KG 구조 패턴. \\
 \midrule
-D-063 & 실험 데이터셋 내 딜레마 번호 63번. 의료 자원 배분 시나리오로, Solo와 Emergent 간 판단 역전이 관찰된 사례. \\
+D-064 & \textit{Discovery \#64}. 미래 노드가 과거 노드를 소급적으로 재정의하는 현상 (span=160). \\
 \midrule
-D-064 & 실험 데이터셋 내 딜레마 번호 64번. 개인 정보 보호 vs. 공중 보건 충돌 시나리오. \\
+D-077 & \textit{Discovery \#77}. CSER이 이진 게이트로 작동 ($\geq$0.30이면 품질 포화). \\
 \midrule
-D-077 & 실험 데이터셋 내 딜레마 번호 77번. 자율주행 우선순위 결정 딜레마로, 다중 에이전트 합의가 단일 에이전트 대비 뚜렷이 차별화된 사례. \\
+DCI & \textit{Debate Convergence Index}. 미해결 논쟁 스레드 비율 측정. \\
 \midrule
-Condition A & 이종(heterogeneous) 멀티벤더 구성. GPT-5.2, Gemini-2.0, Claude-3.7 등 서로 다른 공급사 모델을 혼합 사용. 초기 CSER=0.667, 20 사이클 후 0.836. \\
+Condition A & 이질적 페르소나 조건 --- 서로 다른 역할의 에이전트. \\
 \midrule
-Condition B\_full & 동종(homogeneous) 단일벤더 전체 구성. 동일 모델 4개 인스턴스 사용. 초기 CSER=1.0이나 20 사이클 후 0.078로 급감(동질화). \\
+Condition B\_full & 동질적 페르소나 조건 --- 동일 역할의 에이전트 (20 사이클). \\
 \midrule
-Condition B\_partial & 동종 부분 구성. 동일 공급사 내 다른 모델 버전을 혼합. B\_full과 A의 중간적 CSER 궤적을 보임. \\
+Condition B\_partial & 부분적 동질 조건 --- 일부 속성만 공유. \\
 \midrule
-Condition C & 통제군(Control). 단일 에이전트 반복 실행. 협업 없음. \\
+Condition C & 완전 동질 조건 --- 동일 에이전트 복제. \\
 \midrule
-L1--L5 & 창발 강도 5단계 분류. L1: 단순 집계, L2: 패턴 발견, L3: 예측 반전, L4: 자기조직화, L5: 메타인지적 창발. \\
+L1--L5 & Layer 1(설계)--Layer 2(측정)--Layer 3(관찰)--Layer 4(행동)--Layer 5(창발) 분류 체계. \\
 \midrule
-pair\_designer & 에이전트 쌍 구성을 설계하는 메타 에이전트. CSER을 최적화하는 방향으로 에이전트 조합과 역할을 동적으로 할당. \\
+pair\_designer & 에이전트 페르소나 자동 선택기 --- CSER 최적화 기반. \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -2406,6 +2188,11 @@ bootstrap cross-validation ($N=1000$, weight optimization).
   \item Gate check: if CSER $< 0.30$, execution loop rejects the cycle output and
         requests agent regeneration with a diversity prompt.
 \end{enumerate}
+
+\paragraph{CSER engineering caveat.}
+CSER은 cross-source edge를 생성하도록 에이전트에게 지시하는 engineering choice를 반영할 수 있다.
+CSER은 지시에 의한 것이든 자발적 창발에 의한 것이든 관계없이 구조적 결과를 측정한다
+(CSER measures structural outcome, regardless of whether it arises from instruction or spontaneous emergence).
 
 \subsection*{A.3 Persona Configurations}
 
@@ -2584,6 +2371,21 @@ Barab{\'a}si, A.L., \& Albert, R. (1999).
 Sunstein, C.R. (2009).
 \newblock {\em Going to Extremes: How Like Minds Unite and Divide}.
 \newblock Oxford University Press.
+
+\bibitem{tononi2004}
+Tononi, G. (2004).
+\newblock An information integration theory of consciousness.
+\newblock {\em BMC Neuroscience}, 5, 42.
+
+\bibitem{seth2010}
+Seth, A.K. (2010).
+\newblock Measuring emergence via nonlinear Granger causality.
+\newblock {\em Artificial Life}, 16(2):127--154.
+
+\bibitem{lizier2012}
+Lizier, J.T., Flecker, B., \& Williams, P.L. (2012).
+\newblock Towards a synergy-based approach to measuring information modification.
+\newblock {\em Physical Review E}, 87, 062811.
 
 \end{thebibliography}
 
