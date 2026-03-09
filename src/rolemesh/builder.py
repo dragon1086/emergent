@@ -1,58 +1,65 @@
+#!/usr/bin/env python3
 """
 rolemesh/builder.py - AI Tool Discovery & Setup Wizard
 
 Discovers installed AI CLI tools, profiles their capabilities,
-and builds a routing configuration.
+and builds a routing config so tasks go to the right tool.
+
+Usage:
+    python -m src.rolemesh.builder              # auto-discover
+    python -m src.rolemesh.builder --interactive # guided setup
+    python -m src.rolemesh.builder --json        # JSON output
 """
 
 import json
 import shutil
 import subprocess
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, asdict
 from pathlib import Path
 from typing import Optional
 
+# --- Tool Registry (known AI CLIs and their strengths) ---
 
-TOOL_REGISTRY = {
+TOOL_REGISTRY: dict[str, dict] = {
     "claude": {
         "name": "Claude Code",
         "vendor": "Anthropic",
-        "strengths": ["coding", "refactoring", "analysis", "architecture", "reasoning", "explain", "pair-programming"],
+        "strengths": ["coding", "analysis", "reasoning", "architecture"],
         "check_cmd": ["claude", "--version"],
         "cost_tier": "high",
     },
     "codex": {
         "name": "Codex CLI",
         "vendor": "OpenAI",
-        "strengths": ["coding", "refactoring", "quick-edit", "analysis", "completion"],
+        "strengths": ["coding", "refactoring", "quick-edit"],
         "check_cmd": ["codex", "--version"],
         "cost_tier": "medium",
     },
     "gemini": {
         "name": "Gemini CLI",
         "vendor": "Google",
-        "strengths": ["coding", "analysis", "reasoning", "multimodal", "search", "explain"],
+        "strengths": ["multimodal", "search", "ui-design", "frontend"],
         "check_cmd": ["gemini", "--version"],
         "cost_tier": "medium",
     },
     "aider": {
         "name": "Aider",
         "vendor": "Community",
-        "strengths": ["coding", "refactoring", "quick-edit", "git-integration", "pair-programming"],
+        "strengths": ["coding", "git-integration", "pair-programming"],
         "check_cmd": ["aider", "--version"],
         "cost_tier": "low",
     },
     "copilot": {
         "name": "GitHub Copilot CLI",
         "vendor": "GitHub",
-        "strengths": ["coding", "completion", "explain", "quick-edit"],
+        "strengths": ["completion", "quick-edit", "explain"],
         "check_cmd": ["gh", "copilot", "--version"],
-        "cost_tier": "medium",
+        "cost_tier": "low",
     },
     "cursor": {
         "name": "Cursor",
         "vendor": "Cursor",
-        "strengths": ["coding", "refactoring", "frontend", "completion", "pair-programming"],
+        "strengths": ["coding", "ui", "inline-edit"],
         "check_cmd": ["cursor", "--version"],
         "cost_tier": "medium",
     },
@@ -61,196 +68,194 @@ TOOL_REGISTRY = {
 
 @dataclass
 class ToolProfile:
+    """Profile of a discovered AI tool."""
     key: str
     name: str
     vendor: str
-    strengths: list
-    cost_tier: str
+    strengths: list[str]
+    cost_tier: str  # low, medium, high
     available: bool = False
     version: Optional[str] = None
-    user_preference: Optional[int] = None
+    user_preference: int = 0  # 0=neutral, 1=preferred, -1=avoid
+
+    def to_dict(self) -> dict:
+        return asdict(self)
+
+
+@dataclass
+class SetupWizard:
+    """
+    Discovers installed AI tools and builds a routing config.
+
+    Flow:
+      1. discover_tools() - check which CLIs are installed
+      2. rank_tools() - rank by availability + strengths
+      3. build_config() - generate routing config
+      4. save_config() - persist to ~/.rolemesh/config.json
+    """
+    tools: list[ToolProfile] = field(default_factory=list)
+    config_path: Path = field(default_factory=lambda: Path.home() / ".rolemesh" / "config.json")
+
+    def discover(self) -> list[ToolProfile]:
+        """Probe system for installed AI tools."""
+        self.tools = discover_tools()
+        return self.tools
+
+    def available_tools(self) -> list[ToolProfile]:
+        return [t for t in self.tools if t.available]
+
+    def rank_tools(self, task_type: str) -> list[ToolProfile]:
+        """
+        Rank available tools for a given task type.
+        Returns tools sorted by relevance (best first).
+        """
+        available = self.available_tools()
+        if not available:
+            return []
+
+        def relevance(tool: ToolProfile) -> float:
+            score = 0.0
+            if task_type in tool.strengths:
+                score += 10.0
+            # prefer user-preferred tools
+            score += tool.user_preference * 5.0
+            # prefer cheaper tools for simple tasks
+            cost_map = {"low": 2.0, "medium": 1.0, "high": 0.0}
+            score += cost_map.get(tool.cost_tier, 0.0)
+            return score
+
+        return sorted(available, key=relevance, reverse=True)
+
+    def build_config(self) -> dict:
+        """Build routing config from discovered tools."""
+        available = self.available_tools()
+        task_types = set()
+        for t in available:
+            task_types.update(t.strengths)
+
+        routing = {}
+        for task_type in sorted(task_types):
+            ranked = self.rank_tools(task_type)
+            if ranked:
+                routing[task_type] = {
+                    "primary": ranked[0].key,
+                    "fallback": ranked[1].key if len(ranked) > 1 else None,
+                }
+
+        return {
+            "version": "1.0.0",
+            "tools": {t.key: t.to_dict() for t in available},
+            "routing": routing,
+        }
+
+    def save_config(self, path: Optional[Path] = None) -> Path:
+        """Persist config to disk."""
+        target = path or self.config_path
+        target.parent.mkdir(parents=True, exist_ok=True)
+        config = self.build_config()
+        target.write_text(json.dumps(config, indent=2, ensure_ascii=False))
+        return target
+
+    def load_config(self, path: Optional[Path] = None) -> dict:
+        """Load existing config."""
+        target = path or self.config_path
+        if target.exists():
+            return json.loads(target.read_text())
+        return {}
+
+    def summary(self) -> str:
+        """Human-readable summary of discovered tools."""
+        available = self.available_tools()
+        if not available:
+            return "No AI tools found. Install claude, codex, gemini, or aider to get started."
+
+        lines = [f"Found {len(available)} AI tool(s):"]
+        for t in available:
+            ver = f" v{t.version}" if t.version else ""
+            lines.append(f"  - {t.name}{ver} ({t.vendor}) [{', '.join(t.strengths)}]")
+        return "\n".join(lines)
 
 
 def discover_tools() -> list[ToolProfile]:
-    tools = []
+    """
+    Probe system for all known AI CLI tools.
+    Returns list of ToolProfiles with availability set.
+    """
+    profiles = []
     for key, info in TOOL_REGISTRY.items():
         profile = ToolProfile(
             key=key,
             name=info["name"],
             vendor=info["vendor"],
-            strengths=list(info["strengths"]),
+            strengths=info["strengths"],
             cost_tier=info["cost_tier"],
         )
-        check_cmd = info["check_cmd"]
-        if shutil.which(check_cmd[0]):
+
+        # Check if binary exists on PATH
+        binary = info["check_cmd"][0]
+        if shutil.which(binary):
             profile.available = True
+            # Try to get version
             try:
                 result = subprocess.run(
-                    check_cmd, capture_output=True, timeout=5,
-                    stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                    info["check_cmd"],
+                    capture_output=True, text=True, timeout=5,
                 )
-                version = result.stdout.decode().strip().split("\n")[0][:80]
-                profile.version = version if version else None
+                version_line = result.stdout.strip().split("\n")[0]
+                # Extract version-like string
+                for part in version_line.split():
+                    if any(c.isdigit() for c in part):
+                        profile.version = part.strip("v").strip(",")
+                        break
             except Exception:
                 pass
-        tools.append(profile)
-    return tools
+
+        profiles.append(profile)
+    return profiles
 
 
-class SetupWizard:
-    CONFIG_DIR = Path.home() / ".rolemesh"
-    CONFIG_PATH = CONFIG_DIR / "config.json"
-
-    def __init__(self):
-        self._tools: list[ToolProfile] = []
-        self._custom_tools: dict = {}
-
-    def discover(self):
-        self._tools = discover_tools()
-
-    def available_tools(self) -> list[ToolProfile]:
-        return [t for t in self._tools if t.available]
-
-    def rank_tools(self, task_type: str) -> list[ToolProfile]:
-        def score(t: ToolProfile) -> tuple:
-            return (
-                0 if task_type in t.strengths else 1,
-                t.user_preference or 999,
-                {"low": 0, "medium": 1, "high": 2}.get(t.cost_tier, 1),
-            )
-        return sorted(self.available_tools(), key=score)
-
-    def build_config(self) -> dict:
-        all_types = set()
-        for t in self._tools:
-            all_types.update(t.strengths)
-
-        tools_dict = {}
-        for t in self._tools:
-            tools_dict[t.key] = {
-                "key": t.key,
-                "name": t.name,
-                "vendor": t.vendor,
-                "strengths": t.strengths,
-                "cost_tier": t.cost_tier,
-                "available": t.available,
-                "version": t.version,
-            }
-
-        routing = {}
-        for task_type in sorted(all_types):
-            ranked = self.rank_tools(task_type)
-            routing[task_type] = {
-                "primary": ranked[0].key if len(ranked) > 0 else None,
-                "fallback": ranked[1].key if len(ranked) > 1 else None,
-            }
-
-        return {"version": "1.0.0", "tools": tools_dict, "routing": routing}
-
-    def save_config(self, path: Optional[Path] = None):
-        path = path or self.CONFIG_PATH
-        path.parent.mkdir(parents=True, exist_ok=True)
-        config = self.build_config()
-        path.write_text(json.dumps(config, indent=2, ensure_ascii=False))
-
-    def load_config(self, path: Optional[Path] = None) -> Optional[dict]:
-        path = path or self.CONFIG_PATH
-        if path.exists():
-            return json.loads(path.read_text())
-        return None
-
-    def validate_config(self, config: dict) -> list[str]:
-        errors = []
-        if "version" not in config:
-            errors.append("missing 'version' field")
-        if "tools" not in config:
-            errors.append("missing 'tools' field")
-        if "routing" not in config:
-            errors.append("missing 'routing' field")
-
-        tool_keys = set(config.get("tools", {}).keys())
-        for task_type, rule in config.get("routing", {}).items():
-            primary = rule.get("primary")
-            fallback = rule.get("fallback")
-            if primary and primary not in tool_keys:
-                errors.append(f"routing[{task_type}].primary '{primary}' not in tools")
-            if fallback and fallback not in tool_keys:
-                errors.append(f"routing[{task_type}].fallback '{fallback}' not in tools")
-        return errors
-
-    def register_tool(self, key: str, name: str, vendor: str,
-                      strengths: list, check_cmd: list,
-                      cost_tier: str = "medium") -> ToolProfile:
-        profile = ToolProfile(
-            key=key, name=name, vendor=vendor,
-            strengths=strengths, cost_tier=cost_tier,
-        )
-        if shutil.which(check_cmd[0]):
-            profile.available = True
-            try:
-                result = subprocess.run(
-                    check_cmd, capture_output=True, timeout=5,
-                    stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                )
-                version = result.stdout.decode().strip().split("\n")[0][:80]
-                profile.version = version if version else None
-            except Exception:
-                pass
-        self._tools.append(profile)
-        self._custom_tools[key] = True
-        TOOL_REGISTRY[key] = {
-            "name": name, "vendor": vendor,
-            "strengths": strengths, "check_cmd": check_cmd,
-            "cost_tier": cost_tier,
-        }
-        return profile
-
-    def unregister_tool(self, key: str) -> bool:
-        self._tools = [t for t in self._tools if t.key != key]
-        self._custom_tools.pop(key, None)
-        TOOL_REGISTRY.pop(key, None)
-        return True
-
-    def interactive_setup(self) -> dict:
-        self.discover()
-        available = self.available_tools()
-        print(self.summary())
-
-        for tool in available:
-            prompt = f"\n  Rank for {tool.name} ({tool.vendor})? [1-{len(available)}, Enter=skip]: "
-            try:
-                val = input(prompt).strip()
-            except (EOFError, KeyboardInterrupt):
-                break
-            if val and val.isdigit():
-                tool.user_preference = int(val)
-
-        config = self.build_config()
-        errors = self.validate_config(config)
-        if errors:
-            print(f"  Warnings: {errors}")
-
-        save_prompt = input("\n  Save config? [y/N]: ").strip().lower()
-        if save_prompt == "y":
-            path = self.save_config()
-            print(f"  Saved to {self.CONFIG_PATH}")
-
-        return config
-
-    def summary(self) -> str:
-        available = self.available_tools()
-        lines = [f"RoleMesh: {len(available)}/{len(self._tools)} tools available"]
-        for t in self._tools:
-            status = "[OK]" if t.available else "[--]"
-            ver = f" ({t.version})" if t.version else ""
-            lines.append(f"  {status} {t.name}{ver} — {t.vendor}, {t.cost_tier}")
-        return "\n".join(lines)
-
+# --- CLI ---
 
 def main():
+    import argparse
+    parser = argparse.ArgumentParser(description="RoleMesh AI Tool Setup Wizard")
+    parser.add_argument("--json", dest="json_out", action="store_true",
+                        help="Output config as JSON")
+    parser.add_argument("--save", action="store_true",
+                        help="Save config to ~/.rolemesh/config.json")
+    parser.add_argument("--interactive", "-i", action="store_true",
+                        help="Guided setup (set preferences)")
+    args = parser.parse_args()
+
     wizard = SetupWizard()
     wizard.discover()
-    print(wizard.summary())
+
+    if args.interactive:
+        print("=== RoleMesh Setup Wizard ===\n")
+        print(wizard.summary())
+        print()
+        for tool in wizard.available_tools():
+            resp = input(f"Prefer {tool.name}? [y/n/skip] ").strip().lower()
+            if resp == "y":
+                tool.user_preference = 1
+            elif resp == "n":
+                tool.user_preference = -1
+
+    config = wizard.build_config()
+
+    if args.json_out:
+        print(json.dumps(config, indent=2, ensure_ascii=False))
+    else:
+        print(wizard.summary())
+        if config.get("routing"):
+            print(f"\nRouting rules ({len(config['routing'])} task types):")
+            for task, rule in config["routing"].items():
+                fb = f" (fallback: {rule['fallback']})" if rule["fallback"] else ""
+                print(f"  {task} -> {rule['primary']}{fb}")
+
+    if args.save:
+        path = wizard.save_config()
+        print(f"\nConfig saved to {path}")
 
 
 if __name__ == "__main__":

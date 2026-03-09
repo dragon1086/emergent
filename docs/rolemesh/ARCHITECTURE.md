@@ -1,176 +1,102 @@
 # RoleMesh Architecture
 
+> Auto-Persona matching engine for amp's 2-agent debate system
+
 ## Overview
 
-RoleMesh is a 4-layer pipeline that turns a natural-language task request into an executed AI CLI command:
+RoleMesh is the persona selection and opposition-verification layer within amp. It takes a user question, identifies the decision domain, and returns two genuinely opposed expert personas for the debate loop.
+
+## Core Pipeline
 
 ```
-User Request
+User Question
      |
      v
-[1. Builder]    discover installed tools, build config
-     |
+[1] Domain Classifier
+     |  - Embedding-based topic detection
+     |  - Maps to one of 10 preset domains (or "custom")
      v
-[2. Router]     classify task type, select best tool
-     |
+[2] Persona Selector
+     |  - Preset domains: lookup from persona_presets.py
+     |  - Custom domains: LLM-generated pair via persona_dynamic.py
      v
-[3. Executor]   dispatch via subprocess, handle fallback
-     |
+[3] Opposition Verifier
+     |  - Compute cosine distance between persona embeddings
+     |  - Threshold: distance >= 0.35 (tuned via benchmark)
+     |  - If below threshold: regenerate until opposition confirmed
      v
-[4. Dashboard]  visualize status, health, history
+[4] Persona Pair Output
+     - agent_a: {name, role, system_prompt, stance}
+     - agent_b: {name, role, system_prompt, stance}
 ```
 
-Each layer is independent and can be used standalone.
+## Components
 
-## Module Dependency Graph
+### Domain Classifier
 
-```
-__main__.py  (CLI entry point, subcommand dispatch)
-     |
-     +--- builder.py   (no internal deps)
-     |
-     +--- router.py    (no internal deps)
-     |
-     +--- executor.py  (imports router)
-     |
-     +--- dashboard.py (imports builder, router)
+Classifies user input into one of the following domains:
+
+| Domain | Trigger patterns |
+|--------|-----------------|
+| Career | job, promotion, resign, career change |
+| Relationship | partner, marriage, breakup, family |
+| Business | startup, revenue, strategy, launch |
+| Investment | stock, portfolio, fund, valuation |
+| Legal | contract, lawsuit, compliance, rights |
+| Technology | architecture, stack, migration, security |
+| Health | diagnosis, treatment, lifestyle, symptoms |
+| Education | degree, course, certification, learning |
+| Conflict | dispute, negotiation, confrontation |
+| Creative | writing, design, art, publishing |
+
+Unmatched inputs fall through to dynamic persona generation.
+
+### Persona Selector
+
+Two paths:
+
+1. **Preset path** (`persona_presets.py`): Hardcoded opposing expert pairs per domain. Fast, deterministic, no LLM call.
+2. **Dynamic path** (`persona_dynamic.py`): Generates a custom pair via single LLM call. Slower but handles any domain.
+
+### Opposition Verifier
+
+Uses `text-embedding-3-small` to embed both persona descriptions, then computes cosine distance. This prevents degenerate pairs where both agents argue from similar positions.
+
+```python
+# Verification logic (simplified)
+emb_a = embed(persona_a.description)
+emb_b = embed(persona_b.description)
+distance = 1 - cosine_similarity(emb_a, emb_b)
+
+if distance < OPPOSITION_THRESHOLD:
+    regenerate()  # up to 3 retries
 ```
 
 ## Data Flow
 
-### Setup (one-time)
-
 ```
-TOOL_REGISTRY (built-in dict in builder.py)
-     |
-     v
-discover_tools()          # shutil.which + --version probe for each tool
-     |
-     v
-SetupWizard.build_config()  # rank tools per task type, generate routing rules
-     |
-     v
-~/.rolemesh/config.json   # persisted config (version, tools, routing)
+amp.py (entry)
+  -> orchestrator.py
+       -> rolemesh.select_personas(question)
+            -> domain_classifier.classify(question)
+            -> persona_selector.get_pair(domain)
+            -> opposition_verifier.verify(pair)
+       <- (persona_a, persona_b)
+       -> agents.py (construct prompts with personas)
+       -> debate loop
 ```
 
-### Runtime (per request)
+## Configuration
 
-```
-request string
-     |
-     v
-classify_task()           # regex pattern matching -> [(task_type, confidence)]
-     |
-     v
-route()                   # lookup config routing table -> RouteResult
-     |
-     v
-TOOL_COMMANDS[key]        # construct CLI args (e.g. ["claude", "-p", task])
-     |
-     v
-subprocess.run()          # execute with 300s timeout
-     |
-     v
-~/.rolemesh/history.jsonl # append execution record (timestamp, tool, type, success, duration)
-```
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| `OPPOSITION_THRESHOLD` | 0.35 | Minimum cosine distance for valid pair |
+| `MAX_REGEN_ATTEMPTS` | 3 | Retries before falling back to generic pair |
+| `EMBEDDING_MODEL` | text-embedding-3-small | Model for opposition verification |
+| `DYNAMIC_PERSONA_MODEL` | gpt-4o | Model for custom persona generation |
 
 ## Design Decisions
 
-### Why regex over LLM for classification?
-
-Task classification uses regex pattern matching instead of an LLM call because:
-
-1. **Zero latency** — no API call, no network dependency
-2. **Deterministic** — same input always produces same routing
-3. **Offline** — works without API keys or internet
-4. **Auditable** — patterns are visible in `TASK_PATTERNS`
-
-The confidence score (matched pattern groups / total groups) provides a simple but effective ranking signal.
-
-### Why subprocess over SDK?
-
-AI CLI tools are invoked via `subprocess.run()` rather than importing their SDKs because:
-
-1. **Universal** — any CLI tool can be integrated without SDK dependency
-2. **Isolation** — tool crashes don't affect RoleMesh
-3. **Simple** — no version coupling between RoleMesh and tool SDKs
-
-### Fallback strategy
-
-The executor implements automatic fallback:
-
-1. Route the task to the primary tool via config
-2. If primary tool fails (non-zero exit code) and a fallback is configured, retry with the fallback tool
-3. The `fallback_used` flag on `ExecutionResult` tracks whether fallback was triggered
-
-### Ranking algorithm
-
-`SetupWizard.rank_tools(task_type)` sorts available tools by a 3-level key:
-
-1. **Strength match** — 0 if task_type is in the tool's strengths, 1 otherwise
-2. **User preference** — integer rank set during interactive setup (lower = preferred)
-3. **Cost tier** — low=0, medium=1, high=2
-
-This ensures task-fit tools are preferred, then user favorites, then cheaper options.
-
-### Config schema
-
-Config uses a flat JSON structure with version field for future migration:
-
-```json
-{
-  "version": "1.0.0",
-  "tools": {
-    "<key>": {
-      "key": "claude",
-      "name": "Claude Code",
-      "vendor": "Anthropic",
-      "strengths": ["coding", "refactoring", "..."],
-      "cost_tier": "high",
-      "available": true,
-      "version": "1.0.46"
-    }
-  },
-  "routing": {
-    "<task_type>": { "primary": "<tool_key>", "fallback": "<tool_key>" }
-  }
-}
-```
-
-Validation (`SetupWizard.validate_config`) checks for missing fields (`version`, `tools`, `routing`) and dead references in routing rules (primary/fallback pointing to non-existent tool keys).
-
-## Extension Points
-
-### Adding a new tool
-
-1. Add entry to `TOOL_REGISTRY` in `builder.py` with name, vendor, strengths, check_cmd, cost_tier
-2. Add command config to `TOOL_COMMANDS` in `executor.py`
-3. Run `setup --save` to regenerate config
-
-Or use the `SetupWizard.register_tool()` API for runtime registration.
-
-### Adding a new task type
-
-1. Add pattern tuple to `TASK_PATTERNS` in `router.py` (each tuple: task_type name + two regex group strings)
-2. Add the task type string to relevant tools' `strengths` lists in `TOOL_REGISTRY`
-3. Regenerate config
-
-### Custom routing logic
-
-Subclass `RoleMeshRouter` and override `route()` for custom logic (e.g., cost-aware routing, time-of-day rules, user preference weighting).
-
-## File Layout
-
-```
-src/rolemesh/
-  __init__.py       # package docstring
-  __main__.py       # CLI entry point (argparse subcommands)
-  builder.py        # TOOL_REGISTRY, ToolProfile, SetupWizard, discover_tools()
-  router.py         # TASK_PATTERNS, RouteResult, RoleMeshRouter
-  executor.py       # TOOL_COMMANDS, ExecutionResult, RoleMeshExecutor
-  dashboard.py      # Color, HealthCheck, DashboardData, RoleMeshDashboard
-
-~/.rolemesh/
-  config.json       # routing config (generated by setup)
-  history.jsonl     # execution log (appended by executor)
-```
+1. **Embedding verification over prompt-only**: Prompt instructions alone cannot guarantee genuine opposition. Embedding distance is a measurable, reproducible metric.
+2. **Preset-first, dynamic-fallback**: Presets are faster and more reliable for common domains. Dynamic generation handles the long tail.
+3. **Stateless selection**: RoleMesh does not retain state between questions. KG context is injected upstream by the orchestrator, not by RoleMesh itself.

@@ -3448,6 +3448,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-210",
+      "type": "insight",
+      "label": "동일모델 에코챔버 ‘측정량’의 비식별성: 상호강화 vs 공통휴리스틱",
+      "content": "동일 모델(동일 가중치) 두 에이전트의 대화 로그만으로 “에코챔버(상호 강화로 인한 편향 증폭)”를 측정하려 하면, 관측가능한 패턴 대부분이 (i) 모델 내재의 공통 휴리스틱/안전정책/문체-정렬로 인한 자연 수렴, (ii) 프롬프트/과제 구조가 유도한 합의 압력, (iii) 대화가 제공하는 정보의 비대칭(각 턴이 다음 턴의 컨텍스트를 강제)으로도 동일하게 생성된다. 즉, ‘상호강화 메커니즘’과 ‘공통 생성 메커니즘’은 관측상 동치(또는 거의 동치)인 경우가 많아 식별가능성이 붕괴한다. 이를 깨려면 측정량이 최소한 다음을 분리해야 한다: (A) 에이전트 간 상호작용이 없을 때의 기준 편향(단독 생성/독립 샘플)과 (B) 상호작용이 있을 때 추가로 생기는 편향 변화(Δ). 그런데 동일모델 조건에서 (A) 자체가 매우 강한 상관(동일 prior+동일 decoding)으로 이미 수렴하므로 Δ가 작고 노이즈에 묻기 쉽다. 따라서 “합의/유사성 증가” 같은 표면 지표는 에코챔버의 충분조건도 필요조건도 아니며, 잘못하면 자연 수렴을 에코챔버로 오판정한다. 더 엄밀히는, 에코챔버를 ‘상호작용이 편향의 분산을 줄이면서 평균을 특정 방향으로 이동시키는 인과효과’로 정의하고, 동일모델에서도 인과효과를 추정할 수 있게 (1) 상호작용을 무작위로 차단/주입하는 조작변수, (2) 반사실 비교(교차-컨텍스트, 섀도 대화), (3) 모델 내부 공통요인을 통제하는 대조(예: 독립 샘플링/시드, 역할 프롬프트 교란)를 포함한 설계가 필요하다. 핵심 반증 포인트는: “상호강화가 없다면 나타나지 말아야 할 비선형 증폭(예: 특정 주장에 대한 확",
+      "source": "gpt-5.2-critic",
+      "tags": [
+        "[identifiability",
+        "measurement",
+        "alternative_explanations]"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-211",
+      "type": "critique",
+      "label": "통합 종합: 에코챔버를 Δbias로만 두면 “편향의 방향성”은 잡히지만 **정보 다양성 축소·상호강화 구조**(네트워크/대화역학)가 빠져 자연 수렴(정답으로",
+      "content": "에코챔버를 Δbias로만 두면 “편향의 방향성”은 잡히지만 **정보 다양성 축소·상호강화 구조**(네트워크/대화역학)가 빠져 자연 수렴(정답으로의 학습, 공통 휴리스틱)과 혼동되므로, 최소 측정량은 (i) **조건부 확신도 이동**: 동일한 사실정보량(또는 정답 피드백)을 통제했을 때 상호작용 노출 후 확신도/극단값이 증가하는 정도, (ii) **비선형 선택확률 증폭(positive feedback gain)**: 초기 선호 (p_0)가 있을 때 상호작용 후 (p_1=f(p_0))의 기울기/곡률이 1을 초과(특히 중간 구간에서 기울기>1)하는지로 두고, 식별 조작은 **상호작용 차단(독립 반복)** vs **섀도 대화(내용은 동일하되 상호영향만 제거: 상대 발화는 고정 로그/샘플로 제공)** vs **시드/초기 의견 무작위화(동일 정보에서 시작점만 랜덤)**를 교차해 Δbias와 위 두 측정량이 “상호작용 존재”에서만 커지는지 보시면 됩니다. ‘합의 증가’ 지표가 실패하는 반례는 **집단이 두 진영으로 양극화되어 내부 합의는 증가하지만 전체 합의(분산/모달리티)는 오히려 악화**되는 경우로, 예컨대 섀도 대화 없이 실대화에서 각 진영이 자기 진영의 신호만 증",
+      "source": "gpt-5.2-synthesizer",
+      "tags": [
+        "kg2",
+        "same-model",
+        "agent-b",
+        "synthesizer"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -7306,6 +7339,26 @@
       "source": "gpt-5.2-synthesizer",
       "cross_source": true,
       "created": "2026-03-07"
+    },
+    {
+      "id": "e-357",
+      "from": "n-210",
+      "to": "n-002",
+      "relation": "EXTENDS",
+      "label": "동일모델 에코챔버 가설의 식별가능성 문제를 ‘측정량(유사성/합의)’의 관측동치와 인과효과(Δ) 분리 실패로 구체화",
+      "source": "gpt-5.2-critic",
+      "cross_source": false,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-358",
+      "from": "n-211",
+      "to": "n-210",
+      "relation": "critiques",
+      "label": "Agent B(종합가)가 Agent A(비판가)에 반박/보완",
+      "source": "gpt-5.2-synthesizer",
+      "cross_source": true,
+      "created": "2026-03-07"
     }
   ],
   "meta": {
@@ -7316,9 +7369,9 @@
     "description": "Same-model instance (gpt-5.2 × gpt-5.2) — 2x2 experiment, zero capability gap",
     "created": "2026-03-05",
     "last_updated": "2026-03-07",
-    "total_nodes": 209,
-    "total_edges": 356,
-    "next_node_id": "n-210",
+    "total_nodes": 211,
+    "total_edges": 358,
+    "next_node_id": "n-212",
     "last_updater": "gpt-5.2-synthesizer",
     "reset_reason": "Upgraded from gpt-4o×gpt-4o-mini to gpt-5.2×gpt-5.2 for stronger same-model echo-chamber test"
   }

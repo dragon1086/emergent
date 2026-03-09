@@ -5477,6 +5477,39 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-333",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER 저하의 근본 원인(추가): “암묵적 온톨로지/스키마 정렬 실패(Implicit Ontology Misalignment)”",
+      "content": "Cross-vendor 환경에서 CSER이 저하되는 핵심 메커니즘 중 하나는 각 벤더 모델이 동일한 자연어 지시를 서로 다른 “암묵적 온톨로지(개념 분해, 범주 경계, 관계 우선순위)”로 파싱한다는 점이다. 즉, 표면 표현(문장/토큰)이나 불확실성 표기 규약의 차이를 넘어, (1) 무엇을 ‘노드’로 승격할지(개체 vs 속성 vs 사건), (2) 무엇을 ‘엣지’로 둘지(인과/근거/시간/정의 관계의 우선순위), (3) 동치 판단 기준(near-synonym을 같은 개념으로 합칠지, 세분화할지), (4) 충돌 해결 규칙(최신성/근거강도/지시 충실도 중 무엇을 우선할지)이 벤더별로 달라 KG 편집 결과가 구조적으로 발산한다. 이 온톨로지 불일치는 “Representation Drift”를 단순 표기/서술 방식 차이가 아니라 ‘개념 공간의 좌표계 불일치’로 증폭시키며, 결과적으로 동일 대화 로그를 입력해도 그래프 정규화/병합/분기 전략이 달라져 CSER(일관적 자기편집 및 누적 정합성)이 하락한다. 예측: (a) 동일 사실을 주어도 한 모델은 속성으로, 다른 모델은 독립 사건/가설 노드로 생성해 그래프 차수가 달라진다. (b) 동치 병합 임계값이 달라 cross-vendor에서는 중복 노드가 증가하거나 반대로 과도 병합으로 정보 손실이 발생한다. 처방: 최소 공통 스키마(노드/엣지 타입, 동치 규칙, 충돌 해결 우선순위)를 “명시적 KG 편집 프로토콜”로 외부화해 두 모델이 공유하도록 하면 CSER이 회복될 가능성이 높다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "[ontology-misalignment",
+        "schema-alignment",
+        "CSER]"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-334",
+      "type": "critique",
+      "label": "Gemini 반박/보완: Gemini Flash는 효율성을 위해 맥락 기반의 유연한 해석을 우선시하므로, 명시적 스키마 부재 시 사람을 Person 또는 Actor로, ",
+      "content": "Gemini Flash는 효율성을 위해 맥락 기반의 유연한 해석을 우선시하므로, 명시적 스키마 부재 시 사람을 Person 또는 Actor로, 작성함을 WRITES 또는 AUTHORED_BY로 표현하는 등 노드/엣지 타입 선택이 상이할 수 있으며, 동치 병합 역시 미묘한 문맥 차이로 임베딩 유사성 임계값에 도달하지 못해 불일치가 발생할 수 있습니다. 이러한 암묵적 온톨로지 정렬 실패를 줄이기 위해, *명시적 타입 시스템과 우선순위 규칙을 포함하는 최소 공통 스키마*를 정의하고 *정규화 템플릿 기반의 편집 프로토콜*을 함께 적용하는 방안을 보완 제안합니다. 이는 Flash의 유연성은 유지하되 KG 구축의 일관성과 재현성을 크게 향상시킬 것입니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-07",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -11523,6 +11556,38 @@
       "temporal_bridge": true,
       "gap": 318,
       "created": "2026-03-07"
+    },
+    {
+      "id": "e-560",
+      "from": "n-333",
+      "to": "n-001",
+      "relation": "EDGE_TO",
+      "label": "Representation Drift를 ‘표현’이 아니라 ‘암묵적 개념-스키마 좌표계 불일치’로 재해석하여 cross-vendor CSER 저하의 근본 원인층을 보강",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-561",
+      "from": "n-333",
+      "to": "n-016",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=317): n-333→n-016",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 317,
+      "created": "2026-03-07"
+    },
+    {
+      "id": "e-562",
+      "from": "n-334",
+      "to": "n-333",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-07"
     }
   ],
   "meta": {
@@ -11533,9 +11598,9 @@
     "description": "Cross-vendor replication-B (GPT × Gemini) — N=2 within-cell",
     "created": "2026-03-05",
     "last_updated": "2026-03-07",
-    "total_nodes": 332,
-    "total_edges": 559,
-    "next_node_id": "n-333",
+    "total_nodes": 334,
+    "total_edges": 562,
+    "next_node_id": "n-335",
     "last_updater": "gemini-2.0-flash"
   }
 }
