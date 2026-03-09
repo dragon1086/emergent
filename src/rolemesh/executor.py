@@ -1,14 +1,13 @@
-#!/usr/bin/env python3
 """
 rolemesh/executor.py - Task Executor
 
 Dispatches tasks to AI CLI tools based on routing decisions.
-Completes the pipeline: discover -> route -> execute.
+Completes the pipeline: classify -> route -> execute.
 
 Usage:
-    from src.rolemesh.executor import RoleMeshExecutor
-    executor = RoleMeshExecutor()
-    result = executor.run("이 함수 리팩토링해줘", context={"file": "main.py"})
+    python -m src.rolemesh.executor "이 함수 리팩토링해줘"
+    python -m src.rolemesh.executor --dry-run "UI 컴포넌트 수정"
+    python -m src.rolemesh.executor --tool claude "explain this code"
 """
 
 import json
@@ -20,38 +19,23 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Optional
 
+from . import router as router_mod
 from .router import RoleMeshRouter, RouteResult
 
 
-# --- Tool CLI Commands ---
+# ─── Tool Commands ───────────────────────────────────────────────────────────
 
 TOOL_COMMANDS: dict[str, dict] = {
-    "claude": {
-        "cmd": ["claude", "-p"],
-        "stdin_mode": False,  # prompt via args
-    },
-    "codex": {
-        "cmd": ["codex"],
-        "stdin_mode": True,  # prompt via stdin
-    },
-    "gemini": {
-        "cmd": ["gemini"],
-        "stdin_mode": True,
-    },
-    "aider": {
-        "cmd": ["aider", "--message"],
-        "stdin_mode": False,
-    },
-    "copilot": {
-        "cmd": ["gh", "copilot", "suggest"],
-        "stdin_mode": False,
-    },
-    "cursor": {
-        "cmd": ["cursor"],
-        "stdin_mode": True,
-    },
+    "claude": {"cmd": "claude", "stdin_mode": False},
+    "codex": {"cmd": "codex", "stdin_mode": False},
+    "gemini": {"cmd": "gemini", "stdin_mode": False},
+    "aider": {"cmd": "aider", "stdin_mode": False},
+    "copilot": {"cmd": "copilot", "stdin_mode": False},
+    "cursor": {"cmd": "cursor", "stdin_mode": False},
 }
 
+
+# ─── Data Classes ────────────────────────────────────────────────────────────
 
 @dataclass
 class ExecutionResult:
@@ -75,7 +59,7 @@ class ExecutionResult:
             "tool": self.tool,
             "tool_name": self.tool_name,
             "task_type": self.task_type,
-            "confidence": round(self.confidence, 2),
+            "confidence": self.confidence,
             "exit_code": self.exit_code,
             "success": self.success,
             "stdout": self.stdout,
@@ -84,6 +68,8 @@ class ExecutionResult:
             "fallback_used": self.fallback_used,
         }
 
+
+# ─── Executor ────────────────────────────────────────────────────────────────
 
 class RoleMeshExecutor:
     """
@@ -96,49 +82,53 @@ class RoleMeshExecutor:
       4. Falls back to alternate tool on failure
     """
 
-    def __init__(self, config_path: Optional[Path] = None,
-                 timeout: int = 120, dry_run: bool = False,
-                 history_path: Optional[Path] = None):
+    def __init__(
+        self,
+        config_path: Optional[Path] = None,
+        timeout: int = 120,
+        dry_run: bool = False,
+        history_path: Optional[Path] = None,
+    ):
         self.router = RoleMeshRouter(config_path=config_path)
         self.timeout = timeout
         self.dry_run = dry_run
-        self.history_path = history_path or Path.home() / ".rolemesh" / "history.jsonl"
+        self.history_path = history_path or (
+            Path.home() / ".rolemesh" / "history.jsonl"
+        )
 
-    def _log_history(self, request: str, result: 'ExecutionResult') -> None:
+    def _log_history(
+        self, request: str, result: "ExecutionResult"
+    ) -> None:
         """Append execution record to history JSONL file."""
         if self.dry_run:
             return
-        try:
-            self.history_path.parent.mkdir(parents=True, exist_ok=True)
-            entry = {
-                "timestamp": datetime.now(timezone.utc).isoformat(),
-                "request": request[:200],
-                "tool": result.tool,
-                "task_type": result.task_type,
-                "confidence": round(result.confidence, 2),
-                "success": result.success,
-                "exit_code": result.exit_code,
-                "duration_ms": result.duration_ms,
-                "fallback_used": result.fallback_used,
-            }
-            with open(self.history_path, "a") as f:
-                f.write(json.dumps(entry, ensure_ascii=False) + "\n")
-        except OSError:
-            pass  # non-critical
+        self.history_path.parent.mkdir(parents=True, exist_ok=True)
+        record = {
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "request": request[:200],
+            "tool": result.tool,
+            "task_type": result.task_type,
+            "confidence": result.confidence,
+            "success": result.success,
+            "exit_code": result.exit_code,
+            "duration_ms": result.duration_ms,
+            "fallback_used": result.fallback_used,
+        }
+        with open(self.history_path, "a") as f:
+            f.write(json.dumps(record, ensure_ascii=False) + "\n")
 
     def get_history(self, limit: int = 50) -> list[dict]:
         """Read recent execution history entries."""
         if not self.history_path.exists():
             return []
-        entries = []
-        try:
-            with open(self.history_path) as f:
-                for line in f:
-                    line = line.strip()
-                    if line:
+        entries: list[dict] = []
+        with open(self.history_path) as f:
+            for line in f:
+                if line.strip():
+                    try:
                         entries.append(json.loads(line))
-        except (OSError, json.JSONDecodeError):
-            pass
+                    except (json.JSONDecodeError, OSError):
+                        pass
         return entries[-limit:]
 
     def check_tool(self, tool_key: str) -> bool:
@@ -146,67 +136,66 @@ class RoleMeshExecutor:
         cmd_info = TOOL_COMMANDS.get(tool_key)
         if not cmd_info:
             return False
-        binary = cmd_info["cmd"][0]
-        return shutil.which(binary) is not None
+        return bool(shutil.which(cmd_info["cmd"]))
 
-    def build_command(self, tool_key: str, prompt: str,
-                      context: Optional[dict] = None) -> Optional[list[str]]:
+    def build_command(
+        self,
+        tool_key: str,
+        prompt: str,
+        context: Optional[dict] = None,
+    ) -> list[str]:
         """Build the CLI command for a given tool and prompt."""
         cmd_info = TOOL_COMMANDS.get(tool_key)
         if not cmd_info:
-            return None
-
-        cmd = list(cmd_info["cmd"])
-
-        if not cmd_info["stdin_mode"]:
+            return []
+        cmd = [cmd_info["cmd"]]
+        if cmd_info.get("stdin_mode"):
+            pass  # stdin tools get prompt via stdin
+        else:
+            cmd.append("-p")
             cmd.append(prompt)
-
-        # Append file context if provided
         if context and context.get("files"):
             for f in context["files"]:
                 cmd.append(str(f))
-
         return cmd
 
-    def dispatch(self, tool_key: str, prompt: str,
-                 context: Optional[dict] = None) -> ExecutionResult:
+    def dispatch(
+        self,
+        tool_key: str,
+        prompt: str,
+        context: Optional[dict] = None,
+    ) -> ExecutionResult:
         """
         Dispatch a prompt to a specific tool via subprocess.
         Returns ExecutionResult with stdout/stderr/exit_code.
         """
-        route = RouteResult(
-            tool=tool_key,
-            tool_name=TOOL_COMMANDS.get(tool_key, {}).get("cmd", [tool_key])[0],
-            task_type="direct",
-            confidence=1.0,
-            fallback=None,
-            reason="Direct dispatch",
-        )
-
-        cmd = self.build_command(tool_key, prompt, context)
-        if not cmd:
+        cmd_info = TOOL_COMMANDS.get(tool_key)
+        if not cmd_info:
             return ExecutionResult(
-                tool=tool_key, tool_name=tool_key,
+                tool=tool_key, tool_name=f"Unknown tool: {tool_key}",
                 task_type="direct", confidence=1.0,
-                exit_code=127, stdout="",
-                stderr=f"Unknown tool: {tool_key}",
+                exit_code=127, stdout="", stderr=f"Unknown tool: {tool_key}",
                 duration_ms=0,
             )
 
+        cmd = self.build_command(tool_key, prompt, context)
+
         if self.dry_run:
             return ExecutionResult(
-                tool=tool_key, tool_name=route.tool_name,
+                tool=tool_key, tool_name=cmd_info["cmd"],
                 task_type="direct", confidence=1.0,
                 exit_code=0,
                 stdout=f"[dry-run] Would execute: {' '.join(cmd)}",
                 stderr="", duration_ms=0,
             )
 
-        result = self._run_subprocess(cmd, tool_key, route, prompt, context)
-        self._log_history(prompt, result)
-        return result
+        return self._run_subprocess(cmd, tool_key, prompt)
 
-    def run(self, request: str, context: Optional[dict] = None) -> ExecutionResult:
+    def run(
+        self,
+        request: str,
+        context: Optional[dict] = None,
+    ) -> ExecutionResult:
         """
         Full pipeline: route the request, then execute.
 
@@ -216,57 +205,52 @@ class RoleMeshExecutor:
         """
         route = self.router.route(request)
 
-        # Check primary tool
+        # Check primary tool availability
         if not self.check_tool(route.tool):
-            # Try fallback
             if route.fallback and self.check_tool(route.fallback):
+                print(f"Primary '{route.tool}' unavailable, using fallback")
                 route = RouteResult(
                     tool=route.fallback,
                     tool_name=route.fallback,
                     task_type=route.task_type,
                     confidence=route.confidence,
                     fallback=None,
-                    reason=f"Primary '{route.tool}' unavailable, using fallback",
+                    reason=route.reason,
                 )
-                result = self._execute_tool(route, request, context)
-                result.fallback_used = True
-                self._log_history(request, result)
-                return result
             else:
-                result = ExecutionResult(
+                msg = f"Tool '{route.tool}' not found on PATH"
+                if route.fallback:
+                    msg += f" (fallback '{route.fallback}' also unavailable)"
+                return ExecutionResult(
                     tool=route.tool, tool_name=route.tool_name,
                     task_type=route.task_type, confidence=route.confidence,
-                    exit_code=127, stdout="",
-                    stderr=f"Tool '{route.tool}' not found on PATH"
-                           + (f" (fallback '{route.fallback}' also unavailable)"
-                              if route.fallback else ""),
-                    duration_ms=0,
+                    exit_code=127, stdout="", stderr=msg, duration_ms=0,
                 )
-                self._log_history(request, result)
-                return result
 
         result = self._execute_tool(route, request, context)
 
-        # On failure, try fallback
+        # Try fallback on failure
         if not result.success and route.fallback and self.check_tool(route.fallback):
+            print(f"Tool '{route.tool}' failed (exit {result.exit_code}), "
+                  f"using fallback")
             fallback_route = RouteResult(
                 tool=route.fallback,
                 tool_name=route.fallback,
                 task_type=route.task_type,
                 confidence=route.confidence,
-                fallback=None,
-                reason=f"Primary '{route.tool}' failed (exit {result.exit_code}), using fallback",
             )
-            fallback_result = self._execute_tool(fallback_route, request, context)
-            fallback_result.fallback_used = True
-            self._log_history(request, fallback_result)
-            return fallback_result
+            result = self._execute_tool(fallback_route, request, context)
+            result.fallback_used = True
 
         self._log_history(request, result)
         return result
 
-    def _execute_tool(self, route: RouteResult, prompt: str,
-                      context: Optional[dict] = None) -> ExecutionResult:
+    def _execute_tool(
+        self,
+        route: RouteResult,
+        prompt: str,
+        context: Optional[dict] = None,
+    ) -> ExecutionResult:
         """Execute a routed task."""
         cmd = self.build_command(route.tool, prompt, context)
         if not cmd:
@@ -287,39 +271,45 @@ class RoleMeshExecutor:
                 stderr="", duration_ms=0,
             )
 
-        return self._run_subprocess(cmd, route.tool, route, prompt, context)
+        return self._run_subprocess(cmd, route.tool, prompt, route)
 
-    def _run_subprocess(self, cmd: list[str], tool_key: str,
-                        route: RouteResult, prompt: str,
-                        context: Optional[dict] = None) -> ExecutionResult:
+    def _run_subprocess(
+        self,
+        cmd: list[str],
+        tool_key: str,
+        prompt: str,
+        route: Optional[RouteResult] = None,
+    ) -> ExecutionResult:
         """Run the actual subprocess."""
         cmd_info = TOOL_COMMANDS.get(tool_key, {})
-        stdin_data = prompt if cmd_info.get("stdin_mode") else None
+        task_type = route.task_type if route else "direct"
+        confidence = route.confidence if route else 1.0
+        tool_name = route.tool_name if route else tool_key
 
         start = time.monotonic()
         try:
+            stdin_data = prompt if cmd_info.get("stdin_mode") else None
             proc = subprocess.run(
                 cmd,
-                input=stdin_data,
                 capture_output=True,
                 text=True,
                 timeout=self.timeout,
-                cwd=context.get("cwd") if context else None,
+                input=stdin_data,
+                cwd=cmd_info.get("cwd"),
             )
             duration_ms = int((time.monotonic() - start) * 1000)
             return ExecutionResult(
-                tool=route.tool, tool_name=route.tool_name,
-                task_type=route.task_type, confidence=route.confidence,
+                tool=tool_key, tool_name=tool_name,
+                task_type=task_type, confidence=confidence,
                 exit_code=proc.returncode,
-                stdout=proc.stdout,
-                stderr=proc.stderr,
+                stdout=proc.stdout, stderr=proc.stderr,
                 duration_ms=duration_ms,
             )
         except subprocess.TimeoutExpired:
             duration_ms = int((time.monotonic() - start) * 1000)
             return ExecutionResult(
-                tool=route.tool, tool_name=route.tool_name,
-                task_type=route.task_type, confidence=route.confidence,
+                tool=tool_key, tool_name=tool_name,
+                task_type=task_type, confidence=confidence,
                 exit_code=-1, stdout="",
                 stderr=f"Timeout after {self.timeout}s",
                 duration_ms=duration_ms,
@@ -327,28 +317,32 @@ class RoleMeshExecutor:
         except OSError as e:
             duration_ms = int((time.monotonic() - start) * 1000)
             return ExecutionResult(
-                tool=route.tool, tool_name=route.tool_name,
-                task_type=route.task_type, confidence=route.confidence,
+                tool=tool_key, tool_name=tool_name,
+                task_type=task_type, confidence=confidence,
                 exit_code=126, stdout="",
                 stderr=f"OS error: {e}",
                 duration_ms=duration_ms,
             )
 
 
-# --- CLI ---
+# ─── CLI ─────────────────────────────────────────────────────────────────────
 
-def main():
+def main() -> None:
     import argparse
+
     parser = argparse.ArgumentParser(
+        prog="rolemesh-executor",
         description="RoleMesh Executor - route and execute AI tasks",
-        epilog="Examples:\n"
-               "  python -m src.rolemesh.executor '이 함수 리팩토링해줘'\n"
-               "  python -m src.rolemesh.executor --dry-run 'UI 컴포넌트 수정'\n"
-               "  python -m src.rolemesh.executor --tool claude 'explain this code'",
+        epilog=(
+            "Examples:\n"
+            "  python -m src.rolemesh.executor '이 함수 리팩토링해줘'\n"
+            "  python -m src.rolemesh.executor --dry-run 'UI 컴포넌트 수정'\n"
+            "  python -m src.rolemesh.executor --tool claude 'explain this code'"
+        ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument("request", help="Task description")
-    parser.add_argument("--tool", type=str, default=None,
+    parser.add_argument("--tool", type=str,
                         help="Force a specific tool (skip routing)")
     parser.add_argument("--dry-run", action="store_true",
                         help="Show what would be executed without running")
@@ -358,7 +352,10 @@ def main():
                         help="JSON output")
     args = parser.parse_args()
 
-    executor = RoleMeshExecutor(timeout=args.timeout, dry_run=args.dry_run)
+    executor = RoleMeshExecutor(
+        timeout=args.timeout,
+        dry_run=args.dry_run,
+    )
 
     if args.tool:
         result = executor.dispatch(args.tool, args.request)
@@ -366,7 +363,7 @@ def main():
         result = executor.run(args.request)
 
     if args.json_out:
-        print(json.dumps(result.to_dict(), indent=2, ensure_ascii=False))
+        print(json.dumps(result.to_dict(), ensure_ascii=False, indent=2))
     else:
         status = "OK" if result.success else "FAIL"
         print(f"[{status}] {result.tool_name} ({result.tool})")

@@ -1,15 +1,13 @@
-#!/usr/bin/env python3
 """
 rolemesh/router.py - Task-to-Tool Router
 
 Given a user request, classifies the task type and routes it
-to the best available AI tool based on the RoleMesh config.
+to the best AI CLI tool based on config.
 
 Usage:
-    from src.rolemesh.router import RoleMeshRouter
-    router = RoleMeshRouter()
-    result = router.route("이 함수 리팩토링해줘")
-    # -> {"tool": "claude", "task_type": "refactoring", ...}
+    python -m src.rolemesh.router "코드 리팩토링해줘"
+    python -m src.rolemesh.router --json "UI 컴포넌트 수정"
+    python -m src.rolemesh.router --all "이 코드 리팩토링하고 UI도 수정해줘"
 """
 
 import json
@@ -18,10 +16,11 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Optional
 
-# --- Task Classification ---
+
+# ─── Task Patterns ───────────────────────────────────────────────────────────
+# (task_type, [regex_patterns])
 
 TASK_PATTERNS: list[tuple[str, list[str]]] = [
-    # (task_type, keyword patterns)
     ("coding", [
         r"코드|code|구현|implement|함수|function|class|클래스",
         r"작성|write|만들어|build|생성|create|추가|add",
@@ -77,25 +76,29 @@ TASK_PATTERNS: list[tuple[str, list[str]]] = [
 ]
 
 
+# ─── Data Classes ────────────────────────────────────────────────────────────
+
 @dataclass
 class RouteResult:
     tool: str
     tool_name: str
     task_type: str
-    confidence: float  # 0.0 ~ 1.0
-    fallback: Optional[str]
-    reason: str
+    confidence: float
+    fallback: Optional[str] = None
+    reason: str = ""
 
     def to_dict(self) -> dict:
         return {
             "tool": self.tool,
             "tool_name": self.tool_name,
             "task_type": self.task_type,
-            "confidence": round(self.confidence, 2),
+            "confidence": self.confidence,
             "fallback": self.fallback,
             "reason": self.reason,
         }
 
+
+# ─── Router ──────────────────────────────────────────────────────────────────
 
 class RoleMeshRouter:
     """
@@ -104,11 +107,12 @@ class RoleMeshRouter:
     Loads config from ~/.rolemesh/config.json (built by SetupWizard).
     Falls back to sensible defaults if no config exists.
     """
-
     DEFAULT_TOOL = "claude"
 
     def __init__(self, config_path: Optional[Path] = None):
-        self.config_path = config_path or Path.home() / ".rolemesh" / "config.json"
+        self.config_path = config_path or (
+            Path.home() / ".rolemesh" / "config.json"
+        )
         self.config = self._load_config()
 
     def _load_config(self) -> dict:
@@ -122,21 +126,18 @@ class RoleMeshRouter:
         Returns sorted list of (task_type, confidence).
         """
         text = request.lower()
-        scores: dict[str, float] = {}
+        matches: list[tuple[str, float]] = []
 
         for task_type, patterns in TASK_PATTERNS:
-            match_count = 0
             total_patterns = len(patterns)
-            for pattern in patterns:
-                if re.search(pattern, text):
-                    match_count += 1
-            if match_count > 0:
-                scores[task_type] = match_count / total_patterns
+            matched = sum(
+                1 for p in patterns if re.search(p, text, re.IGNORECASE)
+            )
+            if matched > 0:
+                confidence = matched / total_patterns
+                matches.append((task_type, confidence))
 
-        if not scores:
-            return [("coding", 0.3)]  # default: assume coding
-
-        return sorted(scores.items(), key=lambda x: x[1], reverse=True)
+        return sorted(matches, key=lambda x: x[1], reverse=True)
 
     def route(self, request: str) -> RouteResult:
         """
@@ -147,29 +148,31 @@ class RoleMeshRouter:
         3. Return tool + fallback
         """
         classifications = self.classify_task(request)
-        best_type, confidence = classifications[0]
-
         routing = self.config.get("routing", {})
-        tools = self.config.get("tools", {})
+        tools_config = self.config.get("tools", {})
 
-        if best_type in routing:
-            rule = routing[best_type]
-            primary = rule["primary"]
+        if classifications:
+            task_type, confidence = classifications[0]
+            rule = routing.get(task_type, {})
+            tool = rule.get("primary", self.DEFAULT_TOOL)
             fallback = rule.get("fallback")
-            tool_info = tools.get(primary, {})
-            tool_name = tool_info.get("name", primary)
+            tool_name = tools_config.get(tool, {}).get("name", "Claude Code")
+            reason = self._build_reason(task_type, confidence, classifications)
         else:
-            primary = self.DEFAULT_TOOL
+            task_type = "coding"
+            confidence = 0.0
+            tool = self.DEFAULT_TOOL
             fallback = None
             tool_name = "Claude Code"
+            reason = "No task pattern matched, defaulting to Claude"
 
         return RouteResult(
-            tool=primary,
+            tool=tool,
             tool_name=tool_name,
-            task_type=best_type,
+            task_type=task_type,
             confidence=confidence,
             fallback=fallback,
-            reason=self._build_reason(best_type, confidence, classifications),
+            reason=reason,
         )
 
     def route_multi(self, request: str) -> list[RouteResult]:
@@ -178,46 +181,51 @@ class RoleMeshRouter:
         Useful for complex requests that span multiple categories.
         """
         classifications = self.classify_task(request)
-        results = []
+        routing = self.config.get("routing", {})
+        tools_config = self.config.get("tools", {})
+        results: list[RouteResult] = []
+
         for task_type, confidence in classifications:
-            routing = self.config.get("routing", {})
-            tools = self.config.get("tools", {})
-            if task_type in routing:
-                rule = routing[task_type]
-                primary = rule["primary"]
-                fallback = rule.get("fallback")
-                tool_info = tools.get(primary, {})
-                tool_name = tool_info.get("name", primary)
-            else:
-                primary = self.DEFAULT_TOOL
-                fallback = None
-                tool_name = "Claude Code"
+            rule = routing.get(task_type, {})
+            tool = rule.get("primary", self.DEFAULT_TOOL)
+            fallback = rule.get("fallback")
+            tool_name = tools_config.get(tool, {}).get("name", "Claude Code")
             results.append(RouteResult(
-                tool=primary,
+                tool=tool,
                 tool_name=tool_name,
                 task_type=task_type,
                 confidence=confidence,
                 fallback=fallback,
-                reason=f"Task type '{task_type}' matched with {confidence:.0%} confidence",
+                reason=(f"Task type '{task_type}' matched with "
+                        f"{confidence:.0%} confidence"),
             ))
+
         return results
 
-    def _build_reason(self, task_type: str, confidence: float,
-                      all_types: list[tuple[str, float]]) -> str:
+    def _build_reason(
+        self,
+        task_type: str,
+        confidence: float,
+        all_types: list[tuple[str, float]],
+    ) -> str:
+        others = [t for t, _ in all_types[1:4]]
+        suffix = (
+            f" (also considered: {', '.join(others)})" if others else ""
+        )
         if confidence >= 0.8:
-            return f"Strong match for '{task_type}'"
+            return f"Strong match for '{task_type}'{suffix}"
         elif confidence >= 0.5:
-            alts = [t for t, _ in all_types[1:3]]
-            alt_str = f" (also considered: {', '.join(alts)})" if alts else ""
-            return f"Good match for '{task_type}'{alt_str}"
+            return f"Good match for '{task_type}'{suffix}"
         else:
-            return f"Weak match for '{task_type}' - consider specifying task type"
+            return (f"Weak match for '{task_type}'"
+                    " - consider specifying task type")
 
 
-# --- CLI ---
+# ─── CLI ─────────────────────────────────────────────────────────────────────
 
-def main():
+def main() -> None:
     import argparse
+
     parser = argparse.ArgumentParser(description="RoleMesh Task Router")
     parser.add_argument("request", help="Task description to route")
     parser.add_argument("--json", dest="json_out", action="store_true")
@@ -230,17 +238,19 @@ def main():
     if args.all:
         results = router.route_multi(args.request)
         if args.json_out:
-            print(json.dumps([r.to_dict() for r in results], indent=2, ensure_ascii=False))
+            print(json.dumps([r.to_dict() for r in results],
+                             ensure_ascii=False, indent=2))
         else:
             for r in results:
-                print(f"  [{r.confidence:.0%}] {r.task_type} -> {r.tool_name} ({r.tool})")
+                print(f"  [{r.confidence:.0%}] {r.task_type} "
+                      f"-> {r.tool_name} ({r.tool})")
     else:
         result = router.route(args.request)
         if args.json_out:
-            print(json.dumps(result.to_dict(), indent=2, ensure_ascii=False))
+            print(json.dumps(result.to_dict(), ensure_ascii=False, indent=2))
         else:
             print(f"-> {result.tool_name} ({result.tool})")
-            print(f"   Task: {result.task_type} ({result.confidence:.0%})")
+            print(f"   Task: {result.task_type}")
             if result.fallback:
                 print(f"   Fallback: {result.fallback}")
             print(f"   {result.reason}")

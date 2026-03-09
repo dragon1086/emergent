@@ -1,545 +1,327 @@
 # RoleMesh API Reference
 
-> Public interface for tool discovery, config generation, and task routing
+> Python API for builder, router, executor, and dashboard modules
 
-## Module: `src.rolemesh`
-
-```python
-from src.rolemesh import SetupWizard, ToolProfile, discover_tools, RoleMeshRouter
-```
-
----
-
-## Router (`src.rolemesh.router`)
-
-### `RoleMeshRouter`
-
-Routes user requests to the best available AI tool based on config.
-
-```python
-router = RoleMeshRouter(config_path=None)
-```
-
-**Parameters:**
-- `config_path` (Path, optional): Path to routing config. Defaults to `~/.rolemesh/config.json`
-
----
-
-### `RoleMeshRouter.classify_task(request: str) -> list[tuple[str, float]]`
-
-Classifies a request into task types with confidence scores.
-
-**Parameters:**
-- `request` (str): Natural language task description (Korean or English)
-
-**Returns:** Sorted list of `(task_type, confidence)` tuples, highest confidence first.
-
-**Example:**
-```python
-router = RoleMeshRouter()
-types = router.classify_task("이 함수 리팩토링해줘")
-# [("refactoring", 1.0), ("coding", 0.5)]
-```
-
-If no patterns match, returns `[("coding", 0.3)]` as default.
-
----
-
-### `RoleMeshRouter.route(request: str) -> RouteResult`
-
-Routes a request to the best tool. Uses the highest-confidence classification and looks up the routing config.
-
-**Parameters:**
-- `request` (str): Task description
-
-**Returns:** `RouteResult`
-
-**Example:**
-```python
-result = router.route("UI 컴포넌트 디자인")
-print(result.tool)       # "gemini"
-print(result.tool_name)  # "Gemini CLI"
-print(result.task_type)  # "frontend"
-print(result.confidence) # 1.0
-print(result.fallback)   # "claude"
-print(result.reason)     # "Strong match for 'frontend'"
-```
-
-Without config, always returns `tool="claude"`.
-
----
-
-### `RoleMeshRouter.route_multi(request: str) -> list[RouteResult]`
-
-Returns routing suggestions for all matched task types. Useful for complex requests that span multiple categories.
-
-**Parameters:**
-- `request` (str): Task description
-
-**Returns:** List of `RouteResult` objects, one per matched task type.
-
-**Example:**
-```python
-results = router.route_multi("코드 리팩토링 개선해줘")
-for r in results:
-    print(f"  [{r.confidence:.0%}] {r.task_type} -> {r.tool_name}")
-# [100%] refactoring -> Codex CLI
-# [ 50%] coding -> Claude Code
-```
-
----
-
-### `RouteResult`
-
-```python
-@dataclass
-class RouteResult:
-    tool: str              # Tool key (e.g., "claude", "gemini")
-    tool_name: str         # Display name (e.g., "Claude Code")
-    task_type: str         # Classified task category
-    confidence: float      # Match strength (0.0 - 1.0)
-    fallback: Optional[str]  # Backup tool key, or None
-    reason: str            # Human-readable routing explanation
-```
-
-**Methods:**
-- `to_dict() -> dict`: Serializes to dictionary (confidence rounded to 2 decimals)
-
----
-
-## Builder (`src.rolemesh.builder`)
+## builder - Tool Discovery & Config
 
 ### `discover_tools() -> list[ToolProfile]`
 
-Probes the system for all known AI CLI tools. Checks PATH for each tool's binary and attempts to read its version.
+Probe the system for all known AI CLI tools. Returns a list of `ToolProfile` objects with `available` set based on `shutil.which()`.
 
-**Returns:** List of `ToolProfile` objects for all registered tools (both available and unavailable).
-
-**Example:**
 ```python
-from src.rolemesh import discover_tools
+from src.rolemesh.builder import discover_tools
 
-profiles = discover_tools()
-for p in profiles:
-    status = "installed" if p.available else "not found"
-    print(f"  {p.name}: {status}")
+tools = discover_tools()
+for t in tools:
+    print(f"{t.name}: {'installed' if t.available else 'not found'}")
 ```
 
----
+### `ToolProfile`
+
+Dataclass representing a discovered tool.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `key` | `str` | Unique identifier (e.g., `"claude"`) |
+| `name` | `str` | Display name (e.g., `"Claude Code"`) |
+| `vendor` | `str` | Vendor name |
+| `strengths` | `list[str]` | Task types the tool excels at |
+| `cost_tier` | `str` | `"low"`, `"medium"`, or `"high"` |
+| `available` | `bool` | Whether the CLI binary was found on PATH |
+| `version` | `str \| None` | Detected version string |
+| `user_preference` | `int` | User preference score (`1` prefer, `-1` avoid, `0` neutral) |
 
 ### `SetupWizard`
 
 Orchestrates tool discovery, ranking, and config generation.
 
 ```python
-wizard = SetupWizard(config_path=None)
-```
+from src.rolemesh.builder import SetupWizard
 
-**Parameters:**
-- `config_path` (Path, optional): Where to save/load config. Defaults to `~/.rolemesh/config.json`
-
----
-
-### `SetupWizard.discover() -> list[ToolProfile]`
-
-Runs `discover_tools()` and stores results internally.
-
-**Returns:** List of all `ToolProfile` objects.
-
----
-
-### `SetupWizard.available_tools() -> list[ToolProfile]`
-
-Filters to only tools with `available=True`.
-
----
-
-### `SetupWizard.rank_tools(task_type: str) -> list[ToolProfile]`
-
-Ranks available tools for a given task type by relevance.
-
-**Parameters:**
-- `task_type` (str): Task category to rank for (e.g., `"coding"`, `"frontend"`)
-
-**Returns:** Available tools sorted by score (best first).
-
-**Scoring:**
-- Strength match: +10.0
-- User preference: +5.0 (preferred), 0 (neutral), -5.0 (avoid)
-- Cost tier: +2.0 (low), +1.0 (medium), +0.0 (high)
-
-**Example:**
-```python
 wizard = SetupWizard()
 wizard.discover()
-ranked = wizard.rank_tools("coding")
-print(ranked[0].name)  # Best tool for coding tasks
 ```
 
----
+#### `SetupWizard(config_path: Path = ~/.rolemesh/config.json)`
 
-### `SetupWizard.build_config() -> dict`
+Constructor. Optionally override the config file path.
 
-Generates a complete routing configuration from discovered tools.
+#### `discover() -> list[ToolProfile]`
 
-**Returns:** Config dict with structure:
-```json
-{
-  "version": "1.0.0",
-  "tools": {
-    "claude": { "key": "claude", "name": "Claude Code", ... }
-  },
-  "routing": {
-    "coding": { "primary": "claude", "fallback": "codex" }
-  }
-}
-```
+Run tool discovery. Populates `self.tools`.
 
----
+#### `available_tools() -> list[ToolProfile]`
 
-### `SetupWizard.save_config(path=None) -> Path`
+Return only tools where `available=True`.
 
-Persists config to disk. Creates parent directories if needed.
+#### `rank_tools(task_type: str) -> list[ToolProfile]`
 
-**Returns:** Path where config was saved.
+Rank available tools for a task type. Sorted by: strength match > user preference > lower cost.
 
----
-
-### `SetupWizard.load_config(path=None) -> dict`
-
-Loads existing config from disk. Returns empty dict if file doesn't exist.
-
----
-
-### `SetupWizard.summary() -> str`
-
-Returns a human-readable summary of discovered tools.
-
-**Example:**
 ```python
-print(wizard.summary())
-# Found 3 AI tool(s):
-#   - Claude Code v1.0 (Anthropic) [coding, analysis, reasoning, architecture]
-#   - Codex CLI v0.1 (OpenAI) [coding, refactoring, quick-edit]
-#   - Gemini CLI v2.0 (Google) [multimodal, search, ui-design, frontend]
+ranked = wizard.rank_tools("refactoring")
+print(f"Best tool for refactoring: {ranked[0].name}")
 ```
 
----
+#### `build_config() -> dict`
 
-### `SetupWizard.register_tool(key, name, vendor, strengths, check_cmd, cost_tier="medium") -> ToolProfile`
+Generate a routing config dict from discovered tools.
 
-Registers a custom AI tool at runtime. Adds to `TOOL_REGISTRY`, probes availability, and appends to internal tool list.
+#### `save_config(path: Path = None) -> None`
 
-**Parameters:**
-- `key` (str): Unique registry key (e.g., `"windsurf"`)
-- `name` (str): Display name
-- `vendor` (str): Company/org name
-- `strengths` (list[str]): Task types this tool excels at
-- `check_cmd` (list[str]): Command to verify installation
-- `cost_tier` (str): `"low"`, `"medium"`, or `"high"` (default: `"medium"`)
+Persist config to disk. Creates parent directories if needed.
 
-**Returns:** `ToolProfile` with `available` and `version` populated.
+#### `load_config(path: Path = None) -> dict`
 
-**Raises:** `ValueError` if `cost_tier` is invalid or `key`/`name` is empty.
+Load existing config from disk. Returns `{}` if file doesn't exist.
 
-**Example:**
+#### `validate_config(config: dict) -> list[str]` (static)
+
+Validate a config dict. Returns a list of error strings (empty = valid).
+
 ```python
-wizard = SetupWizard()
-wizard.discover()
-profile = wizard.register_tool(
-    key="windsurf", name="Windsurf", vendor="Codeium",
-    strengths=["coding", "inline-edit"], check_cmd=["windsurf", "--version"],
-)
-print(profile.available, profile.version)
-```
-
----
-
-### `SetupWizard.unregister_tool(key: str) -> bool`
-
-Removes a tool from `TOOL_REGISTRY` and the internal tool list.
-
-**Parameters:**
-- `key` (str): Registry key to remove (e.g., `"cursor"`)
-
-**Returns:** `True` if the key was found in the registry, `False` otherwise.
-
-**Example:**
-```python
-wizard.unregister_tool("cursor")
-wizard.save_config()  # Persist the removal
-```
-
----
-
-### `SetupWizard.validate_config(config: dict) -> list[str]` (static)
-
-Validates a config dict against the expected schema. Returns a list of error strings (empty list means valid).
-
-**Parameters:**
-- `config` (dict): Config dict to validate
-
-**Returns:** List of error strings. Empty list if valid.
-
-**Checks performed:**
-- Config is a dict
-- `version` field exists and is a string
-- `tools` field exists, is a dict, each value is a dict
-- `routing` field exists, is a dict, each rule has `primary`
-- All `primary` and `fallback` references point to entries in `tools`
-
-**Example:**
-```python
-config = wizard.build_config()
 errors = SetupWizard.validate_config(config)
-assert errors == []  # Valid config
+if errors:
+    raise ValueError(f"Invalid config: {errors}")
 ```
 
----
+#### `register_tool(key, name, vendor, strengths, check_cmd, cost_tier) -> ToolProfile`
 
-## Data Types
-
-### `ToolProfile`
+Register a custom tool into the registry and discover it.
 
 ```python
-@dataclass
-class ToolProfile:
-    key: str                    # Registry key (e.g., "claude")
-    name: str                   # Display name (e.g., "Claude Code")
-    vendor: str                 # Company (e.g., "Anthropic")
-    strengths: list[str]        # Task types this tool excels at
-    cost_tier: str              # "low", "medium", or "high"
-    available: bool = False     # Whether binary found on PATH
-    version: Optional[str] = None  # Detected version string
-    user_preference: int = 0    # 1=preferred, 0=neutral, -1=avoid
+profile = wizard.register_tool(
+    key="my-tool",
+    name="My Tool",
+    vendor="My Company",
+    strengths=["coding", "analysis"],
+    check_cmd=["my-tool", "--version"],
+    cost_tier="low",
+)
 ```
 
-**Methods:**
-- `to_dict() -> dict`: Serializes all fields to dictionary
+#### `unregister_tool(key: str) -> bool`
+
+Remove a tool from the registry. Returns `True` if the tool was found.
+
+#### `summary() -> str`
+
+Human-readable summary of discovered tools.
 
 ---
 
-## CLI Usage
+## router - Task Classification & Routing
 
-### Router CLI
+### `TASK_PATTERNS`
 
-```bash
-# Route a single request
-python -m src.rolemesh.router "이 함수 구현해줘"
-# -> Claude Code (claude)
-#    Task: coding (100%)
-#    Strong match for 'coding'
+List of `(task_type, [regex_patterns])` tuples defining 13 bilingual task types:
 
-# JSON output
-python -m src.rolemesh.router "UI 디자인" --json
+`coding`, `refactoring`, `quick-edit`, `analysis`, `architecture`, `reasoning`, `frontend`, `multimodal`, `search`, `explain`, `git-integration`, `completion`, `pair-programming`
 
-# Show all matching task types
-python -m src.rolemesh.router "코드 리팩토링" --all
-```
+### `RouteResult`
 
-### Builder CLI
+Dataclass for routing decisions.
 
-```bash
-# Discover tools (display only)
-python -m src.rolemesh.builder
+| Field | Type | Description |
+|-------|------|-------------|
+| `tool` | `str` | Selected tool key |
+| `tool_name` | `str` | Display name |
+| `task_type` | `str` | Classified task type |
+| `confidence` | `float` | Classification confidence (0.0-1.0) |
+| `fallback` | `str \| None` | Fallback tool key |
+| `reason` | `str` | Human-readable routing explanation |
 
-# Save config
-python -m src.rolemesh.builder --save
+#### `to_dict() -> dict`
 
-# Interactive setup with preferences
-python -m src.rolemesh.builder --interactive
+Serialize to dictionary.
 
-# JSON output
-python -m src.rolemesh.builder --json
-```
+### `RoleMeshRouter`
 
----
+Routes tasks to the best tool based on config.
 
-## Constants
+#### `RoleMeshRouter(config_path: Path = None)`
 
-### `TOOL_REGISTRY` (builder.py)
+Constructor. Loads config from `~/.rolemesh/config.json` (or given path).
 
-Dict of known AI CLI tools and their profiles. Keys: `claude`, `codex`, `gemini`, `aider`, `copilot`, `cursor`.
+#### `classify_task(request: str) -> list[tuple[str, float]]`
 
-### `TASK_PATTERNS` (router.py)
-
-List of `(task_type, [regex_patterns])` tuples defining the 13 task categories. Patterns support Korean and English.
-
-### `RoleMeshRouter.DEFAULT_TOOL`
-
-Fallback tool when no config exists. Value: `"claude"`.
-
----
-
-## Dashboard (`src.rolemesh.dashboard`)
-
-### `RoleMeshDashboard`
-
-Collects and displays unified system status: tools, routing, coverage, and health.
+Classify a request into task types with confidence scores. Returns sorted list of `(task_type, confidence)`.
 
 ```python
-dashboard = RoleMeshDashboard(config_path=None)
+from src.rolemesh.router import RoleMeshRouter
+
+router = RoleMeshRouter()
+classifications = router.classify_task("이 함수 리팩토링해줘")
+# [("refactoring", 1.0), ("quick-edit", 0.5)]
 ```
 
-**Parameters:**
-- `config_path` (Path, optional): Path to routing config. Defaults to `~/.rolemesh/config.json`
+#### `route(request: str) -> RouteResult`
 
----
-
-### `RoleMeshDashboard.collect() -> DashboardData`
-
-Gathers all dashboard data: discovers tools, loads config, runs health checks.
-
-**Returns:** `DashboardData` with all fields populated.
-
-**Example:**
-```python
-dashboard = RoleMeshDashboard()
-data = dashboard.collect()
-print(f"{len(data.tools)} tools, {len(data.task_types)} task types")
-```
-
----
-
-### `RoleMeshDashboard.render_tools() -> str`
-
-Renders installed and missing tools as formatted text.
-
-### `RoleMeshDashboard.render_routing() -> str`
-
-Renders the routing table (task type -> primary + fallback).
-
-### `RoleMeshDashboard.render_coverage() -> str`
-
-Renders the task/tool coverage matrix with strength and route markers.
-
-### `RoleMeshDashboard.render_health() -> str`
-
-Renders health check results with pass/fail indicators and score.
-
-### `RoleMeshDashboard.render_full() -> str`
-
-Renders all sections combined into a full dashboard view.
-
----
-
-### `DashboardData`
+Route a request to the best tool. Takes the highest-confidence classification, looks up primary + fallback from config.
 
 ```python
-@dataclass
-class DashboardData:
-    tools: list[ToolProfile]          # All discovered tools
-    config: dict                       # Loaded config
-    routing: dict                      # Routing rules from config
-    health_checks: list[HealthCheck]   # Health check results
-    task_types: list[str]              # All known task types
+result = router.route("리팩토링해줘")
+print(f"{result.tool_name} (confidence: {result.confidence:.0%})")
 ```
 
-**Methods:**
-- `to_dict() -> dict`: Serializes to dictionary for JSON output
+#### `route_multi(request: str) -> list[RouteResult]`
 
----
-
-### `HealthCheck`
+Return routing suggestions for all matched task types. Useful for complex requests spanning multiple categories.
 
 ```python
-@dataclass
-class HealthCheck:
-    name: str       # Check identifier (e.g., "config_file")
-    passed: bool    # Whether the check passed
-    detail: str     # Human-readable detail message
+results = router.route_multi("코드 리팩토링하고 UI도 수정해줘")
+for r in results:
+    print(f"  [{r.confidence:.0%}] {r.task_type} -> {r.tool}")
 ```
 
 ---
 
-## Executor (`src.rolemesh.executor`)
+## executor - Task Dispatch & Execution
+
+### `ExecutionResult`
+
+Dataclass for execution outcomes.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `tool` | `str` | Tool key that was executed |
+| `tool_name` | `str` | Display name |
+| `task_type` | `str` | Classified task type |
+| `confidence` | `float` | Classification confidence |
+| `exit_code` | `int` | Process exit code (`0`=success, `-1`=timeout, `126`=OS error, `127`=not found) |
+| `stdout` | `str` | Standard output |
+| `stderr` | `str` | Standard error |
+| `duration_ms` | `int` | Execution time in milliseconds |
+| `fallback_used` | `bool` | Whether the fallback tool was used |
+
+#### `success -> bool` (property)
+
+Returns `True` if `exit_code == 0`.
+
+#### `to_dict() -> dict`
+
+Serialize to dictionary.
 
 ### `RoleMeshExecutor`
 
-Routes and dispatches tasks to AI CLI tools via subprocess.
+Full pipeline: route, check availability, dispatch, fallback, log.
+
+#### `RoleMeshExecutor(config_path=None, timeout=120, dry_run=False, history_path=None)`
+
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| `config_path` | `~/.rolemesh/config.json` | Config file path |
+| `timeout` | `120` | Subprocess timeout in seconds |
+| `dry_run` | `False` | If `True`, show commands without executing |
+| `history_path` | `~/.rolemesh/history.jsonl` | History log path |
+
+#### `run(request: str, context: dict = None) -> ExecutionResult`
+
+Full pipeline execution. Routes the request, checks tool availability, dispatches, and falls back on failure.
 
 ```python
-executor = RoleMeshExecutor(config_path=None, timeout=120, dry_run=False)
-```
+from src.rolemesh.executor import RoleMeshExecutor
 
-**Parameters:**
-- `config_path` (Path, optional): Path to routing config
-- `timeout` (int): Subprocess timeout in seconds (default: 120)
-- `dry_run` (bool): If True, show commands without executing
-
----
-
-### `RoleMeshExecutor.run(request: str, context: dict = None) -> ExecutionResult`
-
-Full pipeline: classify, route, check availability, execute (with fallback on failure).
-
-**Parameters:**
-- `request` (str): Natural language task description
-- `context` (dict, optional): `{"files": [...], "cwd": "/path"}`
-
-**Returns:** `ExecutionResult`
-
-**Example:**
-```python
 executor = RoleMeshExecutor()
-result = executor.run("이 함수 구현해줘")
+result = executor.run("이 함수 리팩토링해줘")
 if result.success:
     print(result.stdout)
 else:
     print(f"Failed: {result.stderr}")
 ```
 
----
+The `context` parameter accepts an optional dict with a `files` key listing file paths to pass to the tool.
 
-### `RoleMeshExecutor.dispatch(tool_key: str, prompt: str, context: dict = None) -> ExecutionResult`
+#### `dispatch(tool_key: str, prompt: str, context: dict = None) -> ExecutionResult`
 
-Dispatches directly to a specific tool, skipping the router.
-
-**Parameters:**
-- `tool_key` (str): Tool key (e.g., `"claude"`, `"codex"`)
-- `prompt` (str): Task prompt
-- `context` (dict, optional): File and working directory context
-
----
-
-### `RoleMeshExecutor.check_tool(tool_key: str) -> bool`
-
-Checks if a tool's CLI binary is available on PATH.
-
-### `RoleMeshExecutor.build_command(tool_key: str, prompt: str, context: dict = None) -> list[str] | None`
-
-Builds the CLI command list for a given tool. Returns None for unknown tools.
-
----
-
-### `ExecutionResult`
+Dispatch directly to a specific tool, bypassing the router.
 
 ```python
-@dataclass
-class ExecutionResult:
-    tool: str              # Tool key
-    tool_name: str         # Display name
-    task_type: str         # Classified task category
-    confidence: float      # Routing confidence (0.0 - 1.0)
-    exit_code: int         # Process exit code (0 = success)
-    stdout: str            # Tool output
-    stderr: str            # Error output
-    duration_ms: int       # Execution time in milliseconds
-    fallback_used: bool    # Whether fallback tool was used
+result = executor.dispatch("codex", "explain this function")
 ```
 
-**Properties:**
-- `success -> bool`: True if `exit_code == 0`
+#### `check_tool(tool_key: str) -> bool`
 
-**Methods:**
-- `to_dict() -> dict`: Serializes all fields to dictionary
+Check if a tool's CLI binary is available on PATH.
 
-**Special exit codes:** `0` = success, `-1` = timeout, `126` = OS error, `127` = tool not found
+#### `build_command(tool_key: str, prompt: str, context: dict = None) -> list[str]`
+
+Build the CLI command list for a tool without executing it. Returns empty list for unknown tools.
+
+#### `get_history(limit: int = 50) -> list[dict]`
+
+Read recent entries from `history.jsonl`.
 
 ---
 
-## Constants
+## dashboard - Status & Health
 
-### `TOOL_COMMANDS` (executor.py)
+### `HealthCheck`
 
-Dict mapping tool keys to CLI command configs. Keys: `claude`, `codex`, `gemini`, `aider`, `copilot`, `cursor`. Each entry has `cmd` (command list) and `stdin_mode` (bool).
+Dataclass for health check results.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `name` | `str` | Check identifier |
+| `passed` | `bool` | Whether the check passed |
+| `detail` | `str` | Human-readable detail |
+
+### `DashboardData`
+
+Aggregated dashboard state.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `tools` | `list[ToolProfile]` | All discovered tools |
+| `config` | `dict` | Loaded config |
+| `routing` | `dict` | Routing rules from config |
+| `health_checks` | `list[HealthCheck]` | Health check results |
+| `task_types` | `list[str]` | All 13 task type names |
+| `history` | `list[dict]` | Recent execution history |
+
+#### `to_dict() -> dict`
+
+Serialize to dictionary (used for `--json` output).
+
+### `RoleMeshDashboard`
+
+Collects system status and renders views.
+
+#### `RoleMeshDashboard(config_path=None, history_path=None)`
+
+Constructor. Paths default to `~/.rolemesh/`.
+
+#### `collect() -> DashboardData`
+
+Gather all dashboard data: discover tools, load config, run health checks, load history.
+
+```python
+from src.rolemesh.dashboard import RoleMeshDashboard
+
+dashboard = RoleMeshDashboard()
+dashboard.collect()
+print(dashboard.render_full())
+```
+
+#### Render methods
+
+| Method | Description |
+|--------|-------------|
+| `render_tools()` | Tool list with availability, versions, strengths |
+| `render_routing()` | Routing table (task type -> primary/fallback) |
+| `render_coverage()` | Task type x tool coverage matrix |
+| `render_health()` | 5 health checks with pass/fail |
+| `render_history()` | Recent execution history with status/duration |
+| `render_full()` | All sections combined |
+
+### `Color`
+
+ANSI color helper. Respects `NO_COLOR` env var and TTY detection.
+
+```python
+from src.rolemesh.dashboard import Color
+
+Color.set_enabled(False)  # Disable colors programmatically
+```
+
+Static methods: `green()`, `red()`, `yellow()`, `cyan()`, `bold()`, `dim()`.

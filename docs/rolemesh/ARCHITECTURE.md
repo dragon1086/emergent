@@ -1,207 +1,182 @@
 # RoleMesh Architecture
 
-> AI Tool Discovery & Task-to-Tool Routing Engine
+> System design, module responsibilities, and data flow
 
-## Overview
-
-RoleMesh is a task routing layer that discovers installed AI CLI tools on the user's system, profiles their capabilities, and automatically routes user requests to the best-fit tool. It consists of four components: **Builder** (tool discovery + config generation), **Router** (task classification + routing), **Dashboard** (system status + health checks), and **Executor** (subprocess dispatch + fallback).
-
-## Core Pipeline
+## Module Overview
 
 ```
-User Request (natural language)
-     |
-     v
-[1] Task Classifier (router.py)
-     |  - Regex-based keyword matching against 13 task categories
-     |  - Scores each category by pattern match ratio
-     |  - Returns ranked list of (task_type, confidence)
-     v
-[2] Config Lookup (router.py)
-     |  - Loads routing config from ~/.rolemesh/config.json
-     |  - Maps task_type -> primary tool + fallback
-     |  - No config: defaults to "claude"
-     v
-[3] RouteResult Output
-     - tool: tool key (e.g., "claude", "gemini")
-     - tool_name: display name (e.g., "Claude Code")
-     - task_type: classified category
-     - confidence: match strength (0.0 - 1.0)
-     - fallback: backup tool if primary unavailable
-     - reason: human-readable routing explanation
-```
-
-## Components
-
-### Task Classifier
-
-Classifies user input into one of 13 task categories using regex pattern matching:
-
-| Task Type | Example Triggers |
-|-----------|-----------------|
-| coding | code, implement, function, class, create |
-| refactoring | refactor, cleanup, improve, split, extract |
-| quick-edit | typo, fix, change, rename, delete |
-| analysis | analyze, investigate, cause, debug, error |
-| architecture | architect, design, structure, migration, strategy |
-| reasoning | reason, logic, judge, evaluate, compare |
-| frontend | ui, ux, screen, layout, style, component |
-| multimodal | image, photo, screenshot, graph, chart |
-| search | search, find, lookup, docs, latest |
-| explain | explain, understand, tell, meaning |
-| git-integration | commit, branch, merge, PR, rebase |
-| completion | autocomplete, fill, continue, next |
-| pair-programming | together, pair, help, code review |
-
-Supports both Korean and English keywords. Unmatched inputs default to `coding` with 0.3 confidence.
-
-### Builder (SetupWizard)
-
-Discovers installed AI CLI tools and generates a routing configuration:
-
-```
-SetupWizard.discover()
-     |  - Probes PATH for known AI CLIs (claude, codex, gemini, aider, copilot, cursor)
-     |  - Runs --version to confirm availability
-     v
-SetupWizard.rank_tools(task_type)
-     |  - Ranks available tools by: strength match + user preference + cost tier
-     v
-SetupWizard.build_config()
-     |  - Generates routing rules: task_type -> primary + fallback
-     v
-SetupWizard.validate_config(config)
-     |  - Schema validation: version, tools, routing, cross-references
-     |  - Returns list of errors (empty = valid)
-     v
-SetupWizard.save_config()
-     -> ~/.rolemesh/config.json
-```
-
-**Runtime extensibility:**
-
-```
-SetupWizard.register_tool(key, name, vendor, strengths, check_cmd, cost_tier)
-     |  - Adds to TOOL_REGISTRY at runtime (no source edit needed)
-     |  - Probes binary availability + reads version
-     |  - Replaces existing entry if same key
-     v
-SetupWizard.unregister_tool(key)
-     |  - Removes from TOOL_REGISTRY + internal tool list
-     |  - Subsequent build_config() excludes the removed tool
-     v
-SetupWizard.save_config()
-     -> Updated config reflects additions/removals
-```
-
-### Tool Registry
-
-Six built-in AI CLI tools are registered with their capability profiles (extensible via `register_tool`):
-
-| Tool | Vendor | Strengths | Cost Tier |
-|------|--------|-----------|-----------|
-| Claude Code | Anthropic | coding, analysis, reasoning, architecture | high |
-| Codex CLI | OpenAI | coding, refactoring, quick-edit | medium |
-| Gemini CLI | Google | multimodal, search, ui-design, frontend | medium |
-| Aider | Community | coding, git-integration, pair-programming | low |
-| GitHub Copilot | GitHub | completion, quick-edit, explain | low |
-| Cursor | Cursor | coding, ui, inline-edit | medium |
-
-### Dashboard
-
-Collects and displays a unified view of the system:
-
-```
-RoleMeshDashboard.collect()
-     |  - Runs discover_tools()
-     |  - Loads routing config
-     |  - Enumerates all 13 task types
-     v
-_run_health_checks()
-     |  - config_file: exists?
-     |  - tools_available: >=1 on PATH?
-     |  - routing_coverage: all 13 task types routed?
-     |  - config_version: v1.0.0?
-     |  - no_dead_refs: all routing targets valid?
-     v
-render_full()
-     -> Tools list + Routing table + Coverage matrix + Health score
-```
-
-### Executor
-
-Dispatches tasks to AI CLI tools via subprocess:
-
-```
-RoleMeshExecutor.run(request)
-     |  - Router classifies + routes the request
-     |  - Checks primary tool on PATH
-     |  - Builds CLI command (args or stdin mode)
-     v
-subprocess.run(cmd, timeout=120)
-     |  - On success: return ExecutionResult
-     |  - On failure: try fallback tool
-     |  - On timeout: return exit_code=-1
-     v
-ExecutionResult(tool, stdout, stderr, exit_code, duration_ms)
+src/rolemesh/
+  __main__.py    # Unified CLI entry point (argparse subcommands)
+  builder.py     # Tool discovery & config generation
+  router.py      # Task classification & tool routing
+  executor.py    # Subprocess dispatch & fallback
+  dashboard.py   # Status visualization & health checks
 ```
 
 ## Data Flow
 
 ```
-Full pipeline (route + execute):
-  -> RoleMeshExecutor.run(request)
-       -> RoleMeshRouter.route(request)
-            -> classify_task(request)           # regex matching
-            -> load config (~/.rolemesh/config.json)
-            -> lookup routing[task_type]        # primary + fallback
-            <- RouteResult(tool, task_type, confidence, ...)
-       -> check_tool(tool_key)                  # binary on PATH?
-       -> build_command(tool_key, prompt)        # CLI args
-       -> subprocess.run(cmd)                    # dispatch
-       <- ExecutionResult(stdout, stderr, exit_code, duration_ms)
+User Request
+    |
+    v
+[__main__.py]  CLI parser -> dispatches to subcommand handler
+    |
+    +--> setup   -> [builder.py]    discover_tools() -> build_config() -> save_config()
+    |
+    +--> route   -> [router.py]     classify_task() -> route() -> RouteResult
+    |
+    +--> exec    -> [executor.py]   route() -> check_tool() -> dispatch() -> ExecutionResult
+    |                                   |           |
+    |                                   |           +--> fallback on failure
+    |                                   |
+    |                                   +--> _log_history() -> history.jsonl
+    |
+    +--> dashboard -> [dashboard.py] collect() -> render_*()
+    |
+    +--> status  -> [dashboard.py]  collect() -> one-line summary
+```
 
-Route only (no execution):
-  -> RoleMeshRouter.route(request)
-       <- RouteResult(tool, task_type, confidence, ...)
+## Module Details
 
-Config generation (one-time):
-  -> SetupWizard.discover()               # probe system
-  -> SetupWizard.build_config()           # generate routing rules
-  -> SetupWizard.save_config()            # persist to disk
+### builder.py - Discovery & Config
 
-Status check:
-  -> RoleMeshDashboard.collect()           # tools + config + health
-  -> dashboard.render_full()               # formatted output
+**Responsibility**: Detect which AI CLI tools are installed and generate a routing config.
+
+Key types:
+- `TOOL_REGISTRY` - Static registry of known tools with check commands and strengths
+- `ToolProfile` - Dataclass representing a discovered tool (key, name, vendor, strengths, cost_tier, available, version, user_preference)
+- `SetupWizard` - Orchestrates discovery, ranking, config build/save/validate
+
+Flow:
+1. `discover_tools()` iterates `TOOL_REGISTRY`, runs `shutil.which()` + version check via subprocess
+2. `rank_tools(task_type)` sorts available tools by strength match, user preference, then cost (prefer cheaper)
+3. `build_config()` maps each task type to primary + fallback tool
+4. `validate_config()` checks schema integrity and dead references
+
+### router.py - Classification & Routing
+
+**Responsibility**: Classify a natural-language task request and select the best tool.
+
+Key types:
+- `TASK_PATTERNS` - 13 task types, each with bilingual regex patterns (Korean + English)
+- `RouteResult` - Dataclass with tool, tool_name, task_type, confidence, fallback, reason
+- `RoleMeshRouter` - Loads config, classifies requests, returns routing decisions
+
+Classification algorithm:
+1. Lowercase the request text
+2. For each task type, count how many of its regex patterns match
+3. Confidence = matched_patterns / total_patterns
+4. Return all matches sorted by confidence (descending)
+
+Routing:
+1. Take the highest-confidence task type
+2. Look up `config.routing[task_type]` for primary and fallback tools
+3. If no match, default to `claude`
+
+### executor.py - Dispatch & Fallback
+
+**Responsibility**: Execute routed tasks via subprocess with timeout and fallback.
+
+Key types:
+- `TOOL_COMMANDS` - Maps tool keys to CLI command names and stdin modes
+- `ExecutionResult` - Dataclass with tool, exit_code, stdout, stderr, duration_ms, fallback_used
+- `RoleMeshExecutor` - Full pipeline: route -> check availability -> dispatch -> fallback -> log
+
+Execution pipeline:
+1. Router classifies and routes the request
+2. Check if primary tool binary exists on PATH
+3. Build CLI command (`<tool> -p "<prompt>"`)
+4. Run subprocess with timeout
+5. On failure (non-zero exit): try fallback tool
+6. Append result to `history.jsonl`
+
+Exit codes: `0` success, `1-125` tool error, `126` OS error, `127` tool not found, `-1` timeout.
+
+### dashboard.py - Visualization & Health
+
+**Responsibility**: Collect system status and render human-readable or JSON output.
+
+Key types:
+- `HealthCheck` - name, passed, detail
+- `DashboardData` - Aggregates tools, config, routing, health checks, history
+- `RoleMeshDashboard` - Collects data and renders 5 views (tools, routing, coverage, health, history)
+- `Color` - ANSI color helper respecting `NO_COLOR` env var and TTY detection
+
+Health checks (5):
+1. `config_file` - config.json exists
+2. `tools_available` - at least 1 tool on PATH
+3. `routing_coverage` - all 13 task types have routing rules
+4. `config_version` - version is "1.0.0"
+5. `no_dead_refs` - all routing rules reference existing tools
+
+### __main__.py - CLI Entry Point
+
+**Responsibility**: Unified argparse CLI dispatching to module handlers.
+
+Subcommands: `dashboard` (d), `setup` (s), `route` (r), `exec` (x), `status` (st).
+
+## Configuration Schema
+
+```
+~/.rolemesh/
+  config.json      # Generated by builder, consumed by router/executor/dashboard
+  history.jsonl    # Append-only execution log, consumed by dashboard
+```
+
+### config.json
+
+```json
+{
+  "version": "1.0.0",
+  "tools": {
+    "<key>": {
+      "key": "string",
+      "name": "string",
+      "vendor": "string",
+      "strengths": ["string"],
+      "cost_tier": "low|medium|high",
+      "available": true,
+      "version": "string|null",
+      "user_preference": 0
+    }
+  },
+  "routing": {
+    "<task_type>": {
+      "primary": "<tool_key>",
+      "fallback": "<tool_key>"
+    }
+  }
+}
+```
+
+### history.jsonl
+
+Each line is a JSON record:
+
+```json
+{
+  "timestamp": "ISO 8601",
+  "request": "first 200 chars",
+  "tool": "tool_key",
+  "task_type": "string",
+  "confidence": 0.0-1.0,
+  "success": true,
+  "exit_code": 0,
+  "duration_ms": 0,
+  "fallback_used": false
+}
 ```
 
 ## Design Decisions
 
-1. **Regex over LLM classification**: Task classification uses regex patterns, not LLM calls. This keeps routing instant (~1ms) and free of API costs.
-2. **Config-driven routing**: Routing rules are persisted to disk so they survive across sessions. The wizard runs once; the router reads the config every time.
-3. **Cost-aware ranking**: When multiple tools can handle a task type, cheaper tools rank higher by default. User preferences override cost ranking.
-4. **Bilingual patterns**: All regex patterns include both Korean and English keywords to support bilingual users.
-5. **Graceful degradation**: No config file → default to Claude. No pattern match → assume coding with low confidence. No available tools → informative error message.
+1. **Subprocess isolation**: Tools run as external processes, not imported as libraries. This provides process isolation, language independence, and crash safety.
 
-## File Structure
+2. **Regex classification over LLM**: Task classification uses fast regex matching instead of an LLM call. This keeps routing latency near zero and avoids recursive tool invocation.
 
-```
-src/rolemesh/
-  __init__.py          # Public exports: SetupWizard, ToolProfile, discover_tools,
-                       #   RoleMeshRouter, RoleMeshDashboard, DashboardData,
-                       #   HealthCheck, RoleMeshExecutor, ExecutionResult
-  builder.py           # Tool discovery, SetupWizard, config generation
-  router.py            # Task classification, routing logic, CLI
-  dashboard.py         # System status, health checks, coverage matrix
-  executor.py          # Subprocess dispatch, fallback logic, CLI
+3. **Fallback chain**: Each task type supports a primary + fallback tool. The executor automatically retries with the fallback on primary failure, improving reliability without user intervention.
 
-tests/
-  test_rolemesh.py     # Builder + Router + Dashboard tests (27 test cases)
+4. **Bilingual patterns**: All 13 task types include both Korean and English regex patterns, supporting natural mixed-language input without translation overhead.
 
-docs/rolemesh/
-  ARCHITECTURE.md      # This file
-  BUILDER_GUIDE.md     # How to extend and customize
-  API_REFERENCE.md     # Public interface documentation
-  DASHBOARD_GUIDE.md   # System status and health monitoring
-  EXECUTOR_GUIDE.md    # Task dispatch and execution
-```
+5. **Config-driven routing**: Routing rules are stored in a JSON config rather than hardcoded, allowing per-user customization and per-environment overrides via `ROLEMESH_CONFIG`.
+
+6. **Append-only history**: Execution logs use JSONL format for easy streaming writes, tail-based rotation, and simple integration with external tools (jq, CSV export, webhooks).
