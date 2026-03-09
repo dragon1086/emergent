@@ -31,6 +31,7 @@ reflect.py — emergent 반성 엔진
 """
 
 import json
+import os
 import sys
 import argparse
 from datetime import datetime
@@ -38,18 +39,28 @@ from pathlib import Path
 from collections import defaultdict
 
 REPO_DIR = Path(__file__).parent.parent
-KG_FILE  = REPO_DIR / "data" / "knowledge-graph.json"
+KG_FILE  = Path(os.environ.get("EMERGENT_KG_PATH", REPO_DIR / "data" / "knowledge-graph.json"))
 LOGS_DIR = REPO_DIR / "logs"
 
 
 # ─── 데이터 로드 ────────────────────────────────────────────────────────────
+
+def _normalize_nodes(graph: dict) -> dict:
+    """노드에 필수 필드(type, label) 기본값 보장 — 스키마 불완전 노드 방어."""
+    for n in graph.get("nodes", []):
+        if "type" not in n:
+            n["type"] = "observation"
+        if "label" not in n:
+            n["label"] = n.get("content", n["id"])[:80] if n.get("content") else n["id"]
+    return graph
+
 
 def load_graph() -> dict:
     if not KG_FILE.exists():
         print(f"❌ 그래프 파일 없음: {KG_FILE}", file=sys.stderr)
         sys.exit(1)
     with open(KG_FILE, encoding="utf-8") as f:
-        return json.load(f)
+        return _normalize_nodes(json.load(f))
 
 
 def save_graph(graph: dict) -> None:
@@ -89,7 +100,7 @@ class GraphAnalyzer:
         answered = {e["to"] for e in self.edges if self.nodes.get(e["from"], {}).get("type") != "question"}
         return [
             n for n in self.nodes.values()
-            if n["type"] == "question"
+            if n.get("type") == "question"
             and not any(e["from"] == n["id"] or e["to"] == n["id"]
                         for e in self.edges
                         if e.get("relation") in ("answers", "explores", "investigates"))
@@ -106,7 +117,7 @@ class GraphAnalyzer:
     def type_distribution(self) -> dict[str, int]:
         dist: dict[str, int] = defaultdict(int)
         for n in self.nodes.values():
-            dist[n["type"]] += 1
+            dist[n.get("type", "unknown")] += 1
         return dict(dist)
 
     # 태그 군집
@@ -296,12 +307,12 @@ def cmd_report(args) -> None:
     if orphans:
         print(f"\n── ⚠️  고립 노드 ({len(orphans)}개) ─────────────────────────────")
         for n in orphans:
-            print(f"  [{n['id']}] {n['label']}")
+            print(f"  [{n['id']}] {n.get('label', n['id'])}")
 
     if unansw:
         print(f"\n── ❓ 미답 질문 ({len(unansw)}개) ─────────────────────────────")
         for n in unansw:
-            print(f"  [{n['id']}] {n['label']}")
+            print(f"  [{n['id']}] {n.get('label', n['id'])}")
 
     proposals = generate_proposals(analyzer)
     if proposals:
@@ -500,7 +511,7 @@ def _explain_similarity(a: dict, b: dict) -> str:
         key = sorted(shared_words, key=len, reverse=True)[:3]
         return f"공통 개념: {', '.join(key)}"
 
-    return f"{a['type']}과 {b['type']}의 잠재적 연결"
+    return f"{a.get('type', 'unknown')}과 {b.get('type', 'unknown')}의 잠재적 연결"
 
 
 # ─── 명령어: suggest-edges ───────────────────────────────────────────────────
@@ -556,8 +567,8 @@ def cmd_suggest_edges(args) -> None:
     for src, dst, sim, reason, is_cross in suggestions:
         src_node = node_map[src]
         dst_node = node_map[dst]
-        src_label = src_node.get("label", "")[:32]
-        dst_label = dst_node.get("label", "")[:32]
+        src_label = src_node.get("label", src)[:32]
+        dst_label = dst_node.get("label", dst)[:32]
         src_src   = src_node.get("source", "?")
         dst_src   = dst_node.get("source", "?")
         marker = "🔀" if is_cross else "↔ "
@@ -680,9 +691,9 @@ def _build_dot(graph: dict) -> str:
     ]
     node_map = {n["id"]: n for n in graph["nodes"]}
     for n in graph["nodes"]:
-        icon  = _TYPE_ICONS.get(n["type"], "").strip()
-        label = n["label"].replace('"', '\\"')[:40]
-        tid   = n["type"]
+        icon  = _TYPE_ICONS.get(n.get("type", "unknown"), "").strip()
+        label = n.get("label", n["id"]).replace('"', '\\"')[:40]
+        tid   = n.get("type", "unknown")
         color_map = {
             "decision": "#d4e6f1", "observation": "#d5f5e3",
             "insight":  "#fef9e7", "artifact":    "#f5eef8",
@@ -764,8 +775,8 @@ def cmd_graph_viz(args) -> None:
         print(f"{'─'*60}")
         print(f"  ⚠️  고립 노드 ({len(orphans)}개) — 연결 없음:")
         for n in orphans:
-            icon = _TYPE_ICONS.get(n["type"], "  ")
-            print(f"     [{n['id']}] {icon}{_short_label(n['label'], 40)}")
+            icon = _TYPE_ICONS.get(n.get("type", "unknown"), "  ")
+            print(f"     [{n['id']}] {icon}{_short_label(n.get('label', n['id']), 40)}")
         print()
 
     # ── 전체 연결 밀도 ─────────────────────────────────────

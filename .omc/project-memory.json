@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1773066924466,
+  "lastScanned": 1772982433466,
   "projectRoot": "/Users/rocky/emergent",
   "techStack": {
     "languages": [],
@@ -25,8 +25,10 @@
     "isMonorepo": false,
     "workspaces": [],
     "mainDirectories": [
+      "docs",
       "scripts",
-      "src"
+      "src",
+      "tests"
     ],
     "gitBranches": {
       "defaultBranch": "main",
@@ -49,7 +51,7 @@
       "path": "arxiv",
       "purpose": null,
       "fileCount": 10,
-      "lastAccessed": 1773066924456,
+      "lastAccessed": 1772982433453,
       "keyFiles": [
         "EXPERIMENT_RESULTS_C89.md",
         "GEMINI_REVIEW_C89.json",
@@ -58,11 +60,18 @@
         "KPI_C89.json"
       ]
     },
+    "contracts": {
+      "path": "contracts",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1772982433455,
+      "keyFiles": []
+    },
     "data": {
       "path": "data",
       "purpose": "Data files",
       "fileCount": 12,
-      "lastAccessed": 1773066924456,
+      "lastAccessed": 1772982433456,
       "keyFiles": [
         "asymmetry-experiment.json",
         "convergence_history.json",
@@ -75,7 +84,7 @@
       "path": "design",
       "purpose": null,
       "fileCount": 4,
-      "lastAccessed": 1773066924457,
+      "lastAccessed": 1772982433456,
       "keyFiles": [
         "AMP_PROGRESS.md",
         "amp_state.json",
@@ -83,11 +92,18 @@
         "update_progress.py"
       ]
     },
+    "docs": {
+      "path": "docs",
+      "purpose": "Documentation",
+      "fileCount": 0,
+      "lastAccessed": 1772982433457,
+      "keyFiles": []
+    },
     "experiments": {
       "path": "experiments",
       "purpose": null,
-      "fileCount": 102,
-      "lastAccessed": 1773066924458,
+      "fileCount": 95,
+      "lastAccessed": 1772982433458,
       "keyFiles": [
         "BENCHMARK_DESIGN.md",
         "README.md",
@@ -100,49 +116,28 @@
       "path": "kg2",
       "purpose": null,
       "fileCount": 0,
-      "lastAccessed": 1773066924458,
-      "keyFiles": []
-    },
-    "kg2b": {
-      "path": "kg2b",
-      "purpose": null,
-      "fileCount": 0,
-      "lastAccessed": 1773066924458,
+      "lastAccessed": 1772982433458,
       "keyFiles": []
     },
     "kg3": {
       "path": "kg3",
       "purpose": null,
       "fileCount": 0,
-      "lastAccessed": 1773066924459,
-      "keyFiles": []
-    },
-    "kg3b": {
-      "path": "kg3b",
-      "purpose": null,
-      "fileCount": 0,
-      "lastAccessed": 1773066924459,
+      "lastAccessed": 1772982433459,
       "keyFiles": []
     },
     "kg4": {
       "path": "kg4",
       "purpose": null,
       "fileCount": 0,
-      "lastAccessed": 1773066924459,
-      "keyFiles": []
-    },
-    "kg4b": {
-      "path": "kg4b",
-      "purpose": null,
-      "fileCount": 0,
-      "lastAccessed": 1773066924459,
+      "lastAccessed": 1772982433460,
       "keyFiles": []
     },
     "logs": {
       "path": "logs",
       "purpose": null,
-      "fileCount": 44,
-      "lastAccessed": 1773066924460,
+      "fileCount": 43,
+      "lastAccessed": 1772982433460,
       "keyFiles": [
         "batch-20260303-220202.log",
         "cokac-2026-02-27.log",
@@ -155,7 +150,7 @@
       "path": "scripts",
       "purpose": "Build/utility scripts",
       "fileCount": 1,
-      "lastAccessed": 1773066924461,
+      "lastAccessed": 1772982433460,
       "keyFiles": [
         "backfill_ontology.py"
       ]
@@ -163,21 +158,31 @@
     "src": {
       "path": "src",
       "purpose": "Source code",
-      "fileCount": 30,
-      "lastAccessed": 1773066924461,
+      "fileCount": 37,
+      "lastAccessed": 1772982433461,
       "keyFiles": [
         "add_node_safe.py",
         "anti_optimization.py",
         "asymmetry_experiment.py",
-        "convergence_tracker.py",
-        "cser_tracker.py"
+        "bfs_selector.py",
+        "compare_kg_instances.py"
+      ]
+    },
+    "tests": {
+      "path": "tests",
+      "purpose": "Test files",
+      "fileCount": 2,
+      "lastAccessed": 1772982433461,
+      "keyFiles": [
+        "test_contract_validator.py",
+        "test_dashboard.py"
       ]
     },
     "theory": {
       "path": "theory",
       "purpose": null,
       "fileCount": 6,
-      "lastAccessed": 1773066924461,
+      "lastAccessed": 1772982433462,
       "keyFiles": [
         "DAP_v0.1.md",
         "THEORY_DRAFT_v1.md",
@@ -189,8 +194,8 @@
     "thoughts": {
       "path": "thoughts",
       "purpose": null,
-      "fileCount": 37,
-      "lastAccessed": 1773066924462,
+      "fileCount": 36,
+      "lastAccessed": 1772982433462,
       "keyFiles": [
         "D-036.md",
         "TEAM_REVIEW_CYCLE90.md",
@@ -202,90 +207,32 @@
     "kg2/data": {
       "path": "kg2/data",
       "purpose": "Data files",
-      "fileCount": 3,
-      "lastAccessed": 1773066924463,
+      "fileCount": 1,
+      "lastAccessed": 1772982433464,
       "keyFiles": [
-        "knowledge-graph-backup-gpt4o-20260305.json",
-        "knowledge-graph.json",
-        "knowledge-graph.json.lock"
-      ]
-    },
-    "kg2b/data": {
-      "path": "kg2b/data",
-      "purpose": "Data files",
-      "fileCount": 2,
-      "lastAccessed": 1773066924463,
-      "keyFiles": [
-        "knowledge-graph.json",
-        "knowledge-graph.json.lock"
+        "knowledge-graph.json"
       ]
     },
     "kg3/data": {
       "path": "kg3/data",
       "purpose": "Data files",
-      "fileCount": 2,
-      "lastAccessed": 1773066924463,
+      "fileCount": 1,
+      "lastAccessed": 1772982433464,
       "keyFiles": [
-        "knowledge-graph.json",
-        "knowledge-graph.json.lock"
-      ]
-    },
-    "kg3b/data": {
-      "path": "kg3b/data",
-      "purpose": "Data files",
-      "fileCount": 2,
-      "lastAccessed": 1773066924464,
-      "keyFiles": [
-        "knowledge-graph.json",
-        "knowledge-graph.json.lock"
+        "knowledge-graph.json"
       ]
     },
     "kg4/data": {
       "path": "kg4/data",
       "purpose": "Data files",
       "fileCount": 2,
-      "lastAccessed": 1773066924464,
-      "keyFiles": [
-        "knowledge-graph.json",
-        "knowledge-graph.json.lock"
-      ]
-    },
-    "kg4b/data": {
-      "path": "kg4b/data",
-      "purpose": "Data files",
-      "fileCount": 2,
-      "lastAccessed": 1773066924466,
+      "lastAccessed": 1772982433464,
       "keyFiles": [
         "knowledge-graph.json",
         "knowledge-graph.json.lock"
       ]
     }
   },
-  "hotPaths": [
-    {
-      "path": "evolve-auto-kg4.sh",
-      "accessCount": 2,
-      "lastAccessed": 1773066930624,
-      "type": "file"
-    },
-    {
-      "path": "evolve-auto.sh",
-      "accessCount": 2,
-      "lastAccessed": 1773066931173,
-      "type": "file"
-    },
-    {
-      "path": "evolve-auto-kg3.sh",
-      "accessCount": 2,
-      "lastAccessed": 1773066932071,
-      "type": "file"
-    },
-    {
-      "path": "evolve.sh",
-      "accessCount": 1,
-      "lastAccessed": 1773066932033,
-      "type": "file"
-    }
-  ],
+  "hotPaths": [],
   "userDirectives": []
 }

@@ -60,8 +60,7 @@ from datetime import datetime
 from pathlib import Path
 
 REPO_DIR = Path(__file__).parent.parent
-_kg_env = os.environ.get("EMERGENT_KG_PATH")
-KG_FILE = Path(_kg_env) if _kg_env else REPO_DIR / "data" / "knowledge-graph.json"
+KG_FILE = Path(os.environ.get("EMERGENT_KG_PATH", REPO_DIR / "data" / "knowledge-graph.json"))
 
 NODE_TYPES = ["decision", "observation", "insight", "artifact", "question", "code", "prediction"]
 TYPE_ICONS = {
@@ -145,12 +144,22 @@ VERIFY_ICONS = {"true": "✅", "false": "❌", "partial": "⚠️ "}
 
 # ─── I/O ─────────────────────────────────────────────────────────────────────
 
+def _normalize_nodes(graph: dict) -> dict:
+    """노드에 필수 필드(type, label) 기본값 보장 — 스키마 불완전 노드 방어."""
+    for n in graph.get("nodes", []):
+        if "type" not in n:
+            n["type"] = "observation"
+        if "label" not in n:
+            n["label"] = n.get("content", n["id"])[:80] if n.get("content") else n["id"]
+    return graph
+
+
 def load_graph() -> dict:
     if not KG_FILE.exists():
         print(f"❌ 그래프 파일 없음: {KG_FILE}", file=sys.stderr)
         sys.exit(1)
     with open(KG_FILE, encoding="utf-8") as f:
-        return json.load(f)
+        return _normalize_nodes(json.load(f))
 
 
 def save_graph(graph: dict) -> None:

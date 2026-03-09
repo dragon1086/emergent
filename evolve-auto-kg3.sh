@@ -8,21 +8,32 @@ KG3_PATH="$KG3_DIR/data/knowledge-graph.json"
 LOG="$KG3_DIR/logs/evolve-kg3-$(date +%Y-%m-%d).log"
 CYCLE_COUNT_FILE="/tmp/emergent-kg3-cycles-$(date +%Y%m%d)"
 MAX_CYCLES=100
-OPENAI_KEY=$(grep "OPENAI_API_KEY" ~/.zshrc | head -1 | sed "s/.*='//;s/'.*//")
-GEMINI_KEY=$(grep "GEMINI_API_KEY" ~/.zshrc | head -1 | sed "s/.*='//;s/'.*//")
+# API key: env var first, then .zshrc (handles export KEY='val', KEY="val", KEY=val)
+OPENAI_KEY="${OPENAI_API_KEY:-$(grep 'OPENAI_API_KEY' ~/.zshrc 2>/dev/null | head -1 | sed "s/^[^=]*=//; s/^['\"]//; s/['\"]$//" | tr -d ' ')}"
+GEMINI_KEY="${GEMINI_API_KEY:-$(grep 'GEMINI_API_KEY' ~/.zshrc 2>/dev/null | head -1 | sed "s/^[^=]*=//; s/^['\"]//; s/['\"]$//" | tr -d ' ')}"
+if [[ -z "$OPENAI_KEY" || -z "$GEMINI_KEY" ]]; then
+  echo "[$(date '+%H:%M:%S')] KG3 API key not found in env or ~/.zshrc"
+  exit 1
+fi
 
 mkdir -p "$KG3_DIR/logs"
 
 log() { echo "[$(date '+%H:%M:%S')] KG3 $*" | tee -a "$LOG"; }
 
-# 사이클 제한
-COUNT=$(cat "$CYCLE_COUNT_FILE" 2>/dev/null || echo 0)
-if [[ $COUNT -ge $MAX_CYCLES ]]; then
-  log "⚠️  오늘 최대 사이클 ($MAX_CYCLES) 도달 — 스킵"
+# 사이클 제한 (flock으로 원자적 읽기+쓰기, max 도달 시 silent exit)
+(
+  flock -n 200 || exit 1
+  COUNT=$(cat "$CYCLE_COUNT_FILE" 2>/dev/null || echo 0)
+  if [[ $COUNT -ge $MAX_CYCLES ]]; then
+    exit 1
+  fi
+  echo $((COUNT + 1)) > "$CYCLE_COUNT_FILE"
+) 200>"${CYCLE_COUNT_FILE}.lock"
+if [[ $? -ne 0 ]]; then
   exit 0
 fi
-echo $((COUNT + 1)) > "$CYCLE_COUNT_FILE"
-log "🌱 KG-3 사이클 시작 #$((COUNT + 1))/$MAX_CYCLES"
+COUNT=$(cat "$CYCLE_COUNT_FILE" 2>/dev/null || echo 0)
+log "🌱 KG-3 사이클 시작 #${COUNT}/$MAX_CYCLES"
 
 # 중복 방지
 LOCK_FILE="/tmp/emergent-kg3-running.lock"
@@ -34,7 +45,8 @@ if [[ -f "$LOCK_FILE" ]]; then
   fi
 fi
 echo $$ > "$LOCK_FILE"
-trap "rm -f $LOCK_FILE" EXIT
+cleanup() { rm -f "$LOCK_FILE"; }
+trap cleanup EXIT INT TERM
 
 # 현재 KG-3 상태 수집
 export EMERGENT_KG_PATH="$KG3_PATH"
@@ -42,9 +54,9 @@ GRAPH_STATS=$(cd "$REPO_DIR" && python3 src/kg.py stats 2>/dev/null || echo "통
 log "📊 KG-3 현황: $GRAPH_STATS"
 
 # D-098: DCI 회복 — 오래된 노드 목록 추출 (프롬프트에 포함)
-OLD_NODES=$(python3 -c "
-import json, sys
-kg = json.load(open('$KG3_PATH', encoding='utf-8'))
+OLD_NODES=$(KG3_JSON_PATH="$KG3_PATH" python3 -c "
+import json, sys, os
+kg = json.load(open(os.environ['KG3_JSON_PATH'], encoding='utf-8'))
 nodes = kg.get('nodes', [])
 # ID 번호 기준 오름차순 정렬 (낮은 번호 = 오래된 노드)
 import re
@@ -70,9 +82,8 @@ KG-2(same-vendor: GPT계열)와 CSER을 비교합니다.
 ## 현재 KG-3 상태
 $GRAPH_STATS
 
-## ⚠️ DCI 회복 지시 (최우선)
-현재 DCI = 0.0508 (심각한 단기 연결 편향). 목표: DCI > 0.1.
-아래 오래된 노드 중 하나를 EDGE_TO로 반드시 선택하세요 (최근 노드 연결 금지):
+## DCI 유지/회복 지시
+아래 오래된 노드 중 하나를 EDGE_TO로 반드시 선택하세요 (최근 노드 연결 금지, long-range 연결 유지):
 $OLD_NODES
 
 ## 지시
@@ -80,10 +91,15 @@ $OLD_NODES
 2. 위 오래된 노드 목록에서 EDGE_TO를 선택하세요 (long-range 연결로 DCI 회복)
 3. Agent B(Gemini Flash)에게 반박 또는 보완 요청을 작성하세요
 
+## DCI question 생성 규칙
+3회 중 1회는 반드시 NODE_TYPE을 question으로 설정하세요.
+question 노드는 기존 가설이나 관찰에 대한 검증 가능한 질문이어야 합니다.
+예: 'cross-vendor 환경에서 CSER이 same-vendor 대비 유의하게 높은가?'
+
 ## 출력 형식 (정확히)
 NODE_LABEL: [노드 라벨]
 NODE_CONTENT: [노드 내용 — 구체적이고 이론적]
-NODE_TYPE: [insight|hypothesis|observation]
+NODE_TYPE: [insight|hypothesis|observation|question]
 NODE_TAGS: [태그1,태그2,태그3]
 EDGE_TO: [위 오래된 노드 목록에서 선택한 id]
 EDGE_RELATION: [관계명]
@@ -91,16 +107,23 @@ EDGE_LABEL: [관계 설명]
 AGENT_B_REQUEST: [Gemini Flash에게 보내는 반박/보완 요청]"
 
 log "🤖 Agent A (GPT-4o) 판단 중..."
-AGENT_A_RESPONSE=$(python3 -c "
-import openai
-client = openai.OpenAI(api_key='$OPENAI_KEY')
+# Use temp file to avoid shell injection from prompt content
+PROMPT_A_FILE=$(mktemp /tmp/kg3-prompt-a-XXXXXX.txt)
+printf '%s' "$PROMPT" > "$PROMPT_A_FILE"
+AGENT_A_RESPONSE=$(OPENAI_API_KEY="$OPENAI_KEY" _PROMPT_FILE="$PROMPT_A_FILE" python3 -c "
+import openai, os
+client = openai.OpenAI(api_key=os.environ['OPENAI_API_KEY'])
+with open(os.environ['_PROMPT_FILE'], encoding='utf-8') as f:
+    prompt = f.read()
 resp = client.chat.completions.create(
-    model='gpt-5.2',
-    messages=[{'role':'user','content':'''$PROMPT'''}],
-    temperature=0.7
+    model='gpt-4o',
+    messages=[{'role':'user','content':prompt}],
+    temperature=0.7,
+    timeout=120,
 )
 print(resp.choices[0].message.content)
 " 2>&1)
+rm -f "$PROMPT_A_FILE"
 
 if [[ -z "$AGENT_A_RESPONSE" ]]; then
   log "❌ Agent A (GPT-4o) 호출 실패"
@@ -108,17 +131,48 @@ if [[ -z "$AGENT_A_RESPONSE" ]]; then
 fi
 log "✅ Agent A 완료 (${#AGENT_A_RESPONSE} chars)"
 
-# Agent B: Gemini Flash (Google)
-AGENT_B_REQUEST=$(echo "$AGENT_A_RESPONSE" | grep "^AGENT_B_REQUEST:" | sed 's/^AGENT_B_REQUEST: //')
-AGENT_B_RESPONSE=$(python3 -c "
-import google.genai as genai
-client = genai.Client(api_key='$GEMINI_KEY')
+# Agent A 파싱 검증 (조기경고)
+_PRE_LABEL=$(echo "$AGENT_A_RESPONSE" | grep "^NODE_LABEL:" | sed 's/^NODE_LABEL: //' | tr -d "'\`\"\\")
+if [[ -z "$_PRE_LABEL" ]]; then
+  log "⚠️  Agent A 응답 형식 불량 — NODE_LABEL 누락. 응답 앞 200자: ${AGENT_A_RESPONSE:0:200}"
+fi
 
-resp = client.models.generate_content(model='gemini-2.5-flash', contents='KG-3 실험 Agent B (Gemini Flash)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): $AGENT_B_REQUEST')
+# Agent B: Gemini Flash (Google)
+# Multi-line AGENT_B_REQUEST 캡처 (첫 줄 + 이후 비-KEY: 줄, EOF도 처리)
+AGENT_B_REQUEST=$(_RESP="$AGENT_A_RESPONSE" python3 -c "
+import os, re
+lines = os.environ['_RESP'].splitlines()
+result = []
+capture = False
+for line in lines:
+    if line.startswith('AGENT_B_REQUEST:'):
+        result.append(line.split(':', 1)[1].strip())
+        capture = True
+    elif capture:
+        if re.match(r'^[A-Z_]+:', line):
+            break
+        result.append(line.strip())
+print(' '.join(result[:5]))
+" 2>/dev/null)
+PROMPT_B_FILE=$(mktemp /tmp/kg3-prompt-b-XXXXXX.txt)
+printf '%s' "KG-3 실험 Agent B (Gemini Flash)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): $AGENT_B_REQUEST" > "$PROMPT_B_FILE"
+AGENT_B_RESPONSE=$(GEMINI_API_KEY="$GEMINI_KEY" _PROMPT_FILE="$PROMPT_B_FILE" python3 -c "
+import google.genai as genai, os
+client = genai.Client(api_key=os.environ['GEMINI_API_KEY'])
+with open(os.environ['_PROMPT_FILE'], encoding='utf-8') as f:
+    prompt = f.read()
+resp = client.models.generate_content(model='gemini-2.5-flash', contents=prompt,
+    config=genai.types.GenerateContentConfig(http_options=genai.types.HttpOptions(timeout=120*1000)))
 print(resp.text)
 " 2>&1)
+rm -f "$PROMPT_B_FILE"
+if [[ -z "$AGENT_B_RESPONSE" || ${#AGENT_B_RESPONSE} -lt 10 ]]; then
+  log "⚠️  Agent B 응답 비어있거나 너무 짧음 (${#AGENT_B_RESPONSE} chars) — Agent A 노드만 추가"
+  AGENT_B_RESPONSE=""
+fi
 log "✅ Agent B (Gemini Flash) 완료"
-AGENT_B_RESPONSE=$(echo "$AGENT_B_RESPONSE" | tr -d "'\`\"\\")
+# Sanitize only shell-dangerous chars (backtick, backslash) — preserve Korean quotes
+AGENT_B_RESPONSE=$(echo "$AGENT_B_RESPONSE" | tr -d '\`\\')
 
 # KG-3에 노드/엣지 추가
 NODE_LABEL=$(echo "$AGENT_A_RESPONSE" | grep "^NODE_LABEL:" | sed 's/^NODE_LABEL: //' | tr -d "'\`\"\\")
@@ -128,9 +182,9 @@ NODE_TAGS=$(echo "$AGENT_A_RESPONSE" | grep "^NODE_TAGS:" | sed 's/^NODE_TAGS: /
 EDGE_TO=$(echo "$AGENT_A_RESPONSE" | grep "^EDGE_TO:" | sed 's/^EDGE_TO: //' | tr -d ' ')
 
 # D-100: HARD-FIX — EDGE_TO가 OLD_NODES 목록 밖이면 강제 대체
-OLD_NODE_IDS=$(python3 -c "
-import json, re
-kg = json.load(open('$KG3_PATH', encoding='utf-8'))
+OLD_NODE_IDS=$(KG3_JSON_PATH="$KG3_PATH" python3 -c "
+import json, re, os
+kg = json.load(open(os.environ['KG3_JSON_PATH'], encoding='utf-8'))
 nodes = kg.get('nodes', [])
 def node_num(n):
     m = re.search(r'\d+', n['id'])
@@ -140,20 +194,11 @@ half = len(nodes_sorted) // 2
 print(' '.join(n['id'] for n in nodes_sorted[:half]))
 " 2>/dev/null || echo "")
 if [[ -n "$OLD_NODE_IDS" && -n "$EDGE_TO" ]]; then
-  HARD_FIX=$(python3 -c "
-import random, sys
-edge_to = sys.argv[1]
-old_ids = sys.argv[2].split()
-if old_ids and edge_to not in old_ids:
-    new_id = random.choice(old_ids)
-    print(f'OVERRIDE:{edge_to}:{new_id}')
-else:
-    print('KEEP')
-" "$EDGE_TO" "$OLD_NODE_IDS" 2>/dev/null || echo "KEEP")
+  HARD_FIX=$(python3 "$REPO_DIR/src/bfs_selector.py" "$KG3_PATH" "$EDGE_TO" "$OLD_NODE_IDS" 2>/dev/null || echo "KEEP")
   if [[ "$HARD_FIX" == OVERRIDE:* ]]; then
     ORIG=$(echo "$HARD_FIX" | cut -d: -f2)
     NEW=$(echo "$HARD_FIX" | cut -d: -f3)
-    log "[HARD-FIX] Agent A EDGE_TO override: $ORIG -> $NEW"
+    log "[BFS-FIX] Agent A EDGE_TO override: $ORIG -> $NEW (BFS distance max)"
     EDGE_TO="$NEW"
   fi
 fi
@@ -163,7 +208,9 @@ EDGE_LABEL=$(echo "$AGENT_A_RESPONSE" | grep "^EDGE_LABEL:" | sed 's/^EDGE_LABEL
 
 if [[ -n "$NODE_LABEL" && -n "$NODE_CONTENT" ]]; then
   cd "$REPO_DIR"
-  # Agent A (GPT-5.2) 노드 추가
+
+  # Agent A (GPT-4o) 노드 추가 (cycle 번호 포함, 1-based)
+  CYCLE_NUM=$((COUNT + 1))
   NEW_NODE_ID=$(python3 -c "
 import json, sys
 label = sys.argv[1][:200]
@@ -173,40 +220,69 @@ tags = [t.strip() for t in sys.argv[4].split(',') if t.strip()]
 edge_to = sys.argv[5].strip()
 edge_rel = sys.argv[6].strip() or 'extends'
 edge_lbl = sys.argv[7][:100] if len(sys.argv) > 7 else ''
+cycle = int(sys.argv[8]) if len(sys.argv) > 8 else 0
 d = {'label': label, 'content': content,
-     'type': node_type, 'source': 'gpt-5.2', 'tags': tags, 'domain': 'emergence_theory',
+     'type': node_type, 'source': 'gpt-4o', 'tags': tags, 'domain': 'emergence_theory',
+     'cycle': cycle,
      'edge_to': edge_to, 'edge_relation': edge_rel, 'edge_label': edge_lbl}
 print(json.dumps(d, ensure_ascii=False))
-" "$NODE_LABEL" "$NODE_CONTENT" "${NODE_TYPE:-insight}" "${NODE_TAGS:-kg3,cross-vendor}" "${EDGE_TO:-}" "${EDGE_RELATION:-extends}" "$EDGE_LABEL" 2>/dev/null \
+" "$NODE_LABEL" "$NODE_CONTENT" "${NODE_TYPE:-insight}" "${NODE_TAGS:-kg3,cross-vendor}" "${EDGE_TO:-}" "${EDGE_RELATION:-extends}" "$EDGE_LABEL" "$CYCLE_NUM" 2>/dev/null \
   | EMERGENT_KG_PATH="$KG3_PATH" python3 src/add_node_safe.py 2>/dev/null)
   log "✅ Agent A 노드 추가: $NODE_LABEL (id: $NEW_NODE_ID → $EDGE_TO)"
 
-  # Agent B (Gemini-2.0-Flash) 노드 추가 — cross-source CSER 향상
+  # Agent B (Gemini-2.5-Flash) 노드 추가 — cross-source CSER 향상
+  # question 노드면 answers 관계 사용 → DCI 기여
   if [[ -n "$NEW_NODE_ID" && -n "$AGENT_B_RESPONSE" ]]; then
+    AGENT_B_RELATION="critiques"
+    AGENT_B_EDGE_LABEL="Agent B(Gemini)가 Agent A(GPT)에 반박/보완"
+    if [[ "$NODE_TYPE" == "question" ]]; then
+      AGENT_B_RELATION="answers"
+      AGENT_B_EDGE_LABEL="Agent B(Gemini) answers Agent A(GPT) question"
+    fi
     GEMINI_NODE_ID=$(python3 -c "
 import json, sys
 agent_a_id = sys.argv[1].strip()
 agent_b_resp = sys.argv[2][:600]
+relation = sys.argv[3].strip()
+edge_label = sys.argv[4]
+cycle = int(sys.argv[5]) if len(sys.argv) > 5 else 0
 d = {
   'label': 'Gemini 반박/보완: ' + agent_b_resp[:80],
   'content': agent_b_resp,
   'type': 'critique',
-  'source': 'gemini-2.0-flash',
+  'source': 'gemini-2.5-flash',
   'tags': ['kg3', 'cross-vendor', 'agent-b', 'gemini'],
   'domain': 'emergence_theory',
+  'cycle': cycle,
   'edge_to': agent_a_id,
-  'edge_relation': 'critiques',
-  'edge_label': 'Agent B(Gemini)가 Agent A(GPT)에 반박/보완'
+  'edge_relation': relation,
+  'edge_label': edge_label
 }
 print(json.dumps(d, ensure_ascii=False))
-" "$NEW_NODE_ID" "$AGENT_B_RESPONSE" 2>/dev/null \
+" "$NEW_NODE_ID" "$AGENT_B_RESPONSE" "$AGENT_B_RELATION" "$AGENT_B_EDGE_LABEL" "$CYCLE_NUM" 2>/dev/null \
     | EMERGENT_KG_PATH="$KG3_PATH" python3 src/add_node_safe.py 2>/dev/null)
-    log "✅ Agent B(Gemini) 노드 추가: $GEMINI_NODE_ID → $NEW_NODE_ID (cross-source!)"
+    log "✅ Agent B(Gemini) 노드 추가: $GEMINI_NODE_ID → $NEW_NODE_ID (relation: $AGENT_B_RELATION)"
   fi
 fi
 
+# 스키마 검증 (post-cycle validation)
+log "🔍 Post-cycle KG 스키마 검증..."
+VALIDATE_RESULT=$(EMERGENT_KG_PATH="$KG3_PATH" python3 src/kg_validate.py --fix 2>&1) || true
+if echo "$VALIDATE_RESULT" | grep -q "\[ERR\]"; then
+  log "❌ 스키마 오류 감지: $(echo "$VALIDATE_RESULT" | grep '\[ERR\]')"
+else
+  log "✅ 스키마 검증 통과"
+fi
+echo "$VALIDATE_RESULT" >> "$LOG"
+
 # 메트릭 계산
-EMERGENT_KG_PATH="$KG3_PATH" python3 src/metrics.py 2>/dev/null | tail -5 | tee -a "$LOG" || true
+log "📊 메트릭 계산..."
+METRICS_OUTPUT=$(EMERGENT_KG_PATH="$KG3_PATH" python3 src/metrics.py 2>/dev/null) || true
+echo "$METRICS_OUTPUT" | tail -10 | tee -a "$LOG"
+# 핵심 메트릭 한 줄 요약
+CSER_VAL=$(echo "$METRICS_OUTPUT" | grep "CSER" | head -1 | grep -oE '[0-9]+\.[0-9]+' | head -1)
+E_V5_VAL=$(echo "$METRICS_OUTPUT" | grep "E_v5" | tail -1 | grep -oE '[0-9]+\.[0-9]+' | head -1)
+log "📈 CSER=${CSER_VAL:-?}, E_v5=${E_V5_VAL:-?}"
 
 # git 커밋
 cd "$REPO_DIR"

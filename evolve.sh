@@ -23,10 +23,9 @@ COKAC_INBOX="$COMMS_DIR/cokac-bot/inbox"
 LOG_FILE="$REPO_DIR/logs/evolve-$(date +%Y-%m-%d).log"
 DECISIONS_FILE="$REPO_DIR/DECISIONS.md"
 MAX_CYCLES_PER_DAY=4
-CYCLE_COUNT_FILE="/tmp/emergent-cycles-$(date +%Y%m%d)"
-OLD_NODE_RATIO=0.3  # D-100: 30% 사이클은 오래된 노드 EDGE_TO 강제
-TG_BOT_TOKEN="${TG_BOT_TOKEN:-}"  # 환경변수에서 로드 (.env 파일 또는 shell export)
-TG_OWNER="7726642089"
+CYCLE_COUNT_FILE="$REPO_DIR/logs/emergent-cycles-$(date +%Y%m%d)"
+TG_BOT_TOKEN="${TG_BOT_TOKEN:-}"
+TG_OWNER="${TG_OWNER:-7726642089}"
 
 mkdir -p "$REPO_DIR/logs"
 
@@ -302,9 +301,9 @@ else:
 
     # 8c. E_v4 + 전체 메트릭 스냅샷
     log "📈 E_v4 메트릭 스냅샷..."
-    python3 -c "
-import json, sys
-sys.path.insert(0, '$REPO_DIR')
+    EMERGENT_REPO="$REPO_DIR" python3 -c "
+import sys, os
+sys.path.insert(0, os.environ['EMERGENT_REPO'])
 from src.metrics import compute_all_metrics
 m = compute_all_metrics()
 print(f'E_v4={m[\"E_v4\"]:.4f}  CSER={m[\"CSER\"]:.4f}  DCI={m[\"DCI\"]:.4f}  edge_span={m[\"edge_span\"][\"raw\"]:.2f}')
@@ -312,10 +311,29 @@ print(f'E_v4={m[\"E_v4\"]:.4f}  CSER={m[\"CSER\"]:.4f}  DCI={m[\"DCI\"]:.4f}  ed
         log "   $line"
     done
 
-    # 8d. pair_designer v2 자동 실행 (n-144 self-wiring 승인, 사이클 58)
-    log "🔗 pair_designer v2 DCI-중립 엣지 자동 추가 중 (--add 5 --min-span 30)..."
-    python3 "$REPO_DIR/src/pair_designer_v2.py" --add 5 --min-span 30 2>&1 | tail -6 | while read -r line; do
-        log "   pair_v2: $line"
+    # 8d. DCI 자동 체크 + pair_designer v5 (D-116: age_contrib 독립 + cross-ratio 강제)
+    local dci_val
+    dci_val=$(EMERGENT_REPO="$REPO_DIR" python3 -c "
+import sys, os
+sys.path.insert(0, os.environ['EMERGENT_REPO'])
+from src.metrics import compute_all_metrics
+m = compute_all_metrics()
+print(f'{m[\"DCI\"]:.4f}')
+" 2>/dev/null || echo "0.0000")
+    log "   DCI 현재값: $dci_val"
+
+    # DCI < 0.06이면 oldest 노드 연결 강화 (min-span 60으로 확대)
+    local pd_min_span=30
+    local pd_add=5
+    if python3 -c "exit(0 if float('$dci_val') < 0.06 else 1)" 2>/dev/null; then
+        log "   DCI < 0.06 -- oldest 노드 연결 강화 모드 (min-span 60, add 10)"
+        pd_min_span=60
+        pd_add=10
+    fi
+
+    log "🔗 pair_designer v5 엣지 추가 중 (--add $pd_add --min-span $pd_min_span --cross-ratio 0.5)..."
+    python3 "$REPO_DIR/src/pair_designer_v5.py" --add "$pd_add" --min-span "$pd_min_span" --cross-ratio 0.5 2>&1 | tail -8 | while read -r line; do
+        log "   pair_v5: $line"
     done
 
     # 8. 마일스톤 보고 (3의 배수 사이클)
@@ -344,13 +362,14 @@ cmd_measure() {
         log "✅ 수렴 측정 완료"
         # 과수렴 경보 체크
         local dist
-        dist=$(python3 -c "
-import json
-h = json.load(open('$REPO_DIR/data/convergence_history.json'))
+        dist=$(EMERGENT_REPO="$REPO_DIR" python3 -c "
+import json, os
+p = os.path.join(os.environ['EMERGENT_REPO'], 'data', 'convergence_history.json')
+h = json.load(open(p))
 m = h['measurements']
 print(m[-1]['distance'] if m else '?')
 " 2>/dev/null || echo "?")
-        if python3 -c "d=$dist; exit(0 if d < 0.15 else 1)" 2>/dev/null; then
+        if [[ "$dist" != "?" ]] && python3 -c "d=$dist; exit(0 if d < 0.15 else 1)" 2>/dev/null; then
             log "⚠️  과수렴 경보! 거리 $dist < 0.15 (D-037 에코챔버 위험)"
             tg_dm "⚠️ emergent 과수렴 경보! 페르소나 거리 $dist < 0.15 (D-037 에코챔버 위험)"
         else
