@@ -253,7 +253,7 @@ class RoleMeshDashboard:
             fallback_name = tools_map.get(fallback_key, {}).get("name", fallback_key) if fallback_key else "—"
             lines.append(
                 f"    {task_type:<20s}"
-                f" → {primary_name}"
+                f" -> {primary_name}"
                 f" {Color.dim('| fallback: ' + fallback_name)}"
             )
         return "\n".join(lines)

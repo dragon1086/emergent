@@ -73,7 +73,7 @@ def cmd_route(args):
             ], indent=2))
         else:
             for r in results:
-                print(f"  {r.task_type:<20s} → {r.tool_name}"
+                print(f"  {r.task_type:<20s} -> {r.tool_name}"
                       f" (conf={r.confidence:.2f}, fallback={r.fallback})")
     else:
         result = router.route(task)
@@ -176,7 +176,8 @@ def main():
     exec_parser.add_argument("--json", action="store_true", help="JSON output")
 
     # status
-    subparsers.add_parser("status", help="Quick status overview")
+    status_parser = subparsers.add_parser("status", help="Quick status overview")
+    status_parser.add_argument("--json", action="store_true", help="JSON output")
 
     args = parser.parse_args()
 

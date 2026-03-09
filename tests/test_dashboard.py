@@ -22,7 +22,6 @@ from src.rolemesh.builder import ToolProfile
 class TestColor:
     def test_wrap_with_colors_enabled(self):
         Color.set_enabled(True)
-        # Force TTY detection bypass by checking is_enabled logic
         with patch.object(Color, "is_enabled", return_value=True):
             result = Color.green("ok")
             assert "\033[32m" in result
@@ -45,9 +44,7 @@ class TestColor:
 
     def test_is_enabled_default(self):
         Color.set_enabled(True)
-        # In test environment stdout is not a TTY, so should be False
         with patch.dict(os.environ, {}, clear=True):
-            # Non-TTY → disabled
             assert Color.is_enabled() is False
 
 
@@ -181,7 +178,7 @@ class TestRoleMeshDashboard:
                     return_value=[_make_tool()]):
             dash.collect()
         passed = [h for h in dash._data.health if h.passed]
-        assert len(passed) >= 3  # config_file, tools_available, config_version
+        assert len(passed) >= 3
 
     def test_health_no_tools(self):
         self._write_config()
@@ -346,7 +343,6 @@ class TestRoleMeshDashboard:
         with patch("src.rolemesh.dashboard.discover_tools",
                     return_value=[_make_tool()]):
             dash.collect()
-        # Should not raise
         serialized = json.dumps(dash.to_json(), ensure_ascii=False)
         assert isinstance(serialized, str)
 
@@ -366,6 +362,5 @@ class TestRoleMeshDashboard:
                     return_value=[_make_tool()]):
             dash.collect()
         output = dash.render_history()
-        # render_history shows last 10
         lines = [l for l in output.split("\n") if "claude" in l]
         assert len(lines) == 10
