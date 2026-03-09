@@ -8,7 +8,7 @@ and builds a routing configuration.
 import json
 import shutil
 import subprocess
-from dataclasses import dataclass, field, asdict
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Optional
 
@@ -226,6 +226,49 @@ class SetupWizard:
         self._custom_tools = [k for k in self._custom_tools if k != key]
         TOOL_REGISTRY.pop(key, None)
         return True
+
+    def interactive_setup(self) -> dict:
+        """Run interactive setup: discover tools, let user set preferences, save config."""
+        self.discover()
+        available = self.available_tools()
+
+        print("\n=== RoleMesh Interactive Setup ===\n")
+        print(self.summary())
+
+        if not available:
+            print("\nNo AI CLI tools found. Install at least one tool and re-run.")
+            return self.build_config()
+
+        print(f"\nFound {len(available)} tool(s). Set preference order (1=highest).")
+        print("Press Enter to skip (auto-rank by capability match).\n")
+
+        for tool in available:
+            prompt = f"  Preference for {tool.name} [{tool.vendor}] (1-{len(available)}, Enter=auto): "
+            try:
+                val = input(prompt).strip()
+            except (EOFError, KeyboardInterrupt):
+                print("\nSkipping preferences.")
+                break
+            if val.isdigit():
+                tool.user_preference = int(val)
+
+        config = self.build_config()
+        errors = self.validate_config(config)
+        if errors:
+            print(f"\nWarnings: {errors}")
+
+        try:
+            save_prompt = input("\nSave config? [Y/n]: ").strip().lower()
+        except (EOFError, KeyboardInterrupt):
+            save_prompt = "n"
+
+        if save_prompt in ("", "y", "yes"):
+            path = self.save_config()
+            print(f"Config saved to: {path}")
+        else:
+            print("Config not saved.")
+
+        return config
 
     def summary(self) -> str:
         available = self.available_tools()

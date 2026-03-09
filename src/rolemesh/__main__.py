@@ -43,6 +43,11 @@ def cmd_dashboard(args):
 
 def cmd_setup(args):
     wizard = SetupWizard()
+
+    if args.interactive:
+        wizard.interactive_setup()
+        return
+
     wizard.discover()
     print(wizard.summary())
 

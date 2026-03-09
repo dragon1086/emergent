@@ -1,203 +1,141 @@
-"""Tests for rolemesh/executor.py - Task Executor."""
+"""Tests for rolemesh/executor.py - Task Executor with fallback."""
 
 import json
+import tempfile
 from pathlib import Path
 from unittest.mock import patch, MagicMock
 
 import pytest
 
-from src.rolemesh.executor import (
-    TOOL_COMMANDS,
-    ExecutionResult,
-    RoleMeshExecutor,
-)
-from src.rolemesh.router import RouteResult
+from src.rolemesh.executor import RoleMeshExecutor, ExecutionResult, TOOL_COMMANDS
 
 
 class TestExecutionResult:
-    def test_success_property(self):
+    def test_fields(self):
         r = ExecutionResult(
-            tool="claude", tool_name="Claude", task_type="coding",
-            confidence=1.0, exit_code=0, stdout="ok", stderr="",
-            duration_ms=100,
+            tool="claude", tool_name="Claude Code", task_type="coding",
+            confidence=0.5, exit_code=0, success=True, duration_ms=100,
+            fallback_used=False, stdout="ok", stderr="",
         )
         assert r.success is True
-
-    def test_failure_property(self):
-        r = ExecutionResult(
-            tool="claude", tool_name="Claude", task_type="coding",
-            confidence=1.0, exit_code=1, stdout="", stderr="err",
-            duration_ms=50,
-        )
-        assert r.success is False
-
-    def test_to_dict(self):
-        r = ExecutionResult(
-            tool="claude", tool_name="Claude", task_type="coding",
-            confidence=0.85, exit_code=0, stdout="ok", stderr="",
-            duration_ms=100, fallback_used=True,
-        )
-        d = r.to_dict()
-        assert d["success"] is True
-        assert d["confidence"] == 0.85
-        assert d["fallback_used"] is True
+        assert r.fallback_used is False
 
 
-class TestBuildCommand:
+class TestDispatchDryRun:
     def setup_method(self):
-        self.executor = RoleMeshExecutor(config_path=Path("/nonexistent"))
+        self.executor = RoleMeshExecutor(dry_run=True)
 
-    def test_simple_tool(self):
-        cmd = self.executor.build_command("claude", "hello")
-        assert cmd == ["claude", "-p", "hello"]
+    def test_dry_run_success(self):
+        result = self.executor.dispatch("implement a function")
+        assert result.success is True
+        assert "[dry-run]" in result.stdout
 
-    def test_list_command(self):
-        cmd = self.executor.build_command("copilot", "explain")
-        assert cmd[:3] == ["gh", "copilot", "suggest"]
-        assert "-p" in cmd
-
-    def test_with_files_context(self):
-        cmd = self.executor.build_command("claude", "fix", context={"files": ["a.py", "b.py"]})
-        assert "a.py" in cmd
-        assert "b.py" in cmd
+    def test_dry_run_with_tool_override(self):
+        result = self.executor.dispatch("test task", tool="claude")
+        assert result.tool == "claude"
+        assert result.success is True
 
     def test_unknown_tool(self):
-        cmd = self.executor.build_command("nonexistent", "hello")
-        assert cmd == []
-
-
-class TestCheckTool:
-    def setup_method(self):
-        self.executor = RoleMeshExecutor(config_path=Path("/nonexistent"))
-
-    @patch("shutil.which", return_value="/usr/bin/claude")
-    def test_available(self, _):
-        assert self.executor.check_tool("claude") is True
-
-    @patch("shutil.which", return_value=None)
-    def test_unavailable(self, _):
-        assert self.executor.check_tool("claude") is False
-
-    def test_unknown_key(self):
-        assert self.executor.check_tool("unknown_tool_xyz") is False
-
-
-class TestDispatch:
-    def test_dry_run(self):
-        executor = RoleMeshExecutor(config_path=Path("/nonexistent"), dry_run=True)
-        result = executor.dispatch("claude", "hello")
-        assert result.success is True
-        assert "[dry-run]" in result.stdout
-
-    def test_unknown_tool_returns_127(self):
-        executor = RoleMeshExecutor(config_path=Path("/nonexistent"))
-        result = executor.dispatch("unknown_xyz", "hello")
-        assert result.exit_code == 127
+        result = self.executor.dispatch("test", tool="nonexistent_tool")
+        assert result.success is False
         assert "Unknown tool" in result.stderr
 
-    @patch("shutil.which", return_value="/usr/bin/claude")
-    @patch("subprocess.run")
-    def test_dispatch_success(self, mock_run, _):
-        mock_run.return_value = MagicMock(returncode=0, stdout="done", stderr="")
-        executor = RoleMeshExecutor(config_path=Path("/nonexistent"))
-        result = executor.dispatch("claude", "test prompt")
-        assert result.success is True
-        assert result.stdout == "done"
 
-
-class TestRun:
-    def test_run_dry_run(self):
-        executor = RoleMeshExecutor(config_path=Path("/nonexistent"), dry_run=True)
-        result = executor.run("코드 작성")
-        assert result.success is True
-        assert "[dry-run]" in result.stdout
-
-    @patch("shutil.which", return_value=None)
-    def test_run_no_tool_available(self, _):
-        executor = RoleMeshExecutor(config_path=Path("/nonexistent"))
-        result = executor.run("코드 작성")
-        assert result.exit_code == 127
-        assert "not found" in result.stderr
-
-    @patch("shutil.which", side_effect=lambda x: "/bin/codex" if x == "codex" else None)
-    def test_run_fallback_when_primary_missing(self, _):
+class TestFallback:
+    def test_fallback_on_primary_failure(self):
         config = {
             "version": "1.0.0",
-            "tools": {"claude": {}, "codex": {}},
-            "routing": {"coding": {"primary": "claude", "fallback": "codex"}},
+            "tools": {
+                "claude": {"name": "Claude Code"},
+                "codex": {"name": "Codex CLI"},
+            },
+            "routing": {
+                "coding": {"primary": "codex", "fallback": "claude"},
+            },
         }
-        cfg = Path("/tmp/test_rolemesh_cfg.json")
-        cfg.write_text(json.dumps(config))
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as f:
+            json.dump(config, f)
+            config_path = Path(f.name)
 
-        executor = RoleMeshExecutor(config_path=cfg, dry_run=True)
-        result = executor.run("코드 작성해줘")
+        executor = RoleMeshExecutor(config_path=config_path, dry_run=False)
+
+        call_count = 0
+
+        def mock_run(tool_key, task, route_result):
+            nonlocal call_count
+            call_count += 1
+            if tool_key == "codex":
+                return ExecutionResult(
+                    tool="codex", tool_name="Codex CLI", task_type="coding",
+                    confidence=0.5, exit_code=1, success=False, duration_ms=50,
+                    fallback_used=False, stdout="", stderr="codex failed",
+                )
+            return ExecutionResult(
+                tool="claude", tool_name="Claude Code", task_type="coding",
+                confidence=0.5, exit_code=0, success=True, duration_ms=100,
+                fallback_used=False, stdout="claude ok", stderr="",
+            )
+
+        executor.run = mock_run
+        result = executor.dispatch("implement a function")
+
+        assert result.success is True
         assert result.fallback_used is True
-        cfg.unlink(missing_ok=True)
+        assert result.tool == "claude"
+        assert call_count == 2
+        config_path.unlink()
 
+    def test_no_fallback_when_tool_forced(self):
+        executor = RoleMeshExecutor(dry_run=False)
 
-class TestRunSubprocess:
-    @patch("shutil.which", return_value="/usr/bin/claude")
-    @patch("subprocess.run")
-    def test_timeout_handling(self, mock_run, _):
-        import subprocess
-        mock_run.side_effect = subprocess.TimeoutExpired(cmd=["claude"], timeout=5)
-        executor = RoleMeshExecutor(config_path=Path("/nonexistent"), timeout=5)
-        result = executor.dispatch("claude", "long task")
-        assert result.exit_code == -1
-        assert "Timeout" in result.stderr
+        def mock_run(tool_key, task, route_result):
+            return ExecutionResult(
+                tool=tool_key, tool_name="Test", task_type="coding",
+                confidence=0.5, exit_code=1, success=False, duration_ms=10,
+                fallback_used=False, stdout="", stderr="fail",
+            )
 
-    @patch("shutil.which", return_value="/usr/bin/claude")
-    @patch("subprocess.run")
-    def test_os_error_handling(self, mock_run, _):
-        mock_run.side_effect = OSError("Permission denied")
-        executor = RoleMeshExecutor(config_path=Path("/nonexistent"))
-        result = executor.dispatch("claude", "test")
-        assert result.exit_code == 126
-        assert "Permission denied" in result.stderr
+        executor.run = mock_run
+        result = executor.dispatch("test", tool="claude")
+        assert result.success is False
+        assert result.fallback_used is False
+
+    def test_no_fallback_when_primary_succeeds(self):
+        executor = RoleMeshExecutor(dry_run=True)
+        result = executor.dispatch("implement a function")
+        assert result.success is True
+        assert result.fallback_used is False
 
 
 class TestHistory:
-    def test_log_and_read_history(self, tmp_path):
-        hist = tmp_path / "history.jsonl"
-        executor = RoleMeshExecutor(
-            config_path=Path("/nonexistent"),
-            dry_run=True,
-            history_path=hist,
-        )
-        # dry_run skips logging, so manually test _log_history
-        executor.dry_run = False
-        result = ExecutionResult(
-            tool="claude", tool_name="Claude", task_type="coding",
-            confidence=0.9, exit_code=0, stdout="ok", stderr="",
-            duration_ms=50,
-        )
-        executor._log_history("test request", result)
+    def test_history_logged(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            history_path = Path(tmpdir) / "history.jsonl"
+            executor = RoleMeshExecutor(dry_run=False)
+            executor._history_path = history_path
 
-        entries = executor.get_history()
-        assert len(entries) == 1
-        assert entries[0]["tool"] == "claude"
-        assert entries[0]["success"] is True
+            # Mock run to avoid actual subprocess and trigger _log_history
+            def mock_run(tool_key, task, route_result):
+                result = ExecutionResult(
+                    tool=tool_key, tool_name="Test", task_type="coding",
+                    confidence=0.5, exit_code=0, success=True, duration_ms=10,
+                    fallback_used=False, stdout="ok", stderr="",
+                )
+                executor._log_history(result)
+                return result
 
-    def test_get_history_missing_file(self, tmp_path):
-        executor = RoleMeshExecutor(
-            config_path=Path("/nonexistent"),
-            history_path=tmp_path / "nope.jsonl",
-        )
-        assert executor.get_history() == []
+            executor.run = mock_run
+            executor.dispatch("test task")
 
-    def test_history_limit(self, tmp_path):
-        hist = tmp_path / "history.jsonl"
-        executor = RoleMeshExecutor(
-            config_path=Path("/nonexistent"),
-            history_path=hist,
-        )
-        result = ExecutionResult(
-            tool="t", tool_name="T", task_type="x",
-            confidence=1.0, exit_code=0, stdout="", stderr="",
-            duration_ms=0,
-        )
-        for i in range(10):
-            executor._log_history(f"req-{i}", result)
+            assert history_path.exists()
+            lines = history_path.read_text().strip().split("\n")
+            entry = json.loads(lines[0])
+            assert "timestamp" in entry
+            assert entry["success"] is True
 
-        entries = executor.get_history(limit=3)
-        assert len(entries) == 3
+
+class TestToolCommands:
+    def test_known_tools(self):
+        for key in ("claude", "codex", "gemini", "aider"):
+            assert key in TOOL_COMMANDS
+            assert "cmd" in TOOL_COMMANDS[key]

@@ -58,7 +58,16 @@ class RoleMeshExecutor:
                 stdout="", stderr=f"Unknown tool: {tool_key}",
             )
 
-        return self.run(tool_key, task, route_result)
+        result = self.run(tool_key, task, route_result)
+
+        if not result.success and not tool and route_result.fallback:
+            fallback_key = route_result.fallback
+            if fallback_key in TOOL_COMMANDS:
+                fallback_result = self.run(fallback_key, task, route_result)
+                fallback_result.fallback_used = True
+                return fallback_result
+
+        return result
 
     def run(self, tool_key: str, task: str, route_result) -> ExecutionResult:
         cmd_info = TOOL_COMMANDS[tool_key]

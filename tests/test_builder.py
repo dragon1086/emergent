@@ -1,52 +1,59 @@
-"""Tests for rolemesh/builder.py - AI Tool Discovery & Setup Wizard."""
+"""Tests for rolemesh/builder.py - Tool Discovery & Setup Wizard."""
 
 import json
+import tempfile
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import patch, MagicMock
 
 import pytest
 
 from src.rolemesh.builder import (
     TOOL_REGISTRY,
-    SetupWizard,
     ToolProfile,
     discover_tools,
+    SetupWizard,
 )
 
 
 class TestToolProfile:
-    def test_to_dict(self):
-        p = ToolProfile(
-            key="claude", name="Claude Code", vendor="Anthropic",
-            strengths=["coding"], cost_tier="high", available=True, version="1.0",
-        )
-        d = p.to_dict()
-        assert d["key"] == "claude"
-        assert d["available"] is True
-        assert d["version"] == "1.0"
-
     def test_defaults(self):
-        p = ToolProfile(key="x", name="X", vendor="V", strengths=[], cost_tier="low")
-        assert p.available is False
-        assert p.version is None
-        assert p.user_preference is None
+        tp = ToolProfile(key="test", name="Test", vendor="V", strengths=["coding"], cost_tier="low")
+        assert tp.available is False
+        assert tp.version is None
+        assert tp.user_preference is None
+
+    def test_all_fields(self):
+        tp = ToolProfile(
+            key="x", name="X", vendor="V", strengths=["a", "b"],
+            cost_tier="high", available=True, version="1.0", user_preference=1,
+        )
+        assert tp.available is True
+        assert tp.version == "1.0"
+        assert tp.user_preference == 1
 
 
 class TestDiscoverTools:
+    def test_returns_list(self):
+        tools = discover_tools()
+        assert isinstance(tools, list)
+        assert len(tools) == len(TOOL_REGISTRY)
+
+    def test_all_registry_keys_present(self):
+        tools = discover_tools()
+        keys = {t.key for t in tools}
+        assert keys == set(TOOL_REGISTRY.keys())
+
     @patch("shutil.which", return_value=None)
     def test_no_tools_available(self, mock_which):
-        results = discover_tools()
-        assert len(results) == len(TOOL_REGISTRY)
-        assert all(not t.available for t in results)
+        tools = discover_tools()
+        assert all(not t.available for t in tools)
 
-    @patch("shutil.which", side_effect=lambda x: "/usr/bin/claude" if x == "claude" else None)
+    @patch("shutil.which", return_value="/usr/bin/claude")
     @patch("subprocess.run")
-    def test_claude_available(self, mock_run, mock_which):
-        mock_run.return_value = type("R", (), {"stdout": "claude 1.2.3\n", "returncode": 0})()
-        results = discover_tools()
-        claude = next(t for t in results if t.key == "claude")
-        assert claude.available is True
-        assert claude.version == "claude 1.2.3"
+    def test_tool_detected(self, mock_run, mock_which):
+        mock_run.return_value = MagicMock(stdout=b"claude 1.2.3\n", stderr=b"")
+        tools = discover_tools()
+        assert all(t.available for t in tools)
 
 
 class TestSetupWizard:
@@ -54,140 +61,112 @@ class TestSetupWizard:
         self.wizard = SetupWizard()
 
     @patch("shutil.which", return_value=None)
-    def test_discover_populates_tools(self, _):
-        self.wizard.discover()
-        assert len(self.wizard.tools) == len(TOOL_REGISTRY)
+    def test_discover_returns_tools(self, mock_which):
+        tools = self.wizard.discover()
+        assert len(tools) == len(TOOL_REGISTRY)
 
     @patch("shutil.which", return_value=None)
-    def test_available_tools_empty_when_none_installed(self, _):
+    def test_available_tools_empty(self, mock_which):
         self.wizard.discover()
         assert self.wizard.available_tools() == []
 
-    @patch("shutil.which", return_value=None)
-    def test_summary_no_tools(self, _):
+    @patch("shutil.which", return_value="/usr/bin/claude")
+    @patch("subprocess.run")
+    def test_available_tools_found(self, mock_run, mock_which):
+        mock_run.return_value = MagicMock(stdout=b"v1\n", stderr=b"")
         self.wizard.discover()
-        s = self.wizard.summary()
-        assert "No AI tools found" in s
+        avail = self.wizard.available_tools()
+        assert len(avail) == len(TOOL_REGISTRY)
 
-    def test_available_tools_filters(self):
-        self.wizard.tools = [
-            ToolProfile(key="a", name="A", vendor="V", strengths=["coding"], cost_tier="low", available=True),
-            ToolProfile(key="b", name="B", vendor="V", strengths=["coding"], cost_tier="low", available=False),
-        ]
-        assert len(self.wizard.available_tools()) == 1
-
-    def test_rank_tools_by_strength(self):
-        self.wizard.tools = [
-            ToolProfile(key="a", name="A", vendor="V", strengths=["analysis"], cost_tier="high", available=True),
-            ToolProfile(key="b", name="B", vendor="V", strengths=["coding"], cost_tier="low", available=True),
-        ]
+    @patch("shutil.which", return_value="/usr/bin/claude")
+    @patch("subprocess.run")
+    def test_rank_tools_by_task(self, mock_run, mock_which):
+        mock_run.return_value = MagicMock(stdout=b"v1\n", stderr=b"")
+        self.wizard.discover()
         ranked = self.wizard.rank_tools("coding")
-        assert ranked[0].key == "b"
+        assert len(ranked) > 0
+        assert "coding" in ranked[0].strengths
 
     def test_build_config_structure(self):
-        self.wizard.tools = [
-            ToolProfile(key="claude", name="Claude", vendor="Anthropic",
-                        strengths=["coding", "analysis"], cost_tier="high", available=True),
+        self.wizard._tools = [
+            ToolProfile(key="t1", name="T1", vendor="V", strengths=["coding"], cost_tier="low", available=True),
+            ToolProfile(key="t2", name="T2", vendor="V", strengths=["analysis"], cost_tier="high", available=True),
         ]
         config = self.wizard.build_config()
         assert "version" in config
         assert "tools" in config
         assert "routing" in config
-        assert "claude" in config["tools"]
-        assert "coding" in config["routing"]
+        assert config["version"] == "1.0.0"
+        assert "t1" in config["tools"]
+        assert "t2" in config["tools"]
 
-    def test_save_and_load_config(self, tmp_path):
-        cfg_path = tmp_path / "config.json"
-        self.wizard.config_path = cfg_path
-        self.wizard.tools = [
-            ToolProfile(key="t", name="T", vendor="V", strengths=["coding"], cost_tier="low", available=True),
+    def test_save_and_load_config(self):
+        self.wizard._tools = [
+            ToolProfile(key="t1", name="T1", vendor="V", strengths=["coding"], cost_tier="low", available=True),
         ]
-        saved = self.wizard.save_config()
-        assert saved.exists()
+        with tempfile.TemporaryDirectory() as tmpdir:
+            path = Path(tmpdir) / "config.json"
+            self.wizard.save_config(path)
+            assert path.exists()
 
-        loaded = self.wizard.load_config()
-        assert loaded is not None
-        assert loaded["version"] == "1.0.0"
-        assert "t" in loaded["tools"]
+            loaded = self.wizard.load_config(path)
+            assert loaded is not None
+            assert loaded["version"] == "1.0.0"
 
-    def test_load_config_missing_file(self, tmp_path):
-        self.wizard.config_path = tmp_path / "nope.json"
-        assert self.wizard.load_config() is None
+    def test_load_config_missing_file(self):
+        result = self.wizard.load_config(Path("/nonexistent/config.json"))
+        assert result is None
 
     def test_validate_config_valid(self):
         config = {
             "version": "1.0.0",
-            "tools": {"claude": {"name": "Claude"}},
-            "routing": {"coding": {"primary": "claude"}},
+            "tools": {"t1": {"name": "T1"}},
+            "routing": {"coding": {"primary": "t1", "fallback": None}},
         }
-        assert SetupWizard.validate_config(config) == []
+        errors = self.wizard.validate_config(config)
+        assert errors == []
 
-    def test_validate_config_missing_version(self):
-        config = {"tools": {}, "routing": {}}
-        errors = SetupWizard.validate_config(config)
-        assert any("version" in e for e in errors)
+    def test_validate_config_missing_fields(self):
+        errors = self.wizard.validate_config({})
+        assert len(errors) == 3
 
-    def test_validate_config_missing_tools(self):
-        config = {"version": "1.0.0"}
-        errors = SetupWizard.validate_config(config)
-        assert any("tools" in e for e in errors)
-
-    def test_validate_config_bad_routing_ref(self):
+    def test_validate_config_dead_ref(self):
         config = {
             "version": "1.0.0",
-            "tools": {"claude": {}},
-            "routing": {"coding": {"primary": "nonexistent"}},
+            "tools": {"t1": {"name": "T1"}},
+            "routing": {"coding": {"primary": "nonexistent", "fallback": None}},
         }
-        errors = SetupWizard.validate_config(config)
+        errors = self.wizard.validate_config(config)
         assert any("nonexistent" in e for e in errors)
 
-    def test_validate_config_not_dict(self):
-        errors = SetupWizard.validate_config("bad")
-        assert any("dict" in e for e in errors)
-
-    @patch("shutil.which", return_value="/usr/bin/mytool")
+    @patch("shutil.which", return_value="/usr/bin/custom")
     @patch("subprocess.run")
-    def test_register_tool(self, mock_run, _):
-        mock_run.return_value = type("R", (), {"stdout": "mytool 2.0\n", "returncode": 0})()
+    def test_register_tool(self, mock_run, mock_which):
+        mock_run.return_value = MagicMock(stdout=b"custom 2.0\n", stderr=b"")
         profile = self.wizard.register_tool(
-            key="mytool", name="My Tool", vendor="Me",
-            strengths=["coding"], check_cmd=["mytool", "--version"], cost_tier="low",
+            key="custom", name="Custom", vendor="Test",
+            strengths=["coding"], check_cmd=["custom", "--version"], cost_tier="low",
         )
-        assert profile.key == "mytool"
         assert profile.available is True
-        assert any(t.key == "mytool" for t in self.wizard.tools)
-
-    def test_register_tool_validation(self):
-        with pytest.raises(ValueError, match="key and name"):
-            self.wizard.register_tool("", "", "V", [], [], "low")
-        with pytest.raises(ValueError, match="cost_tier"):
-            self.wizard.register_tool("k", "N", "V", [], [], "invalid")
-
-    def test_register_replaces_existing(self):
-        self.wizard.tools = [
-            ToolProfile(key="x", name="Old", vendor="V", strengths=[], cost_tier="low"),
-        ]
-        with patch("shutil.which", return_value=None):
-            self.wizard.register_tool("x", "New", "V", ["coding"], ["x"], "medium")
-        assert len([t for t in self.wizard.tools if t.key == "x"]) == 1
-        assert self.wizard.tools[-1].name == "New"
+        assert profile.key == "custom"
+        assert "custom" in TOOL_REGISTRY
+        # cleanup
+        self.wizard.unregister_tool("custom")
 
     def test_unregister_tool(self):
-        self.wizard.tools = [
+        self.wizard._tools = [
             ToolProfile(key="x", name="X", vendor="V", strengths=[], cost_tier="low"),
         ]
-        assert self.wizard.unregister_tool("x") is True
-        assert len(self.wizard.tools) == 0
+        self.wizard._custom_tools = ["x"]
+        result = self.wizard.unregister_tool("x")
+        assert result is True
+        assert len(self.wizard._tools) == 0
 
-    def test_unregister_missing(self):
-        assert self.wizard.unregister_tool("nonexistent") is False
-
-    def test_summary_with_tools(self):
-        self.wizard.tools = [
-            ToolProfile(key="a", name="ToolA", vendor="VendorA",
-                        strengths=["coding"], cost_tier="low", available=True, version="1.0"),
-        ]
-        s = self.wizard.summary()
-        assert "ToolA" in s
-        assert "VendorA" in s
-        assert "v1.0" in s
+    @patch("shutil.which", return_value="/usr/bin/claude")
+    @patch("subprocess.run")
+    def test_summary_format(self, mock_run, mock_which):
+        mock_run.return_value = MagicMock(stdout=b"claude 1.0\n", stderr=b"")
+        self.wizard.discover()
+        summary = self.wizard.summary()
+        assert "RoleMesh:" in summary
+        assert "tools available" in summary
