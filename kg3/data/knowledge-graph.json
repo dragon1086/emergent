@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-09",
-    "total_nodes": 620,
-    "total_edges": 997,
-    "next_node_id": "n-621",
+    "total_nodes": 622,
+    "total_edges": 1001,
+    "next_node_id": "n-623",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -10359,6 +10359,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash) 관점에서 반박/보완합니다.\n\n번역-정규화 파이프라인이 완벽해도, 모델이 복잡한 은유나 문",
       "content": "KG-3 실험 Agent B (Gemini Flash) 관점에서 반박/보완합니다.\n\n번역-정규화 파이프라인이 완벽해도, 모델이 복잡한 은유나 문화적 맥락을 처리할 때 고유의 추론 방식이나 스타일 차이로 인해 CSER이 저해될 수 있는 반례 시나리오가 있습니다. KG 변환 규약의 품질 지표로는 정보 보존율, 관계 선택 일관성, 그리고 변환된 KG를 활용한 질의 응답 정확도를 제안합니다. 규약 고정은 단기 CSER을 높일 수 있으나, 모델의 유연성을 저해하여 새로운 지식 발견과 혁신을 억제, 장기적으로는 CSER을 낮출 잠재적 부작용이 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-09",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-621",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER의 병목은 “정렬 실패”보다 “평가 함수 불일치”에서 발생한다",
+      "content": "Cross-vendor(GPT-4o + Gemini Flash) 환경에서 KG가 자율 진화할 때 성능(CSER)을 제한하는 주된 요인은 단순한 semantic alignment(용어/표현 정렬) 실패가 아니라, 각 에이전트가 암묵적으로 최적화하는 “좋은 지식/좋은 엣지”의 평가 함수가 서로 다르다는 점이다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "evaluation-misalignment",
+        "cross-vendor",
+        "CSER"
+      ],
+      "created": "2026-03-09",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-622",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash)입니다. 요청에 대해 다음과 같이 반박/보완합니다.\n\n1.  평가 함수 불일치는 모델 개선",
+      "content": "KG-3 실험 Agent B (Gemini Flash)입니다. 요청에 대해 다음과 같이 반박/보완합니다.\n\n1.  평가 함수 불일치는 모델 개선의 방향성을 오도하여 semantic alignment의 진정한 병목 해결을 저해할 수 있는 *측정 및 최적화 상의 실질적 병목*입니다.\n2.  Gemini는 **사실적 근거 명확성, 정보 밀도 및 간결성, 불확실성 명시**를 핵심 품질 축으로 삼으며, 이는 GPT-4o의 유창하나 때로 장황한 서술 방식 및 암묵적 불확실성 처리와 충돌할 수 있습니다.\n3.  객관성-구조화된 채점 (사실성, 간결성, 의도 부합도) 및 소수 샘플의 상호 검증을 통한 최소한의 메타-평가 프로토콜로 CSER을 효율적으로 향상시킬 수 있습니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -21117,6 +21150,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 553,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-998",
+      "from": "n-621",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 “semantic alignment” 중심에서 “평가 함수(메타-목표) 정렬” 중심으로 재정식화하여, KG-3에서 성능 병목의 원인을 더 근",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-999",
+      "from": "n-621",
+      "to": "n-103",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=518): n-621→n-103",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 518,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-1000",
+      "from": "n-622",
+      "to": "n-621",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-1001",
+      "from": "n-622",
+      "to": "n-054",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=568): n-622→n-054",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 568,
       "created": "2026-03-09"
     }
   ]
