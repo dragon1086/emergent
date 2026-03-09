@@ -7,9 +7,9 @@
     "description": "Same-vendor Google instance (Gemini-2.5-Flash + Gemini-2.5-Pro) — 2x2 experiment [upgraded from gemini-2.0-flash × gemini-2.0-pro mid-experiment]",
     "created": "2026-03-02",
     "last_updated": "2026-03-09",
-    "total_nodes": 604,
-    "total_edges": 982,
-    "next_node_id": "n-605",
+    "total_nodes": 606,
+    "total_edges": 985,
+    "next_node_id": "n-607",
     "last_updater": "gemini-2.0-pro"
   },
   "nodes": [
@@ -11350,6 +11350,43 @@
       "memory_type": "Semantic",
       "domain": "emergence_theory",
       "subdomain": "general"
+    },
+    {
+      "id": "n-605",
+      "type": "hypothesis",
+      "label": "동일 벤더 LLM KG의 공유 추론 패턴과 DCI 편향 가설",
+      "content": "동일 벤더 환경에서 작동하는 LLM 에이전트(Gemini Flash, Gemini Pro)는 유사한 내부 추론 아키텍처 및 훈련 데이터 편향을 공유할 가능성이 높다. 이러한 공유된 추론 패턴은 KG 진화 과정에서 새로운 노드가 기존의 최근 노드들과 자연스럽게 더 쉽게 연결되도록 유도하며, 이는 장기적인 관점보다는 단기적인 논리적 흐름을 강화하여 DCI(단기 연결 편향)를 심화시킬 수 있다. 특히, temporal_bridge와 같은 시퀀스 기반 관계의 높은 비중은 이러한 경향을 뒷받침하며, 이는 KG 내의 전역적 연결성 대신 지역적 연속성을 우선시하는 결과로 나타날 수 있다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "DCI",
+        "same-vendor",
+        "LLM-bias",
+        "KG-evolution",
+        "shared-architecture",
+        "temporal-bias"
+      ],
+      "created": "2026-03-09",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-606",
+      "type": "critique",
+      "label": "Gemini-Pro 반박/보완:   File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2",
+      "content": "  File <string>, line 4\n    resp = client.models.generate_content(model=gemini-2.5-pro, contents=KG-4 실험 Agent B (Gemini Pro)입니다. 다음 요청에 반박하거나 보완하세요 (한국어, 3문장 이내): Agent B (Gemini Pro), 제안된 동일 벤더 LLM KG의 공유 추론 패턴과 DCI 편향 가설에 대해 심층적인 비판 또는 보완을 요청합니다. 특히,)\n                                                                                                                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nSyntaxError: invalid syntax. Is this intended to be part of the string?",
+      "source": "gemini-2.0-pro",
+      "tags": [
+        "kg4",
+        "same-vendor",
+        "google",
+        "agent-b",
+        "gemini-pro"
+      ],
+      "created": "2026-03-09",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
     }
   ],
   "edges": [
@@ -21949,6 +21986,38 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 562,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-983",
+      "from": "n-605",
+      "to": "n-008",
+      "relation": "posits_explanation_for",
+      "label": "이 가설은 동일 벤더 KG 진화의 공유 아키텍처 편향이 단기 연결 편향(DCI) 심화로 이어지는 구체적인 메커니즘(공유 추론 패턴)을 설명합니다.",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-984",
+      "from": "n-605",
+      "to": "n-044",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=561): n-605→n-044",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 561,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-985",
+      "from": "n-606",
+      "to": "n-605",
+      "relation": "critiques",
+      "label": "Agent B(Gemini-Pro)가 Agent A(Gemini-Flash)에 반박/보완",
+      "source": "gemini-2.0-pro",
+      "cross_source": true,
       "created": "2026-03-09"
     }
   ]
