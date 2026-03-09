@@ -1,8 +1,8 @@
 # RoleMesh
 
-> AI tool discovery, routing, and execution — one CLI to rule them all.
+> AI tool discovery, routing, and execution for multi-agent workflows.
 
-RoleMesh discovers which AI CLI tools are installed on your system (Claude Code, Codex, Gemini, Aider, Copilot, Cursor), classifies incoming tasks by type, and routes each task to the best-fit tool automatically.
+RoleMesh automatically discovers installed AI CLI tools (Claude Code, Codex, Gemini, Aider, Copilot, Cursor), profiles their capabilities, and routes tasks to the best-fit tool based on configurable rules.
 
 ---
 
@@ -12,75 +12,138 @@ RoleMesh discovers which AI CLI tools are installed on your system (Claude Code,
 # 1. Discover installed tools and save config
 python -m src.rolemesh setup --save
 
-# 2. Check system status
-python -m src.rolemesh status
+# 2. Route a task (dry run)
+python -m src.rolemesh route "리팩토링해줘 auth 모듈"
 
-# 3. Route a task (dry-run)
-python -m src.rolemesh exec --dry-run "이 함수 리팩토링해줘"
+# 3. Execute a task through the routed tool
+python -m src.rolemesh exec "코드 리뷰해줘" --dry-run
 
-# 4. Execute for real
-python -m src.rolemesh exec "코드 리팩토링해줘"
+# 4. View the dashboard
+python -m src.rolemesh dashboard
 ```
 
-## Commands
+---
 
-| Command | Description |
+## Modules
+
+| Module | Purpose |
 |---|---|
-| `setup [--save] [--interactive]` | Discover tools, build routing config |
-| `route "task" [--all] [--json]` | Classify and route a task (no execution) |
-| `exec "task" [--tool X] [--dry-run]` | Route + execute via subprocess |
-| `dashboard [--tools\|--routing\|--coverage\|--health\|--history]` | Visual system dashboard |
-| `status [--json]` | One-line health summary |
+| `builder.py` | Tool discovery, profiling, config generation (SetupWizard) |
+| `router.py` | Task classification via regex patterns, tool routing |
+| `executor.py` | Task dispatch to CLI tools with fallback and history logging |
+| `dashboard.py` | Unified dashboard: tools, routing, coverage matrix, health checks |
+| `__main__.py` | CLI entry point with subcommands: dashboard, setup, route, exec, status |
 
-All commands accept `--json` for machine-readable output and `--config <path>` to override the default config location (`~/.rolemesh/config.json`).
+---
 
 ## Supported Tools
 
-| Tool | Vendor | Strengths | Cost |
-|---|---|---|---|
-| Claude Code | Anthropic | coding, refactoring, analysis, architecture, reasoning, explain, pair-programming | high |
-| Codex CLI | OpenAI | coding, refactoring, quick-edit, analysis, completion | medium |
-| Gemini CLI | Google | coding, analysis, reasoning, multimodal, search, explain | medium |
-| Aider | Community | coding, refactoring, quick-edit, git-integration, pair-programming | low |
-| GitHub Copilot CLI | GitHub | coding, completion, explain, quick-edit | medium |
-| Cursor | Cursor | coding, refactoring, frontend, completion, pair-programming | medium |
+| Key | Tool | Vendor | Strengths | Cost Tier |
+|---|---|---|---|---|
+| `claude` | Claude Code | Anthropic | coding, refactoring, analysis, architecture, reasoning, explain, pair-programming | high |
+| `codex` | Codex CLI | OpenAI | coding, refactoring, quick-edit, analysis, completion | medium |
+| `gemini` | Gemini CLI | Google | coding, analysis, reasoning, multimodal, search, explain | medium |
+| `aider` | Aider | Community | coding, refactoring, quick-edit, git-integration, pair-programming | low |
+| `copilot` | GitHub Copilot CLI | GitHub | coding, completion, explain, quick-edit | medium |
+| `cursor` | Cursor | Cursor | coding, refactoring, frontend, completion, pair-programming | medium |
 
-## Task Types
+---
 
-RoleMesh recognizes 13 task categories via regex pattern matching (supports Korean and English):
+## CLI Subcommands
 
-`coding`, `refactoring`, `quick-edit`, `analysis`, `architecture`, `reasoning`, `frontend`, `multimodal`, `search`, `explain`, `git-integration`, `completion`, `pair-programming`
+### `setup`
+Discover tools and optionally save config.
 
-## Config
+```bash
+python -m src.rolemesh setup          # show discovered tools
+python -m src.rolemesh setup --save   # save to ~/.rolemesh/config.json
+```
 
-Config is stored at `~/.rolemesh/config.json` after running `setup --save`. It contains:
+### `route`
+Classify a task and show which tool would handle it.
 
-- **tools**: discovered tool profiles (name, vendor, version, strengths, cost tier)
-- **routing**: task-type-to-tool mapping with primary + fallback
+```bash
+python -m src.rolemesh route "debug this error"
+python -m src.rolemesh route "코드 작성해줘" --all    # show all matches
+python -m src.rolemesh route "refactor auth" --json  # JSON output
+```
+
+### `exec`
+Route and execute a task through the selected tool.
+
+```bash
+python -m src.rolemesh exec "implement login" --dry-run
+python -m src.rolemesh exec "fix typo" --tool aider
+python -m src.rolemesh exec "analyze bug" --json
+```
+
+### `dashboard`
+Display a unified view of tools, routing, coverage, and health.
+
+```bash
+python -m src.rolemesh dashboard               # full dashboard
+python -m src.rolemesh dashboard --tools        # tools only
+python -m src.rolemesh dashboard --routing      # routing table
+python -m src.rolemesh dashboard --coverage     # task coverage matrix
+python -m src.rolemesh dashboard --health       # config health checks
+python -m src.rolemesh dashboard --history      # execution history
+python -m src.rolemesh dashboard --json         # JSON output
+```
+
+### `status`
+Quick status overview.
+
+```bash
+python -m src.rolemesh status
+python -m src.rolemesh status --json
+```
+
+---
+
+## Configuration
+
+Config is stored at `~/.rolemesh/config.json`. Generated by `setup --save`.
+
+```json
+{
+  "version": "1.0.0",
+  "tools": {
+    "claude": {
+      "key": "claude",
+      "name": "Claude Code",
+      "vendor": "Anthropic",
+      "strengths": ["coding", "refactoring", "analysis"],
+      "cost_tier": "high",
+      "available": true,
+      "version": "1.0.0"
+    }
+  },
+  "routing": {
+    "coding": { "primary": "claude", "fallback": "codex" },
+    "analysis": { "primary": "claude", "fallback": "gemini" }
+  }
+}
+```
 
 Execution history is logged to `~/.rolemesh/history.jsonl`.
 
-## Custom Tools
+---
 
-Register custom AI tools programmatically:
+## Task Types
 
-```python
-from src.rolemesh.builder import SetupWizard
+RoleMesh recognizes 13 task types via bilingual (Korean + English) regex patterns:
 
-wizard = SetupWizard()
-wizard.discover()
-wizard.register_tool(
-    key="my-tool",
-    name="My Custom Tool",
-    vendor="Internal",
-    strengths=["coding", "analysis"],
-    check_cmd=["my-tool", "--version"],
-    cost_tier="low",
-)
-wizard.save_config()
-```
+`coding`, `refactoring`, `quick-edit`, `analysis`, `architecture`, `reasoning`, `frontend`, `multimodal`, `search`, `explain`, `git-integration`, `completion`, `pair-programming`
 
-## Further Reading
+---
 
-- [API Reference](./API.md) — classes, methods, data structures
-- [Architecture](./ARCHITECTURE.md) — design decisions, data flow, extension points
+## Documentation
+
+- [API Reference](API_REFERENCE.md) -- Classes, functions, data types
+- [Architecture](ARCHITECTURE.md) -- Design decisions and data flow
+
+---
+
+## License
+
+MIT
