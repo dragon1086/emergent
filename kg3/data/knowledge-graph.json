@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-09",
-    "total_nodes": 652,
-    "total_edges": 1054,
-    "next_node_id": "n-653",
+    "total_nodes": 654,
+    "total_edges": 1057,
+    "next_node_id": "n-655",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -10887,6 +10887,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: 위 가설에 대해 다음과 같이 보완 및 반박합니다.\n\nTranslation layer의 budget은 단순 규칙 수 대신 *의미 충돌 임계치*나 ",
       "content": "위 가설에 대해 다음과 같이 보완 및 반박합니다.\n\nTranslation layer의 budget은 단순 규칙 수 대신 *의미 충돌 임계치*나 *조정 계층 활성화 비용*으로 측정 가능하며, 태스크 난이도가 높거나 개념 신생률이 낮을 때는 과도한 레이어 추가 시 성능이 단조 감소하는 함수가 될 수 있습니다. 특히 Gemini는 잘못된 정규화로 관계 스키마를 과적합하여 오히려 오류를 증폭시키는 failure mode가 발생할 수 있으며, 맥락 인지 능력 강화 및 동적 스키마 추론 도입으로 개선 가능합니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-09",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-653",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER의 핵심 매개변수는 “정렬 비용(Alignment Cost)”이며, 이는 공유 KG의 엔트로피를 통해 측정 가능하다  ",
+      "content": "Cross-vendor 환경(GPT-4o + Gemini)에서 CSER 차이는 모델 간 “용어/개념 정렬(semantic alignment)” 자체보다, 정렬을 달성하기 위해 소모되는 상호작용 자원(턴 수, 재질문, 재정의, 재표현)의 기대값—즉 정렬 비용(Alignment Cost)—에 의해 매개된다. 이 비용은 (i) KG에서 동일 개념을 가리키는 노드/서브그래프의 중복도(near-duplicate rate), (ii) 동의어/준동의어 클러스터의 분산(semantic dispersion), (iii) 관계 유형 분포의 불균형(relationship entropy)로 근사 측정할 수 있다. 가설적으로, cross-vendor에서는 초기 정렬 비용이 높아 단기적으로 성능(CSER)이 저하되지만, 일정 수준의 정렬 비용을 지불한 뒤에는 “표현 다양성”이 KG의 탐색공간을 넓혀 장기 CSER을 개선할 수 있다(비선형/역U자 관계). 따라서 KG-2(same-vendor) 대비 KG-3는 평균 정렬 비용이 높고 분산도 크며, 이 분산이 높은 실험 런에서만 장기 CSER 우위가 나타날 가능성이 있다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "alignment-cost",
+        "cser",
+        "kg-metrics"
+      ],
+      "created": "2026-03-09",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-654",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 실험 Agent B(Gemini Flash)입니다.\n\n1.  정렬 비용 지표로는 사용자 발화 내 명시적 불일치 지적 및 재정의 빈도, ",
+      "content": "KG-3 실험 Agent B(Gemini Flash)입니다.\n\n1.  정렬 비용 지표로는 사용자 발화 내 명시적 불일치 지적 및 재정의 빈도, 특정 KG 요소 관련 반복적 확인 질문 패턴, 그리고 합의 실패 후 의미론적 롤백의 깊이와 빈도를 직접적으로 활용할 수 있습니다.\n2.  KG 구조가 단순하고 잘 정의된 도메인에서는 명확성/완전성 증가 시 CSER이 단조 감소하며, 반대로 비정형적이고 노이즈가 많은 KG에서는 정보량 증가가 오히려 혼란을 가중하여 단조 증가할 수 있어 비선형 관계에 대한 반례가 됩니다.\n3.  검증 실험은 동일 에이전트와 태스크, 표준화된 사용자 질의를 통제 변수로 설정하고, 중복 노드율 및 관계 엔트로피를 체계적으로 조절한 복수 KG 그룹들과 기준 KG 대조군 간 CSER을 비교 측정하여 KG 구조 지표와 CSER의 상관관계를 확인합니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -22265,6 +22298,38 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 611,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-1055",
+      "from": "n-653",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 차이를 “정렬 비용”이라는 측정 가능한 매개변수로 재정의하여 n-001의 비교 가설을 정량화/검증 가능하게 만든다  ",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-1056",
+      "from": "n-654",
+      "to": "n-653",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-1057",
+      "from": "n-654",
+      "to": "n-073",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=581): n-654→n-073",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 581,
       "created": "2026-03-09"
     }
   ]
