@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-09",
-    "total_nodes": 614,
-    "total_edges": 986,
-    "next_node_id": "n-615",
+    "total_nodes": 616,
+    "total_edges": 990,
+    "next_node_id": "n-617",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -10260,6 +10260,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: KG-3 실험 Agent B로서 해당 가설에 대해 다음과 같이 반박 및 보완합니다:\n\n(1) **메타-표현 정렬의 조작화 (Gemini 관점):",
       "content": "KG-3 실험 Agent B로서 해당 가설에 대해 다음과 같이 반박 및 보완합니다:\n\n(1) **메타-표현 정렬의 조작화 (Gemini 관점):**\nGemini 관점에서 메타-표현 정렬은 노드/관계 선택 분포의 KL 편차, temporal_bridge 정당화 패턴 유사도, 그리고 에이전트 간 스키마 추론 일관성 등의 관측 가능한 지표로 조작화할 수 있습니다. 특히, 특정 도메인에서 에이전트들이 공통된 추론 절차나 지식 표현 구조를 얼마나 공유하는지 평가하는 데 집중합니다. Gemini는 이러한 패턴을 인식하고 설명할 수 있는 능력을 활용해 내부 정렬도를 측정하고 메타-표념 일치도 지표를 생성할 수 있습니다.\n\n(2) **용어/의미 정렬이 핵심 원인일 경우의 반례 시나리오:**\n만약 핵심 원인이 메타-표현이 아니라 용어/의미 정렬이라면, 다음 반례 시나리오가 가능합니다: 두 에이전트가 매우 기본적인 엔티티-관계 메타-스키마만을 공유해도, 특정 도메인 용어(예: 환자, 투약, 부작용)에 대한 *완벽하고 상세한 공통 의미 사전*을 가진 경우 CSER은 낮아집니다. 이는 메타-스키마의 정교함이나 추론 규칙의 공유 없이도, 개별 용어의 명확한 시맨틱 정렬만으로 높은 ",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-09",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-615",
+      "type": "hypothesis",
+      "label": "Cross-vendor CSER는 “공유 개념-스키마의 점진적 수렴”이 임계값을 넘을 때 급상승한다  ",
+      "content": "Cross-vendor 환경(GPT-4o + Gemini Flash)에서 CSER은 단순한 정답률/일치율의 평균이 아니라, 대화가 진행되며 형성되는 **공유 개념-스키마(shared conceptual schema)**의 수렴 정도에 의해 비선형적으로 결정된다는 가설. 구체적으로, 에이전트들이 (i) 핵심 용어의 지시대상(denotation)과 (ii) 작업 관련 제약/목표의 구조(ontology)를 점진적으로 맞춰가다가, 어느 시점에 **스키마 일관성(coherence) 임계값**을 넘으면 상호 예측가능성(what the other will mean/do)이 급격히 증가해 CSER이 “상전이”처럼 뛰어오른다. 이때 정렬 노이즈(alignment noise)는 초기에는 수렴을 방해하지만, 적절한 수준에서는 스키마를 더 단순하고 견고한 형태로 압축하도록 강제하여(암묵적 정규화) 임계값 도달을 앞당길 수 있다. 따라서 CSER 곡선은 시간에 따라 완만한 증가가 아니라 **S-curve/step-change** 형태를 보일 가능성이 크며, 관측 지표로는 (a) 용어 재정의 빈도 감소, (b) 상호 참조(“당신이 말한 X”)의 성공률 증가, (c) 합의된 중간표현(체크리스트/스키마/템플릿) 재사용률 증가가 임계 전후로 급변할 것으로 예측한다.  ",
+      "source": "gpt-5.2",
+      "tags": [
+        "[cross-vendor",
+        "semantic-alignment",
+        "phase-transition]"
+      ],
+      "created": "2026-03-09",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-616",
+      "type": "critique",
+      "label": "Gemini 반박/보완: 위 가설의 임계값/상전이 개념은 실제 대화의 점진적, 다차원적 수렴 과정을 과도하게 단순화할 수 있으나, 특정 맥락에서 의미의 공유점이 급증하는",
+      "content": "위 가설의 임계값/상전이 개념은 실제 대화의 점진적, 다차원적 수렴 과정을 과도하게 단순화할 수 있으나, 특정 맥락에서 의미의 공유점이 급증하는 구간은 관찰 가능합니다. Gemini 관점에서 스키마 수렴을 측정하기 위한 직접적인 지표로 엔티티 매핑 안정도, 개념 벡터 공간 유사도(임베딩 겹침), 정의-사용 일치도를 제안합니다. 노이즈가 핵심 개념을 체계적으로 왜곡하거나 맥락 공유를 저해할 경우, 오히려 스키마 발산을 유도하며, 이는 높은 정확도나 적은 모호성을 요구하는 임무 지향적 대화에서 두드러집니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -20898,6 +20931,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 523,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-987",
+      "from": "n-615",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER hypothesis를 “스키마 수렴 임계값(상전이)” 메커니즘으로 구체화하여 왜/언제 CSER이 급상승하는지 설명한다  ",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-988",
+      "from": "n-615",
+      "to": "n-008",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=607): n-615→n-008",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 607,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-989",
+      "from": "n-616",
+      "to": "n-615",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-990",
+      "from": "n-616",
+      "to": "n-097",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=519): n-616→n-097",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 519,
       "created": "2026-03-09"
     }
   ]
