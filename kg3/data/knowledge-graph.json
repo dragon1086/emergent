@@ -7,9 +7,9 @@
     "description": "Cross-vendor instance (GPT-5.2 + Gemini-2.5-Flash) — 2x2 experiment [upgraded from gpt-4o × gemini-2.0-flash mid-experiment ~cycle 10]",
     "created": "2026-03-02",
     "last_updated": "2026-03-09",
-    "total_nodes": 602,
-    "total_edges": 963,
-    "next_node_id": "n-603",
+    "total_nodes": 604,
+    "total_edges": 967,
+    "next_node_id": "n-605",
     "last_updater": "gemini-2.0-flash"
   },
   "nodes": [
@@ -10062,6 +10062,39 @@
       "type": "critique",
       "label": "Gemini 반박/보완: Gemini는 심층적인 내부 표현을 통해 의미 드리프트를 줄여 Interlingua와 유사한 역할을 하지만, 미묘한 맥락의 손실 가능성은 존재합",
       "content": "Gemini는 심층적인 내부 표현을 통해 의미 드리프트를 줄여 Interlingua와 유사한 역할을 하지만, 미묘한 맥락의 손실 가능성은 존재합니다. Alignment noise는 모델의 견고성을 높이는 반면 Interlingua는 의미의 정규화를 추구하여 상충되기도 하지만, 다양한 입력에 대한 내부 표현 학습 측면에서는 상보적일 수 있습니다. CSER 개선에는 Claim-단위 정규화가 더 직접적으로 기여하며, 이는 정밀도(Precision), 재현율(Recall) 및 의미적 일관성 지표로 측정할 수 있습니다.",
+      "source": "gemini-2.0-flash",
+      "tags": [
+        "kg3",
+        "cross-vendor",
+        "agent-b",
+        "gemini"
+      ],
+      "created": "2026-03-09",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-603",
+      "type": "hypothesis",
+      "label": "Cross-vendor KG에서 “번역-정규화(translation normalization)” 레이어가 CSER을 매개한다",
+      "content": "Cross-vendor(GPT-4o↔Gemini) 협업에서는 동일 개념이 서로 다른 표현·분해·암묵 규칙(예: 용어 선택, 범주 경계, 인과/시간 표지 방식)으로 생성되어 KG에 “표현 이질성(representational heterogeneity)”이 누적된다. 이때 CSER 저하는 단순 성능 차이가 아니라 (1) 노드/관계의 중복 생성, (2) 동일 의미의 분산(스플릿), (3) 반대로 다른 의미의 병합(콜랩스)로 인해 발생하는 ‘구조적 엔트로피 증가’로 설명될 수 있다. 따라서 CSER을 높이려면 모델 간 상호작용 앞단에 “번역-정규화 레이어”를 두어, 각 에이전트 산출물을 공통 인터링구아(예: 관계 타입 세트, 정의 템플릿, 증거/가정 분리 규칙)로 매핑하고, 매핑 불확실성(정규화 신뢰도)을 메타데이터로 KG에 기록해야 한다. 예측: (a) 정규화 레이어를 적용하면 temporal_bridge가 의미적 일관성을 유지하며 재사용률이 증가하고, (b) critique→hypothesis 연결의 ‘타겟 적중률’이 올라가 CSER이 상승하며, (c) alignment noise가 완전히 제거되기보다 ‘정규화 신뢰도’로 계량될 때 오히려 탐색-수렴 균형이 개선된다.",
+      "source": "gpt-5.2",
+      "tags": [
+        "cross-vendor",
+        "semantic-normalization",
+        "CSER"
+      ],
+      "created": "2026-03-09",
+      "memory_type": "Semantic",
+      "domain": "emergence_theory",
+      "subdomain": "general"
+    },
+    {
+      "id": "n-604",
+      "type": "critique",
+      "label": "Gemini 반박/보완: KG-3 실험 Agent B (Gemini Flash) 관점에서 다음 요청에 보완합니다:\n\n번역-정규화 레이어는 모호성 제거로 CSER을 향상시",
+      "content": "KG-3 실험 Agent B (Gemini Flash) 관점에서 다음 요청에 보완합니다:\n\n번역-정규화 레이어는 모호성 제거로 CSER을 향상시키나, *문맥 없는 과도한 정규화*는 미묘한 창의적 다양성을 감소시켜 오히려 CSER에 해로울 수 있습니다. 정규화 신뢰도는 confidenceValue (0.0-1.0), metricType (e.g., softmax_prob), normalizationMethodID를 최소 스키마로 저장하여 cross-vendor 견고성을 확보합니다. Alignment noise는 모델의 일반화 정규화인 반면, 본 가설의 정규화는 데이터 표현의 모호성을 제거하는 것으로, 상이한 목적에도 불구하고 시스템 내에서 보완적 역할을 할 수 있습니다.",
       "source": "gemini-2.0-flash",
       "tags": [
         "kg3",
@@ -20448,6 +20481,50 @@
       "cross_source": true,
       "temporal_bridge": true,
       "gap": 485,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-964",
+      "from": "n-603",
+      "to": "n-001",
+      "relation": "motivates",
+      "label": "Cross-vendor CSER 가설을 “표현 이질성→구조적 엔트로피→정규화 레이어” 메커니즘으로 구체화하여, 왜/어떻게 CSER이 변하는지 인과 경로를 제공",
+      "source": "gpt-5.2",
+      "cross_source": true,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-965",
+      "from": "n-603",
+      "to": "n-111",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=492): n-603→n-111",
+      "source": "gpt-5.2",
+      "cross_source": false,
+      "temporal_bridge": true,
+      "gap": 492,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-966",
+      "from": "n-604",
+      "to": "n-603",
+      "relation": "critiques",
+      "label": "Agent B(Gemini)가 Agent A(GPT)에 반박/보완",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "created": "2026-03-09"
+    },
+    {
+      "id": "e-967",
+      "from": "n-604",
+      "to": "n-074",
+      "relation": "temporal_bridge",
+      "label": "DCI-bridge (gap=530): n-604→n-074",
+      "source": "gemini-2.0-flash",
+      "cross_source": true,
+      "temporal_bridge": true,
+      "gap": 530,
       "created": "2026-03-09"
     }
   ]
