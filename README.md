@@ -49,6 +49,48 @@ Agent A                 Agent B
 
 ---
 
+## 🏆 OpenClaw 멀티에이전트 벤치마크 결과
+
+> **OpenClaw + cokac + amp** 삼각협업 vs 단독 에이전트 시스템
+
+### 종합 승률 (6라운드, 29건)
+
+| 시스템 | 승률 |
+|--------|------|
+| 🔵 OpenClaw 삼각협업 | **93%** (27/29) |
+| 🔴 Codex 단독 | 7% (2/29) |
+| 🟡 Claude 단독 | 0% (0/29) |
+
+### 시나리오별 결과
+
+| 시나리오 | OpenClaw 승률 |
+|---------|-------------|
+| S1 코드 리뷰 & 보안 분석 | 100% |
+| S2 아키텍처 설계 결정 | 67% |
+| S3 버그 탐지 & 수정 | 100% |
+| S4 멀티세션 자기개선 루프 | 100% |
+| S5 실시간 의사결정 | 100% |
+| S6 amp 2-agent debate vs 단독 LLM | 진행 중 |
+| S7 Claude Code 크로스모델 코더 | 진행 중 |
+
+### OpenClaw가 우월한 이유
+
+1. **크로스모델 합성**: GPT-5.4 + Claude sonnet-4-6 맹점 교차 보완
+2. **세션 간 기억 지속**: 단독 에이전트는 세션 종료 시 컨텍스트 소멸
+3. **실제 도구 통합**: 웹 검색, 파일 시스템, git, 스케줄링
+4. **amp 2-agent debate**: 복잡한 분석은 양방향 토론으로 품질 향상
+5. **비동기 멀티세션**: 병렬 작업으로 처리량 극대화
+
+### 재현 방법
+
+```bash
+cd e2e-benchmark
+pip install -r requirements.txt
+python run_benchmark.py --scenarios all
+```
+
+---
+
 ## Benchmark results
 
 External judge: **Gemini** evaluated amp outputs blind — no knowledge of which condition produced which answer. N=10 questions across sensitive personal decision domains.

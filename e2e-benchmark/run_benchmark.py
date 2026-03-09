@@ -35,6 +35,8 @@ SCENARIO_MAP = {
     "s3": "s3_bug_detection",
     "s4": "s4_self_improvement",
     "s5": "s5_realtime_decision",
+    "s6": "s6_amp_analysis",
+    "s7": "s7_claude_code_coder",
 }
 
 SCENARIO_NAMES = {
@@ -43,6 +45,8 @@ SCENARIO_NAMES = {
     "s3": "Bug Detection & Fix Generation",
     "s4": "Self-Improvement Loop (10 rounds)",
     "s5": "Real-time Decision Making",
+    "s6": "amp 2-Agent Debate vs Standalone LLMs",
+    "s7": "Claude Code Coder: Cross-Model Implementation",
 }
 
 
