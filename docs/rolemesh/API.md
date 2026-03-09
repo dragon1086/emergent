@@ -11,49 +11,33 @@ Probes the system for all known AI CLI tools. Checks binary availability via `sh
 ```python
 @dataclass
 class ToolProfile:
-    key: str                       # registry key (e.g. "claude")
-    name: str                      # display name (e.g. "Claude Code")
-    vendor: str                    # vendor name (e.g. "Anthropic")
-    strengths: list[str]           # task types this tool excels at
-    cost_tier: str                 # "low" | "medium" | "high"
-    available: bool = False        # True if binary found on PATH
-    version: Optional[str] = None  # version string from CLI
-    user_preference: int = 0       # 0=neutral, 1=preferred, -1=avoid
+    key: str                        # registry key (e.g. "claude")
+    name: str                       # display name (e.g. "Claude Code")
+    vendor: str                     # vendor name (e.g. "Anthropic")
+    strengths: list[str]            # task types this tool excels at
+    cost_tier: str                  # "low" | "medium" | "high"
+    available: bool = False         # True if binary found on PATH
+    version: Optional[str] = None   # version string from CLI
+    user_preference: Optional[int] = None  # user ranking override
 ```
-
-Methods:
-- `to_dict() -> dict` — serialize to dictionary via `dataclasses.asdict`
 
 ### `SetupWizard`
 
-```python
-wizard = SetupWizard()
-wizard.config_path  # default: ~/.rolemesh/config.json
-```
-
 | Method | Returns | Description |
 |---|---|---|
-| `discover()` | `list[ToolProfile]` | Probe system for installed tools |
+| `discover()` | `None` | Probe system for installed tools (populates internal list) |
 | `available_tools()` | `list[ToolProfile]` | Filter to available only |
-| `rank_tools(task_type)` | `list[ToolProfile]` | Rank tools for a task type (best first) |
+| `rank_tools(task_type)` | `list[ToolProfile]` | Rank available tools for a task type (best first) |
 | `build_config()` | `dict` | Generate routing config from discovered tools |
-| `save_config(path?)` | `Path` | Persist config to `~/.rolemesh/config.json` |
-| `load_config(path?)` | `dict` | Load existing config from disk |
+| `save_config(path?)` | `None` | Persist config to `~/.rolemesh/config.json` |
+| `load_config(path?)` | `dict \| None` | Load existing config from disk |
+| `validate_config(config)` | `list[str]` | Validate config schema; returns error list |
+| `register_tool(key, name, vendor, strengths, check_cmd, cost_tier)` | `ToolProfile` | Register and discover a custom tool |
+| `unregister_tool(key)` | `bool` | Remove a custom tool |
+| `interactive_setup()` | `dict` | Interactive CLI wizard with user ranking prompts |
 | `summary()` | `str` | Human-readable summary of discovered tools |
 
-#### Ranking algorithm
-
-`rank_tools(task_type)` scores each available tool:
-
-- +10.0 if `task_type` is in the tool's `strengths`
-- +5.0 / -5.0 based on `user_preference` (1 = preferred, -1 = avoid)
-- +2.0 / +1.0 / +0.0 based on `cost_tier` (low / medium / high)
-
-Tools are sorted by descending score.
-
-### `TOOL_REGISTRY`
-
-Built-in dictionary of known AI CLI tools. Each entry has: `name`, `vendor`, `strengths`, `check_cmd`, `cost_tier`.
+Ranking score for `rank_tools()`: `(task_type match, user_preference, cost_tier)` — lower is better. Task-type match is binary (0 if in strengths, 1 otherwise), then user preference, then cost (low=0, medium=1, high=2).
 
 ---
 
@@ -69,39 +53,30 @@ router = RoleMeshRouter(config_path=None)  # loads ~/.rolemesh/config.json
 |---|---|---|
 | `classify_task(request)` | `list[tuple[str, float]]` | Classify request into task types with confidence scores |
 | `route(request)` | `RouteResult` | Route to the single best tool |
-| `route_multi(request)` | `list[RouteResult]` | Return suggestions for all matched task types |
-
-If no config is loaded, routes default to `claude` as `DEFAULT_TOOL`.
+| `route_multi(request)` | `list[RouteResult]` | Return all matched task types with their routed tools |
 
 ### `RouteResult`
 
 ```python
 @dataclass
 class RouteResult:
-    tool: str              # tool key (e.g. "claude")
-    tool_name: str         # display name
-    task_type: str         # classified task type
-    confidence: float      # 0.0 - 1.0
-    fallback: str | None   # fallback tool key
-    reason: str            # human-readable routing explanation
+    tool_name: str              # tool key (e.g. "claude")
+    task_type: str              # classified task type
+    confidence: float           # 0.0 - 1.0
+    fallback: Optional[str] = None   # fallback tool key
+    reason: Optional[str] = None     # routing explanation (set when no config/no match)
 ```
-
-Methods:
-- `to_dict() -> dict` — serialize to dictionary
 
 ### Task Pattern Matching
 
-Classification uses regex patterns against the request string. Each task type has 2 pattern groups; confidence = (matched groups / total groups). Patterns support both Korean and English keywords.
+Classification uses regex patterns against the lowercased request string. Each task type has 2 pattern groups (tuples of regex); confidence = (matched groups / total groups). Patterns support both Korean and English keywords.
 
 Confidence levels:
-- `>= 0.8`: Strong match — "Strong match for '{task_type}'"
-- `>= 0.5`: Good match — includes alternative suggestions
-- `< 0.5`: Weak match — "consider specifying task type"
-- No match: defaults to `("coding", 0.3)`
+- `1.0`: Both pattern groups matched
+- `0.5`: One pattern group matched
+- `0.0`: No match (task type not returned)
 
-### `TASK_PATTERNS`
-
-List of `(task_type, [regex_pattern, ...])` tuples defining 13 task categories.
+When no pattern matches at all, `route()` defaults to `claude` with `confidence=0.0`.
 
 ---
 
@@ -118,45 +93,52 @@ executor = RoleMeshExecutor(
 
 | Method | Returns | Description |
 |---|---|---|
-| `dispatch(task, tool?)` | `ExecutionResult` | Classify + route + execute (optionally force a specific tool) |
-| `run(tool_key, task, route_result)` | `ExecutionResult` | Execute a task with a specific tool |
+| `dispatch(task, tool?)` | `ExecutionResult` | Full pipeline: route + execute (with automatic fallback) |
+| `run(tool_key, task, route_result?)` | `ExecutionResult` | Direct execution of a specific tool |
 
 ### `ExecutionResult`
 
 ```python
 @dataclass
 class ExecutionResult:
-    tool: str              # tool key used
-    tool_name: str         # display name
-    task_type: str         # classified task type
-    confidence: float      # routing confidence
-    exit_code: int         # subprocess exit code (0 = success)
-    success: bool          # exit_code == 0
-    duration_ms: int       # execution time in milliseconds
-    fallback_used: bool    # True if primary tool failed
-    stdout: str            # captured stdout
-    stderr: str            # captured stderr
+    tool_name: str          # tool key used
+    task_type: str          # classified task type
+    confidence: float       # routing confidence
+    success: bool           # True if exit_code == 0
+    exit_code: int          # subprocess exit code (-1 for errors)
+    duration_ms: int        # execution time in milliseconds
+    stdout: str = ""        # captured stdout
+    stderr: str = ""        # captured stderr
+    fallback_used: bool = False  # True if primary failed and fallback was used
 ```
 
-### `TOOL_COMMANDS`
+### Tool Commands
 
-Maps tool keys to CLI command templates:
+Each tool maps to a CLI invocation pattern (`TOOL_COMMANDS`):
 
-| Tool | Command | Mode |
+| Tool Key | Command | Notes |
 |---|---|---|
-| `claude` | `claude -p <prompt>` | arg |
-| `codex` | `codex -p <prompt>` | arg |
-| `gemini` | `gemini -p <prompt>` | arg |
-| `aider` | `aider --message <prompt>` | arg |
-| `copilot` | `gh copilot -p <prompt>` | arg |
-| `cursor` | `cursor -p <prompt>` | arg |
+| `claude` | `claude -p "<task>"` | Anthropic Claude Code |
+| `codex` | `codex -p "<task>"` | OpenAI Codex CLI |
+| `gemini` | `gemini -p "<task>"` | Google Gemini CLI |
+| `aider` | `aider --message "<task>"` | Aider |
+| `copilot` | `gh copilot -p "<task>"` | GitHub Copilot CLI |
+| `cursor` | `cursor -p "<task>"` | Cursor |
 
-### Execution behavior
+### Fallback Behavior
 
-- Subprocess timeout: 300 seconds
-- History logged to `~/.rolemesh/history.jsonl` (JSONL format)
-- Each history entry: `timestamp`, `tool`, `task_type`, `success`, `duration_ms`
-- Unknown tool key returns exit code 1 with stderr message
+1. `dispatch()` routes the task via `RoleMeshRouter`
+2. Primary tool executes via `subprocess.run()` (timeout: 300s)
+3. If primary fails (non-zero exit) and a fallback tool exists, fallback executes
+4. `fallback_used=True` is set on the result when fallback was triggered
+
+### Execution History
+
+Each execution appends a JSON line to `~/.rolemesh/history.jsonl`:
+
+```json
+{"timestamp": "2026-03-07T12:00:00", "tool": "claude", "task_type": "coding", "success": true, "duration_ms": 1234}
+```
 
 ---
 
@@ -177,8 +159,8 @@ dashboard.collect()  # gather all data
 | `render_routing()` | `str` | Routing table |
 | `render_coverage()` | `str` | Task type x tool coverage matrix |
 | `render_health()` | `str` | Health check results |
-| `render_history()` | `str` | Last 10 execution history entries |
-| `to_json()` | `dict` | Machine-readable dashboard data |
+| `render_history()` | `str` | Last 10 execution entries |
+| `to_json()` | `dict` | Full dashboard data as JSON-serializable dict |
 
 ### Health Checks
 
@@ -193,21 +175,3 @@ dashboard.collect()  # gather all data
 ### `Color`
 
 ANSI color helper. Respects `NO_COLOR` env var and non-TTY detection. Can be force-disabled via `Color.set_enabled(False)`.
-
-### `DashboardData`
-
-```python
-@dataclass
-class DashboardData:
-    tools: list              # list of ToolProfile
-    config: Optional[dict]   # loaded config or None
-    routing: dict            # routing rules from config
-    health: list             # list of HealthCheck
-    history: list            # parsed JSONL history entries
-```
-
----
-
-## __main__.py — CLI Entry Point
-
-Unified CLI with argparse subcommands. Dispatches to `cmd_dashboard`, `cmd_setup`, `cmd_route`, `cmd_exec`, `cmd_status`. All subcommands support `--json` output.
