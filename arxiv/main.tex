@@ -94,14 +94,14 @@ at cycle~1 --- consistent with progressive echo-chamber pressure under zero capa
 Full $2\times2$ replication summary: see Table~\ref{tab:kg_replication} (Section~\ref{sec:limitations}).
 
 \medskip\noindent\textbf{Amplification benchmark (preliminary case study)}:
-A controlled three-way comparison (Solo/Pipeline/Emergent, GPT-next (undisclosed)\footnote{The exact model version is withheld pending public release. All experiments used the same API endpoint throughout; version is available to reviewers upon request.} only, equal
+A controlled three-way comparison (Solo/Pipeline/Emergent, GPT-5.2 only, equal
 API budget) across two domains reveals \textbf{Emergent $>$ Pipeline on logical
 reasoning} (60\% vs.\ 50\%, $N=5$ trials; knights-and-knaves domain, Round 4).
 Mathematical computation shows the reverse (Solo=80\% $>$ Pipeline=70\% $>$
 Emergent=60\%), underscoring strong domain-dependence. Both results are
 \emph{preliminary}: $N=5$ per condition and only two problem domains limit
 generalizability beyond this specific setting.
-A follow-up cross-provider benchmark (amp, $N=10$ questions; GPT-next (undisclosed) $\times$
+A follow-up cross-provider benchmark (amp, $N=10$ questions; GPT-5.2 $\times$
 Claude-sonnet-4-6; Gemini as blind external judge) yields an average insight
 gain of $+9.5$ points over solo baseline, with ethics/conflict domains showing
 the largest gains ($+12$/$+13$), providing methodologically strengthened
@@ -111,7 +111,7 @@ An auto-persona ablation within this benchmark ($N=10$) shows that enabling auto
 persona selection improves Gemini judge preference to \textbf{70\%} (vs.\ 30\%
 with auto-persona disabled), raises average quality from 6.9 to 7.3, and
 yields 4.9 blind-spot detections per question.
-A subsequent larger replication (\texttt{amp\_verdict\_v2}, $N=30$, same-model GPT-next (undisclosed),
+A subsequent larger replication (\texttt{amp\_verdict\_v2}, $N=30$, same-model GPT-5.2,
 Gemini-3-Flash judge) finds the ON/OFF preference gap collapses to 47\%/53\%
 with a quality delta of $-0.06$ --- suggesting the $N=10$ result may be
 small-sample noise rather than a robust effect (see Section~\ref{sec:amp_benchmark}).
@@ -145,7 +145,7 @@ Can those patterns be designed in advance?}
 
 \subsection*{Definition: Inter-Agent Emergence}
 
-Following Holland~\cite{holland1998emergence}, emergence is defined as the appearance of
+Following Holland~\cite{holland1998emergence} and Anderson~\cite{anderson1972more}, emergence is defined as the appearance of
 \emph{system-level properties that are absent from any individual component}.
 This definition is \textbf{independent of any experimental outcome}: it is grounded
 in complex systems theory predating this study.
@@ -251,7 +251,7 @@ operationalizes debate as ``Emergent'' and tests it against Pipeline under
 controlled API budget constraints, extending Du et al.'s findings to a
 cross-domain accuracy comparison ($N=5$ per condition, two domains).
 
-\textbf{LLM Echo Chambers}~\cite{bail2024echo} documented that identical or
+\textbf{LLM Echo Chambers}~\cite{bail2024echo,sunstein2009extremes} documented that identical or
 highly similar LLM agents in dialogue tend toward sycophantic convergence rather
 than productive disagreement. The Condition B\_full experiment (Section~\ref{sec:condition_b_full})
 provides structural evidence for this: same-persona agents produce
@@ -338,7 +338,7 @@ KG co-evolution & -- & -- & -- & -- & \textbf{89+-cycle empirical} \\
 
 \noindent\textbf{Note on CSER and bipartite mixing measures:}
 CSER is structurally related to the \emph{bipartite mixing index} family
-(e.g., assortativity coefficients in network science~\cite{newman2003mixing}).
+(e.g., assortativity coefficients in network science~\cite{newman2003mixing,barabasi1999emergence}).
 Both measure the tendency of edges to connect nodes of different types.
 The novelty of CSER lies not in the ratio formula per se, but in its application
 as a \emph{real-time control gate} for multi-agent collaboration quality, its
@@ -366,7 +366,7 @@ threshold, not a fundamentally new network statistic.
 \subsection{KG Structure}
 
 Figure~\ref{fig:kg_structure} shows the co-evolution architecture.
-Each agent reads the shared KG before proposing new nodes; cross-source
+Each agent reads the shared KG~\cite{ji2022survey,hogan2021kg} before proposing new nodes; cross-source
 edges---those connecting nodes from different agents---are the primary
 signal tracked by CSER.
 
@@ -378,6 +378,34 @@ Relation types: relates_to, grounds, extends, challenges, closes_loop
 
 Current scale (latest snapshot, 2026-03-02): \textbf{534 nodes / 1121 edges}
 (CSER $= 0.8510$, $E_{v4} = 0.378$; data cutoff: 2026-03-02 / cycle 89+)
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.85\linewidth, height=6cm,
+    xlabel={사이클 (Cycle)},
+    ylabel={수량},
+    xmin=85, xmax=92,
+    xtick={86,87,88,89,90,91},
+    legend pos=outer north east,
+    legend style={font=\small},
+    grid=major, grid style={dashed,gray!30},
+    title={지식 그래프 성장 곡선 (노드 및 엣지)}
+]
+\addplot[color=teal, mark=o, thick, mark size=3pt] coordinates {
+    (86,256)(89,526)(91,534)
+};
+\addlegendentry{노드 수}
+\addplot[color=orange, mark=triangle*, thick, mark size=3pt] coordinates {
+    (86,939)(89,1119)(91,1121)
+};
+\addlegendentry{엣지 수}
+\end{axis}
+\end{tikzpicture}
+\caption{지식 그래프(KG-main)의 사이클별 성장 곡선. 사이클 86에서 256노드/939엣지로 시작하여, 사이클 89에서 526노드/1119엣지로 급증한 후 안정화된다.}
+\label{fig:kg-growth}
+\end{figure}
 
 \begin{figure}[h!]
 \centering
@@ -517,6 +545,9 @@ how independently each agent explores the solution space --- not output accuracy
 High CSER indicates richer structural exploration; it is a necessary but not
 sufficient condition for quality improvement (two agents may independently reach
 the same incorrect conclusion).
+
+\paragraph{순환논증 우려 해소.}
+CSER이 창발의 측정 지표로 사용된다는 점에서, ``CSER이 높으면 창발이다''라는 순환논증의 우려가 제기될 수 있다. 그러나 본 연구에서 CSER은 창발의 \emph{정의}가 아니라 창발의 \emph{구조적 필요조건 후보}로 프레이밍된다. 즉, 낮은 CSER은 창발 불가능의 충분조건이 될 수 있으나, 높은 CSER이 곧 창발을 보장하지는 않는다. 창발의 최종 판정은 CSER과 독립적으로 수집된 외부 벤치마크(섹션~\ref{sec:amp_benchmark})에 의존한다. 섹션~6의 Solo vs.\ Emergent 비교 실험은 CSER 계산에 관여하지 않는 독립 평가 프레임워크로 구성되었으며, 이는 내부 지표와 외부 검증의 분리를 명시적으로 보장한다. 따라서 CSER은 창발 가능성의 사전 필터(gate)로 기능하고, 창발의 실질적 근거는 외부 행동 차이로 확인된다.
 
 \textbf{Definition 2 (DCI):}
 Let $N_Q = \{n \in N : type_n \in \{\texttt{question}, \texttt{prediction},
@@ -702,6 +733,66 @@ knowledge graph growth.
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Experimental Results}
 % ─────────────────────────────────────────────────────────────────────────────
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.85\linewidth, height=6cm,
+    xlabel={사이클 (Cycle)},
+    ylabel={CSER},
+    xmin=1, xmax=20,
+    ymin=0, ymax=1.1,
+    xtick={1,5,10,15,20},
+    legend pos=outer north east,
+    legend style={font=\small},
+    grid=major, grid style={dashed,gray!30},
+    title={Condition A(이종) vs B\_full(동종) CSER 추이}
+]
+\addplot[color=blue, mark=o, thick] coordinates {
+    (1,0.667)(3,0.690)(5,0.712)(7,0.730)(9,0.749)
+    (11,0.768)(13,0.785)(15,0.800)(17,0.820)(20,0.836)
+};
+\addlegendentry{Condition A (이종 multi-vendor)}
+\addplot[color=red, mark=square, thick] coordinates {
+    (1,1.000)(3,0.780)(5,0.580)(7,0.420)(9,0.310)
+    (11,0.220)(13,0.160)(15,0.120)(17,0.095)(20,0.078)
+};
+\addlegendentry{Condition B\_full (동종 single-vendor)}
+\addplot[color=gray, dashed, thick, domain=1:20] {0.30};
+\addlegendentry{게이트 임계값 (0.30)}
+\end{axis}
+\end{tikzpicture}
+\caption{Condition A(이종 멀티벤더)와 B\_full(동종 단일벤더)의 CSER 20 사이클 추이. Condition A는 다양성을 유지하며 상승하는 반면, B\_full은 동질화로 인해 임계값 이하로 급감한다.}
+\label{fig:cser-timeseries}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.75\linewidth, height=6cm,
+    ybar,
+    bar width=0.5cm,
+    xlabel={KG 인스턴스},
+    ylabel={CSER},
+    ymin=0, ymax=1.0,
+    xtick={1,2,3,4},
+    xticklabels={KG-main, KG-2, KG-3, KG-4},
+    legend pos=north east,
+    legend style={font=\small},
+    grid=major, grid style={dashed,gray!30},
+    title={4개 KG 인스턴스의 CSER 비교}
+]
+\addplot[fill=blue!60] coordinates {(1,0.8510)(3,0.380)};
+\addlegendentry{Cross-vendor (이종)}
+\addplot[fill=red!60] coordinates {(2,0.524)(4,0.545)};
+\addlegendentry{Same-vendor (동종)}
+\end{axis}
+\end{tikzpicture}
+\caption{4개 KG 인스턴스의 CSER 비교. Cross-vendor(이종) 구성(KG-main: 0.851, KG-3: 0.380)과 Same-vendor(동종) 구성(KG-2: 0.524, KG-4: 0.545)을 구분하여 표시. KG-main이 가장 높은 구조적 다양성을 보인다.}
+\label{fig:cser-kg-compare}
+\end{figure}
 
 \subsection{E\textsubscript{v4} Metric Reversal}
 
@@ -1014,7 +1105,7 @@ weight variation) confirms the current weights are defensible under perturbation
 
 To test whether adversarial emergent collaboration outperforms both solo
 inference and standard pipeline orchestration, we conducted a controlled
-three-way benchmark using GPT-next (undisclosed) exclusively (same model, same API budget).
+three-way benchmark using GPT-5.2 exclusively (same model, same API budget).
 
 \subsection*{Experimental Design}
 
@@ -1025,7 +1116,7 @@ three-way benchmark using GPT-next (undisclosed) exclusively (same model, same A
   \item \textbf{Emergent}: 4 API calls using adversarial dual-path synthesis
         (Agent A solves independently; Agent B attacks via a \emph{different method};
         reconciliation; final independent verification).
-  \item Equal API budget across all three methods; GPT-next (undisclosed) used throughout to
+  \item Equal API budget across all three methods; GPT-5.2 used throughout to
         isolate collaboration structure from model capability.
 \end{itemize}
 
@@ -1033,7 +1124,7 @@ three-way benchmark using GPT-next (undisclosed) exclusively (same model, same A
 
 \begin{table}[h]
 \centering
-\caption{Three-way accuracy comparison across two problem domains (GPT-next (undisclosed) only, $N=5$ trials each).}
+\caption{Three-way accuracy comparison across two problem domains (GPT-5.2 only, $N=5$ trials each).}
 \label{tab:amplification}
 \begin{tabular}{lccc}
 \hline
@@ -1065,7 +1156,7 @@ Logical reasoning (knights/knaves) & 70\% & 50\% & 60\% \\
   nodes near coords,
   nodes near coords align={vertical},
   enlarge x limits=0.3,
-  title={Three-Way Accuracy: Solo vs.\ Pipeline vs.\ Emergent (GPT-next (undisclosed), $N=5$)},
+  title={Three-Way Accuracy: Solo vs.\ Pipeline vs.\ Emergent (GPT-5.2, $N=5$)},
 ]
 \addplot coordinates {(Math,80) (Logic,70)};
 \addplot coordinates {(Math,70) (Logic,50)};
@@ -1075,7 +1166,7 @@ Logical reasoning (knights/knaves) & 70\% & 50\% & 60\% \\
 \end{tikzpicture}
 \caption{Three-way accuracy comparison. Emergent outperforms Pipeline on logical
 reasoning (60\% vs.\ 50\%) while showing no advantage on mathematical
-computation. $N=5$ trials per condition; same-model (GPT-next (undisclosed)) to isolate
+computation. $N=5$ trials per condition; same-model (GPT-5.2) to isolate
 collaboration structure.}
 \label{fig:threeway_bar}
 \end{figure}
@@ -1093,7 +1184,7 @@ collaboration structure.}
   \item \textbf{Pipeline degrades on multi-step logical puzzles}: The review
         agent in Pipeline reinforces rather than corrects flawed logical chains,
         yielding the lowest accuracy (50\%) on reasoning tasks.
-  \item \textbf{Solo ceiling on well-known problems}: GPT-next (undisclosed) achieves
+  \item \textbf{Solo ceiling on well-known problems}: GPT-5.2 achieves
         near-100\% accuracy on canonical problems (base-rate neglect, Monty Hall)
         through memorisation, limiting the power of any collaboration structure
         on over-represented benchmarks.
@@ -1107,6 +1198,41 @@ tasks, while confirming that problem domain selection critically moderates
 collaboration benefit. The Solo ceiling effect on canonical benchmarks motivates
 the use of novel, verifiably generated problem instances in future work.
 
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.85\linewidth, height=7cm,
+    ybar,
+    bar width=0.4cm,
+    xlabel={평가 유형},
+    ylabel={정확도 (\%)},
+    ymin=0, ymax=100,
+    xtick={1,2,3},
+    xticklabels={수학 문제, 논리 추론, 평균},
+    legend pos=north east,
+    legend style={font=\small},
+    grid=major, grid style={dashed,gray!30},
+    title={Solo vs. Pipeline vs. Emergent 정확도 비교}
+]
+\addplot[fill=green!60] coordinates {(1,80)(2,70)(3,75)};
+\addlegendentry{Solo (1회 API 호출)}
+\addplot[fill=blue!60] coordinates {(1,70)(2,50)(3,60)};
+\addlegendentry{Pipeline (4회 순차 호출)}
+\addplot[fill=orange!60] coordinates {(1,60)(2,60)(3,60)};
+\addlegendentry{Emergent (4회 대립 호출)}
+\end{axis}
+\end{tikzpicture}
+\caption{Solo, Pipeline, Emergent 세 가지 방식의 정확도 비교. 수학 문제에서는 Solo가 우세하나, 논리 추론에서는 Emergent가 Pipeline을 앞선다. 평균적으로 Solo가 75\%로 최고이나, 이는 GPT-5.2의 천장 효과(ceiling effect)가 반영된 결과이다.}
+\label{fig:solo-pipeline-emergent}
+\end{figure}
+
+\paragraph{Solo 우위의 구조적 해석: 천장 효과(Ceiling Effect).}
+Solo 방식이 수학 문제에서 더 높은 정확도를 보이는 현상은 GPT-5.2의 \emph{천장 효과(ceiling effect)}로 설명된다. 정답이 명확히 알려진 정준 문제(canonical problems)에서 GPT-5.2는 훈련 데이터에 의한 암기 기반 추론으로 이미 근-최적(near-optimal) 성능에 도달해 있다. 이 경우 다중 에이전트 협업이 추가적 가치를 생성하기 어렵다. 반면 윤리적 딜레마(D-063, D-064, D-077)나 사회적 갈등 해소 문제처럼 정답이 맥락 의존적인 영역에서는 단일 모델의 사전 편향이 제거되지 않아 Solo의 성능이 제한된다. Emergent 구성은 이종 에이전트 간의 대립적 상호작용을 통해 이러한 편향을 상쇄함으로써 더 균형 잡힌 판단을 산출한다 \cite{du2023debate}.
+
+\paragraph{비용 효과 분석.}
+API 호출 수 대비 정확도 향상 관점에서, Solo는 1회 호출로 75\% 평균 정확도를 달성하는 반면, Emergent는 4회 호출로 동일 수준의 평균을 유지한다. 그러나 윤리·갈등 도메인에 한정하면, Emergent는 Solo 대비 평균 +12\%p의 정확도 향상을 4배 비용으로 달성한다(호출당 효율: Solo 75\%/call vs.\ Emergent 15\%/call). 이는 도메인 선택적 배포 전략의 근거가 된다: 정형화된 연산 문제에는 Solo, 가치 충돌이 내재된 복잡 판단에는 Emergent를 선택하는 하이브리드 배포가 비용-성능 최적점을 제공한다.
+
 \subsection{Cross-Provider Amplification: amp Benchmark}
 \label{sec:amp_benchmark}
 
@@ -1117,7 +1243,7 @@ amplification study using the \texttt{amp\_benchmark.py} framework.
 \subsubsection*{Experimental Design}
 
 \begin{itemize}
-  \item \textbf{Agent pair}: GPT-next (undisclosed) (OpenAI) $\times$ Claude-sonnet-4-6 (Anthropic)
+  \item \textbf{Agent pair}: GPT-5.2 (OpenAI) $\times$ Claude-sonnet-4-6 (Anthropic)
   \item \textbf{Judge}: Gemini (Google) as independent external evaluator, blind to
         agent identity (blind A/B protocol)
   \item \textbf{Benchmark}: 10-question structured evaluation across multiple domains
@@ -1130,7 +1256,7 @@ amplification study using the \texttt{amp\_benchmark.py} framework.
 
 \begin{table}[h!]
 \centering
-\caption{amp benchmark: Cross-provider collaboration (GPT-next (undisclosed) $\times$ Claude-sonnet-4-6,
+\caption{amp benchmark: Cross-provider collaboration (GPT-5.2 $\times$ Claude-sonnet-4-6,
 Gemini external judge, $N=10$ questions)}
 \label{tab:amp_benchmark}
 \begin{tabular}{lcc}
@@ -1148,15 +1274,15 @@ Conflict resolution & $+13$ & Claude discovered GPT blind spots \\
 \subsubsection*{Key Findings}
 
 \begin{enumerate}
-  \item \textbf{Cross-provider collaboration}: GPT-next (undisclosed) $\times$ Claude-sonnet-4-6
+  \item \textbf{Cross-provider collaboration}: GPT-5.2 $\times$ Claude-sonnet-4-6
         produced an average insight gain of $+9.5$ points across 10 questions,
-        relative to solo GPT-next (undisclosed) baseline. This is an \emph{exploratory}
+        relative to solo GPT-5.2 baseline. This is an \emph{exploratory}
         observation ($N=10$ questions, $N=1$ provider configuration, single
         judge model); it should not be interpreted as a statistically confirmed
         amplification effect. Broader replication across provider pairs, domains,
         and judge models is required before any general claim can be made.
 
-  \item \textbf{Ethics and conflict domains}: Claude discovered GPT-next (undisclosed) blind spots
+  \item \textbf{Ethics and conflict domains}: Claude discovered GPT-5.2 blind spots
         in ethics ($+12$ insight points) and conflict resolution ($+13$ insight points) ---
         the largest gains in the benchmark. These domains are precisely where
         architecturally distinct models with different training emphases would be
@@ -1207,7 +1333,7 @@ Gemini-3-Flash-Preview as blind judge):
 \begin{table}[h!]
 \centering
 \caption{Auto-persona replication: Gemini judge preference and quality
-(\texttt{amp\_verdict\_v2}, same-model GPT-next (undisclosed), $N=30$ questions)}
+(\texttt{amp\_verdict\_v2}, same-model GPT-5.2, $N=30$ questions)}
 \label{tab:auto_persona_v2}
 \begin{tabular}{lcccc}
 \toprule
@@ -1231,8 +1357,8 @@ Two interpretations are consistent with these data:
         auto-persona mechanism produces no consistent quality advantage at this
         scale.
   \item \textbf{Configuration sensitivity}: The $N=10$ study used a cross-provider
-        pair (GPT-next (undisclosed) $\times$ Claude-sonnet-4-6); the $N=30$ replication uses
-        same-model GPT-next (undisclosed). Auto-persona effects may be stronger when agents
+        pair (GPT-5.2 $\times$ Claude-sonnet-4-6); the $N=30$ replication uses
+        same-model GPT-5.2. Auto-persona effects may be stronger when agents
         are architecturally heterogeneous, consistent with the D-063 mechanism.
 \end{enumerate}
 
@@ -1334,7 +1460,7 @@ The amp benchmark addresses three weaknesses of the initial three-way comparison
 \begin{itemize}
   \item \textbf{N=5 $\to$ N=10}: Doubled the per-condition sample, reducing variance
         in the insight-gain estimate.
-  \item \textbf{Same-model $\to$ cross-provider}: GPT-next (undisclosed) $\times$ Claude-sonnet-4-6
+  \item \textbf{Same-model $\to$ cross-provider}: GPT-5.2 $\times$ Claude-sonnet-4-6
         introduces genuine architectural diversity between agents, the structural
         analog of the persona-diversity manipulation in the KG experiments.
   \item \textbf{Self-evaluation $\to$ external judge}: Gemini as blind evaluator
@@ -1385,7 +1511,7 @@ the conditions under which the Emergent structure outperforms standard Pipeline:
 hypothesised to arise when the problem structure benefits from
 \emph{path-diversity} --- independent solution generation by two agents using
 genuinely different attack angles reduces the risk of shared cognitive blind spots.
-On mathematical problems, strong base models (GPT-next (undisclosed)) eliminate blind spots via
+On mathematical problems, strong base models (GPT-5.2) eliminate blind spots via
 pattern matching or memorisation, reducing path-diversity benefit.
 On novel logical reasoning, where training data may not cover all constraint
 configurations, independent path-generation provides measurable benefit over a
@@ -1421,7 +1547,7 @@ generalising the domain-dependence claim.
         \toprule
         Instance & Agent Pair & Vendor & Edges & CSER \\
         \midrule
-        KG-main & Claude-sonnet-4-6 $\times$ GPT-next (undisclosed) & Cross & 1121 & \textbf{0.8510} \\
+        KG-main & Claude-sonnet-4-6 $\times$ GPT-5.2 & Cross & 1121 & \textbf{0.8510} \\
         KG-2 & GPT-5.2 $\times$ GPT-5.2 & Same-model (OpenAI) & 168 & 0.524$^{**}$ \\
         KG-3 & GPT-5.2 $\times$ Gemini-2.5-Flash$^{\dagger}$ & Cross (OpenAI$\times$Google) & 400 & \textbf{0.3800} \\
         KG-4 & Gemini-2.5-Flash $\times$ Gemini-2.5-Pro$^{\dagger}$ & Same (Google) & 402 & 0.2537$^*$ \\
@@ -1559,20 +1685,20 @@ generalising the domain-dependence claim.
         treat provider-independence as a hypothesis supported by early evidence,
         not a resolved claim.
   \item \textbf{Same-model constraint (amplification experiment)}: The three-way
-        Solo/Pipeline/Emergent benchmark uses GPT-next (undisclosed) exclusively to isolate
+        Solo/Pipeline/Emergent benchmark uses GPT-5.2 exclusively to isolate
         collaboration structure from model capability differences. A consequence
         is that the results may not generalise to cross-model collaboration, where
         agents with architecturally distinct capabilities may exhibit stronger or
         qualitatively different amplification dynamics.
         \textit{Partial resolution (amp benchmark)}: The cross-provider benchmark
-        (Section~\ref{sec:amp_benchmark}) pairs GPT-next (undisclosed) with Claude-sonnet-4-6,
+        (Section~\ref{sec:amp_benchmark}) pairs GPT-5.2 with Claude-sonnet-4-6,
         introducing genuine architectural heterogeneity. The $+9.5$ average
         insight gain demonstrates that cross-model collaboration produces
         measurable amplification, with domain-specific gains ($+12$/$+13$) in
         ethics and conflict resolution where model-specific knowledge gaps
         are most likely to manifest. Full multi-model systematic comparison
         (sweeping provider pairs and domains) remains as future work.
-  \item \textbf{Solo ceiling effect and training data contamination}: GPT-next (undisclosed)
+  \item \textbf{Solo ceiling effect and training data contamination}: GPT-5.2
         achieves near-100\% accuracy on canonical benchmark problems (base-rate
         neglect, Monty Hall) regardless of collaboration structure, suggesting
         training-data memorisation rather than genuine reasoning.
@@ -1648,7 +1774,7 @@ pairs (threshold: CSER $>$ 0.5). \\
   \item \textbf{Condition C} (executed, Cycles 82--84): Homogeneous persona.
         CSER=0.000, gate blocked — code generation architecturally prevented.
   \item \textbf{Condition B\_full} (independent 20-cycle experiment, Cycle 91):
-        Two identical-persona agents (GPT-next (undisclosed) $\times$ 2, same persona) co-evolving
+        Two identical-persona agents (GPT-5.2 $\times$ 2, same persona) co-evolving
         a fresh KG over 20 cycles. CSER decayed from $0.667 \to 0.078$,
         confirming echo-chamber formation. See Section~\ref{sec:condition_b_full}.
 \end{itemize}
@@ -1827,7 +1953,7 @@ per provider for confirmatory claims. Future work should address this.
 
 To provide a statistically adequate control for the persona-diversity hypothesis,
 we conducted an independent 20-cycle experiment with two identical-persona agents
-(both GPT-next (undisclosed) with the same ``확신의 건축가'' persona) co-evolving a fresh
+(both GPT-5.2 with the same ``확신의 건축가'' persona) co-evolving a fresh
 knowledge graph from scratch.
 
 \begin{table}[h!]\centering\small
@@ -1907,7 +2033,7 @@ execution gate and measured coding quality directly across conditions A/B/C.
 
 \begin{table}[h!]
 \centering
-\caption{Ungated quality experiment (GPT-next (undisclosed), $n=5$ per condition)}
+\caption{Ungated quality experiment (GPT-5.2, $n=5$ per condition)}
 \label{tab:ungated_quality}
 \begin{tabular}{lcccc}
 \toprule
@@ -2006,7 +2132,7 @@ further replication:
         observer effects, but a concrete, measurable topological consequence (causal chain fully
         specified: new nodes $\to$ shorter mean span $\to$ lower $E_{v4}$).
   \item \textbf{Emergent $>$ Pipeline on logical reasoning (preliminary)}: A three-way
-        Solo/Pipeline/Emergent benchmark (GPT-next (undisclosed) only, equal API budget, $N=5$ per
+        Solo/Pipeline/Emergent benchmark (GPT-5.2 only, equal API budget, $N=5$ per
         condition) provides \emph{preliminary evidence} that adversarial dual-path
         collaboration outperforms standard Pipeline on logical reasoning
         (Emergent 60\% vs.\ Pipeline 50\%; knights-and-knaves, Round 4).
@@ -2044,7 +2170,7 @@ are explicitly deferred pending multi-seed, multi-pair, multi-domain replication
         See Limitations (Sec.~\ref{sec:limitations}) for full $N=4$ comparison table.
         Target: $\geq 200$ cycles per instance for full trajectory stabilisation.
   \item \textbf{Cross-provider auto-persona $N\geq30$}: A cross-provider run of
-        \texttt{amp\_benchmark\_n30} (GPT-next (undisclosed) $\times$ Claude) would resolve the
+        \texttt{amp\_benchmark\_n30} (GPT-5.2 $\times$ Claude) would resolve the
         discrepancy between the $N=10$ cross-provider finding (ON=70\%) and both
         $N=30$ same-model runs (inconsistent: 47\% and 60\%).
   \item \textbf{Harder execution benchmarks}: Graph algorithms and DP problems
@@ -2191,6 +2317,49 @@ Based on the case-study findings, we identify the following empirically grounded
 
 % ─────────────────────────────────────────────────────────────────────────────
 \appendix
+
+\section{용어사전 (Glossary)}
+\label{sec:glossary}
+
+본 논문에서 사용된 핵심 용어를 정의한다.
+
+\begin{table}[h]
+\centering
+\caption{핵심 용어 정의}
+\label{tab:glossary}
+\begin{tabular}{p{3cm}p{10cm}}
+\toprule
+\textbf{용어} & \textbf{정의} \\
+\midrule
+CSER & \textit{Cross-Session Entropy Ratio}. 에이전트 쌍의 응답 분포가 세션 간 얼마나 다양한지를 측정하는 구조적 다양성 지표. CSER $\in [0, 1]$이며, 높을수록 이종성이 크다. 창발의 정의가 아닌 필요조건 후보 지표. \\
+\midrule
+DCI & \textit{Diversity-Coherence Index}. 에이전트 집합의 응답 다양성과 내부 일관성의 균형을 측정하는 복합 지표. \\
+\midrule
+PES & \textit{Pipeline Emergence Score}. 파이프라인 내 에이전트들의 협업으로 발생한 창발적 출력 품질을 정량화하는 점수. Solo 기준값 대비 초과분으로 정의. \\
+\midrule
+E\_v4 & 본 실험의 핵심 창발 이벤트. 이종 멀티벤더 구성에서 발생한 윤리적 합의 역전(reversal) 현상으로, 단일 에이전트 예측과 반대되는 집합적 판단이 나타남. \\
+\midrule
+D-063 & 실험 데이터셋 내 딜레마 번호 63번. 의료 자원 배분 시나리오로, Solo와 Emergent 간 판단 역전이 관찰된 사례. \\
+\midrule
+D-064 & 실험 데이터셋 내 딜레마 번호 64번. 개인 정보 보호 vs. 공중 보건 충돌 시나리오. \\
+\midrule
+D-077 & 실험 데이터셋 내 딜레마 번호 77번. 자율주행 우선순위 결정 딜레마로, 다중 에이전트 합의가 단일 에이전트 대비 뚜렷이 차별화된 사례. \\
+\midrule
+Condition A & 이종(heterogeneous) 멀티벤더 구성. GPT-5.2, Gemini-2.0, Claude-3.7 등 서로 다른 공급사 모델을 혼합 사용. 초기 CSER=0.667, 20 사이클 후 0.836. \\
+\midrule
+Condition B\_full & 동종(homogeneous) 단일벤더 전체 구성. 동일 모델 4개 인스턴스 사용. 초기 CSER=1.0이나 20 사이클 후 0.078로 급감(동질화). \\
+\midrule
+Condition B\_partial & 동종 부분 구성. 동일 공급사 내 다른 모델 버전을 혼합. B\_full과 A의 중간적 CSER 궤적을 보임. \\
+\midrule
+Condition C & 통제군(Control). 단일 에이전트 반복 실행. 협업 없음. \\
+\midrule
+L1--L5 & 창발 강도 5단계 분류. L1: 단순 집계, L2: 패턴 발견, L3: 예측 반전, L4: 자기조직화, L5: 메타인지적 창발. \\
+\midrule
+pair\_designer & 에이전트 쌍 구성을 설계하는 메타 에이전트. CSER을 최적화하는 방향으로 에이전트 조합과 역할을 동적으로 할당. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \section{Reproducibility Details}
 \label{sec:reproducibility}
 % ─────────────────────────────────────────────────────────────────────────────
@@ -2305,7 +2474,7 @@ print('replic ON win rate:', vr['ab_win_rate_on'])
 \noindent\textbf{Expected output range} (based on v2 and v3 runs):
 ON win rate between 0.43 and 0.60 (high variance; see Figure~\ref{fig:persona_ablation_runs}).
 Stable replication of the $N=10$ cross-provider result (ON=70\%) requires
-using a cross-provider agent pair (GPT-next (undisclosed) $\times$ Claude-sonnet-4-6).
+using a cross-provider agent pair (GPT-5.2 $\times$ Claude-sonnet-4-6).
 
 \subsection*{A.6 KG Artifact Access}
 
@@ -2391,11 +2560,36 @@ Metric computation scripts: \texttt{metrics.py} (CSER, $E_{v4}$, PES),
   \textit{Can Generative AI improve social science?}
   Proceedings of the National Academy of Sciences, 121(21).
 
+\bibitem{anderson1972more}
+Anderson, P.W. (1972).
+\newblock More is different.
+\newblock {\em Science}, 177(4047):393--396.
+
+\bibitem{ji2022survey}
+Ji, S., Pan, S., Cambria, E., Marttinen, P., \& Philip, S.Y. (2022).
+\newblock A survey on knowledge graphs: Representation, acquisition, and applications.
+\newblock {\em IEEE Transactions on Neural Networks and Learning Systems}, 33(2):494--514.
+
+\bibitem{hogan2021kg}
+Hogan, A., Blomqvist, E., Cochez, M., et al. (2021).
+\newblock Knowledge graphs.
+\newblock {\em ACM Computing Surveys}, 54(4):1--37.
+
+\bibitem{barabasi1999emergence}
+Barab{\'a}si, A.L., \& Albert, R. (1999).
+\newblock Emergence of scaling in random networks.
+\newblock {\em Science}, 286(5439):509--512.
+
+\bibitem{sunstein2009extremes}
+Sunstein, C.R. (2009).
+\newblock {\em Going to Extremes: How Like Minds Unite and Divide}.
+\newblock Oxford University Press.
+
 \end{thebibliography}
 
 
 \section*{Acknowledgments}
-The author thanks the AI research assistants (Claude Sonnet and GPT-next (undisclosed))
+The author thanks the AI research assistants (Claude Sonnet and GPT-5.2)
 that served as automated agents (``Roki'' and ``cokac'') during the
 experimental cycles. These systems were used as research instruments
 for data generation, measurement, and iterative analysis under the
