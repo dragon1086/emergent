@@ -1,4 +1,9 @@
-logs/*.log
+
+# 환경변수 파일 (절대 커밋 금지)
+*.secret
 *.tmp
 .DS_Store
 .env
+.env.*.local
+.env.local
+logs/*.log

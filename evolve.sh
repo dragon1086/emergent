@@ -25,7 +25,7 @@ DECISIONS_FILE="$REPO_DIR/DECISIONS.md"
 MAX_CYCLES_PER_DAY=4
 CYCLE_COUNT_FILE="/tmp/emergent-cycles-$(date +%Y%m%d)"
 OLD_NODE_RATIO=0.3  # D-100: 30% 사이클은 오래된 노드 EDGE_TO 강제
-TG_BOT_TOKEN="REDACTED_BOT_TOKEN_1"
+TG_BOT_TOKEN="${TG_BOT_TOKEN:-}"  # 환경변수에서 로드 (.env 파일 또는 shell export)
 TG_OWNER="7726642089"
 
 mkdir -p "$REPO_DIR/logs"
