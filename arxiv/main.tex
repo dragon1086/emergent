@@ -36,7 +36,7 @@ A Case Study with CSER and Persona-Diversity Gates}
   \texttt{munsangrok@gmail.com}
 }
 
-\date{Draft v3.9 — Latest Snapshot (2026-03-05)}
+\date{Latest Snapshot (2026-03-05)}
 
 % ─── Document ─────────────────────────────────────────────────────────────────
 \begin{document}
@@ -65,7 +65,7 @@ Within-cell replication-B instances track original trajectories
 
 \medskip\noindent\textbf{Scope}: $N=4$ KG instances ($N=2$ per cell including
 replication-B). Domain generalization requires further study.
-Claims are limited to this experimental setting (탐색적 연구, N=5 벤치마크는 통계적 검정력 부족).
+Claims are limited to this experimental setting (exploratory study; N=5 benchmark is statistically underpowered).
 
 \medskip\noindent\textbf{Keywords}: multi-agent AI, knowledge graph co-evolution,
 cross-source edge ratio, persona diversity, case study
@@ -336,26 +336,26 @@ Current scale (latest snapshot, 2026-03-02): \textbf{534 nodes / 1121 edges}
 \begin{tikzpicture}
 \begin{axis}[
     width=0.85\linewidth, height=6cm,
-    xlabel={사이클 (Cycle)},
-    ylabel={수량},
+    xlabel={Cycle},
+    ylabel={Count},
     xmin=85, xmax=92,
     xtick={86,87,88,89,90,91},
     legend pos=outer north east,
     legend style={font=\small},
     grid=major, grid style={dashed,gray!30},
-    title={지식 그래프 성장 곡선 (노드 및 엣지)}
+    title={KG Growth Curve (Nodes and Edges)}
 ]
 \addplot[color=teal, mark=o, thick, mark size=3pt] coordinates {
     (86,256)(89,526)(91,534)
 };
-\addlegendentry{노드 수}
+\addlegendentry{Nodes}
 \addplot[color=orange, mark=triangle*, thick, mark size=3pt] coordinates {
     (86,939)(89,1119)(91,1121)
 };
-\addlegendentry{엣지 수}
+\addlegendentry{Edges}
 \end{axis}
 \end{tikzpicture}
-\caption{지식 그래프(KG-main)의 사이클별 성장 곡선. 사이클 86에서 256노드/939엣지로 시작하여, 사이클 89에서 526노드/1119엣지로 급증한 후 안정화된다.}
+\caption{KG-main growth curve by cycle. Starting at 256 nodes / 939 edges at cycle 86, the graph surges to 526 nodes / 1119 edges at cycle 89, then stabilizes.}
 \label{fig:kg-growth}
 \end{figure}
 
@@ -379,7 +379,7 @@ Current scale (latest snapshot, 2026-03-02): \textbf{534 nodes / 1121 edges}
 ]
 
 %% Agent nodes
-\node[agent, fill=blue!8]    (agentA) at (0, 3.2)  {\textbf{Agent A}\\\small openclaw / 록이};
+\node[agent, fill=blue!8]    (agentA) at (0, 3.2)  {\textbf{Agent A}\\\small openclaw / roki};
 \node[agent, fill=orange!10] (agentB) at (0, -0.2) {\textbf{Agent B}\\\small cokac-bot};
 
 %% KG bounding box
@@ -451,7 +451,7 @@ Current scale (latest snapshot, 2026-03-02): \textbf{534 nodes / 1121 edges}
    \textcolor{gray!70}{$\longrightarrow$}~same-source};
 \node[align=left, font=\tiny, text=black!70] at (4.0, -2.15)
   {\textbf{Sources:}\enspace
-   \textcolor{blue!60}{$\bullet$}~Agent A (openclaw / 록이)\enspace
+   \textcolor{blue!60}{$\bullet$}~Agent A (openclaw / roki)\enspace
    \textcolor{orange!80}{$\bullet$}~Agent B (cokac-bot)\enspace
    \textcolor{gray!55}{$\bullet$}~execution-loop};
 
@@ -498,8 +498,8 @@ High CSER indicates richer structural exploration; it is a necessary but not
 sufficient condition for quality improvement (two agents may independently reach
 the same incorrect conclusion).
 
-\paragraph{순환논증 우려 해소.}
-CSER이 창발의 측정 지표로 사용된다는 점에서, ``CSER이 높으면 창발이다''라는 순환논증의 우려가 제기될 수 있다. 그러나 본 연구에서 CSER은 창발의 \emph{정의}가 아니라 창발의 \emph{구조적 필요조건 후보}로 프레이밍된다. 즉, 낮은 CSER은 창발 불가능의 충분조건이 될 수 있으나, 높은 CSER이 곧 창발을 보장하지는 않는다. 창발의 최종 판정은 CSER과 독립적으로 수집된 외부 벤치마크(섹션~\ref{sec:amp_benchmark})에 의존한다. 섹션~6의 Solo vs.\ Emergent 비교 실험은 CSER 계산에 관여하지 않는 독립 평가 프레임워크로 구성되었으며, 이는 내부 지표와 외부 검증의 분리를 명시적으로 보장한다. 따라서 CSER은 창발 가능성의 사전 필터(gate)로 기능하고, 창발의 실질적 근거는 외부 행동 차이로 확인된다.
+\paragraph{Addressing Circular-Argument Concerns.}
+Because CSER is used as a measurement indicator of emergence, concern may arise that ``high CSER implies emergence'' constitutes circular reasoning. However, in this study CSER is framed not as the \emph{definition} of emergence but as a \emph{candidate structural necessary condition} for emergence. That is, low CSER can serve as a sufficient condition for the impossibility of emergence, while high CSER does not guarantee emergence by itself. The final determination of emergence depends on external benchmarks collected independently of CSER (Sec.~\ref{sec:amp_benchmark}). The Solo vs.\ Emergent comparison experiment in Section~6 is structured as an independent evaluation framework that does not participate in CSER computation, explicitly guaranteeing separation between internal metrics and external validation. CSER therefore functions as a prior filter (gate) for emergence potential, while the substantive evidence for emergence is confirmed through external behavioral differences.
 
 \textbf{Definition 2 (DCI):}
 Let $N_Q = \{n \in N : type_n \in \{\texttt{question}, \texttt{prediction},
@@ -568,8 +568,7 @@ making the D-063 correlation a testable empirical relationship rather than a def
 \label{sec:five_layer}
 % ─────────────────────────────────────────────────────────────────────────────
 
-\noindent 이 분류체계는 검증 가능한 예측을 생성하는 이론이 아니라, 관찰을 정리하는 서술적 프레임워크이다.
-(This taxonomy is a descriptive framework for organizing observations, not a theory that generates testable predictions.)
+\noindent This taxonomy is a descriptive framework for organizing observations, not a theory that generates testable predictions.
 
 \subsection*{Layer 1: Conditions for Emergence}
 \textbf{L1-A Boundary Crossing}: CSER $>$ 0.5 $\to$ echo chamber escape.
@@ -695,7 +694,7 @@ knowledge graph growth.
 \begin{tikzpicture}
 \begin{axis}[
     width=0.85\linewidth, height=6cm,
-    xlabel={사이클 (Cycle)},
+    xlabel={Cycle},
     ylabel={CSER},
     xmin=1, xmax=20,
     ymin=0, ymax=1.1,
@@ -703,23 +702,23 @@ knowledge graph growth.
     legend pos=outer north east,
     legend style={font=\small},
     grid=major, grid style={dashed,gray!30},
-    title={Condition A(이종) vs B\_full(동종) CSER 추이}
+    title={Condition A (cross-vendor) vs B\_full (same-vendor) CSER Trajectory}
 ]
 \addplot[color=blue, mark=o, thick] coordinates {
     (1,0.667)(3,0.690)(5,0.712)(7,0.730)(9,0.749)
     (11,0.768)(13,0.785)(15,0.800)(17,0.820)(20,0.836)
 };
-\addlegendentry{Condition A (이종 multi-vendor)}
+\addlegendentry{Condition A (cross-vendor, multi-vendor)}
 \addplot[color=red, mark=square, thick] coordinates {
     (1,1.000)(3,0.780)(5,0.580)(7,0.420)(9,0.310)
     (11,0.220)(13,0.160)(15,0.120)(17,0.095)(20,0.078)
 };
-\addlegendentry{Condition B\_full (동종 single-vendor)}
+\addlegendentry{Condition B\_full (same-vendor, single-vendor)}
 \addplot[color=gray, dashed, thick, domain=1:20] {0.30};
-\addlegendentry{게이트 임계값 (0.30)}
+\addlegendentry{Gate threshold (0.30)}
 \end{axis}
 \end{tikzpicture}
-\caption{Condition A(이종 멀티벤더)와 B\_full(동종 단일벤더)의 CSER 20 사이클 추이. Condition A는 다양성을 유지하며 상승하는 반면, B\_full은 동질화로 인해 임계값 이하로 급감한다.}
+\caption{CSER trajectory over 20 cycles for Condition A (cross-vendor, multi-vendor) and B\_full (same-vendor, single-vendor). Condition A sustains rising diversity while B\_full drops sharply below the gate threshold due to homogenization.}
 \label{fig:cser-timeseries}
 \end{figure}
 
@@ -730,7 +729,7 @@ knowledge graph growth.
     width=0.75\linewidth, height=6cm,
     ybar,
     bar width=0.5cm,
-    xlabel={KG 인스턴스},
+    xlabel={KG Instance},
     ylabel={CSER},
     ymin=0, ymax=1.0,
     xtick={1,2,3,4},
@@ -738,15 +737,15 @@ knowledge graph growth.
     legend pos=north east,
     legend style={font=\small},
     grid=major, grid style={dashed,gray!30},
-    title={4개 KG 인스턴스의 CSER 비교}
+    title={CSER Comparison Across 4 KG Instances}
 ]
 \addplot[fill=blue!60] coordinates {(1,0.8510)(3,0.380)};
-\addlegendentry{Cross-vendor (이종)}
+\addlegendentry{Cross-vendor (multi-vendor)}
 \addplot[fill=red!60] coordinates {(2,0.524)(4,0.545)};
-\addlegendentry{Same-vendor (동종)}
+\addlegendentry{Same-vendor (single-vendor)}
 \end{axis}
 \end{tikzpicture}
-\caption{4개 KG 인스턴스의 CSER 비교. Cross-vendor(이종) 구성(KG-main: 0.851, KG-3: 0.380)과 Same-vendor(동종) 구성(KG-2: 0.524, KG-4: 0.545)을 구분하여 표시. KG-main이 가장 높은 구조적 다양성을 보인다.}
+\caption{CSER comparison across 4 KG instances. Cross-vendor configurations (KG-main: 0.851, KG-3: 0.380) and Same-vendor configurations (KG-2: 0.524, KG-4: 0.545) are shown separately. KG-main exhibits the highest structural diversity.}
 \label{fig:cser-kg-compare}
 \end{figure}
 
@@ -1162,33 +1161,33 @@ the use of novel, verifiably generated problem instances in future work.
     width=0.85\linewidth, height=7cm,
     ybar,
     bar width=0.4cm,
-    xlabel={평가 유형},
-    ylabel={정확도 (\%)},
+    xlabel={Task Type},
+    ylabel={Accuracy (\%)},
     ymin=0, ymax=100,
     xtick={1,2,3},
-    xticklabels={수학 문제, 논리 추론, 평균},
+    xticklabels={Math, Logical Reasoning, Average},
     legend pos=north east,
     legend style={font=\small},
     grid=major, grid style={dashed,gray!30},
-    title={Solo vs. Pipeline vs. Emergent 정확도 비교}
+    title={Solo vs. Pipeline vs. Emergent Accuracy Comparison}
 ]
 \addplot[fill=green!60] coordinates {(1,80)(2,70)(3,75)};
-\addlegendentry{Solo (1회 API 호출)}
+\addlegendentry{Solo (1 API call)}
 \addplot[fill=blue!60] coordinates {(1,70)(2,50)(3,60)};
-\addlegendentry{Pipeline (4회 순차 호출)}
+\addlegendentry{Pipeline (4 sequential calls)}
 \addplot[fill=orange!60] coordinates {(1,60)(2,60)(3,60)};
-\addlegendentry{Emergent (4회 대립 호출)}
+\addlegendentry{Emergent (4 adversarial calls)}
 \end{axis}
 \end{tikzpicture}
-\caption{Solo, Pipeline, Emergent 세 가지 방식의 정확도 비교. 수학 문제에서는 Solo가 우세하나, 논리 추론에서는 Emergent가 Pipeline을 앞선다. 평균적으로 Solo가 75\%로 최고이나, 이는 GPT-5.2의 천장 효과(ceiling effect)가 반영된 결과이다.}
+\caption{Accuracy comparison across Solo, Pipeline, and Emergent modes. Solo leads on math tasks; Emergent outperforms Pipeline on logical reasoning. Solo achieves the highest average (75\%), reflecting GPT-5.2's ceiling effect on canonical benchmarks.}
 \label{fig:solo-pipeline-emergent}
 \end{figure}
 
-\paragraph{Solo 우위의 구조적 해석: 천장 효과(Ceiling Effect).}
-Solo 방식이 수학 문제에서 더 높은 정확도를 보이는 현상은 GPT-5.2의 \emph{천장 효과(ceiling effect)}로 설명된다. 정답이 명확히 알려진 정준 문제(canonical problems)에서 GPT-5.2는 훈련 데이터에 의한 암기 기반 추론으로 이미 근-최적(near-optimal) 성능에 도달해 있다. 이 경우 다중 에이전트 협업이 추가적 가치를 생성하기 어렵다. 반면 윤리적 딜레마(D-063, D-064, D-077)나 사회적 갈등 해소 문제처럼 정답이 맥락 의존적인 영역에서는 단일 모델의 사전 편향이 제거되지 않아 Solo의 성능이 제한된다. Emergent 구성은 이종 에이전트 간의 대립적 상호작용을 통해 이러한 편향을 상쇄함으로써 더 균형 잡힌 판단을 산출한다 \cite{du2023debate}.
+\paragraph{Structural Interpretation of Solo Advantage: Ceiling Effect.}
+The higher accuracy of Solo on math tasks is explained by GPT-5.2's \emph{ceiling effect}. For canonical problems with well-known answers, GPT-5.2 already reaches near-optimal performance via memorization-based reasoning from training data. In this regime, multi-agent collaboration struggles to add further value. Conversely, in domains where correct answers are context-dependent---such as ethical dilemmas (D-063, D-064, D-077) or social-conflict resolution---a single model's prior bias remains uncorrected, limiting Solo's performance. The Emergent configuration offsets such biases through adversarial interaction between heterogeneous agents, yielding more balanced judgments \cite{du2023debate}.
 
-\paragraph{비용 효과 분석.}
-API 호출 수 대비 정확도 향상 관점에서, Solo는 1회 호출로 75\% 평균 정확도를 달성하는 반면, Emergent는 4회 호출로 동일 수준의 평균을 유지한다. 그러나 윤리·갈등 도메인에 한정하면, Emergent는 Solo 대비 평균 +12\%p의 정확도 향상을 4배 비용으로 달성한다(호출당 효율: Solo 75\%/call vs.\ Emergent 15\%/call). 이는 도메인 선택적 배포 전략의 근거가 된다: 정형화된 연산 문제에는 Solo, 가치 충돌이 내재된 복잡 판단에는 Emergent를 선택하는 하이브리드 배포가 비용-성능 최적점을 제공한다.
+\paragraph{Cost-Effectiveness Analysis.}
+In terms of accuracy gain per API call, Solo achieves 75\% average accuracy with 1 call, while Emergent maintains the same average with 4 calls. However, restricted to ethics/conflict domains, Emergent achieves an average +12\%p accuracy improvement over Solo at 4$\times$ the cost (per-call efficiency: Solo 75\%/call vs.\ Emergent 15\%/call). This motivates a domain-selective deployment strategy: Solo for well-structured computational tasks, Emergent for complex judgments with inherent value conflicts---a hybrid deployment that provides the cost-performance optimum.
 
 \subsection{Cross-Provider Amplification: amp Benchmark}
 \label{sec:amp_benchmark}
@@ -1503,7 +1502,7 @@ generalising the domain-dependence claim.
         \end{tabular}
         \caption*{\small Snapshot: 2026-03-05.
         -4 below gate ($\theta=0.30$), consistent with same-vendor echo-chamber pressure.
-        {**}-2 CSER declining from 1.00 to 0.524 (99 nodes); replication-B (KG-2b, CSER/bin/zsh.497$) tracks same trajectory.
+        {**}-2 CSER declining from 1.00 to 0.524 (99 nodes); replication-B (KG-2b, CSER$=0.497$) tracks same trajectory.
         {\dagger}-3/4 initialized with earlier model versions; see Appendix~\ref{sec:reproducibility}.}
         \end{table}
 
@@ -1519,7 +1518,7 @@ generalising the domain-dependence claim.
         {v4}$ weights 0.14999999999999999$ are intuitively designed; bootstrap
         CV on the same KG introduces circularity risk. Sensitivity analysis (94\% robust
         under $\pm\% perturbation, Sec.~\ref{sec:stat}) partially mitigates this.
-        Global CSER (/bin/zsh.8510$) is nearly identical to the Erd\H{o}s--R\'enyi random baseline
+        Global CSER ($=0.8510$) is nearly identical to the Erd\H{o}s--R\'enyi random baseline
         ($\approx 0.87$) at =16$ sources (Sec.~\ref{sec:stat}); CSER should be used as
         a threshold detector, not a continuous quality score at scale.
 
@@ -1657,7 +1656,7 @@ Note: the KG grew from 256/939 (Cycle 86) to 526/1119 (Cycle 89) to 534/1121 (la
 all figures above use the latest snapshot for consistency.}
 \end{table}
 
-\noindent\textbf{CSER note}: The near-equal CSER values arise because the real KG contains nodes from 16 distinct sources (록이, cokac, execution\_loop, openclaw\_asymmetric, etc.), making even random connections highly likely to be cross-source. This is structurally \emph{expected}: in a multi-source graph with $k=16$ sources of unequal size, the expected CSER of an E-R random graph approaches $1 - \sum_i p_i^2$ (where $p_i$ is the fraction of nodes from source $i$). With 16 sources, this lower-bound on random CSER is already $> 0.80$. CSER therefore serves as a \emph{threshold detector} (CSER $< 0.30$ = echo-chamber, confirmed by Condition B/C gate blockage) rather than a global discriminator against randomness.
+\noindent\textbf{CSER note}: The near-equal CSER values arise because the real KG contains nodes from 16 distinct sources (roki, cokac, execution\_loop, openclaw\_asymmetric, etc.), making even random connections highly likely to be cross-source. This is structurally \emph{expected}: in a multi-source graph with $k=16$ sources of unequal size, the expected CSER of an E-R random graph approaches $1 - \sum_i p_i^2$ (where $p_i$ is the fraction of nodes from source $i$). With 16 sources, this lower-bound on random CSER is already $> 0.80$. CSER therefore serves as a \emph{threshold detector} (CSER $< 0.30$ = echo-chamber, confirmed by Condition B/C gate blockage) rather than a global discriminator against randomness.
 
 \noindent\textbf{Limitation of global CSER as a sole indicator}: Because global CSER conflates contributions from all 16 sources, it is insensitive to localized echo-chamber formation within a source subgroup. Two agents could form a tight silo while a third agent maintains high cross-source degree, keeping global CSER deceptively high. Future work should develop \textbf{local CSER} (per source-pair) and \textbf{temporal CSER} (sliding-window over recent cycles) to detect silo formation before it becomes systemic. The current global CSER gate is adequate for the two-agent, two-source context studied here but may require augmentation in $k > 2$ agent systems.
 
@@ -1735,7 +1734,7 @@ per provider for confirmatory claims. Future work should address this.
 
 To provide a statistically adequate control for the persona-diversity hypothesis,
 I conducted an independent 20-cycle experiment with two identical-persona agents
-(both GPT-5.2 with the same ``확신의 건축가'' persona) co-evolving a fresh
+(both GPT-5.2 with the same ``Builder of Conviction'' persona) co-evolving a fresh
 knowledge graph from scratch.
 
 \begin{table}[h!]\centering\small
@@ -1906,7 +1905,7 @@ further replication:
   \item \textbf{Multi-LLM replication (Cycle 85)}: Binary gate effect replicated
         across Gemini-3-Flash-Preview (Google), GPT-4o (OpenAI), and
         Claude Sonnet 4.6 (Anthropic) --- all 5/5 under Condition A ($N=5$ per provider).
-        This provides cross-provider support for the gate (탐색적 결과, N=5, 통계적 검정력 부족);
+        This provides cross-provider support for the gate (exploratory result, N=5, statistically underpowered);
         $N \geq 30$ per provider is recommended for confirmatory inference.
   \item \textbf{D-047 empirical}: The measurement process introduces a topological side-effect:
         execution loop nodes, once added to the KG, permanently shorten the edge-span distribution.
@@ -1915,7 +1914,7 @@ further replication:
         specified: new nodes $\to$ shorter mean span $\to$ lower $E_{v4}$).
   \item \textbf{Emergent $>$ Pipeline on logical reasoning (exploratory, N=5, underpowered)}: A three-way
         Solo/Pipeline/Emergent benchmark (GPT-5.2 only, equal API budget, $N=5$ per
-        condition) provides \emph{예비 증거(preliminary evidence)} (탐색적 결과, N=5, 통계적 검정력 부족) that adversarial dual-path
+        condition) provides \emph{preliminary evidence} (exploratory result, N=5, statistically underpowered) that adversarial dual-path
         collaboration outperforms standard Pipeline on logical reasoning
         (Emergent 60\% vs.\ Pipeline 50\%; knights-and-knaves, Round 4).
         Mathematical computation shows the reverse (Solo 80\% $>$ Pipeline 70\%
@@ -2100,44 +2099,44 @@ Based on the case-study findings, I identify the following empirically grounded 
 % ─────────────────────────────────────────────────────────────────────────────
 \appendix
 
-\section{용어사전 (Glossary)}
+\section{Glossary}
 \label{sec:glossary}
 
-본 논문에서 사용된 핵심 용어를 정의한다.
+Key terms used in this paper are defined below.
 
 \begin{table}[h]
 \centering
-\caption{핵심 용어 정의}
+\caption{Key Term Definitions}
 \label{tab:glossary}
 \begin{tabular}{p{3cm}p{10cm}}
 \toprule
-\textbf{용어} & \textbf{정의} \\
+\textbf{Term} & \textbf{Definition} \\
 \midrule
-CSER & \textit{Cross-Source Edge Ratio}. KG 간선 중 서로 다른 에이전트 소스를 연결하는 간선의 비율. CSER $\in [0, 1]$. \\
+CSER & \textit{Cross-Source Edge Ratio}. The proportion of KG edges connecting nodes from different agent sources. CSER $\in [0, 1]$. \\
 \midrule
-$E_{v4}$ & \textit{Emergence Score v4}. CSER, DCI, edge\_span\_norm, node\_age\_div의 가중 선형 결합 복합 지표. \\
+$E_{v4}$ & \textit{Emergence Score v4}. A weighted linear composite of CSER, DCI, edge\_span\_norm, and node\_age\_div. \\
 \midrule
-PES & \textit{Paradoxical Emergence Score}. span, cross\_source, tag\_overlap으로 계산되는 역설적 창발 점수. \\
+PES & \textit{Paradoxical Emergence Score}. A paradoxical emergence score computed from span, cross\_source, and tag\_overlap. \\
 \midrule
-D-063 & \textit{Discovery \#63}. 직관에 반하는 교차출처 연결이 더 강한 창발을 생성하는 KG 구조 패턴. \\
+D-063 & \textit{Discovery \#63}. A KG structural pattern in which counterintuitive cross-source connections generate stronger emergence. \\
 \midrule
-D-064 & \textit{Discovery \#64}. 미래 노드가 과거 노드를 소급적으로 재정의하는 현상 (span=160). \\
+D-064 & \textit{Discovery \#64}. The phenomenon in which future nodes retroactively redefine past nodes (span=160). \\
 \midrule
-D-077 & \textit{Discovery \#77}. CSER이 이진 게이트로 작동 ($\geq$0.30이면 품질 포화). \\
+D-077 & \textit{Discovery \#77}. CSER operates as a binary gate: quality saturates once CSER $\geq 0.30$. \\
 \midrule
-DCI & \textit{Debate Convergence Index}. 미해결 논쟁 스레드 비율 측정. \\
+DCI & \textit{Delayed Cross-source Integration}. Measures the proportion of unresolved debate threads. \\
 \midrule
-Condition A & 이질적 페르소나 조건 --- 서로 다른 역할의 에이전트. \\
+Condition A & Heterogeneous-persona condition --- agents with different roles. \\
 \midrule
-Condition B\_full & 동질적 페르소나 조건 --- 동일 역할의 에이전트 (20 사이클). \\
+Condition B\_full & Homogeneous-persona condition --- agents with identical roles (20 cycles). \\
 \midrule
-Condition B\_partial & 부분적 동질 조건 --- 일부 속성만 공유. \\
+Condition B\_partial & Partially homogeneous condition --- agents sharing only some attributes. \\
 \midrule
-Condition C & 완전 동질 조건 --- 동일 에이전트 복제. \\
+Condition C & Fully homogeneous condition --- identical agent clones. \\
 \midrule
-L1--L5 & Layer 1(설계)--Layer 2(측정)--Layer 3(관찰)--Layer 4(행동)--Layer 5(창발) 분류 체계. \\
+L1--L5 & Layer 1 (Design) -- Layer 2 (Measurement) -- Layer 3 (Observation) -- Layer 4 (Behavior) -- Layer 5 (Emergence) taxonomy. \\
 \midrule
-pair\_designer & 에이전트 페르소나 자동 선택기 --- CSER 최적화 기반. \\
+pair\_designer & Automated agent persona selector based on CSER optimization. \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -2190,9 +2189,8 @@ bootstrap cross-validation ($N=1000$, weight optimization).
 \end{enumerate}
 
 \paragraph{CSER engineering caveat.}
-CSER은 cross-source edge를 생성하도록 에이전트에게 지시하는 engineering choice를 반영할 수 있다.
-CSER은 지시에 의한 것이든 자발적 창발에 의한 것이든 관계없이 구조적 결과를 측정한다
-(CSER measures structural outcome, regardless of whether it arises from instruction or spontaneous emergence).
+CSER may reflect an engineering choice that instructs agents to produce cross-source edges.
+CSER measures structural outcome, regardless of whether it arises from instruction or spontaneous emergence.
 
 \subsection*{A.3 Persona Configurations}
 
